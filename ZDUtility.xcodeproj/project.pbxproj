@@ -15,6 +15,7 @@
 		BC9B1D391B50FB8B002C6C5B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9B1D371B50FB8B002C6C5B /* LaunchScreen.xib */; };
 		BC9B1D451B50FB8B002C6C5B /* ZDUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D441B50FB8B002C6C5B /* ZDUtilityTests.m */; };
 		BC9B1D521B50FC35002C6C5B /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */; };
+		BCB773301B7088CA00B77BFE /* UIView+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		BC9B1D441B50FB8B002C6C5B /* ZDUtilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDUtilityTests.m; sourceTree = "<group>"; };
 		BC9B1D501B50FC35002C6C5B /* ZDFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDFileManager.h; sourceTree = "<group>"; };
 		BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFileManager.m; sourceTree = "<group>"; };
+		BCB7732E1B7088CA00B77BFE /* UIView+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utility.h"; sourceTree = "<group>"; };
+		BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utility.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 			children = (
 				BC9B1D501B50FC35002C6C5B /* ZDFileManager.h */,
 				BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */,
+				BCB7732E1B7088CA00B77BFE /* UIView+Utility.h */,
+				BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */,
 			);
 			path = ZDUtilityTool;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 			files = (
 				BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */,
 				BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */,
+				BCB773301B7088CA00B77BFE /* UIView+Utility.m in Sources */,
 				BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */,
 				BC9B1D521B50FC35002C6C5B /* ZDFileManager.m in Sources */,
 			);
@@ -432,6 +438,7 @@
 				BC9B1D4A1B50FB8B002C6C5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC9B1D4B1B50FB8B002C6C5B /* Build configuration list for PBXNativeTarget "ZDUtilityTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +447,7 @@
 				BC9B1D4D1B50FB8B002C6C5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
