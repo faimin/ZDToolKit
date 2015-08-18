@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC4647F01B8336D70014F730 /* ZDDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDefine.h; sourceTree = "<group>"; };
 		BC9B1D251B50FB8B002C6C5B /* ZDUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B1D291B50FB8B002C6C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9B1D2A1B50FB8B002C6C5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 				BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */,
 				BCB7732E1B7088CA00B77BFE /* UIView+Utility.h */,
 				BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */,
+				BC4647F01B8336D70014F730 /* ZDDefine.h */,
 			);
 			path = ZDUtilityTool;
 			sourceTree = "<group>";
