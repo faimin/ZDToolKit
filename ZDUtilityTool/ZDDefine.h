@@ -247,11 +247,6 @@ COLOR_RGBA( ( (hexValue) >> 16 ) & 0xff, ( (hexValue) >> 8 ) & 0xff, ( (hexValue
 #define FONT(F) [UIFont fontWithName:@"FZHTJW--GB1-0" size:F]
 
 
-//定义一个API
-#define APIURL                @"http://xxxxx/"
-//登陆API
-#define APILogin              [APIURL stringByAppendingString:@"Login"]
-
 //设置View的tag属性
 #define VIEWWITHTAG(_OBJECT, _TAG)    [_OBJECT viewWithTag : _TAG]
 //程序的本地化,引用国际化的文件

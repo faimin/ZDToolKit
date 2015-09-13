@@ -15,6 +15,11 @@
 		BC9B1D391B50FB8B002C6C5B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9B1D371B50FB8B002C6C5B /* LaunchScreen.xib */; };
 		BC9B1D451B50FB8B002C6C5B /* ZDUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D441B50FB8B002C6C5B /* ZDUtilityTests.m */; };
 		BC9B1D521B50FC35002C6C5B /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */; };
+		BCA031E71BA55D6B00CF1EA5 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA031E61BA55D6B00CF1EA5 /* ZDFunction.m */; };
+		BCA031ED1BA56CBE00CF1EA5 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA031EC1BA56CBE00CF1EA5 /* NSObject+Runtime.m */; };
+		BCA031EF1BA570D200CF1EA5 /* TYSwizzle in Resources */ = {isa = PBXBuildFile; fileRef = BCA031EE1BA570D200CF1EA5 /* TYSwizzle */; };
+		BCA031F21BA5751500CF1EA5 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA031F11BA5751500CF1EA5 /* NSArray+Safe.m */; };
+		BCA031F51BA5829100CF1EA5 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA031F41BA5829100CF1EA5 /* NSMutableArray+Safe.m */; };
 		BCB773301B7088CA00B77BFE /* UIView+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +50,15 @@
 		BC9B1D441B50FB8B002C6C5B /* ZDUtilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDUtilityTests.m; sourceTree = "<group>"; };
 		BC9B1D501B50FC35002C6C5B /* ZDFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDFileManager.h; sourceTree = "<group>"; };
 		BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFileManager.m; sourceTree = "<group>"; };
+		BCA031E51BA55D6B00CF1EA5 /* ZDFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDFunction.h; sourceTree = "<group>"; };
+		BCA031E61BA55D6B00CF1EA5 /* ZDFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFunction.m; sourceTree = "<group>"; };
+		BCA031EB1BA56CBE00CF1EA5 /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
+		BCA031EC1BA56CBE00CF1EA5 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
+		BCA031EE1BA570D200CF1EA5 /* TYSwizzle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TYSwizzle; sourceTree = "<group>"; };
+		BCA031F01BA5751500CF1EA5 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
+		BCA031F11BA5751500CF1EA5 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
+		BCA031F31BA5829100CF1EA5 /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
+		BCA031F41BA5829100CF1EA5 /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Safe.m"; sourceTree = "<group>"; };
 		BCB7732E1B7088CA00B77BFE /* UIView+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utility.h"; sourceTree = "<group>"; };
 		BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utility.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,11 +144,20 @@
 		BC9B1D4F1B50FC1B002C6C5B /* ZDUtilityTool */ = {
 			isa = PBXGroup;
 			children = (
+				BC4647F01B8336D70014F730 /* ZDDefine.h */,
+				BCA031E51BA55D6B00CF1EA5 /* ZDFunction.h */,
+				BCA031E61BA55D6B00CF1EA5 /* ZDFunction.m */,
 				BC9B1D501B50FC35002C6C5B /* ZDFileManager.h */,
 				BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */,
 				BCB7732E1B7088CA00B77BFE /* UIView+Utility.h */,
 				BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */,
-				BC4647F01B8336D70014F730 /* ZDDefine.h */,
+				BCA031EB1BA56CBE00CF1EA5 /* NSObject+Runtime.h */,
+				BCA031EC1BA56CBE00CF1EA5 /* NSObject+Runtime.m */,
+				BCA031F01BA5751500CF1EA5 /* NSArray+Safe.h */,
+				BCA031F11BA5751500CF1EA5 /* NSArray+Safe.m */,
+				BCA031F31BA5829100CF1EA5 /* NSMutableArray+Safe.h */,
+				BCA031F41BA5829100CF1EA5 /* NSMutableArray+Safe.m */,
+				BCA031EE1BA570D200CF1EA5 /* TYSwizzle */,
 			);
 			path = ZDUtilityTool;
 			sourceTree = "<group>";
@@ -221,6 +244,7 @@
 			files = (
 				BC9B1D341B50FB8B002C6C5B /* Main.storyboard in Resources */,
 				BC9B1D391B50FB8B002C6C5B /* LaunchScreen.xib in Resources */,
+				BCA031EF1BA570D200CF1EA5 /* TYSwizzle in Resources */,
 				BC9B1D361B50FB8B002C6C5B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,9 +265,13 @@
 			files = (
 				BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */,
 				BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */,
+				BCA031ED1BA56CBE00CF1EA5 /* NSObject+Runtime.m in Sources */,
+				BCA031F21BA5751500CF1EA5 /* NSArray+Safe.m in Sources */,
 				BCB773301B7088CA00B77BFE /* UIView+Utility.m in Sources */,
+				BCA031F51BA5829100CF1EA5 /* NSMutableArray+Safe.m in Sources */,
 				BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */,
 				BC9B1D521B50FC35002C6C5B /* ZDFileManager.m in Sources */,
+				BCA031E71BA55D6B00CF1EA5 /* ZDFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
