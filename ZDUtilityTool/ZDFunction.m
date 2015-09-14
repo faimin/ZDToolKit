@@ -9,7 +9,8 @@
 #import "ZDFunction.h"
 #import <ImageIO/ImageIO.h>
 
-//MARK:gif图片
+#pragma mark - Gif 图片
+#pragma mark -
 // returns the frame duration for a given image in 1/100th seconds
 // source: http://stackoverflow.com/questions/16964366/delaytime-or-unclampeddelaytime-for-gifs
 static NSUInteger ZDAnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef source, NSUInteger index)
@@ -128,7 +129,8 @@ UIImage *ZDAnimatedGIFFromData(NSData *data)
     return image;
 }
 
-//MARK:字符串
+#pragma mark - 字符串
+#pragma mark -
 ///设置文字行间距
 NSMutableAttributedString* SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize)
 {
@@ -148,14 +150,193 @@ NSMutableAttributedString* SetAttributeStringByFilterStringAndColor(NSString *or
 }
 
 
-NSString *UrlEncodedString(NSString *sourceText)
+NSString *URLEncodedString(NSString *sourceText)
 {
     NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,(CFStringRef)sourceText ,NULL ,CFSTR("!*'();:@&=+$,/?%#[]") ,kCFStringEncodingUTF8));
     return result;
 }
 
+/// 计算文字高度
+CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth)
+{
+    UIFont *textFont = font ? font : [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    
+    CGSize textSize;
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+    if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)])
+    {
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName: textFont,
+                                     NSParagraphStyleAttributeName: paragraph};
+        textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+                                      options:(NSStringDrawingUsesLineFragmentOrigin |
+                                               NSStringDrawingTruncatesLastVisibleLine)
+                                   attributes:attributes
+                                      context:nil].size;
+    }
+    else
+    {
+        textSize = [sourceString sizeWithFont:textFont
+                    constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+                        lineBreakMode:NSLineBreakByWordWrapping];
+    }
+#else
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName: textFont,
+                                 NSParagraphStyleAttributeName: paragraph};
+    textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+                                  options:(NSStringDrawingUsesLineFragmentOrigin |
+                                           NSStringDrawingTruncatesLastVisibleLine)
+                               attributes:attributes
+                                  context:nil].size;
+#endif
+    
+    return ceil(textSize.height);
+}
 
-//MARK: Runtime
+/// 计算文字宽度
+CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight)
+{
+    UIFont *textFont = font ? font : [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    
+    CGSize textSize;
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+    if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)])
+    {
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName: textFont,
+                                     NSParagraphStyleAttributeName: paragraph};
+        textSize = [sourceString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
+                                      options:(NSStringDrawingUsesLineFragmentOrigin |
+                                               NSStringDrawingTruncatesLastVisibleLine)
+                                   attributes:attributes
+                                      context:nil].size;
+    }
+    else
+    {
+        textSize = [sourceString sizeWithFont:textFont
+                    constrainedToSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
+                        lineBreakMode:NSLineBreakByWordWrapping];
+    }
+#else
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName: textFont,
+                                 NSParagraphStyleAttributeName: paragraph};
+    textSize = [sourceString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
+                                  options:(NSStringDrawingUsesLineFragmentOrigin |
+                                           NSStringDrawingTruncatesLastVisibleLine)
+                               attributes:attributes
+                                  context:nil].size;
+#endif
+    
+    return ceil(textSize.width);
+}
+
+CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight)
+{
+    UIFont *textFont = font ? font : [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    
+    CGSize textSize;
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+    if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName: textFont,
+                                     NSParagraphStyleAttributeName: paragraph};
+        CGSize needSize = maxWidth ? CGSizeMake(maxWidth, CGFLOAT_MAX) : CGSizeMake(CGFLOAT_MAX, maxHeight);
+        textSize = [sourceString boundingRectWithSize:needSize
+                                      options:(NSStringDrawingUsesLineFragmentOrigin |
+                                               NSStringDrawingTruncatesLastVisibleLine)
+                                   attributes:attributes
+                                      context:nil].size;
+    } else {
+        CGSize needSize = maxWidth ? CGSizeMake(maxWidth, CGFLOAT_MAX) : CGSizeMake(CGFLOAT_MAX, maxHeight);
+        textSize = [sourceString sizeWithFont:textFont
+                    constrainedToSize:needSize
+                        lineBreakMode:NSLineBreakByWordWrapping];
+    }
+#else
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName: textFont,
+                                 NSParagraphStyleAttributeName: paragraph};
+    textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+                                  options:(NSStringDrawingUsesLineFragmentOrigin |
+                                           NSStringDrawingTruncatesLastVisibleLine)
+                               attributes:attributes
+                                  context:nil].size;
+#endif
+    
+    return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+}
+
+
+NSString *ReverseString(NSString *sourceString)
+{
+    NSMutableString* reverseString = [[NSMutableString alloc] init];
+    NSInteger charIndex = [sourceString length];
+    while (charIndex > 0)
+    {
+        charIndex --;
+        NSRange subStrRange = NSMakeRange(charIndex, 1);
+        [reverseString appendString:[sourceString substringWithRange:subStrRange]];
+    }
+    return reverseString;
+}
+
+
+#pragma mark - Device
+#pragma mark -
+BOOL iPhone4s(void)
+{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    if (screenSize.height == 480)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+BOOL iPhone5s(void)
+{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    if (screenSize.height == 568)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+BOOL iPhone6(void)
+{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    if (screenSize.width == 375)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+BOOL iPhone6p(void)
+{
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    if (screenSize.width == 414)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+
+#pragma mark - Runtime
+#pragma mark -
 void PrintObjectMethods() {
     unsigned int count = 0;
     Method *methods = class_copyMethodList([NSObject class],
