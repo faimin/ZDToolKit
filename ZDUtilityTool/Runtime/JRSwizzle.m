@@ -12,14 +12,14 @@
 	#import <objc/objc-class.h>
 #endif
 
-#define SetNSErrorFor(FUNC, ERROR_VAR, FORMAT,...)	\
-	if (ERROR_VAR) {	\
+#define SetNSErrorFor(FUNC, errorVAR, FORMAT,...)	\
+	if (errorVAR) {	\
 		NSString *errStr = [NSString stringWithFormat:@"%s: " FORMAT,FUNC,##__VA_ARGS__]; \
-		*ERROR_VAR = [NSError errorWithDomain:@"NSCocoaErrorDomain" \
+		*errorVAR = [NSError errorWithDomain:@"NSCocoaErrorDomain" \
 										 code:-1	\
 									 userInfo:[NSDictionary dictionaryWithObject:errStr forKey:NSLocalizedDescriptionKey]]; \
 	}
-#define SetNSError(ERROR_VAR, FORMAT,...) SetNSErrorFor(__func__, ERROR_VAR, FORMAT, ##__VA_ARGS__)
+#define SetNSError(errorVAR, FORMAT,...) SetNSErrorFor(__func__, errorVAR, FORMAT, ##__VA_ARGS__)
 
 #if OBJC_API_VERSION >= 2
 #define GetClass(obj)	object_getClass(obj)
@@ -29,38 +29,38 @@
 
 @implementation NSObject (JRSwizzle)
 
-+ (BOOL)jr_swizzleMethod:(SEL)origSel_ withMethod:(SEL)altSel_ error:(NSError**)error_ {
++ (BOOL)jr_swizzleMethod:(SEL)origSel withMethod:(SEL)altSel error:(NSError**)error {
 #if OBJC_API_VERSION >= 2
-	Method origMethod = class_getInstanceMethod(self, origSel_);
+	Method origMethod = class_getInstanceMethod(self, origSel);
 	if (!origMethod) {
 #if TARGET_OS_IPHONE
-		SetNSError(error_, @"original method %@ not found for class %@", NSStringFromSelector(origSel_), [self class]);
+		SetNSError(error, @"original method %@ not found for class %@", NSStringFromSelector(origSel), [self class]);
 #else
-		SetNSError(error_, @"original method %@ not found for class %@", NSStringFromSelector(origSel_), [self className]);
+		SetNSError(error, @"original method %@ not found for class %@", NSStringFromSelector(origSel), [self className]);
 #endif
 		return NO;
 	}
 	
-	Method altMethod = class_getInstanceMethod(self, altSel_);
+	Method altMethod = class_getInstanceMethod(self, altSel);
 	if (!altMethod) {
 #if TARGET_OS_IPHONE
-		SetNSError(error_, @"alternate method %@ not found for class %@", NSStringFromSelector(altSel_), [self class]);
+		SetNSError(error, @"alternate method %@ not found for class %@", NSStringFromSelector(altSel), [self class]);
 #else
-		SetNSError(error_, @"alternate method %@ not found for class %@", NSStringFromSelector(altSel_), [self className]);
+		SetNSError(error, @"alternate method %@ not found for class %@", NSStringFromSelector(altSel), [self className]);
 #endif
 		return NO;
 	}
 	
 	class_addMethod(self,
-					origSel_,
-					class_getMethodImplementation(self, origSel_),
+					origSel,
+					class_getMethodImplementation(self, origSel),
 					method_getTypeEncoding(origMethod));
 	class_addMethod(self,
-					altSel_,
-					class_getMethodImplementation(self, altSel_),
+					altSel,
+					class_getMethodImplementation(self, altSel),
 					method_getTypeEncoding(altMethod));
 	
-	method_exchangeImplementations(class_getInstanceMethod(self, origSel_), class_getInstanceMethod(self, altSel_));
+	method_exchangeImplementations(class_getInstanceMethod(self, origSel), class_getInstanceMethod(self, altSel));
 	return YES;
 #else
 	//	Scan for non-inherited methods.
@@ -71,11 +71,11 @@
 	while (mlist) {
 		int method_index = 0;
 		for (; method_index < mlist->method_count; method_index++) {
-			if (mlist->method_list[method_index].method_name == origSel_) {
+			if (mlist->method_list[method_index].method_name == origSel) {
 				assert(!directOriginalMethod);
 				directOriginalMethod = &mlist->method_list[method_index];
 			}
-			if (mlist->method_list[method_index].method_name == altSel_) {
+			if (mlist->method_list[method_index].method_name == altSel) {
 				assert(!directAlternateMethod);
 				directAlternateMethod = &mlist->method_list[method_index];
 			}
@@ -87,16 +87,16 @@
 	if (!directOriginalMethod || !directAlternateMethod) {
 		Method inheritedOriginalMethod = NULL, inheritedAlternateMethod = NULL;
 		if (!directOriginalMethod) {
-			inheritedOriginalMethod = class_getInstanceMethod(self, origSel_);
+			inheritedOriginalMethod = class_getInstanceMethod(self, origSel);
 			if (!inheritedOriginalMethod) {
-				SetNSError(error_, @"original method %@ not found for class %@", NSStringFromSelector(origSel_), [self className]);
+				SetNSError(error, @"original method %@ not found for class %@", NSStringFromSelector(origSel), [self className]);
 				return NO;
 			}
 		}
 		if (!directAlternateMethod) {
-			inheritedAlternateMethod = class_getInstanceMethod(self, altSel_);
+			inheritedAlternateMethod = class_getInstanceMethod(self, altSel);
 			if (!inheritedAlternateMethod) {
-				SetNSError(error_, @"alternate method %@ not found for class %@", NSStringFromSelector(altSel_), [self className]);
+				SetNSError(error, @"alternate method %@ not found for class %@", NSStringFromSelector(altSel), [self className]);
 				return NO;
 			}
 		}
@@ -127,8 +127,8 @@
 #endif
 }
 
-+ (BOOL)jr_swizzleClassMethod:(SEL)origSel_ withClassMethod:(SEL)altSel_ error:(NSError**)error_ {
-	return [GetClass((id)self) jr_swizzleMethod:origSel_ withMethod:altSel_ error:error_];
++ (BOOL)jr_swizzleClassMethod:(SEL)origSel withClassMethod:(SEL)altSel error:(NSError**)error {
+	return [GetClass((id)self) jr_swizzleMethod:origSel withMethod:altSel error:error];
 }
 
 @end

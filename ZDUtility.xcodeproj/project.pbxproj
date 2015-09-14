@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC1AD5F21BA669E4001A68F2 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5C81BA669E4001A68F2 /* JRSwizzle.m */; };
+		BC1AD5F31BA669E4001A68F2 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5CA1BA669E4001A68F2 /* NSObject+Runtime.m */; };
+		BC1AD5F41BA669E4001A68F2 /* NSObject+TYSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5CD1BA669E4001A68F2 /* NSObject+TYSwizzle.m */; };
+		BC1AD5F51BA669E4001A68F2 /* TYSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5CF1BA669E4001A68F2 /* TYSwizzle.m */; };
+		BC1AD5F61BA669E4001A68F2 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5D31BA669E4001A68F2 /* NSArray+BlocksKit.m */; };
+		BC1AD5F71BA669E4001A68F2 /* NSDictionary+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5D51BA669E4001A68F2 /* NSDictionary+BlocksKit.m */; };
+		BC1AD5F81BA669E4001A68F2 /* NSIndexSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5D71BA669E4001A68F2 /* NSIndexSet+BlocksKit.m */; };
+		BC1AD5F91BA669E4001A68F2 /* NSInvocation+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5D91BA669E4001A68F2 /* NSInvocation+BlocksKit.m */; };
+		BC1AD5FA1BA669E4001A68F2 /* NSMapTable+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5DB1BA669E4001A68F2 /* NSMapTable+BlocksKit.m */; };
+		BC1AD5FB1BA669E4001A68F2 /* NSMutableArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5DD1BA669E4001A68F2 /* NSMutableArray+BlocksKit.m */; };
+		BC1AD5FC1BA669E4001A68F2 /* NSMutableDictionary+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5DF1BA669E4001A68F2 /* NSMutableDictionary+BlocksKit.m */; };
+		BC1AD5FD1BA669E4001A68F2 /* NSMutableIndexSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5E11BA669E4001A68F2 /* NSMutableIndexSet+BlocksKit.m */; };
+		BC1AD5FE1BA669E4001A68F2 /* NSMutableOrderedSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5E31BA669E4001A68F2 /* NSMutableOrderedSet+BlocksKit.m */; };
+		BC1AD5FF1BA669E4001A68F2 /* NSMutableSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5E51BA669E4001A68F2 /* NSMutableSet+BlocksKit.m */; };
+		BC1AD6001BA669E4001A68F2 /* NSObject+BKAssociatedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5E71BA669E4001A68F2 /* NSObject+BKAssociatedObjects.m */; };
+		BC1AD6011BA669E4001A68F2 /* NSObject+BKBlockExecution.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5E91BA669E4001A68F2 /* NSObject+BKBlockExecution.m */; };
+		BC1AD6021BA669E4001A68F2 /* NSObject+BKBlockObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5EB1BA669E4001A68F2 /* NSObject+BKBlockObservation.m */; };
+		BC1AD6031BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5ED1BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m */; };
+		BC1AD6041BA669E4001A68F2 /* NSSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5EF1BA669E4001A68F2 /* NSSet+BlocksKit.m */; };
+		BC1AD6051BA669E4001A68F2 /* NSTimer+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5F11BA669E4001A68F2 /* NSTimer+BlocksKit.m */; };
 		BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2A1B50FB8B002C6C5B /* main.m */; };
 		BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2D1B50FB8B002C6C5B /* AppDelegate.m */; };
 		BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D301B50FB8B002C6C5B /* ViewController.m */; };
@@ -16,8 +36,6 @@
 		BC9B1D451B50FB8B002C6C5B /* ZDUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D441B50FB8B002C6C5B /* ZDUtilityTests.m */; };
 		BC9B1D521B50FC35002C6C5B /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */; };
 		BCA031E71BA55D6B00CF1EA5 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA031E61BA55D6B00CF1EA5 /* ZDFunction.m */; };
-		BCA031ED1BA56CBE00CF1EA5 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA031EC1BA56CBE00CF1EA5 /* NSObject+Runtime.m */; };
-		BCA031EF1BA570D200CF1EA5 /* TYSwizzle in Resources */ = {isa = PBXBuildFile; fileRef = BCA031EE1BA570D200CF1EA5 /* TYSwizzle */; };
 		BCA031F21BA5751500CF1EA5 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA031F11BA5751500CF1EA5 /* NSArray+Safe.m */; };
 		BCA031F51BA5829100CF1EA5 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA031F41BA5829100CF1EA5 /* NSMutableArray+Safe.m */; };
 		BCB773301B7088CA00B77BFE /* UIView+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */; };
@@ -34,6 +52,47 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC1AD5C71BA669E4001A68F2 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		BC1AD5C81BA669E4001A68F2 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		BC1AD5C91BA669E4001A68F2 /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
+		BC1AD5CA1BA669E4001A68F2 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
+		BC1AD5CC1BA669E4001A68F2 /* NSObject+TYSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+TYSwizzle.h"; sourceTree = "<group>"; };
+		BC1AD5CD1BA669E4001A68F2 /* NSObject+TYSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TYSwizzle.m"; sourceTree = "<group>"; };
+		BC1AD5CE1BA669E4001A68F2 /* TYSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYSwizzle.h; sourceTree = "<group>"; };
+		BC1AD5CF1BA669E4001A68F2 /* TYSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYSwizzle.m; sourceTree = "<group>"; };
+		BC1AD5D11BA669E4001A68F2 /* BKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMacros.h; sourceTree = "<group>"; };
+		BC1AD5D21BA669E4001A68F2 /* NSArray+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5D31BA669E4001A68F2 /* NSArray+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5D41BA669E4001A68F2 /* NSDictionary+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5D51BA669E4001A68F2 /* NSDictionary+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5D61BA669E4001A68F2 /* NSIndexSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5D71BA669E4001A68F2 /* NSIndexSet+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5D81BA669E4001A68F2 /* NSInvocation+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5D91BA669E4001A68F2 /* NSInvocation+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5DA1BA669E4001A68F2 /* NSMapTable+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMapTable+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5DB1BA669E4001A68F2 /* NSMapTable+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMapTable+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5DC1BA669E4001A68F2 /* NSMutableArray+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5DD1BA669E4001A68F2 /* NSMutableArray+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5DE1BA669E4001A68F2 /* NSMutableDictionary+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5DF1BA669E4001A68F2 /* NSMutableDictionary+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5E01BA669E4001A68F2 /* NSMutableIndexSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableIndexSet+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5E11BA669E4001A68F2 /* NSMutableIndexSet+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableIndexSet+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5E21BA669E4001A68F2 /* NSMutableOrderedSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableOrderedSet+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5E31BA669E4001A68F2 /* NSMutableOrderedSet+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableOrderedSet+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5E41BA669E4001A68F2 /* NSMutableSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5E51BA669E4001A68F2 /* NSMutableSet+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5E61BA669E4001A68F2 /* NSObject+BKAssociatedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BKAssociatedObjects.h"; sourceTree = "<group>"; };
+		BC1AD5E71BA669E4001A68F2 /* NSObject+BKAssociatedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BKAssociatedObjects.m"; sourceTree = "<group>"; };
+		BC1AD5E81BA669E4001A68F2 /* NSObject+BKBlockExecution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BKBlockExecution.h"; sourceTree = "<group>"; };
+		BC1AD5E91BA669E4001A68F2 /* NSObject+BKBlockExecution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BKBlockExecution.m"; sourceTree = "<group>"; };
+		BC1AD5EA1BA669E4001A68F2 /* NSObject+BKBlockObservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BKBlockObservation.h"; sourceTree = "<group>"; };
+		BC1AD5EB1BA669E4001A68F2 /* NSObject+BKBlockObservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BKBlockObservation.m"; sourceTree = "<group>"; };
+		BC1AD5EC1BA669E4001A68F2 /* NSOrderedSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5ED1BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOrderedSet+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5EE1BA669E4001A68F2 /* NSSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5EF1BA669E4001A68F2 /* NSSet+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+BlocksKit.m"; sourceTree = "<group>"; };
+		BC1AD5F01BA669E4001A68F2 /* NSTimer+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+BlocksKit.h"; sourceTree = "<group>"; };
+		BC1AD5F11BA669E4001A68F2 /* NSTimer+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BlocksKit.m"; sourceTree = "<group>"; };
 		BC4647F01B8336D70014F730 /* ZDDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDefine.h; sourceTree = "<group>"; };
 		BC9B1D251B50FB8B002C6C5B /* ZDUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B1D291B50FB8B002C6C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,9 +111,6 @@
 		BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFileManager.m; sourceTree = "<group>"; };
 		BCA031E51BA55D6B00CF1EA5 /* ZDFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDFunction.h; sourceTree = "<group>"; };
 		BCA031E61BA55D6B00CF1EA5 /* ZDFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFunction.m; sourceTree = "<group>"; };
-		BCA031EB1BA56CBE00CF1EA5 /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
-		BCA031EC1BA56CBE00CF1EA5 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
-		BCA031EE1BA570D200CF1EA5 /* TYSwizzle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TYSwizzle; sourceTree = "<group>"; };
 		BCA031F01BA5751500CF1EA5 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
 		BCA031F11BA5751500CF1EA5 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
 		BCA031F31BA5829100CF1EA5 /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
@@ -81,6 +137,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC1AD5C61BA669E4001A68F2 /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				BC1AD5C71BA669E4001A68F2 /* JRSwizzle.h */,
+				BC1AD5C81BA669E4001A68F2 /* JRSwizzle.m */,
+				BC1AD5C91BA669E4001A68F2 /* NSObject+Runtime.h */,
+				BC1AD5CA1BA669E4001A68F2 /* NSObject+Runtime.m */,
+			);
+			path = Runtime;
+			sourceTree = "<group>";
+		};
+		BC1AD5CB1BA669E4001A68F2 /* TYSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				BC1AD5CC1BA669E4001A68F2 /* NSObject+TYSwizzle.h */,
+				BC1AD5CD1BA669E4001A68F2 /* NSObject+TYSwizzle.m */,
+				BC1AD5CE1BA669E4001A68F2 /* TYSwizzle.h */,
+				BC1AD5CF1BA669E4001A68F2 /* TYSwizzle.m */,
+			);
+			path = TYSwizzle;
+			sourceTree = "<group>";
+		};
+		BC1AD5D01BA669E4001A68F2 /* ZDBlock */ = {
+			isa = PBXGroup;
+			children = (
+				BC1AD5D11BA669E4001A68F2 /* BKMacros.h */,
+				BC1AD5D21BA669E4001A68F2 /* NSArray+BlocksKit.h */,
+				BC1AD5D31BA669E4001A68F2 /* NSArray+BlocksKit.m */,
+				BC1AD5D41BA669E4001A68F2 /* NSDictionary+BlocksKit.h */,
+				BC1AD5D51BA669E4001A68F2 /* NSDictionary+BlocksKit.m */,
+				BC1AD5D61BA669E4001A68F2 /* NSIndexSet+BlocksKit.h */,
+				BC1AD5D71BA669E4001A68F2 /* NSIndexSet+BlocksKit.m */,
+				BC1AD5D81BA669E4001A68F2 /* NSInvocation+BlocksKit.h */,
+				BC1AD5D91BA669E4001A68F2 /* NSInvocation+BlocksKit.m */,
+				BC1AD5DA1BA669E4001A68F2 /* NSMapTable+BlocksKit.h */,
+				BC1AD5DB1BA669E4001A68F2 /* NSMapTable+BlocksKit.m */,
+				BC1AD5DC1BA669E4001A68F2 /* NSMutableArray+BlocksKit.h */,
+				BC1AD5DD1BA669E4001A68F2 /* NSMutableArray+BlocksKit.m */,
+				BC1AD5DE1BA669E4001A68F2 /* NSMutableDictionary+BlocksKit.h */,
+				BC1AD5DF1BA669E4001A68F2 /* NSMutableDictionary+BlocksKit.m */,
+				BC1AD5E01BA669E4001A68F2 /* NSMutableIndexSet+BlocksKit.h */,
+				BC1AD5E11BA669E4001A68F2 /* NSMutableIndexSet+BlocksKit.m */,
+				BC1AD5E21BA669E4001A68F2 /* NSMutableOrderedSet+BlocksKit.h */,
+				BC1AD5E31BA669E4001A68F2 /* NSMutableOrderedSet+BlocksKit.m */,
+				BC1AD5E41BA669E4001A68F2 /* NSMutableSet+BlocksKit.h */,
+				BC1AD5E51BA669E4001A68F2 /* NSMutableSet+BlocksKit.m */,
+				BC1AD5E61BA669E4001A68F2 /* NSObject+BKAssociatedObjects.h */,
+				BC1AD5E71BA669E4001A68F2 /* NSObject+BKAssociatedObjects.m */,
+				BC1AD5E81BA669E4001A68F2 /* NSObject+BKBlockExecution.h */,
+				BC1AD5E91BA669E4001A68F2 /* NSObject+BKBlockExecution.m */,
+				BC1AD5EA1BA669E4001A68F2 /* NSObject+BKBlockObservation.h */,
+				BC1AD5EB1BA669E4001A68F2 /* NSObject+BKBlockObservation.m */,
+				BC1AD5EC1BA669E4001A68F2 /* NSOrderedSet+BlocksKit.h */,
+				BC1AD5ED1BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m */,
+				BC1AD5EE1BA669E4001A68F2 /* NSSet+BlocksKit.h */,
+				BC1AD5EF1BA669E4001A68F2 /* NSSet+BlocksKit.m */,
+				BC1AD5F01BA669E4001A68F2 /* NSTimer+BlocksKit.h */,
+				BC1AD5F11BA669E4001A68F2 /* NSTimer+BlocksKit.m */,
+			);
+			path = ZDBlock;
+			sourceTree = "<group>";
+		};
 		BC9B1D1C1B50FB8B002C6C5B = {
 			isa = PBXGroup;
 			children = (
@@ -151,13 +269,13 @@
 				BC9B1D511B50FC35002C6C5B /* ZDFileManager.m */,
 				BCB7732E1B7088CA00B77BFE /* UIView+Utility.h */,
 				BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */,
-				BCA031EB1BA56CBE00CF1EA5 /* NSObject+Runtime.h */,
-				BCA031EC1BA56CBE00CF1EA5 /* NSObject+Runtime.m */,
 				BCA031F01BA5751500CF1EA5 /* NSArray+Safe.h */,
 				BCA031F11BA5751500CF1EA5 /* NSArray+Safe.m */,
 				BCA031F31BA5829100CF1EA5 /* NSMutableArray+Safe.h */,
 				BCA031F41BA5829100CF1EA5 /* NSMutableArray+Safe.m */,
-				BCA031EE1BA570D200CF1EA5 /* TYSwizzle */,
+				BC1AD5C61BA669E4001A68F2 /* Runtime */,
+				BC1AD5CB1BA669E4001A68F2 /* TYSwizzle */,
+				BC1AD5D01BA669E4001A68F2 /* ZDBlock */,
 			);
 			path = ZDUtilityTool;
 			sourceTree = "<group>";
@@ -244,7 +362,6 @@
 			files = (
 				BC9B1D341B50FB8B002C6C5B /* Main.storyboard in Resources */,
 				BC9B1D391B50FB8B002C6C5B /* LaunchScreen.xib in Resources */,
-				BCA031EF1BA570D200CF1EA5 /* TYSwizzle in Resources */,
 				BC9B1D361B50FB8B002C6C5B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,15 +380,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC1AD6031BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m in Sources */,
+				BC1AD6041BA669E4001A68F2 /* NSSet+BlocksKit.m in Sources */,
+				BC1AD5F61BA669E4001A68F2 /* NSArray+BlocksKit.m in Sources */,
 				BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */,
+				BC1AD5FE1BA669E4001A68F2 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
+				BC1AD6001BA669E4001A68F2 /* NSObject+BKAssociatedObjects.m in Sources */,
 				BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */,
-				BCA031ED1BA56CBE00CF1EA5 /* NSObject+Runtime.m in Sources */,
+				BC1AD6021BA669E4001A68F2 /* NSObject+BKBlockObservation.m in Sources */,
+				BC1AD6011BA669E4001A68F2 /* NSObject+BKBlockExecution.m in Sources */,
 				BCA031F21BA5751500CF1EA5 /* NSArray+Safe.m in Sources */,
+				BC1AD5F51BA669E4001A68F2 /* TYSwizzle.m in Sources */,
 				BCB773301B7088CA00B77BFE /* UIView+Utility.m in Sources */,
 				BCA031F51BA5829100CF1EA5 /* NSMutableArray+Safe.m in Sources */,
 				BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */,
+				BC1AD5F31BA669E4001A68F2 /* NSObject+Runtime.m in Sources */,
 				BC9B1D521B50FC35002C6C5B /* ZDFileManager.m in Sources */,
+				BC1AD5FB1BA669E4001A68F2 /* NSMutableArray+BlocksKit.m in Sources */,
+				BC1AD5F21BA669E4001A68F2 /* JRSwizzle.m in Sources */,
+				BC1AD5FD1BA669E4001A68F2 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				BCA031E71BA55D6B00CF1EA5 /* ZDFunction.m in Sources */,
+				BC1AD5FF1BA669E4001A68F2 /* NSMutableSet+BlocksKit.m in Sources */,
+				BC1AD5F81BA669E4001A68F2 /* NSIndexSet+BlocksKit.m in Sources */,
+				BC1AD5FA1BA669E4001A68F2 /* NSMapTable+BlocksKit.m in Sources */,
+				BC1AD5FC1BA669E4001A68F2 /* NSMutableDictionary+BlocksKit.m in Sources */,
+				BC1AD5F41BA669E4001A68F2 /* NSObject+TYSwizzle.m in Sources */,
+				BC1AD6051BA669E4001A68F2 /* NSTimer+BlocksKit.m in Sources */,
+				BC1AD5F71BA669E4001A68F2 /* NSDictionary+BlocksKit.m in Sources */,
+				BC1AD5F91BA669E4001A68F2 /* NSInvocation+BlocksKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

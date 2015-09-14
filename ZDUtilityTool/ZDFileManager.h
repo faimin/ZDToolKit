@@ -21,11 +21,11 @@
 
 + (NSString *)homePath;
 
-+ (BOOL)fileExistsAtPath:(NSString *)path;
++ (BOOL)isFileExistsAtPath:(NSString *)path;
 
 + (BOOL)isDirectoryAtPath:(NSString *)path;
 
-//MARK:creat、move、remove、size
+//MARK:creat、move、remove、sizeCount
 + (BOOL)mkdirAtPath:(NSString *)path;
 
 + (BOOL)removeAtPath:(NSString *)path;

@@ -41,7 +41,7 @@
     return NSHomeDirectory();
 }
 
-+ (BOOL)fileExistsAtPath:(NSString *)path
++ (BOOL)isFileExistsAtPath:(NSString *)path
 {
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
 }
