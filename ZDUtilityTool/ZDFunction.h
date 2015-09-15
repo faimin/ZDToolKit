@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
+
+//===============================================================
+
 #pragma mark - Gif 图片
 #pragma mark -
 /**
@@ -21,6 +24,9 @@ UIImage *ZDAnimatedGIFFromFile(NSString *path);
  Loads an animated GIF from data, compatible with UIImageView
  */
 UIImage *ZDAnimatedGIFFromData(NSData *data);
+
+
+//===============================================================
 
 #pragma mark - 字符串
 #pragma mark -
@@ -47,6 +53,9 @@ FOUNDATION_EXPORT CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFl
 /// 反转字符串
 FOUNDATION_EXPORT NSString *ReverseString(NSString *sourceString);
 
+
+//===============================================================
+
 #pragma mark - Device
 #pragma mark -
 BOOL iPhone4s(void);
@@ -57,6 +66,7 @@ BOOL iPhone6p(void);
 #pragma mark - Runtime
 #pragma mark -
 void PrintObjectMethods(void);
+void class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector);
 
 
 
