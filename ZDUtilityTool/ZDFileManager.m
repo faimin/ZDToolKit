@@ -188,6 +188,34 @@
     return folderSize;
 }
 
++ (unsigned long long) directorySize:(NSString*)directoryPath recursive:(BOOL)recursive
+{
+    unsigned long long size = 0;
+    BOOL isDir = NO;
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:directoryPath isDirectory:&isDir] && isDir)
+    {
+        NSArray* contents = [fileManager contentsOfDirectoryAtPath:directoryPath error:nil];
+        for (NSString* item in contents)
+        {
+            NSString* fullItem = [directoryPath stringByAppendingPathComponent:item];
+            if ([fileManager fileExistsAtPath:fullItem isDirectory:&isDir])
+            {
+                if (isDir && recursive)
+                {
+                    size += [[self class] directorySize:fullItem recursive:YES];
+                }
+                else
+                {
+                    size += [[[fileManager attributesOfItemAtPath:fullItem error:nil] objectForKey:NSFileSize] unsignedLongLongValue];
+                }
+            }
+        }
+    }
+    return size;
+}
+
 + (long long)totalDiskSpace
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

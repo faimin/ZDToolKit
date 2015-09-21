@@ -27,6 +27,7 @@
 		BC1AD6031BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5ED1BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m */; };
 		BC1AD6041BA669E4001A68F2 /* NSSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5EF1BA669E4001A68F2 /* NSSet+BlocksKit.m */; };
 		BC1AD6051BA669E4001A68F2 /* NSTimer+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5F11BA669E4001A68F2 /* NSTimer+BlocksKit.m */; };
+		BC514C331BAFEC0A001B4D46 /* NOBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BC514C321BAFEC0A001B4D46 /* NOBRuntime.m */; settings = {ASSET_TAGS = (); }; };
 		BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2A1B50FB8B002C6C5B /* main.m */; };
 		BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2D1B50FB8B002C6C5B /* AppDelegate.m */; };
 		BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D301B50FB8B002C6C5B /* ViewController.m */; };
@@ -98,6 +99,8 @@
 		BC1AD5F01BA669E4001A68F2 /* NSTimer+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+BlocksKit.h"; sourceTree = "<group>"; };
 		BC1AD5F11BA669E4001A68F2 /* NSTimer+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BlocksKit.m"; sourceTree = "<group>"; };
 		BC4647F01B8336D70014F730 /* ZDDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDefine.h; sourceTree = "<group>"; };
+		BC514C311BAFEC0A001B4D46 /* NOBRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOBRuntime.h; sourceTree = "<group>"; };
+		BC514C321BAFEC0A001B4D46 /* NOBRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOBRuntime.m; sourceTree = "<group>"; };
 		BC9B1D251B50FB8B002C6C5B /* ZDUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B1D291B50FB8B002C6C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9B1D2A1B50FB8B002C6C5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 			children = (
 				BC1AD5C71BA669E4001A68F2 /* JRSwizzle.h */,
 				BC1AD5C81BA669E4001A68F2 /* JRSwizzle.m */,
+				BC514C311BAFEC0A001B4D46 /* NOBRuntime.h */,
+				BC514C321BAFEC0A001B4D46 /* NOBRuntime.m */,
 				BC1AD5C91BA669E4001A68F2 /* NSObject+Runtime.h */,
 				BC1AD5CA1BA669E4001A68F2 /* NSObject+Runtime.m */,
 			);
@@ -424,6 +429,7 @@
 				BCA031F51BA5829100CF1EA5 /* NSMutableArray+Safe.m in Sources */,
 				BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */,
 				BC1AD5F31BA669E4001A68F2 /* NSObject+Runtime.m in Sources */,
+				BC514C331BAFEC0A001B4D46 /* NOBRuntime.m in Sources */,
 				BC9B1D521B50FC35002C6C5B /* ZDFileManager.m in Sources */,
 				BCCE32961BAA925800FFD573 /* UIView+RZAutoLayoutHelpers.m in Sources */,
 				BC1AD5FB1BA669E4001A68F2 /* NSMutableArray+BlocksKit.m in Sources */,

@@ -38,6 +38,8 @@
 
 + (long long)folderSizeAtPath:(const char*)folderPath;
 
++ (unsigned long long)directorySize:(NSString*)directoryPath recursive:(BOOL)recursive;
+
 + (long long)totalDiskSpace;
 
 + (long long)freeDiskSpace;
