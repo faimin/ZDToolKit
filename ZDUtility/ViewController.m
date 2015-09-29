@@ -14,14 +14,27 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+
+	NSArray *arr = @[@0, @1, @2];
+	NSNumber *num = arr[4];
+	NSLog(@"********%@", num);
+
+	NSString *u = nil;
+	NSArray *a = [NSArray arrayWithObjects:@"h", u, nil];
+
+	NSDictionary *dic = @{@"hello" : u};
+	NSString *str = dic[@"hell"];
+	NSLog(@"========== %@", str);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)didReceiveMemoryWarning
+{
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 @end
