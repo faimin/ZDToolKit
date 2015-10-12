@@ -62,6 +62,8 @@
 		056F7F741BBA66760000FB9C /* ZDSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSwizzle.m; sourceTree = "<group>"; };
 		056F7F761BBA676B0000FB9C /* NSObject+ZDSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDSwizzle.h"; sourceTree = "<group>"; };
 		056F7F771BBA676B0000FB9C /* NSObject+ZDSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDSwizzle.m"; sourceTree = "<group>"; };
+		BC13A5B91BCB5CB500615428 /* RACEXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACEXTScope.h; sourceTree = "<group>"; };
+		BC13A5BA1BCB5CB500615428 /* RACmetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACmetamacros.h; sourceTree = "<group>"; };
 		BC1AD5C71BA669E4001A68F2 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		BC1AD5C81BA669E4001A68F2 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		BC1AD5C91BA669E4001A68F2 /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
@@ -278,6 +280,8 @@
 				BCB7732F1B7088CA00B77BFE /* UIView+Utility.m */,
 				056F7F701BBA63A10000FB9C /* ZDSafe.h */,
 				056F7F711BBA63A10000FB9C /* ZDSafe.m */,
+				BC13A5B91BCB5CB500615428 /* RACEXTScope.h */,
+				BC13A5BA1BCB5CB500615428 /* RACmetamacros.h */,
 				BCCE328A1BAA925800FFD573 /* ZDAutoLayout */,
 				BC1AD5C61BA669E4001A68F2 /* Runtime */,
 				BC1AD5D01BA669E4001A68F2 /* ZDBlock */,

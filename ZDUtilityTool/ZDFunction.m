@@ -341,7 +341,8 @@ void PrintObjectMethods() {
     unsigned int count = 0;
     Method *methods = class_copyMethodList([NSObject class],
                                            &count);
-    for (unsigned int i = 0; i < count; ++i) {
+    for (unsigned int i = 0; i < count; ++i)
+    {
         SEL sel = method_getName(methods[i]);
         const char *name = sel_getName(sel);
         printf("%s\n", name);
@@ -354,9 +355,12 @@ void class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector)
 {
     Method origMethod = class_getInstanceMethod(class, originalSelector);
     Method newMethod = class_getInstanceMethod(class, newSelector);
-    if(class_addMethod(class, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
+    if(class_addMethod(class, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod)))
+    {
         class_replaceMethod(class, newSelector, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
-    } else {
+    }
+    else
+    {
         method_exchangeImplementations(origMethod, newMethod);
     }
 }
