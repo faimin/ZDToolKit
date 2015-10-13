@@ -15,7 +15,8 @@
 {
 	UIResponder *nextResponder = self;
 
-	do {
+	do
+    {
 		nextResponder = [nextResponder nextResponder];
 
 		if ([nextResponder isKindOfClass:[UIViewController class]])
