@@ -27,11 +27,16 @@
 #endif
 
 //重写NSLog,Debug模式下打印日志和当前行数
-//#if DEBUG
-//#define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
-//#else
-//#define NSLog(FORMAT, ...) nil
-//#endif
+///A better version of NSLog
+//refer : http://onevcat.com/2014/01/black-magic-in-macro/
+#define NSLog(format, ...) do {                                             \
+fprintf(stderr, "<%s : %d> %s\n",                                           \
+[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
+__LINE__, __func__);                                                        \
+(NSLog)((format), ##__VA_ARGS__);                                           \
+fprintf(stderr, "-----------------\n");                                     \
+} while (0)
+
 
 //DEBUG  模式下打印日志,当前行 并弹出一个警告
 #ifdef DEBUG

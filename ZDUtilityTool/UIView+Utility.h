@@ -12,7 +12,7 @@
 
 //MARK: Controller
 @property (nonatomic, strong, readonly) UIViewController *viewController;
-@property (nonatomic, readonly, strong) UIViewController *topMostController;
+@property (nonatomic, strong, readonly) UIViewController *topMostController;
 
 //MARK:Method
 

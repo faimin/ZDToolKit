@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		056F7F721BBA63A10000FB9C /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 056F7F711BBA63A10000FB9C /* ZDSafe.m */; settings = {ASSET_TAGS = (); }; };
-		056F7F751BBA66760000FB9C /* ZDSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 056F7F741BBA66760000FB9C /* ZDSwizzle.m */; settings = {ASSET_TAGS = (); }; };
-		056F7F781BBA676B0000FB9C /* NSObject+ZDSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 056F7F771BBA676B0000FB9C /* NSObject+ZDSwizzle.m */; settings = {ASSET_TAGS = (); }; };
+		056F7F721BBA63A10000FB9C /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 056F7F711BBA63A10000FB9C /* ZDSafe.m */; };
+		056F7F751BBA66760000FB9C /* ZDSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 056F7F741BBA66760000FB9C /* ZDSwizzle.m */; };
+		056F7F781BBA676B0000FB9C /* NSObject+ZDSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 056F7F771BBA676B0000FB9C /* NSObject+ZDSwizzle.m */; };
 		BC1AD5F21BA669E4001A68F2 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5C81BA669E4001A68F2 /* JRSwizzle.m */; };
 		BC1AD5F31BA669E4001A68F2 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5CA1BA669E4001A68F2 /* NSObject+Runtime.m */; };
 		BC1AD5F61BA669E4001A68F2 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5D31BA669E4001A68F2 /* NSArray+BlocksKit.m */; };
@@ -28,8 +28,9 @@
 		BC1AD6031BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5ED1BA669E4001A68F2 /* NSOrderedSet+BlocksKit.m */; };
 		BC1AD6041BA669E4001A68F2 /* NSSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5EF1BA669E4001A68F2 /* NSSet+BlocksKit.m */; };
 		BC1AD6051BA669E4001A68F2 /* NSTimer+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1AD5F11BA669E4001A68F2 /* NSTimer+BlocksKit.m */; };
-		BC514C331BAFEC0A001B4D46 /* NOBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BC514C321BAFEC0A001B4D46 /* NOBRuntime.m */; settings = {ASSET_TAGS = (); }; };
-		BC5299E51BD62E9900F2BA6C /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5299E41BD62E9900F2BA6C /* OnePasswordExtension.m */; settings = {ASSET_TAGS = (); }; };
+		BC514C331BAFEC0A001B4D46 /* NOBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BC514C321BAFEC0A001B4D46 /* NOBRuntime.m */; };
+		BC5299E51BD62E9900F2BA6C /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5299E41BD62E9900F2BA6C /* OnePasswordExtension.m */; };
+		BC5C92461BE324840008494E /* UIViewController+ZDBackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5C92451BE324840008494E /* UIViewController+ZDBackButtonHandler.m */; };
 		BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2A1B50FB8B002C6C5B /* main.m */; };
 		BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2D1B50FB8B002C6C5B /* AppDelegate.m */; };
 		BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D301B50FB8B002C6C5B /* ViewController.m */; };
@@ -107,6 +108,8 @@
 		BC514C321BAFEC0A001B4D46 /* NOBRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOBRuntime.m; sourceTree = "<group>"; };
 		BC5299E31BD62E9900F2BA6C /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		BC5299E41BD62E9900F2BA6C /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
+		BC5C92441BE324840008494E /* UIViewController+ZDBackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDBackButtonHandler.h"; sourceTree = "<group>"; };
+		BC5C92451BE324840008494E /* UIViewController+ZDBackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDBackButtonHandler.m"; sourceTree = "<group>"; };
 		BC9B1D251B50FB8B002C6C5B /* ZDUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B1D291B50FB8B002C6C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9B1D2A1B50FB8B002C6C5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -214,7 +217,7 @@
 		BC9B1D1C1B50FB8B002C6C5B = {
 			isa = PBXGroup;
 			children = (
-				BC9B1D4F1B50FC1B002C6C5B /* ZDUtilityTool */,
+				BC9B1D4F1B50FC1B002C6C5B /* ZDUtilityLib */,
 				BC9B1D271B50FB8B002C6C5B /* ZDUtility */,
 				BC9B1D411B50FB8B002C6C5B /* ZDUtilityTests */,
 				BC9B1D261B50FB8B002C6C5B /* Products */,
@@ -271,7 +274,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BC9B1D4F1B50FC1B002C6C5B /* ZDUtilityTool */ = {
+		BC9B1D4F1B50FC1B002C6C5B /* ZDUtilityLib */ = {
 			isa = PBXGroup;
 			children = (
 				BC4647F01B8336D70014F730 /* ZDDefine.h */,
@@ -287,10 +290,13 @@
 				BC13A5BA1BCB5CB500615428 /* RACmetamacros.h */,
 				BC5299E31BD62E9900F2BA6C /* OnePasswordExtension.h */,
 				BC5299E41BD62E9900F2BA6C /* OnePasswordExtension.m */,
+				BC5C92441BE324840008494E /* UIViewController+ZDBackButtonHandler.h */,
+				BC5C92451BE324840008494E /* UIViewController+ZDBackButtonHandler.m */,
 				BCCE328A1BAA925800FFD573 /* ZDAutoLayout */,
 				BC1AD5C61BA669E4001A68F2 /* Runtime */,
 				BC1AD5D01BA669E4001A68F2 /* ZDBlock */,
 			);
+			name = ZDUtilityLib;
 			path = ZDUtilityTool;
 			sourceTree = "<group>";
 		};
@@ -417,6 +423,7 @@
 				BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */,
 				BC5299E51BD62E9900F2BA6C /* OnePasswordExtension.m in Sources */,
 				BC1AD5FE1BA669E4001A68F2 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
+				BC5C92461BE324840008494E /* UIViewController+ZDBackButtonHandler.m in Sources */,
 				BC1AD6001BA669E4001A68F2 /* NSObject+BKAssociatedObjects.m in Sources */,
 				BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */,
 				056F7F751BBA66760000FB9C /* ZDSwizzle.m in Sources */,

@@ -15,12 +15,10 @@
 {
 	UIResponder *nextResponder = self;
 
-	do
-    {
+	do {
 		nextResponder = [nextResponder nextResponder];
 
-		if ([nextResponder isKindOfClass:[UIViewController class]])
-		{
+		if ([nextResponder isKindOfClass:[UIViewController class]]) {
 			return (UIViewController *)nextResponder;
 		}
 	} while (nextResponder != nil);
@@ -31,11 +29,9 @@
 - (UIViewController *)topMostController
 {
 	NSMutableArray *controllersHierarchy = [[NSMutableArray alloc] init];
-
 	UIViewController *topController = self.window.rootViewController;
 
-	if (topController)
-	{
+	if (topController) {
 		[controllersHierarchy addObject:topController];
 	}
 
