@@ -24,7 +24,7 @@
 	NSLog(@"********%@", num);
 
 	NSString *u = nil;
-	NSArray *a = [NSArray arrayWithObjects:@"h", u, nil];
+	//NSArray *a = [NSArray arrayWithObjects:@"h", u, nil];
 
 	NSDictionary *dic = @{@"hello" : u};
 	NSString *str = dic[@"hell"];

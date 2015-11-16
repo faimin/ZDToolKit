@@ -3,7 +3,7 @@
 //  ZDUtility
 //
 //  Created by 符现超 on 15/8/4.
-//  Copyright (c) 2015年 Fate.D.Saber. All rights reserved.
+//  Copyright (c) 2015年 Fate.D.Bourne. All rights reserved.
 //
 
 #import "UIView+Utility.h"
