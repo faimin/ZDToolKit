@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC8A8F931BFD883200EBA9B7 /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */; };
 		BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2A1B50FB8B002C6C5B /* main.m */; };
 		BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2D1B50FB8B002C6C5B /* AppDelegate.m */; };
 		BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D301B50FB8B002C6C5B /* ViewController.m */; };
@@ -60,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC8A8F911BFD883200EBA9B7 /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
+		BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		BC9B1D251B50FB8B002C6C5B /* ZDUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B1D291B50FB8B002C6C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9B1D2A1B50FB8B002C6C5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -346,6 +349,8 @@
 				BCD0AB811BF9F05400815393 /* ZDFileManager.m */,
 				BCD0AB821BF9F05400815393 /* ZDFunction.h */,
 				BCD0AB831BF9F05400815393 /* ZDFunction.m */,
+				BC8A8F911BFD883200EBA9B7 /* MAKVONotificationCenter.h */,
+				BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */,
 			);
 			path = ZDTools;
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 				BCD0AB9D1BF9F05400815393 /* NSObject+Runtime.m in Sources */,
 				BCD0ABA21BF9F05400815393 /* ZDFileManager.m in Sources */,
 				BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */,
+				BC8A8F931BFD883200EBA9B7 /* MAKVONotificationCenter.m in Sources */,
 				BCD0ABA11BF9F05400815393 /* OnePasswordExtension.m in Sources */,
 				BCD0AB9E1BF9F05400815393 /* NSObject+ZDSwizzle.m in Sources */,
 				BCD0AB951BF9F05400815393 /* NSOrderedSet+BlocksKit.m in Sources */,
