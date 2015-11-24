@@ -15,6 +15,8 @@
 		BC9B1D361B50FB8B002C6C5B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC9B1D351B50FB8B002C6C5B /* Images.xcassets */; };
 		BC9B1D391B50FB8B002C6C5B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9B1D371B50FB8B002C6C5B /* LaunchScreen.xib */; };
 		BC9B1D451B50FB8B002C6C5B /* ZDUtilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D441B50FB8B002C6C5B /* ZDUtilityTests.m */; };
+		BCAD0E7F1C04442400A9CF03 /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAD0E7C1C04442400A9CF03 /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BCAD0E801C04442400A9CF03 /* ZDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAD0E7E1C04442400A9CF03 /* ZDTools.m */; };
 		BCD0AB841BF9F05400815393 /* UIView+AutoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB3C1BF9F05400815393 /* UIView+AutoFlowLayout.m */; };
 		BCD0AB851BF9F05400815393 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB3E1BF9F05400815393 /* UIView+AutoLayout.m */; };
 		BCD0AB861BF9F05400815393 /* UIView+FDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB401BF9F05400815393 /* UIView+FDCollapsibleConstraints.m */; };
@@ -42,7 +44,6 @@
 		BCD0AB9C1BF9F05400815393 /* NOBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB741BF9F05400815393 /* NOBRuntime.m */; };
 		BCD0AB9D1BF9F05400815393 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB761BF9F05400815393 /* NSObject+Runtime.m */; };
 		BCD0AB9E1BF9F05400815393 /* NSObject+ZDSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB781BF9F05400815393 /* NSObject+ZDSwizzle.m */; };
-		BCD0AB9F1BF9F05400815393 /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB7A1BF9F05400815393 /* ZDSafe.m */; };
 		BCD0ABA01BF9F05400815393 /* ZDSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB7C1BF9F05400815393 /* ZDSwizzle.m */; };
 		BCD0ABA11BF9F05400815393 /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB7F1BF9F05400815393 /* OnePasswordExtension.m */; };
 		BCD0ABA21BF9F05400815393 /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB811BF9F05400815393 /* ZDFileManager.m */; };
@@ -76,6 +77,10 @@
 		BC9B1D3E1B50FB8B002C6C5B /* ZDUtilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZDUtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B1D431B50FB8B002C6C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9B1D441B50FB8B002C6C5B /* ZDUtilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDUtilityTests.m; sourceTree = "<group>"; };
+		BCAD0E7B1C04442400A9CF03 /* ZDSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDSafe.h; sourceTree = "<group>"; };
+		BCAD0E7C1C04442400A9CF03 /* ZDSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSafe.m; sourceTree = "<group>"; };
+		BCAD0E7D1C04442400A9CF03 /* ZDTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDTools.h; sourceTree = "<group>"; };
+		BCAD0E7E1C04442400A9CF03 /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
 		BCD0AB3B1BF9F05400815393 /* UIView+AutoFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoFlowLayout.h"; sourceTree = "<group>"; };
 		BCD0AB3C1BF9F05400815393 /* UIView+AutoFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoFlowLayout.m"; sourceTree = "<group>"; };
 		BCD0AB3D1BF9F05400815393 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
@@ -134,8 +139,6 @@
 		BCD0AB761BF9F05400815393 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
 		BCD0AB771BF9F05400815393 /* NSObject+ZDSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDSwizzle.h"; sourceTree = "<group>"; };
 		BCD0AB781BF9F05400815393 /* NSObject+ZDSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDSwizzle.m"; sourceTree = "<group>"; };
-		BCD0AB791BF9F05400815393 /* ZDSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDSafe.h; sourceTree = "<group>"; };
-		BCD0AB7A1BF9F05400815393 /* ZDSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSafe.m; sourceTree = "<group>"; };
 		BCD0AB7B1BF9F05400815393 /* ZDSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDSwizzle.h; sourceTree = "<group>"; };
 		BCD0AB7C1BF9F05400815393 /* ZDSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSwizzle.m; sourceTree = "<group>"; };
 		BCD0AB7E1BF9F05400815393 /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
@@ -332,8 +335,6 @@
 				BCD0AB761BF9F05400815393 /* NSObject+Runtime.m */,
 				BCD0AB771BF9F05400815393 /* NSObject+ZDSwizzle.h */,
 				BCD0AB781BF9F05400815393 /* NSObject+ZDSwizzle.m */,
-				BCD0AB791BF9F05400815393 /* ZDSafe.h */,
-				BCD0AB7A1BF9F05400815393 /* ZDSafe.m */,
 				BCD0AB7B1BF9F05400815393 /* ZDSwizzle.h */,
 				BCD0AB7C1BF9F05400815393 /* ZDSwizzle.m */,
 			);
@@ -343,12 +344,16 @@
 		BCD0AB7D1BF9F05400815393 /* ZDTools */ = {
 			isa = PBXGroup;
 			children = (
+				BCD0AB821BF9F05400815393 /* ZDFunction.h */,
+				BCD0AB831BF9F05400815393 /* ZDFunction.m */,
+				BCAD0E7B1C04442400A9CF03 /* ZDSafe.h */,
+				BCAD0E7C1C04442400A9CF03 /* ZDSafe.m */,
+				BCAD0E7D1C04442400A9CF03 /* ZDTools.h */,
+				BCAD0E7E1C04442400A9CF03 /* ZDTools.m */,
 				BCD0AB7E1BF9F05400815393 /* OnePasswordExtension.h */,
 				BCD0AB7F1BF9F05400815393 /* OnePasswordExtension.m */,
 				BCD0AB801BF9F05400815393 /* ZDFileManager.h */,
 				BCD0AB811BF9F05400815393 /* ZDFileManager.m */,
-				BCD0AB821BF9F05400815393 /* ZDFunction.h */,
-				BCD0AB831BF9F05400815393 /* ZDFunction.m */,
 				BC8A8F911BFD883200EBA9B7 /* MAKVONotificationCenter.h */,
 				BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */,
 			);
@@ -399,7 +404,7 @@
 		BC9B1D1D1B50FB8B002C6C5B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Fate.D.Saber;
 				TargetAttributes = {
 					BC9B1D241B50FB8B002C6C5B = {
@@ -474,6 +479,7 @@
 				BCD0AB9C1BF9F05400815393 /* NOBRuntime.m in Sources */,
 				BCD0AB901BF9F05400815393 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				BCD0AB8F1BF9F05400815393 /* NSMutableIndexSet+BlocksKit.m in Sources */,
+				BCAD0E7F1C04442400A9CF03 /* ZDSafe.m in Sources */,
 				BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */,
 				BCD0AB8D1BF9F05400815393 /* NSMutableArray+BlocksKit.m in Sources */,
 				BCD0AB891BF9F05400815393 /* NSDictionary+BlocksKit.m in Sources */,
@@ -485,12 +491,12 @@
 				BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */,
 				BCD0AB981BF9F05400815393 /* NSObject+RZBlockKVO.m in Sources */,
 				BCD0AB941BF9F05400815393 /* NSObject+BKBlockObservation.m in Sources */,
+				BCAD0E801C04442400A9CF03 /* ZDTools.m in Sources */,
 				BCD0AB921BF9F05400815393 /* NSObject+BKAssociatedObjects.m in Sources */,
 				BCD0AB881BF9F05400815393 /* NSArray+BlocksKit.m in Sources */,
 				BCD0AB911BF9F05400815393 /* NSMutableSet+BlocksKit.m in Sources */,
 				BCD0ABA01BF9F05400815393 /* ZDSwizzle.m in Sources */,
 				BCD0AB9A1BF9F05400815393 /* UIViewController+ZDBackButtonHandler.m in Sources */,
-				BCD0AB9F1BF9F05400815393 /* ZDSafe.m in Sources */,
 				BCD0AB931BF9F05400815393 /* NSObject+BKBlockExecution.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,6 +560,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -622,6 +629,7 @@
 				INFOPLIST_FILE = ZDUtility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZD.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -633,6 +641,7 @@
 				INFOPLIST_FILE = ZDUtility/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZD.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -651,6 +660,7 @@
 				);
 				INFOPLIST_FILE = ZDUtilityTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZD.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZDUtility.app/ZDUtility";
 			};
@@ -666,6 +676,7 @@
 				);
 				INFOPLIST_FILE = ZDUtilityTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZD.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZDUtility.app/ZDUtility";
 			};

@@ -4,10 +4,14 @@
 //
 //  Created by 符现超 on 15/9/29.
 //  Copyright © 2015年 Fate.D.Saber. All rights reserved.
-//
+//  https://github.com/wuwen1030/XTSafeCollection
 
 #import "ZDSafe.h"
 #import <objc/runtime.h>
+
+#if __has_feature(objc_arc)
+#error "set disable arc (-fno-objc-arc)"
+#endif
 
 #if (ZD_LOG)
   #define ZDLOG(...) ZDLog(__VA_ARGS__)
@@ -60,13 +64,17 @@ BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
 	return zdSwizzleInstanceMethod(object_getClass((id)aClass), originalSel, replacementSel);
 }
 
+///==================================================================
 #pragma mark - ZDSafe
+///==================================================================
 
 @implementation ZDSafe
 
 @end
 
+///==================================================================
 #pragma mark - NSArray
+///==================================================================
 
 @interface NSArray (ZDSafe)
 
@@ -80,7 +88,7 @@ BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
 
 	dispatch_once(&onceToken, ^{
 		zdSwizzleInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
-
+        
 		zd_swizzleClassMethod([self class], @selector(arrayWithObjects:count:), @selector(zd_arrayWithObjects:count:));
 	});
 }
@@ -122,7 +130,9 @@ BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
 
 @end
 
+///==================================================================
 #pragma mark - NSMutableArray
+///==================================================================
 
 @interface NSMutableArray (ZDSafe)
 
@@ -208,7 +218,9 @@ BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
 
 @end
 
+///==================================================================
 #pragma mark - NSDictionary
+///==================================================================
 
 @interface NSDictionary (ZDSafe)
 
@@ -251,7 +263,9 @@ BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
 
 @end
 
+///==================================================================
 #pragma mark - NSMutableDictionary
+///==================================================================
 
 @interface NSMutableDictionary (ZDSafe)
 

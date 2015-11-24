@@ -19,9 +19,9 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-	NSArray *arr = @[@0, @1, @2];
+	NSArray *arr = @[@0, @1, @2, @"你好吗", @"我很好"];
 	NSNumber *num = arr[4];
-	NSLog(@"********%@", num);
+	NSLog(@"********%@\narr = %@", num, arr);
 
 	NSString *u = nil;
 	//NSArray *a = [NSArray arrayWithObjects:@"h", u, nil];
@@ -29,6 +29,7 @@
 	NSDictionary *dic = @{@"hello" : u};
 	NSString *str = dic[@"hell"];
 	NSLog(@"========== %@", str);
+    
 }
 
 - (void)didReceiveMemoryWarning

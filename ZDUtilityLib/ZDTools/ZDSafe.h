@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+///==================================================================
+/// @name 避免Array和Dictionary存储nil时crash
+///==================================================================
 @interface ZDSafe : NSObject
 
 @end

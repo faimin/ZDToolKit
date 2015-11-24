@@ -217,7 +217,8 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	struct statfs tStats;
 
-	statfs([[paths lastObject] cString], &tStats);
+	//statfs([[paths lastObject] cString], &tStats);
+    statfs([[paths lastObject] UTF8String], &tStats);
 	long long totalSpace = (long long)(tStats.f_blocks * tStats.f_bsize);
 	return totalSpace;
 }
@@ -227,8 +228,9 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	struct statfs buf;
 	long long freespace = -1;
-
-	if (statfs([[paths lastObject] cString], &buf) >= 0) {
+    
+    //statfs([[paths lastObject] cString], &buf
+	if (statfs([[paths lastObject] UTF8String], &buf) >= 0) {
 		freespace = (long long)buf.f_bsize * buf.f_bfree;
 	}
 	return freespace;

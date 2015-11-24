@@ -18,12 +18,20 @@
 /**
  Loads an animated GIF from file, compatible with UIImageView
  */
-UIImage *ZDAnimatedGIFFromFile(NSString *path);
+FOUNDATION_EXPORT UIImage *ZDAnimatedGIFFromFile(NSString *path);
 
 /**
  Loads an animated GIF from data, compatible with UIImageView
  */
-UIImage *ZDAnimatedGIFFromData(NSData *data);
+FOUNDATION_EXPORT UIImage *ZDAnimatedGIFFromData(NSData *data);
+
+
+//===============================================================
+
+#pragma mark - Image
+#pragma mark -
+
+FOUNDATION_EXPORT UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image);
 
 
 //===============================================================
