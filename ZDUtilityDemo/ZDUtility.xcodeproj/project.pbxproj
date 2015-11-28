@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054809E31C09A53200801260 /* NSArray+ZDExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 054809E21C09A53200801260 /* NSArray+ZDExtend.m */; };
 		BC8A8F931BFD883200EBA9B7 /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */; };
 		BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2A1B50FB8B002C6C5B /* main.m */; };
 		BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2D1B50FB8B002C6C5B /* AppDelegate.m */; };
@@ -62,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		054809E11C09A53200801260 /* NSArray+ZDExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ZDExtend.h"; sourceTree = "<group>"; };
+		054809E21C09A53200801260 /* NSArray+ZDExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ZDExtend.m"; sourceTree = "<group>"; };
 		BC8A8F911BFD883200EBA9B7 /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
 		BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		BC9B1D251B50FB8B002C6C5B /* ZDUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,6 +307,8 @@
 			children = (
 				BCD0AB681BF9F05400815393 /* UIView+Utility.h */,
 				BCD0AB691BF9F05400815393 /* UIView+Utility.m */,
+				054809E11C09A53200801260 /* NSArray+ZDExtend.h */,
+				054809E21C09A53200801260 /* NSArray+ZDExtend.m */,
 				BCD0AB6A1BF9F05400815393 /* UIViewController+ZDBackButtonHandler.h */,
 				BCD0AB6B1BF9F05400815393 /* UIViewController+ZDBackButtonHandler.m */,
 				BCD0AB661BF9F05400815393 /* NSObject+RZBlockKVO.h */,
@@ -494,6 +499,7 @@
 				BCAD0E801C04442400A9CF03 /* ZDTools.m in Sources */,
 				BCD0AB921BF9F05400815393 /* NSObject+BKAssociatedObjects.m in Sources */,
 				BCD0AB881BF9F05400815393 /* NSArray+BlocksKit.m in Sources */,
+				054809E31C09A53200801260 /* NSArray+ZDExtend.m in Sources */,
 				BCD0AB911BF9F05400815393 /* NSMutableSet+BlocksKit.m in Sources */,
 				BCD0ABA01BF9F05400815393 /* ZDSwizzle.m in Sources */,
 				BCD0AB9A1BF9F05400815393 /* UIViewController+ZDBackButtonHandler.m in Sources */,
