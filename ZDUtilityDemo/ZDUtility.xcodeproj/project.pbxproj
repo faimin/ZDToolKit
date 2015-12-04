@@ -50,6 +50,7 @@
 		BCD0ABA21BF9F05400815393 /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB811BF9F05400815393 /* ZDFileManager.m */; };
 		BCD0ABA31BF9F05400815393 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB831BF9F05400815393 /* ZDFunction.m */; };
 		BCD0ABA61BF9F07600815393 /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0ABA51BF9F07600815393 /* NSObject+DLIntrospection.m */; };
+		BCF73A651C11B18E000FA0F8 /* RZAutolayoutLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF73A641C11B18E000FA0F8 /* RZAutolayoutLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,8 @@
 		BCD0AB831BF9F05400815393 /* ZDFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFunction.m; sourceTree = "<group>"; };
 		BCD0ABA41BF9F07600815393 /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
 		BCD0ABA51BF9F07600815393 /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
+		BCF73A631C11B18E000FA0F8 /* RZAutolayoutLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZAutolayoutLabel.h; sourceTree = "<group>"; };
+		BCF73A641C11B18E000FA0F8 /* RZAutolayoutLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZAutolayoutLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +364,8 @@
 				BCD0AB811BF9F05400815393 /* ZDFileManager.m */,
 				BC8A8F911BFD883200EBA9B7 /* MAKVONotificationCenter.h */,
 				BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */,
+				BCF73A631C11B18E000FA0F8 /* RZAutolayoutLabel.h */,
+				BCF73A641C11B18E000FA0F8 /* RZAutolayoutLabel.m */,
 			);
 			path = ZDTools;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 				BCD0ABA31BF9F05400815393 /* ZDFunction.m in Sources */,
 				BCD0AB8E1BF9F05400815393 /* NSMutableDictionary+BlocksKit.m in Sources */,
 				BCD0AB851BF9F05400815393 /* UIView+AutoLayout.m in Sources */,
+				BCF73A651C11B18E000FA0F8 /* RZAutolayoutLabel.m in Sources */,
 				BCD0AB9D1BF9F05400815393 /* NSObject+Runtime.m in Sources */,
 				BCD0ABA21BF9F05400815393 /* ZDFileManager.m in Sources */,
 				BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */,

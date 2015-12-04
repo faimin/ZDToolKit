@@ -33,21 +33,39 @@ FOUNDATION_EXPORT UIImage *ZDAnimatedGIFFromData(NSData *data);
 
 FOUNDATION_EXPORT UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image);
 
+/**
+ *  @name 制作缩略图
+ */
+FOUNDATION_EXPORT UIImage *thumbnailImageFromURl (NSURL *url, int imageSize);
+
+/**
+ *  @name 判断图片格式
+ */
+FOUNDATION_EXPORT NSString *typeForImageData(NSData *data);
+FOUNDATION_EXPORT NSString *typeForData(NSData *data);
 
 //===============================================================
 
 #pragma mark - 字符串
 #pragma mark -
-/// 文字行间距
+/**
+ *  @name 文字行间距
+ */
 FOUNDATION_EXPORT NSMutableAttributedString* SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
 
-/// 筛选文字、颜色
+/**
+ *  @name 筛选文字、颜色
+ */
 FOUNDATION_EXPORT NSMutableAttributedString* SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor);
 
-/// 处理字符串
+/**
+ *  @name 处理字符串
+ */
 FOUNDATION_EXPORT NSString *URLEncodedString(NSString *sourceText);
 
-/// 计算文字高度、宽度、size
+/**
+ *  @name 计算文字高度、宽度、size
+ */
 FOUNDATION_EXPORT CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth);
 FOUNDATION_EXPORT CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight);
 /**

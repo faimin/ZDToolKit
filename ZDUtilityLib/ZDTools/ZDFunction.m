@@ -144,6 +144,149 @@ UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image) {
     return coloredImage;
 }
 
+UIImage *thumbnailImageFromURl (NSURL *url, int imageSize)
+{
+     CGImageRef myThumbnailImage = NULL;
+     CGImageSourceRef myImageSource;
+     CFDictionaryRef myOptions = NULL;
+     CFStringRef myKeys[3];
+     CFTypeRef myValues[3];
+     CFNumberRef thumbnailSize;
+    
+     // Create an image source from NSData; no options.
+     myImageSource = CGImageSourceCreateWithURL((CFURLRef)url, NULL);
+     // Make sure the image source exists before continuing.
+     if (myImageSource == NULL){
+         fprintf(stderr, "Image source is NULL.");
+         return NULL;
+         }
+    
+     // Package the integer as a CFNumber object. Using CFTypes allows you
+     // to more easily create the options dictionary later.
+    imageSize *= [UIScreen mainScreen].scale;
+     thumbnailSize = CFNumberCreate(NULL, kCFNumberIntType, &imageSize);
+    
+     // Set up the thumbnail options.
+     myKeys[0] = kCGImageSourceCreateThumbnailWithTransform;
+     myValues[0] = (CFTypeRef)kCFBooleanTrue;
+     myKeys[1] = kCGImageSourceCreateThumbnailFromImageIfAbsent;
+     myValues[1] = (CFTypeRef)kCFBooleanTrue;
+     myKeys[2] = kCGImageSourceThumbnailMaxPixelSize;
+     myValues[2] = (CFTypeRef)thumbnailSize;
+    
+     myOptions = CFDictionaryCreate(NULL, (const void **) myKeys,
+                                        (const void **) myValues, 3,
+                                        &kCFTypeDictionaryKeyCallBacks,
+                                        &kCFTypeDictionaryValueCallBacks);
+    
+     // Create the thumbnail image using the specified options.
+     myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource,
+                                                                0,
+                                                                myOptions);
+     // Release the options dictionary and the image source
+     // when you no longer need them.
+     CFRelease(thumbnailSize);
+     CFRelease(myOptions);
+     CFRelease(myImageSource);
+    
+     // Make sure the thumbnail image exists before continuing.
+     if (myThumbnailImage == NULL) {
+         fprintf(stderr, "Thumbnail image not created from image source.");
+         return NULL;
+         }
+    
+     UIImage *thumbnail = [UIImage imageWithCGImage:myThumbnailImage];
+     CFRelease(myThumbnailImage);
+    
+     return thumbnail;
+}
+
+NSString *typeForImageData(NSData *data)
+{
+    uint8_t c;
+    [data getBytes:&c length:1];
+    switch (c) {
+        case 0xFF:
+            return @"image/jpeg";
+        case 0x89:
+            return @"image/png";
+        case 0x47:
+            return @"image/gif";
+        case 0x49:
+        case 0x4D:
+            return @"image/tiff";
+    }
+    return @"未知";
+}
+
+NSString *typeForData(NSData *data)
+{
+    if (data.length < 2) {
+        return @"NOT FILE";
+    }
+
+    int char1 = 0, char2 = 0 ; //必须这样初始化
+    [data getBytes:&char1 range:NSMakeRange(0, 1)];
+    [data getBytes:&char2 range:NSMakeRange(1, 1)];
+    NSString *numStr = [NSString stringWithFormat:@"%i%i",char1,char2];
+    NSInteger dataFormatNumber = [numStr integerValue];
+    NSString *dataFormatString = @"";
+    switch (dataFormatNumber) {
+        case 255216:
+            dataFormatString = @"jpg";
+            break;
+        case 13780:
+            dataFormatString = @"png";
+            break;
+        case 7173:
+            dataFormatString = @"gif";
+            break;
+        case 6677:
+            dataFormatString = @"bmp";
+            break;
+        case 6787:
+            dataFormatString = @"swf";
+            break;
+        case 7790:
+            dataFormatString = @"exe/dll";
+            break;
+        case 8297:
+            dataFormatString = @"rar";
+            break;
+        case 8075:
+            dataFormatString = @"zip";
+            break;
+        case 55122:
+            dataFormatString = @"7z";
+            break;
+        case 6063:
+            dataFormatString = @"xml";
+            break;
+        case 6033:
+            dataFormatString = @"html";
+            break;
+        case 239187:
+            dataFormatString = @"aspx";
+            break;
+        case 117115:
+            dataFormatString = @"cs";
+            break;
+        case 119105:
+            dataFormatString = @"js";
+            break;
+        case 102100:
+            dataFormatString = @"txt";
+            break;
+        case 255254:
+            dataFormatString = @"sql";
+            break;
+        default:
+            dataFormatString = @"未知格式";
+            break;
+    }
+    return dataFormatString;
+}
+
 #pragma mark - 字符串
 #pragma mark -
 ///设置文字行间距
