@@ -326,22 +326,26 @@ fprintf(stderr, "-----------------\n");                                     \
 //----------------------图片----------------------------
 
 //----------------------颜色类---------------------------
-// rgb颜色转换（16进制->10进制）
-#define UIColorFromRGB(rgbValue)										  \
+// RGB颜色转换（16进制->10进制）
+#define UIColorFromHEX(rgbValue)										  \
 	[UIColor colorWithRed: ((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 \
 green: ((float)((rgbValue & 0xFF00) >> 8)) / 255.0						  \
 blue: ((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]
+
+#define HEXCOLOR(c)                                                       \
+[UIColor colorWithRed:((c>>16)&0xFF)/255.0f green:((c>>8)&0xFF)/255.0f blue:(c&0xFF)/255.0f alpha:1.0f]
 
 // 获取RGB颜色
 #define RGBA(r, g, b, a)	[UIColor colorWithRed: r / 255.0f green: g / 255.0f blue: b / 255.0f alpha: a]
 #define RGB(r, g, b)		RGBA(r, g, b, 1.0f)
 
 //十六进制颜色
-#define COLOR_RGBA(r, g, b, a) \
-	[UIColor colorWithRed: (r) / 255.0 green: (g) / 255.0 blue: (b) / 255.0 alpha: a]
-#define COLOR_HEXA(hexValue, alpha)	\
-	COLOR_RGBA( ( (hexValue) >> 16) & 0xff, ( (hexValue) >> 8) & 0xff, ( (hexValue) >> 0) & 0xff, alpha)
-#define COLOR_HEX(hexValue) COLOR_HEXA(hexValue, 1)
+//#define COLOR_RGBA(r, g, b, a) \
+//	[UIColor colorWithRed: (r) / 255.0 green: (g) / 255.0 blue: (b) / 255.0 alpha: a]
+//#define COLOR_HEXA(hexValue, alpha)	\
+//	COLOR_RGBA( ( (hexValue) >> 16) & 0xff, ( (hexValue) >> 8) & 0xff, ( (hexValue) >> 0) & 0xff, alpha)
+//#define COLOR_HEX(hexValue) COLOR_HEXA(hexValue, 1)
+
 
 //清除背景色
 #define CLEARCOLOR			[UIColor clearColor]

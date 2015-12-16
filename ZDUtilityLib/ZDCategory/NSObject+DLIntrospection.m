@@ -34,8 +34,7 @@
     NSString *result = [NSString stringWithCString:cString encoding:NSUTF8StringEncoding];
     if ([[result substringToIndex:1] isEqualToString:@"@"] && [result rangeOfString:@"?"].location == NSNotFound) {
         result = [[result substringWithRange:NSMakeRange(2, result.length - 3)] stringByAppendingString:@"*"];
-    } else
-    if ([[result substringToIndex:1] isEqualToString:@"^"]) {
+    } else if ([[result substringToIndex:1] isEqualToString:@"^"]) {
         result = [NSString stringWithFormat:@"%@ *",
                    [NSString decodeType:[[result substringFromIndex:1] cStringUsingEncoding:NSUTF8StringEncoding]]];
     }

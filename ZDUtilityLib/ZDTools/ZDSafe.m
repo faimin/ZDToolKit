@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 #if __has_feature(objc_arc)
-#error "set disable ARC (-fno-objc-arc)"
+#error "ZDSafe.m must be compiled with the (-fno-objc-arc) flag"
 #endif
 
 #if (ZD_LOG)
