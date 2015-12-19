@@ -12,6 +12,6 @@
 
 - (BOOL)hasAlphaChannel;
 - (UIImage *)imageAddAlphaChannle;
-
+- (UIImage *)resizeToSize:(CGSize)size;
 
 @end
