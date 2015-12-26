@@ -13,7 +13,7 @@
 - (NSArray *)reverse
 {
     if (!self) {
-        return @[].mutableCopy;
+        return @[];
     }
     NSArray *array = [self reverseObjectEnumerator].allObjects;
     return array;

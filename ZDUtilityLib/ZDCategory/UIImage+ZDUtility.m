@@ -1,25 +1,25 @@
 //
-//  UIImage+Utility.m
+//  UIImage+ZDUtility.m
 //  ZDUtility
 //
-//  Created by 符现超 on 15/12/15.
+//  Created by 符现超 on 15/12/26.
 //  Copyright © 2015年 Fate.D.Saber. All rights reserved.
 //
 
-#import "UIImage+Utility.h"
+#import "UIImage+ZDUtility.h"
 
-@implementation UIImage (Utility)
+@implementation UIImage (ZDUtility)
 
 - (BOOL)hasAlphaChannel
 {
-	if (self.CGImage == NULL) {
-		return NO;
-	}
-	CGImageAlphaInfo alpha = CGImageGetAlphaInfo(self.CGImage) & kCGBitmapAlphaInfoMask;
-	return (alpha == kCGImageAlphaFirst ||
-		   alpha == kCGImageAlphaLast ||
-		   alpha == kCGImageAlphaPremultipliedFirst ||
-		   alpha == kCGImageAlphaPremultipliedLast);
+    if (self.CGImage == NULL) {
+        return NO;
+    }
+    CGImageAlphaInfo alpha = CGImageGetAlphaInfo(self.CGImage) & kCGBitmapAlphaInfoMask;
+    return (alpha == kCGImageAlphaFirst ||
+            alpha == kCGImageAlphaLast ||
+            alpha == kCGImageAlphaPremultipliedFirst ||
+            alpha == kCGImageAlphaPremultipliedLast);
 }
 
 /**

@@ -50,7 +50,9 @@
 		BCD0ABA21BF9F05400815393 /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB811BF9F05400815393 /* ZDFileManager.m */; };
 		BCD0ABA31BF9F05400815393 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB831BF9F05400815393 /* ZDFunction.m */; };
 		BCD0ABA61BF9F07600815393 /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0ABA51BF9F07600815393 /* NSObject+DLIntrospection.m */; };
-		BCD828731C1FECD50089CB57 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD828721C1FECD50089CB57 /* UIImage+Utility.m */; };
+		BCE3E43B1C2E3F07000A343A /* NSString+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE3E43A1C2E3F07000A343A /* NSString+ZDUtility.m */; };
+		BCE3E43E1C2E3F27000A343A /* UIImage+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE3E43D1C2E3F27000A343A /* UIImage+ZDUtility.m */; };
+		BCE3E4411C2E46A4000A343A /* UIWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE3E4401C2E46A4000A343A /* UIWebView+ZDUtility.m */; };
 		BCF73A651C11B18E000FA0F8 /* RZAutolayoutLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCF73A641C11B18E000FA0F8 /* RZAutolayoutLabel.m */; };
 /* End PBXBuildFile section */
 
@@ -154,8 +156,12 @@
 		BCD0AB831BF9F05400815393 /* ZDFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFunction.m; sourceTree = "<group>"; };
 		BCD0ABA41BF9F07600815393 /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
 		BCD0ABA51BF9F07600815393 /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
-		BCD828711C1FECD50089CB57 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
-		BCD828721C1FECD50089CB57 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
+		BCE3E4391C2E3F07000A343A /* NSString+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZDUtility.h"; sourceTree = "<group>"; };
+		BCE3E43A1C2E3F07000A343A /* NSString+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZDUtility.m"; sourceTree = "<group>"; };
+		BCE3E43C1C2E3F27000A343A /* UIImage+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZDUtility.h"; sourceTree = "<group>"; };
+		BCE3E43D1C2E3F27000A343A /* UIImage+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZDUtility.m"; sourceTree = "<group>"; };
+		BCE3E43F1C2E46A4000A343A /* UIWebView+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+ZDUtility.h"; sourceTree = "<group>"; };
+		BCE3E4401C2E46A4000A343A /* UIWebView+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+ZDUtility.m"; sourceTree = "<group>"; };
 		BCF73A631C11B18E000FA0F8 /* RZAutolayoutLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZAutolayoutLabel.h; sourceTree = "<group>"; };
 		BCF73A641C11B18E000FA0F8 /* RZAutolayoutLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZAutolayoutLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -321,8 +327,12 @@
 				BCD0AB671BF9F05400815393 /* NSObject+RZBlockKVO.m */,
 				BCD0ABA41BF9F07600815393 /* NSObject+DLIntrospection.h */,
 				BCD0ABA51BF9F07600815393 /* NSObject+DLIntrospection.m */,
-				BCD828711C1FECD50089CB57 /* UIImage+Utility.h */,
-				BCD828721C1FECD50089CB57 /* UIImage+Utility.m */,
+				BCE3E43C1C2E3F27000A343A /* UIImage+ZDUtility.h */,
+				BCE3E43D1C2E3F27000A343A /* UIImage+ZDUtility.m */,
+				BCE3E4391C2E3F07000A343A /* NSString+ZDUtility.h */,
+				BCE3E43A1C2E3F07000A343A /* NSString+ZDUtility.m */,
+				BCE3E43F1C2E46A4000A343A /* UIWebView+ZDUtility.h */,
+				BCE3E4401C2E46A4000A343A /* UIWebView+ZDUtility.m */,
 			);
 			path = ZDCategory;
 			sourceTree = "<group>";
@@ -475,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCE3E43B1C2E3F07000A343A /* NSString+ZDUtility.m in Sources */,
 				BCD0AB8B1BF9F05400815393 /* NSInvocation+BlocksKit.m in Sources */,
 				BCD0AB871BF9F05400815393 /* UIView+RZAutoLayoutHelpers.m in Sources */,
 				BCD0ABA31BF9F05400815393 /* ZDFunction.m in Sources */,
@@ -496,11 +507,12 @@
 				BCD0AB901BF9F05400815393 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				BCD0AB8F1BF9F05400815393 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				BCAD0E7F1C04442400A9CF03 /* ZDSafe.m in Sources */,
+				BCE3E43E1C2E3F27000A343A /* UIImage+ZDUtility.m in Sources */,
+				BCE3E4411C2E46A4000A343A /* UIWebView+ZDUtility.m in Sources */,
 				BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */,
 				BCD0AB8D1BF9F05400815393 /* NSMutableArray+BlocksKit.m in Sources */,
 				BCD0AB891BF9F05400815393 /* NSDictionary+BlocksKit.m in Sources */,
 				BCD0ABA61BF9F07600815393 /* NSObject+DLIntrospection.m in Sources */,
-				BCD828731C1FECD50089CB57 /* UIImage+Utility.m in Sources */,
 				BCD0AB8A1BF9F05400815393 /* NSIndexSet+BlocksKit.m in Sources */,
 				BCD0AB8C1BF9F05400815393 /* NSMapTable+BlocksKit.m in Sources */,
 				BCD0AB971BF9F05400815393 /* NSTimer+BlocksKit.m in Sources */,
