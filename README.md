@@ -1,5 +1,5 @@
 #ZDUtility
-###Collected some tools，including categorys of `UIView`，`FileManager`，`NSObject`，some foundations
+###Collected some tools，including categorys of `UIView`，`FileManager`，`NSObject`，and some foundations
 ------
 >* ZDDefine
 
@@ -21,4 +21,4 @@
 >* Runtime
 
 >* ZDBlock
-----------
+
