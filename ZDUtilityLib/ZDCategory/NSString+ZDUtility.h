@@ -21,6 +21,7 @@
 - (NSString *)reverse;
 - (BOOL)isContainsString:(NSString *)string;
 - (BOOL)isAllNumber;
+- (BOOL)isValidEmail;
 
 - (NSDictionary *)dictionaryValue;
 + (NSString *)stringValueFromJson:(id)arrayOrDic;

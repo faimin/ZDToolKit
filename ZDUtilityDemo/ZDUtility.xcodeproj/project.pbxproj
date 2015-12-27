@@ -429,6 +429,7 @@
 		BC9B1D1D1B50FB8B002C6C5B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ZD;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Fate.D.Saber;
 				TargetAttributes = {
