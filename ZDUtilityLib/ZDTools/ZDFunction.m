@@ -8,6 +8,8 @@
 
 #import "ZDFunction.h"
 #import <ImageIO/ImageIO.h>
+#import <objc/runtime.h>
+#import <stdlib.h>
 
 #pragma mark - Gif 图片
 #pragma mark -
@@ -446,6 +448,22 @@ NSString *ReverseString(NSString *sourceString)
 	}
 
 	return reverseString;
+}
+
+#pragma mark - NSBundle
+#pragma mark - 
+
+///refer: http://stackoverflow.com/questions/6887464/how-can-i-get-list-of-classes-already-loaded-into-memory-in-specific-bundle-or
+NSArray *GetClassNames()
+{
+    NSMutableArray* classNames = [NSMutableArray array];
+    unsigned int count = 0;
+    const char** classes = objc_copyClassNamesForImage([[[NSBundle mainBundle] executablePath] UTF8String], &count);
+    for(unsigned int i=0;i<count;i++){
+        NSString* className = [NSString stringWithUTF8String:classes[i]];
+        [classNames addObject:className];
+    }
+    return classNames.copy;
 }
 
 #pragma mark - Device

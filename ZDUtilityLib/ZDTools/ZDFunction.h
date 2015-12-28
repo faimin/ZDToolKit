@@ -82,6 +82,13 @@ FOUNDATION_EXPORT NSString *ReverseString(NSString *sourceString);
 
 //===============================================================
 
+#pragma mark - NSBundle
+#pragma mark -
+///get list of classes already loaded into memory in specific bundle (or binary)
+FOUNDATION_EXPORT NSArray *GetClassNames();
+
+//===============================================================
+
 #pragma mark - Device
 #pragma mark -
 BOOL iPhone4s(void);
