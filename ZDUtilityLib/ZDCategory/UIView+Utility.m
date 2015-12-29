@@ -7,6 +7,9 @@
 //
 
 #import "UIView+Utility.h"
+#import <objc/runtime.h>
+
+static const void* CornerRadiusKey = &CornerRadiusKey;
 
 @implementation UIView (Utility)
 
@@ -245,6 +248,23 @@
 - (CGFloat)middleY
 {
 	return self.height / 2;
+}
+
+#pragma mark Layer
+- (void)setCornerRadius:(CGFloat)cornerRadius
+{
+    objc_setAssociatedObject(self, CornerRadiusKey, @(cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:cornerRadius];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.layer.mask = maskLayer;
+}
+
+- (CGFloat)cornerRadius
+{
+    return [objc_getAssociatedObject(self, CornerRadiusKey) integerValue];
 }
 
 @end

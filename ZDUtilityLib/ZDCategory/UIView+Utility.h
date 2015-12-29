@@ -56,4 +56,16 @@
 @property (nonatomic, readonly) CGFloat middleX;
 @property (nonatomic, readonly) CGFloat middleY;
 
+// Layer
+@property (nonatomic) CGFloat cornerRadius;
+
 @end
+
+
+
+
+
+
+
+
+
