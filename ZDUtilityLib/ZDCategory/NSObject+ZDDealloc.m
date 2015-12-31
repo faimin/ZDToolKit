@@ -15,7 +15,7 @@
 {
     if (deallocBlock) {
         ZDWeakSelf *blockExecutor = [[ZDWeakSelf alloc] initWithBlock:deallocBlock];
-        ///原理: 当self释放时,它所绑定的属性也自动会释放,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
+        ///原理: 当self释放时,它所绑定的属性也会自动释放,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
         objc_setAssociatedObject(self, (__bridge const void *)deallocBlock, blockExecutor, OBJC_ASSOCIATION_RETAIN);
     }
 }
@@ -35,6 +35,7 @@
 {
     self = [super init];
     if (self) {
+        //属性设为readonly,并用指针指向方式,是参照RACDynamicSignal写法
         self->_deallocBlock = [deallocBlock copy];
     }
     return self;
