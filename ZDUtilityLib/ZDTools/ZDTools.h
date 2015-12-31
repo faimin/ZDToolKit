@@ -10,6 +10,7 @@
 
 ///==================================================================
 /// @name 使Array和Dictionary打印出汉字
+/// 还有一个XCode插件也可以:  https://github.com/dhcdht/DXXcodeConsoleUnicodePlugin
 ///==================================================================
 @interface ZDTools : NSObject
 

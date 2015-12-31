@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		054809E31C09A53200801260 /* NSArray+ZDExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 054809E21C09A53200801260 /* NSArray+ZDExtend.m */; };
+		BC5C02BE1C35278E00773B78 /* NSObject+ZDDealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5C02BD1C35278E00773B78 /* NSObject+ZDDealloc.m */; };
 		BC8A8F931BFD883200EBA9B7 /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */; };
 		BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2A1B50FB8B002C6C5B /* main.m */; };
 		BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2D1B50FB8B002C6C5B /* AppDelegate.m */; };
@@ -69,6 +70,8 @@
 /* Begin PBXFileReference section */
 		054809E11C09A53200801260 /* NSArray+ZDExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ZDExtend.h"; sourceTree = "<group>"; };
 		054809E21C09A53200801260 /* NSArray+ZDExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ZDExtend.m"; sourceTree = "<group>"; };
+		BC5C02BC1C35278E00773B78 /* NSObject+ZDDealloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDDealloc.h"; sourceTree = "<group>"; };
+		BC5C02BD1C35278E00773B78 /* NSObject+ZDDealloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDDealloc.m"; sourceTree = "<group>"; };
 		BC8A8F911BFD883200EBA9B7 /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
 		BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		BC9B1D251B50FB8B002C6C5B /* ZDUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +330,8 @@
 				BCD0AB671BF9F05400815393 /* NSObject+RZBlockKVO.m */,
 				BCD0ABA41BF9F07600815393 /* NSObject+DLIntrospection.h */,
 				BCD0ABA51BF9F07600815393 /* NSObject+DLIntrospection.m */,
+				BC5C02BC1C35278E00773B78 /* NSObject+ZDDealloc.h */,
+				BC5C02BD1C35278E00773B78 /* NSObject+ZDDealloc.m */,
 				BCE3E43C1C2E3F27000A343A /* UIImage+ZDUtility.h */,
 				BCE3E43D1C2E3F27000A343A /* UIImage+ZDUtility.m */,
 				BCE3E4391C2E3F07000A343A /* NSString+ZDUtility.h */,
@@ -514,6 +519,7 @@
 				BCD0AB8D1BF9F05400815393 /* NSMutableArray+BlocksKit.m in Sources */,
 				BCD0AB891BF9F05400815393 /* NSDictionary+BlocksKit.m in Sources */,
 				BCD0ABA61BF9F07600815393 /* NSObject+DLIntrospection.m in Sources */,
+				BC5C02BE1C35278E00773B78 /* NSObject+ZDDealloc.m in Sources */,
 				BCD0AB8A1BF9F05400815393 /* NSIndexSet+BlocksKit.m in Sources */,
 				BCD0AB8C1BF9F05400815393 /* NSMapTable+BlocksKit.m in Sources */,
 				BCD0AB971BF9F05400815393 /* NSTimer+BlocksKit.m in Sources */,
