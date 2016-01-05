@@ -13,7 +13,7 @@
 
 //===============================================================
 
-#pragma mark - Gif 图片
+#pragma mark - Gif Image
 #pragma mark -
 /**
  Loads an animated GIF from file, compatible with UIImageView
@@ -46,7 +46,7 @@ FOUNDATION_EXPORT NSString *typeForData(NSData *data);
 
 //===============================================================
 
-#pragma mark - 字符串
+#pragma mark - String
 #pragma mark -
 /**
  *  @name 文字行间距
