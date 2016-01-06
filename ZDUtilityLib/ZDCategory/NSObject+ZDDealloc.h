@@ -14,10 +14,3 @@
 
 @end
 
-
-
-@interface ZDWeakSelf : NSObject
-
-- (id)initWithBlock:(void(^)())deallocBlock;
-
-@end
