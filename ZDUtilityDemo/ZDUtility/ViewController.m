@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "UIView+ZDUtility.h"
 
 @interface ViewController ()
 
@@ -19,16 +20,7 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-	NSArray *arr = @[@0, @1, @2, @"你好吗", @"我很好"];
-	NSNumber *num = arr[4];
-	NSLog(@"********%@\narr = %@", num, arr);
-
-	NSString *u = nil;
-	//NSArray *a = [NSArray arrayWithObjects:@"h", u, nil];
-
-	NSDictionary *dic = @{@"hello" : u};
-	NSString *str = dic[@"hell"];
-	NSLog(@"========== %@", str);
+    [self nilTest];
     
 }
 
@@ -36,6 +28,22 @@
 {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Test
+
+- (void)nilTest
+{
+    NSArray *arr = @[@0, @1, @2, @"你好吗", @"我很好"];
+    NSNumber *num = arr[4];
+    NSLog(@"********%@\narr = %@", num, arr);
+    
+    NSString *u = nil;
+    //NSArray *a = [NSArray arrayWithObjects:@"h", u, nil];
+    
+    NSDictionary *dic = @{@"hello" : u};
+    NSString *str = dic[@"hell"];
+    NSLog(@"========== %@", str);
 }
 
 @end

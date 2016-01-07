@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (Utility)
+@interface UIView (ZDUtility)
 
 //MARK: Controller
 @property (nonatomic, strong, readonly) UIViewController *viewController;
@@ -57,7 +57,7 @@
 @property (nonatomic, readonly) CGFloat middleY;
 
 // Layer
-@property (nonatomic) CGFloat cornerRadius;
+@property (nonatomic) IBInspectable CGFloat cornerRadius;
 
 @end
 

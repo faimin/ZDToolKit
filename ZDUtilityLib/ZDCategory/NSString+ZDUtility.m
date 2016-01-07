@@ -198,7 +198,7 @@
 - (NSString *)reverse
 {
     NSMutableString* reverseString = [[NSMutableString alloc] init];
-    NSInteger charIndex = [self length];
+    NSUInteger charIndex = [self length];
     while (charIndex > 0) {
         charIndex --;
         NSRange subStrRange = NSMakeRange(charIndex, 1);
@@ -209,12 +209,13 @@
 
 - (BOOL)isContainsString:(NSString *)string
 {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
     NSRange rang = [self rangeOfString:string];
-    if (rang.location == NSNotFound) {
-        return NO;
-    } else {
-        return YES;
-    }
+    if (rang.location == NSNotFound) return NO;
+    return YES;
+#else
+    return [self containsString:string];
+#endif
 }
 
 - (BOOL)isAllNumber
@@ -243,6 +244,8 @@
     return match != nil;
 }
 
+#pragma mark - Json
+
 - (NSDictionary *)dictionaryValue
 {
     NSError *errorJson;
@@ -256,7 +259,8 @@
 + (NSString *)stringValueFromJson:(id)arrayOrDic
 {
     NSData *jsonData =[NSJSONSerialization dataWithJSONObject:arrayOrDic
-                                                      options:NSJSONWritingPrettyPrinted error:nil];
+                                                      options:NSJSONWritingPrettyPrinted
+                                                        error:nil];
     NSString *strs=[[NSString alloc] initWithData:jsonData
                                          encoding:NSUTF8StringEncoding];
     return strs;

@@ -18,6 +18,7 @@
 
 - (NSString *)filterEmoji;
 - (NSString *)removeHalfEmoji;
+
 - (NSString *)reservedNumberOnly;
 - (NSString *)reverse;
 - (BOOL)isContainsString:(NSString *)string;

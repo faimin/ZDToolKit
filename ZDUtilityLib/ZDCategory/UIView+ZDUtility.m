@@ -6,12 +6,12 @@
 //  Copyright (c) 2015年 Fate.D.Bourne. All rights reserved.
 //
 
-#import "UIView+Utility.h"
+#import "UIView+ZDUtility.h"
 #import <objc/runtime.h>
 
 static const void* CornerRadiusKey = &CornerRadiusKey;
 
-@implementation UIView (Utility)
+@implementation UIView (ZDUtility)
 
 //MARK: Controller
 - (UIViewController *)viewController
