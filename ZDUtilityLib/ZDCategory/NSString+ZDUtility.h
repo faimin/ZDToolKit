@@ -17,6 +17,7 @@
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height;
 
 - (NSString *)filterEmoji;
+- (NSString *)removeHalfEmoji;
 - (NSString *)reservedNumberOnly;
 - (NSString *)reverse;
 - (BOOL)isContainsString:(NSString *)string;

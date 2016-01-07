@@ -173,6 +173,20 @@
 	return modifiedString;
 }
 
+- (NSString *)removeHalfEmoji
+{
+    if (self.length > 0) {
+        NSString *tmpStr = self;
+        NSUInteger lenth = tmpStr.length;
+        if (([tmpStr characterAtIndex:lenth-1]&0xfc00)  == 0xd800) {
+            lenth--;
+        }
+        tmpStr = [tmpStr substringToIndex:lenth];
+        return tmpStr;
+    }
+    return self;
+}
+
 - (NSString *)reservedNumberOnly
 {
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];

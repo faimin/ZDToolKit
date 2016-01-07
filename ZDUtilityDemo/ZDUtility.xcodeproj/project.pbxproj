@@ -340,12 +340,12 @@
 				BC5C02BD1C35278E00773B78 /* NSObject+ZDDealloc.m */,
 				BCE3E43C1C2E3F27000A343A /* UIImage+ZDUtility.h */,
 				BCE3E43D1C2E3F27000A343A /* UIImage+ZDUtility.m */,
-				BCE3E4391C2E3F07000A343A /* NSString+ZDUtility.h */,
-				BCE3E43A1C2E3F07000A343A /* NSString+ZDUtility.m */,
 				BCE3E43F1C2E46A4000A343A /* UIWebView+ZDUtility.h */,
 				BCE3E4401C2E46A4000A343A /* UIWebView+ZDUtility.m */,
 				BCB96D561C3B9E7600D9BACA /* UIColor+ZDUtility.h */,
 				BCB96D571C3B9E7600D9BACA /* UIColor+ZDUtility.m */,
+				BCE3E4391C2E3F07000A343A /* NSString+ZDUtility.h */,
+				BCE3E43A1C2E3F07000A343A /* NSString+ZDUtility.m */,
 			);
 			path = ZDCategory;
 			sourceTree = "<group>";
