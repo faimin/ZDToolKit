@@ -161,7 +161,7 @@ UIImage *thumbnailImageFromURl (NSURL *url, int imageSize)
      if (myImageSource == NULL){
          fprintf(stderr, "Image source is NULL.");
          return NULL;
-         }
+    }
     
      // Package the integer as a CFNumber object. Using CFTypes allows you
      // to more easily create the options dictionary later.
@@ -195,7 +195,7 @@ UIImage *thumbnailImageFromURl (NSURL *url, int imageSize)
      if (myThumbnailImage == NULL) {
          fprintf(stderr, "Thumbnail image not created from image source.");
          return NULL;
-         }
+    }
     
      UIImage *thumbnail = [UIImage imageWithCGImage:myThumbnailImage];
      CFRelease(myThumbnailImage);
@@ -218,7 +218,7 @@ NSString *typeForImageData(NSData *data)
         case 0x4D:
             return @"image/tiff";
     }
-    return @"未知";
+    return @"未知格式";
 }
 
 NSString *typeForData(NSData *data)
@@ -230,7 +230,7 @@ NSString *typeForData(NSData *data)
     int char1 = 0, char2 = 0 ; //必须这样初始化
     [data getBytes:&char1 range:NSMakeRange(0, 1)];
     [data getBytes:&char2 range:NSMakeRange(1, 1)];
-    NSString *numStr = [NSString stringWithFormat:@"%i%i",char1,char2];
+    NSString *numStr = [NSString stringWithFormat:@"%i%i", char1, char2];
     NSInteger dataFormatNumber = [numStr integerValue];
     NSString *dataFormatString = @"";
     switch (dataFormatNumber) {
@@ -321,38 +321,42 @@ NSString *URLEncodedString(NSString *sourceText)
 /// 计算文字高度
 CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth)
 {
-	UIFont *textFont = font ? font :[UIFont systemFontOfSize:[UIFont systemFontSize]];
+	UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
 
 	CGSize textSize;
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
 	if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
 		NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 		paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-		NSDictionary *attributes = @{NSFontAttributeName : textFont,
-									 NSParagraphStyleAttributeName : paragraph};
+		NSDictionary *attributes = @{
+                                     NSFontAttributeName : textFont,
+									 NSParagraphStyleAttributeName : paragraph
+                                     };
 		textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-			options:(NSStringDrawingUsesLineFragmentOrigin |
+                                              options:(NSStringDrawingUsesLineFragmentOrigin |
 			NSStringDrawingTruncatesLastVisibleLine)
-			attributes:attributes
-			context:nil].size;
+                                           attributes:attributes
+                                              context:nil].size;
 	}
 	else {
 		textSize = [sourceString sizeWithFont:textFont
-			constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-			lineBreakMode:NSLineBreakByWordWrapping];
+                            constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
+                                lineBreakMode:NSLineBreakByWordWrapping];
 	}
 #else
 	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 	paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-	NSDictionary *attributes = @{NSFontAttributeName : textFont,
-								 NSParagraphStyleAttributeName : paragraph};
+	NSDictionary *attributes = @{
+                                 NSFontAttributeName : textFont,
+								 NSParagraphStyleAttributeName : paragraph
+                                 };
 	textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-		options:(NSStringDrawingUsesLineFragmentOrigin |
+                                          options:(NSStringDrawingUsesLineFragmentOrigin |
 		NSStringDrawingTruncatesLastVisibleLine)
-		attributes:attributes
-		context:nil].size;
-#endif /* if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 */
+                                       attributes:attributes
+                                          context:nil].size;
+#endif
 
 	return ceil(textSize.height);
 }
@@ -364,74 +368,82 @@ CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight)
 
 	CGSize textSize;
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
 	if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
 		NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 		paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-		NSDictionary *attributes = @{NSFontAttributeName : textFont,
-									 NSParagraphStyleAttributeName : paragraph};
+		NSDictionary *attributes = @{
+                                     NSFontAttributeName : textFont,
+									 NSParagraphStyleAttributeName : paragraph
+                                     };
 		textSize = [sourceString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
-			options:(NSStringDrawingUsesLineFragmentOrigin |
+                                              options:(NSStringDrawingUsesLineFragmentOrigin |
 			NSStringDrawingTruncatesLastVisibleLine)
-			attributes:attributes
-			context:nil].size;
+                                           attributes:attributes
+                                              context:nil].size;
 	}
 	else {
 		textSize = [sourceString sizeWithFont:textFont
-			constrainedToSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
-			lineBreakMode:NSLineBreakByWordWrapping];
+                            constrainedToSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
+                                lineBreakMode:NSLineBreakByWordWrapping];
 	}
 #else
 	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 	paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-	NSDictionary *attributes = @{NSFontAttributeName : textFont,
-								 NSParagraphStyleAttributeName : paragraph};
+	NSDictionary *attributes = @{
+                                 NSFontAttributeName : textFont,
+								 NSParagraphStyleAttributeName : paragraph
+                                 };
 	textSize = [sourceString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
-		options:(NSStringDrawingUsesLineFragmentOrigin |
+                                          options:(NSStringDrawingUsesLineFragmentOrigin |
 		NSStringDrawingTruncatesLastVisibleLine)
-		attributes:attributes
-		context:nil].size;
-#endif /* if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 */
+                                       attributes:attributes
+                                          context:nil].size;
+#endif
 
 	return ceil(textSize.width);
 }
 
 CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight)
 {
-	UIFont *textFont = font ? font :[UIFont systemFontOfSize:[UIFont systemFontSize]];
+	UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
 
 	CGSize textSize;
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
 	if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
 		NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 		paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-		NSDictionary *attributes = @{NSFontAttributeName : textFont,
-									 NSParagraphStyleAttributeName : paragraph};
+		NSDictionary *attributes = @{
+                                     NSFontAttributeName : textFont,
+                                     NSParagraphStyleAttributeName : paragraph
+                                     };
 		CGSize needSize = maxWidth ? CGSizeMake(maxWidth, CGFLOAT_MAX) : CGSizeMake(CGFLOAT_MAX, maxHeight);
 		textSize = [sourceString boundingRectWithSize:needSize
-			options:(NSStringDrawingUsesLineFragmentOrigin |
+                                              options:(NSStringDrawingUsesLineFragmentOrigin |
 			NSStringDrawingTruncatesLastVisibleLine)
-			attributes:attributes
-			context:nil].size;
+                                           attributes:attributes
+                                              context:nil].size;
 	}
 	else {
 		CGSize needSize = maxWidth ? CGSizeMake(maxWidth, CGFLOAT_MAX) : CGSizeMake(CGFLOAT_MAX, maxHeight);
 		textSize = [sourceString sizeWithFont:textFont
-			constrainedToSize:needSize
-			lineBreakMode:NSLineBreakByWordWrapping];
+                            constrainedToSize:needSize
+                                lineBreakMode:NSLineBreakByWordWrapping];
 	}
 #else
 	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 	paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-	NSDictionary *attributes = @{NSFontAttributeName : textFont,
-								 NSParagraphStyleAttributeName : paragraph};
+	NSDictionary *attributes = @{
+                                 NSFontAttributeName : textFont,
+                                 NSParagraphStyleAttributeName : paragraph
+                                 };
 	textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-		options:(NSStringDrawingUsesLineFragmentOrigin |
+                                          options:(NSStringDrawingUsesLineFragmentOrigin |
 		NSStringDrawingTruncatesLastVisibleLine)
-		attributes:attributes
-		context:nil].size;
-#endif /* if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 */
+                                       attributes:attributes
+                                          context:nil].size;
+#endif
 
 	return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
@@ -450,16 +462,27 @@ NSString *ReverseString(NSString *sourceString)
 	return reverseString;
 }
 
+BOOL NSStringIsEmpty(NSString *str)
+{
+    if (!str || str == (id)[NSNull null]) return YES;
+    if ([str isKindOfClass:[NSString class]]) {
+        return str.length == 0;
+    }
+    else {
+        return YES;
+    }
+}
+
 #pragma mark - NSBundle
 #pragma mark - 
 
 ///refer: http://stackoverflow.com/questions/6887464/how-can-i-get-list-of-classes-already-loaded-into-memory-in-specific-bundle-or
 NSArray *GetClassNames()
 {
-    NSMutableArray* classNames = [NSMutableArray array];
+    NSMutableArray *classNames = [NSMutableArray array];
     unsigned int count = 0;
     const char** classes = objc_copyClassNamesForImage([[[NSBundle mainBundle] executablePath] UTF8String], &count);
-    for(unsigned int i=0;i<count;i++){
+    for (unsigned int i = 0; i<count; i++) {
         NSString* className = [NSString stringWithUTF8String:classes[i]];
         [classNames addObject:className];
     }
@@ -513,8 +536,7 @@ BOOL iPhone6p(void)
 void PrintObjectMethods()
 {
 	unsigned int count = 0;
-	Method *methods = class_copyMethodList([NSObject class],
-			&count);
+	Method *methods = class_copyMethodList([NSObject class], &count);
 
 	for (unsigned int i = 0; i < count; ++i) {
 		SEL sel = method_getName(methods[i]);
@@ -525,7 +547,7 @@ void PrintObjectMethods()
 	free(methods);
 }
 
-void class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector)
+void Class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector)
 {
 	Method origMethod = class_getInstanceMethod(class, originalSelector);
 	Method newMethod = class_getInstanceMethod(class, newSelector);
@@ -537,3 +559,8 @@ void class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector)
 		method_exchangeImplementations(origMethod, newMethod);
 	}
 }
+
+
+
+
+

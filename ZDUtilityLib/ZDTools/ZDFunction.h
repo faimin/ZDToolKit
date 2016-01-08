@@ -78,8 +78,7 @@ FOUNDATION_EXPORT CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFl
 
 /// 反转字符串
 FOUNDATION_EXPORT NSString *ReverseString(NSString *sourceString);
-
-
+FOUNDATION_EXPORT BOOL NSStringIsEmpty(NSString *str);
 //===============================================================
 
 #pragma mark - NSBundle
@@ -99,7 +98,7 @@ BOOL iPhone6p(void);
 #pragma mark - Runtime
 #pragma mark -
 void PrintObjectMethods(void);
-void class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector);
+void Class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector);
 
 
 

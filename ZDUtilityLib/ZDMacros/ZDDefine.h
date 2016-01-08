@@ -377,4 +377,14 @@ blue: ((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]
 	@"LiteResource"													 \
 	ofType:@"bundle"];
 
+//TODO宏 (http://blog.sunnyxx.com/2015/03/01/todo-macro/)
+#define STRINGIFY(S) #S
+#define DEFER_STRINGIFY(S) STRINGIFY(S)
+#define PRAGMA_MESSAGE(MSG) _Pragma(STRINGIFY(message(MSG)))
+#define FORMATTED_MESSAGE(MSG) "[TODO-" DEFER_STRINGIFY(__COUNTER__) "] " MSG " \n" \
+DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
+#define KEYWORDIFY try {} @catch (...) {}
+// 最终使用下面的宏
+#define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))
+
 #endif 
