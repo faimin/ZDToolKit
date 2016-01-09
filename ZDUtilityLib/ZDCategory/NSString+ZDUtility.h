@@ -16,6 +16,7 @@
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height;
 
+- (BOOL)isContainsEmoji;
 - (NSString *)filterEmoji;
 - (NSString *)removeHalfEmoji;
 
@@ -30,5 +31,10 @@
 
 - (NSString *)decodeHTMLCharacterEntities;
 - (NSString *)encodeHTMLCharacterEntities;
+
+- (NSString *)stringByAddingPercentEncodingForRFC3986;
+- (NSString *)stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace;
+- (NSString *)stringByURLEncode;
+- (NSString *)stringByURLDecode;
 
 @end
