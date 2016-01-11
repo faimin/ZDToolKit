@@ -10,6 +10,7 @@
 		054809E31C09A53200801260 /* NSArray+ZDExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 054809E21C09A53200801260 /* NSArray+ZDExtend.m */; };
 		BC5C02BE1C35278E00773B78 /* NSObject+ZDDealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5C02BD1C35278E00773B78 /* NSObject+ZDDealloc.m */; };
 		BC8A8F931BFD883200EBA9B7 /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */; };
+		BC9A81401C43865E00D22004 /* UIImageView+FaceAwareFill.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9A813F1C43865E00D22004 /* UIImageView+FaceAwareFill.m */; };
 		BC9B1D2B1B50FB8B002C6C5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2A1B50FB8B002C6C5B /* main.m */; };
 		BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D2D1B50FB8B002C6C5B /* AppDelegate.m */; };
 		BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9B1D301B50FB8B002C6C5B /* ViewController.m */; };
@@ -76,6 +77,8 @@
 		BC5C02BD1C35278E00773B78 /* NSObject+ZDDealloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDDealloc.m"; sourceTree = "<group>"; };
 		BC8A8F911BFD883200EBA9B7 /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
 		BC8A8F921BFD883200EBA9B7 /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
+		BC9A813E1C43865E00D22004 /* UIImageView+FaceAwareFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FaceAwareFill.h"; sourceTree = "<group>"; };
+		BC9A813F1C43865E00D22004 /* UIImageView+FaceAwareFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+FaceAwareFill.m"; sourceTree = "<group>"; };
 		BC9B1D251B50FB8B002C6C5B /* ZDUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9B1D291B50FB8B002C6C5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9B1D2A1B50FB8B002C6C5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 				BC5C02BD1C35278E00773B78 /* NSObject+ZDDealloc.m */,
 				BCE3E43C1C2E3F27000A343A /* UIImage+ZDUtility.h */,
 				BCE3E43D1C2E3F27000A343A /* UIImage+ZDUtility.m */,
+				BC9A813E1C43865E00D22004 /* UIImageView+FaceAwareFill.h */,
+				BC9A813F1C43865E00D22004 /* UIImageView+FaceAwareFill.m */,
 				BCE3E43F1C2E46A4000A343A /* UIWebView+ZDUtility.h */,
 				BCE3E4401C2E46A4000A343A /* UIWebView+ZDUtility.m */,
 				BCB96D561C3B9E7600D9BACA /* UIColor+ZDUtility.h */,
@@ -525,6 +530,7 @@
 				BCD0AB8F1BF9F05400815393 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				BCAD0E7F1C04442400A9CF03 /* ZDSafe.m in Sources */,
 				BCE3E43E1C2E3F27000A343A /* UIImage+ZDUtility.m in Sources */,
+				BC9A81401C43865E00D22004 /* UIImageView+FaceAwareFill.m in Sources */,
 				BCE3E4411C2E46A4000A343A /* UIWebView+ZDUtility.m in Sources */,
 				BC9B1D2E1B50FB8B002C6C5B /* AppDelegate.m in Sources */,
 				BCD0AB8D1BF9F05400815393 /* NSMutableArray+BlocksKit.m in Sources */,
