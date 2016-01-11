@@ -11,7 +11,7 @@
 #import <objc/runtime.h>
 #import <stdlib.h>
 
-#pragma mark - Gif 图片
+#pragma mark - Gif Image
 #pragma mark -
 // returns the frame duration for a given image in 1/100th seconds
 // source: http://stackoverflow.com/questions/16964366/delaytime-or-unclampeddelaytime-for-gifs
@@ -289,7 +289,7 @@ NSString *typeForData(NSData *data)
     return dataFormatString;
 }
 
-#pragma mark - 字符串
+#pragma mark - String
 #pragma mark -
 ///设置文字行间距
 NSMutableAttributedString *SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize)
