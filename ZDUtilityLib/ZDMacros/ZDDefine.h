@@ -335,6 +335,10 @@ blue: ((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]
 #define HEXCOLOR(c)                                                       \
 [UIColor colorWithRed:((c>>16)&0xFF)/255.0f green:((c>>8)&0xFF)/255.0f blue:(c&0xFF)/255.0f alpha:1.0f]
 
+#ifndef UIColorHex
+#define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
+#endif
+
 // 获取RGB颜色
 #define RGBA(r, g, b, a)	[UIColor colorWithRed: r / 255.0f green: g / 255.0f blue: b / 255.0f alpha: a]
 #define RGB(r, g, b)		RGBA(r, g, b, 1.0f)
