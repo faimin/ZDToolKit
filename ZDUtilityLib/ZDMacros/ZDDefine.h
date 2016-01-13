@@ -314,7 +314,7 @@ fprintf(stderr, "-----------------\n");                                     \
 //----------------------图片----------------------------
 
 //读取本地图片
-#define LOADIMAGE(file, ext)	[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
+#define LOADIMAGE(file, type)	[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:type]]
 
 //定义UIImage对象
 #define IMAGE(A)				[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:A ofType:nil]]
@@ -335,6 +335,10 @@ blue: ((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]
 #define HEXCOLOR(c)                                                       \
 [UIColor colorWithRed:((c>>16)&0xFF)/255.0f green:((c>>8)&0xFF)/255.0f blue:(c&0xFF)/255.0f alpha:1.0f]
 
+///  Create UIColor with a hex string.
+///
+///  Example: self.backgroundColor = UIColorHex(f9f9f9);
+///  UIColorHex(0xF0F), UIColorHex(66ccff), UIColorHex(#66CCFF88)
 #ifndef UIColorHex
 #define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
 #endif
