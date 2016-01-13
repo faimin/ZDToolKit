@@ -10,6 +10,6 @@
 
 @interface UIImageView (ZDUtility)
 
-- (void)roundedImage:(void (^)(UIImage *image))completion;
+- (void)roundedImageWithCornerRadius:(CGFloat)cornerRadius completion:(void (^)(UIImage *image))completion;
 
 @end

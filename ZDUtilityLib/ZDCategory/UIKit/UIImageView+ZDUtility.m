@@ -10,7 +10,7 @@
 
 @implementation UIImageView (ZDUtility)
 
-- (void)roundedImage:(void (^)(UIImage *image))completion {
+- (void)roundedImageWithCornerRadius:(CGFloat)cornerRadius completion:(void (^)(UIImage *image))completion {
     UIImage *image = self.image;
     if (!image) {
         return;
@@ -23,7 +23,7 @@
         
         // Add a clip before drawing anything, in the shape of an rounded rect
         [[UIBezierPath bezierPathWithRoundedRect:rect
-                                    cornerRadius:image.size.width/2] addClip];
+                                    cornerRadius:((cornerRadius > 0) ? cornerRadius : (image.size.width/2))] addClip];
         // Draw your image
         [image drawInRect:rect];
         
