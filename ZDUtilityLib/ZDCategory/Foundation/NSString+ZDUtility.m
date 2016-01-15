@@ -14,149 +14,48 @@
 
 - (CGFloat)heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
 {
-    UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    
-    CGSize textSize;
-    
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
-    if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-        NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                     NSParagraphStyleAttributeName: paragraph};
-        textSize = [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                      options:(NSStringDrawingUsesLineFragmentOrigin |
-                                               NSStringDrawingTruncatesLastVisibleLine)
-                                   attributes:attributes
-                                      context:nil].size;
-    } else {
-        textSize = [self sizeWithFont:textFont
-                    constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                        lineBreakMode:NSLineBreakByWordWrapping];
-    }
-#else
-    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                 NSParagraphStyleAttributeName: paragraph};
-    textSize = [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                  options:(NSStringDrawingUsesLineFragmentOrigin |
-                                           NSStringDrawingTruncatesLastVisibleLine)
-                               attributes:attributes
-                                  context:nil].size;
-#endif
-    
-    return ceil(textSize.height);
+    return [self sizeWithFont:font constrainedToWidth:width height:0].height;
 }
 
 - (CGFloat)widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height
 {
-    UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    
-    CGSize textSize;
-    
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
-    if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-        NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                     NSParagraphStyleAttributeName: paragraph};
-        textSize = [self boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, height)
-                                      options:(NSStringDrawingUsesLineFragmentOrigin |
-                                               NSStringDrawingTruncatesLastVisibleLine)
-                                   attributes:attributes
-                                      context:nil].size;
-    } else {
-        textSize = [self sizeWithFont:textFont
-                    constrainedToSize:CGSizeMake(CGFLOAT_MAX, height)
-                        lineBreakMode:NSLineBreakByWordWrapping];
-    }
-#else
-    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                 NSParagraphStyleAttributeName: paragraph};
-    textSize = [self boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, height)
-                                  options:(NSStringDrawingUsesLineFragmentOrigin |
-                                           NSStringDrawingTruncatesLastVisibleLine)
-                               attributes:attributes
-                                  context:nil].size;
-#endif
-    
-    return ceil(textSize.width);
+    return [self sizeWithFont:font constrainedToWidth:0 height:height].width;
 }
 
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
 {
-    UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    
-    CGSize textSize;
-    
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
-    if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-        NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                     NSParagraphStyleAttributeName: paragraph};
-        textSize = [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                      options:(NSStringDrawingUsesLineFragmentOrigin |
-                                               NSStringDrawingTruncatesLastVisibleLine)
-                                   attributes:attributes
-                                      context:nil].size;
-    } else {
-        textSize = [self sizeWithFont:textFont
-                    constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)
-                        lineBreakMode:NSLineBreakByWordWrapping];
-    }
-#else
-    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                 NSParagraphStyleAttributeName: paragraph};
-    textSize = [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                  options:(NSStringDrawingUsesLineFragmentOrigin |
-                                           NSStringDrawingTruncatesLastVisibleLine)
-                               attributes:attributes
-                                  context:nil].size;
-#endif
-    
-    return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+    return [self sizeWithFont:font constrainedToWidth:width height:0];
 }
 
-
-- (CGSize)sizeWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height
+- (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width height:(CGFloat)height
 {
     UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    
     CGSize textSize;
     
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
     if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
         NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
         paragraph.lineBreakMode = NSLineBreakByWordWrapping;
         NSDictionary *attributes = @{NSFontAttributeName: textFont,
                                      NSParagraphStyleAttributeName: paragraph};
-        textSize = [self boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, height)
+        CGSize needSize = CGSizeZero;
+        if (width > 0) {
+            needSize = CGSizeMake(width, CGFLOAT_MAX);
+        } else if (height > 0) {
+            needSize = CGSizeMake(CGFLOAT_MAX, height);
+        }
+        textSize = [self boundingRectWithSize:needSize
                                       options:(NSStringDrawingUsesLineFragmentOrigin |
                                                NSStringDrawingTruncatesLastVisibleLine)
                                    attributes:attributes
                                       context:nil].size;
     } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         textSize = [self sizeWithFont:textFont
                     constrainedToSize:CGSizeMake(CGFLOAT_MAX, height)
                         lineBreakMode:NSLineBreakByWordWrapping];
+#pragma clang diagnostic pop
     }
-#else
-    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                 NSParagraphStyleAttributeName: paragraph};
-    textSize = [self boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, height)
-                                  options:(NSStringDrawingUsesLineFragmentOrigin |
-                                           NSStringDrawingTruncatesLastVisibleLine)
-                               attributes:attributes
-                                  context:nil].size;
-#endif
     
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }

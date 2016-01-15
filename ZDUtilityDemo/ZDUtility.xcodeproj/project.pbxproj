@@ -379,9 +379,9 @@
 		BCD0AB6C1BF9F05400815393 /* ZDMacros */ = {
 			isa = PBXGroup;
 			children = (
+				BCD0AB6F1BF9F05400815393 /* ZDDefine.h */,
 				BCD0AB6D1BF9F05400815393 /* RACEXTScope.h */,
 				BCD0AB6E1BF9F05400815393 /* RACmetamacros.h */,
-				BCD0AB6F1BF9F05400815393 /* ZDDefine.h */,
 			);
 			path = ZDMacros;
 			sourceTree = "<group>";
