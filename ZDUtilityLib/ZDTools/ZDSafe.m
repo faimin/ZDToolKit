@@ -34,7 +34,7 @@ void ZDLog(NSString *fmt, ...)
 
 #pragma mark - Swizzle Function
 
-BOOL zdSwizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
+BOOL zd_SwizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
 {
 	Method origMethod = class_getInstanceMethod(aClass, originalSel);
 	Method replMethod = class_getInstanceMethod(aClass, replacementSel);
@@ -60,7 +60,13 @@ BOOL zdSwizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
 
 BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
 {
-	return zdSwizzleInstanceMethod(object_getClass((id)aClass), originalSel, replacementSel);
+    Method origMethod = class_getClassMethod(aClass, originalSel);
+    Method replMethod = class_getClassMethod(aClass, replacementSel);
+    if (!origMethod || !replMethod) {
+        return NO;
+    }
+    method_exchangeImplementations(origMethod, replMethod);
+    return YES;
 }
 
 ///==================================================================
@@ -254,20 +260,20 @@ BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         //NSArray
-        zdSwizzleInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
+        zd_SwizzleInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
         zd_swizzleClassMethod([NSArray class], @selector(arrayWithObjects:count:), @selector(zd_arrayWithObjects:count:));
         
         //NAMutableArray
-        zdSwizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
-        zdSwizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(replaceObjectAtIndex:withObject:), @selector(zd_replaceObjectAtIndex:withObject:));
-        zdSwizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(addObject:), @selector(zd_addObject:));
-        zdSwizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(insertObject:atIndex:), @selector(zd_insertObject:atIndex:));
+        zd_SwizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
+        zd_SwizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(replaceObjectAtIndex:withObject:), @selector(zd_replaceObjectAtIndex:withObject:));
+        zd_SwizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(addObject:), @selector(zd_addObject:));
+        zd_SwizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(insertObject:atIndex:), @selector(zd_insertObject:atIndex:));
         
         //NSDictionary
         zd_swizzleClassMethod([NSDictionary class], @selector(dictionaryWithObjects:forKeys:count:), @selector(zd_dictionaryWithObjects:forKeys:count:));
         
         //NSMutableDictionary
-        zdSwizzleInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setObject:forKey:), @selector(zd_setObject:forKey:));
+        zd_SwizzleInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setObject:forKey:), @selector(zd_setObject:forKey:));
     });
 }
 

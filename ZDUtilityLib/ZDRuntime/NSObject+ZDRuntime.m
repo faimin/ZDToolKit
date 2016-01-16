@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 Fate.D.Saber. All rights reserved.
 //
 
-#import "NSObject+Runtime.h"
+#import "NSObject+ZDRuntime.h"
 #import <objc/runtime.h>
 
-@implementation NSObject (Runtime)
+@implementation NSObject (ZDRuntime)
 
 static char ZDRuntimeDeallocBlocks;
 
@@ -59,7 +59,7 @@ static char ZDRuntimeDeallocBlocks;
 
 #pragma mark - Method Swizzling
 
-+ (void)swizzleMethod:(SEL)selector withMethod:(SEL)otherSelector
++ (void)swizzleInstanceMethod:(SEL)selector withMethod:(SEL)otherSelector
 {
     // my own class is being targetted
     Class myClass = [self class];
@@ -80,22 +80,11 @@ static char ZDRuntimeDeallocBlocks;
 
 + (void)swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector
 {
-    // my own class is being targetted
     Class myClass = [self class];
-    
-    // get the methods from the selectors
     Method originalMethod = class_getClassMethod(myClass, selector);
     Method otherMethod = class_getClassMethod(myClass, otherSelector);
     
-    //    if (class_addMethod(c, selector, method_getImplementation(otherMethod), method_getTypeEncoding(otherMethod)))
-    //	{
-    //		class_replaceMethod(c, otherSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-    //	}
-    //	else
-    //	{
     method_exchangeImplementations(originalMethod, otherMethod);
-    //	}
-    
 }
 
 @end

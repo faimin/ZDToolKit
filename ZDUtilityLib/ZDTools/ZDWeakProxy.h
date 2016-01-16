@@ -13,8 +13,12 @@
 
 @property (nonatomic, weak, readonly) id target;
 
-- (instancetype)initWithTarget:(id)target;
-
+///  利用消息转发,把可能引起循环引用的target传给weakProxy
+///  比如timer的target
+///
+///  @param target: the real target of a object
+///
+///  @return instance of ZDWeakProxy that is a proxy for the real target
 + (instancetype)proxyWithTarget:(id)target;
 
 @end

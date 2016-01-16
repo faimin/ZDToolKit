@@ -52,9 +52,7 @@
 		BCD0AB971BF9F05400815393 /* NSTimer+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB641BF9F05400815393 /* NSTimer+BlocksKit.m */; };
 		BCD0AB9B1BF9F05400815393 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB721BF9F05400815393 /* JRSwizzle.m */; };
 		BCD0AB9C1BF9F05400815393 /* NOBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB741BF9F05400815393 /* NOBRuntime.m */; };
-		BCD0AB9D1BF9F05400815393 /* NSObject+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB761BF9F05400815393 /* NSObject+Runtime.m */; };
-		BCD0AB9E1BF9F05400815393 /* NSObject+ZDSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB781BF9F05400815393 /* NSObject+ZDSwizzle.m */; };
-		BCD0ABA01BF9F05400815393 /* ZDSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB7C1BF9F05400815393 /* ZDSwizzle.m */; };
+		BCD0AB9D1BF9F05400815393 /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB761BF9F05400815393 /* NSObject+ZDRuntime.m */; };
 		BCD0ABA11BF9F05400815393 /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB7F1BF9F05400815393 /* OnePasswordExtension.m */; };
 		BCD0ABA21BF9F05400815393 /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB811BF9F05400815393 /* ZDFileManager.m */; };
 		BCD0ABA31BF9F05400815393 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0AB831BF9F05400815393 /* ZDFunction.m */; };
@@ -165,12 +163,8 @@
 		BCD0AB721BF9F05400815393 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		BCD0AB731BF9F05400815393 /* NOBRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOBRuntime.h; sourceTree = "<group>"; };
 		BCD0AB741BF9F05400815393 /* NOBRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOBRuntime.m; sourceTree = "<group>"; };
-		BCD0AB751BF9F05400815393 /* NSObject+Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Runtime.h"; sourceTree = "<group>"; };
-		BCD0AB761BF9F05400815393 /* NSObject+Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Runtime.m"; sourceTree = "<group>"; };
-		BCD0AB771BF9F05400815393 /* NSObject+ZDSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDSwizzle.h"; sourceTree = "<group>"; };
-		BCD0AB781BF9F05400815393 /* NSObject+ZDSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDSwizzle.m"; sourceTree = "<group>"; };
-		BCD0AB7B1BF9F05400815393 /* ZDSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDSwizzle.h; sourceTree = "<group>"; };
-		BCD0AB7C1BF9F05400815393 /* ZDSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSwizzle.m; sourceTree = "<group>"; };
+		BCD0AB751BF9F05400815393 /* NSObject+ZDRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDRuntime.h"; sourceTree = "<group>"; };
+		BCD0AB761BF9F05400815393 /* NSObject+ZDRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDRuntime.m"; sourceTree = "<group>"; };
 		BCD0AB7E1BF9F05400815393 /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		BCD0AB7F1BF9F05400815393 /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
 		BCD0AB801BF9F05400815393 /* ZDFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDFileManager.h; sourceTree = "<group>"; };
@@ -393,12 +387,8 @@
 				BCD0AB721BF9F05400815393 /* JRSwizzle.m */,
 				BCD0AB731BF9F05400815393 /* NOBRuntime.h */,
 				BCD0AB741BF9F05400815393 /* NOBRuntime.m */,
-				BCD0AB751BF9F05400815393 /* NSObject+Runtime.h */,
-				BCD0AB761BF9F05400815393 /* NSObject+Runtime.m */,
-				BCD0AB771BF9F05400815393 /* NSObject+ZDSwizzle.h */,
-				BCD0AB781BF9F05400815393 /* NSObject+ZDSwizzle.m */,
-				BCD0AB7B1BF9F05400815393 /* ZDSwizzle.h */,
-				BCD0AB7C1BF9F05400815393 /* ZDSwizzle.m */,
+				BCD0AB751BF9F05400815393 /* NSObject+ZDRuntime.h */,
+				BCD0AB761BF9F05400815393 /* NSObject+ZDRuntime.m */,
 			);
 			path = ZDRuntime;
 			sourceTree = "<group>";
@@ -536,7 +526,7 @@
 				BCD0AB851BF9F05400815393 /* UIView+AutoLayout.m in Sources */,
 				BC77C0331C46017100C15349 /* UIImageView+ZDUtility.m in Sources */,
 				BCF73A651C11B18E000FA0F8 /* RZAutolayoutLabel.m in Sources */,
-				BCD0AB9D1BF9F05400815393 /* NSObject+Runtime.m in Sources */,
+				BCD0AB9D1BF9F05400815393 /* NSObject+ZDRuntime.m in Sources */,
 				BCD0ABA21BF9F05400815393 /* ZDFileManager.m in Sources */,
 				BC9B1D311B50FB8B002C6C5B /* ViewController.m in Sources */,
 				BC77C02B1C46017100C15349 /* NSArray+ZDExtend.m in Sources */,
@@ -544,7 +534,6 @@
 				BC77C02F1C46017100C15349 /* NSString+ZDUtility.m in Sources */,
 				BC77C02E1C46017100C15349 /* NSObject+ZDDealloc.m in Sources */,
 				BCD0ABA11BF9F05400815393 /* OnePasswordExtension.m in Sources */,
-				BCD0AB9E1BF9F05400815393 /* NSObject+ZDSwizzle.m in Sources */,
 				BC77C02C1C46017100C15349 /* NSObject+DLIntrospection.m in Sources */,
 				BCD0AB951BF9F05400815393 /* NSOrderedSet+BlocksKit.m in Sources */,
 				BCD0AB961BF9F05400815393 /* NSSet+BlocksKit.m in Sources */,
@@ -571,7 +560,6 @@
 				BCD0AB881BF9F05400815393 /* NSArray+BlocksKit.m in Sources */,
 				BCB96D891C3E2FE400D9BACA /* ZDWeakProxy.m in Sources */,
 				BCD0AB911BF9F05400815393 /* NSMutableSet+BlocksKit.m in Sources */,
-				BCD0ABA01BF9F05400815393 /* ZDSwizzle.m in Sources */,
 				BCD0AB931BF9F05400815393 /* NSObject+BKBlockExecution.m in Sources */,
 				BC77C0321C46017100C15349 /* UIImageView+FaceAwareFill.m in Sources */,
 				BC77C0351C46017100C15349 /* UIViewController+ZDBackButtonHandler.m in Sources */,

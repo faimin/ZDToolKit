@@ -321,131 +321,46 @@ NSString *URLEncodedString(NSString *sourceText)
 /// 计算文字高度
 CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth)
 {
-	UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-
-	CGSize textSize;
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
-	if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-		NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-		paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-		NSDictionary *attributes = @{
-                                     NSFontAttributeName : textFont,
-									 NSParagraphStyleAttributeName : paragraph
-                                     };
-		textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-                                              options:(NSStringDrawingUsesLineFragmentOrigin |
-			NSStringDrawingTruncatesLastVisibleLine)
-                                           attributes:attributes
-                                              context:nil].size;
-	}
-	else {
-		textSize = [sourceString sizeWithFont:textFont
-                            constrainedToSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-                                lineBreakMode:NSLineBreakByWordWrapping];
-	}
-#else
-	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-	paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-	NSDictionary *attributes = @{
-                                 NSFontAttributeName : textFont,
-								 NSParagraphStyleAttributeName : paragraph
-                                 };
-	textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-                                          options:(NSStringDrawingUsesLineFragmentOrigin |
-		NSStringDrawingTruncatesLastVisibleLine)
-                                       attributes:attributes
-                                          context:nil].size;
-#endif
-
-	return ceil(textSize.height);
+    return SizeOfString(sourceString, font, maxWidth, 0).height;
 }
 
 /// 计算文字宽度
 CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight)
 {
-	UIFont *textFont = font ? font :[UIFont systemFontOfSize:[UIFont systemFontSize]];
-
-	CGSize textSize;
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
-	if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-		NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-		paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-		NSDictionary *attributes = @{
-                                     NSFontAttributeName : textFont,
-									 NSParagraphStyleAttributeName : paragraph
-                                     };
-		textSize = [sourceString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
-                                              options:(NSStringDrawingUsesLineFragmentOrigin |
-			NSStringDrawingTruncatesLastVisibleLine)
-                                           attributes:attributes
-                                              context:nil].size;
-	}
-	else {
-		textSize = [sourceString sizeWithFont:textFont
-                            constrainedToSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
-                                lineBreakMode:NSLineBreakByWordWrapping];
-	}
-#else
-	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-	paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-	NSDictionary *attributes = @{
-                                 NSFontAttributeName : textFont,
-								 NSParagraphStyleAttributeName : paragraph
-                                 };
-	textSize = [sourceString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, maxHeight)
-                                          options:(NSStringDrawingUsesLineFragmentOrigin |
-		NSStringDrawingTruncatesLastVisibleLine)
-                                       attributes:attributes
-                                          context:nil].size;
-#endif
-
-	return ceil(textSize.width);
+    return SizeOfString(sourceString, font, 0, maxHeight).width;
 }
 
 CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight)
 {
-	UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-
-	CGSize textSize;
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
-	if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-		NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-		paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-		NSDictionary *attributes = @{
-                                     NSFontAttributeName : textFont,
-                                     NSParagraphStyleAttributeName : paragraph
-                                     };
-		CGSize needSize = maxWidth ? CGSizeMake(maxWidth, CGFLOAT_MAX) : CGSizeMake(CGFLOAT_MAX, maxHeight);
-		textSize = [sourceString boundingRectWithSize:needSize
+    UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    CGSize needSize = CGSizeZero;
+    if (maxWidth > 0) {
+        needSize = CGSizeMake(maxWidth, CGFLOAT_MAX);
+    } else if (maxHeight > 0) {
+        needSize = CGSizeMake(CGFLOAT_MAX, maxHeight);
+    }
+    CGSize textSize;
+    
+    if ([sourceString respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+        paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName: textFont,
+                                     NSParagraphStyleAttributeName: paragraph};
+        textSize = [sourceString boundingRectWithSize:needSize
                                               options:(NSStringDrawingUsesLineFragmentOrigin |
-			NSStringDrawingTruncatesLastVisibleLine)
+                                                       NSStringDrawingTruncatesLastVisibleLine)
                                            attributes:attributes
                                               context:nil].size;
-	}
-	else {
-		CGSize needSize = maxWidth ? CGSizeMake(maxWidth, CGFLOAT_MAX) : CGSizeMake(CGFLOAT_MAX, maxHeight);
-		textSize = [sourceString sizeWithFont:textFont
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        textSize = [sourceString sizeWithFont:textFont
                             constrainedToSize:needSize
                                 lineBreakMode:NSLineBreakByWordWrapping];
-	}
-#else
-	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-	paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-	NSDictionary *attributes = @{
-                                 NSFontAttributeName : textFont,
-                                 NSParagraphStyleAttributeName : paragraph
-                                 };
-	textSize = [sourceString boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX)
-                                          options:(NSStringDrawingUsesLineFragmentOrigin |
-		NSStringDrawingTruncatesLastVisibleLine)
-                                       attributes:attributes
-                                          context:nil].size;
-#endif
-
-	return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+#pragma clang diagnostic pop
+    }
+    
+    return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
 NSString *ReverseString(NSString *sourceString)
@@ -462,7 +377,7 @@ NSString *ReverseString(NSString *sourceString)
 	return reverseString;
 }
 
-BOOL NSStringIsEmpty(NSString *str)
+BOOL IsEmptyString(NSString *str)
 {
     if (!str || str == (id)[NSNull null]) return YES;
     if ([str isKindOfClass:[NSString class]]) {
@@ -473,8 +388,26 @@ BOOL NSStringIsEmpty(NSString *str)
     }
 }
 
+#pragma mark - InterfaceOrientation
+
+UIInterfaceOrientation CurrentInterfaceOrientation()
+{
+    UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
+    return orient;
+}
+
+BOOL isPortrait()
+{
+    return UIInterfaceOrientationIsPortrait(CurrentInterfaceOrientation());
+}
+
+BOOL isLandscape()
+{
+    return UIInterfaceOrientationIsLandscape(CurrentInterfaceOrientation());
+}
+
 #pragma mark - NSBundle
-#pragma mark - 
+#pragma mark -
 
 ///refer: http://stackoverflow.com/questions/6887464/how-can-i-get-list-of-classes-already-loaded-into-memory-in-specific-bundle-or
 NSArray *GetClassNames()
@@ -491,11 +424,15 @@ NSArray *GetClassNames()
 
 #pragma mark - Device
 #pragma mark -
+
+CGSize ScreenSize()
+{
+    return [UIScreen mainScreen].bounds.size;
+}
+
 BOOL iPhone4s(void)
 {
-	CGSize screenSize = [UIScreen mainScreen].bounds.size;
-
-	if (screenSize.height == 480) {
+	if (ScreenSize().height == 480) {
 		return YES;
 	}
 	return NO;
@@ -503,9 +440,7 @@ BOOL iPhone4s(void)
 
 BOOL iPhone5s(void)
 {
-	CGSize screenSize = [UIScreen mainScreen].bounds.size;
-
-	if (screenSize.height == 568) {
+	if (ScreenSize().height == 568) {
 		return YES;
 	}
 	return NO;
@@ -513,9 +448,7 @@ BOOL iPhone5s(void)
 
 BOOL iPhone6(void)
 {
-	CGSize screenSize = [UIScreen mainScreen].bounds.size;
-
-	if (screenSize.width == 375) {
+	if (ScreenSize().width == 375) {
 		return YES;
 	}
 	return NO;
@@ -523,9 +456,7 @@ BOOL iPhone6(void)
 
 BOOL iPhone6p(void)
 {
-	CGSize screenSize = [UIScreen mainScreen].bounds.size;
-
-	if (screenSize.width == 414) {
+	if (ScreenSize().width == 414) {
 		return YES;
 	}
 	return NO;
@@ -541,26 +472,74 @@ void PrintObjectMethods()
 	for (unsigned int i = 0; i < count; ++i) {
 		SEL sel = method_getName(methods[i]);
 		const char *name = sel_getName(sel);
-		printf("%s\n", name);
+		printf("\n方法明:%s\n", name);
 	}
 
 	free(methods);
 }
 
-void Class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector)
+void ZD_SwizzleClassSelector(Class class, SEL originalSelector, SEL newSelector)
 {
-	Method origMethod = class_getInstanceMethod(class, originalSelector);
-	Method newMethod = class_getInstanceMethod(class, newSelector);
-
-	if (class_addMethod(class, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
-		class_replaceMethod(class, newSelector, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
-	}
-	else {
-		method_exchangeImplementations(origMethod, newMethod);
-	}
+    Method origMethod = class_getClassMethod(class, originalSelector);
+    Method newMethod = class_getClassMethod(class, newSelector);
+    method_exchangeImplementations(origMethod, newMethod);
 }
 
+void ZD_SwizzleInstanceSelector(Class class, SEL originalSelector, SEL newSelector)
+{
+    Method origMethod = class_getInstanceMethod(class, originalSelector);
+    Method newMethod = class_getInstanceMethod(class, newSelector);
+    
+    if (class_addMethod(class, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
+        class_replaceMethod(class, newSelector, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
+    }
+    else {
+        method_exchangeImplementations(origMethod, newMethod);
+    }
+}
 
+IMP zd_swizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP)
+{
+    Method origMethod = class_getInstanceMethod(aClass, originalSel);
+    
+    if (!origMethod) {
+        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(originalSel), aClass);
+        return NULL;
+    }
+    
+    IMP origIMP = method_getImplementation(origMethod);
+    
+    if(!class_addMethod(aClass, originalSel, replacementIMP,
+                        method_getTypeEncoding(origMethod))) {
+        method_setImplementation(origMethod, replacementIMP);
+    }
+    
+    return origIMP;
+}
+
+// other way implement
+BOOL zd_swizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP)
+{
+    IMP imp = NULL;
+    Method method = class_getInstanceMethod(aClass, originalSel);
+    
+    if (method) {
+        const char *type = method_getTypeEncoding(method);
+        imp = class_replaceMethod(aClass, originalSel, replacementIMP, type);
+        if (!imp) {
+            imp = method_getImplementation(method);
+        }
+    }
+    else {
+        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(originalSel), aClass);
+    }
+    
+    if (imp && orignalStoreIMP) {
+        *orignalStoreIMP = imp;
+    }
+    
+    return (imp != NULL);
+}
 
 
 

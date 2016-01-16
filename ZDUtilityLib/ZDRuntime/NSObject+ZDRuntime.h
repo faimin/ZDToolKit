@@ -10,12 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (Runtime)
-
-/**----------------------------------------------------------------------
- @name Blocks
- ------------------------------------------------------------------------
- */
+@interface NSObject (ZDRuntime)
 
 /**
  Adds a block to be executed as soon as the receiver's memory is deallocated
@@ -33,18 +28,12 @@
  */
 + (BOOL)addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block;
 
-
-/**-------------------------------------------------------------------------------------
- @name Method Swizzling
- ---------------------------------------------------------------------------------------
- */
-
 /**
  Exchanges two method implementations. After the call methods to the first selector will now go to the second one and vice versa.
  @param selector The first method
  @param otherSelector The second method
  */
-+ (void)swizzleMethod:(SEL)selector withMethod:(SEL)otherSelector;
++ (void)swizzleInstanceMethod:(SEL)selector withMethod:(SEL)otherSelector;
 
 
 /**

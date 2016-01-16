@@ -30,6 +30,12 @@
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width height:(CGFloat)height
 {
     UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    CGSize needSize = CGSizeZero;
+    if (width > 0) {
+        needSize = CGSizeMake(width, CGFLOAT_MAX);
+    } else if (height > 0) {
+        needSize = CGSizeMake(CGFLOAT_MAX, height);
+    }
     CGSize textSize;
     
     if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
@@ -37,12 +43,6 @@
         paragraph.lineBreakMode = NSLineBreakByWordWrapping;
         NSDictionary *attributes = @{NSFontAttributeName: textFont,
                                      NSParagraphStyleAttributeName: paragraph};
-        CGSize needSize = CGSizeZero;
-        if (width > 0) {
-            needSize = CGSizeMake(width, CGFLOAT_MAX);
-        } else if (height > 0) {
-            needSize = CGSizeMake(CGFLOAT_MAX, height);
-        }
         textSize = [self boundingRectWithSize:needSize
                                       options:(NSStringDrawingUsesLineFragmentOrigin |
                                                NSStringDrawingTruncatesLastVisibleLine)
@@ -52,7 +52,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         textSize = [self sizeWithFont:textFont
-                    constrainedToSize:CGSizeMake(CGFLOAT_MAX, height)
+                    constrainedToSize:needSize
                         lineBreakMode:NSLineBreakByWordWrapping];
 #pragma clang diagnostic pop
     }

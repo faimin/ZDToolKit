@@ -49,23 +49,15 @@ FOUNDATION_EXPORT NSString *typeForData(NSData *data);
 #pragma mark - String
 #pragma mark -
 /**
- *  @name 文字行间距
+ *  @name 设置文字行间距
  */
 FOUNDATION_EXPORT NSMutableAttributedString* SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
 
 /**
- *  @name 筛选文字、颜色
+ *  @name 指定文字为某种颜色
  */
 FOUNDATION_EXPORT NSMutableAttributedString* SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor);
-
-/**
- *  @name 处理字符串
- */
 FOUNDATION_EXPORT NSString *URLEncodedString(NSString *sourceText);
-
-/**
- *  @name 计算文字高度、宽度、size
- */
 FOUNDATION_EXPORT CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth);
 FOUNDATION_EXPORT CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight);
 /**
@@ -77,9 +69,15 @@ FOUNDATION_EXPORT CGFloat WidthOfString(NSString *sourceString, UIFont *font, CG
 FOUNDATION_EXPORT CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight);
 
 /// 反转字符串
-FOUNDATION_EXPORT NSString *ReverseString(NSString *sourceString);
-FOUNDATION_EXPORT BOOL NSStringIsEmpty(NSString *str);
+UIKIT_EXTERN NSString *ReverseString(NSString *sourceString);
+UIKIT_EXTERN BOOL IsEmptyString(NSString *str);
 //===============================================================
+
+#pragma mark - InterfaceOrientation
+#pragma mark -
+///屏幕是横屏还是竖屏
+UIKIT_EXTERN BOOL isPortrait();     ///< 横屏
+UIKIT_EXTERN BOOL isLandscape();    ///< 竖屏
 
 #pragma mark - NSBundle
 #pragma mark -
@@ -90,6 +88,7 @@ FOUNDATION_EXPORT NSArray *GetClassNames();
 
 #pragma mark - Device
 #pragma mark -
+CGSize ScreenSize();
 BOOL iPhone4s(void);
 BOOL iPhone5s(void);
 BOOL iPhone6(void);
@@ -98,7 +97,7 @@ BOOL iPhone6p(void);
 #pragma mark - Runtime
 #pragma mark -
 void PrintObjectMethods(void);
-void Class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector);
+void ZD_SwizzleClassSelector(Class class, SEL originalSelector, SEL newSelector);
 
 
 
