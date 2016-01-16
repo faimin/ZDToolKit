@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "UIView+ZDUtility.h"
+#import "UIViewController+ZDUtility.h"
 
 @interface ViewController ()
 
@@ -21,6 +22,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
 
     [self nilTest];
+    
     
 }
 

@@ -98,9 +98,9 @@ BOOL iPhone6p(void);
 #pragma mark -
 void PrintObjectMethods(void);
 void ZD_SwizzleClassSelector(Class class, SEL originalSelector, SEL newSelector);
-
-
-
+void ZD_SwizzleInstanceSelector(Class class, SEL originalSelector, SEL newSelector);
+IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
+BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP);
 
 
 

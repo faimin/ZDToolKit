@@ -498,7 +498,7 @@ void ZD_SwizzleInstanceSelector(Class class, SEL originalSelector, SEL newSelect
     }
 }
 
-IMP zd_swizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP)
+IMP ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP)
 {
     Method origMethod = class_getInstanceMethod(aClass, originalSel);
     
@@ -518,7 +518,7 @@ IMP zd_swizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP)
 }
 
 // other way implement
-BOOL zd_swizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP)
+BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP)
 {
     IMP imp = NULL;
     Method method = class_getInstanceMethod(aClass, originalSel);

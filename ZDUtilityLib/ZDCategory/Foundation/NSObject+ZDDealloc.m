@@ -51,7 +51,7 @@
 
 @implementation NSObject (ZDDealloc)
 
-- (void)zd_releaseAtDealloc:(void(^)())deallocBlock
+- (void)zd_DeallocBlcok:(void(^)())deallocBlock
 {
     if (deallocBlock) {
         ZDWeakSelf *blockExecutor = [[ZDWeakSelf alloc] initWithBlock:deallocBlock];

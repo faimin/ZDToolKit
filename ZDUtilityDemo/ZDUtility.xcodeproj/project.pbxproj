@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		057676A11C4A4331008244AD /* UIViewController+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 057676A01C4A4331008244AD /* UIViewController+ZDUtility.m */; };
 		BC77C02B1C46017100C15349 /* NSArray+ZDExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = BC77C0131C46017100C15349 /* NSArray+ZDExtend.m */; };
 		BC77C02C1C46017100C15349 /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = BC77C0151C46017100C15349 /* NSObject+DLIntrospection.m */; };
 		BC77C02D1C46017100C15349 /* NSObject+RZBlockKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC77C0171C46017100C15349 /* NSObject+RZBlockKVO.m */; };
@@ -70,6 +71,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0576769F1C4A4331008244AD /* UIViewController+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDUtility.h"; sourceTree = "<group>"; };
+		057676A01C4A4331008244AD /* UIViewController+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDUtility.m"; sourceTree = "<group>"; };
 		BC77C0121C46017100C15349 /* NSArray+ZDExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ZDExtend.h"; sourceTree = "<group>"; };
 		BC77C0131C46017100C15349 /* NSArray+ZDExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ZDExtend.m"; sourceTree = "<group>"; };
 		BC77C0141C46017100C15349 /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 			children = (
 				BC77C0251C46017100C15349 /* UIView+ZDUtility.h */,
 				BC77C0261C46017100C15349 /* UIView+ZDUtility.m */,
+				0576769F1C4A4331008244AD /* UIViewController+ZDUtility.h */,
+				057676A01C4A4331008244AD /* UIViewController+ZDUtility.m */,
 				BC77C0271C46017100C15349 /* UIViewController+ZDBackButtonHandler.h */,
 				BC77C0281C46017100C15349 /* UIViewController+ZDBackButtonHandler.m */,
 				BC77C01D1C46017100C15349 /* UIColor+ZDUtility.h */,
@@ -538,6 +543,7 @@
 				BCD0AB951BF9F05400815393 /* NSOrderedSet+BlocksKit.m in Sources */,
 				BCD0AB961BF9F05400815393 /* NSSet+BlocksKit.m in Sources */,
 				BCD0AB9B1BF9F05400815393 /* JRSwizzle.m in Sources */,
+				057676A11C4A4331008244AD /* UIViewController+ZDUtility.m in Sources */,
 				BCD0AB861BF9F05400815393 /* UIView+FDCollapsibleConstraints.m in Sources */,
 				BCD0AB841BF9F05400815393 /* UIView+AutoFlowLayout.m in Sources */,
 				BC77C0311C46017100C15349 /* UIImage+ZDUtility.m in Sources */,

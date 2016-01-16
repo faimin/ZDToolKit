@@ -10,7 +10,7 @@
 
 @interface NSObject (ZDDealloc)
 
-- (void)zd_releaseAtDealloc:(void(^)())deallocBlock;
+- (void)zd_DeallocBlcok:(void(^)())deallocBlock;
 
 @end
 

@@ -94,7 +94,7 @@ static char ZDRuntimeDeallocBlocks;
 
 @implementation ZDObjectBlockExecutor
 
-+ (id)blockExecutorWithDeallocBlock:(void(^)())block
++ (instancetype)blockExecutorWithDeallocBlock:(void(^)())block
 {
     ZDObjectBlockExecutor *executor = [[ZDObjectBlockExecutor alloc] init];
     executor.deallocBlock = block; // copy
