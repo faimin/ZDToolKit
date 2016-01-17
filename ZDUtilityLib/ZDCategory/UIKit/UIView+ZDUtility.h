@@ -15,8 +15,8 @@
 @property (nonatomic, strong, readonly) UIViewController *topMostController;
 
 //MARK:Method
-
 - (void)eachSubview:(void (^)(UIView *subview))block;
+- (void)removeAllSubviews;
 
 @end
 

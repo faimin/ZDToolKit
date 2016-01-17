@@ -59,11 +59,18 @@ static const void* CornerRadiusKey = &CornerRadiusKey;
 - (void)eachSubview:(void (^)(UIView *subview))block
 {
 	NSParameterAssert(block != nil);
-
 	[self.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
 		block(subview);
 	}];
 }
+
+- (void)removeAllSubviews
+{
+    while (self.subviews.count) {
+        [self.subviews.lastObject removeFromSuperview];
+    }
+}
+
 
 @end
 

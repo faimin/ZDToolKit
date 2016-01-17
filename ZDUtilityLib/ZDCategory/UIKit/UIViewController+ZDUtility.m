@@ -10,7 +10,7 @@
 
 @implementation UIViewController (ZDUtility)
 
-- (BOOL)isSurport3DTouch
+- (BOOL)isSupport3DTouch
 {
     if ([UIDevice currentDevice].systemVersion.integerValue >= 9.0f && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         return YES;

@@ -10,6 +10,6 @@
 
 @interface UIViewController (ZDUtility)
 
-- (BOOL)isSurport3DTouch;
+- (BOOL)isSupport3DTouch;
 
 @end
