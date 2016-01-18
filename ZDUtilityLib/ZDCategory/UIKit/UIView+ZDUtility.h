@@ -18,6 +18,23 @@
 - (void)eachSubview:(void (^)(UIView *subview))block;
 - (void)removeAllSubviews;
 
+/**
+ Create a snapshot image of the complete view hierarchy.
+ */
+- (UIImage *)snapshotImage;
+
+/**
+ Create a snapshot image of the complete view hierarchy.
+ @discussion It's faster than "snapshotImage", but may cause screen updates.
+ See -[UIView drawViewHierarchyInRect:afterScreenUpdates:] for more information.
+ */
+- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
+
+/**
+ Create a snapshot PDF of the complete view hierarchy.
+ */
+- (NSData *)snapshotPDF;
+
 @end
 
 #pragma mark -
