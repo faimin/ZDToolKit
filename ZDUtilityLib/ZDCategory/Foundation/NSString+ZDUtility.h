@@ -11,6 +11,8 @@
 
 @interface NSString (ZDUtility)
 
+///宽和高都是0的时候为默认值CGFloat_MAX
+- (CGFloat)widthWithFont:(UIFont *)font;
 - (CGFloat)heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;
 - (CGFloat)widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height;
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;

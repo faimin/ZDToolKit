@@ -12,6 +12,11 @@
 
 #pragma mark - Size
 
+- (CGFloat)widthWithFont:(UIFont *)font
+{
+    return [self sizeWithFont:font constrainedToWidth:0 height:0].width;
+}
+
 - (CGFloat)heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
 {
     return [self sizeWithFont:font constrainedToWidth:width height:0].height;
@@ -35,6 +40,8 @@
         needSize = CGSizeMake(width, CGFLOAT_MAX);
     } else if (height > 0) {
         needSize = CGSizeMake(CGFLOAT_MAX, height);
+    } else {
+        needSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
     }
     CGSize textSize;
     
