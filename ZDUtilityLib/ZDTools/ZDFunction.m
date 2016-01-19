@@ -472,26 +472,26 @@ void PrintObjectMethods()
 	for (unsigned int i = 0; i < count; ++i) {
 		SEL sel = method_getName(methods[i]);
 		const char *name = sel_getName(sel);
-		printf("\n方法明:%s\n", name);
+		printf("\n方法名:%s\n", name);
 	}
 
 	free(methods);
 }
 
-void ZD_SwizzleClassSelector(Class class, SEL originalSelector, SEL newSelector)
+void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector)
 {
-    Method origMethod = class_getClassMethod(class, originalSelector);
-    Method newMethod = class_getClassMethod(class, newSelector);
+    Method origMethod = class_getClassMethod(aClass, originalSelector);
+    Method newMethod = class_getClassMethod(aClass, newSelector);
     method_exchangeImplementations(origMethod, newMethod);
 }
 
-void ZD_SwizzleInstanceSelector(Class class, SEL originalSelector, SEL newSelector)
+void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector)
 {
-    Method origMethod = class_getInstanceMethod(class, originalSelector);
-    Method newMethod = class_getInstanceMethod(class, newSelector);
+    Method origMethod = class_getInstanceMethod(aClass, originalSelector);
+    Method newMethod = class_getInstanceMethod(aClass, newSelector);
     
-    if (class_addMethod(class, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
-        class_replaceMethod(class, newSelector, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
+    if (class_addMethod(aClass, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
+        class_replaceMethod(aClass, newSelector, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
     }
     else {
         method_exchangeImplementations(origMethod, newMethod);

@@ -10,26 +10,26 @@
 
 @implementation UIColor (ZDUtility)
 
-/**
- * @name 获取UIColor对象的CMYK字符串值。
- */
+///  获取UIColor对象的CMYK字符串值。
+///
+///  @return CMYK字符串
 - (NSString *)getCMYKStringValue
 {
 	// Method provided by the Colours class extension
 	NSDictionary *cmykDict = [self getCMYKValueByColor:self];
-
 	return [NSString stringWithFormat:@"(%0.2f, %0.2f, %0.2f, %0.2f)",
 		   [cmykDict[@"C"] floatValue],
 		   [cmykDict[@"M"] floatValue],
 		   [cmykDict[@"Y"] floatValue],
-		   [cmykDict[@"K"] floatValue]];
+		   [cmykDict[@"K"] floatValue]
+    ];
 }
 
-/**
- *  获取UIColor对象的CMYK值。
- *
- *  @return
- */
+///  获取UIColor对象的CMYK值。
+///
+///  @param originColor 原始颜色
+///
+///  @return CMYK的字典
 - (NSDictionary *)getCMYKValueByColor:(UIColor *)originColor
 {
 	// Convert RGB to CMY
@@ -59,14 +59,15 @@
 	return @{@"C" : @(C),
 			 @"M" : @(M),
 			 @"Y" : @(Y),
-			 @"K" : @(K)};
+			 @"K" : @(K)
+    };
 }
 
-/**
- *  获取UIColor对象的RGB值。
- *
- *  @return 包含rgb值的字典对象。
- */
+///  获取UIColor对象的RGB值。
+///
+///  @param originColor 原始颜色
+///
+///  @return 包含rgb值的字典对象。
 - (NSDictionary *)getRGBDictionaryByColor:(UIColor *)originColor
 {
 	CGFloat r = 0, g = 0, b = 0, a = 0;
