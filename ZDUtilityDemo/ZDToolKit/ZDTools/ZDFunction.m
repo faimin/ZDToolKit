@@ -11,6 +11,8 @@
 #import <objc/runtime.h>
 #import <stdlib.h>
 
+#define CustomValue 99999
+
 #pragma mark - Gif Image
 #pragma mark -
 // returns the frame duration for a given image in 1/100th seconds
@@ -123,7 +125,7 @@ UIImage *ZDAnimatedGIFFromData(NSData *data)
 	return image;
 }
 
-UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image) {
+UIImage *TintedImageWithColor(UIColor *tintColor, UIImage *image) {
     UIGraphicsBeginImageContextWithOptions(image.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -146,7 +148,7 @@ UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image) {
     return coloredImage;
 }
 
-UIImage *thumbnailImageFromURl (NSURL *url, int imageSize)
+UIImage *ThumbnailImageFromURl (NSURL *url, int imageSize)
 {
      CGImageRef myThumbnailImage = NULL;
      CGImageSourceRef myImageSource;
@@ -203,7 +205,7 @@ UIImage *thumbnailImageFromURl (NSURL *url, int imageSize)
      return thumbnail;
 }
 
-NSString *typeForImageData(NSData *data)
+NSString *TypeForImageData(NSData *data)
 {
     uint8_t c;
     [data getBytes:&c length:1];
@@ -221,7 +223,7 @@ NSString *typeForImageData(NSData *data)
     return @"未知格式";
 }
 
-NSString *typeForData(NSData *data)
+NSString *TypeForData(NSData *data)
 {
     if (data.length < 2) {
         return @"NOT FILE";
@@ -297,7 +299,12 @@ NSMutableAttributedString *SetAttributeString(NSString *string, CGFloat lineSpac
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 
 	paragraphStyle.lineSpacing = lineSpace;
-	NSMutableAttributedString *mutStr = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName : paragraphStyle}];
+	NSMutableAttributedString *mutStr = [[NSMutableAttributedString alloc] initWithString:string
+                                                                               attributes:@{
+                                                                                            NSFontAttributeName : [UIFont systemFontOfSize:fontSize],
+                                                                                            NSParagraphStyleAttributeName : paragraphStyle
+                                                                                            }
+                                         ];
 	return mutStr;
 }
 
@@ -307,14 +314,15 @@ NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *or
 	NSRange range = [orignString rangeOfString:filterString];
 	NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
 
-	[mutAttributeStr addAttribute:NSForegroundColorAttributeName value:filterColor range:range];
+	[mutAttributeStr addAttribute:NSForegroundColorAttributeName
+                            value:filterColor
+                            range:range];
 	return mutAttributeStr;
 }
 
 NSString *URLEncodedString(NSString *sourceText)
 {
 	NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)sourceText, NULL, CFSTR("!*'();:@&=+$,/?%#[]"), kCFStringEncodingUTF8));
-
 	return result;
 }
 
@@ -333,10 +341,10 @@ CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight)
 CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight)
 {
     UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    CGSize needSize = CGSizeZero;
-    if (maxWidth > 0) {
+    CGSize needSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
+    if (maxWidth > 0 && maxWidth < CustomValue) {
         needSize = CGSizeMake(maxWidth, CGFLOAT_MAX);
-    } else if (maxHeight > 0) {
+    } else if (maxHeight > 0 && maxHeight < CustomValue) {
         needSize = CGSizeMake(CGFLOAT_MAX, maxHeight);
     }
     CGSize textSize;

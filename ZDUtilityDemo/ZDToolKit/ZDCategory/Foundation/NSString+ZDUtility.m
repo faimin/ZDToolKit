@@ -8,6 +8,8 @@
 
 #import "NSString+ZDUtility.h"
 
+#define CustomValue 99999
+
 @implementation NSString (ZDUtility)
 
 #pragma mark - Size
@@ -35,16 +37,14 @@
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width height:(CGFloat)height
 {
     UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    CGSize needSize = CGSizeZero;
-    if (width > 0) {
+    CGSize needSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
+    if (width > 0 && width < CustomValue) {
         needSize = CGSizeMake(width, CGFLOAT_MAX);
-    } else if (height > 0) {
+    } else if (height > 0 && height < CustomValue) {
         needSize = CGSizeMake(CGFLOAT_MAX, height);
-    } else {
-        needSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
     }
-    CGSize textSize;
     
+    CGSize textSize;
     if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
         NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
         paragraph.lineBreakMode = NSLineBreakByWordWrapping;
