@@ -11,9 +11,15 @@
 @interface UIImage (ZDUtility)
 
 - (BOOL)hasAlphaChannel;
-- (UIImage *)imageAddAlphaChannle;
+- (UIImage *)addAlphaChannle;
 
+/// Same as 'scale to fill' in IB.
+- (UIImage *)scaleToFillSize:(CGSize)newSize;
+/// Preserves aspect ratio. Same as 'aspect fit' in IB.
+- (UIImage *)scaleToFitSize:(CGSize)newSize;
 - (UIImage *)resizeToSize:(CGSize)newSize;
 - (UIImage *)thumbnailWithSize:(int)imageWidthOrHeight;
+
+- (UIImage *)fixOrientation;
 
 @end

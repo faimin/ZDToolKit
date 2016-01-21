@@ -11,6 +11,21 @@
 #import <CoreImage/CoreImage.h>
 #import <ImageIO/ImageIO.h>
 
+#pragma mark - Function
+
+CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow, BOOL withAlpha)
+{
+    /// Use the generic RGB color space
+    /// We avoid the NULL check because CGColorSpaceRelease() NULL check the value anyway, and worst case scenario = fail to create context
+    /// Create the bitmap context, we want pre-multiplied ARGB, 8-bits per component
+    CGImageAlphaInfo alphaInfo = (withAlpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNoneSkipFirst);
+    CGContextRef bmContext = CGBitmapContextCreate(NULL, width, height, 8/*Bits per component*/, bytesPerRow, CGColorSpaceCreateDeviceRGB(), kCGBitmapByteOrderDefault | alphaInfo);
+    
+    return bmContext;
+}
+
+#pragma mark -
+
 @implementation UIImage (ZDUtility)
 
 #pragma mark - Color
@@ -21,14 +36,15 @@
         return NO;
     }
     CGImageAlphaInfo alpha = CGImageGetAlphaInfo(self.CGImage) & kCGBitmapAlphaInfoMask;
-    return (alpha == kCGImageAlphaFirst ||
+    BOOL hasAlpha = (alpha == kCGImageAlphaFirst ||
             alpha == kCGImageAlphaLast ||
             alpha == kCGImageAlphaPremultipliedFirst ||
             alpha == kCGImageAlphaPremultipliedLast);
+    return hasAlpha;
 }
 
 ///如果没有Alpha通道，添加之
-- (UIImage *)imageAddAlphaChannle
+- (UIImage *)addAlphaChannle
 {
     if ([self hasAlphaChannel]) {
         return self;
@@ -59,7 +75,73 @@
     return imageWithAlpha;
 }
 
-#pragma mark - Thumbnail
+#pragma mark - Resize / Thumbnail
+
+- (UIImage *)scaleToFillSize:(CGSize)newSize
+{
+    size_t destWidth = (size_t)(newSize.width * self.scale);
+    size_t destHeight = (size_t)(newSize.height * self.scale);
+    if (self.imageOrientation == UIImageOrientationLeft
+        || self.imageOrientation == UIImageOrientationLeftMirrored
+        || self.imageOrientation == UIImageOrientationRight
+        || self.imageOrientation == UIImageOrientationRightMirrored)
+    {
+        size_t temp = destWidth;
+        destWidth = destHeight;
+        destHeight = temp;
+    }
+    
+    /// Create an ARGB bitmap context
+    CGContextRef bmContext = CreateARGBBitmapContext(destWidth, destHeight, destWidth * 4, [self hasAlphaChannel]);
+    if (!bmContext)
+        return nil;
+    
+    /// Image quality
+    CGContextSetShouldAntialias(bmContext, true);
+    CGContextSetAllowsAntialiasing(bmContext, true);
+    CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
+    
+    /// Draw the image in the bitmap context
+    
+    UIGraphicsPushContext(bmContext);
+    CGContextDrawImage(bmContext, CGRectMake(0.0f, 0.0f, destWidth, destHeight), self.CGImage);
+    UIGraphicsPopContext();
+    
+    /// Create an image object from the context
+    CGImageRef scaledImageRef = CGBitmapContextCreateImage(bmContext);
+    UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef scale:self.scale orientation:self.imageOrientation];
+    
+    /// Cleanup
+    CGImageRelease(scaledImageRef);
+    CGContextRelease(bmContext);
+    
+    return scaled;
+}
+
+- (UIImage *)scaleToFitSize:(CGSize)newSize
+{
+    /// Keep aspect ratio
+    size_t destWidth, destHeight;
+    if (self.size.width > self.size.height)
+    {
+        destWidth = (size_t)newSize.width;
+        destHeight = (size_t)(self.size.height * newSize.width / self.size.width);
+    } else {
+        destHeight = (size_t)newSize.height;
+        destWidth = (size_t)(self.size.width * newSize.height / self.size.height);
+    }
+    
+    if (destWidth > newSize.width) {
+        destWidth = (size_t)newSize.width;
+        destHeight = (size_t)(self.size.height * newSize.width / self.size.width);
+    }
+    
+    if (destHeight > newSize.height) {
+        destHeight = (size_t)newSize.height;
+        destWidth = (size_t)(self.size.width * newSize.height / self.size.height);
+    }
+    return [self scaleToFillSize:CGSizeMake(destWidth, destHeight)];
+}
 
 - (UIImage *)resizeToSize:(CGSize)newSize
 {
@@ -139,7 +221,8 @@
     myValues[2] = (CFTypeRef)thumbnailSize;
     
     myOptions = CFDictionaryCreate(NULL, (const void **) myKeys,
-                                   (const void **) myValues, 3,
+                                   (const void **) myValues,
+                                   3,
                                    &kCFTypeDictionaryKeyCallBacks,
                                    &kCFTypeDictionaryValueCallBacks);
     
@@ -163,6 +246,72 @@
     CFRelease(myThumbnailImage);
     
     return thumbnail;
+}
+
+#pragma mark - Transform
+
+- (UIImage *)fixOrientation
+{
+    if (self.imageOrientation == UIImageOrientationUp) return self;
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    switch (self.imageOrientation) {
+        case UIImageOrientationDown:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+            transform = CGAffineTransformTranslate(transform, self.size.width, 0);
+            transform = CGAffineTransformRotate(transform, M_PI_2);
+            break;
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, 0, self.size.height);
+            transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+        case UIImageOrientationUp:
+        case UIImageOrientationUpMirrored:
+            break;
+    }
+    switch (self.imageOrientation) {
+        case UIImageOrientationUpMirrored:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, self.size.width, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, self.size.height, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        case UIImageOrientationUp:
+        case UIImageOrientationDown:
+        case UIImageOrientationLeft:
+        case UIImageOrientationRight:
+            break;
+    }
+    CGContextRef ctx = CGBitmapContextCreate(NULL, self.size.width, self.size.height,
+                                             CGImageGetBitsPerComponent(self.CGImage), 0,
+                                             CGImageGetColorSpace(self.CGImage),
+                                             CGImageGetBitmapInfo(self.CGImage));
+    CGContextConcatCTM(ctx, transform);
+    switch (self.imageOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            CGContextDrawImage(ctx, CGRectMake(0,0,self.size.height,self.size.width), self.CGImage);
+            break;
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0,0,self.size.width,self.size.height), self.CGImage);
+            break;
+    }
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
 }
 
 
