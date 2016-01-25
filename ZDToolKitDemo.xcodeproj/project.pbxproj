@@ -54,8 +54,6 @@
 		05EC9D2F1C53CEA400BACFE9 /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CF21C53CEA400BACFE9 /* MAKVONotificationCenter.m */; };
 		05EC9D301C53CEA400BACFE9 /* UINavigationController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CF61C53CEA400BACFE9 /* UINavigationController+KMNavigationBarTransition.m */; };
 		05EC9D311C53CEA400BACFE9 /* UIViewController+KMNavigationBarTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CF81C53CEA400BACFE9 /* UIViewController+KMNavigationBarTransition.m */; };
-		05EC9D321C53CEA400BACFE9 /* UINavigationController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CFA1C53CEA400BACFE9 /* UINavigationController+ZDPop.m */; };
-		05EC9D331C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CFC1C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m */; };
 		05EC9D341C53CEA400BACFE9 /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CFE1C53CEA400BACFE9 /* OnePasswordExtension.m */; };
 		05EC9D351C53CEA400BACFE9 /* RZAutolayoutLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9D001C53CEA400BACFE9 /* RZAutolayoutLabel.m */; };
 		05EC9D361C53CEA400BACFE9 /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9D021C53CEA400BACFE9 /* ZDFileManager.m */; };
@@ -63,6 +61,9 @@
 		05EC9D381C53CEA400BACFE9 /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9D061C53CEA400BACFE9 /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		05EC9D391C53CEA400BACFE9 /* ZDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9D081C53CEA400BACFE9 /* ZDTools.m */; };
 		05EC9D3A1C53CEA400BACFE9 /* ZDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9D0A1C53CEA400BACFE9 /* ZDWeakProxy.m */; };
+		BC55752E1C56201D00019326 /* UINavigationController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5575291C56201D00019326 /* UINavigationController+ZDPop.m */; };
+		BC55752F1C56201D00019326 /* UIViewController+ZDBackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BC55752B1C56201D00019326 /* UIViewController+ZDBackButtonHandler.m */; };
+		BC5575301C56201D00019326 /* UIViewController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = BC55752D1C56201D00019326 /* UIViewController+ZDPop.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,10 +182,6 @@
 		05EC9CF61C53CEA400BACFE9 /* UINavigationController+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
 		05EC9CF71C53CEA400BACFE9 /* UIViewController+KMNavigationBarTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KMNavigationBarTransition.h"; sourceTree = "<group>"; };
 		05EC9CF81C53CEA400BACFE9 /* UIViewController+KMNavigationBarTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KMNavigationBarTransition.m"; sourceTree = "<group>"; };
-		05EC9CF91C53CEA400BACFE9 /* UINavigationController+ZDPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZDPop.h"; sourceTree = "<group>"; };
-		05EC9CFA1C53CEA400BACFE9 /* UINavigationController+ZDPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ZDPop.m"; sourceTree = "<group>"; };
-		05EC9CFB1C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDBackButtonHandler.h"; sourceTree = "<group>"; };
-		05EC9CFC1C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDBackButtonHandler.m"; sourceTree = "<group>"; };
 		05EC9CFD1C53CEA400BACFE9 /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		05EC9CFE1C53CEA400BACFE9 /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
 		05EC9CFF1C53CEA400BACFE9 /* RZAutolayoutLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZAutolayoutLabel.h; sourceTree = "<group>"; };
@@ -199,6 +196,12 @@
 		05EC9D081C53CEA400BACFE9 /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
 		05EC9D091C53CEA400BACFE9 /* ZDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWeakProxy.h; sourceTree = "<group>"; };
 		05EC9D0A1C53CEA400BACFE9 /* ZDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWeakProxy.m; sourceTree = "<group>"; };
+		BC5575281C56201D00019326 /* UINavigationController+ZDPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZDPop.h"; sourceTree = "<group>"; };
+		BC5575291C56201D00019326 /* UINavigationController+ZDPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ZDPop.m"; sourceTree = "<group>"; };
+		BC55752A1C56201D00019326 /* UIViewController+ZDBackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDBackButtonHandler.h"; sourceTree = "<group>"; };
+		BC55752B1C56201D00019326 /* UIViewController+ZDBackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDBackButtonHandler.m"; sourceTree = "<group>"; };
+		BC55752C1C56201D00019326 /* UIViewController+ZDPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDPop.h"; sourceTree = "<group>"; };
+		BC55752D1C56201D00019326 /* UIViewController+ZDPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDPop.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,9 +298,9 @@
 				05EC9CF01C53CEA400BACFE9 /* ZDTools */,
 				05EC9CE91C53CEA400BACFE9 /* ZDRuntime */,
 				05EC9C9D1C53CEA400BACFE9 /* ZDAutoLayout */,
-				05EC9CA61C53CEA400BACFE9 /* ZDBlock */,
 				05EC9CC81C53CEA400BACFE9 /* ZDCategory */,
 				05EC9CE51C53CEA400BACFE9 /* ZDMacros */,
+				05EC9CA61C53CEA400BACFE9 /* ZDBlock */,
 			);
 			path = ZDToolKit;
 			sourceTree = "<group>";
@@ -456,11 +459,8 @@
 		05EC9CF31C53CEA400BACFE9 /* NavigationBarTool */ = {
 			isa = PBXGroup;
 			children = (
+				BC5575271C56201D00019326 /* BackButtonHandle */,
 				05EC9CF41C53CEA400BACFE9 /* KMNavigationBarTransition */,
-				05EC9CF91C53CEA400BACFE9 /* UINavigationController+ZDPop.h */,
-				05EC9CFA1C53CEA400BACFE9 /* UINavigationController+ZDPop.m */,
-				05EC9CFB1C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.h */,
-				05EC9CFC1C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m */,
 			);
 			path = NavigationBarTool;
 			sourceTree = "<group>";
@@ -474,6 +474,19 @@
 				05EC9CF81C53CEA400BACFE9 /* UIViewController+KMNavigationBarTransition.m */,
 			);
 			path = KMNavigationBarTransition;
+			sourceTree = "<group>";
+		};
+		BC5575271C56201D00019326 /* BackButtonHandle */ = {
+			isa = PBXGroup;
+			children = (
+				BC5575281C56201D00019326 /* UINavigationController+ZDPop.h */,
+				BC5575291C56201D00019326 /* UINavigationController+ZDPop.m */,
+				BC55752A1C56201D00019326 /* UIViewController+ZDBackButtonHandler.h */,
+				BC55752B1C56201D00019326 /* UIViewController+ZDBackButtonHandler.m */,
+				BC55752C1C56201D00019326 /* UIViewController+ZDPop.h */,
+				BC55752D1C56201D00019326 /* UIViewController+ZDPop.m */,
+			);
+			path = BackButtonHandle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -623,15 +636,16 @@
 				05EC9D381C53CEA400BACFE9 /* ZDSafe.m in Sources */,
 				05EC9D1C1C53CEA400BACFE9 /* NSOrderedSet+BlocksKit.m in Sources */,
 				05EC9D1D1C53CEA400BACFE9 /* NSSet+BlocksKit.m in Sources */,
-				05EC9D331C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m in Sources */,
 				05EC9D0D1C53CEA400BACFE9 /* UIView+FDCollapsibleConstraints.m in Sources */,
 				05EC9D3A1C53CEA400BACFE9 /* ZDWeakProxy.m in Sources */,
 				05EC9D271C53CEA400BACFE9 /* UIImageView+ZDUtility.m in Sources */,
+				BC5575301C56201D00019326 /* UIViewController+ZDPop.m in Sources */,
 				05EC9D0B1C53CEA400BACFE9 /* UIView+AutoFlowLayout.m in Sources */,
 				05EC9D301C53CEA400BACFE9 /* UINavigationController+KMNavigationBarTransition.m in Sources */,
 				05EC9D171C53CEA400BACFE9 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				05EC9D161C53CEA400BACFE9 /* NSMutableIndexSet+BlocksKit.m in Sources */,
 				05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */,
+				BC55752F1C56201D00019326 /* UIViewController+ZDBackButtonHandler.m in Sources */,
 				05EC9D311C53CEA400BACFE9 /* UIViewController+KMNavigationBarTransition.m in Sources */,
 				05EC9D141C53CEA400BACFE9 /* NSMutableArray+BlocksKit.m in Sources */,
 				05EC9D2D1C53CEA400BACFE9 /* NOBRuntime.m in Sources */,
@@ -646,12 +660,12 @@
 				05EC9D241C53CEA400BACFE9 /* UIColor+ZDUtility.m in Sources */,
 				05EC9C6B1C53CDC300BACFE9 /* main.m in Sources */,
 				05EC9D2B1C53CEA400BACFE9 /* UIWebView+ZDUtility.m in Sources */,
+				BC55752E1C56201D00019326 /* UINavigationController+ZDPop.m in Sources */,
 				05EC9D261C53CEA400BACFE9 /* UIImageView+FaceAwareFill.m in Sources */,
 				05EC9D1B1C53CEA400BACFE9 /* NSObject+BKBlockObservation.m in Sources */,
 				05EC9D391C53CEA400BACFE9 /* ZDTools.m in Sources */,
 				05EC9D191C53CEA400BACFE9 /* NSObject+BKAssociatedObjects.m in Sources */,
 				05EC9D0F1C53CEA400BACFE9 /* NSArray+BlocksKit.m in Sources */,
-				05EC9D321C53CEA400BACFE9 /* UINavigationController+ZDPop.m in Sources */,
 				05EC9D181C53CEA400BACFE9 /* NSMutableSet+BlocksKit.m in Sources */,
 				05EC9D1F1C53CEA400BACFE9 /* NSArray+ZDExtend.m in Sources */,
 				05EC9D351C53CEA400BACFE9 /* RZAutolayoutLabel.m in Sources */,
@@ -884,6 +898,7 @@
 				05EC9C951C53CDC300BACFE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05EC9C961C53CDC300BACFE9 /* Build configuration list for PBXNativeTarget "ZDToolKitDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -892,6 +907,7 @@
 				05EC9C981C53CDC300BACFE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05EC9C991C53CDC300BACFE9 /* Build configuration list for PBXNativeTarget "ZDToolKitDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -900,6 +916,7 @@
 				05EC9C9B1C53CDC300BACFE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
