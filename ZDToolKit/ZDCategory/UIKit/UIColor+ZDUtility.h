@@ -15,4 +15,6 @@
 ///  @return CMYK字符串
 - (NSString *)getCMYKStringValue;
 
++ (UIColor *)randomColor;
+
 @end
