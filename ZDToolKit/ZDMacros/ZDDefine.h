@@ -32,7 +32,7 @@
 #define NSLog(format, ...) do {                                             \
 fprintf(stderr, "<%s : %d> %s\n",                                           \
 [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
-__LINE__, __func__);                                                        \
+__LINE__, __PRETTY_FUNCTION__);                                             \
 (NSLog)((format), ##__VA_ARGS__);                                           \
 fprintf(stderr, "-----------------\n");                                     \
 } while (0)
@@ -354,10 +354,6 @@ blue: ((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]
 //	COLOR_RGBA( ( (hexValue) >> 16) & 0xff, ( (hexValue) >> 8) & 0xff, ( (hexValue) >> 0) & 0xff, alpha)
 //#define COLOR_HEX(hexValue) COLOR_HEXA(hexValue, 1)
 
-
-//清除背景色
-#define CLEARCOLOR			[UIColor clearColor]
-
 //----------------------颜色类--------------------------
 
 //----------------------其他----------------------------
@@ -371,21 +367,21 @@ blue: ((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]
 #define MyLocal(x, ...)				NSLocalizedString(x, nil)
 
 //G－C－D
-#define BACK(block)					dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
-#define MAIN(block)					dispatch_async(dispatch_get_main_queue(), block)
+#define GLOBALQUEUE(block)          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#define MAINQUEUE(block)			dispatch_async(dispatch_get_main_queue(), block)
 
 //NSUserDefaults 实例化
-#define USER_DEFAULT [NSUserDefaults standardUserDefaults]
+#define USERDEFAULT                 [NSUserDefaults standardUserDefaults]
 
 //由角度获取弧度 有弧度获取角度
-#define degreesToRadian(x)		(M_PI * (x) / 180.0)
-#define radianToDegrees(radian) (radian * 180.0) / (M_PI)
+#define DegreesToRadian(x)          (M_PI * (x) / 180.0)
+#define RadianToDegrees(radian)     ((radian * 180.0) / (M_PI))
 
 #define LITE_RESOURCE_BUNDLE [[NSBundle mainBundle] pathForResource: \
 	@"LiteResource"													 \
 	ofType:@"bundle"];
 
-//TODO宏 (http://blog.sunnyxx.com/2015/03/01/todo-macro/)
+//TODO宏 (http://blog.sunnyxx.com/2015/03/01/todo-macro/ )
 #define STRINGIFY(S) #S
 #define DEFER_STRINGIFY(S) STRINGIFY(S)
 #define PRAGMA_MESSAGE(MSG) _Pragma(STRINGIFY(message(MSG)))
@@ -395,3 +391,61 @@ DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
 // 最终使用下面的宏
 #define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))
 #endif 
+
+//onExit宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
+static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
+    (*executeCleanupBlock)();
+}
+
+#define onExit \
+        @autoreleasepool {} \
+        __strong void(^executeCleanupBlock)() __attribute__((cleanup(CleanupBlock), unused)) = ^
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
