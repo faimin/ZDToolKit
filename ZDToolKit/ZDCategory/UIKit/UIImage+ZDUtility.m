@@ -77,6 +77,37 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 
 #pragma mark - Resize / Thumbnail
 
+- (UIImage *)scaleWithLimitLength:(CGFloat)length
+{
+    CGSize newSize = CGSizeZero;
+    CGFloat newWidth = 0.0f;
+    CGFloat newHeight = 0.0f;
+    CGFloat width = self.size.width;
+    CGFloat height = self.size.height;
+    
+    if (width > length || height > length) {
+        if (width > height) {
+            newWidth = length;
+            newHeight = newWidth * height / width;
+        } else if (height > width) {
+            newHeight = length;
+            newWidth = newHeight * width / height;
+        } else {
+            newWidth = length;
+            newHeight = length;
+        }
+        newSize = CGSizeMake(newWidth, newHeight);
+    } else {
+        newSize = CGSizeMake(width, height);
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, self.scale);
+    [self drawInRect:(CGRect){ CGPointZero, newSize}];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 - (UIImage *)scaleToFillSize:(CGSize)newSize
 {
     size_t destWidth = (size_t)(newSize.width * self.scale);
@@ -312,6 +343,46 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     CGContextRelease(ctx);
     CGImageRelease(cgimg);
     return img;
+}
+
+/**
+ *  @brief 根据bundle中的文件名读取图片,返回无缓存的图片
+ */
++ (UIImage *)imageWithFileName:(NSString *)name {
+    NSString *extension = @"png";
+    NSArray *components = [name componentsSeparatedByString:@"."];
+    
+    if ([components count] >= 2) {
+        NSUInteger lastIndex = components.count - 1;
+        extension = [components objectAtIndex:lastIndex];
+        name = [name substringToIndex:(name.length - (extension.length + 1))];
+    }
+    
+    // 如果为Retina屏幕且存在对应图片，则返回Retina图片，否则查找普通图片
+    if ([UIScreen mainScreen].scale == 2.0) {
+        name = [name stringByAppendingString:@"@2x"];
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+        if (path != nil) {
+            return [UIImage imageWithContentsOfFile:path];
+        }
+    }
+    
+    if ([UIScreen mainScreen].scale == 3.0) {
+        name = [name stringByAppendingString:@"@3x"];
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+        if (path) {
+            return [UIImage imageWithContentsOfFile:path];
+        }
+    }
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+    if (path) {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+    
+    return nil;
 }
 
 

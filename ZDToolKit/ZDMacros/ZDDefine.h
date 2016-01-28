@@ -9,14 +9,13 @@
 #ifndef ZDUtility_ZDDefine_h
 #define ZDUtility_ZDDefine_h
 
-//-------------------获取设备大小-------------------------
+//-------------------屏幕物理尺寸-------------------------
 //NavBar高度
 #define NavigationBar_HEIGHT	44
 //获取屏幕 宽度、高度
 #define kSCREEN_WIDTH			([UIScreen mainScreen].bounds.size.width)
 #define kSCREEN_HEIGHT			([UIScreen mainScreen].bounds.size.height)
 
-//-------------------获取设备大小-------------------------
 
 //-------------------打印日志-------------------------
 //DEBUG  模式下打印日志,当前行
@@ -116,8 +115,7 @@ fprintf(stderr, "-----------------\n");                                     \
 //----------------------系统----------------------------
 
 //获取系统版本
-#define IOS_VERSION				[[[UIDevice currentDevice] systemVersion] floatValue]
-#define CurrentSystemVersion	[[UIDevice currentDevice] systemVersion]
+#define SYSTEMVERSION			[[[UIDevice currentDevice] systemVersion] floatValue]
 
 //获取当前语言
 #define CurrentLanguage			([[NSLocale preferredLanguages] objectAtIndex:0])
