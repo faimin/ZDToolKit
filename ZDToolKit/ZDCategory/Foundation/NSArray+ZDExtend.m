@@ -12,11 +12,22 @@
 
 - (NSArray *)reverse
 {
-    if (!self) {
-        return @[];
+    if (self.count <= 1) {
+        return self;
     }
     NSArray *array = [self reverseObjectEnumerator].allObjects;
     return array;
+}
+
+- (NSArray *)shuffle
+{
+    if (self.count > 0) {
+        NSMutableArray *mutArr = [self mutableCopy];
+        [mutArr shuffle];
+        return [mutArr copy];
+    } else {
+        return self;
+    }
 }
 
 @end
@@ -29,9 +40,17 @@
     NSUInteger count = self.count;
     int mid = floor(count / 2.0);
     for (NSUInteger i = 0; i < mid; i++) {
-        [self exchangeObjectAtIndex:i withObjectAtIndex:(count - (i + 1))];
+        [self exchangeObjectAtIndex:i
+                  withObjectAtIndex:(count - (i + 1))];
     }
 }
 
+- (void)shuffle
+{
+    for (NSUInteger i = self.count; i > 1; i--) {
+        [self exchangeObjectAtIndex:(i - 1)
+                  withObjectAtIndex:arc4random_uniform((u_int32_t)i)];
+    }
+}
 
 @end

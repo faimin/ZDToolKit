@@ -390,18 +390,21 @@ DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
 #define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))
 #endif 
 
-//onExit宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
+//defer(swift延迟调用关键字)宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
 static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
     (*executeCleanupBlock)();
 }
 
-#define onExit \
+#ifndef defer
+#define defer \
+        #if DEBUG \
         @autoreleasepool {} \
+        #else \
+        try{} @finally{} {} \
+        #endif \
         __strong void(^executeCleanupBlock)() __attribute__((cleanup(CleanupBlock), unused)) = ^
 
-
-
-
+#endif
 
 
 

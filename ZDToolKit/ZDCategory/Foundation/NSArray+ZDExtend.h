@@ -12,6 +12,8 @@
 
 - (NSArray *)reverse;
 
+- (NSArray *)shuffle;
+
 @end
 
 @interface NSMutableArray (ZDExtend)
