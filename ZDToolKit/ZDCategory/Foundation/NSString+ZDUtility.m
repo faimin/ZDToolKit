@@ -156,6 +156,7 @@
 
 - (BOOL)isContainsString:(NSString *)string
 {
+    if (!string) return NO;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
     NSRange rang = [self rangeOfString:string];
     if (rang.location == NSNotFound) return NO;

@@ -67,6 +67,7 @@
 		BC55752E1C56201D00019326 /* UINavigationController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5575291C56201D00019326 /* UINavigationController+ZDPop.m */; };
 		BC55752F1C56201D00019326 /* UIViewController+ZDBackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BC55752B1C56201D00019326 /* UIViewController+ZDBackButtonHandler.m */; };
 		BC5575301C56201D00019326 /* UIViewController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = BC55752D1C56201D00019326 /* UIViewController+ZDPop.m */; };
+		BCE4F9EC1C5B6A2900BBDB03 /* UIButton+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4F9EB1C5B6A2900BBDB03 /* UIButton+ZDUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,8 @@
 		BC55752B1C56201D00019326 /* UIViewController+ZDBackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDBackButtonHandler.m"; sourceTree = "<group>"; };
 		BC55752C1C56201D00019326 /* UIViewController+ZDPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDPop.h"; sourceTree = "<group>"; };
 		BC55752D1C56201D00019326 /* UIViewController+ZDPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDPop.m"; sourceTree = "<group>"; };
+		BCE4F9EA1C5B6A2900BBDB03 /* UIButton+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZDUtility.h"; sourceTree = "<group>"; };
+		BCE4F9EB1C5B6A2900BBDB03 /* UIButton+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZDUtility.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +418,8 @@
 				05EC9CE01C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m */,
 				05EC9CE11C53CEA400BACFE9 /* UIViewController+ZDUtility.h */,
 				05EC9CE21C53CEA400BACFE9 /* UIViewController+ZDUtility.m */,
+				BCE4F9EA1C5B6A2900BBDB03 /* UIButton+ZDUtility.h */,
+				BCE4F9EB1C5B6A2900BBDB03 /* UIButton+ZDUtility.m */,
 				05EC9CE31C53CEA400BACFE9 /* UIWebView+ZDUtility.h */,
 				05EC9CE41C53CEA400BACFE9 /* UIWebView+ZDUtility.m */,
 			);
@@ -682,6 +687,7 @@
 				05EC9D2F1C53CEA400BACFE9 /* MAKVONotificationCenter.m in Sources */,
 				05EC9D361C53CEA400BACFE9 /* ZDFileManager.m in Sources */,
 				05EC9D251C53CEA400BACFE9 /* UIImage+ZDUtility.m in Sources */,
+				BCE4F9EC1C5B6A2900BBDB03 /* UIButton+ZDUtility.m in Sources */,
 				05EC9D1E1C53CEA400BACFE9 /* NSTimer+BlocksKit.m in Sources */,
 				05EC9D241C53CEA400BACFE9 /* UIColor+ZDUtility.m in Sources */,
 				BC167E091C589DA000CF82F1 /* UIView+RZBorders.m in Sources */,
