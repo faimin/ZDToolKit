@@ -168,8 +168,6 @@
 		05EC9CE21C53CEA400BACFE9 /* UIViewController+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDUtility.m"; sourceTree = "<group>"; };
 		05EC9CE31C53CEA400BACFE9 /* UIWebView+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+ZDUtility.h"; sourceTree = "<group>"; };
 		05EC9CE41C53CEA400BACFE9 /* UIWebView+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+ZDUtility.m"; sourceTree = "<group>"; };
-		05EC9CE61C53CEA400BACFE9 /* RACEXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACEXTScope.h; sourceTree = "<group>"; };
-		05EC9CE71C53CEA400BACFE9 /* RACmetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RACmetamacros.h; sourceTree = "<group>"; };
 		05EC9CE81C53CEA400BACFE9 /* ZDDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDefine.h; sourceTree = "<group>"; };
 		05EC9CEA1C53CEA400BACFE9 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		05EC9CEB1C53CEA400BACFE9 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
@@ -197,6 +195,8 @@
 		05EC9D081C53CEA400BACFE9 /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
 		05EC9D091C53CEA400BACFE9 /* ZDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWeakProxy.h; sourceTree = "<group>"; };
 		05EC9D0A1C53CEA400BACFE9 /* ZDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWeakProxy.m; sourceTree = "<group>"; };
+		BC1348D71C5F556E00BEB91D /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		BC1348D81C5F57ED00BEB91D /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		BC167E001C589D2200CF82F1 /* RZCollectionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZCollectionTableView.h; sourceTree = "<group>"; };
 		BC167E011C589D2200CF82F1 /* RZCollectionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZCollectionTableView.m; sourceTree = "<group>"; };
 		BC167E021C589D2200CF82F1 /* RZCollectionTableView_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZCollectionTableView_Private.h; sourceTree = "<group>"; };
@@ -424,9 +424,9 @@
 		05EC9CE51C53CEA400BACFE9 /* ZDMacros */ = {
 			isa = PBXGroup;
 			children = (
-				05EC9CE61C53CEA400BACFE9 /* RACEXTScope.h */,
-				05EC9CE71C53CEA400BACFE9 /* RACmetamacros.h */,
 				05EC9CE81C53CEA400BACFE9 /* ZDDefine.h */,
+				BC1348D81C5F57ED00BEB91D /* EXTScope.h */,
+				BC1348D71C5F556E00BEB91D /* metamacros.h */,
 			);
 			path = ZDMacros;
 			sourceTree = "<group>";

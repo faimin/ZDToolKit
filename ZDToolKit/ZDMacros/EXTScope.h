@@ -7,7 +7,7 @@
 //  Released under the MIT license.
 //
 
-#import "RACmetamacros.h"
+#import "metamacros.h"
 
 /**
  * \@onExit defines some code to be executed when the current scope exits. The
@@ -29,8 +29,8 @@
  * a useless construct in such a case anyways.
  */
 #define onExit \
-autoreleasepool {} \
-__strong rac_cleanupBlock_t metamacro_concat(rac_exitBlock_, __LINE__) __attribute__((cleanup(rac_executeCleanupBlock), unused)) = ^
+    rac_keywordify \
+    __strong rac_cleanupBlock_t metamacro_concat(rac_exitBlock_, __LINE__) __attribute__((cleanup(rac_executeCleanupBlock), unused)) = ^
 
 /**
  * Creates \c __weak shadow variables for each of the variables provided as
@@ -43,16 +43,16 @@ __strong rac_cleanupBlock_t metamacro_concat(rac_exitBlock_, __LINE__) __attribu
  * See #strongify for an example of usage.
  */
 #define weakify(...) \
-autoreleasepool {} \
-metamacro_foreach_cxt(rac_weakify_,, __weak, __VA_ARGS__)
+    rac_keywordify \
+    metamacro_foreach_cxt(rac_weakify_,, __weak, __VA_ARGS__)
 
 /**
  * Like #weakify, but uses \c __unsafe_unretained instead, for targets or
  * classes that do not support weak references.
  */
 #define unsafeify(...) \
-autoreleasepool {} \
-metamacro_foreach_cxt(rac_weakify_,, __unsafe_unretained, __VA_ARGS__)
+    rac_keywordify \
+    metamacro_foreach_cxt(rac_weakify_,, __unsafe_unretained, __VA_ARGS__)
 
 /**
  * Strongly references each of the variables provided as arguments, which must
@@ -63,24 +63,29 @@ metamacro_foreach_cxt(rac_weakify_,, __unsafe_unretained, __VA_ARGS__)
  * reduced risk of retain cycles) in the current scope.
  *
  * @code
- id foo = [[NSObject alloc] init];
- id bar = [[NSObject alloc] init];
- @weakify(foo, bar);
- // this block will not keep 'foo' or 'bar' alive
- BOOL (^matchesFooOrBar)(id) = ^ BOOL (id obj){
- // but now, upon entry, 'foo' and 'bar' will stay alive until the block has
- // finished executing
- @strongify(foo, bar);
- return [foo isEqual:obj] || [bar isEqual:obj];
- };
+
+    id foo = [[NSObject alloc] init];
+    id bar = [[NSObject alloc] init];
+
+    @weakify(foo, bar);
+
+    // this block will not keep 'foo' or 'bar' alive
+    BOOL (^matchesFooOrBar)(id) = ^ BOOL (id obj){
+        // but now, upon entry, 'foo' and 'bar' will stay alive until the block has
+        // finished executing
+        @strongify(foo, bar);
+
+        return [foo isEqual:obj] || [bar isEqual:obj];
+    };
+
  * @endcode
  */
 #define strongify(...) \
-try {} @finally {} \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wshadow\"") \
-metamacro_foreach(rac_strongify_,, __VA_ARGS__) \
-_Pragma("clang diagnostic pop")
+    rac_keywordify \
+    _Pragma("clang diagnostic push") \
+    _Pragma("clang diagnostic ignored \"-Wshadow\"") \
+    metamacro_foreach(rac_strongify_,, __VA_ARGS__) \
+    _Pragma("clang diagnostic pop")
 
 /*** implementation details follow ***/
 typedef void (^rac_cleanupBlock_t)();
@@ -90,7 +95,24 @@ static inline void rac_executeCleanupBlock (__strong rac_cleanupBlock_t *block) 
 }
 
 #define rac_weakify_(INDEX, CONTEXT, VAR) \
-CONTEXT __typeof__(VAR) metamacro_concat(VAR, _weak_) = (VAR);
+    CONTEXT __typeof__(VAR) metamacro_concat(VAR, _weak_) = (VAR);
 
 #define rac_strongify_(INDEX, VAR) \
-__strong __typeof__(VAR) VAR = metamacro_concat(VAR, _weak_);
+    __strong __typeof__(VAR) VAR = metamacro_concat(VAR, _weak_);
+
+// Details about the choice of backing keyword:
+//
+// The use of @try/@catch/@finally can cause the compiler to suppress
+// return-type warnings.
+// The use of @autoreleasepool {} is not optimized away by the compiler,
+// resulting in superfluous creation of autorelease pools.
+//
+// Since neither option is perfect, and with no other alternatives, the
+// compromise is to use @autorelease in DEBUG builds to maintain compiler
+// analysis, and to use @try/@catch otherwise to avoid insertion of unnecessary
+// autorelease pools.
+#if DEBUG
+#define rac_keywordify autoreleasepool {}
+#else
+#define rac_keywordify try {} @catch (...) {}
+#endif

@@ -21,7 +21,7 @@
     
     UIView *view = ({
         UIView *view = [UIView new];
-        defer{
+        zd_defer{
             /// 所谓作用域结束，包括大括号结束、return、goto、break、exception等各种情况
             NSLog(@"当前作用域结束,马上要出作用域了");
         };
@@ -32,7 +32,6 @@
     [self.view addSubview:view];
 
     NSLog(@"执行完毕");
-
 }
 
 - (void)didReceiveMemoryWarning {

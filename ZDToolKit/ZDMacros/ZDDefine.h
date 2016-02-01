@@ -395,18 +395,17 @@ static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
     (*executeCleanupBlock)();
 }
 
-//#if DEBUG \
-//@autoreleasepool {} \
-//#else \
-//try{} @finally{} {} \
-//#endif \
-
-#ifndef defer
-#define defer \
+#ifndef zd_defer
+#define zd_defer \
+        zd_keywordify \
         __strong void(^executeCleanupBlock)() __attribute__((cleanup(CleanupBlock), unused)) = ^
-
 #endif
 
+#if DEBUG
+#define zd_keywordify @autoreleasepool {}
+#else
+#define zd_keywordify @try {} @catch (...) {}
+#endif
 
 
 
