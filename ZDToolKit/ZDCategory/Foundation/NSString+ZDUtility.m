@@ -67,7 +67,7 @@
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-#pragma mark - Function
+#pragma mark - Emoji
 
 - (BOOL)isContainsEmoji {
     float systemVersion = [UIDevice currentDevice].systemName.floatValue;
@@ -134,6 +134,8 @@
     return self;
 }
 
+#pragma mark - Function
+
 - (NSString *)reservedNumberOnly
 {
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
@@ -176,6 +178,35 @@
     return NO;
 }
 
+- (BOOL)isEmpty
+{
+    if (self == nil || self == NULL) {
+        return YES;
+    }
+    
+    if ([self isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    
+    if ([[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+#pragma mark - Validate(验证)
+
+- (BOOL)isValidWithRegex:(ZDRegex)regex
+{
+    NSString *regexString = ZDRegexStr[regex];
+    if ([self isEmpty] || !regexString) {
+        return NO;
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
+    return [predicate evaluateWithObject:self];
+}
+
 - (BOOL)isValidEmail
 {
     NSString *emailPattern =
@@ -192,7 +223,67 @@
     return match != nil;
 }
 
-#pragma mark - Json
+/// 身份证号
+- (BOOL)isValidIdCard
+{
+    // 身份证号码不为空  通用15和18位均可：@"^(\\d{14}|\\d{17})(\\d|[xX])$";
+    if (self.length <= 0) {
+        return NO;
+    }
+    
+    NSString *IdRegex = nil;
+    if (self.length == 15) { // 一代公民身份证15位
+        IdRegex = @"^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$";
+    } else if (self.length == 18) { // 二代公民身份证18位
+        IdRegex = @"^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])(\\d{3})(\\d|X){1}$";
+    }
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",IdRegex];
+    
+    return [predicate evaluateWithObject:self];
+}
+
+/// 银行卡号判断
+- (BOOL)isValidCardNo
+{
+    int oddsum = 0;     //奇数求和
+    int evensum = 0;    //偶数求和
+    int allsum = 0;
+    int cardNoLength = (int)[self length];
+    int lastNum = [[self substringFromIndex:cardNoLength-1] intValue];
+    
+    NSString *cardNo = [self substringToIndex:cardNoLength - 1];
+    for (int i = cardNoLength -1 ; i >= 1; i--) {
+        NSString *tmpString = [cardNo substringWithRange:NSMakeRange(i-1, 1)];
+        int tmpVal = [tmpString intValue];
+        if (cardNoLength % 2 ==1 ) {
+            if ((i % 2) == 0) {
+                tmpVal *= 2;
+                if(tmpVal >= 10)
+                    tmpVal -= 9;
+                evensum += tmpVal;
+            } else {
+                oddsum += tmpVal;
+            }
+        } else {
+            if ((i % 2) == 1) {
+                tmpVal *= 2;
+                if (tmpVal >= 10)
+                    tmpVal -= 9;
+                evensum += tmpVal;
+            } else {
+                oddsum += tmpVal;
+            }
+        }
+    }
+    
+    allsum = oddsum + evensum;
+    allsum += lastNum;
+    if ((allsum % 10) == 0) return YES;
+    return NO;
+}
+
+#pragma mark - JSON
 
 - (NSDictionary *)dictionaryValue
 {

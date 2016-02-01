@@ -10,4 +10,8 @@
 
 @interface UIButton (ZDUtility)
 
+- (void)verticalImageAndTitle:(CGFloat)spacing;
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;
+
 @end

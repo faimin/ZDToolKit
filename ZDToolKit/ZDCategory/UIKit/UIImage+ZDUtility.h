@@ -26,5 +26,6 @@
 
 /// 根据bundle中的文件名读取图片,返回无缓存的图片
 + (UIImage *)imageWithFileName:(NSString *)name;
++ (UIImage *)imageWithColor:(UIColor *)color;
 
 @end

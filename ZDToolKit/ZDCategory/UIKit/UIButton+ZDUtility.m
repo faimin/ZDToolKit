@@ -31,7 +31,26 @@
     CGFloat totalHeight = (imageSize.height + titleSize.height + spacing);
     self.imageEdgeInsets = UIEdgeInsetsMake(- (totalHeight - imageSize.height), 0.0, 0.0, - titleSize.width);
     self.titleEdgeInsets = UIEdgeInsetsMake(0, - imageSize.width, - (totalHeight - titleSize.height), 0);
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state
+{
+    [self setBackgroundImage:[[UIViewController class] imageWithColor:backgroundColor] forState:state];
+}
+
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end

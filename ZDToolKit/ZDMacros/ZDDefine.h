@@ -395,13 +395,14 @@ static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
     (*executeCleanupBlock)();
 }
 
+//#if DEBUG \
+//@autoreleasepool {} \
+//#else \
+//try{} @finally{} {} \
+//#endif \
+
 #ifndef defer
 #define defer \
-        #if DEBUG \
-        @autoreleasepool {} \
-        #else \
-        try{} @finally{} {} \
-        #endif \
         __strong void(^executeCleanupBlock)() __attribute__((cleanup(CleanupBlock), unused)) = ^
 
 #endif

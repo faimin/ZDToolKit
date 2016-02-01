@@ -10,9 +10,7 @@
 
 @interface UIColor (ZDUtility)
 
-///  获取UIColor对象的CMYK字符串值。
-///
-///  @return CMYK字符串
+/// 获取UIColor对象的CMYK字符串值。
 - (NSString *)getCMYKStringValue;
 
 + (UIColor *)randomColor;

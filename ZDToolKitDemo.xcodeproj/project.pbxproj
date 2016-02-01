@@ -45,7 +45,6 @@
 		05EC9D261C53CEA400BACFE9 /* UIImageView+FaceAwareFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CDA1C53CEA400BACFE9 /* UIImageView+FaceAwareFill.m */; };
 		05EC9D271C53CEA400BACFE9 /* UIImageView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CDC1C53CEA400BACFE9 /* UIImageView+ZDUtility.m */; };
 		05EC9D281C53CEA400BACFE9 /* UIView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CDE1C53CEA400BACFE9 /* UIView+ZDUtility.m */; };
-		05EC9D291C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CE01C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m */; };
 		05EC9D2A1C53CEA400BACFE9 /* UIViewController+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CE21C53CEA400BACFE9 /* UIViewController+ZDUtility.m */; };
 		05EC9D2B1C53CEA400BACFE9 /* UIWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CE41C53CEA400BACFE9 /* UIWebView+ZDUtility.m */; };
 		05EC9D2C1C53CEA400BACFE9 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9CEB1C53CEA400BACFE9 /* JRSwizzle.m */; };
@@ -165,8 +164,6 @@
 		05EC9CDC1C53CEA400BACFE9 /* UIImageView+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZDUtility.m"; sourceTree = "<group>"; };
 		05EC9CDD1C53CEA400BACFE9 /* UIView+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZDUtility.h"; sourceTree = "<group>"; };
 		05EC9CDE1C53CEA400BACFE9 /* UIView+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZDUtility.m"; sourceTree = "<group>"; };
-		05EC9CDF1C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDBackButtonHandler.h"; sourceTree = "<group>"; };
-		05EC9CE01C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDBackButtonHandler.m"; sourceTree = "<group>"; };
 		05EC9CE11C53CEA400BACFE9 /* UIViewController+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDUtility.h"; sourceTree = "<group>"; };
 		05EC9CE21C53CEA400BACFE9 /* UIViewController+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDUtility.m"; sourceTree = "<group>"; };
 		05EC9CE31C53CEA400BACFE9 /* UIWebView+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+ZDUtility.h"; sourceTree = "<group>"; };
@@ -414,8 +411,6 @@
 				05EC9CDE1C53CEA400BACFE9 /* UIView+ZDUtility.m */,
 				BC167E071C589DA000CF82F1 /* UIView+RZBorders.h */,
 				BC167E081C589DA000CF82F1 /* UIView+RZBorders.m */,
-				05EC9CDF1C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.h */,
-				05EC9CE01C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m */,
 				05EC9CE11C53CEA400BACFE9 /* UIViewController+ZDUtility.h */,
 				05EC9CE21C53CEA400BACFE9 /* UIViewController+ZDUtility.m */,
 				BCE4F9EA1C5B6A2900BBDB03 /* UIButton+ZDUtility.h */,
@@ -658,7 +653,6 @@
 				05EC9D151C53CEA400BACFE9 /* NSMutableDictionary+BlocksKit.m in Sources */,
 				05EC9D0C1C53CEA400BACFE9 /* UIView+AutoLayout.m in Sources */,
 				05EC9D201C53CEA400BACFE9 /* NSObject+DLIntrospection.m in Sources */,
-				05EC9D291C53CEA400BACFE9 /* UIViewController+ZDBackButtonHandler.m in Sources */,
 				05EC9C711C53CDC300BACFE9 /* ViewController.m in Sources */,
 				05EC9D371C53CEA400BACFE9 /* ZDFunction.m in Sources */,
 				05EC9D2E1C53CEA400BACFE9 /* NSObject+ZDRuntime.m in Sources */,
