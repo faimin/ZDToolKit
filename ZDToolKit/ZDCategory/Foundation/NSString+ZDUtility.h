@@ -3,18 +3,14 @@
 //  ZDUtility
 //
 //  Created by 符现超 on 15/12/26.
-//  Copyright © 2015年 Fate.D.Saber. All rights reserved.
+//  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, ZDRegex) {
-    /**
-     手机号以13，14，15，17，18开头，八个 \d 数字字符
-     最全的正则：^(0|86|17951)?(13[0-9]|14[57])[0-9]{8}|15[012356789]|17[678]|18[0-9]$
-    */
-    ZDRegex_PhoneNumber = 1,
+    ZDRegex_PhoneNumber = 1,        ///< 手机号
     ZDRegex_SMSVerifyCode,          ///< 短信验证码(6位纯数字的格式)
     ZDRegex_Nickname,               ///< 昵称(只能由中文、字母或数字组成)
     ZDRegex_Password,               ///< 密码(长度应为6-16个字符,密码必须包含字母和数字)
@@ -32,6 +28,7 @@ static NSString *const ZDRegexStr[] = {
     [ZDRegex_Email] = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
 };
 
+//=================================================
 
 @interface NSString (ZDUtility)
 
@@ -49,10 +46,12 @@ static NSString *const ZDRegexStr[] = {
 - (NSString *)removeHalfEmoji;
 
 //MARK: Function
-- (NSString *)reservedNumberOnly;
+- (NSString *)reservedNumberOnly;           ///< 只保留数字
 - (NSString *)reverse;
-- (BOOL)isContainsString:(NSString *)string;
+- (BOOL)isContainString:(NSString *)string;
+- (BOOL)isContainChinese;
 - (BOOL)isAllNumber;
+- (BOOL)isEmptyOrNil;
 
 //MARK: Validate
 - (BOOL)isValidWithRegex:(ZDRegex)regex;
@@ -68,10 +67,13 @@ static NSString *const ZDRegexStr[] = {
 - (NSString *)decodeHTMLCharacterEntities;
 - (NSString *)encodeHTMLCharacterEntities;
 
-//MARK: Decode/Encode
+//MARK: Decode && Encode
 - (NSString *)stringByAddingPercentEncodingForRFC3986;
 - (NSString *)stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace;
 - (NSString *)stringByURLEncode;
 - (NSString *)stringByURLDecode;
+
+//MARK:获取url中的参数
+- (NSDictionary *)parameters;
 
 @end

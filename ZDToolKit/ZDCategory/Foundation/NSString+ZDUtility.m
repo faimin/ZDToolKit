@@ -3,7 +3,7 @@
 //  ZDUtility
 //
 //  Created by 符现超 on 15/12/26.
-//  Copyright © 2015年 Fate.D.Saber. All rights reserved.
+//  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
 #import "NSString+ZDUtility.h"
@@ -69,7 +69,8 @@
 
 #pragma mark - Emoji
 
-- (BOOL)isContainsEmoji {
+- (BOOL)isContainsEmoji
+{
     float systemVersion = [UIDevice currentDevice].systemName.floatValue;
     // If detected, it MUST contains emoji; otherwise it MAY not contains emoji.
     static NSMutableCharacterSet *minSet8_3, *minSetOld;
@@ -112,7 +113,9 @@
 
 - (NSString *)filterEmoji
 {
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]" options:NSRegularExpressionCaseInsensitive error:nil];
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]"
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:nil];
 	NSString *modifiedString = [regex stringByReplacingMatchesInString:self
                                                                options:0
                                                                  range:NSMakeRange(0, [self length])
@@ -125,7 +128,7 @@
     if (self.length > 0) {
         NSString *tmpStr = self;
         NSUInteger lenth = tmpStr.length;
-        if (([tmpStr characterAtIndex:lenth-1]&0xfc00)  == 0xd800) {
+        if (([tmpStr characterAtIndex:lenth-1]&0xfc00) == 0xd800) {
             lenth--;
         }
         tmpStr = [tmpStr substringToIndex:lenth];
@@ -156,9 +159,9 @@
     return reverseString;
 }
 
-- (BOOL)isContainsString:(NSString *)string
+- (BOOL)isContainString:(NSString *)string
 {
-    if (!string) return NO;
+    if (!string || (string.length == 0) || ![string isKindOfClass:[NSString class]]) return NO;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
     NSRange rang = [self rangeOfString:string];
     if (rang.location == NSNotFound) return NO;
@@ -166,6 +169,19 @@
 #else
     return [self containsString:string];
 #endif
+}
+
+- (BOOL)isContainChinese
+{
+    for (NSUInteger i = 0; i < self.length; i++) {
+        NSRange range = NSMakeRange(i, 1);
+        NSString *subString = [self substringWithRange:range];
+        const char *cString = [subString UTF8String];
+        if (strlen(cString) == 3) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (BOOL)isAllNumber
@@ -178,7 +194,7 @@
     return NO;
 }
 
-- (BOOL)isEmpty
+- (BOOL)isEmptyOrNil
 {
     if (self == nil || self == NULL) {
         return YES;
@@ -200,7 +216,7 @@
 - (BOOL)isValidWithRegex:(ZDRegex)regex
 {
     NSString *regexString = ZDRegexStr[regex];
-    if ([self isEmpty] || !regexString) {
+    if ([self isEmptyOrNil] || !regexString) {
         return NO;
     }
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
@@ -560,4 +576,79 @@
     }
 }
 
+- (NSDictionary *)parameters
+{
+    if (![self hasPrefix:@"http"]) {
+        return nil;
+    }
+    
+    NSURL *url = [NSURL URLWithString:self];
+    NSString *query = url.query;
+    if (!query || query.length == 0) {
+        return nil;
+    }
+    
+    NSMutableDictionary *mutableDic = @{}.mutableCopy;
+    for (NSString *parameter in [query componentsSeparatedByString:@"&"]) {
+        NSArray *components = [parameter componentsSeparatedByString:@"="];
+        if (components.count == 0) {
+            continue;
+        }
+        NSString *key = [components[0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        id value = nil;
+        if (components.count == 1) {
+            // key with no value
+            value = [NSNull null];
+        }
+        else if (components.count == 2) {
+            value = [components[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            // cover case where there is a separator, but no actual value
+            value = [value length] ? value : [NSNull null];
+        }
+        else if (components.count > 2) {
+            // invalid - ignore this pair. is this best, though?
+            continue;
+        }
+        mutableDic[key] = value ? : [NSNull null];
+    }
+    return mutableDic.count ? mutableDic.copy : nil;
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
