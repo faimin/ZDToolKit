@@ -15,8 +15,7 @@
     if (self.count <= 1) {
         return self;
     }
-    NSArray *array = [self reverseObjectEnumerator].allObjects;
-    return array;
+    return [self reverseObjectEnumerator].allObjects;
 }
 
 - (NSArray *)shuffle
@@ -25,9 +24,18 @@
         NSMutableArray *mutArr = [self mutableCopy];
         [mutArr shuffle];
         return [mutArr copy];
-    } else {
-        return self;
     }
+    return self;
+}
+
+- (NSArray *)moveObjcToFront:(id)objc
+{
+    if ([self containsObject:objc]) {
+        NSMutableArray *mutArr = [self mutableCopy];
+        [mutArr moveObjcToFront:objc];
+        return [mutArr copy];
+    }
+    return self;
 }
 
 @end
@@ -51,6 +59,14 @@
         [self exchangeObjectAtIndex:(i - 1)
                   withObjectAtIndex:arc4random_uniform((u_int32_t)i)];
     }
+}
+
+- (void)moveObjcToFront:(id)objc
+{
+    if ([self containsObject:objc]) {
+        [self removeObject:objc];
+    }
+    [self insertObject:objc atIndex:0];
 }
 
 @end

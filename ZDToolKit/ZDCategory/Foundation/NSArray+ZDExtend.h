@@ -14,6 +14,8 @@
 
 - (NSArray *)shuffle;
 
+- (NSArray *)moveObjcToFront:(id)objc;
+
 @end
 
 @interface NSMutableArray (ZDExtend)

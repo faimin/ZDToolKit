@@ -10,7 +10,8 @@
 
 @interface NSObject (ZDDealloc)
 
-- (void)zd_DeallocBlcok:(void(^)())deallocBlock;
+///  对象释放时执行block中的code
+- (void)zd_deallocBlcok:(void(^)())deallocBlock;
 
 @end
 
