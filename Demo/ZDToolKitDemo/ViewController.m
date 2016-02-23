@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ZDDefine.h"
+#import "NSString+ZDUtility.h"
 
 @interface ViewController ()
 
@@ -19,6 +20,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+//    [self functionTest];
+    [self numberTest];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)functionTest
+{
     UIView *view = ({
         UIView *view = [UIView new];
         zd_defer{
@@ -30,13 +42,19 @@
         view;
     });
     [self.view addSubview:view];
-
+    
     NSLog(@"执行完毕");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)numberTest
+{
+    NSString *str = @"2345";
+    BOOL isAllNum = [str isAllNumber];
+    NSLog(@"%@", isAllNum ? @"YES" : @"NO");
 }
+
+
+
+
 
 @end

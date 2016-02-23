@@ -187,9 +187,15 @@
 - (BOOL)isAllNumber
 {
     if (self.length > 0) {
+#if 0
         NSScanner *scan = [NSScanner scannerWithString:self];
         int val;
         return [scan scanInt:&val] && [scan isAtEnd];
+#else
+        NSString *regex = @"(^[0-9]*$)";
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        return [predicate evaluateWithObject:self];
+#endif
     }
     return NO;
 }
