@@ -577,8 +577,9 @@
 		05EC9C5E1C53CDC300BACFE9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = Zero.D.Bourne;
+				ORGANIZATIONNAME = Zero.D.Saber;
 				TargetAttributes = {
 					05EC9C651C53CDC300BACFE9 = {
 						CreatedOnToolsVersion = 7.2;

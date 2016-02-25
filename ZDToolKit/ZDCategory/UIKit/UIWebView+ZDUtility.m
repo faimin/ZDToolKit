@@ -3,7 +3,7 @@
 //  ZDUtility
 //
 //  Created by 符现超 on 15/12/26.
-//  Copyright © 2015年 Fate.D.Saber. All rights reserved.
+//  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
 #import "UIWebView+ZDUtility.h"
@@ -95,7 +95,7 @@
 }
 
 ///  改变所有图像的高度
-- (void) setImgHeight:(int)size
+- (void)setImgHeight:(int)size
 {
     for (int i = 0; i < [self nodeCountOfTag:@"img"]; i++) {
         NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('img')[%d].height = '%d'", i, size];
@@ -167,7 +167,11 @@
 }
 
 ///  绘制矩形填充  context.fillRect(x,y,width,height)
-- (void)fillRectOnCanvas:(NSString *)canvasId x:(NSInteger)x y:(NSInteger)y width:(NSInteger)width height:(NSInteger) height uicolor:(UIColor *)color
+- (void)fillRectOnCanvas:(NSString *)canvasId
+                       x:(NSInteger)x y:(NSInteger)y
+                   width:(NSInteger)width
+                  height:(NSInteger)height
+                   color:(UIColor *)color
 {
     
     NSString *jsString = [NSString stringWithFormat:
@@ -180,7 +184,13 @@
 }
 
 ///  绘制矩形边框  strokeRect(x,y,width,height)
-- (void)strokeRectOnCanvas:(NSString *)canvasId x:(NSInteger)x y:(NSInteger)y width:(NSInteger)width height:(NSInteger) height uicolor:(UIColor *)color lineWidth:(NSInteger)lineWidth
+- (void)strokeRectOnCanvas:(NSString *)canvasId
+                         x:(NSInteger)x
+                         y:(NSInteger)y
+                     width:(NSInteger)width
+                    height:(NSInteger) height
+                     color:(UIColor *)color
+                 lineWidth:(NSInteger)lineWidth
 {
     NSString *jsString = [NSString stringWithFormat:
                           @"var canvas = document.getElementById('%@');"
@@ -193,7 +203,11 @@
 }
 
 ///  清除矩形区域  context.clearRect(x,y,width,height)
-- (void)clearRectOnCanvas:(NSString *)canvasId x:(NSInteger)x y:(NSInteger)y width:(NSInteger)width height:(NSInteger) height
+- (void)clearRectOnCanvas:(NSString *)canvasId
+                        x:(NSInteger)x
+                        y:(NSInteger)y
+                    width:(NSInteger)width
+                   height:(NSInteger)height
 {
     NSString *jsString = [NSString stringWithFormat:
                           @"var canvas = document.getElementById('%@');"
@@ -204,7 +218,14 @@
 }
 
 ///  绘制圆弧填充  context.arc(x, y, radius, starAngle,endAngle, anticlockwise)
-- (void)arcOnCanvas:(NSString *)canvasId centerX:(NSInteger)x centerY:(NSInteger)y radius:(NSInteger)r startAngle:(float)startAngle endAngle:(float)endAngle anticlockwise:(BOOL)anticlockwise uicolor:(UIColor *)color
+- (void)arcOnCanvas:(NSString *)canvasId
+            centerX:(NSInteger)x
+            centerY:(NSInteger)y
+             radius:(NSInteger)r
+         startAngle:(float)startAngle
+           endAngle:(float)endAngle
+      anticlockwise:(BOOL)anticlockwise
+              color:(UIColor *)color
 {
     NSString *jsString = [NSString stringWithFormat:
                           @"var canvas = document.getElementById('%@');"
@@ -219,7 +240,13 @@
 }
 
 ///  绘制一条线段 context.moveTo(x,y)  context.lineTo(x,y)
-- (void)lineOnCanvas:(NSString *)canvasId x1:(NSInteger)x1 y1:(NSInteger)y1 x2:(NSInteger)x2 y2:(NSInteger)y2 uicolor:(UIColor *)color lineWidth:(NSInteger)lineWidth
+- (void)lineOnCanvas:(NSString *)canvasId
+                  x1:(NSInteger)x1
+                  y1:(NSInteger)y1
+                  x2:(NSInteger)x2
+                  y2:(NSInteger)y2
+               color:(UIColor *)color
+           lineWidth:(NSInteger)lineWidth
 {
     NSString *jsString = [NSString stringWithFormat:
                           @"var canvas = document.getElementById('%@');"
@@ -236,7 +263,10 @@
 }
 
 ///  绘制一条折线
-- (void)linesOnCanvas:(NSString *)canvasId points:(NSArray *)points unicolor:(UIColor *)color lineWidth:(NSInteger)lineWidth
+- (void)linesOnCanvas:(NSString *)canvasId
+               points:(NSArray *)points
+             unicolor:(UIColor *)color
+            lineWidth:(NSInteger)lineWidth
 {
     NSString *jsString = [NSString stringWithFormat:
                           @"var canvas = document.getElementById('%@');"
@@ -334,7 +364,7 @@
 }
 
 /// 加亮
-- (UIColor *) lighten
+- (UIColor *)lighten
 {
     CGFloat *rgb = [self getRGB];
     CGFloat r = rgb[0];
@@ -350,7 +380,7 @@
     return uiColor;
 }
 
-- (UIColor *) darken { //变暗
+- (UIColor *)darken { //变暗
     CGFloat *rgb = [self getRGB];
     CGFloat r = rgb[0];
     CGFloat g = rgb[1];
@@ -365,7 +395,7 @@
     return uiColor;
 }
 
-- (UIColor *) mix: (UIColor *) color {
+- (UIColor *)mix:(UIColor *)color {
     CGFloat * rgb1 = [self getRGB];
     CGFloat r1 = rgb1[0];
     CGFloat g1 = rgb1[1];
@@ -388,7 +418,7 @@
     return uiColor;
 }
 
-- (CGFloat *) getRGB {
+- (CGFloat *)getRGB {
     UIColor * uiColor = self;
     
     CGColorRef cgColor = [uiColor CGColor];

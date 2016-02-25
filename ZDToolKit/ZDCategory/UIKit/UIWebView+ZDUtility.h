@@ -3,7 +3,7 @@
 //  ZDUtility
 //
 //  Created by 符现超 on 15/12/26.
-//  Copyright © 2015年 Fate.D.Saber. All rights reserved.
+//  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -17,37 +17,37 @@
 - (NSInteger)nodeCountOfTag:(NSString *)tag;
 
 ///  获取当前页面URL
-- (NSString *) getCurrentURL;
+- (NSString *)getCurrentURL;
 
 ///  获取标题
-- (NSString *) getTitle;
+- (NSString *)getTitle;
 
 ///  获取所有图片链接
-- (NSArray *) getImgs;
+- (NSArray *)getImgs;
 
 ///  获取当前页面所有链接
-- (NSArray *) getOnClicks;
+- (NSArray *)getOnClicks;
 
 #pragma mark -
 #pragma mark 改变网页样式和行为
 
 ///  改变背景颜色
-- (void) setBackgroundColor:(UIColor *)color;
+- (void)setBackgroundColor:(UIColor *)color;
 
 ///  为所有图片添加点击事件(网页中有些图片添加无效)
-- (void) addClickEventOnImg;
+- (void)addClickEventOnImg;
 
 ///  改变所有图像的宽度
-- (void) setImgWidth:(int)size;
+- (void)setImgWidth:(int)size;
 
 ///  改变所有图像的高度
-- (void) setImgHeight:(int)size;
+- (void)setImgHeight:(int)size;
 
 ///  改变指定标签的字体颜色
-- (void) setFontColor:(UIColor *) color withTag:(NSString *)tagName;
+- (void)setFontColor:(UIColor *)color withTag:(NSString *)tagName;
 
 ///  改变指定标签的字体大小
-- (void) setFontSize:(int) size withTag:(NSString *)tagName;
+- (void)setFontSize:(int)size withTag:(NSString *)tagName;
 
 @end
 
@@ -72,7 +72,7 @@
                        y:(NSInteger)y
                    width:(NSInteger)width
                   height:(NSInteger)height
-                 uicolor:(UIColor *)color;
+                   color:(UIColor *)color;
 
 ///  绘制矩形边框  context.strokeRect(x,y,width,height)
 - (void)strokeRectOnCanvas:(NSString *)canvasId
@@ -80,7 +80,7 @@
                          y:(NSInteger)y
                      width:(NSInteger)width
                     height:(NSInteger)height
-                   uicolor:(UIColor *)color
+                     color:(UIColor *)color
                  lineWidth:(NSInteger)lineWidth;
 
 ///  清除矩形区域  context.clearRect(x,y,width,height)
@@ -98,7 +98,7 @@
          startAngle:(float)startAngle
            endAngle:(float)endAngle
       anticlockwise:(BOOL)anticlockwise
-            uicolor:(UIColor *)color;
+              color:(UIColor *)color;
 
 ///  绘制一条线段 context.moveTo(x,y)  context.lineTo(x,y)
 - (void)lineOnCanvas:(NSString *)canvasId
@@ -106,7 +106,7 @@
                   y1:(NSInteger)y1
                   x2:(NSInteger)x2
                   y2:(NSInteger)y2
-             uicolor:(UIColor *)color
+               color:(UIColor *)color
            lineWidth:(NSInteger)lineWidth;
 
 ///  绘制一条折线
@@ -152,19 +152,19 @@
 - (NSString *)canvasColorString;
 
 ///获取网页颜色字串
-- (NSString *) webColorString;
+- (NSString *)webColorString;
 
 ///获取RGB值
-- (CGFloat *) getRGB;
+- (CGFloat *)getRGB;
 
 ///让颜色更亮
-- (UIColor *) lighten;
+- (UIColor *)lighten;
 
 ///让颜色更暗
-- (UIColor *) darken;
+- (UIColor *)darken;
 
 ///取两个颜色的中间
-- (UIColor *) mix: (UIColor *) color;
+- (UIColor *)mix:(UIColor *)color;
 
 
 @end

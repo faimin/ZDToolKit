@@ -3,7 +3,7 @@
 //  ZDUtility
 //
 //  Created by 符现超 on 15/11/28.
-//  Copyright © 2015年 Fate.D.Saber. All rights reserved.
+//  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
 #import "NSArray+ZDExtend.h"

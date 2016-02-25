@@ -3,7 +3,7 @@
 //  ZDUtility
 //
 //  Created by 符现超 on 15/11/24.
-//  Copyright © 2015年 Fate.D.Saber. All rights reserved.
+//  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
 #import "ZDTools.h"

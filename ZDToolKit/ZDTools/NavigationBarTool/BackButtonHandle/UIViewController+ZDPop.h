@@ -3,7 +3,7 @@
 //  UINavigationControllerStudy
 //
 //  Created by 符现超 on 16/1/25.
-//  Copyright © 2016年 Zero.D.Bourne. All rights reserved.
+//  Copyright © 2016年 Zero.D.Saber. All rights reserved.
 //  refer： http://www.jianshu.com/p/6376149a2c4c
 
 #import <UIKit/UIKit.h>

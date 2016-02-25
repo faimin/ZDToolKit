@@ -3,7 +3,7 @@
 //  UINavigationControllerStudy
 //
 //  Created by 符现超 on 15/10/25.
-//  Copyright © 2015年 Fate.D.Bourne. All rights reserved.
+//  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
 #import "UINavigationController+ZDPop.h"

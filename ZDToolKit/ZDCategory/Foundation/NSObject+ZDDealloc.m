@@ -3,7 +3,7 @@
 //  ZDProxy
 //
 //  Created by 符现超 on 15/12/31.
-//  Copyright © 2015年 Fate.D.Bourne. All rights reserved.
+//  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
 #import "NSObject+ZDDealloc.h"

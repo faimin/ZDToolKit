@@ -3,7 +3,7 @@
 //  ZDProxy
 //
 //  Created by 符现超 on 16/1/6.
-//  Copyright © 2016年 Fate.D.Bourne. All rights reserved.
+//  Copyright © 2016年 Zero.D.Saber. All rights reserved.
 //  https://github.com/mikeash/MAZeroingWeakRef
 //  https://github.com/ibireme/YYKit/blob/master/YYKit%2FUtility%2FYYWeakProxy.h
 
