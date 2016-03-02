@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 ///==================================================================
-/// @name 避免Array和Dictionary存储nil时crash
+/// @name 避免Array和Dictionary存储nil或越界时crash
 ///==================================================================
 @interface ZDSafe : NSObject
 

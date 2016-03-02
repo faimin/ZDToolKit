@@ -7,43 +7,37 @@
 //
 
 #import "NSString+ZDUtility.h"
+#import <CoreText/CoreText.h>
 
 @implementation NSString (ZDUtility)
 
 #pragma mark - Size
 
-- (CGFloat)widthWithFont:(UIFont *)font
+- (CGFloat)zd_widthWithFont:(UIFont *)font
 {
-    return [self sizeWithFont:font constrainedToWidth:0 height:0].width;
+    return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)].width;
 }
 
-- (CGFloat)heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
+- (CGFloat)zd_heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
 {
-    return [self sizeWithFont:font constrainedToWidth:width height:0].height;
+    return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)].height;
 }
 
-- (CGFloat)widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height
+- (CGFloat)zd_widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height
 {
-    return [self sizeWithFont:font constrainedToWidth:0 height:height].width;
+    return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(CGFLOAT_MAX, height)].width;
 }
 
-- (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
+- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
 {
-    return [self sizeWithFont:font constrainedToWidth:width height:0];
+    return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)];
 }
 
-- (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width height:(CGFloat)height
+- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)needSize
 {
     UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    CGSize needSize = CGSizeZero;
-    if (width > 0) {
-        needSize = CGSizeMake(width, CGFLOAT_MAX);
-    } else if (height > 0) {
-        needSize = CGSizeMake(CGFLOAT_MAX, height);
-    } else {
-        needSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
-    }
-    CGSize textSize;
+    
+    CGSize textSize = CGSizeZero;
     
     if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
         NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
@@ -65,6 +59,41 @@
     }
     
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+}
+
+- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width lineSpace:(CGFloat)lineSpace
+{
+    return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) lineSpace:lineSpace];
+}
+
+- (CGSize)zd_sizeWithFont:(UIFont *)customFont constrainedToSize:(CGSize)size lineSpace:(CGFloat)lineSpace
+{
+    customFont = customFont ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    
+    CGFloat minimumLineHeight = customFont.pointSize, maximumLineHeight = minimumLineHeight, linespace = lineSpace;
+    CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)customFont.fontName, customFont.pointSize, NULL);
+    CTLineBreakMode lineBreakMode = kCTLineBreakByWordWrapping;
+    //Apply paragraph settings
+    CTTextAlignment alignment = kCTLeftTextAlignment;
+    CTParagraphStyleRef style = CTParagraphStyleCreate((CTParagraphStyleSetting[6]){
+        {kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment},
+        {kCTParagraphStyleSpecifierMinimumLineHeight, sizeof(minimumLineHeight), &minimumLineHeight},
+        {kCTParagraphStyleSpecifierMaximumLineHeight, sizeof(maximumLineHeight), &maximumLineHeight},
+        {kCTParagraphStyleSpecifierMinimumLineSpacing, sizeof(linespace), &linespace},
+        {kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(linespace), &linespace},
+        {kCTParagraphStyleSpecifierLineBreakMode, sizeof(CTLineBreakMode), &lineBreakMode}
+    }, 6);
+    NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:(__bridge id)fontRef,(NSString*)kCTFontAttributeName,(__bridge id)style,(NSString*)kCTParagraphStyleAttributeName,nil];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:self attributes:attributes];
+    CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)string;
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
+    CGSize result = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, [string length]), NULL, size, NULL);
+    CFRelease(framesetter);
+    CFRelease(fontRef);
+    CFRelease(style);
+    string = nil;
+    attributes = nil;
+    return result;
 }
 
 #pragma mark - Emoji

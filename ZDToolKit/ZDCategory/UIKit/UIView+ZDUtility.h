@@ -14,7 +14,7 @@
 @property (nonatomic, strong, readonly) UIViewController *viewController;
 @property (nonatomic, strong, readonly) UIViewController *topMostController;
 
-//MARK:Method
+//MARK: Method
 - (void)eachSubview:(void (^)(UIView *subview))block;
 - (void)removeAllSubviews;
 
@@ -34,6 +34,8 @@
  Create a snapshot PDF of the complete view hierarchy.
  */
 - (NSData *)snapshotPDF;
+
+- (void)shake:(CGFloat)range;
 
 @end
 

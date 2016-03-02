@@ -9,8 +9,12 @@
 #import "ViewController.h"
 #import "ZDDefine.h"
 #import "NSString+ZDUtility.h"
+#import "UIView+ZDUtility.h"
+#import "UIView+RZBorders.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UIView *testView;
 
 @end
 
@@ -22,6 +26,10 @@
     
 //    [self functionTest];
     [self numberTest];
+    
+    self.testView.cornerRadius = 30;
+//    [self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
+
 }
 
 - (void)didReceiveMemoryWarning {

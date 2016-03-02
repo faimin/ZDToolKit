@@ -110,6 +110,15 @@ static const void* CornerRadiusKey = &CornerRadiusKey;
     return data;
 }
 
+- (void)shake:(CGFloat)range
+{
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    animation.duration = 0.5;
+    animation.values = @[@(-range), @(range), @(-range/2), @(range/2), @(-range/5), @(range/5), @(0)];
+    animation.repeatCount = CGFLOAT_MAX;
+    [self.layer addAnimation:animation forKey:@"shake"];
+}
 
 @end
 
@@ -301,13 +310,44 @@ static const void* CornerRadiusKey = &CornerRadiusKey;
 {
     objc_setAssociatedObject(self, CornerRadiusKey, @(cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:cornerRadius];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                        cornerRadius:cornerRadius];
     [maskPath addClip];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.bounds;
     maskLayer.path = maskPath.CGPath;
     self.layer.mask = maskLayer;
     
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self drawImageWithBorderWidth:0 radius:cornerRadius borderColor:self.backgroundColor backgroundColor:self.backgroundColor]];
+//    [self insertSubview:imageView atIndex:0];
+
+}
+
+- (UIImage *)drawImageWithBorderWidth:(CGFloat)borderWidth
+                               radius:(CGFloat)radius
+                          borderColor:(UIColor *)borderColor
+                      backgroundColor:(UIColor *)backgroundColor
+{
+    CGFloat halfBorderWidth = borderWidth / 2.0;
+    
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetLineWidth(context, borderWidth);
+    CGContextSetStrokeColorWithColor(context, borderColor.CGColor);
+    CGContextSetFillColorWithColor(context, backgroundColor.CGColor);
+    
+    CGFloat width = self.bounds.size.width, height = self.bounds.size.height;
+    CGContextMoveToPoint(context, width - halfBorderWidth, radius + halfBorderWidth);  // 开始坐标右边开始
+    CGContextAddArcToPoint(context, width - halfBorderWidth, height - halfBorderWidth, width - radius - halfBorderWidth, height - halfBorderWidth, radius);  // 右下角角度
+    CGContextAddArcToPoint(context, halfBorderWidth, height - halfBorderWidth, halfBorderWidth, height - radius - halfBorderWidth, radius); // 左下角角度
+    CGContextAddArcToPoint(context, halfBorderWidth, halfBorderWidth, width - halfBorderWidth, halfBorderWidth, radius); // 左上角
+    CGContextAddArcToPoint(context, width - halfBorderWidth, halfBorderWidth, width - halfBorderWidth, radius + halfBorderWidth, radius); // 右上角
+    
+    CGContextDrawPath(UIGraphicsGetCurrentContext(), kCGPathFillStroke);
+    UIImage *output = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return output;
 }
 
 - (CGFloat)cornerRadius
@@ -317,3 +357,40 @@ static const void* CornerRadiusKey = &CornerRadiusKey;
 
 
 @end
+
+
+@implementation UIImage (CornerRadius)
+
+- (UIImage *)imageWithCornerRadius:(CGFloat)radius
+{
+    //create drawing context
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //clip image
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0.0f, radius);
+    CGContextAddLineToPoint(context, 0.0f, self.size.height - radius);
+    CGContextAddArc(context, radius, self.size.height - radius, radius, M_PI, M_PI / 2.0f, 1);
+    CGContextAddLineToPoint(context, self.size.width - radius, self.size.height);
+    CGContextAddArc(context, self.size.width - radius, self.size.height - radius, radius, M_PI / 2.0f, 0.0f, 1);
+    CGContextAddLineToPoint(context, self.size.width, radius);
+    CGContextAddArc(context, self.size.width - radius, radius, radius, 0.0f, -M_PI / 2.0f, 1);
+    CGContextAddLineToPoint(context, radius, 0.0f);
+    CGContextAddArc(context, radius, radius, radius, -M_PI / 2.0f, M_PI, 1);
+    CGContextClip(context);
+    
+    //draw image
+    [self drawAtPoint:CGPointZero];
+    
+    //capture resultant image
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //return image
+    return image;
+}
+
+@end
+
+

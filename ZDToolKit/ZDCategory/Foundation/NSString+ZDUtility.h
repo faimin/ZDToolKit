@@ -32,20 +32,27 @@ static NSString *const ZDRegexStr[] = {
 
 @interface NSString (ZDUtility)
 
-//MARK: Size
+// MARK: Size
 ///宽和高都是0的时候为默认值CGFloat_MAX
-- (CGFloat)widthWithFont:(UIFont *)font;
-- (CGFloat)heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;
-- (CGFloat)widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height;
-- (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;
-- (CGSize)sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width height:(CGFloat)height;
+- (CGFloat)zd_widthWithFont:(UIFont *)font;
+- (CGFloat)zd_heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;
+- (CGFloat)zd_widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height;
+- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;
+- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)needSize;
 
-//MARK: Emoji
+- (CGSize)zd_sizeWithFont:(UIFont *)font
+       constrainedToWidth:(CGFloat)width
+                lineSpace:(CGFloat)lineSpace;
+- (CGSize)zd_sizeWithFont:(UIFont *)customFont
+        constrainedToSize:(CGSize)size
+                lineSpace:(CGFloat)lineSpace;
+
+// MARK: Emoji
 - (BOOL)isContainsEmoji;
 - (NSString *)filterEmoji;
 - (NSString *)removeHalfEmoji;
 
-//MARK: Function
+// MARK: Function
 - (NSString *)reservedNumberOnly;           ///< 只保留数字
 - (NSString *)reverse;
 - (BOOL)isContainString:(NSString *)string;
@@ -53,27 +60,27 @@ static NSString *const ZDRegexStr[] = {
 - (BOOL)isAllNumber;
 - (BOOL)isEmptyOrNil;
 
-//MARK: Validate
+// MARK: Validate
 - (BOOL)isValidWithRegex:(ZDRegex)regex;
 - (BOOL)isValidEmail;
 - (BOOL)isValidIdCard;
 - (BOOL)isValidCardNo;
 
-//MARK: JSON
+// MARK: JSON
 - (NSDictionary *)dictionaryValue;
 + (NSString *)stringValueFromJson:(id)arrayOrDic;
 
-//MARK: HTML
+// MARK: HTML
 - (NSString *)decodeHTMLCharacterEntities;
 - (NSString *)encodeHTMLCharacterEntities;
 
-//MARK: Decode && Encode
+// MARK: Decode && Encode
 - (NSString *)stringByAddingPercentEncodingForRFC3986;
 - (NSString *)stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace;
 - (NSString *)stringByURLEncode;
 - (NSString *)stringByURLDecode;
 
-//MARK:获取url中的参数
+// MARK:获取url中的参数
 - (NSDictionary *)parameters;
 
 @end
