@@ -5,7 +5,9 @@
 //  Created by Denis Lebedev on 12/27/12.
 //  Copyright (c) 2012 Denis Lebedev. All rights reserved.
 //
-
+/**
+ *  https://github.com/garnett/DLIntrospection
+ */
 #import <Foundation/Foundation.h>
 
 @interface NSObject (DLIntrospection)

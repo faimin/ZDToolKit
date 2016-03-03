@@ -383,16 +383,16 @@
 		BC1349531C60E26000BEB91D /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				BC13495C1C60E26000BEB91D /* NSString+ZDUtility.h */,
-				BC13495D1C60E26000BEB91D /* NSString+ZDUtility.m */,
-				BC1349541C60E26000BEB91D /* NSArray+ZDExtend.h */,
-				BC1349551C60E26000BEB91D /* NSArray+ZDExtend.m */,
-				BC1349561C60E26000BEB91D /* NSObject+DLIntrospection.h */,
-				BC1349571C60E26000BEB91D /* NSObject+DLIntrospection.m */,
 				BC1349581C60E26000BEB91D /* NSObject+RZBlockKVO.h */,
 				BC1349591C60E26000BEB91D /* NSObject+RZBlockKVO.m */,
 				BC13495A1C60E26000BEB91D /* NSObject+ZDDealloc.h */,
 				BC13495B1C60E26000BEB91D /* NSObject+ZDDealloc.m */,
+				BC1349561C60E26000BEB91D /* NSObject+DLIntrospection.h */,
+				BC1349571C60E26000BEB91D /* NSObject+DLIntrospection.m */,
+				BC13495C1C60E26000BEB91D /* NSString+ZDUtility.h */,
+				BC13495D1C60E26000BEB91D /* NSString+ZDUtility.m */,
+				BC1349541C60E26000BEB91D /* NSArray+ZDExtend.h */,
+				BC1349551C60E26000BEB91D /* NSArray+ZDExtend.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
