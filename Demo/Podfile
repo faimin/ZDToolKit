@@ -1,0 +1,7 @@
+platform :ios, "7.0"
+
+pod 'SDWebImage', '~> 3.7.5'
+
+#target :<#TargetName#>Tests, :exclusive => true do
+  # pod 'Kiwi'
+#end

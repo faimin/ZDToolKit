@@ -11,10 +11,12 @@
 #import "NSString+ZDUtility.h"
 #import "UIView+ZDUtility.h"
 #import "UIView+RZBorders.h"
+#import "UIImageView+ZDUtility.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *testView;
+@property (weak, nonatomic) IBOutlet UIImageView *testImageView;
 
 @end
 
@@ -29,6 +31,7 @@
     
     self.testView.cornerRadius = 30;
 //    [self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
+    [self.testImageView zd_setImageWithURL:@"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg" placeholderImage:nil radius:20];
 
 }
 
@@ -52,6 +55,7 @@
     [self.view addSubview:view];
     
     NSLog(@"执行完毕");
+    
 }
 
 - (void)numberTest

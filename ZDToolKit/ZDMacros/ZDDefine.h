@@ -120,7 +120,7 @@ fprintf(stderr, "----------endline---------\n");                                
 //获取当前语言
 #define CurrentLanguage			([[NSLocale preferredLanguages] objectAtIndex:0])
 
-//判断是否 Retina屏、设备是否%fhone 5、是否是iPad
+//判断是否 Retina屏、设备是否是ihone 5、是否是iPad
 #define isRetina				([UIScreen instancesRespondToSelector:@selector(currentMode)] ?	\
 	CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define iPhone5					([UIScreen instancesRespondToSelector:@selector(currentMode)] ?	\
@@ -192,7 +192,7 @@ fprintf(stderr, "----------endline---------\n");                                
 
 /**
  *******************************************************
- *  此单例支持arc已经非arc环境
+ *  此单例支持ARC以及非MRC环境
  *
  *  使用说明
  *  1. 创建你的单例 比如我这里创建的是 SharedMaxTools
@@ -219,7 +219,7 @@ fprintf(stderr, "----------endline---------\n");                                
  */
 
 // ## : 连接字符串和参数
-#define singleton_h(name) + (instancetype)shared##name;
+#define Singleton_h(name) + (instancetype)shared##name;
 
 #if __has_feature(objc_arc) // ARC
   #define singleton_m(name)								 \
@@ -254,7 +254,7 @@ fprintf(stderr, "----------endline---------\n");                                
 		return _instance;								 \
 	}
 
-#else // F-ARC
+#else                       // MRC
   #define singleton_m(name)								\
 	static id _instance;								\
 	+ (id)allocWithZone:(struct _NSZone *)zone			\
@@ -313,12 +313,8 @@ fprintf(stderr, "----------endline---------\n");                                
 
 //读取本地图片
 #define LOADIMAGE(file, type)	[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:type]]
-
 //定义UIImage对象
-#define IMAGE(A)				[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:A ofType:nil]]
-
-//定义UIImage对象
-#define ImageNamed(_pointer)	[UIImage imageNamed:[UIUtil imageName:_pointer]]
+#define ImageNamed(_pointer)	[UIImage imageNamed:_pointer]
 
 //建议使用前两种宏定义,性能高于后者
 //----------------------图片----------------------------
@@ -380,15 +376,12 @@ blue: ((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]
 	ofType:@"bundle"];
 
 //TODO宏 (http://blog.sunnyxx.com/2015/03/01/todo-macro/ )
-#define STRINGIFY(S) #S
-#define DEFER_STRINGIFY(S) STRINGIFY(S)
+#define STRINGIFY(S) #S                             // 转成字符串
+#define DEFER_STRINGIFY(S) STRINGIFY(S)             // 需要解两次才解开的宏
 #define PRAGMA_MESSAGE(MSG) _Pragma(STRINGIFY(message(MSG)))
-#define FORMATTED_MESSAGE(MSG) "[TODO-" DEFER_STRINGIFY(__COUNTER__) "] " MSG " \n" \
-DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
-#define KEYWORDIFY try {} @catch (...) {}
-// 最终使用下面的宏
-#define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))
-#endif 
+#define FORMATTED_MESSAGE(MSG) "[TODO-" DEFER_STRINGIFY(__COUNTER__) "] " MSG " \n" DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)   // 为warning增加更多信息
+#define KEYWORDIFY try {} @catch (...) {}           // 使宏前面可以加@
+#define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))// 最终使用的宏
 
 //defer(swift延迟调用关键字)宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
 static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
@@ -407,7 +400,7 @@ static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
 #define zd_keywordify @try {} @catch (...) {}
 #endif
 
-
+#endif
 
 
 

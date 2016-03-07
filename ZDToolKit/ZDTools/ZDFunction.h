@@ -89,14 +89,18 @@ FOUNDATION_EXPORT NSArray *GetClassNames();
 #pragma mark - Device
 #pragma mark -
 CGSize ScreenSize();
-BOOL iPhone4s(void);
-BOOL iPhone5s(void);
-BOOL iPhone6(void);
-BOOL iPhone6p(void);
+BOOL iPhone4s();
+BOOL iPhone5s();
+BOOL iPhone6();
+BOOL iPhone6p();
+
+/// 数组两个值，第一个是本地地址，127.0.0.1也就是localhost，
+/// 第二个是路由器DNS分配的公网地址。
+FOUNDATION_EXPORT NSArray *IPAddresses();
 
 #pragma mark - Runtime
 #pragma mark -
-void PrintObjectMethods(void);
+void PrintObjectMethods();
 void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector);
 void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector);
 IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);

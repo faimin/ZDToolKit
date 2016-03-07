@@ -67,6 +67,7 @@
 		BC1349D11C60E26000BEB91D /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499B1C60E26000BEB91D /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC1349D21C60E26000BEB91D /* ZDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499D1C60E26000BEB91D /* ZDTools.m */; };
 		BC1349D31C60E26000BEB91D /* ZDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */; };
+		CF1AB9A7B60713D931FE3A7D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6C3C8909FFEC439DF6DC53 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		05EC9C8A1C53CDC300BACFE9 /* ZDToolKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZDToolKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDToolKitDemoUITests.m; sourceTree = "<group>"; };
 		05EC9C901C53CDC300BACFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BB03F39B2E15BAA99ED0C8B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BC1349281C60E26000BEB91D /* UIView+AutoFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoFlowLayout.h"; sourceTree = "<group>"; };
 		BC1349291C60E26000BEB91D /* UIView+AutoFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoFlowLayout.m"; sourceTree = "<group>"; };
 		BC13492A1C60E26000BEB91D /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
@@ -212,6 +214,8 @@
 		BC13499D1C60E26000BEB91D /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
 		BC13499E1C60E26000BEB91D /* ZDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWeakProxy.h; sourceTree = "<group>"; };
 		BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWeakProxy.m; sourceTree = "<group>"; };
+		C6DA40A502271BE759216C8F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EA6C3C8909FFEC439DF6DC53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +223,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF1AB9A7B60713D931FE3A7D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +252,8 @@
 				05EC9C821C53CDC300BACFE9 /* ZDToolKitDemoTests */,
 				05EC9C8D1C53CDC300BACFE9 /* ZDToolKitDemoUITests */,
 				05EC9C671C53CDC300BACFE9 /* Products */,
+				2124215CD451B69C8063423D /* Pods */,
+				48C3F25088DCB0E8D5D0E1DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -300,6 +307,23 @@
 				05EC9C901C53CDC300BACFE9 /* Info.plist */,
 			);
 			path = ZDToolKitDemoUITests;
+			sourceTree = "<group>";
+		};
+		2124215CD451B69C8063423D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C6DA40A502271BE759216C8F /* Pods.debug.xcconfig */,
+				0BB03F39B2E15BAA99ED0C8B /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		48C3F25088DCB0E8D5D0E1DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA6C3C8909FFEC439DF6DC53 /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BC1349261C60E26000BEB91D /* ZDToolKit */ = {
@@ -522,9 +546,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05EC9C931C53CDC300BACFE9 /* Build configuration list for PBXNativeTarget "ZDToolKitDemo" */;
 			buildPhases = (
+				5CBD86C18571BD66DB4D2A97 /* Check Pods Manifest.lock */,
 				05EC9C621C53CDC300BACFE9 /* Sources */,
 				05EC9C631C53CDC300BACFE9 /* Frameworks */,
 				05EC9C641C53CDC300BACFE9 /* Resources */,
+				A8439A1C6BCB6C9230D89C6B /* Copy Pods Resources */,
+				7DB3907D335511F4E874FD98 /* Find unused imports */,
 			);
 			buildRules = (
 			);
@@ -640,6 +667,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5CBD86C18571BD66DB4D2A97 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7DB3907D335511F4E874FD98 /* Find unused imports */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Find unused imports";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"/Users/fuxianchao/Library/Application Support/Developer/Shared/Xcode/Plug-ins/xcfui.xcplugin/Contents/Resources/fui_script.sh\" \"/Users/fuxianchao/MyGit/ZDToolKit/Demo\"";
+		};
+		A8439A1C6BCB6C9230D89C6B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		05EC9C621C53CDC300BACFE9 /* Sources */ = {
@@ -839,6 +913,7 @@
 		};
 		05EC9C941C53CDC300BACFE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6DA40A502271BE759216C8F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ZDToolKitDemo/Info.plist;
@@ -851,6 +926,7 @@
 		};
 		05EC9C951C53CDC300BACFE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BB03F39B2E15BAA99ED0C8B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ZDToolKitDemo/Info.plist;
