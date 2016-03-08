@@ -429,15 +429,73 @@ NSArray *GetClassNames()
 
 #pragma mark - Device
 #pragma mark -
+/// nativeScale与scale的区别
+/// http://stackoverflow.com/questions/25871858/what-is-the-difference-between-nativescale-and-scale-on-uiscreen-in-ios8
+BOOL isRetina()
+{
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        return [UIScreen mainScreen].nativeScale >= 2;
+    }
+    else {
+        return [UIScreen mainScreen].scale >= 2;
+    }
+}
+
+CGFloat Scale()
+{
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        return [UIScreen mainScreen].nativeScale;
+    }
+    else {
+        return [UIScreen mainScreen].scale;
+    }
+}
 
 CGSize ScreenSize()
+{
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {    // 横屏
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+            CGFloat nativeScale = [UIScreen mainScreen].nativeScale;
+            CGFloat width = [UIScreen mainScreen].nativeBounds.size.height / nativeScale;
+            CGFloat height = [UIScreen mainScreen].nativeBounds.size.width / nativeScale;
+            return CGSizeMake(width, height);
+        }
+        else {
+            return [UIScreen mainScreen].bounds.size;
+        }
+    }
+    else {      // 竖屏
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+            CGFloat nativeScale = [UIScreen mainScreen].nativeScale;
+            CGFloat width = [UIScreen mainScreen].nativeBounds.size.width / nativeScale;
+            CGFloat height = [UIScreen mainScreen].nativeBounds.size.height / nativeScale;
+            return CGSizeMake(width, height);
+        }
+        else {
+            return [UIScreen mainScreen].bounds.size;
+        }
+    }
+}
+
+/// 竖屏状态下
+CGSize PrivateScreenSize()
 {
     return [UIScreen mainScreen].bounds.size;
 }
 
+CGFloat ScreenWidth()
+{
+    return ScreenSize().width;
+}
+
+CGFloat ScreenHeight()
+{
+    return ScreenSize().height;
+}
+
 BOOL iPhone4s()
 {
-	if (ScreenSize().height == 480) {
+	if (PrivateScreenSize().height == 480) {
 		return YES;
 	}
 	return NO;
@@ -445,7 +503,7 @@ BOOL iPhone4s()
 
 BOOL iPhone5s()
 {
-	if (ScreenSize().height == 568) {
+	if (PrivateScreenSize().height == 568) {
 		return YES;
 	}
 	return NO;
@@ -453,7 +511,7 @@ BOOL iPhone5s()
 
 BOOL iPhone6()
 {
-	if (ScreenSize().width == 375) {
+	if (PrivateScreenSize().width == 375) {
 		return YES;
 	}
 	return NO;
@@ -461,7 +519,7 @@ BOOL iPhone6()
 
 BOOL iPhone6p()
 {
-	if (ScreenSize().width == 414) {
+	if (PrivateScreenSize().width == 414) {
 		return YES;
 	}
 	return NO;

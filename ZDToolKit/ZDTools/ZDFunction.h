@@ -88,7 +88,11 @@ FOUNDATION_EXPORT NSArray *GetClassNames();
 
 #pragma mark - Device
 #pragma mark -
+BOOL isRetina();
+CGFloat Scale();
 CGSize ScreenSize();
+CGFloat ScreenWidth();
+CGFloat ScreenHeight();
 BOOL iPhone4s();
 BOOL iPhone5s();
 BOOL iPhone6();
