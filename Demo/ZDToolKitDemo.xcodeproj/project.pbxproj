@@ -15,6 +15,7 @@
 		05EC9C791C53CDC300BACFE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05EC9C771C53CDC300BACFE9 /* LaunchScreen.storyboard */; };
 		05EC9C841C53CDC300BACFE9 /* ZDToolKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C831C53CDC300BACFE9 /* ZDToolKitDemoTests.m */; };
 		05EC9C8F1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */; };
+		BC10BEC91C8EA127006D4C17 /* ZDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC10BEC81C8EA127006D4C17 /* ZDNavigationController.m */; };
 		BC1349A01C60E26000BEB91D /* UIView+AutoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349291C60E26000BEB91D /* UIView+AutoFlowLayout.m */; };
 		BC1349A11C60E26000BEB91D /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13492B1C60E26000BEB91D /* UIView+AutoLayout.m */; };
 		BC1349A21C60E26000BEB91D /* UIView+FDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13492D1C60E26000BEB91D /* UIView+FDCollapsibleConstraints.m */; };
@@ -105,6 +106,8 @@
 		05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDToolKitDemoUITests.m; sourceTree = "<group>"; };
 		05EC9C901C53CDC300BACFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BB03F39B2E15BAA99ED0C8B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BC10BEC71C8EA127006D4C17 /* ZDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDNavigationController.h; sourceTree = "<group>"; };
+		BC10BEC81C8EA127006D4C17 /* ZDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDNavigationController.m; sourceTree = "<group>"; };
 		BC1349281C60E26000BEB91D /* UIView+AutoFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoFlowLayout.h"; sourceTree = "<group>"; };
 		BC1349291C60E26000BEB91D /* UIView+AutoFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoFlowLayout.m"; sourceTree = "<group>"; };
 		BC13492A1C60E26000BEB91D /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
@@ -499,6 +502,8 @@
 			children = (
 				BC1349801C60E26000BEB91D /* BackButtonHandle */,
 				BC1349871C60E26000BEB91D /* KMNavigationBarTransition */,
+				BC10BEC71C8EA127006D4C17 /* ZDNavigationController.h */,
+				BC10BEC81C8EA127006D4C17 /* ZDNavigationController.m */,
 			);
 			path = NavigationBarTool;
 			sourceTree = "<group>";
@@ -757,6 +762,7 @@
 				BC1349C31C60E26000BEB91D /* NOBRuntime.m in Sources */,
 				BC1349CA1C60E26000BEB91D /* UIViewController+KMNavigationBarTransition.m in Sources */,
 				BC1349A61C60E26000BEB91D /* NSIndexSet+BlocksKit.m in Sources */,
+				BC10BEC91C8EA127006D4C17 /* ZDNavigationController.m in Sources */,
 				BC1349BF1C60E26000BEB91D /* UIView+ZDUtility.m in Sources */,
 				BC1349B91C60E26000BEB91D /* UIButton+ZDUtility.m in Sources */,
 				BC1349A81C60E26000BEB91D /* NSMapTable+BlocksKit.m in Sources */,
