@@ -31,7 +31,7 @@
     
     self.testView.cornerRadius = 30;
 //    [self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
-    [self.testImageView zd_setImageWithURL:@"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg" placeholderImage:nil radius:20];
+    [self.testImageView zd_setImageWithURL:@"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg" placeholderImage:nil cornerRadius:30];
 
 }
 

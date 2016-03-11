@@ -10,7 +10,7 @@
 #import "UIImageView+WebCache.h"
 
 #pragma mark - Functions
-void addRoundedRectToPath(CGContextRef context,
+void AddRoundedRectToPath(CGContextRef context,
                                  CGRect rect,
                                  float ovalWidth,
                                  float ovalHeight)
@@ -38,7 +38,7 @@ void addRoundedRectToPath(CGContextRef context,
     CGContextRestoreGState(context);
 }
 
-UIImage* createRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
+UIImage *CreateRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
 {
     CGFloat w = size.width;
     CGFloat h = size.height;
@@ -49,7 +49,7 @@ UIImage* createRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
     CGRect rect = CGRectMake(0, 0, w, h);
     
     CGContextBeginPath(context);
-    addRoundedRectToPath(context, rect, radius, radius);
+    AddRoundedRectToPath(context, rect, radius, radius);
     CGContextClosePath(context);
     CGContextClip(context);
     CGContextDrawImage(context, CGRectMake(0, 0, w, h), image.CGImage);
@@ -71,14 +71,12 @@ UIImage* createRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
                           completion:(void (^)(UIImage *image))completion
 {
     UIImage *image = self.image;
-    if (!image) {
-        return;
-    }
+    NSAssert(image, @"此方法执行的前提是image必须提前设置好");
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Begin a new image that will be the new image with the rounded corners
         // (here with the size of an UIImageView)
         UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
-        CGRect rect = CGRectMake(0, 0, image.size.width,image.size.height);
+        CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
         
         // Add a clip before drawing anything, in the shape of an rounded rect
         [[UIBezierPath bezierPathWithRoundedRect:rect
@@ -101,30 +99,32 @@ UIImage* createRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
 
 - (void)zd_setImageWithURL:(NSString *)urlStr
           placeholderImage:(NSString *)placeHolderStr
-                    radius:(CGFloat)radius
+              cornerRadius:(CGFloat)radius
 {
     if (placeHolderStr == nil) {
         placeHolderStr = @"占位符图片地址";
     }
     
-    //这里传CGFLOAT_MIN，就是默认以图片宽度的一半为圆角
-    if (radius == CGFLOAT_MIN) {
-        radius = CGRectGetWidth(self.frame) / 2.0;
-    }
-    
     NSURL *url = [NSURL URLWithString:urlStr];
     
     if (radius != 0.0) {
+        //这里传CGFLOAT_MIN，就是默认以图片宽度的一半为圆角
+        if (radius == CGFLOAT_MIN) {
+            radius = CGRectGetWidth(self.frame) / 2.0;
+        }
+        
         //头像需要手动缓存处理成圆角的图片
         NSString *cacheurlStr = [urlStr stringByAppendingString:@"radiusCache"];
         UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:cacheurlStr];
         if (cacheImage) {
+            [self makeBackgroundColorToSuperView];
             self.image = cacheImage;
         }
         else {
             [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeHolderStr] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (!error) {
-                    UIImage *radiusImage = createRoundedRectImage(image, self.frame.size, radius);
+                    UIImage *radiusImage = CreateRoundedRectImage(image, self.frame.size, radius);
+                    [self makeBackgroundColorToSuperView];
                     self.image = radiusImage;
                     [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr];
                     //清除原有非圆角图片缓存
@@ -138,7 +138,16 @@ UIImage* createRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
         }
     }
     else {
-        [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeHolderStr] completed:nil];
+        [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeHolderStr]];
+    }
+}
+
+#pragma mark - Private Method
+
+- (void)makeBackgroundColorToSuperView
+{
+    if (self.superview && ![self.backgroundColor isEqual:self.superview.backgroundColor]) {
+        self.backgroundColor = self.superview.backgroundColor;
     }
 }
 
