@@ -36,7 +36,7 @@ FOUNDATION_EXPORT UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *ima
 /**
  *  @name 制作缩略图
  */
-FOUNDATION_EXPORT UIImage *thumbnailImageFromURl (NSURL *url, int imageSize);
+FOUNDATION_EXPORT UIImage *thumbnailImageFromURl(NSURL *url, int imageSize);
 
 /**
  *  @name 判断图片格式

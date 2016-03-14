@@ -151,7 +151,7 @@ UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image) {
     return coloredImage;
 }
 
-UIImage *thumbnailImageFromURl (NSURL *url, int imageSize)
+UIImage *thumbnailImageFromURl(NSURL *url, int imageSize)
 {
      CGImageRef myThumbnailImage = NULL;
      CGImageSourceRef myImageSource;

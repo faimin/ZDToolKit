@@ -12,6 +12,7 @@
 #import "UIView+ZDUtility.h"
 #import "UIView+RZBorders.h"
 #import "UIImageView+ZDUtility.h"
+#import "UIImageView+WebCache.h"
 
 @interface ViewController ()
 
@@ -31,7 +32,9 @@
     
     self.testView.cornerRadius = 30;
 //    [self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
-    [self.testImageView zd_setImageWithURL:@"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg" placeholderImage:nil cornerRadius:30];
+    NSString *urlStr = @"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg";
+    [self.testImageView zd_setImageWithURL:urlStr placeholderImage:nil cornerRadius:30];
+    //[self.testImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
 
 }
 

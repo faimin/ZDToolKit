@@ -63,6 +63,43 @@ UIImage *CreateRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
     return img;
 }
 
+
+
+@implementation UIImage (CornerRadius)
+
+- (UIImage *)imageWithCornerRadius:(CGFloat)radius
+{
+    //create drawing context
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //clip image
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0.0f, radius);
+    CGContextAddLineToPoint(context, 0.0f, self.size.height - radius);
+    CGContextAddArc(context, radius, self.size.height - radius, radius, M_PI, M_PI / 2.0f, 1);
+    CGContextAddLineToPoint(context, self.size.width - radius, self.size.height);
+    CGContextAddArc(context, self.size.width - radius, self.size.height - radius, radius, M_PI / 2.0f, 0.0f, 1);
+    CGContextAddLineToPoint(context, self.size.width, radius);
+    CGContextAddArc(context, self.size.width - radius, radius, radius, 0.0f, -M_PI / 2.0f, 1);
+    CGContextAddLineToPoint(context, radius, 0.0f);
+    CGContextAddArc(context, radius, radius, radius, -M_PI / 2.0f, M_PI, 1);
+    CGContextClip(context);
+    
+    //draw image
+    [self drawAtPoint:CGPointZero];
+    
+    //capture resultant image
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //return image
+    return image;
+}
+
+@end
+
+
 #pragma mark -
 
 @implementation UIImageView (ZDUtility)
@@ -123,7 +160,10 @@ UIImage *CreateRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
         else {
             [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeHolderStr] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (!error) {
-                    UIImage *radiusImage = CreateRoundedRectImage(image, self.frame.size, radius);
+                    UIImage *radiusImage = [image imageWithCornerRadius:radius];
+                    //imageWithCornerRadius(image, radius);
+                    //CreateRoundedRectImage(image, self.frame.size, radius);
+                    
                     [self makeBackgroundColorToSuperView];
                     self.image = radiusImage;
                     [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr];
@@ -152,3 +192,6 @@ UIImage *CreateRoundedRectImage(UIImage *image, CGSize size, NSInteger radius)
 }
 
 @end
+
+
+
