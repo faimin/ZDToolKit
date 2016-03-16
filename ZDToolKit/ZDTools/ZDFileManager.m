@@ -66,7 +66,7 @@
 	BOOL existed = [fileManager fileExistsAtPath:path isDirectory:&isDir];
 
 	if (!(isDir && existed)) {
-		NSError *error = nil;
+		NSError *__autoreleasing error;
 		BOOL isOK = [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
 
 		if (error) {
@@ -86,7 +86,7 @@
 		NSLog(@"移除失败：文件不存在");
 		return NO;
 	}
-	NSError *error = nil;
+	NSError *__autoreleasing error;
 	BOOL isOK = [fileManager removeItemAtPath:path error:&error];
 
 	if (error) {
@@ -103,7 +103,7 @@
 		NSLog(@"移动失败：文件不存在");
 		return NO;
 	}
-	NSError *error = nil;
+	NSError *__autoreleasing error;
 	BOOL isOK = [fileManager moveItemAtPath:fromPath toPath:toPath error:&error];
 
 	if (error) {
@@ -120,7 +120,7 @@
 		NSLog(@"复制失败：文件不存在");
 		return NO;
 	}
-	NSError *error = nil;
+	NSError *__autoreleasing error;
 	BOOL isOK = [fileManager copyItemAtPath:fromPath toPath:toPath error:&error];
 
 	if (error) {
@@ -131,7 +131,7 @@
 
 + (long long)fileSizeAtPath:(NSString *)path
 {
-	NSError *error = nil;
+	NSError *__autoreleasing error;
 	NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
 
 	return [attributes fileSize];
