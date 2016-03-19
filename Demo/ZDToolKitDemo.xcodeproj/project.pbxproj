@@ -39,7 +39,6 @@
 		BC1349B41C60E26000BEB91D /* NSArray+ZDExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349551C60E26000BEB91D /* NSArray+ZDExtend.m */; };
 		BC1349B51C60E26000BEB91D /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349571C60E26000BEB91D /* NSObject+DLIntrospection.m */; };
 		BC1349B61C60E26000BEB91D /* NSObject+RZBlockKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349591C60E26000BEB91D /* NSObject+RZBlockKVO.m */; };
-		BC1349B71C60E26000BEB91D /* NSObject+ZDDealloc.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13495B1C60E26000BEB91D /* NSObject+ZDDealloc.m */; };
 		BC1349B81C60E26000BEB91D /* NSString+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13495D1C60E26000BEB91D /* NSString+ZDUtility.m */; };
 		BC1349B91C60E26000BEB91D /* UIButton+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349601C60E26000BEB91D /* UIButton+ZDUtility.m */; };
 		BC1349BA1C60E26000BEB91D /* UIColor+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349621C60E26000BEB91D /* UIColor+ZDUtility.m */; };
@@ -52,7 +51,6 @@
 		BC1349C11C60E26000BEB91D /* UIWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349701C60E26000BEB91D /* UIWebView+ZDUtility.m */; };
 		BC1349C21C60E26000BEB91D /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349771C60E26000BEB91D /* JRSwizzle.m */; };
 		BC1349C31C60E26000BEB91D /* NOBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349791C60E26000BEB91D /* NOBRuntime.m */; };
-		BC1349C41C60E26000BEB91D /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13497B1C60E26000BEB91D /* NSObject+ZDRuntime.m */; };
 		BC1349C51C60E26000BEB91D /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13497E1C60E26000BEB91D /* MAKVONotificationCenter.m */; };
 		BC1349C61C60E26000BEB91D /* UINavigationController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349821C60E26000BEB91D /* UINavigationController+ZDPop.m */; };
 		BC1349C71C60E26000BEB91D /* UIViewController+ZDBackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349841C60E26000BEB91D /* UIViewController+ZDBackButtonHandler.m */; };
@@ -68,6 +66,8 @@
 		BC1349D11C60E26000BEB91D /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499B1C60E26000BEB91D /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC1349D21C60E26000BEB91D /* ZDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499D1C60E26000BEB91D /* ZDTools.m */; };
 		BC1349D31C60E26000BEB91D /* ZDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */; };
+		BCFAB7AF1C9CFDE800E453DC /* UILabel+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFAB7AE1C9CFDE800E453DC /* UILabel+ZDUtility.m */; };
+		BCFAB7B21C9D129500E453DC /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFAB7B11C9D129500E453DC /* NSObject+ZDRuntime.m */; };
 		CF1AB9A7B60713D931FE3A7D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6C3C8909FFEC439DF6DC53 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -155,8 +155,6 @@
 		BC1349571C60E26000BEB91D /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
 		BC1349581C60E26000BEB91D /* NSObject+RZBlockKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RZBlockKVO.h"; sourceTree = "<group>"; };
 		BC1349591C60E26000BEB91D /* NSObject+RZBlockKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RZBlockKVO.m"; sourceTree = "<group>"; };
-		BC13495A1C60E26000BEB91D /* NSObject+ZDDealloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDDealloc.h"; sourceTree = "<group>"; };
-		BC13495B1C60E26000BEB91D /* NSObject+ZDDealloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDDealloc.m"; sourceTree = "<group>"; };
 		BC13495C1C60E26000BEB91D /* NSString+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZDUtility.h"; sourceTree = "<group>"; };
 		BC13495D1C60E26000BEB91D /* NSString+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZDUtility.m"; sourceTree = "<group>"; };
 		BC13495F1C60E26000BEB91D /* UIButton+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZDUtility.h"; sourceTree = "<group>"; };
@@ -184,8 +182,6 @@
 		BC1349771C60E26000BEB91D /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		BC1349781C60E26000BEB91D /* NOBRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOBRuntime.h; sourceTree = "<group>"; };
 		BC1349791C60E26000BEB91D /* NOBRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOBRuntime.m; sourceTree = "<group>"; };
-		BC13497A1C60E26000BEB91D /* NSObject+ZDRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDRuntime.h"; sourceTree = "<group>"; };
-		BC13497B1C60E26000BEB91D /* NSObject+ZDRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDRuntime.m"; sourceTree = "<group>"; };
 		BC13497D1C60E26000BEB91D /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
 		BC13497E1C60E26000BEB91D /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		BC1349811C60E26000BEB91D /* UINavigationController+ZDPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZDPop.h"; sourceTree = "<group>"; };
@@ -217,6 +213,10 @@
 		BC13499D1C60E26000BEB91D /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
 		BC13499E1C60E26000BEB91D /* ZDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWeakProxy.h; sourceTree = "<group>"; };
 		BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWeakProxy.m; sourceTree = "<group>"; };
+		BCFAB7AD1C9CFDE800E453DC /* UILabel+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZDUtility.h"; sourceTree = "<group>"; };
+		BCFAB7AE1C9CFDE800E453DC /* UILabel+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ZDUtility.m"; sourceTree = "<group>"; };
+		BCFAB7B01C9D129500E453DC /* NSObject+ZDRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDRuntime.h"; sourceTree = "<group>"; };
+		BCFAB7B11C9D129500E453DC /* NSObject+ZDRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDRuntime.m"; sourceTree = "<group>"; };
 		C6DA40A502271BE759216C8F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EA6C3C8909FFEC439DF6DC53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -410,10 +410,10 @@
 		BC1349531C60E26000BEB91D /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				BCFAB7B01C9D129500E453DC /* NSObject+ZDRuntime.h */,
+				BCFAB7B11C9D129500E453DC /* NSObject+ZDRuntime.m */,
 				BC1349581C60E26000BEB91D /* NSObject+RZBlockKVO.h */,
 				BC1349591C60E26000BEB91D /* NSObject+RZBlockKVO.m */,
-				BC13495A1C60E26000BEB91D /* NSObject+ZDDealloc.h */,
-				BC13495B1C60E26000BEB91D /* NSObject+ZDDealloc.m */,
 				BC1349561C60E26000BEB91D /* NSObject+DLIntrospection.h */,
 				BC1349571C60E26000BEB91D /* NSObject+DLIntrospection.m */,
 				BC13495C1C60E26000BEB91D /* NSString+ZDUtility.h */,
@@ -429,6 +429,8 @@
 			children = (
 				BC13495F1C60E26000BEB91D /* UIButton+ZDUtility.h */,
 				BC1349601C60E26000BEB91D /* UIButton+ZDUtility.m */,
+				BCFAB7AD1C9CFDE800E453DC /* UILabel+ZDUtility.h */,
+				BCFAB7AE1C9CFDE800E453DC /* UILabel+ZDUtility.m */,
 				BC1349611C60E26000BEB91D /* UIColor+ZDUtility.h */,
 				BC1349621C60E26000BEB91D /* UIColor+ZDUtility.m */,
 				BC1349631C60E26000BEB91D /* UIImage+ZDUtility.h */,
@@ -466,8 +468,6 @@
 				BC1349771C60E26000BEB91D /* JRSwizzle.m */,
 				BC1349781C60E26000BEB91D /* NOBRuntime.h */,
 				BC1349791C60E26000BEB91D /* NOBRuntime.m */,
-				BC13497A1C60E26000BEB91D /* NSObject+ZDRuntime.h */,
-				BC13497B1C60E26000BEB91D /* NSObject+ZDRuntime.m */,
 			);
 			path = ZDRuntime;
 			sourceTree = "<group>";
@@ -736,12 +736,12 @@
 				BC1349AC1C60E26000BEB91D /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				BC1349C61C60E26000BEB91D /* UINavigationController+ZDPop.m in Sources */,
 				BC1349AB1C60E26000BEB91D /* NSMutableIndexSet+BlocksKit.m in Sources */,
-				BC1349C41C60E26000BEB91D /* NSObject+ZDRuntime.m in Sources */,
 				BC1349BE1C60E26000BEB91D /* UIView+RZBorders.m in Sources */,
 				05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */,
+				BCFAB7B21C9D129500E453DC /* NSObject+ZDRuntime.m in Sources */,
 				BC1349C51C60E26000BEB91D /* MAKVONotificationCenter.m in Sources */,
 				BC1349A91C60E26000BEB91D /* NSMutableArray+BlocksKit.m in Sources */,
-				BC1349B71C60E26000BEB91D /* NSObject+ZDDealloc.m in Sources */,
+				BCFAB7AF1C9CFDE800E453DC /* UILabel+ZDUtility.m in Sources */,
 				BC1349A51C60E26000BEB91D /* NSDictionary+BlocksKit.m in Sources */,
 				BC1349D11C60E26000BEB91D /* ZDSafe.m in Sources */,
 				BC1349C31C60E26000BEB91D /* NOBRuntime.m in Sources */,
