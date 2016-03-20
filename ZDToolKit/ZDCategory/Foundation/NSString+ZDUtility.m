@@ -358,7 +358,8 @@
 
 #pragma mark - HTML
 
-- (NSString *)decodeHTMLCharacterEntities {
+- (NSString *)decodeHTMLCharacterEntities
+{
     if ([self rangeOfString:@"&"].location == NSNotFound) {
         return self;
     } else {
@@ -476,7 +477,8 @@
     }
 }
 
-- (NSString *)encodeHTMLCharacterEntities {
+- (NSString *)encodeHTMLCharacterEntities
+{
     NSMutableString *encoded = [NSMutableString stringWithString:self];
     
     // @"&amp;"
@@ -512,7 +514,8 @@
 #pragma mark - Encoding / Deconding
 //http://useyourloaf.com/blog/how-to-percent-encode-a-url-string.html
 
-- (NSString *)stringByAddingPercentEncodingForRFC3986 {
+- (NSString *)stringByAddingPercentEncodingForRFC3986
+{
     NSString *unreserved = @"-._~/?";
     NSMutableCharacterSet *allowed = [NSMutableCharacterSet
                                       alphanumericCharacterSet];
@@ -521,7 +524,8 @@
             allowed];
 }
 
-- (NSString *)stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace {
+- (NSString *)stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace
+{
     NSString *unreserved = @"*-._";
     NSMutableCharacterSet *allowed = [NSMutableCharacterSet
                                       alphanumericCharacterSet];
@@ -538,7 +542,8 @@
     return encoded;
 }
 
-- (NSString *)stringByURLEncode {
+- (NSString *)stringByURLEncode
+{
     if ([self respondsToSelector:@selector(stringByAddingPercentEncodingWithAllowedCharacters:)]) {
         /**
          AFNetworking/AFURLRequestSerialization.m
@@ -591,7 +596,8 @@
     }
 }
 
-- (NSString *)stringByURLDecode {
+- (NSString *)stringByURLDecode
+{
     if ([self respondsToSelector:@selector(stringByRemovingPercentEncoding)]) {
         return [self stringByRemovingPercentEncoding];
     } else {

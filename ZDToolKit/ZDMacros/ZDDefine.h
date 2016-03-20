@@ -40,7 +40,7 @@ fprintf(stderr, "----------万恶的分割线---------\n");                     
 //DEBUG  模式下打印日志,当前行 并弹出一个警告
 #ifdef DEBUG
   #define ULog(fmt, ...) {UIAlertView *alert = [[UIAlertView alloc]	\
-							  initWithTitle:[NSString stringWithFormat:@"%s\n [Line %d] ", __PRETTY_FUNCTION__, __LINE__] essage:[NSString stringWithFormat:fmt, ##__VA_ARGS__]  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil]; [alert show]; }
+							  initWithTitle:[NSString stringWithFormat:@"%s\n [Line %d] ", __PRETTY_FUNCTION__, __LINE__] message:[NSString stringWithFormat:fmt, ##__VA_ARGS__]  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil]; [alert show]; }
 #else
   #define ULog(...)
 #endif
@@ -320,14 +320,11 @@ fprintf(stderr, "----------万恶的分割线---------\n");                     
 //----------------------图片----------------------------
 
 //----------------------颜色类---------------------------
-// RGB颜色转换（16进制->10进制）
-#define UIColorFromHEX(rgbValue)										  \
-	[UIColor colorWithRed: ((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 \
-green: ((float)((rgbValue & 0xFF00) >> 8)) / 255.0						  \
-blue: ((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]
-
-#define HEXCOLOR(c)                                                       \
-[UIColor colorWithRed:((c>>16)&0xFF)/255.0f green:((c>>8)&0xFF)/255.0f blue:(c&0xFF)/255.0f alpha:1.0f]
+/// RGB颜色转换（16进制->10进制）
+#define UIColorFromHEX(rgbValue)                                        \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0    \
+                green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0       \
+                 blue:((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]    \
 
 ///  Create UIColor with a hex string.
 ///
