@@ -22,7 +22,22 @@
 - (UIImage *)resizeToSize:(CGSize)newSize;
 - (UIImage *)thumbnailWithSize:(int)imageWidthOrHeight;
 
+- (UIImage *)imageByInsetEdge:(UIEdgeInsets)insets withColor:(UIColor *)color;
+
+- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius;
+- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius
+                          borderWidth:(CGFloat)borderWidth
+                          borderColor:(UIColor *)borderColor;
+- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius
+                              corners:(UIRectCorner)corners
+                          borderWidth:(CGFloat)borderWidth
+                          borderColor:(UIColor *)borderColor
+                       borderLineJoin:(CGLineJoin)borderLineJoin;
+
+
 - (UIImage *)fixOrientation;
+- (UIImage *)imageByRotate:(CGFloat)radians
+                   fitSize:(BOOL)fitSize;
 
 /// 根据bundle中的文件名读取图片,返回无缓存的图片
 + (UIImage *)imageWithFileName:(NSString *)name;

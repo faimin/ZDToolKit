@@ -2,11 +2,22 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - YYCache (1.0)
+  - YYImage (1.0):
+    - YYImage/Core (= 1.0)
+  - YYImage/Core (1.0)
+  - YYWebImage (1.0):
+    - YYCache
+    - YYImage
 
 DEPENDENCIES:
   - SDWebImage (~> 3.7.5)
+  - YYWebImage (~> 1.0)
 
 SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  YYCache: 671da5662bbd0165f144bfab1c2ba9d9548200d3
+  YYImage: 11b1cad71b00a06c216c120e842c22f930449ee8
+  YYWebImage: 61497d881d103dd4ec36fdbbe019f952edbfcc4d
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

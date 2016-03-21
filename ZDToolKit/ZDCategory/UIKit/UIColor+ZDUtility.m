@@ -13,7 +13,7 @@
 ///  获取UIColor对象的CMYK字符串值。
 ///
 ///  @return CMYK字符串
-- (NSString *)getCMYKStringValue
+- (NSString *)CMYKStringValue
 {
 	// Method provided by the Colours class extension
 	NSDictionary *cmykDict = [self getCMYKValueByColor:self];
@@ -28,7 +28,6 @@
 ///  获取UIColor对象的CMYK值。
 ///
 ///  @param originColor 原始颜色
-///
 ///  @return CMYK的字典
 - (NSDictionary *)getCMYKValueByColor:(UIColor *)originColor
 {
@@ -66,7 +65,6 @@
 ///  获取UIColor对象的RGB值。
 ///
 ///  @param originColor 原始颜色
-///
 ///  @return 包含rgb值的字典对象。
 - (NSDictionary *)getRGBDictionaryByColor:(UIColor *)originColor
 {

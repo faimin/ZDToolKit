@@ -8,6 +8,7 @@
 
 #ifndef ZDUtility_ZDDefine_h
 #define ZDUtility_ZDDefine_h
+#import <pthread.h>
 
 //-------------------屏幕物理尺寸-------------------------
 //NavBar高度
@@ -20,85 +21,34 @@
 //-------------------打印日志-------------------------
 //DEBUG  模式下打印日志,当前行
 #ifdef DEBUG
-  #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+    #define ZDLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
-  #define DLog(...)
+    #define ZDLog(...) ((void)0)
 #endif
 
 //重写NSLog,Debug模式下打印日志和当前行数
 ///A better version of NSLog
 //refer : http://onevcat.com/2014/01/black-magic-in-macro/
-#define NSLog(format, ...) do {                                             \
-fprintf(stderr, "<%s : %d> %s\n",                                           \
-[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
-__LINE__, __PRETTY_FUNCTION__);                                             \
-(NSLog)((format), ##__VA_ARGS__);                                           \
-fprintf(stderr, "----------万恶的分割线---------\n");                                     \
-} while (0)
+#ifdef DEBUG
+#define NSLog(format, ...) do {                                                 \
+    fprintf(stderr, "<%s : %d> %s\n",                                           \
+    [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
+    __LINE__, __PRETTY_FUNCTION__);                                             \
+    (NSLog)((format), ##__VA_ARGS__);                                           \
+    fprintf(stderr, "----------万恶的分割线---------\n");                                     \
+    } while (0)
+#endif
 
 
 //DEBUG  模式下打印日志,当前行 并弹出一个警告
 #ifdef DEBUG
-  #define ULog(fmt, ...) {UIAlertView *alert = [[UIAlertView alloc]	\
+  #define ZDAlertLog(fmt, ...) {UIAlertView *alert = [[UIAlertView alloc]	\
 							  initWithTitle:[NSString stringWithFormat:@"%s\n [Line %d] ", __PRETTY_FUNCTION__, __LINE__] message:[NSString stringWithFormat:fmt, ##__VA_ARGS__]  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil]; [alert show]; }
 #else
-  #define ULog(...)
+  #define ZDAlertLog(...)     ((void)0)
 #endif
 
-#define ITTDEBUG
-#define ITTLOGLEVEL_INFO	10
-#define ITTLOGLEVEL_WARNING 3
-#define ITTLOGLEVEL_ERROR	1
-
-#ifndef ITTMAXLOGLEVEL
-
-  #ifdef DEBUG
-	#define ITTMAXLOGLEVEL	ITTLOGLEVEL_INFO
-  #else
-	#define ITTMAXLOGLEVEL	ITTLOGLEVEL_ERROR
-  #endif
-#endif
-
-// The general purpose logger. This ignores logging levels.
-#ifdef ITTDEBUG
-  #define ITTDPRINT(xx, ...)	NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-#else
-  #define ITTDPRINT(xx, ...)	((void)0)
-#endif
-
-// Prints the current method's name.
-#define ITTDPRINTMETHODNAME() ITTDPRINT(@"%s", __PRETTY_FUNCTION__)
-
-// Log-level based logging macros.
-#if ITTLOGLEVEL_ERROR <= ITTMAXLOGLEVEL
-  #define ITTDERROR(xx, ...)	ITTDPRINT(xx, ##__VA_ARGS__)
-#else
-  #define ITTDERROR(xx, ...)	((void)0)
-#endif
-
-#if ITTLOGLEVEL_WARNING <= ITTMAXLOGLEVEL
-  #define ITTDWARNING(xx, ...)	ITTDPRINT(xx, ##__VA_ARGS__)
-#else
-  #define ITTDWARNING(xx, ...)	((void)0)
-#endif
-
-#if ITTLOGLEVEL_INFO <= ITTMAXLOGLEVEL
-  #define ITTDINFO(xx, ...) ITTDPRINT(xx, ##__VA_ARGS__)
-#else
-  #define ITTDINFO(xx, ...) ((void)0)
-#endif
-
-#ifdef ITTDEBUG
-  #define ITTDCONDITIONLOG(condition, xx, ...)	{if ((condition))				   \
-												 {								   \
-													 ITTDPRINT(xx, ##__VA_ARGS__); \
-												 }								   \
-} ((void)0)
-#else
-  #define ITTDCONDITIONLOG(condition, xx, ...)	((void)0)
-#endif
-
-#define ITTAssert(condition, ...)														\
+#define ZDAssert(condition, ...)														\
 	do {																				\
 		if (!(condition))																\
 		{																				\
@@ -383,6 +333,24 @@ fprintf(stderr, "----------万恶的分割线---------\n");                     
 //defer(swift延迟调用关键字)宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
 static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
     (*executeCleanupBlock)();
+}
+
+static inline void dispatch_async_on_main_queue(void (^block)()) {
+    if (pthread_main_np()) {
+        block();
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), block);
+    }
+}
+
+static inline void dispatch_sync_on_main_queue(void (^block)()) {
+    if (pthread_main_np()) {
+        block();
+    }
+    else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
 }
 
 #ifndef zd_defer
