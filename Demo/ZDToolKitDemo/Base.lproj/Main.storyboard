@@ -27,7 +27,7 @@
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aj1-1c-XhK">
                                 <rect key="frame" x="50" y="125" width="500" height="375"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" placeholder="YES" id="Buw-EA-PRh"/>
                                     <constraint firstAttribute="width" secondItem="aj1-1c-XhK" secondAttribute="height" multiplier="4:3" priority="999" id="Rhk-ut-IOf"/>

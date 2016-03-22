@@ -115,6 +115,9 @@
     });
 }
 
+/**
+ *  大致原理：当sd下载图片成功后，拿到那张图片，然后对图片进行裁剪，结束之后再给imageView显示
+ */
 - (void)zd_setImageWithURL:(NSString *)urlStr
           placeholderImage:(NSString *)placeHolderStr
               cornerRadius:(CGFloat)radius

@@ -13,6 +13,7 @@
 #import "UIView+RZBorders.h"
 #import "UIImageView+ZDUtility.h"
 #import "UIImageView+WebCache.h"
+#import "HJCornerRadius.h"
 
 @interface ViewController ()
 
@@ -30,11 +31,15 @@
 //    [self functionTest];
     [self numberTest];
     
-    self.testView.cornerRadius = 30;
-//    [self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
     NSString *urlStr = @"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg";
+#if 0
+    self.testView.cornerRadius = 30;
+    //[self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
     [self.testImageView zd_setImageWithURL:urlStr placeholderImage:nil cornerRadius:30];
-    //[self.testImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
+#else
+    self.testImageView.aliCornerRadius = 35;
+    [self.testImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
+#endif
 
 }
 

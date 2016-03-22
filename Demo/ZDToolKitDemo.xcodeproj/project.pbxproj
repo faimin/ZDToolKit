@@ -66,6 +66,7 @@
 		BC1349D11C60E26000BEB91D /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499B1C60E26000BEB91D /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC1349D21C60E26000BEB91D /* ZDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499D1C60E26000BEB91D /* ZDTools.m */; };
 		BC1349D31C60E26000BEB91D /* ZDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */; };
+		BC560B061CA1289500FAC95E /* HJCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = BC560B051CA1289500FAC95E /* HJCornerRadius.m */; };
 		BCFAB7AF1C9CFDE800E453DC /* UILabel+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFAB7AE1C9CFDE800E453DC /* UILabel+ZDUtility.m */; };
 		BCFAB7B21C9D129500E453DC /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFAB7B11C9D129500E453DC /* NSObject+ZDRuntime.m */; };
 		CF1AB9A7B60713D931FE3A7D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6C3C8909FFEC439DF6DC53 /* libPods.a */; };
@@ -213,6 +214,8 @@
 		BC13499D1C60E26000BEB91D /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
 		BC13499E1C60E26000BEB91D /* ZDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWeakProxy.h; sourceTree = "<group>"; };
 		BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWeakProxy.m; sourceTree = "<group>"; };
+		BC560B041CA1289500FAC95E /* HJCornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCornerRadius.h; sourceTree = "<group>"; };
+		BC560B051CA1289500FAC95E /* HJCornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCornerRadius.m; sourceTree = "<group>"; };
 		BCFAB7AD1C9CFDE800E453DC /* UILabel+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZDUtility.h"; sourceTree = "<group>"; };
 		BCFAB7AE1C9CFDE800E453DC /* UILabel+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ZDUtility.m"; sourceTree = "<group>"; };
 		BCFAB7B01C9D129500E453DC /* NSObject+ZDRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDRuntime.h"; sourceTree = "<group>"; };
@@ -435,6 +438,8 @@
 				BC1349621C60E26000BEB91D /* UIColor+ZDUtility.m */,
 				BC1349631C60E26000BEB91D /* UIImage+ZDUtility.h */,
 				BC1349641C60E26000BEB91D /* UIImage+ZDUtility.m */,
+				BC560B041CA1289500FAC95E /* HJCornerRadius.h */,
+				BC560B051CA1289500FAC95E /* HJCornerRadius.m */,
 				BC1349651C60E26000BEB91D /* UIImageView+FaceAwareFill.h */,
 				BC1349661C60E26000BEB91D /* UIImageView+FaceAwareFill.m */,
 				BC1349671C60E26000BEB91D /* UIImageView+ZDUtility.h */,
@@ -749,6 +754,7 @@
 				BC1349CC1C60E26000BEB91D /* RZAutolayoutLabel.m in Sources */,
 				BC1349A01C60E26000BEB91D /* UIView+AutoFlowLayout.m in Sources */,
 				BC1349BA1C60E26000BEB91D /* UIColor+ZDUtility.m in Sources */,
+				BC560B061CA1289500FAC95E /* HJCornerRadius.m in Sources */,
 				BC1349AC1C60E26000BEB91D /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				BC1349C61C60E26000BEB91D /* UINavigationController+ZDPop.m in Sources */,
 				BC1349AB1C60E26000BEB91D /* NSMutableIndexSet+BlocksKit.m in Sources */,
