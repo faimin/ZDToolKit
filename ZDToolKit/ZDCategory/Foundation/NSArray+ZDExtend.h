@@ -16,6 +16,9 @@
 
 - (NSArray *)moveObjcToFront:(id)objc;
 
+///去重
+- (NSArray *)deduplication;
+
 @end
 
 @interface NSMutableArray (ZDExtend)

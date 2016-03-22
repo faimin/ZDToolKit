@@ -8,21 +8,65 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>YYCache.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>YYImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>YYWebImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1CD3303E8C4982B25DAA3E4C6ADF51C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>41FBD912213AA8F24F290DEC27DB4A2F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5352D432641F0656C90741034E32F31E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5C948148A84915DCED9FA26F67F0F2F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66CC389458E6CEA1971E46C242EAAA1E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6FCC31A2CAFB882E89704747F16D1952</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D354D0995133F5648DAB288E4B68BD86</key>
 		<dict>
 			<key>primary</key>
 			<true/>

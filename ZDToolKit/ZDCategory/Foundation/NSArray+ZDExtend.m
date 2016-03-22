@@ -38,6 +38,16 @@
     return self;
 }
 
+- (NSArray *)deduplication
+{
+#if 0
+    // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/CollectionOperators.html
+    return [self valueForKeyPath:@"@distinctUnionOfObjects.self"];
+#else
+    return [NSSet setWithArray:self].allObjects;
+#endif
+}
+
 @end
 
 
