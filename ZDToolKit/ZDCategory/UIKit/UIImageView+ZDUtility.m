@@ -88,8 +88,8 @@
 
 @implementation UIImageView (ZDUtility)
 
-- (void)roundedImageWithCornerRadius:(CGFloat)cornerRadius
-                          completion:(void (^)(UIImage *image))completion
+- (void)zd_roundedImageWithCornerRadius:(CGFloat)cornerRadius
+                             completion:(void (^)(UIImage *image))completion
 {
     UIImage *image = self.image;
     NSAssert(image, @"此方法执行的前提是image必须提前设置好");

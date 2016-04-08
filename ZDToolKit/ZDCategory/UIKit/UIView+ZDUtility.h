@@ -35,6 +35,10 @@
  */
 - (NSData *)snapshotPDF;
 
+/**
+ *  view shake
+ *  @param range 
+ */
 - (void)shake:(CGFloat)range;
 
 @end
@@ -74,6 +78,10 @@
 @property (nonatomic, readonly) CGPoint middlePoint;
 @property (nonatomic, readonly) CGFloat middleX;
 @property (nonatomic, readonly) CGFloat middleY;
+
+// inset (值需要设置为负值)
+// e.g : self.button.touchExtendInset = UIEdgeInsetsMake(-10, -10, -10, -10)
+@property (nonatomic, assign) UIEdgeInsets touchExtendInset;
 
 // Layer
 @property (nonatomic) IBInspectable CGFloat cornerRadius;

@@ -10,8 +10,8 @@
 
 @interface UIImageView (ZDUtility)
 
-- (void)roundedImageWithCornerRadius:(CGFloat)cornerRadius
-                          completion:(void (^)(UIImage *image))completion;
+- (void)zd_roundedImageWithCornerRadius:(CGFloat)cornerRadius
+                             completion:(void (^)(UIImage *image))completion;
 
 /// radius传CGFLOAT_MIN，就是默认以视图宽度的一半为圆角
 - (void)zd_setImageWithURL:(NSString *)urlStr
