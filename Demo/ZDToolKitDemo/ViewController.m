@@ -28,6 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.title = @"ZDToolKitDemo";
 //    [self functionTest];
     [self numberTest];
     
