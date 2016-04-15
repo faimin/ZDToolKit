@@ -59,6 +59,7 @@ static NSString *const ZDRegexStr[] = {
 - (BOOL)isContainChinese;
 - (BOOL)isAllNumber;
 - (BOOL)isEmptyOrNil;
+- (BOOL)isEmpty;
 
 // MARK: Validate
 - (BOOL)isValidWithRegex:(ZDRegex)regex;

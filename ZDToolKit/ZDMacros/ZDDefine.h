@@ -280,9 +280,9 @@
 ///
 ///  Example: self.backgroundColor = UIColorHex(f9f9f9);
 ///  UIColorHex(0xF0F), UIColorHex(66ccff), UIColorHex(#66CCFF88)
-#ifndef UIColorHex
-#define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
-#endif
+//#ifndef UIColorHex
+//#define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
+//#endif
 
 // 获取RGB颜色
 #define RGBA(r, g, b, a)	[UIColor colorWithRed: r / 255.0f green: g / 255.0f blue: b / 255.0f alpha: a]

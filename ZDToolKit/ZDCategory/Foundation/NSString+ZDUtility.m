@@ -246,6 +246,14 @@
     return NO;
 }
 
+- (BOOL)isEmpty
+{
+    if ([[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - Validate(验证)
 
 - (BOOL)isValidWithRegex:(ZDRegex)regex
