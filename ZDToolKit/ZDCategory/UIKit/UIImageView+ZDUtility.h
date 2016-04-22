@@ -10,6 +10,7 @@
 
 @interface UIImageView (ZDUtility)
 
+/// 此方法执行的前提是image必须提前设置好
 - (void)zd_roundedImageWithCornerRadius:(CGFloat)cornerRadius
                              completion:(void (^)(UIImage *image))completion;
 

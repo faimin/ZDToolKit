@@ -132,7 +132,9 @@ void Swizzle(Class c, SEL orig, SEL new) {
     [self.layer addAnimation:animation forKey:@"shake"];
 }
 
-+ (void)load {
+#pragma mark - TouchExtendInset
++ (void)load
+{
     Swizzle(self, @selector(pointInside:withEvent:), @selector(myPointInside:withEvent:));
 }
 
@@ -148,12 +150,14 @@ void Swizzle(Class c, SEL orig, SEL new) {
     return CGRectContainsPoint(hitFrame, point);
 }
 
-- (void)setTouchExtendInset:(UIEdgeInsets)touchExtendInset {
-    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:touchExtendInset],
-                             OBJC_ASSOCIATION_RETAIN);
+- (void)setTouchExtendInset:(UIEdgeInsets)touchExtendInset
+{
+    UIEdgeInsets zdTouchExtendInset = UIEdgeInsetsMake(-touchExtendInset.top, -touchExtendInset.left, -touchExtendInset.bottom, -touchExtendInset.right);
+    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInset], OBJC_ASSOCIATION_RETAIN);
 }
 
-- (UIEdgeInsets)touchExtendInset {
+- (UIEdgeInsets)touchExtendInset
+{
     return [objc_getAssociatedObject(self, TouchExtendInsetKey) UIEdgeInsetsValue];
 }
 
