@@ -203,14 +203,28 @@
 - (BOOL)isContainChinese
 {
     for (NSUInteger i = 0; i < self.length; i++) {
+#if 0
         NSRange range = NSMakeRange(i, 1);
         NSString *subString = [self substringWithRange:range];
         const char *cString = [subString UTF8String];
         if (strlen(cString) == 3) {
             return YES;
         }
+#else
+        unichar a =[self characterAtIndex:i];
+        if(a > 0x4e00 && a < 0x9fff) {
+            return YES;
+        }
+#endif
     }
     return NO;
+}
+
+- (BOOL)isAllChinse
+{
+    NSString *match = @"(^[\u4e00-\u9fa5]+$)";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
+    return [predicate evaluateWithObject:self];
 }
 
 - (BOOL)isAllNumber

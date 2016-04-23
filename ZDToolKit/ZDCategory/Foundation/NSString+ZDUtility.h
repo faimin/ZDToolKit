@@ -53,10 +53,11 @@ static NSString *const ZDRegexStr[] = {
 - (NSString *)removeHalfEmoji;
 
 // MARK: Function
-- (NSString *)reservedNumberOnly;           ///< 只保留数字
-- (NSString *)reverse;
+- (NSString *)reservedNumberOnly;   ///< 只保留数字
+- (NSString *)reverse;              ///< 反转字符串
 - (BOOL)isContainString:(NSString *)string;
 - (BOOL)isContainChinese;
+- (BOOL)isAllChinse;
 - (BOOL)isAllNumber;
 - (BOOL)isEmptyOrNil;
 - (BOOL)isEmpty;
