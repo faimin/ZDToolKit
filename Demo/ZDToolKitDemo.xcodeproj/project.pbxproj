@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05DA93931CDCF62600DEE384 /* UITextView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA93921CDCF62600DEE384 /* UITextView+ZDUtility.m */; };
 		05EC9C6B1C53CDC300BACFE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C6A1C53CDC300BACFE9 /* main.m */; };
 		05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C6D1C53CDC300BACFE9 /* AppDelegate.m */; };
 		05EC9C711C53CDC300BACFE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C701C53CDC300BACFE9 /* ViewController.m */; };
@@ -94,6 +95,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05DA93911CDCF62600DEE384 /* UITextView+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZDUtility.h"; sourceTree = "<group>"; };
+		05DA93921CDCF62600DEE384 /* UITextView+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZDUtility.m"; sourceTree = "<group>"; };
 		05EC9C661C53CDC300BACFE9 /* ZDToolKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDToolKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EC9C6A1C53CDC300BACFE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05EC9C6C1C53CDC300BACFE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -456,6 +459,8 @@
 				BC1349601C60E26000BEB91D /* UIButton+ZDUtility.m */,
 				BCFAB7AD1C9CFDE800E453DC /* UILabel+ZDUtility.h */,
 				BCFAB7AE1C9CFDE800E453DC /* UILabel+ZDUtility.m */,
+				05DA93911CDCF62600DEE384 /* UITextView+ZDUtility.h */,
+				05DA93921CDCF62600DEE384 /* UITextView+ZDUtility.m */,
 				BC1349611C60E26000BEB91D /* UIColor+ZDUtility.h */,
 				BC1349621C60E26000BEB91D /* UIColor+ZDUtility.m */,
 				BC1349631C60E26000BEB91D /* UIImage+ZDUtility.h */,
@@ -793,6 +798,7 @@
 				BC5877931CBD073A00466FB8 /* NSObject+BKAssociatedObjects.m in Sources */,
 				BCFAB7AF1C9CFDE800E453DC /* UILabel+ZDUtility.m in Sources */,
 				BC1349D11C60E26000BEB91D /* ZDSafe.m in Sources */,
+				05DA93931CDCF62600DEE384 /* UITextView+ZDUtility.m in Sources */,
 				BC1349C31C60E26000BEB91D /* NOBRuntime.m in Sources */,
 				BC5877961CBD073A00466FB8 /* NSOrderedSet+BlocksKit.m in Sources */,
 				BC1349CA1C60E26000BEB91D /* UIViewController+KMNavigationBarTransition.m in Sources */,
