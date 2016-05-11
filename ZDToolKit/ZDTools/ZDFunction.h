@@ -18,12 +18,12 @@
 /**
  Loads an animated GIF from file, compatible with UIImageView
  */
-FOUNDATION_EXPORT UIImage *ZDAnimatedGIFFromFile(NSString *path);
+UIKIT_EXTERN UIImage *ZDAnimatedGIFFromFile(NSString *path);
 
 /**
  Loads an animated GIF from data, compatible with UIImageView
  */
-FOUNDATION_EXPORT UIImage *ZDAnimatedGIFFromData(NSData *data);
+UIKIT_EXTERN UIImage *ZDAnimatedGIFFromData(NSData *data);
 
 
 //===============================================================
@@ -31,18 +31,18 @@ FOUNDATION_EXPORT UIImage *ZDAnimatedGIFFromData(NSData *data);
 #pragma mark - Image
 #pragma mark -
 
-FOUNDATION_EXPORT UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image);
+UIKIT_EXTERN UIImage *TintedImageWithColor(UIColor *tintColor, UIImage *image);
 
 /**
- *  @name 制作缩略图
+ *  @name 生成缩略图
  */
-FOUNDATION_EXPORT UIImage *thumbnailImageFromURl(NSURL *url, int imageSize);
+UIKIT_EXTERN UIImage *ThumbnailImageFromURl(NSURL *url, int imageSize);
 
 /**
  *  @name 判断图片格式
  */
-FOUNDATION_EXPORT NSString *typeForImageData(NSData *data);
-FOUNDATION_EXPORT NSString *typeForData(NSData *data);
+FOUNDATION_EXPORT NSString *TypeForImageData(NSData *data);
+FOUNDATION_EXPORT NSString *TypeForData(NSData *data);
 
 //===============================================================
 
@@ -51,12 +51,12 @@ FOUNDATION_EXPORT NSString *typeForData(NSData *data);
 /**
  *  @name 设置文字行间距
  */
-FOUNDATION_EXPORT NSMutableAttributedString* SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
+FOUNDATION_EXPORT NSMutableAttributedString *SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
 
 /**
  *  @name 指定文字为某种颜色
  */
-FOUNDATION_EXPORT NSMutableAttributedString* SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor);
+FOUNDATION_EXPORT NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor);
 FOUNDATION_EXPORT NSString *URLEncodedString(NSString *sourceText);
 FOUNDATION_EXPORT CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth);
 FOUNDATION_EXPORT CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight);
@@ -69,8 +69,8 @@ FOUNDATION_EXPORT CGFloat WidthOfString(NSString *sourceString, UIFont *font, CG
 FOUNDATION_EXPORT CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight);
 
 /// 反转字符串
-UIKIT_EXTERN NSString *ReverseString(NSString *sourceString);
-UIKIT_EXTERN BOOL IsEmptyString(NSString *str);
+FOUNDATION_EXPORT NSString *ReverseString(NSString *sourceString);
+FOUNDATION_EXPORT BOOL IsEmptyString(NSString *str);
 //===============================================================
 
 #pragma mark - InterfaceOrientation
@@ -102,9 +102,14 @@ BOOL iPhone6p();
 /// 第二个是路由器DNS分配的公网地址。
 FOUNDATION_EXPORT NSArray *IPAddresses();
 
+#pragma mark - Function
+#pragma mark -
+/// 处理精度问题
+FOUNDATION_EXPORT double ZD_Round(CGFloat num, NSInteger num_digits);
+
 #pragma mark - Runtime
 #pragma mark -
-void PrintObjectMethods();
+void ZD_PrintObjectMethods();
 void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector);
 void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector);
 IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);

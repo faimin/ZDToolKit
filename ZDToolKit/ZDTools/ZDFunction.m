@@ -128,7 +128,7 @@ UIImage *ZDAnimatedGIFFromData(NSData *data)
 	return image;
 }
 
-UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image) {
+UIImage *TintedImageWithColor(UIColor *tintColor, UIImage *image) {
     UIGraphicsBeginImageContextWithOptions(image.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -151,7 +151,7 @@ UIImage *tintedImageWithColor(UIColor *tintColor, UIImage *image) {
     return coloredImage;
 }
 
-UIImage *thumbnailImageFromURl(NSURL *url, int imageSize)
+UIImage *ThumbnailImageFromURl(NSURL *url, int imageSize)
 {
      CGImageRef myThumbnailImage = NULL;
      CGImageSourceRef myImageSource;
@@ -208,7 +208,7 @@ UIImage *thumbnailImageFromURl(NSURL *url, int imageSize)
      return thumbnail;
 }
 
-NSString *typeForImageData(NSData *data)
+NSString *TypeForImageData(NSData *data)
 {
     uint8_t c;
     [data getBytes:&c length:1];
@@ -226,7 +226,7 @@ NSString *typeForImageData(NSData *data)
     return @"未知格式";
 }
 
-NSString *typeForData(NSData *data)
+NSString *TypeForData(NSData *data)
 {
     if (data.length < 2) {
         return @"NOT FILE";
@@ -561,9 +561,18 @@ NSArray *IPAddresses()
     return ips;
 }
 
+#pragma mark - Function
+#pragma mark -
+double ZD_Round(CGFloat num, NSInteger num_digits)
+{
+    double zdpow = pow(10, num_digits);
+    double i = round(num * zdpow) / zdpow;
+    return i;
+}
+
 #pragma mark - Runtime
 #pragma mark -
-void PrintObjectMethods()
+void ZD_PrintObjectMethods()
 {
 	unsigned int count = 0;
 	Method *methods = class_copyMethodList([NSObject class], &count);
