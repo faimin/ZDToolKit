@@ -378,7 +378,7 @@ void Swizzle(Class c, SEL orig, SEL new) {
 - (void)setCornerRadius:(CGFloat)cornerRadius
 {
     objc_setAssociatedObject(self, CornerRadiusKey, @(cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+    //下面的方法只有获取到真实的bounds才有效
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                         cornerRadius:cornerRadius];
     [maskPath addClip];
@@ -386,37 +386,6 @@ void Swizzle(Class c, SEL orig, SEL new) {
     maskLayer.frame = self.bounds;
     maskLayer.path = maskPath.CGPath;
     self.layer.mask = maskLayer;
-    
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self drawImageWithBorderWidth:0 radius:cornerRadius borderColor:self.backgroundColor backgroundColor:self.backgroundColor]];
-//    [self insertSubview:imageView atIndex:0];
-
-}
-
-- (UIImage *)drawImageWithBorderWidth:(CGFloat)borderWidth
-                               radius:(CGFloat)radius
-                          borderColor:(UIColor *)borderColor
-                      backgroundColor:(UIColor *)backgroundColor
-{
-    CGFloat halfBorderWidth = borderWidth / 2.0;
-    
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetLineWidth(context, borderWidth);
-    CGContextSetStrokeColorWithColor(context, borderColor.CGColor);
-    CGContextSetFillColorWithColor(context, backgroundColor.CGColor);
-    
-    CGFloat width = self.bounds.size.width, height = self.bounds.size.height;
-    CGContextMoveToPoint(context, width - halfBorderWidth, radius + halfBorderWidth);  // 开始坐标右边开始
-    CGContextAddArcToPoint(context, width - halfBorderWidth, height - halfBorderWidth, width - radius - halfBorderWidth, height - halfBorderWidth, radius);  // 右下角角度
-    CGContextAddArcToPoint(context, halfBorderWidth, height - halfBorderWidth, halfBorderWidth, height - radius - halfBorderWidth, radius); // 左下角角度
-    CGContextAddArcToPoint(context, halfBorderWidth, halfBorderWidth, width - halfBorderWidth, halfBorderWidth, radius); // 左上角
-    CGContextAddArcToPoint(context, width - halfBorderWidth, halfBorderWidth, width - halfBorderWidth, radius + halfBorderWidth, radius); // 右上角
-    
-    CGContextDrawPath(UIGraphicsGetCurrentContext(), kCGPathFillStroke);
-    UIImage *output = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return output;
 }
 
 - (CGFloat)cornerRadius
@@ -461,4 +430,33 @@ void Swizzle(Class c, SEL orig, SEL new) {
 
 @end
 
+/**
+ 
+ - (UIImage *)drawImageWithBorderWidth:(CGFloat)borderWidth
+ radius:(CGFloat)radius
+ borderColor:(UIColor *)borderColor
+ backgroundColor:(UIColor *)backgroundColor
+ {
+ CGFloat halfBorderWidth = borderWidth / 2.0;
+ 
+ UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
+ CGContextRef context = UIGraphicsGetCurrentContext();
+ 
+ CGContextSetLineWidth(context, borderWidth);
+ CGContextSetStrokeColorWithColor(context, borderColor.CGColor);
+ CGContextSetFillColorWithColor(context, backgroundColor.CGColor);
+ 
+ CGFloat width = self.bounds.size.width, height = self.bounds.size.height;
+ CGContextMoveToPoint(context, width - halfBorderWidth, radius + halfBorderWidth);  // 开始坐标右边开始
+ CGContextAddArcToPoint(context, width - halfBorderWidth, height - halfBorderWidth, width - radius - halfBorderWidth, height - halfBorderWidth, radius);  // 右下角角度
+ CGContextAddArcToPoint(context, halfBorderWidth, height - halfBorderWidth, halfBorderWidth, height - radius - halfBorderWidth, radius); // 左下角角度
+ CGContextAddArcToPoint(context, halfBorderWidth, halfBorderWidth, width - halfBorderWidth, halfBorderWidth, radius); // 左上角
+ CGContextAddArcToPoint(context, width - halfBorderWidth, halfBorderWidth, width - halfBorderWidth, radius + halfBorderWidth, radius); // 右上角
+ 
+ CGContextDrawPath(UIGraphicsGetCurrentContext(), kCGPathFillStroke);
+ UIImage *output = UIGraphicsGetImageFromCurrentImageContext();
+ UIGraphicsEndImageContext();
+ return output;
+ }
 
+ */

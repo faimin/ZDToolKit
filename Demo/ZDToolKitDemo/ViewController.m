@@ -28,19 +28,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"ZDToolKitDemo";
-//    [self functionTest];
+    //[self functionTest];
     [self numberTest];
     
     NSString *urlStr = @"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg";
-#if 0
-    self.testView.cornerRadius = 30;
     //[self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
+#if 1
     [self.testImageView zd_setImageWithURL:urlStr placeholderImage:nil cornerRadius:30];
 #else
     self.testImageView.aliCornerRadius = 35;
     [self.testImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
 #endif
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    /// 对于autolayout布局的视图，只有在视图显示出来的时候才能获取到真实的frame
+    /// viewDidLoad和viewWillAppear方法中都不行，时机过早
+    self.testView.cornerRadius = 30;
 }
 
 - (void)didReceiveMemoryWarning {
