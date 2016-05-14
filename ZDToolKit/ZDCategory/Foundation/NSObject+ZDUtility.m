@@ -10,7 +10,7 @@
 
 @implementation NSObject (ZDUtility)
 
-- (id)cast:(id)objc
++ (id)zd_cast:(id)objc
 {
     if ([objc isKindOfClass:[self class]]) {
         return objc;
