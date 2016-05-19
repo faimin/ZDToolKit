@@ -7,6 +7,9 @@
 //
 
 #import "UITextView+ZDUtility.h"
+#import <objc/runtime.h>
+
+static const void *PlaceHolderLabelKey = &PlaceHolderLabelKey;
 
 @implementation UITextView (ZDUtility)
 
@@ -40,6 +43,21 @@
         return maxLength;
     }
     return txtCount;
+}
+
+- (void)setPlaceHolderLabel:(UILabel *)placeHolderLabel
+{
+    if (!placeHolderLabel) {
+        return;
+    }
+    [self addSubview:placeHolderLabel];
+    [self setValue:placeHolderLabel forKey:@"_placeholderLabel"];
+    objc_setAssociatedObject(self, PlaceHolderLabelKey, placeHolderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UILabel *)placeHolderLabel
+{
+    return objc_getAssociatedObject(self, PlaceHolderLabelKey);
 }
 
 @end

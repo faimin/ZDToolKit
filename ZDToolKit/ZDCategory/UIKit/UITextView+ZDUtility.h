@@ -13,4 +13,6 @@
 ///限制最大输入字数为maxLength
 - (NSUInteger)letterCountWithMaxLength:(NSUInteger)maxLength;
 
+@property (nonatomic, strong) UILabel *placeHolderLabel;
+
 @end

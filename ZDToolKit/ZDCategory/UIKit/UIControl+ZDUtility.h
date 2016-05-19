@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIControl (ZDUtility)
-
-@property (nonatomic, assign) NSTimeInterval durationTime;
+///防止用户多次点击
+@property (nonatomic, assign) NSTimeInterval clickIntervalTime;///< 点击的时间间隔
 
 @end
