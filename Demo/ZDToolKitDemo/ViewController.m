@@ -14,11 +14,13 @@
 #import "UIImageView+ZDUtility.h"
 #import "UIImageView+WebCache.h"
 #import "HJCornerRadius.h"
+#import "UITextView+ZDUtility.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *testView;
 @property (weak, nonatomic) IBOutlet UIImageView *testImageView;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -29,7 +31,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"ZDToolKitDemo";
     //[self functionTest];
-    [self numberTest];
+    //[self numberTest];
     
     NSString *urlStr = @"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg";
     //[self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
@@ -40,6 +42,13 @@
     [self.testImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
 #endif
 
+    
+    self.textView.placeHolderLabel = ({
+        UILabel *label = [UILabel new];
+        label.text = @"这是一个占位label";
+        label.textColor = [UIColor redColor];
+        label;
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated

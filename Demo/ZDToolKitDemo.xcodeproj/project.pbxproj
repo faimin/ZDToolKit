@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05B5D1B01CECC9F7000CC089 /* UIControl+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B5D1AF1CECC9F7000CC089 /* UIControl+ZDUtility.m */; };
+		05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B5D1B21CEE1153000CC089 /* TwoViewController.m */; };
 		05DA93931CDCF62600DEE384 /* UITextView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA93921CDCF62600DEE384 /* UITextView+ZDUtility.m */; };
 		05EC9C6B1C53CDC300BACFE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C6A1C53CDC300BACFE9 /* main.m */; };
 		05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C6D1C53CDC300BACFE9 /* AppDelegate.m */; };
@@ -99,6 +100,8 @@
 /* Begin PBXFileReference section */
 		05B5D1AE1CECC9F7000CC089 /* UIControl+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+ZDUtility.h"; sourceTree = "<group>"; };
 		05B5D1AF1CECC9F7000CC089 /* UIControl+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+ZDUtility.m"; sourceTree = "<group>"; };
+		05B5D1B11CEE1153000CC089 /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
+		05B5D1B21CEE1153000CC089 /* TwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
 		05DA93911CDCF62600DEE384 /* UITextView+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZDUtility.h"; sourceTree = "<group>"; };
 		05DA93921CDCF62600DEE384 /* UITextView+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZDUtility.m"; sourceTree = "<group>"; };
 		05EC9C661C53CDC300BACFE9 /* ZDToolKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZDToolKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -302,6 +305,8 @@
 				05EC9C6D1C53CDC300BACFE9 /* AppDelegate.m */,
 				05EC9C6F1C53CDC300BACFE9 /* ViewController.h */,
 				05EC9C701C53CDC300BACFE9 /* ViewController.m */,
+				05B5D1B11CEE1153000CC089 /* TwoViewController.h */,
+				05B5D1B21CEE1153000CC089 /* TwoViewController.m */,
 				05EC9C721C53CDC300BACFE9 /* Main.storyboard */,
 				05EC9C751C53CDC300BACFE9 /* Assets.xcassets */,
 				05EC9C771C53CDC300BACFE9 /* LaunchScreen.storyboard */,
@@ -781,6 +786,7 @@
 				BC1349D31C60E26000BEB91D /* ZDWeakProxy.m in Sources */,
 				BC1349CE1C60E26000BEB91D /* RZCollectionTableViewCell.m in Sources */,
 				BC1349A31C60E26000BEB91D /* UIView+RZAutoLayoutHelpers.m in Sources */,
+				05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */,
 				BC5877991CBD073A00466FB8 /* UIControl+BlocksKit.m in Sources */,
 				BC5877911CBD073A00466FB8 /* NSMutableSet+BlocksKit.m in Sources */,
 				BC1349A11C60E26000BEB91D /* UIView+AutoLayout.m in Sources */,

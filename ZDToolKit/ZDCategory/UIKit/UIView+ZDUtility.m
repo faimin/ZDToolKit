@@ -135,14 +135,14 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 #pragma mark - TouchExtendInset
 + (void)load
 {
-    Swizzle(self, @selector(pointInside:withEvent:), @selector(myPointInside:withEvent:));
+    Swizzle(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
 }
 
-- (BOOL)myPointInside:(CGPoint)point withEvent:(UIEvent *)event
+- (BOOL)zdPointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
     if (UIEdgeInsetsEqualToEdgeInsets(self.touchExtendInset, UIEdgeInsetsZero) || self.hidden ||
         ([self isKindOfClass:UIControl.class] && !((UIControl *)self).enabled)) {
-        return [self myPointInside:point withEvent:event]; // original implementation
+        return [self zdPointInside:point withEvent:event]; // original implementation
     }
     CGRect hitFrame = UIEdgeInsetsInsetRect(self.bounds, self.touchExtendInset);
     hitFrame.size.width = MAX(hitFrame.size.width, 0); // don't allow negative sizes
