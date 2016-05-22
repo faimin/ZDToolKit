@@ -15,6 +15,7 @@
 #import <sys/ioctl.h>
 #import <net/if.h>
 #import <arpa/inet.h>
+#import <mach/mach.h>
 
 #pragma mark - Gif Image
 #pragma mark -
@@ -559,6 +560,17 @@ NSArray *IPAddresses()
     }
     close(sockfd);
     return ips;
+}
+
+double ZD_MemoryUsage(void)
+{
+    struct task_basic_info info;
+    mach_msg_type_number_t size = sizeof(info);
+    kern_return_t kerr = task_info(mach_task_self(), TASK_BASIC_INFO, (task_info_t)&info, &size);
+    
+    double memoryUsageInMB = kerr == KERN_SUCCESS ? (info.resident_size / 1024.0 / 1024.0) : 0.0;
+    
+    return memoryUsageInMB;
 }
 
 #pragma mark - Function

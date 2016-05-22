@@ -101,6 +101,8 @@ BOOL iPhone6p();
 /// 数组两个值，第一个是本地地址，127.0.0.1也就是localhost，
 /// 第二个是路由器DNS分配的公网地址。
 FOUNDATION_EXPORT NSArray *IPAddresses();
+/// 获取当前的内存使用情况
+FOUNDATION_EXPORT double ZD_MemoryUsage(void);
 
 #pragma mark - Function
 #pragma mark -
