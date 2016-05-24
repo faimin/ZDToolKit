@@ -84,7 +84,7 @@
 @property (nonatomic, assign) UIEdgeInsets touchExtendInset;
 
 // Layer
-@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;
+@property (nonatomic, assign) CGFloat zd_cornerRadius;
 
 @end
 

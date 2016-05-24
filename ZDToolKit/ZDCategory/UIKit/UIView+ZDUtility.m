@@ -375,12 +375,13 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 }
 
 #pragma mark Layer
-- (void)setCornerRadius:(CGFloat)cornerRadius
+
+- (void)setZd_cornerRadius:(CGFloat)zd_cornerRadius
 {
-    objc_setAssociatedObject(self, CornerRadiusKey, @(cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, CornerRadiusKey, @(zd_cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     //下面的方法只有获取到真实的bounds才有效
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                        cornerRadius:cornerRadius];
+                                                        cornerRadius:zd_cornerRadius];
     [maskPath addClip];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.bounds;
@@ -388,7 +389,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     self.layer.mask = maskLayer;
 }
 
-- (CGFloat)cornerRadius
+- (CGFloat)zd_cornerRadius
 {
     return [objc_getAssociatedObject(self, CornerRadiusKey) integerValue];
 }
