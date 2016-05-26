@@ -62,7 +62,7 @@
     
     /// 对于autolayout布局的视图，只有在视图显示出来的时候才能获取到真实的frame
     /// viewDidLoad和viewWillAppear方法中都不行，时机过早
-    self.testView.cornerRadius = 30;
+    self.testView.zd_cornerRadius = 30;
 }
 
 - (void)didReceiveMemoryWarning {

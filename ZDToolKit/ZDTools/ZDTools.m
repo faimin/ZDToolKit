@@ -9,39 +9,67 @@
 #import "ZDTools.h"
 #import <objc/runtime.h>
 
-@implementation ZDTools
-
-@end
-
-///==================================================================
-#pragma mark - Function
-///==================================================================
-
-BOOL zdSwizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
-{
+static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel) {
     Method origMethod = class_getInstanceMethod(aClass, originalSel);
     Method replMethod = class_getInstanceMethod(aClass, replacementSel);
-    
-    if (!origMethod) {
-        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(originalSel), aClass);
+    if (!origMethod || !replMethod) {
+        !origMethod ? NSLog(@"original method %@ not found for class %@", NSStringFromSelector(originalSel), aClass) : nil;
+        !replMethod ? NSLog(@"replace method %@ not found for class %@", NSStringFromSelector(replacementSel), aClass) : nil;
         return NO;
     }
-    
-    if (!replMethod) {
-        NSLog(@"replace method %@ not found for class %@", NSStringFromSelector(replacementSel), aClass);
-        return NO;
-    }
-    
     if (class_addMethod(aClass, originalSel, method_getImplementation(replMethod), method_getTypeEncoding(replMethod))) {
         class_replaceMethod(aClass, replacementSel, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
     }
     else {
         method_exchangeImplementations(origMethod, replMethod);
     }
-    
     return YES;
 }
 
+
+@implementation ZDTools
+
+void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)()) {
+    [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:dispatch_get_main_queue() key:[NSThread callStackSymbols][1] block:block];
+}
+
+void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)()) {
+    [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:queue key:[NSThread callStackSymbols][1] block:block];
+}
+
++ (NSMutableDictionary *)scheduleSourceDic {
+    static NSMutableDictionary *_sourceDic = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sourceDic = [NSMutableDictionary new];
+    });
+    return _sourceDic;
+}
+
+// https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
++ (void)zd_throttleWithTimeinterval:(NSTimeInterval)intervalInSeconds queue:(dispatch_queue_t)queue key:(NSString *)key block:(void(^)())block {
+    NSMutableDictionary *scheduleSourceDic = [self scheduleSourceDic];
+    dispatch_source_t timer = scheduleSourceDic[key];
+    if (timer) {
+        dispatch_source_cancel(timer);
+    }
+    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        block();
+        dispatch_source_cancel(timer);
+        [scheduleSourceDic removeObjectForKey:key];
+    });
+    dispatch_resume(timer);
+    scheduleSourceDic[key] = timer;
+}
+
+
+@end
+
+///==================================================================
+#pragma mark - Function
+///==================================================================
 
 NSString *StringByReplaceUnicode(NSString *unicodeStr)
 {
@@ -84,9 +112,9 @@ NSString *StringByReplaceUnicode(NSString *unicodeStr)
 	static dispatch_once_t onceToken;
 
 	dispatch_once(&onceToken, ^{
-        zdSwizzleExchageInstanceMethod([self class], @selector(description), @selector(replaceDescription));
-        zdSwizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:), @selector(replaceDescriptionWithLocale:));
-        zdSwizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:indent:), @selector(replaceDescriptionWithLocale:indent:));
+        zd_swizzleExchageInstanceMethod([self class], @selector(description), @selector(replaceDescription));
+        zd_swizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:), @selector(replaceDescriptionWithLocale:));
+        zd_swizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:indent:), @selector(replaceDescriptionWithLocale:indent:));
 	});
 }
 
@@ -122,9 +150,9 @@ NSString *StringByReplaceUnicode(NSString *unicodeStr)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        zdSwizzleExchageInstanceMethod([self class], @selector(description), @selector(replaceDescription));
-        zdSwizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:), @selector(replaceDescriptionWithLocale:));
-        zdSwizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:indent:), @selector(replaceDescriptionWithLocale:indent:));
+        zd_swizzleExchageInstanceMethod([self class], @selector(description), @selector(replaceDescription));
+        zd_swizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:), @selector(replaceDescriptionWithLocale:));
+        zd_swizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:indent:), @selector(replaceDescriptionWithLocale:indent:));
     });
 }
 

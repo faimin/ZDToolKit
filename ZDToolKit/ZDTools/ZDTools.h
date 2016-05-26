@@ -14,4 +14,9 @@
 ///==================================================================
 @interface ZDTools : NSObject
 
+void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)());
+void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)());
+
++ (void)zd_throttleWithTimeinterval:(NSTimeInterval)timeInterval queue:(dispatch_queue_t)queue key:(NSString *)key block:(void(^)())block;
+
 @end
