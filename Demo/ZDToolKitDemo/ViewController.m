@@ -15,6 +15,8 @@
 #import "UIImageView+WebCache.h"
 #import "HJCornerRadius.h"
 #import "UITextView+ZDUtility.h"
+#import "NSObject+DLIntrospection.h"
+
 
 @interface ViewController ()
 
@@ -49,6 +51,9 @@
         label.textColor = [UIColor redColor];
         label;
     });
+    
+    NSArray *propertys = [self.class properties];
+    NSLog(@"所有的属性: \n%@", propertys);
 }
 
 - (void)viewWillAppear:(BOOL)animated

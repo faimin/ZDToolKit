@@ -18,4 +18,16 @@
     return nil;
 }
 
+- (id)deepCopy
+{
+    id obj = nil;
+    @try {
+        obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"deepCopy error: %@", exception);
+    }
+    return obj;
+}
+
 @end

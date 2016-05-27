@@ -48,6 +48,26 @@
 #endif
 }
 
+- (CGFloat)sum
+{
+    return [[self valueForKeyPath:@"@sum.floatValue"] floatValue];
+}
+
+- (CGFloat)avg
+{
+    return [[self valueForKeyPath:@"@avg.floatValue"] floatValue];
+}
+
+- (CGFloat)max
+{
+    return [[self valueForKeyPath:@"@max.floatValue"] floatValue];
+}
+
+- (CGFloat)min
+{
+    return [[self valueForKeyPath:@"@min.floatValue"] floatValue];
+}
+
 @end
 
 

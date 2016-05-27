@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (ZDUtility)
 
-+ (id)zd_cast:(id)objc;
++ (nullable id)zd_cast:(id)objc;
+
+- (nullable id)deepCopy;
 
 @end
+NS_ASSUME_NONNULL_END

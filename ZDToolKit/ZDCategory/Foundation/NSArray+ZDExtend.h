@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSArray (ZDExtend)
 
@@ -18,6 +19,15 @@
 
 ///去重
 - (NSArray *)deduplication;
+
+/// 求和
+- (CGFloat)sum;
+/// 平均值
+- (CGFloat)avg;
+/// 最大值
+- (CGFloat)max;
+/// 最小值
+- (CGFloat)min;
 
 @end
 
