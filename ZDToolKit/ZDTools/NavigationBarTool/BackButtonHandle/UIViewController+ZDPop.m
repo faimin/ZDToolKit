@@ -12,7 +12,7 @@
 #pragma mark - key && Function
 static void *originDelegateKey = &originDelegateKey;
 
-void ZD_SwizzlePopInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector)
+static void ZD_SwizzlePopInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector)
 {
     Method origMethod = class_getInstanceMethod(aClass, originalSelector);
     Method newMethod = class_getInstanceMethod(aClass, newSelector);
@@ -36,21 +36,6 @@ void ZD_SwizzlePopInstanceSelector(Class aClass, SEL originalSelector, SEL newSe
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        Class class = [self class];
-//        
-//        SEL originalSelector = @selector(navigationBar:shouldPopItem:);
-//        SEL swizzledSelector = @selector(zd_navigationBar:shouldPopItem:);
-//        
-//        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-//        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-//        
-//        if (class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))) {
-//            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-//        }
-//        else {
-//            method_exchangeImplementations(originalMethod, swizzledMethod);
-//        }
-        
         ZD_SwizzlePopInstanceSelector([self class], @selector(viewDidLoad), @selector(zd_viewDidLoad));
         ZD_SwizzlePopInstanceSelector([self class], @selector(navigationBar:shouldPopItem:), @selector(zd_navigationBar:shouldPopItem:));
     });
