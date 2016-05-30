@@ -295,6 +295,32 @@ NSString *TypeForData(NSData *data)
     return dataFormatString;
 }
 
+//===============================================================
+
+#pragma mark - UIView
+#pragma mark -
+/// 画虚线
+UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor)
+{
+    UIView *dashedLine = [[UIView alloc] initWithFrame:lineFrame];
+    dashedLine.backgroundColor = [UIColor clearColor];
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    [shapeLayer setBounds:dashedLine.bounds];
+    [shapeLayer setPosition:CGPointMake(CGRectGetWidth(dashedLine.frame) / 2, CGRectGetHeight(dashedLine.frame))];
+    [shapeLayer setFillColor:[UIColor clearColor].CGColor];
+    [shapeLayer setStrokeColor:lineColor.CGColor];
+    [shapeLayer setLineWidth:CGRectGetHeight(dashedLine.frame)];
+    [shapeLayer setLineJoin:kCALineJoinRound];
+    [shapeLayer setLineDashPattern:@[@(lineLength), @(lineSpacing)]];
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathAddLineToPoint(path, NULL, CGRectGetWidth(dashedLine.frame), 0);
+    [shapeLayer setPath:path];
+    CGPathRelease(path);
+    [dashedLine.layer addSublayer:shapeLayer];
+    return dashedLine;
+}
+
 #pragma mark - String
 #pragma mark -
 ///设置文字行间距

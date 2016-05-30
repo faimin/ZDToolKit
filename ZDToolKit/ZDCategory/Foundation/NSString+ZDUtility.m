@@ -230,11 +230,24 @@
 - (BOOL)isAllNumber
 {
     if (self.length > 0) {
+        /// 3种判断方法
 #if 0
+        // 1.
         NSScanner *scan = [NSScanner scannerWithString:self];
         int val;
         return [scan scanInt:&val] && [scan isAtEnd];
+        
+        // 2.
+        unichar c;
+        for (NSUInteger i = 0; i < self.length; i++) {
+            c = [self characterAtIndex:i];
+            if (!isdigit(c)) {
+                return NO;
+            }
+        }
+        return YES;
 #else
+        // 3.
         NSString *regex = @"(^[0-9]*$)";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         return [predicate evaluateWithObject:self];

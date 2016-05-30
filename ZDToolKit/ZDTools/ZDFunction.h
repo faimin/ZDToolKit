@@ -46,6 +46,16 @@ FOUNDATION_EXPORT NSString *TypeForData(NSData *data);
 
 //===============================================================
 
+#pragma mark - UIView
+#pragma mark - 
+/**
+ * lineFrame:     虚线的 frame
+ * length:        虚线中短线的宽度
+ * spacing:       虚线中短线之间的间距
+ * color:         虚线中短线的颜色
+ */
+UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor);
+
 #pragma mark - String
 #pragma mark -
 /**
@@ -70,7 +80,7 @@ FOUNDATION_EXPORT CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFl
 
 /// 反转字符串
 FOUNDATION_EXPORT NSString *ReverseString(NSString *sourceString);
-FOUNDATION_EXPORT BOOL IsEmptyString(NSString *str);
+FOUNDATION_EXPORT BOOL IsEmptyString(NSString *string);
 //===============================================================
 
 #pragma mark - InterfaceOrientation
