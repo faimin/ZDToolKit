@@ -10,8 +10,8 @@
 
 @interface UIImage (ZDUtility)
 
-- (BOOL)hasAlphaChannel;
-- (UIImage *)addAlphaChannle;
+- (BOOL)zd_hasAlphaChannel;
+- (UIImage *)zd_addAlphaChannle;
 
 ///限制最大边的长度为多少,然后进行等比缩放
 - (UIImage *)scaleWithLimitLength:(CGFloat)length;

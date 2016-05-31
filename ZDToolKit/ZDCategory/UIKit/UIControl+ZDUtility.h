@@ -10,6 +10,6 @@
 
 @interface UIControl (ZDUtility)
 ///防止用户多次点击
-@property (nonatomic, assign) NSTimeInterval clickIntervalTime;///< 点击的时间间隔
+@property (nonatomic, assign) NSTimeInterval zd_clickIntervalTime;///< 点击的时间间隔
 
 @end

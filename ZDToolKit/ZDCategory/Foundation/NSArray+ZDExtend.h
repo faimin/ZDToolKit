@@ -11,23 +11,26 @@
 
 @interface NSArray (ZDExtend)
 
-- (NSArray *)reverse;
+/// 反转数组中元素的顺序
+- (NSArray *)zd_reverse;
 
-- (NSArray *)shuffle;
+/// 打乱数组中元素的原有顺序
+- (NSArray *)zd_shuffle;
 
-- (NSArray *)moveObjcToFront:(id)objc;
+/// 把某一元素移动到第一个位置
+- (NSArray *)zd_moveObjcToFront:(id)objc;
 
-///去重
-- (NSArray *)deduplication;
+/// 去重
+- (NSArray *)zd_deduplication;
 
 /// 求和
-- (CGFloat)sum;
+- (CGFloat)zd_sum;
 /// 平均值
-- (CGFloat)avg;
+- (CGFloat)zd_avg;
 /// 最大值
-- (CGFloat)max;
+- (CGFloat)zd_max;
 /// 最小值
-- (CGFloat)min;
+- (CGFloat)zd_min;
 
 @end
 

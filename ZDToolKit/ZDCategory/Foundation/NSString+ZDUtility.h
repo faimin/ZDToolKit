@@ -48,41 +48,43 @@ static NSString *const ZDRegexStr[] = {
                 lineSpace:(CGFloat)lineSpace;
 
 // MARK: Emoji
-- (BOOL)isContainsEmoji;
-- (NSString *)filterEmoji;
-- (NSString *)removeHalfEmoji;
+- (BOOL)zd_isContainsEmoji;
+- (NSString *)zd_filterEmoji;
+- (NSString *)zd_removeHalfEmoji;
 
 // MARK: Function
-- (NSString *)reservedNumberOnly;   ///< 只保留数字
-- (NSString *)reverse;              ///< 反转字符串
-- (BOOL)isContainString:(NSString *)string;
-- (BOOL)isContainChinese;
-- (BOOL)isAllChinse;
-- (BOOL)isAllNumber;
-- (BOOL)isEmptyOrNil;
-- (BOOL)isEmpty;
+- (NSString *)zd_reservedNumberOnly;   ///< 只保留数字
+- (NSString *)zd_reverse;              ///< 反转字符串
+- (BOOL)zd_isContainString:(NSString *)string;
+- (BOOL)zd_isContainChinese;
+- (BOOL)zd_isAllChinse;
+- (BOOL)zd_isAllNumber;
+- (BOOL)zd_isEmptyOrNil;
+- (BOOL)zd_isEmpty;
 
 // MARK: Validate
-- (BOOL)isValidWithRegex:(ZDRegex)regex;
-- (BOOL)isValidEmail;
-- (BOOL)isValidIdCard;
-- (BOOL)isValidCardNo;
+- (BOOL)zd_isValidWithRegex:(ZDRegex)regex;
+- (BOOL)zd_isValidEmail;
+- (BOOL)zd_isValidIdCard;
+- (BOOL)zd_isValidCardNo;
 
 // MARK: JSON
-- (NSDictionary *)dictionaryValue;
-+ (NSString *)stringValueFromJson:(id)arrayOrDic;
+- (NSDictionary *)zd_dictionaryValue;
++ (NSString *)zd_stringValueFromJson:(id)arrayOrDic;
 
 // MARK: HTML
-- (NSString *)decodeHTMLCharacterEntities;
-- (NSString *)encodeHTMLCharacterEntities;
+- (NSString *)zd_decodeHTMLCharacterEntities;
+- (NSString *)zd_encodeHTMLCharacterEntities;
+- (NSString *)zd_stringByTrimHTML;
+- (NSString *)zd_stringByTrimScriptAndHTML;
 
 // MARK: Decode && Encode
-- (NSString *)stringByAddingPercentEncodingForRFC3986;
-- (NSString *)stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace;
-- (NSString *)stringByURLEncode;
-- (NSString *)stringByURLDecode;
+- (NSString *)zd_stringByAddingPercentEncodingForRFC3986;
+- (NSString *)zd_stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace;
+- (NSString *)zd_stringByURLEncode;
+- (NSString *)zd_stringByURLDecode;
 
 // MARK:获取url中的参数
-- (NSDictionary *)parameters;
+- (NSDictionary *)zd_parameters;
 
 @end

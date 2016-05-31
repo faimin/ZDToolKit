@@ -13,10 +13,10 @@
 ///  获取UIColor对象的CMYK字符串值。
 ///
 ///  @return CMYK字符串
-- (NSString *)CMYKStringValue
+- (NSString *)zd_CMYKStringValue
 {
 	// Method provided by the Colours class extension
-	NSDictionary *cmykDict = [self getCMYKValueByColor:self];
+	NSDictionary *cmykDict = [self zd_getCMYKValueByColor:self];
 	return [NSString stringWithFormat:@"(%0.2f, %0.2f, %0.2f, %0.2f)",
 		   [cmykDict[@"C"] floatValue],
 		   [cmykDict[@"M"] floatValue],
@@ -29,10 +29,10 @@
 ///
 ///  @param originColor 原始颜色
 ///  @return CMYK的字典
-- (NSDictionary *)getCMYKValueByColor:(UIColor *)originColor
+- (NSDictionary *)zd_getCMYKValueByColor:(UIColor *)originColor
 {
 	// Convert RGB to CMY
-	NSDictionary *rgb = [self getRGBDictionaryByColor:originColor];
+	NSDictionary *rgb = [self zd_getRGBDictionaryByColor:originColor];
 	CGFloat C = 1 - [rgb[@"R"] floatValue];
 	CGFloat M = 1 - [rgb[@"G"] floatValue];
 	CGFloat Y = 1 - [rgb[@"B"] floatValue];
@@ -66,7 +66,7 @@
 ///
 ///  @param originColor 原始颜色
 ///  @return 包含rgb值的字典对象。
-- (NSDictionary *)getRGBDictionaryByColor:(UIColor *)originColor
+- (NSDictionary *)zd_getRGBDictionaryByColor:(UIColor *)originColor
 {
 	CGFloat r = 0, g = 0, b = 0, a = 0;
 
@@ -88,7 +88,7 @@
     };
 }
 
-+ (UIColor *)randomColor
++ (UIColor *)zd_randomColor
 {
     CGFloat hue = (arc4random() % 256 / 256.0);
     CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;

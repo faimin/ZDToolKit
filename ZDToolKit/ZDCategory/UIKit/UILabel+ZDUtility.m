@@ -10,7 +10,7 @@
 
 @implementation UILabel (ZDUtility)
 
-- (CGSize)contentSize
+- (CGSize)zd_contentSize
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = self.lineBreakMode;

@@ -10,6 +10,6 @@
 
 @interface UILabel (ZDUtility)
 
-- (CGSize)contentSize;
+- (CGSize)zd_contentSize;
 
 @end

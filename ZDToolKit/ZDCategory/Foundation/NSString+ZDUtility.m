@@ -98,7 +98,7 @@
 
 #pragma mark - Emoji
 
-- (BOOL)isContainsEmoji
+- (BOOL)zd_isContainsEmoji
 {
     float systemVersion = [UIDevice currentDevice].systemName.floatValue;
     // If detected, it MUST contains emoji; otherwise it MAY not contains emoji.
@@ -140,7 +140,7 @@
     return regexRange.location != NSNotFound;
 }
 
-- (NSString *)filterEmoji
+- (NSString *)zd_filterEmoji
 {
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]"
                                                                            options:NSRegularExpressionCaseInsensitive
@@ -152,7 +152,7 @@
 	return modifiedString;
 }
 
-- (NSString *)removeHalfEmoji
+- (NSString *)zd_removeHalfEmoji
 {
     if (self.length > 0) {
         NSString *tmpStr = self;
@@ -168,7 +168,7 @@
 
 #pragma mark - Function
 
-- (NSString *)reservedNumberOnly
+- (NSString *)zd_reservedNumberOnly
 {
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
     NSString *resultStr = [[self componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
@@ -176,7 +176,7 @@
     return resultStr;
 }
 
-- (NSString *)reverse
+- (NSString *)zd_reverse
 {
     NSMutableString* reverseString = [[NSMutableString alloc] init];
     NSUInteger charIndex = [self length];
@@ -188,7 +188,7 @@
     return reverseString;
 }
 
-- (BOOL)isContainString:(NSString *)string
+- (BOOL)zd_isContainString:(NSString *)string
 {
     if (!string || (string.length == 0) || ![string isKindOfClass:[NSString class]]) return NO;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
@@ -200,7 +200,7 @@
 #endif
 }
 
-- (BOOL)isContainChinese
+- (BOOL)zd_isContainChinese
 {
     for (NSUInteger i = 0; i < self.length; i++) {
 #if 0
@@ -220,14 +220,14 @@
     return NO;
 }
 
-- (BOOL)isAllChinse
+- (BOOL)zd_isAllChinse
 {
     NSString *match = @"(^[\u4e00-\u9fa5]+$)";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
     return [predicate evaluateWithObject:self];
 }
 
-- (BOOL)isAllNumber
+- (BOOL)zd_isAllNumber
 {
     if (self.length > 0) {
         /// 3种判断方法
@@ -256,7 +256,7 @@
     return NO;
 }
 
-- (BOOL)isEmptyOrNil
+- (BOOL)zd_isEmptyOrNil
 {
     if (self == nil || self == NULL) {
         return YES;
@@ -273,7 +273,7 @@
     return NO;
 }
 
-- (BOOL)isEmpty
+- (BOOL)zd_isEmpty
 {
     if ([[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
         return YES;
@@ -283,17 +283,17 @@
 
 #pragma mark - Validate(验证)
 
-- (BOOL)isValidWithRegex:(ZDRegex)regex
+- (BOOL)zd_isValidWithRegex:(ZDRegex)regex
 {
     NSString *regexString = ZDRegexStr[regex];
-    if ([self isEmptyOrNil] || !regexString) {
+    if ([self zd_isEmptyOrNil] || !regexString) {
         return NO;
     }
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
     return [predicate evaluateWithObject:self];
 }
 
-- (BOOL)isValidEmail
+- (BOOL)zd_isValidEmail
 {
     NSString *emailPattern =
     @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
@@ -310,7 +310,7 @@
 }
 
 /// 身份证号
-- (BOOL)isValidIdCard
+- (BOOL)zd_isValidIdCard
 {
     // 身份证号码不为空  通用15和18位均可：@"^(\\d{14}|\\d{17})(\\d|[xX])$";
     if (self.length <= 0) {
@@ -330,7 +330,7 @@
 }
 
 /// 银行卡号判断
-- (BOOL)isValidCardNo
+- (BOOL)zd_isValidCardNo
 {
     int oddsum = 0;     //奇数求和
     int evensum = 0;    //偶数求和
@@ -371,7 +371,7 @@
 
 #pragma mark - JSON
 
-- (NSDictionary *)dictionaryValue
+- (NSDictionary *)zd_dictionaryValue
 {
     NSError *__autoreleasing errorJson;
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:[self dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&errorJson];
@@ -381,7 +381,7 @@
     return jsonDict;
 }
 
-+ (NSString *)stringValueFromJson:(id)arrayOrDic
++ (NSString *)zd_stringValueFromJson:(id)arrayOrDic
 {
     NSData *jsonData =[NSJSONSerialization dataWithJSONObject:arrayOrDic
                                                       options:NSJSONWritingPrettyPrinted
@@ -393,7 +393,7 @@
 
 #pragma mark - HTML
 
-- (NSString *)decodeHTMLCharacterEntities
+- (NSString *)zd_decodeHTMLCharacterEntities
 {
     if ([self rangeOfString:@"&"].location == NSNotFound) {
         return self;
@@ -512,7 +512,7 @@
     }
 }
 
-- (NSString *)encodeHTMLCharacterEntities
+- (NSString *)zd_encodeHTMLCharacterEntities
 {
     NSMutableString *encoded = [NSMutableString stringWithString:self];
     
@@ -546,10 +546,25 @@
     return encoded;
 }
 
+- (NSString *)zd_stringByTrimHTML {
+    return [self stringByReplacingOccurrencesOfString:@"<[^>]+>" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, self.length)];
+}
+
+- (NSString *)zd_stringByTrimScriptAndHTML {
+    NSMutableString *mutStr = self.mutableCopy;
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<script[^>]*>[\\w\\W]*</script>" options:NSRegularExpressionCaseInsensitive error:&error];
+    NSArray *matches = [regex matchesInString:mutStr options:NSMatchingReportProgress range:NSMakeRange(0, mutStr.length)];
+    for (NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
+        [mutStr replaceCharactersInRange:result.range withString:@""];
+    }
+    return [mutStr zd_stringByTrimHTML];
+}
+
 #pragma mark - Encoding / Deconding
 //http://useyourloaf.com/blog/how-to-percent-encode-a-url-string.html
 
-- (NSString *)stringByAddingPercentEncodingForRFC3986
+- (NSString *)zd_stringByAddingPercentEncodingForRFC3986
 {
     NSString *unreserved = @"-._~/?";
     NSMutableCharacterSet *allowed = [NSMutableCharacterSet
@@ -559,7 +574,7 @@
             allowed];
 }
 
-- (NSString *)stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace
+- (NSString *)zd_stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace
 {
     NSString *unreserved = @"*-._";
     NSMutableCharacterSet *allowed = [NSMutableCharacterSet
@@ -577,7 +592,7 @@
     return encoded;
 }
 
-- (NSString *)stringByURLEncode
+- (NSString *)zd_stringByURLEncode
 {
     if ([self respondsToSelector:@selector(stringByAddingPercentEncodingWithAllowedCharacters:)]) {
         /**
@@ -631,7 +646,7 @@
     }
 }
 
-- (NSString *)stringByURLDecode
+- (NSString *)zd_stringByURLDecode
 {
     if ([self respondsToSelector:@selector(stringByRemovingPercentEncoding)]) {
         return [self stringByRemovingPercentEncoding];
@@ -652,7 +667,7 @@
     }
 }
 
-- (NSDictionary *)parameters
+- (NSDictionary *)zd_parameters
 {
     if (![self hasPrefix:@"http"]) {
         return nil;

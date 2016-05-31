@@ -32,14 +32,14 @@
  @param block The block to execute for the instance method, a pointer to the instance is passed as the only parameter.
  @returns `YES` if the operation was successful
  */
-+ (BOOL)addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block;
++ (BOOL)zd_addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block;
 
 /**
  Exchanges two method implementations. After the call methods to the first selector will now go to the second one and vice versa.
  @param selector The first method
  @param otherSelector The second method
  */
-+ (void)swizzleInstanceMethod:(SEL)selector withMethod:(SEL)otherSelector;
++ (void)zd_swizzleInstanceMethod:(SEL)selector withMethod:(SEL)otherSelector;
 
 
 /**
@@ -47,18 +47,18 @@
  @param selector The first method
  @param otherSelector The second method
  */
-+ (void)swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector;
++ (void)zd_swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector;
 
 
 #pragma mark - Associate
 
-- (void)setAssociateValue:(id)value forKey:(void *)key;
+- (void)zd_setAssociateValue:(id)value forKey:(void *)key;
 
-- (void)setAssociateWeakValue:(id)value forKey:(void *)key;
+- (void)zd_setAssociateWeakValue:(id)value forKey:(void *)key;
 
-- (id)getAssociatedValueForKey:(void *)key;
+- (id)zd_getAssociatedValueForKey:(void *)key;
 
-- (void)removeAssociatedValues;
+- (void)zd_removeAssociatedValues;
 
 @end
 

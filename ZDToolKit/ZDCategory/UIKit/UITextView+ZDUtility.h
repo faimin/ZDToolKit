@@ -13,6 +13,7 @@
 ///限制最大输入字数为maxLength
 - (NSUInteger)letterCountWithMaxLength:(NSUInteger)maxLength;
 
-@property (nonatomic, strong) UILabel *placeHolderLabel;
+/// 利用KVC替换textView隐藏的label属性
+@property (nonatomic, strong) UILabel *zd_placeHolderLabel;
 
 @end

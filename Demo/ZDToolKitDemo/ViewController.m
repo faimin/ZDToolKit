@@ -45,7 +45,7 @@
 #endif
 
     
-    self.textView.placeHolderLabel = ({
+    self.textView.zd_placeHolderLabel = ({
         UILabel *label = [UILabel new];
         label.text = @"这是一个占位label";
         label.textColor = [UIColor redColor];
@@ -96,7 +96,7 @@
 - (void)numberTest
 {
     NSString *str = @"2345";
-    BOOL isAllNum = [str isAllNumber];
+    BOOL isAllNum = [str zd_isAllNumber];
     NSLog(@"%@", isAllNum ? @"YES" : @"NO");
 }
 

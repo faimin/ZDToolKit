@@ -36,14 +36,14 @@ static BOOL _isIgnoreEvent = NO;
 
 - (void)zd_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
 {
-    self.clickIntervalTime = (self.clickIntervalTime > 0) ? self.clickIntervalTime : defaultIntervalTime;
+    self.zd_clickIntervalTime = (self.zd_clickIntervalTime > 0) ? self.zd_clickIntervalTime : defaultIntervalTime;
     if (_isIgnoreEvent) {
         return;
     }
-    else if (self.clickIntervalTime > 0) {
+    else if (self.zd_clickIntervalTime > 0) {
         _isIgnoreEvent = YES;
         //超过时间间隔后恢复
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.clickIntervalTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.zd_clickIntervalTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             _isIgnoreEvent = NO;
         });
         [self zd_sendAction:action to:target forEvent:event];
@@ -53,12 +53,12 @@ static BOOL _isIgnoreEvent = NO;
     }
 }
 
-- (void)setClickIntervalTime:(NSTimeInterval)clickIntervalTime
+- (void)setZd_clickIntervalTime:(NSTimeInterval)clickIntervalTime
 {
-    objc_setAssociatedObject(self, @selector(clickIntervalTime), @(clickIntervalTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(zd_clickIntervalTime), @(clickIntervalTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSTimeInterval)clickIntervalTime
+- (NSTimeInterval)zd_clickIntervalTime
 {
     return [objc_getAssociatedObject(self, _cmd) doubleValue];
 }

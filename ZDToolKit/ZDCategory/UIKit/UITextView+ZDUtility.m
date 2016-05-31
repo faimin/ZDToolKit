@@ -45,17 +45,17 @@ static const void *PlaceHolderLabelKey = &PlaceHolderLabelKey;
     return txtCount;
 }
 
-- (void)setPlaceHolderLabel:(UILabel *)placeHolderLabel
+- (void)setZd_placeHolderLabel:(UILabel *)zd_placeHolderLabel
 {
-    if (!placeHolderLabel) {
+    if (!zd_placeHolderLabel) {
         return;
     }
-    [self addSubview:placeHolderLabel];
-    [self setValue:placeHolderLabel forKey:@"_placeholderLabel"];
-    objc_setAssociatedObject(self, PlaceHolderLabelKey, placeHolderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self addSubview:zd_placeHolderLabel];
+    [self setValue:zd_placeHolderLabel forKey:@"_placeholderLabel"];
+    objc_setAssociatedObject(self, PlaceHolderLabelKey, zd_placeHolderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UILabel *)placeHolderLabel
+- (UILabel *)zd_placeHolderLabel
 {
     return objc_getAssociatedObject(self, PlaceHolderLabelKey);
 }

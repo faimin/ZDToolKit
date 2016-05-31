@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable id)zd_cast:(id)objc;
 
-- (nullable id)deepCopy;
+- (nullable id)zd_deepCopy;
 
 @end
 NS_ASSUME_NONNULL_END

@@ -10,7 +10,7 @@
 
 @implementation NSArray (ZDExtend)
 
-- (NSArray *)reverse
+- (NSArray *)zd_reverse
 {
     if (self.count <= 1) {
         return self;
@@ -18,27 +18,27 @@
     return [self reverseObjectEnumerator].allObjects;
 }
 
-- (NSArray *)shuffle
+- (NSArray *)zd_shuffle
 {
     if (self.count > 0) {
         NSMutableArray *mutArr = [self mutableCopy];
-        [mutArr shuffle];
+        [mutArr zd_shuffle];
         return [mutArr copy];
     }
     return self;
 }
 
-- (NSArray *)moveObjcToFront:(id)objc
+- (NSArray *)zd_moveObjcToFront:(id)objc
 {
     if ([self containsObject:objc]) {
         NSMutableArray *mutArr = [self mutableCopy];
-        [mutArr moveObjcToFront:objc];
+        [mutArr zd_moveObjcToFront:objc];
         return [mutArr copy];
     }
     return self;
 }
 
-- (NSArray *)deduplication
+- (NSArray *)zd_deduplication
 {
 #if 0
     // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/CollectionOperators.html
@@ -48,22 +48,22 @@
 #endif
 }
 
-- (CGFloat)sum
+- (CGFloat)zd_sum
 {
     return [[self valueForKeyPath:@"@sum.floatValue"] floatValue];
 }
 
-- (CGFloat)avg
+- (CGFloat)zd_avg
 {
     return [[self valueForKeyPath:@"@avg.floatValue"] floatValue];
 }
 
-- (CGFloat)max
+- (CGFloat)zd_max
 {
     return [[self valueForKeyPath:@"@max.floatValue"] floatValue];
 }
 
-- (CGFloat)min
+- (CGFloat)zd_min
 {
     return [[self valueForKeyPath:@"@min.floatValue"] floatValue];
 }

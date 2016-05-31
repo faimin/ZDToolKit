@@ -23,8 +23,7 @@ static char ZDRuntimeDeallocBlocks;
     NSMutableArray *deallocBlocks = objc_getAssociatedObject(self, &ZDRuntimeDeallocBlocks);
     
     // add array of dealloc blocks if not existing yet
-    if (!deallocBlocks)
-    {
+    if (!deallocBlocks) {
         deallocBlocks = [[NSMutableArray alloc] init];
         
         objc_setAssociatedObject(self, &ZDRuntimeDeallocBlocks, deallocBlocks, OBJC_ASSOCIATION_RETAIN);
@@ -45,7 +44,7 @@ static char ZDRuntimeDeallocBlocks;
 }
 
 
-+ (BOOL)addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block
++ (BOOL)zd_addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block
 {
     // don't accept nil name
     NSParameterAssert(selectorName);
@@ -69,7 +68,7 @@ static char ZDRuntimeDeallocBlocks;
 
 #pragma mark - Method Swizzling
 
-+ (void)swizzleInstanceMethod:(SEL)selector withMethod:(SEL)otherSelector
++ (void)zd_swizzleInstanceMethod:(SEL)selector withMethod:(SEL)otherSelector
 {
     // my own class is being targetted
     Class myClass = [self class];
@@ -78,17 +77,15 @@ static char ZDRuntimeDeallocBlocks;
     Method originalMethod = class_getInstanceMethod(myClass, selector);
     Method otherMethod = class_getInstanceMethod(myClass, otherSelector);
     
-    if (class_addMethod(myClass, selector, method_getImplementation(otherMethod), method_getTypeEncoding(otherMethod)))
-    {
+    if (class_addMethod(myClass, selector, method_getImplementation(otherMethod), method_getTypeEncoding(otherMethod))) {
         class_replaceMethod(myClass, otherSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
     }
-    else
-    {
+    else {
         method_exchangeImplementations(originalMethod, otherMethod);
     }
 }
 
-+ (void)swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector
++ (void)zd_swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector
 {
     Class myClass = [self class];
     Method originalMethod = class_getClassMethod(myClass, selector);
@@ -99,22 +96,22 @@ static char ZDRuntimeDeallocBlocks;
 
 #pragma mark - Associate
 
-- (void)setAssociateValue:(id)value forKey:(void *)key
+- (void)zd_setAssociateValue:(id)value forKey:(void *)key
 {
     objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)setAssociateWeakValue:(id)value forKey:(void *)key
+- (void)zd_setAssociateWeakValue:(id)value forKey:(void *)key
 {
 	objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id)getAssociatedValueForKey:(void *)key
+- (id)zd_getAssociatedValueForKey:(void *)key
 {
     return objc_getAssociatedObject(self, key);
 }
 
-- (void)removeAssociatedValues
+- (void)zd_removeAssociatedValues
 {
 	objc_removeAssociatedObjects(self);
 }

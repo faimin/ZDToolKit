@@ -11,8 +11,9 @@
 @interface UIColor (ZDUtility)
 
 /// 获取UIColor对象的CMYK字符串值。
-@property (nonatomic, copy, readonly) NSString *CMYKStringValue;
+@property (nonatomic, copy, readonly) NSString *zd_CMYKStringValue;
 
-+ (UIColor *)randomColor;
+/// 随机色
++ (UIColor *)zd_randomColor;
 
 @end

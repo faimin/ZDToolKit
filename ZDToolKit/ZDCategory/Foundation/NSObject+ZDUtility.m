@@ -18,7 +18,7 @@
     return nil;
 }
 
-- (id)deepCopy
+- (id)zd_deepCopy
 {
     id obj = nil;
     @try {
