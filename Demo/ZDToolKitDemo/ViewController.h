@@ -11,7 +11,7 @@
 @interface ViewController : UIViewController
 
 @property (nonatomic, strong) NSArray *testArr;
-@property (nonatomic, copy) NSString *testStr;
+@property (nonatomic, assign) NSInteger testInt;
 
 @end
 
