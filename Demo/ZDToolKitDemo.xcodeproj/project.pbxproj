@@ -18,6 +18,7 @@
 		05EC9C791C53CDC300BACFE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05EC9C771C53CDC300BACFE9 /* LaunchScreen.storyboard */; };
 		05EC9C841C53CDC300BACFE9 /* ZDToolKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C831C53CDC300BACFE9 /* ZDToolKitDemoTests.m */; };
 		05EC9C8F1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */; };
+		BC002CF71CFE842900292CCC /* NSObject+JKAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = BC002CF61CFE842900292CCC /* NSObject+JKAutoCoding.m */; };
 		BC10BEC91C8EA127006D4C17 /* ZDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC10BEC81C8EA127006D4C17 /* ZDNavigationController.m */; };
 		BC1349A01C60E26000BEB91D /* UIView+AutoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349291C60E26000BEB91D /* UIView+AutoFlowLayout.m */; };
 		BC1349A11C60E26000BEB91D /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13492B1C60E26000BEB91D /* UIView+AutoLayout.m */; };
@@ -121,6 +122,8 @@
 		05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDToolKitDemoUITests.m; sourceTree = "<group>"; };
 		05EC9C901C53CDC300BACFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BB03F39B2E15BAA99ED0C8B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BC002CF51CFE842900292CCC /* NSObject+JKAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JKAutoCoding.h"; sourceTree = "<group>"; };
+		BC002CF61CFE842900292CCC /* NSObject+JKAutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JKAutoCoding.m"; sourceTree = "<group>"; };
 		BC10BEC71C8EA127006D4C17 /* ZDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDNavigationController.h; sourceTree = "<group>"; };
 		BC10BEC81C8EA127006D4C17 /* ZDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDNavigationController.m; sourceTree = "<group>"; };
 		BC1349281C60E26000BEB91D /* UIView+AutoFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoFlowLayout.h"; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				BC13495D1C60E26000BEB91D /* NSString+ZDUtility.m */,
 				BC1349541C60E26000BEB91D /* NSArray+ZDExtend.h */,
 				BC1349551C60E26000BEB91D /* NSArray+ZDExtend.m */,
+				BC002CF51CFE842900292CCC /* NSObject+JKAutoCoding.h */,
+				BC002CF61CFE842900292CCC /* NSObject+JKAutoCoding.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -838,6 +843,7 @@
 				BC58778A1CBD073A00466FB8 /* NSIndexSet+BlocksKit.m in Sources */,
 				BC1349C11C60E26000BEB91D /* UIWebView+ZDUtility.m in Sources */,
 				BC1349B41C60E26000BEB91D /* NSArray+ZDExtend.m in Sources */,
+				BC002CF71CFE842900292CCC /* NSObject+JKAutoCoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

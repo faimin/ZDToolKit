@@ -9,6 +9,14 @@
 #import "NSObject+ZDUtility.h"
 #import <objc/runtime.h>
 
+typedef NS_ENUM(NSUInteger, PropertyType) {
+    PropertyType_Strong,
+    PropertyType_Copy,
+    PropertyType_Weak,
+    PropertyType_Assign,
+    PropertyType_UnKnown
+};
+
 @implementation NSObject (ZDUtility)
 
 + (id)zd_cast:(id)objc
@@ -94,4 +102,101 @@
     }
 }
 
+- (id)deepCopy
+{
+    unsigned int outCount;
+    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
+    
+    for (int i = 0; i < outCount; i++) {
+        objc_property_t property = properties[i];
+        PropertyType propertyType = [self propertyType:property];
+        switch (propertyType) {
+            case PropertyType_Strong: {
+                <#statement#>
+                break;
+            }
+            case PropertyType_Copy: {
+                <#statement#>
+                break;
+            }
+            case PropertyType_Weak: {
+                <#statement#>
+                break;
+            }
+            case PropertyType_Assign: {
+                <#statement#>
+                break;
+            }
+            case PropertyType_UnKnown: {
+                <#statement#>
+                break;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+- (PropertyType)propertyType:(objc_property_t)property
+{
+    unsigned int attributeCount;
+    objc_property_attribute_t *attrs = property_copyAttributeList(property, &attributeCount);
+    
+    NSMutableDictionary *attributes = @{}.mutableCopy;
+    for (int i = 0; i < attributeCount; i++) {
+        NSString *name = [NSString stringWithCString:attrs[i].name encoding:NSUTF8StringEncoding];
+        NSString *value = [NSString stringWithCString:attrs[i].value encoding:NSUTF8StringEncoding];
+        [attributes setObject:value forKey:name];
+    }
+    free(attrs);
+    
+    PropertyType type = PropertyType_UnKnown;
+    if (attributes[@"&"]) {/// < strong
+        type = PropertyType_Strong;
+    } else if (attributes[@"C"]) {/// < copy
+        type = PropertyType_Copy;
+    } else if (attributes[@"W"]) {/// < weak
+        type = PropertyType_Weak;
+    } else {/// < assign
+        type = PropertyType_Assign;
+    }
+    return type;
+}
+
+/// 不支持block、struct、union类型
+- (NSString *)decodeType:(const char *)cString
+{
+    if (!strcmp(cString, @encode(id))) return @"id";
+    if (!strcmp(cString, @encode(void))) return @"void";
+    if (!strcmp(cString, @encode(void *))) return @"void *";
+    if (!strcmp(cString, @encode(float))) return @"float";
+    if (!strcmp(cString, @encode(int))) return @"int";
+    if (!strcmp(cString, @encode(unsigned int))) return @"unsigned int";
+    if (!strcmp(cString, @encode(BOOL))) return @"BOOL";
+    if (!strcmp(cString, @encode(bool))) return @"bool";
+    if (!strcmp(cString, @encode(char *))) return @"char *";
+    if (!strcmp(cString, @encode(char))) return @"char";
+    if (!strcmp(cString, @encode(unsigned char))) return @"unsigned char";
+    if (!strcmp(cString, @encode(double))) return @"double";
+    if (!strcmp(cString, @encode(long double))) return @"long double";
+    if (!strcmp(cString, @encode(long))) return @"long";
+    if (!strcmp(cString, @encode(long long))) return @"long long";
+    if (!strcmp(cString, @encode(unsigned long))) return @"unsigned long";
+    if (!strcmp(cString, @encode(unsigned long long))) return @"unsigned long long";
+    if (!strcmp(cString, @encode(Class))) return @"class";
+    if (!strcmp(cString, @encode(SEL))) return @"SEL";
+    
+    NSString *classStr = [NSString stringWithCString:cString encoding:NSUTF8StringEncoding];
+    if ([[classStr substringToIndex:1] isEqualToString:@"@"] && [classStr rangeOfString:@"?"].location == NSNotFound) {
+        classStr = [[classStr substringWithRange:NSMakeRange(2, classStr.length - 3)] stringByAppendingString:@"*"];
+    } else if ([[classStr substringToIndex:1] isEqualToString:@"^"]) {
+        classStr = [NSString stringWithFormat:@"%@ *", [NSString decodeType:[[classStr substringFromIndex:1] cStringUsingEncoding:NSUTF8StringEncoding]]];
+    }
+    return classStr;
+}
+
+
 @end
+
+
+

@@ -21,15 +21,19 @@
 + (NSString *)decodeType:(const char *)cString {
     if (!strcmp(cString, @encode(id))) return @"id";
     if (!strcmp(cString, @encode(void))) return @"void";
+    if (!strcmp(cString, @encode(void *))) return @"void *";
     if (!strcmp(cString, @encode(float))) return @"float";
     if (!strcmp(cString, @encode(int))) return @"int";
+    if (!strcmp(cString, @encode(unsigned int))) return @"unsigned int";
     if (!strcmp(cString, @encode(BOOL))) return @"BOOL";
     if (!strcmp(cString, @encode(char *))) return @"char *";
     if (!strcmp(cString, @encode(double))) return @"double";
+    if (!strcmp(cString, @encode(long double))) return @"long double";
+    if (!strcmp(cString, @encode(long long))) return @"long long";
+    if (!strcmp(cString, @encode(unsigned long long))) return @"unsigned long long";
     if (!strcmp(cString, @encode(Class))) return @"class";
     if (!strcmp(cString, @encode(SEL))) return @"SEL";
-    if (!strcmp(cString, @encode(unsigned int))) return @"unsigned int";
-
+    
 //@TODO: do handle bitmasks
     NSString *result = [NSString stringWithCString:cString encoding:NSUTF8StringEncoding];
     if ([[result substringToIndex:1] isEqualToString:@"@"] && [result rangeOfString:@"?"].location == NSNotFound) {
@@ -232,10 +236,7 @@ static void getSuper(Class class, NSMutableString *result) {
         [attrsArray addObject:[NSString stringWithFormat:@"setter=%@", [attributes objectForKey:@"G"]]];
     }
     
-    [property appendFormat:@"(%@) %@ %@",
-     [attrsArray componentsJoinedByString:@", "],
-     [NSString decodeType:[[attributes objectForKey:@"T"] cStringUsingEncoding:NSUTF8StringEncoding]],
-     [NSString stringWithCString:property_getName(prop) encoding:NSUTF8StringEncoding]];
+    [property appendFormat:@"(%@) %@ %@", [attrsArray componentsJoinedByString:@", "], [NSString decodeType:[[attributes objectForKey:@"T"] cStringUsingEncoding:NSUTF8StringEncoding]], [NSString stringWithCString:property_getName(prop) encoding:NSUTF8StringEncoding]];
     return [property copy];
 }
 @end

@@ -16,7 +16,7 @@
 #import "HJCornerRadius.h"
 #import "UITextView+ZDUtility.h"
 #import "NSObject+DLIntrospection.h"
-
+#import "NSObject+ZDUtility.h"
 
 @interface ViewController ()
 
@@ -54,6 +54,9 @@
     
     NSArray *propertys = [self.class properties];
     NSLog(@"所有的属性: \n%@", propertys);
+    
+    //id obj = [self zd_deepCopy];
+    //NSLog(@"\n\n%@", obj);
 }
 
 - (void)viewWillAppear:(BOOL)animated
