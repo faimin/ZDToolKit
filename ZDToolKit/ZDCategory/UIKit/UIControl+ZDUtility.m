@@ -27,11 +27,44 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 static NSTimeInterval const defaultIntervalTime = 2.5f;
 static BOOL _isIgnoreEvent = NO;
 
+@interface ZDControlWrap : NSObject
+
+@property (nonatomic, assign) UIControlEvents controlEvents;
+@property (nonatomic, copy) void(^block)(id sender);
+
+- (instancetype)initWithBlock:(void(^)(id sender))block forControlEvents:(UIControlEvents)controlEvents;
+
+@end
+
+@implementation ZDControlWrap
+
+- (instancetype)initWithBlock:(void (^)(id sender))block forControlEvents:(UIControlEvents)controlEvents
+{
+    self = [super init];
+    if (self) {
+        self.block = block;
+        self.controlEvents = controlEvents;
+    }
+    return self;
+}
+
+- (void)zd_execute:(id)sender
+{
+    if (self.block) {
+        self.block(sender);
+    }
+}
+
+@end
+
 @implementation UIControl (ZDUtility)
 
 + (void)load
 {
-    Swizzle(self, @selector(sendAction:to:forEvent:), @selector(zd_sendAction:to:forEvent:));
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Swizzle(self, @selector(sendAction:to:forEvent:), @selector(zd_sendAction:to:forEvent:));
+    });
 }
 
 - (void)zd_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
@@ -63,4 +96,15 @@ static BOOL _isIgnoreEvent = NO;
     return [objc_getAssociatedObject(self, _cmd) doubleValue];
 }
 
+#pragma mark
+
+- (void)zd_addBlockForControlEvents:(UIControlEvents)controlEvents block:(void(^)(id sender))block
+{
+    ZDControlWrap *zdControl = [[ZDControlWrap alloc] initWithBlock:block forControlEvents:controlEvents];
+    [self addTarget:zdControl action:@selector(zd_execute:) forControlEvents:controlEvents];
+}
+
 @end
+
+
+
