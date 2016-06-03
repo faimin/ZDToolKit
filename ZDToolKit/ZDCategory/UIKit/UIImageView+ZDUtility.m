@@ -160,6 +160,25 @@
     }
 }
 
+- (void)zd_cornerRadiusWithImage:(UIImage *)image cornerRadius:(CGFloat)cornerRadius cornerType:(UIRectCorner)rectConterType backgroundColor:(UIColor *)backgroundColor {
+    
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, [UIScreen mainScreen].scale);
+    if (UIGraphicsGetCurrentContext() == nil) return;
+    
+    UIBezierPath *cornerPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+    UIBezierPath *backgroundPatch = [UIBezierPath bezierPathWithRect:self.bounds];
+    [backgroundColor setFill];
+    [backgroundPatch fill];
+    [cornerPath addClip];
+    [image drawInRect:self.bounds];
+    
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    self.image = resultImage;
+}
+
+
 #pragma mark - Private Method
 
 - (void)makeBackgroundColorToSuperView

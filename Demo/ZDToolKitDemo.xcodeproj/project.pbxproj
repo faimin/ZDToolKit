@@ -54,7 +54,6 @@
 		BC1349D11C60E26000BEB91D /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499B1C60E26000BEB91D /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC1349D21C60E26000BEB91D /* ZDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499D1C60E26000BEB91D /* ZDTools.m */; };
 		BC1349D31C60E26000BEB91D /* ZDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */; };
-		BC560B061CA1289500FAC95E /* HJCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = BC560B051CA1289500FAC95E /* HJCornerRadius.m */; };
 		BC5877881CBD073A00466FB8 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877631CBD073A00466FB8 /* NSArray+BlocksKit.m */; };
 		BC5877891CBD073A00466FB8 /* NSDictionary+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877651CBD073A00466FB8 /* NSDictionary+BlocksKit.m */; };
 		BC58778A1CBD073A00466FB8 /* NSIndexSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877671CBD073A00466FB8 /* NSIndexSet+BlocksKit.m */; };
@@ -198,8 +197,6 @@
 		BC13499D1C60E26000BEB91D /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
 		BC13499E1C60E26000BEB91D /* ZDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWeakProxy.h; sourceTree = "<group>"; };
 		BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWeakProxy.m; sourceTree = "<group>"; };
-		BC560B041CA1289500FAC95E /* HJCornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCornerRadius.h; sourceTree = "<group>"; };
-		BC560B051CA1289500FAC95E /* HJCornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCornerRadius.m; sourceTree = "<group>"; };
 		BC5877611CBD073A00466FB8 /* BKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMacros.h; sourceTree = "<group>"; };
 		BC5877621CBD073A00466FB8 /* NSArray+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BlocksKit.h"; sourceTree = "<group>"; };
 		BC5877631CBD073A00466FB8 /* NSArray+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BlocksKit.m"; sourceTree = "<group>"; };
@@ -479,8 +476,6 @@
 				05DA93921CDCF62600DEE384 /* UITextView+ZDUtility.m */,
 				BC1349611C60E26000BEB91D /* UIColor+ZDUtility.h */,
 				BC1349621C60E26000BEB91D /* UIColor+ZDUtility.m */,
-				BC560B041CA1289500FAC95E /* HJCornerRadius.h */,
-				BC560B051CA1289500FAC95E /* HJCornerRadius.m */,
 				BC1349651C60E26000BEB91D /* UIImageView+FaceAwareFill.h */,
 				BC1349661C60E26000BEB91D /* UIImageView+FaceAwareFill.m */,
 				BC1349671C60E26000BEB91D /* UIImageView+ZDUtility.h */,
@@ -810,7 +805,6 @@
 				BC1349A01C60E26000BEB91D /* UIView+AutoFlowLayout.m in Sources */,
 				BC1349BA1C60E26000BEB91D /* UIColor+ZDUtility.m in Sources */,
 				BC5877921CBD073A00466FB8 /* NSNumber+BlocksKit.m in Sources */,
-				BC560B061CA1289500FAC95E /* HJCornerRadius.m in Sources */,
 				BC1349C61C60E26000BEB91D /* UINavigationController+ZDPop.m in Sources */,
 				BC1349BE1C60E26000BEB91D /* UIView+RZBorders.m in Sources */,
 				BCB0AB411CEDC50B00268D2A /* ZDLabel.m in Sources */,

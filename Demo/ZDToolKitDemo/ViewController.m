@@ -13,7 +13,6 @@
 #import "UIView+RZBorders.h"
 #import "UIImageView+ZDUtility.h"
 #import "UIImageView+WebCache.h"
-#import "HJCornerRadius.h"
 #import "UITextView+ZDUtility.h"
 #import "NSObject+DLIntrospection.h"
 #import "NSObject+ZDUtility.h"
