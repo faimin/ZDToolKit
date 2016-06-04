@@ -289,7 +289,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     CGRect rect = CGRectMake(-insets.left, -insets.top, self.size.width, self.size.height);
     UIGraphicsBeginImageContextWithOptions(size, NO, self.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    if (color) {
+    if (color && context) {
         CGContextSetFillColorWithColor(context, color.CGColor);
         CGMutablePathRef path = CGPathCreateMutable();
         CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, size.height));

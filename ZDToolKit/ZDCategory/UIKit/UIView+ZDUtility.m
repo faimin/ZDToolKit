@@ -404,19 +404,20 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     //create drawing context
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    //clip image
-    CGContextBeginPath(context);
-    CGContextMoveToPoint(context, 0.0f, radius);
-    CGContextAddLineToPoint(context, 0.0f, self.size.height - radius);
-    CGContextAddArc(context, radius, self.size.height - radius, radius, M_PI, M_PI / 2.0f, 1);
-    CGContextAddLineToPoint(context, self.size.width - radius, self.size.height);
-    CGContextAddArc(context, self.size.width - radius, self.size.height - radius, radius, M_PI / 2.0f, 0.0f, 1);
-    CGContextAddLineToPoint(context, self.size.width, radius);
-    CGContextAddArc(context, self.size.width - radius, radius, radius, 0.0f, -M_PI / 2.0f, 1);
-    CGContextAddLineToPoint(context, radius, 0.0f);
-    CGContextAddArc(context, radius, radius, radius, -M_PI / 2.0f, M_PI, 1);
-    CGContextClip(context);
+    if (context) {
+        //clip image
+        CGContextBeginPath(context);
+        CGContextMoveToPoint(context, 0.0f, radius);
+        CGContextAddLineToPoint(context, 0.0f, self.size.height - radius);
+        CGContextAddArc(context, radius, self.size.height - radius, radius, M_PI, M_PI / 2.0f, 1);
+        CGContextAddLineToPoint(context, self.size.width - radius, self.size.height);
+        CGContextAddArc(context, self.size.width - radius, self.size.height - radius, radius, M_PI / 2.0f, 0.0f, 1);
+        CGContextAddLineToPoint(context, self.size.width, radius);
+        CGContextAddArc(context, self.size.width - radius, radius, radius, 0.0f, -M_PI / 2.0f, 1);
+        CGContextAddLineToPoint(context, radius, 0.0f);
+        CGContextAddArc(context, radius, radius, radius, -M_PI / 2.0f, M_PI, 1);
+        CGContextClip(context);
+    }
     
     //draw image
     [self drawAtPoint:CGPointZero];

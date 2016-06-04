@@ -215,6 +215,29 @@ BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
 	return [self zd_dictionaryWithObjects:validObjects forKeys:validKeys count:count];
 }
 
+- (instancetype)zd_initWithObjects:(const id[])objects forKeys:(const id <NSCopying> [])keys count:(NSUInteger)cnt
+{
+    id validObjects[cnt];
+    id <NSCopying> validKeys[cnt];
+    
+    NSUInteger count = 0;
+    for (NSUInteger i = 0; i < cnt; i++) {
+        if (objects[i] && keys[i]) {
+            validObjects[count] = objects[i];
+            validKeys[count] = keys[i];
+            count++;
+        }
+        else {
+            ZDLOG(@"[%@ %@] NIL object or key at index{%lu}.",
+                  NSStringFromClass(self),
+                  NSStringFromSelector(_cmd),
+                  (unsigned long)i);
+        }
+    }
+    
+    return [self zd_initWithObjects:objects forKeys:keys count:cnt];
+}
+
 @end
 
 ///==================================================================
@@ -267,6 +290,7 @@ BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
         
         //NSDictionary
         zd_swizzleClassMethod([NSDictionary class], @selector(dictionaryWithObjects:forKeys:count:), @selector(zd_dictionaryWithObjects:forKeys:count:));
+        zd_swizzleInstanceMethod(NSClassFromString(@"__NSPlaceholderDictionary"), @selector(initWithObjects:forKeys:count:), @selector(zd_initWithObjects:forKeys:count:));
         
         //NSMutableDictionary
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setObject:forKey:), @selector(zd_setObject:forKey:));
