@@ -353,6 +353,7 @@ static inline void dispatch_sync_on_main_queue(void (^block)()) {
     }
 }
 
+/// 出了作用域时执行block
 #ifndef zd_defer
 #define zd_defer \
         zd_keywordify \
