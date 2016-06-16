@@ -39,7 +39,7 @@ static char ZDRuntimeDeallocBlocks;
     if (deallocBlock) {
         ZDWeakSelf *blockExecutor = [[ZDWeakSelf alloc] initWithBlock:deallocBlock];
         ///原理: 当self释放时,它所绑定的属性也自动会释放,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
-        objc_setAssociatedObject(self, (__bridge const void *)deallocBlock, blockExecutor, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(self, (__bridge const void *)deallocBlock, blockExecutor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
@@ -87,7 +87,9 @@ static char ZDRuntimeDeallocBlocks;
 
 + (void)zd_swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector
 {
-    Class myClass = [self class];
+    /// http://nshipster.com/method-swizzling/
+    /// 文中指出swizzle一个类方法用 Class class = object_getClass((id)self);
+    Class myClass = object_getClass(self);
     Method originalMethod = class_getClassMethod(myClass, selector);
     Method otherMethod = class_getClassMethod(myClass, otherSelector);
     

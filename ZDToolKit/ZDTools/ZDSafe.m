@@ -54,8 +54,9 @@ BOOL zd_swizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
 	return YES;
 }
 
-BOOL zd_swizzleClassMethod(Class aClass, SEL originalSel, SEL replacementSel)
+BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
 {
+    Class aClass = object_getClass(zdClass);
     Method origMethod = class_getClassMethod(aClass, originalSel);
     Method replMethod = class_getClassMethod(aClass, replacementSel);
     if (!origMethod || !replMethod) {
