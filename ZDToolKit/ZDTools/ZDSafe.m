@@ -66,9 +66,9 @@ BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
     return YES;
 }
 
-///==================================================================
+///========================================================
 #pragma mark - NSArray
-///==================================================================
+///========================================================
 @interface NSArray (ZDSafe)
 
 @end
@@ -112,9 +112,9 @@ BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
 
 @end
 
-///==================================================================
+///========================================================
 #pragma mark - NSMutableArray
-///==================================================================
+///========================================================
 @interface NSMutableArray (ZDSafe)
 
 @end
@@ -184,9 +184,9 @@ BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
 
 @end
 
-///==================================================================
+///========================================================
 #pragma mark - NSDictionary
-///==================================================================
+///========================================================
 @interface NSDictionary (ZDSafe)
 
 @end
@@ -241,9 +241,9 @@ BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
 
 @end
 
-///==================================================================
+///========================================================
 #pragma mark - NSMutableDictionary
-///==================================================================
+///========================================================
 @interface NSMutableDictionary (ZDSafe)
 
 @end
@@ -267,11 +267,66 @@ BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
 
 @end
 
+///========================================================
+#pragma mark - NSObject
+/// 处理不识别的selector
+///========================================================
+@interface NSObject (Forward)
 
-///==================================================================
+@end
+
+@implementation NSObject (Forward)
+
+- (NSMethodSignature *)zd_methodSignatureForSelector:(SEL)aSelector
+{
+    NSMethodSignature *signature = [self zd_methodSignatureForSelector:aSelector];
+    if (!signature) {
+        NSString *selectorString = NSStringFromSelector(aSelector);
+        NSUInteger parameterCount = [selectorString componentsSeparatedByString:@":"].count - 1;
+        // Zero argument, forward to valueForKey:
+        if (parameterCount == 0) {
+            signature = [self zd_methodSignatureForSelector:@selector(valueForKey:)];
+        }
+        // One argument starting with set, forward to setValue:forKey:
+        else if (parameterCount == 1 && [selectorString hasPrefix:@"set"]) {
+            signature = [self zd_methodSignatureForSelector:@selector(setValue:forKey:)];
+        }
+    }
+    return signature;
+}
+
+- (void)zd_forwardInvocation:(NSInvocation *)anInvocation
+{
+    NSString *selectorString = NSStringFromSelector(anInvocation.selector);
+    NSUInteger parameterCount = [selectorString componentsSeparatedByString:@":"].count - 1;
+    
+    // get KVC
+    if (parameterCount == 0) {
+        __unsafe_unretained id value = [self valueForKey:NSStringFromSelector(anInvocation.selector)];
+        [anInvocation setReturnValue:&value];
+    }
+    // set KVC
+    else if (parameterCount == 1) {
+        // The first parameter to an ObjC method is the third argument
+        // ObjC methods are C functions taking instance and selector as their first two arguments
+        __unsafe_unretained id value;
+        [anInvocation getArgument:&value atIndex:2];
+        
+        // Get key name by converting setMyValue: to myValue
+        id key = [NSString stringWithFormat:@"%@%@", [[selectorString substringWithRange:NSMakeRange(3, 1)] lowercaseString], [selectorString substringWithRange:NSMakeRange(4, selectorString.length - 5)]];
+        [self setValue:value forKey:key];
+    }
+    else {
+        [self zd_forwardInvocation:anInvocation];
+    }
+}
+
+@end
+
+///========================================================
 #pragma mark - ZDSafe
 #pragma mark -
-///==================================================================
+///========================================================
 
 @implementation ZDSafe
 
@@ -279,22 +334,26 @@ BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        //NSArray
+        // NSArray
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
         zd_swizzleClassMethod([NSArray class], @selector(arrayWithObjects:count:), @selector(zd_arrayWithObjects:count:));
         
-        //NAMutableArray
+        // NAMutableArray
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(replaceObjectAtIndex:withObject:), @selector(zd_replaceObjectAtIndex:withObject:));
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(addObject:), @selector(zd_addObject:));
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(insertObject:atIndex:), @selector(zd_insertObject:atIndex:));
         
-        //NSDictionary
+        // NSDictionary
         zd_swizzleClassMethod([NSDictionary class], @selector(dictionaryWithObjects:forKeys:count:), @selector(zd_dictionaryWithObjects:forKeys:count:));
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSPlaceholderDictionary"), @selector(initWithObjects:forKeys:count:), @selector(zd_initWithObjects:forKeys:count:));
         
-        //NSMutableDictionary
+        // NSMutableDictionary
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setObject:forKey:), @selector(zd_setObject:forKey:));
+        
+        // Handle unrecognize selector
+        zd_swizzleInstanceMethod([NSObject class], @selector(methodSignatureForSelector:), @selector(zd_methodSignatureForSelector:));
+        zd_swizzleInstanceMethod([NSObject class], @selector(forwardInvocation:), @selector(zd_forwardInvocation:));
     });
 }
 
