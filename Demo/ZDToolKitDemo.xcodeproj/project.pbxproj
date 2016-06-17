@@ -74,6 +74,7 @@
 		BC5877991CBD073A00466FB8 /* UIControl+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877851CBD073A00466FB8 /* UIControl+BlocksKit.m */; };
 		BC58779A1CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877871CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.m */; };
 		BCB0AB411CEDC50B00268D2A /* ZDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB0AB401CEDC50B00268D2A /* ZDLabel.m */; };
+		BCCE43B61D13B36600EAE5E3 /* ZDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCE43B51D13B36600EAE5E3 /* ZDTextView.m */; };
 		BCE9474F1CA2A3E9006A4AAE /* NSObject+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE9474E1CA2A3E9006A4AAE /* NSObject+ZDUtility.m */; };
 		BCFAB7AF1C9CFDE800E453DC /* UILabel+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFAB7AE1C9CFDE800E453DC /* UILabel+ZDUtility.m */; };
 		BCFAB7B21C9D129500E453DC /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFAB7B11C9D129500E453DC /* NSObject+ZDRuntime.m */; };
@@ -239,6 +240,8 @@
 		BC58779B1CBD078A00466FB8 /* BKDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKDefines.h; sourceTree = "<group>"; };
 		BCB0AB3F1CEDC50B00268D2A /* ZDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDLabel.h; sourceTree = "<group>"; };
 		BCB0AB401CEDC50B00268D2A /* ZDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDLabel.m; sourceTree = "<group>"; };
+		BCCE43B41D13B36600EAE5E3 /* ZDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDTextView.h; sourceTree = "<group>"; };
+		BCCE43B51D13B36600EAE5E3 /* ZDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTextView.m; sourceTree = "<group>"; };
 		BCE9474D1CA2A3E9006A4AAE /* NSObject+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDUtility.h"; sourceTree = "<group>"; };
 		BCE9474E1CA2A3E9006A4AAE /* NSObject+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDUtility.m"; sourceTree = "<group>"; };
 		BCFAB7AD1C9CFDE800E453DC /* UILabel+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZDUtility.h"; sourceTree = "<group>"; };
@@ -540,6 +543,8 @@
 				BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */,
 				BCB0AB3F1CEDC50B00268D2A /* ZDLabel.h */,
 				BCB0AB401CEDC50B00268D2A /* ZDLabel.m */,
+				BCCE43B41D13B36600EAE5E3 /* ZDTextView.h */,
+				BCCE43B51D13B36600EAE5E3 /* ZDTextView.m */,
 			);
 			path = ZDTools;
 			sourceTree = "<group>";
@@ -794,6 +799,7 @@
 				BC1349B51C60E26000BEB91D /* NSObject+DLIntrospection.m in Sources */,
 				BC5877941CBD073A00466FB8 /* NSObject+BKBlockExecution.m in Sources */,
 				05EC9C711C53CDC300BACFE9 /* ViewController.m in Sources */,
+				BCCE43B61D13B36600EAE5E3 /* ZDTextView.m in Sources */,
 				BC1349CD1C60E26000BEB91D /* RZCollectionTableView.m in Sources */,
 				BC58778C1CBD073A00466FB8 /* NSMapTable+BlocksKit.m in Sources */,
 				BC1349BD1C60E26000BEB91D /* UIImageView+ZDUtility.m in Sources */,
