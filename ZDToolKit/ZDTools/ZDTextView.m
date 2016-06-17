@@ -43,7 +43,16 @@
 #pragma mark - Override
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self placeholderLabelHidden];
+    [self zd_placeholderLabelHidden];
+    if (!self.placeholderLabel.hidden)
+    {
+        [UIView performWithoutAnimation: ^{
+            CGRect bounds = self.bounds;
+            //bounds.size.width -= 5;
+            self.placeholderLabel.frame = [self zd_placeholderRectThatFits:bounds];
+            [self sendSubviewToBack:self.placeholderLabel];
+        }];
+    }
 }
 
 #pragma mark - Public Method
@@ -54,11 +63,23 @@
 #pragma mark - Private Method
 - (void)zd_didChangeText:(NSNotification *)notification {
     if (![notification.object isEqual:self]) return;
-    [self placeholderLabelHidden];
+    [self zd_placeholderLabelHidden];
 }
 
-- (void)placeholderLabelHidden {
+- (void)zd_placeholderLabelHidden {
     self.placeholderLabel.hidden = ((self.placeholder.length == 0 && self.attributedPlaceholder.length == 0) || self.text.length > 0);
+}
+
+- (CGRect)zd_placeholderRectThatFits:(CGRect)bounds
+{
+    CGRect rect = CGRectZero;
+    
+    rect.size = [self.placeholderLabel sizeThatFits:bounds.size];
+    rect.origin = UIEdgeInsetsInsetRect(bounds, self.textContainerInset).origin;
+    CGFloat padding = self.textContainer.lineFragmentPadding;
+    rect.origin.x += padding;
+    
+    return rect;
 }
 
 #pragma mark - Property
