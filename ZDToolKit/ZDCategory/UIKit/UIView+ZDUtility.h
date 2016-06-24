@@ -18,9 +18,7 @@
 - (void)eachSubview:(void (^)(UIView *subview))block;
 - (void)removeAllSubviews;
 
-/**
- Create a snapshot image of the complete view hierarchy.
- */
+///  Create a snapshot image of the complete view hierarchy.
 - (UIImage *)snapshotImage;
 
 /**
@@ -30,21 +28,22 @@
  */
 - (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
 
-/**
- Create a snapshot PDF of the complete view hierarchy.
- */
+///  Create a snapshot PDF of the complete view hierarchy.
 - (NSData *)snapshotPDF;
 
-/**
- *  view shake
- *  @param range 
- */
+///  view shake
+///  @param range 角度
 - (void)shake:(CGFloat)range;
+
+///  计算添加约束后视图的高度
+///  @param maxWidth 最大宽度
+///  @return 适应的高度
+- (CGFloat)calculateDynamicHeightWithMaxWidth:(CGFloat)maxWidth;
 
 @end
 
 #pragma mark -
-///========================================================================
+///====================================================================
 
 @interface UIView (Frame)
 

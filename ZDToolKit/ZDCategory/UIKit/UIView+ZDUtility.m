@@ -26,8 +26,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 @implementation UIView (ZDUtility)
 
 //MARK: Controller
-- (UIViewController *)viewController
-{
+- (UIViewController *)viewController {
 	UIResponder *nextResponder = self;
 
 	do {
@@ -41,8 +40,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 	return nil;
 }
 
-- (UIViewController *)topMostController
-{
+- (UIViewController *)topMostController {
 	NSMutableArray *controllersHierarchy = [[NSMutableArray alloc] init];
 	UIViewController *topController = self.window.rootViewController;
 
@@ -68,23 +66,20 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 //MARK: Method
 
-- (void)eachSubview:(void (^)(UIView *subview))block
-{
+- (void)eachSubview:(void (^)(UIView *subview))block {
 	NSParameterAssert(block != nil);
 	[self.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
 		block(subview);
 	}];
 }
 
-- (void)removeAllSubviews
-{
+- (void)removeAllSubviews {
     while (self.subviews.count) {
         [self.subviews.lastObject removeFromSuperview];
     }
 }
 
-- (UIImage *)snapshotImage
-{
+- (UIImage *)snapshotImage {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
@@ -92,8 +87,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return snap;
 }
 
-- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates
-{
+- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
     if (![self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
         return [self snapshotImage];
     }
@@ -104,8 +98,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return snap;
 }
 
-- (NSData *)snapshotPDF
-{
+- (NSData *)snapshotPDF {
     CGRect bounds = self.bounds;
     NSMutableData* data = [NSMutableData data];
     CGDataConsumerRef consumer = CGDataConsumerCreateWithCFData((__bridge CFMutableDataRef)data);
@@ -122,8 +115,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return data;
 }
 
-- (void)shake:(CGFloat)range
-{
+- (void)shake:(CGFloat)range {
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     animation.duration = 0.5;
@@ -132,14 +124,183 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     [self.layer addAnimation:animation forKey:@"shake"];
 }
 
-#pragma mark - TouchExtendInset
-+ (void)load
-{
-    Swizzle(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
+/// Inspiration from ‘UITableView+FDTemplateLayoutCell’
+- (CGFloat)calculateDynamicHeightWithMaxWidth:(CGFloat)maxWidth {
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    CGFloat viewMaxWidth = maxWidth ? : CGRectGetWidth([UIScreen mainScreen].bounds);
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:viewMaxWidth];
+    [self addConstraint:widthConstraint];
+    CGSize fittingSize = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    [self removeConstraint:widthConstraint];
+    return fittingSize.height;
 }
 
-- (BOOL)zdPointInside:(CGPoint)point withEvent:(UIEvent *)event
-{
+@end
+
+#pragma mark -
+///========================================================
+
+@implementation UIView (Frame)
+
+#pragma mark Frame
+
+- (CGPoint)origin {
+	return self.frame.origin;
+}
+
+- (void)setOrigin:(CGPoint)newOrigin {
+	CGRect newFrame = self.frame;
+
+	newFrame.origin = newOrigin;
+	self.frame = newFrame;
+}
+
+- (CGSize)size {
+	return self.frame.size;
+}
+
+- (void)setSize:(CGSize)newSize {
+	CGRect newFrame = self.frame;
+
+	newFrame.size = newSize;
+	self.frame = newFrame;
+}
+
+#pragma mark Frame Origin
+
+- (CGFloat)x {
+	return self.frame.origin.x;
+}
+
+- (void)setX:(CGFloat)newX {
+	CGRect newFrame = self.frame;
+
+	newFrame.origin.x = newX;
+	self.frame = newFrame;
+}
+
+- (CGFloat)y {
+	return self.frame.origin.y;
+}
+
+- (void)setY:(CGFloat)newY {
+	CGRect newFrame = self.frame;
+
+	newFrame.origin.y = newY;
+	self.frame = newFrame;
+}
+
+#pragma mark Frame Size
+
+- (CGFloat)height {
+	return self.frame.size.height;
+}
+
+- (void)setHeight:(CGFloat)newHeight {
+	CGRect newFrame = self.frame;
+
+	newFrame.size.height = newHeight;
+	self.frame = newFrame;
+}
+
+- (CGFloat)width {
+	return self.frame.size.width;
+}
+
+- (void)setWidth:(CGFloat)newWidth {
+	CGRect newFrame = self.frame;
+
+	newFrame.size.width = newWidth;
+	self.frame = newFrame;
+}
+
+#pragma mark Frame Borders
+
+- (CGFloat)left {
+	return self.x;
+}
+
+- (void)setLeft:(CGFloat)left {
+	self.x = left;
+}
+
+- (CGFloat)right {
+	return self.frame.origin.x + self.frame.size.width;
+}
+
+- (void)setRight:(CGFloat)right {
+	self.x = right - self.width;
+}
+
+- (CGFloat)top {
+	return self.y;
+}
+
+- (void)setTop:(CGFloat)top {
+	self.y = top;
+}
+
+- (CGFloat)bottom {
+	return self.frame.origin.y + self.frame.size.height;
+}
+
+- (void)setBottom:(CGFloat)bottom {
+	self.y = bottom - self.height;
+}
+
+#pragma mark Center Point
+
+#if !IS_IOS_DEVICE
+- (CGPoint)center {
+	return CGPointMake(self.left + self.middleX, self.top + self.middleY);
+}
+
+- (void)setCenter:(CGPoint)newCenter {
+	self.left = newCenter.x - self.middleX;
+	self.top = newCenter.y - self.middleY;
+}
+#endif
+
+- (CGFloat)centerX {
+	return self.center.x;
+}
+
+- (void)setCenterX:(CGFloat)newCenterX {
+	self.center = CGPointMake(newCenterX, self.center.y);
+}
+
+- (CGFloat)centerY {
+	return self.center.y;
+}
+
+- (void)setCenterY:(CGFloat)newCenterY {
+	self.center = CGPointMake(self.center.x, newCenterY);
+}
+
+#pragma mark Middle Point
+
+- (CGPoint)middlePoint {
+	return CGPointMake(self.middleX, self.middleY);
+}
+
+- (CGFloat)middleX {
+	return self.width / 2;
+}
+
+- (CGFloat)middleY {
+	return self.height / 2;
+}
+
+#pragma mark TouchExtendInset
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Swizzle(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
+    });
+}
+
+- (BOOL)zdPointInside:(CGPoint)point withEvent:(UIEvent *)event {
     if (UIEdgeInsetsEqualToEdgeInsets(self.touchExtendInset, UIEdgeInsetsZero) || self.hidden ||
         ([self isKindOfClass:UIControl.class] && !((UIControl *)self).enabled)) {
         return [self zdPointInside:point withEvent:event]; // original implementation
@@ -150,234 +311,18 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return CGRectContainsPoint(hitFrame, point);
 }
 
-- (void)setTouchExtendInset:(UIEdgeInsets)touchExtendInset
-{
+- (void)setTouchExtendInset:(UIEdgeInsets)touchExtendInset {
     UIEdgeInsets zdTouchExtendInset = UIEdgeInsetsMake(-touchExtendInset.top, -touchExtendInset.left, -touchExtendInset.bottom, -touchExtendInset.right);
     objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInset], OBJC_ASSOCIATION_RETAIN);
 }
 
-- (UIEdgeInsets)touchExtendInset
-{
-    return [objc_getAssociatedObject(self, TouchExtendInsetKey) UIEdgeInsetsValue];
-}
-
-@end
-
-#pragma mark -
-///======================================================================
-
-@implementation UIView (Frame)
-
-#pragma mark Frame
-
-- (CGPoint)origin
-{
-	return self.frame.origin;
-}
-
-- (void)setOrigin:(CGPoint)newOrigin
-{
-	CGRect newFrame = self.frame;
-
-	newFrame.origin = newOrigin;
-	self.frame = newFrame;
-}
-
-- (CGSize)size
-{
-	return self.frame.size;
-}
-
-- (void)setSize:(CGSize)newSize
-{
-	CGRect newFrame = self.frame;
-
-	newFrame.size = newSize;
-	self.frame = newFrame;
-}
-
-#pragma mark Frame Origin
-
-- (CGFloat)x
-{
-	return self.frame.origin.x;
-}
-
-- (void)setX:(CGFloat)newX
-{
-	CGRect newFrame = self.frame;
-
-	newFrame.origin.x = newX;
-	self.frame = newFrame;
-}
-
-- (CGFloat)y
-{
-	return self.frame.origin.y;
-}
-
-- (void)setY:(CGFloat)newY
-{
-	CGRect newFrame = self.frame;
-
-	newFrame.origin.y = newY;
-	self.frame = newFrame;
-}
-
-#pragma mark Frame Size
-
-- (CGFloat)height
-{
-	return self.frame.size.height;
-}
-
-- (void)setHeight:(CGFloat)newHeight
-{
-	CGRect newFrame = self.frame;
-
-	newFrame.size.height = newHeight;
-	self.frame = newFrame;
-}
-
-- (CGFloat)width
-{
-	return self.frame.size.width;
-}
-
-- (void)setWidth:(CGFloat)newWidth
-{
-	CGRect newFrame = self.frame;
-
-	newFrame.size.width = newWidth;
-	self.frame = newFrame;
-}
-
-#pragma mark Frame Borders
-
-- (CGFloat)left
-{
-	return self.x;
-}
-
-- (void)setLeft:(CGFloat)left
-{
-	self.x = left;
-}
-
-- (CGFloat)right
-{
-	return self.frame.origin.x + self.frame.size.width;
-}
-
-- (void)setRight:(CGFloat)right
-{
-	self.x = right - self.width;
-}
-
-- (CGFloat)top
-{
-	return self.y;
-}
-
-- (void)setTop:(CGFloat)top
-{
-	self.y = top;
-}
-
-- (CGFloat)bottom
-{
-	return self.frame.origin.y + self.frame.size.height;
-}
-
-- (void)setBottom:(CGFloat)bottom
-{
-	self.y = bottom - self.height;
-}
-
-#pragma mark Center Point
-
-#if !IS_IOS_DEVICE
-- (CGPoint)center
-{
-	return CGPointMake(self.left + self.middleX, self.top + self.middleY);
-}
-
-- (void)setCenter:(CGPoint)newCenter
-{
-	self.left = newCenter.x - self.middleX;
-	self.top = newCenter.y - self.middleY;
-}
-#endif
-
-- (CGFloat)centerX
-{
-	return self.center.x;
-}
-
-- (void)setCenterX:(CGFloat)newCenterX
-{
-	self.center = CGPointMake(newCenterX, self.center.y);
-}
-
-- (CGFloat)centerY
-{
-	return self.center.y;
-}
-
-- (void)setCenterY:(CGFloat)newCenterY
-{
-	self.center = CGPointMake(self.center.x, newCenterY);
-}
-
-#pragma mark Middle Point
-
-- (CGPoint)middlePoint
-{
-	return CGPointMake(self.middleX, self.middleY);
-}
-
-- (CGFloat)middleX
-{
-	return self.width / 2;
-}
-
-- (CGFloat)middleY
-{
-	return self.height / 2;
-}
-
-#pragma mark EdgeInset
-+ (void)load
-{
-    Swizzle(self, @selector(pointInside:withEvent:), @selector(myPointInside:withEvent:));
-}
-
-- (BOOL)myPointInside:(CGPoint)point withEvent:(UIEvent *)event
-{
-    if (UIEdgeInsetsEqualToEdgeInsets(self.touchExtendInset, UIEdgeInsetsZero) || self.hidden ||
-        ([self isKindOfClass:[UIControl class]] && !((UIControl *)self).enabled)) {
-        return [self myPointInside:point withEvent:event];
-    }
-    CGRect hitFrame = UIEdgeInsetsInsetRect(self.bounds, self.touchExtendInset);
-    hitFrame.size.width = MAX(hitFrame.size.width, 0); // don't allow negative sizes
-    hitFrame.size.height = MAX(hitFrame.size.height, 0);
-    return CGRectContainsPoint(hitFrame, point);
-}
-
-- (void)setTouchExtendInset:(UIEdgeInsets)touchExtendInset
-{
-    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:touchExtendInset], OBJC_ASSOCIATION_RETAIN);
-}
-
-- (UIEdgeInsets)touchExtendInset
-{
+- (UIEdgeInsets)touchExtendInset {
     return [objc_getAssociatedObject(self, TouchExtendInsetKey) UIEdgeInsetsValue];
 }
 
 #pragma mark Layer
 
-- (void)setZd_cornerRadius:(CGFloat)zd_cornerRadius
-{
+- (void)setZd_cornerRadius:(CGFloat)zd_cornerRadius {
     objc_setAssociatedObject(self, CornerRadiusKey, @(zd_cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     //下面的方法只有获取到真实的bounds才有效
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
@@ -389,8 +334,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     self.layer.mask = maskLayer;
 }
 
-- (CGFloat)zd_cornerRadius
-{
+- (CGFloat)zd_cornerRadius {
     return [objc_getAssociatedObject(self, CornerRadiusKey) integerValue];
 }
 
@@ -399,8 +343,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 @implementation UIImage (CornerRadius)
 
-- (UIImage *)imageWithCornerRadius:(CGFloat)radius
-{
+- (UIImage *)imageWithCornerRadius:(CGFloat)radius {
     //create drawing context
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
     CGContextRef context = UIGraphicsGetCurrentContext();
