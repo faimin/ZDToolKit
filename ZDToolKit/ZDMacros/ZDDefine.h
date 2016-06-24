@@ -101,7 +101,7 @@
 //----------------------系统----------------------------
 
 //----------------------内存----------------------------
-
+#pragma mark - 内存
 //使用ARC和不使用ARC
 #if __has_feature(objc_arc)
 //compiling with ARC
@@ -109,7 +109,6 @@
 // compiling without ARC
 #endif
 
-#pragma mark - common functions
 #define RELEASE_SAFELY(__POINTER) {[__POINTER release]; __POINTER = nil; }
 
 //释放一个对象
@@ -321,6 +320,9 @@
 #define LITE_RESOURCE_BUNDLE [[NSBundle mainBundle] pathForResource: \
 	@"LiteResource"													 \
 	ofType:@"bundle"];
+
+#define IS_KIND_OF_CLASS(obj_, Class_) [obj_ isKindOfClass:NSClassFromString(@#Class_)]
+#define URL(urlString_) [NSURL URLWithString:urlString_]
 
 //TODO宏 (http://blog.sunnyxx.com/2015/03/01/todo-macro/ )
 #define STRINGIFY(S) #S                             // 转成字符串
