@@ -33,16 +33,23 @@ UIKIT_EXTERN UIImage *ZDAnimatedGIFFromData(NSData *data);
 
 UIKIT_EXTERN UIImage *TintedImageWithColor(UIColor *tintColor, UIImage *image);
 
-/**
- *  @name 生成缩略图
- */
+///  制作缩略图
+///  @param url       图片本地地址
+///  @param imageSize 图片的宽或高
+///  @return 生成的缩略图
 UIKIT_EXTERN UIImage *ThumbnailImageFromURl(NSURL *url, int imageSize);
 
-/**
- *  @name 判断图片格式
- */
+///  获取图片格式
+///  @param data 图片数据
+///  @return 格式字符串
 FOUNDATION_EXPORT NSString *TypeForImageData(NSData *data);
 FOUNDATION_EXPORT NSString *TypeForData(NSData *data);
+
+///  高斯模糊图片
+///  @param image 原始图片
+///  @param blur  高斯比例（0->1）
+///  @return 高斯图片
+UIKIT_EXTERN UIImage *ZDBlurImageWithBlurNumber(UIImage *image, CGFloat blur);
 
 //===============================================================
 
