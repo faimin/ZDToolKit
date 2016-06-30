@@ -99,9 +99,29 @@
         if (targetAction) {
             id tartget = [targetAction objectForKey:@"target"];
             SEL selector = NSSelectorFromString([targetAction objectForKey:@"action"]);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [tartget performSelector:selector withObject:self];
+#pragma clang diagnostic pop
         }
     }
+}
+
+- (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
+    // 1.先通过添加edge后计算出此时的rect
+    UIEdgeInsets edgeInsets = self.zd_edgeInsets;
+    CGRect newRect = [super textRectForBounds:UIEdgeInsetsInsetRect(bounds, edgeInsets) limitedToNumberOfLines:numberOfLines];
+    // 2.然后再去掉edge
+    newRect.origin.x -= edgeInsets.left;
+    newRect.origin.y -= edgeInsets.top;
+    newRect.size.width += (edgeInsets.left + edgeInsets.right);
+    newRect.size.height += (edgeInsets.top + edgeInsets.bottom);
+    return newRect;
+}
+
+- (void)drawTextInRect:(CGRect)rect {
+    // 3.再用通过textRectForBounds:方法计算出的rect，经过edge处理后获取到实际的rect，然后绘制到这个实际的rect上
+    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, self.zd_edgeInsets)];
 }
 
 @end

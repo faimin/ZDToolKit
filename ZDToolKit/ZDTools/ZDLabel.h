@@ -10,6 +10,10 @@
 
 @interface ZDLabel : UILabel
 
+///  设置文字在label中的边距（上、左、下、右）;
+///  @discussion 设置此属性后需要设置[self.label sizeToFit]，
+@property (nonatomic, assign) UIEdgeInsets zd_edgeInsets;
+
 - (void)setTarget:(id)target action:(SEL)selector forRange:(NSRange)range;
 
 @end

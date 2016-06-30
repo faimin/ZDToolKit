@@ -296,7 +296,7 @@ NSString *TypeForData(NSData *data)
     return dataFormatString;
 }
 
-UIImage *ZDBlurImageWithBlurNumber(UIImage *image, CGFloat blur)
+UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur)
 {
     if (blur < 0.f || blur > 1.f) {
         blur = 0.5f;
@@ -387,23 +387,21 @@ UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSp
 
 #pragma mark - String
 #pragma mark -
-///设置文字行间距
-NSMutableAttributedString *SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize)
+/// 设置文字行间距
+NSMutableAttributedString *SetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize)
 {
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-
 	paragraphStyle.lineSpacing = lineSpace;
-	NSMutableAttributedString *mutStr = [[NSMutableAttributedString alloc] initWithString:string attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName : paragraphStyle}];
+	NSMutableAttributedString *mutStr = [[NSMutableAttributedString alloc] initWithString:originString attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName : paragraphStyle}];
 	return mutStr;
 }
 
-///筛选设置文字color
-NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor)
+/// 筛选设置文字color && font
+NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont)
 {
 	NSRange range = [orignString rangeOfString:filterString];
 	NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
-
-	[mutAttributeStr addAttribute:NSForegroundColorAttributeName value:filterColor range:range];
+    [mutAttributeStr addAttributes:@{NSForegroundColorAttributeName : filterColor, NSFontAttributeName : filterFont} range:range];
 	return mutAttributeStr;
 }
 
@@ -482,6 +480,58 @@ BOOL IsEmptyString(NSString *str)
     else {
         return YES;
     }
+}
+
+NSString *FirstCharacterWithString(NSString *string)
+{
+    NSMutableString *str = [NSMutableString stringWithString:string];
+    CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformMandarinLatin, NO);
+    CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformStripDiacritics, NO);
+    NSString *pingyin = [str capitalizedString];
+    return [pingyin substringToIndex:1];
+}
+
+NSDictionary *DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array)
+{
+    if (array.count == 0) {
+        return nil;
+    }
+    for (id obj in array) {
+        if (![obj isKindOfClass:[NSString class]]) {
+            return nil;
+        }
+    }
+    UILocalizedIndexedCollation *indexedCollation = [UILocalizedIndexedCollation currentCollation];
+    NSMutableArray *objects = [NSMutableArray arrayWithCapacity:indexedCollation.sectionTitles.count];
+    //创建27个分组数组
+    for (int i = 0; i < indexedCollation.sectionTitles.count; i++) {
+        NSMutableArray *obj = [NSMutableArray array];
+        [objects addObject:obj];
+    }
+    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:objects.count];
+    //按字母顺序进行分组
+    NSInteger lastIndex = -1;
+    for (int i = 0; i < array.count; i++) {
+        NSInteger index = [indexedCollation sectionForObject:array[i] collationStringSelector:@selector(uppercaseString)];
+        [[objects objectAtIndex:index] addObject:array[i]];
+        lastIndex = index;
+    }
+    //去掉空数组
+    for (int i = 0; i < objects.count; i++) {
+        NSMutableArray *obj = objects[i];
+        if (obj.count == 0) {
+            [objects removeObject:obj];
+        }
+    }
+    //获取索引字母
+    for (NSMutableArray *obj in objects) {
+        NSString *str = obj[0];
+        NSString *key = FirstCharacterWithString(str);
+        [keys addObject:key];
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:objects forKey:keys];
+    return dic;
 }
 
 #pragma mark - InterfaceOrientation

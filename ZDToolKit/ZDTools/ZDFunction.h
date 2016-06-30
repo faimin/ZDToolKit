@@ -49,7 +49,7 @@ FOUNDATION_EXPORT NSString *TypeForData(NSData *data);
 ///  @param image 原始图片
 ///  @param blur  高斯比例（0->1）
 ///  @return 高斯图片
-UIKIT_EXTERN UIImage *ZDBlurImageWithBlurNumber(UIImage *image, CGFloat blur);
+UIKIT_EXTERN UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur);
 
 //===============================================================
 
@@ -65,29 +65,41 @@ UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSp
 
 #pragma mark - String
 #pragma mark -
-/**
- *  @name 设置文字行间距
- */
+///  设置文字行间距
+///  @param string    原始字符串
+///  @param lineSpace 行间距
+///  @param fontSize  字体大小
+///  @return NSMutableAttributedString
 FOUNDATION_EXPORT NSMutableAttributedString *SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
 
-/**
- *  @name 指定文字为某种颜色
- */
-FOUNDATION_EXPORT NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor);
+///  设置某字符串为特定颜色和大小
+///  @param orignString  原始字符串
+///  @param filterString 指定的字符串
+///  @param filterColor  指定的颜色
+///  @param filterFont   指定字体
+///  @return NSMutableAttributedString
+FOUNDATION_EXPORT NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont);
 FOUNDATION_EXPORT NSString *URLEncodedString(NSString *sourceText);
 FOUNDATION_EXPORT CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth);
 FOUNDATION_EXPORT CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight);
-/**
- *  @brief 计算文字的大小
- *
- *  @param font   字体(默认为系统字体)
- *  @param width、height 约束宽高度，约束宽度时高度设为0，约束高度时宽度设为0即可
- */
+
+///  计算文字的大小
+///  @param sourceString 原始字符串
+///  @param font         字体(默认为系统字体)
+///  @param maxWidth     约束宽高度，约束宽度时高度设为0，约束高度时宽度设为0即可
+///  @param maxHeight    约束宽高度，约束宽度时高度设为0，约束高度时宽度设为0即可
+///  @return CGSize
 FOUNDATION_EXPORT CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight);
 
 /// 反转字符串
 FOUNDATION_EXPORT NSString *ReverseString(NSString *sourceString);
 FOUNDATION_EXPORT BOOL IsEmptyString(NSString *string);
+/// 获取字符串(或汉字)首字母
+FOUNDATION_EXPORT NSString *FirstCharacterWithString(NSString *string);
+/// 将字符串数组按照元素首字母顺序进行排序分组
+FOUNDATION_EXPORT NSDictionary *DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array);
+
+
 //===============================================================
 
 #pragma mark - InterfaceOrientation
