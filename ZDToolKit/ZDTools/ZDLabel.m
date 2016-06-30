@@ -12,7 +12,7 @@
 @interface ZDLabel ()
 {
     CGFloat _iLineSpacing;
-    CALayer* _underlindeLayer;
+    CALayer *_underlindeLayer;
     CGRect _textRect;
     NSMutableDictionary *_targetActions;
     CTFrameRef _ctFrameRef;
@@ -21,6 +21,7 @@
 
 @implementation ZDLabel
 
+/// CoreText实现图文混排之点击事件：http://www.jianshu.com/p/51c47329203e
 - (void)setTarget:(id)target action:(SEL)selector forRange:(NSRange)range
 {
     if (nil == target || NULL == selector) {
@@ -107,6 +108,7 @@
     }
 }
 
+#pragma mark - Change text frame
 - (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
     // 1.先通过添加edge后计算出此时的rect
     UIEdgeInsets edgeInsets = self.zd_edgeInsets;
