@@ -30,7 +30,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 
 #pragma mark - Color
 
-- (BOOL)hasAlphaChannel
+- (BOOL)zd_hasAlphaChannel
 {
     if (self.CGImage == NULL) {
         return NO;
@@ -44,9 +44,9 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 }
 
 ///如果没有Alpha通道，添加之
-- (UIImage *)addAlphaChannle
+- (UIImage *)zd_addAlphaChannle
 {
-    if ([self hasAlphaChannel]) {
+    if ([self zd_hasAlphaChannel]) {
         return self;
     }
     
@@ -123,7 +123,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     }
     
     /// Create an ARGB bitmap context
-    CGContextRef bmContext = CreateARGBBitmapContext(destWidth, destHeight, destWidth * 4, [self hasAlphaChannel]);
+    CGContextRef bmContext = CreateARGBBitmapContext(destWidth, destHeight, destWidth * 4, [self zd_hasAlphaChannel]);
     if (!bmContext)
         return nil;
     

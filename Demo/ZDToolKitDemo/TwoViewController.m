@@ -13,6 +13,7 @@
 
 @interface TwoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end
 
 @implementation TwoViewController
@@ -21,12 +22,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.button.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
+    self.imageView.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
+    self.imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+    [self.imageView addGestureRecognizer:tap];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tapAction {
+    NSLog(@"点到了。。。。。。");
 }
 
 - (void)autoreleaseTest {

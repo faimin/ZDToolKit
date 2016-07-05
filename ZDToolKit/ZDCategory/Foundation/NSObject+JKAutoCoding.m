@@ -242,6 +242,7 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
         }
     }
 }
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     [self jk_setWithCoder:aDecoder];

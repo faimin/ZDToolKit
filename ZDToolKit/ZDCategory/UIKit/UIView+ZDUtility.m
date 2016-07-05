@@ -330,7 +330,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 - (void)setZd_touchExtendInsets:(UIEdgeInsets)zd_touchExtendInsets {
     UIEdgeInsets zdTouchExtendInsets = UIEdgeInsetsMake(-zd_touchExtendInsets.top, -zd_touchExtendInsets.left, -zd_touchExtendInsets.bottom, -zd_touchExtendInsets.right);
-    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInsets], OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInsets], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UIEdgeInsets)zd_touchExtendInsets {
