@@ -7,12 +7,12 @@
 //
 
 #import "TwoViewController.h"
+//#import "UIControl+ZDUtility.h"
 #import "UIView+ZDUtility.h"
 #import "ZDFunction.h"
 
 @interface TwoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
-
 @end
 
 @implementation TwoViewController
@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.button.touchExtendInset = UIEdgeInsetsMake(50, 50, 50, 50);
+    self.button.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
 }
 
 - (void)didReceiveMemoryWarning {

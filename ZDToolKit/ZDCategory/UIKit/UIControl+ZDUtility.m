@@ -13,7 +13,7 @@
 #import "UIControl+ZDUtility.h"
 #import <objc/runtime.h>
 
-static void Swizzle(Class c, SEL orig, SEL new) {
+static void SwizzleInstanceMethod(Class c, SEL orig, SEL new) {
     Method origMethod = class_getInstanceMethod(c, orig);
     Method newMethod = class_getInstanceMethod(c, new);
     if (class_addMethod(c, orig, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))){
@@ -24,8 +24,10 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     }
 }
 
+static const void *TouchExtendInsetKey = &TouchExtendInsetKey;
 static NSTimeInterval const defaultIntervalTime = 2.5f;
 static BOOL _isIgnoreEvent = NO;
+
 
 @interface ZDControlWrap : NSObject
 
@@ -38,8 +40,7 @@ static BOOL _isIgnoreEvent = NO;
 
 @implementation ZDControlWrap
 
-- (instancetype)initWithBlock:(void (^)(id sender))block forControlEvents:(UIControlEvents)controlEvents
-{
+- (instancetype)initWithBlock:(void (^)(id sender))block forControlEvents:(UIControlEvents)controlEvents {
     self = [super init];
     if (self) {
         self.block = block;
@@ -48,8 +49,7 @@ static BOOL _isIgnoreEvent = NO;
     return self;
 }
 
-- (void)zd_execute:(id)sender
-{
+- (void)zd_execute:(id)sender {
     if (self.block) {
         self.block(sender);
     }
@@ -57,18 +57,19 @@ static BOOL _isIgnoreEvent = NO;
 
 @end
 
+/// =======================================================
+
 @implementation UIControl (ZDUtility)
 
-+ (void)load
-{
++ (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Swizzle(self, @selector(sendAction:to:forEvent:), @selector(zd_sendAction:to:forEvent:));
+        SwizzleInstanceMethod(self, @selector(sendAction:to:forEvent:), @selector(zd_sendAction:to:forEvent:));
+        //SwizzleInstanceMethod(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
     });
 }
 
-- (void)zd_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
-{
+- (void)zd_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
     self.zd_clickIntervalTime = (self.zd_clickIntervalTime > 0) ? self.zd_clickIntervalTime : defaultIntervalTime;
     if (_isIgnoreEvent) {
         return;
@@ -86,15 +87,35 @@ static BOOL _isIgnoreEvent = NO;
     }
 }
 
-- (void)setZd_clickIntervalTime:(NSTimeInterval)clickIntervalTime
-{
+- (void)setZd_clickIntervalTime:(NSTimeInterval)clickIntervalTime {
     objc_setAssociatedObject(self, @selector(zd_clickIntervalTime), @(clickIntervalTime), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSTimeInterval)zd_clickIntervalTime
-{
+- (NSTimeInterval)zd_clickIntervalTime {
     return [objc_getAssociatedObject(self, _cmd) doubleValue];
 }
+
+#pragma mark TouchExtendInset
+
+//- (BOOL)zdPointInside:(CGPoint)point withEvent:(UIEvent *)event {
+//    if (UIEdgeInsetsEqualToEdgeInsets(self.zd_touchExtendInsets, UIEdgeInsetsZero) || self.hidden ||
+//        ![self isKindOfClass:UIControl.class] || !self.enabled) {
+//        return [self zdPointInside:point withEvent:event]; // original implementation
+//    }
+//    CGRect hitFrame = UIEdgeInsetsInsetRect(self.bounds, self.zd_touchExtendInsets);
+//    hitFrame.size.width = MAX(hitFrame.size.width, 0); // don't allow negative sizes
+//    hitFrame.size.height = MAX(hitFrame.size.height, 0);
+//    return CGRectContainsPoint(hitFrame, point);
+//}
+//
+//- (void)setZd_touchExtendInsets:(UIEdgeInsets)zd_touchExtendInsets {
+//    UIEdgeInsets zdTouchExtendInsets = UIEdgeInsetsMake(-zd_touchExtendInsets.top, -zd_touchExtendInsets.left, -zd_touchExtendInsets.bottom, -zd_touchExtendInsets.right);
+//    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInsets], OBJC_ASSOCIATION_RETAIN);
+//}
+//
+//- (UIEdgeInsets)zd_touchExtendInsets {
+//    return [objc_getAssociatedObject(self, TouchExtendInsetKey) UIEdgeInsetsValue];
+//}
 
 #pragma mark
 

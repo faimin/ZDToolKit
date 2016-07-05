@@ -9,8 +9,8 @@
 #import "UIView+ZDUtility.h"
 #import <objc/runtime.h>
 
+static const void *TouchExtendInsetKey = &TouchExtendInsetKey;
 static const void* CornerRadiusKey = &CornerRadiusKey;
-static const void* TouchExtendInsetKey = &TouchExtendInsetKey;
 
 static void Swizzle(Class c, SEL orig, SEL new) {
     Method origMethod = class_getInstanceMethod(c, orig);
@@ -141,6 +141,13 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 ///========================================================
 
 @implementation UIView (Frame)
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Swizzle(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
+    });
+}
 
 #pragma mark Frame
 
@@ -291,35 +298,6 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 	return self.height / 2;
 }
 
-#pragma mark TouchExtendInset
-
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Swizzle(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
-    });
-}
-
-- (BOOL)zdPointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    if (UIEdgeInsetsEqualToEdgeInsets(self.touchExtendInset, UIEdgeInsetsZero) || self.hidden ||
-        ([self isKindOfClass:UIControl.class] && !((UIControl *)self).enabled)) {
-        return [self zdPointInside:point withEvent:event]; // original implementation
-    }
-    CGRect hitFrame = UIEdgeInsetsInsetRect(self.bounds, self.touchExtendInset);
-    hitFrame.size.width = MAX(hitFrame.size.width, 0); // don't allow negative sizes
-    hitFrame.size.height = MAX(hitFrame.size.height, 0);
-    return CGRectContainsPoint(hitFrame, point);
-}
-
-- (void)setTouchExtendInset:(UIEdgeInsets)touchExtendInset {
-    UIEdgeInsets zdTouchExtendInset = UIEdgeInsetsMake(-touchExtendInset.top, -touchExtendInset.left, -touchExtendInset.bottom, -touchExtendInset.right);
-    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInset], OBJC_ASSOCIATION_RETAIN);
-}
-
-- (UIEdgeInsets)touchExtendInset {
-    return [objc_getAssociatedObject(self, TouchExtendInsetKey) UIEdgeInsetsValue];
-}
-
 #pragma mark Layer
 
 - (void)setZd_cornerRadius:(CGFloat)zd_cornerRadius {
@@ -336,6 +314,27 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 - (CGFloat)zd_cornerRadius {
     return [objc_getAssociatedObject(self, CornerRadiusKey) integerValue];
+}
+
+#pragma mark TouchExtendInset
+
+- (BOOL)zdPointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    if (UIEdgeInsetsEqualToEdgeInsets(self.zd_touchExtendInsets, UIEdgeInsetsZero) || self.hidden) {
+        return [self zdPointInside:point withEvent:event];
+    }
+    CGRect hitFrame = UIEdgeInsetsInsetRect(self.bounds, self.zd_touchExtendInsets);
+    hitFrame.size.width = MAX(hitFrame.size.width, 0);
+    hitFrame.size.height = MAX(hitFrame.size.height, 0);
+    return CGRectContainsPoint(hitFrame, point);
+}
+
+- (void)setZd_touchExtendInsets:(UIEdgeInsets)zd_touchExtendInsets {
+    UIEdgeInsets zdTouchExtendInsets = UIEdgeInsetsMake(-zd_touchExtendInsets.top, -zd_touchExtendInsets.left, -zd_touchExtendInsets.bottom, -zd_touchExtendInsets.right);
+    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInsets], OBJC_ASSOCIATION_RETAIN);
+}
+
+- (UIEdgeInsets)zd_touchExtendInsets {
+    return [objc_getAssociatedObject(self, TouchExtendInsetKey) UIEdgeInsetsValue];
 }
 
 @end

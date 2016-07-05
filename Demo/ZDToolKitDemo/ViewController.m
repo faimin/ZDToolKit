@@ -42,7 +42,6 @@
     self.testImageView.aliCornerRadius = 35;
     [self.testImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
 #endif
-
     
     self.textView.zd_placeHolderLabel = ({
         UILabel *label = [UILabel new];

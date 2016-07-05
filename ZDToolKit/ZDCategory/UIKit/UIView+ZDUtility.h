@@ -78,12 +78,10 @@
 @property (nonatomic, readonly) CGFloat middleX;
 @property (nonatomic, readonly) CGFloat middleY;
 
-// inset (值需要设置为负值)
-// e.g : self.button.touchExtendInset = UIEdgeInsetsMake(10, 10, 10, 10)
-@property (nonatomic, assign) UIEdgeInsets touchExtendInset;
-
 // Layer
 @property (nonatomic, assign) CGFloat zd_cornerRadius;
+
+@property (nonatomic, assign) UIEdgeInsets zd_touchExtendInsets;
 
 @end
 

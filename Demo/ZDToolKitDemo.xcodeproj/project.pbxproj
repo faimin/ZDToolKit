@@ -471,6 +471,12 @@
 		BC13495E1C60E26000BEB91D /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				BC13496B1C60E26000BEB91D /* UIView+ZDUtility.h */,
+				BC13496C1C60E26000BEB91D /* UIView+ZDUtility.m */,
+				BC1349691C60E26000BEB91D /* UIView+RZBorders.h */,
+				BC13496A1C60E26000BEB91D /* UIView+RZBorders.m */,
+				05B5D1AE1CECC9F7000CC089 /* UIControl+ZDUtility.h */,
+				05B5D1AF1CECC9F7000CC089 /* UIControl+ZDUtility.m */,
 				BC13495F1C60E26000BEB91D /* UIButton+ZDUtility.h */,
 				BC1349601C60E26000BEB91D /* UIButton+ZDUtility.m */,
 				BCFAB7AD1C9CFDE800E453DC /* UILabel+ZDUtility.h */,
@@ -485,16 +491,10 @@
 				BC1349681C60E26000BEB91D /* UIImageView+ZDUtility.m */,
 				BC1349631C60E26000BEB91D /* UIImage+ZDUtility.h */,
 				BC1349641C60E26000BEB91D /* UIImage+ZDUtility.m */,
-				BC1349691C60E26000BEB91D /* UIView+RZBorders.h */,
-				BC13496A1C60E26000BEB91D /* UIView+RZBorders.m */,
-				BC13496B1C60E26000BEB91D /* UIView+ZDUtility.h */,
-				BC13496C1C60E26000BEB91D /* UIView+ZDUtility.m */,
 				BC13496D1C60E26000BEB91D /* UIViewController+ZDUtility.h */,
 				BC13496E1C60E26000BEB91D /* UIViewController+ZDUtility.m */,
 				BC13496F1C60E26000BEB91D /* UIWebView+ZDUtility.h */,
 				BC1349701C60E26000BEB91D /* UIWebView+ZDUtility.m */,
-				05B5D1AE1CECC9F7000CC089 /* UIControl+ZDUtility.h */,
-				05B5D1AF1CECC9F7000CC089 /* UIControl+ZDUtility.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
