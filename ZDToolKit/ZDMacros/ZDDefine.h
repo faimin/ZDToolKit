@@ -204,6 +204,7 @@
 	}
 
 #else                       // MRC
+
   #define singleton_m(name)								\
 	static id _instance;								\
 	+ (id)allocWithZone:(struct _NSZone *)zone			\

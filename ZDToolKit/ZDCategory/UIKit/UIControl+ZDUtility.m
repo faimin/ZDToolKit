@@ -24,7 +24,6 @@ static void SwizzleInstanceMethod(Class c, SEL orig, SEL new) {
     }
 }
 
-static const void *TouchExtendInsetKey = &TouchExtendInsetKey;
 static NSTimeInterval const defaultIntervalTime = 2.5f;
 static BOOL _isIgnoreEvent = NO;
 
@@ -65,7 +64,6 @@ static BOOL _isIgnoreEvent = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         SwizzleInstanceMethod(self, @selector(sendAction:to:forEvent:), @selector(zd_sendAction:to:forEvent:));
-        //SwizzleInstanceMethod(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
     });
 }
 
@@ -95,32 +93,9 @@ static BOOL _isIgnoreEvent = NO;
     return [objc_getAssociatedObject(self, _cmd) doubleValue];
 }
 
-#pragma mark TouchExtendInset
-
-//- (BOOL)zdPointInside:(CGPoint)point withEvent:(UIEvent *)event {
-//    if (UIEdgeInsetsEqualToEdgeInsets(self.zd_touchExtendInsets, UIEdgeInsetsZero) || self.hidden ||
-//        ![self isKindOfClass:UIControl.class] || !self.enabled) {
-//        return [self zdPointInside:point withEvent:event]; // original implementation
-//    }
-//    CGRect hitFrame = UIEdgeInsetsInsetRect(self.bounds, self.zd_touchExtendInsets);
-//    hitFrame.size.width = MAX(hitFrame.size.width, 0); // don't allow negative sizes
-//    hitFrame.size.height = MAX(hitFrame.size.height, 0);
-//    return CGRectContainsPoint(hitFrame, point);
-//}
-//
-//- (void)setZd_touchExtendInsets:(UIEdgeInsets)zd_touchExtendInsets {
-//    UIEdgeInsets zdTouchExtendInsets = UIEdgeInsetsMake(-zd_touchExtendInsets.top, -zd_touchExtendInsets.left, -zd_touchExtendInsets.bottom, -zd_touchExtendInsets.right);
-//    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInsets], OBJC_ASSOCIATION_RETAIN);
-//}
-//
-//- (UIEdgeInsets)zd_touchExtendInsets {
-//    return [objc_getAssociatedObject(self, TouchExtendInsetKey) UIEdgeInsetsValue];
-//}
-
 #pragma mark
 
-- (void)zd_addBlockForControlEvents:(UIControlEvents)controlEvents block:(void(^)(id sender))block
-{
+- (void)zd_addBlockForControlEvents:(UIControlEvents)controlEvents block:(void(^)(id sender))block {
     ZDControlWrap *zdControl = [[ZDControlWrap alloc] initWithBlock:block forControlEvents:controlEvents];
     [self addTarget:zdControl action:@selector(zd_execute:) forControlEvents:controlEvents];
 }

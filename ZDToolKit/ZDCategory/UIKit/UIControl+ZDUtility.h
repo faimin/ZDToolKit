@@ -10,9 +10,6 @@
 
 @interface UIControl (ZDUtility)
 
-/// e.g : self.button.touchExtendInset = UIEdgeInsetsMake(10, 10, 10, 10)
-//@property (nonatomic, assign) UIEdgeInsets zd_touchExtendInsets;
-
 /// 防止用户多次点击,点击的时间间隔
 @property (nonatomic, assign) NSTimeInterval zd_clickIntervalTime;
 

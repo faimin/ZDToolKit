@@ -15,17 +15,16 @@
 @property (nonatomic, strong, readonly) UIViewController *topMostController;
 
 //MARK: Method
+/// Traverse all subviews
 - (void)eachSubview:(void (^)(UIView *subview))block;
 - (void)removeAllSubviews;
 
 ///  Create a snapshot image of the complete view hierarchy.
 - (UIImage *)snapshotImage;
 
-/**
- Create a snapshot image of the complete view hierarchy.
- @discussion It's faster than "snapshotImage", but may cause screen updates.
- See -[UIView drawViewHierarchyInRect:afterScreenUpdates:] for more information.
- */
+/// Create a snapshot image of the complete view hierarchy.
+/// @discussion It's faster than "snapshotImage", but may cause screen updates.
+/// See -[UIView drawViewHierarchyInRect:afterScreenUpdates:] for more information.
 - (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
 
 ///  Create a snapshot PDF of the complete view hierarchy.
@@ -39,6 +38,9 @@
 ///  @param maxWidth 最大宽度
 ///  @return 适应的高度
 - (CGFloat)calculateDynamicHeightWithMaxWidth:(CGFloat)maxWidth;
+
+/// load view from xib 
++ (instancetype)zd_loadViewFromXib;
 
 @end
 
@@ -81,6 +83,7 @@
 // Layer
 @property (nonatomic, assign) CGFloat zd_cornerRadius;
 
+/// Extend clickable area, e.g: self.zd_touchExtendInsets = UIEdgeInsetsMake(10, 20, 40, 10);
 @property (nonatomic, assign) UIEdgeInsets zd_touchExtendInsets;
 
 @end

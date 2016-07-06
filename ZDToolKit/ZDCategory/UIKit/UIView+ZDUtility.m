@@ -135,6 +135,16 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return fittingSize.height;
 }
 
++ (instancetype)zd_loadViewFromXib {
+    NSString *className = NSStringFromClass(self);
+    NSString *xibPatch =  [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.nib", className] ofType:nil];
+    if (xibPatch) {
+        return [[NSBundle mainBundle] loadNibNamed:className owner:nil options:nil].firstObject;
+    }
+    NSLog(@"\n\n不存在调用者class类型的xib文件\n");
+    return nil;
+}
+
 @end
 
 #pragma mark -
