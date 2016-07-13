@@ -18,22 +18,28 @@
     return [self reverseObjectEnumerator].allObjects;
 }
 
-- (NSArray *)zd_shuffle
+- (__kindof NSArray *)zd_shuffle
 {
     if (self.count > 0) {
-        NSMutableArray *mutArr = [self mutableCopy];
-        [mutArr zd_shuffle];
-        return [mutArr copy];
+        NSMutableArray *mutArr = [self isKindOfClass:[NSMutableArray class]] ? self : [self mutableCopy];
+        for (NSUInteger i = self.count; i > 1; i--) {
+            [mutArr exchangeObjectAtIndex:(i - 1)
+                      withObjectAtIndex:arc4random_uniform((u_int32_t)i)];
+        }
+        return mutArr;
     }
     return self;
 }
 
-- (NSArray *)zd_moveObjcToFront:(id)objc
+- (__kindof NSArray *)zd_moveObjcToFront:(id)objc
 {
     if ([self containsObject:objc]) {
-        NSMutableArray *mutArr = [self mutableCopy];
-        [mutArr zd_moveObjcToFront:objc];
-        return [mutArr copy];
+        NSMutableArray *mutArr = [self isKindOfClass:[NSMutableArray class]] ? self : [self mutableCopy];
+        if ([self containsObject:objc]) {
+            [mutArr removeObject:objc];
+        }
+        [mutArr insertObject:objc atIndex:0];
+        return mutArr;
     }
     return self;
 }
@@ -70,33 +76,3 @@
 
 @end
 
-
-@implementation NSMutableArray (ZDExtend)
-
-- (void)reverse
-{
-    NSUInteger count = self.count;
-    int mid = floor(count / 2.0);
-    for (NSUInteger i = 0; i < mid; i++) {
-        [self exchangeObjectAtIndex:i
-                  withObjectAtIndex:(count - (i + 1))];
-    }
-}
-
-- (void)shuffle
-{
-    for (NSUInteger i = self.count; i > 1; i--) {
-        [self exchangeObjectAtIndex:(i - 1)
-                  withObjectAtIndex:arc4random_uniform((u_int32_t)i)];
-    }
-}
-
-- (void)moveObjcToFront:(id)objc
-{
-    if ([self containsObject:objc]) {
-        [self removeObject:objc];
-    }
-    [self insertObject:objc atIndex:0];
-}
-
-@end

@@ -15,10 +15,10 @@
 - (NSArray *)zd_reverse;
 
 /// 打乱数组中元素的原有顺序
-- (NSArray *)zd_shuffle;
+- (__kindof NSArray *)zd_shuffle;
 
-/// 把某一元素移动到第一个位置
-- (NSArray *)zd_moveObjcToFront:(id)objc;
+/// 把某一元素移动到最前面
+- (__kindof NSArray *)zd_moveObjcToFront:(id)objc;
 
 /// 去重
 - (NSArray *)zd_deduplication;
@@ -34,6 +34,3 @@
 
 @end
 
-@interface NSMutableArray (ZDExtend)
-
-@end
