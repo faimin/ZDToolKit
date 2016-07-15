@@ -532,6 +532,10 @@ NSDictionary *DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *a
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:objects forKey:keys];
     return dic;
+    /**
+     以下为苹果自己提供的方法：
+     NSArray *resultArr = [array sortedArrayUsingSelector:@selector(localizedCompare:)];
+     */
 }
 
 #pragma mark - InterfaceOrientation
