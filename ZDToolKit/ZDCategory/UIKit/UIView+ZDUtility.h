@@ -19,7 +19,7 @@
 - (void)eachSubview:(void (^)(UIView *subview))block;
 - (void)removeAllSubviews;
 
-///  Create a snapshot image of the complete view hierarchy.
+/// Create a snapshot image of the complete view hierarchy.
 - (UIImage *)snapshotImage;
 
 /// Create a snapshot image of the complete view hierarchy.
@@ -41,6 +41,10 @@
 
 /// load view from xib 
 + (instancetype)zd_loadViewFromXib;
+
+///  add tap && longPress gesture to view
+- (void)zd_addTapGestureWithBlock:(void(^)(UITapGestureRecognizer *tapGesture))tapBlock;
+- (void)zd_addLongPressGestureWithBlock:(void(^)(UILongPressGestureRecognizer *longPressGesture))longPressBlock;
 
 @end
 

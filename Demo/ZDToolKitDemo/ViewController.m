@@ -43,6 +43,10 @@
     [self.testImageView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil];
 #endif
     
+    [self.testImageView zd_addTapGestureWithBlock:^(UITapGestureRecognizer *tapGesture) {
+        NSLog(@"\n轻击了, %@", tapGesture);
+    }];
+    
     self.textView.zd_placeHolderLabel = ({
         UILabel *label = [UILabel new];
         label.text = @"这是一个占位label";

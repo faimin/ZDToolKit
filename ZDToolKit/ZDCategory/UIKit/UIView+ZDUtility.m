@@ -10,7 +10,11 @@
 #import <objc/runtime.h>
 
 static const void *TouchExtendInsetKey = &TouchExtendInsetKey;
-static const void* CornerRadiusKey = &CornerRadiusKey;
+static const void *CornerRadiusKey = &CornerRadiusKey;
+static const void *TapGestureKey = &TapGestureKey;
+static const void *TapGestureBlockKey = &TapGestureBlockKey;
+static const void *LongPressGestureKey = &LongPressGestureKey;
+static const void *LongPressGestureBlockKey = &LongPressGestureBlockKey;
 
 static void Swizzle(Class c, SEL orig, SEL new) {
     Method origMethod = class_getInstanceMethod(c, orig);
@@ -25,7 +29,8 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 @implementation UIView (ZDUtility)
 
-//MARK: Controller
+#pragma mark Controller
+
 - (UIViewController *)viewController {
 	UIResponder *nextResponder = self;
 
@@ -64,7 +69,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 	return (UIViewController *)matchController;
 }
 
-//MARK: Method
+#pragma mark Method
 
 - (void)eachSubview:(void (^)(UIView *subview))block {
 	NSParameterAssert(block != nil);
@@ -143,6 +148,50 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     }
     NSLog(@"\n\n不存在调用者class类型的xib文件\n");
     return nil;
+}
+
+#pragma mark Gesture
+
+- (void)zd_addTapGestureWithBlock:(void(^)(UITapGestureRecognizer *tapGesture))tapBlock {
+    UITapGestureRecognizer *tap = objc_getAssociatedObject(self, TapGestureKey);
+    if (!tap) {
+        tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zd_handleTapAction:)];
+        self.userInteractionEnabled = YES;
+        [self addGestureRecognizer:tap];
+        objc_setAssociatedObject(self, TapGestureKey, tap, OBJC_ASSOCIATION_RETAIN);
+    }
+    objc_setAssociatedObject(tap, TapGestureBlockKey, tapBlock, OBJC_ASSOCIATION_COPY);
+}
+
+- (void)zd_addLongPressGestureWithBlock:(void(^)(UILongPressGestureRecognizer *longPressGesture))longPressBlock {
+    UILongPressGestureRecognizer *longPress = objc_getAssociatedObject(self, LongPressGestureKey);
+    if (!longPress) {
+        longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(zd_handleLongPressAction:)];
+        self.userInteractionEnabled = YES;
+        [self addGestureRecognizer:longPress];
+        objc_setAssociatedObject(self, LongPressGestureKey, longPress, OBJC_ASSOCIATION_RETAIN);
+    }
+    objc_setAssociatedObject(longPress, LongPressGestureBlockKey, longPressBlock, OBJC_ASSOCIATION_COPY);
+}
+
+#pragma mark Private Method
+
+- (void)zd_handleTapAction:(UITapGestureRecognizer *)tapGesture {
+    if (tapGesture.state == UIGestureRecognizerStateRecognized) {
+        void(^tapActionBlock)() = objc_getAssociatedObject(tapGesture, TapGestureBlockKey);
+        if (tapActionBlock) {
+            tapActionBlock(tapGesture);
+        }
+    }
+}
+
+- (void)zd_handleLongPressAction:(UITapGestureRecognizer *)longPressGesture {
+    if (longPressGesture.state == UIGestureRecognizerStateRecognized) {
+        void(^longPressActionBlock)() = objc_getAssociatedObject(longPressGesture, LongPressGestureBlockKey);
+        if (longPressActionBlock) {
+            longPressActionBlock(longPressGesture);
+        }
+    }
 }
 
 @end
@@ -340,7 +389,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 - (void)setZd_touchExtendInsets:(UIEdgeInsets)zd_touchExtendInsets {
     UIEdgeInsets zdTouchExtendInsets = UIEdgeInsetsMake(-zd_touchExtendInsets.top, -zd_touchExtendInsets.left, -zd_touchExtendInsets.bottom, -zd_touchExtendInsets.right);
-    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInsets], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInsets], OBJC_ASSOCIATION_RETAIN);
 }
 
 - (UIEdgeInsets)zd_touchExtendInsets {
