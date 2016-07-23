@@ -586,6 +586,26 @@ BOOL isRetina()
     }
 }
 
+BOOL isPad()
+{
+    static dispatch_once_t one;
+    static BOOL pad;
+    dispatch_once(&one, ^{
+        pad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+    });
+    return pad;
+}
+
+BOOL isSimulator()
+{
+    static dispatch_once_t one;
+    static BOOL simu;
+    dispatch_once(&one, ^{
+        simu = NSNotFound != [[UIDevice currentDevice].model rangeOfString:@"Simulator"].location;
+    });
+    return simu;
+}
+
 CGFloat Scale()
 {
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
@@ -596,29 +616,24 @@ CGFloat Scale()
     }
 }
 
+CGFloat SystemVersion()
+{
+    static CGFloat _version = 0.0;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _version = [[UIDevice currentDevice].systemVersion floatValue];
+    });
+    return _version;
+}
+
 CGSize ScreenSize()
 {
-    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {    // 横屏
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-            CGFloat nativeScale = [UIScreen mainScreen].nativeScale;
-            CGFloat width = [UIScreen mainScreen].nativeBounds.size.height / nativeScale;
-            CGFloat height = [UIScreen mainScreen].nativeBounds.size.width / nativeScale;
-            return CGSizeMake(width, height);
-        }
-        else {
-            return [UIScreen mainScreen].bounds.size;
-        }
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) { // 横屏
+        return CGSizeMake(screenSize.height, screenSize.width);
     }
-    else {      // 竖屏
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-            CGFloat nativeScale = [UIScreen mainScreen].nativeScale;
-            CGFloat width = [UIScreen mainScreen].nativeBounds.size.width / nativeScale;
-            CGFloat height = [UIScreen mainScreen].nativeBounds.size.height / nativeScale;
-            return CGSizeMake(width, height);
-        }
-        else {
-            return [UIScreen mainScreen].bounds.size;
-        }
+    else {
+        return screenSize;
     }
 }
 

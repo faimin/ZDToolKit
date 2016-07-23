@@ -105,8 +105,8 @@ FOUNDATION_EXPORT NSDictionary *DictionaryOrderByCharacterWithOriginalArray(NSAr
 #pragma mark - InterfaceOrientation
 #pragma mark -
 ///屏幕是横屏还是竖屏
-UIKIT_EXTERN BOOL isPortrait();     ///< 横屏
-UIKIT_EXTERN BOOL isLandscape();    ///< 竖屏
+FOUNDATION_EXPORT BOOL isPortrait();     ///< 横屏
+FOUNDATION_EXPORT BOOL isLandscape();    ///< 竖屏
 
 #pragma mark - NSBundle
 #pragma mark -
@@ -117,15 +117,19 @@ FOUNDATION_EXPORT NSArray *GetClassNames();
 
 #pragma mark - Device
 #pragma mark -
-BOOL isRetina();
-CGFloat Scale();
-CGSize ScreenSize();
-CGFloat ScreenWidth();
-CGFloat ScreenHeight();
-BOOL iPhone4s();
-BOOL iPhone5s();
-BOOL iPhone6();
-BOOL iPhone6p();
+FOUNDATION_EXPORT BOOL isRetina();
+FOUNDATION_EXPORT BOOL isRetina();
+FOUNDATION_EXPORT BOOL isPad();
+FOUNDATION_EXPORT BOOL isSimulator();
+FOUNDATION_EXPORT CGFloat Scale();
+FOUNDATION_EXPORT CGFloat SystemVersion();
+FOUNDATION_EXPORT CGSize ScreenSize();
+FOUNDATION_EXPORT CGFloat ScreenWidth();
+FOUNDATION_EXPORT CGFloat ScreenHeight();
+FOUNDATION_EXPORT BOOL iPhone4s();
+FOUNDATION_EXPORT BOOL iPhone5s();
+FOUNDATION_EXPORT BOOL iPhone6();
+FOUNDATION_EXPORT BOOL iPhone6p();
 
 /// 数组两个值，第一个是本地地址，127.0.0.1也就是localhost，
 /// 第二个是路由器DNS分配的公网地址。

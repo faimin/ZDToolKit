@@ -16,6 +16,7 @@
 #import "UITextView+ZDUtility.h"
 #import "NSObject+DLIntrospection.h"
 #import "NSObject+ZDUtility.h"
+#import "ZDFunction.h"
 
 @interface ViewController ()
 

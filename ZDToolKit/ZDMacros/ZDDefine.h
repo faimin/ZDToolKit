@@ -70,13 +70,6 @@
 //获取当前语言
 #define CurrentLanguage			([[NSLocale preferredLanguages] objectAtIndex:0])
 
-//判断是否 Retina屏、设备是否是ihone 5、是否是iPad
-#define isRetina				([UIScreen instancesRespondToSelector:@selector(currentMode)] ?	\
-	CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
-#define iPhone5					([UIScreen instancesRespondToSelector:@selector(currentMode)] ?	\
-	CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
-#define isPad					(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-
 //判断是真机还是模拟器
 #if TARGET_OS_IPHONE
 //iPhone Device
