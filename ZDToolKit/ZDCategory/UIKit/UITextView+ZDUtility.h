@@ -10,10 +10,13 @@
 
 @interface UITextView (ZDUtility)
 
-///限制最大输入字数为maxLength
-- (NSUInteger)letterCountWithMaxLength:(NSUInteger)maxLength;
-
 /// 利用KVC替换textView隐藏的label属性
 @property (nonatomic, strong) UILabel *zd_placeHolderLabel;
+
+/// 限制最大输入字数为maxLength
+- (NSUInteger)letterCountWithMaxLength:(NSUInteger)maxLength;
+
+/// 在textView上添加一个可响应事件的view
+- (void)addButton:(UIControl *)button;
 
 @end

@@ -405,6 +405,17 @@ NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *or
 	return mutAttributeStr;
 }
 
+NSMutableAttributedString *AddImageToAttributeString(UIImage *image) {
+    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+    attachment.image = image;
+    attachment.bounds = CGRectMake(0, -2, image.size.width, image.size.height);
+    
+    NSAttributedString *attachString = [NSAttributedString attributedStringWithAttachment:attachment];
+    NSMutableAttributedString *mutAttri = [[NSMutableAttributedString alloc] init];
+    [mutAttri appendAttributedString:attachString];
+    return mutAttri;
+}
+
 NSString *URLEncodedString(NSString *sourceText)
 {
 	NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)sourceText, NULL, CFSTR("!*'();:@&=+$,/?%#[]"), kCFStringEncodingUTF8));

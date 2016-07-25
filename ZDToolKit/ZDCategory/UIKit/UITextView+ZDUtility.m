@@ -60,4 +60,31 @@ static const void *PlaceHolderLabelKey = &PlaceHolderLabelKey;
     return objc_getAssociatedObject(self, PlaceHolderLabelKey);
 }
 
+// http://www.tuicool.com/articles/IBFbMfn
+- (void)addButton:(UIControl *)button
+{
+    NSMutableAttributedString *mutAttri = [[NSMutableAttributedString alloc] initWithString:self.text];
+    
+    // 注意：占位符不能用数字
+    NSAttributedString *placeholderAttri = [[NSAttributedString alloc] initWithString:@"EEE" attributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
+    [mutAttri appendAttributedString:placeholderAttri];
+    self.attributedText = mutAttri;
+    
+    // 计算textView文本时，计算宽度需要比textView本身的宽度减少8
+    CGFloat selfWidth = CGRectGetWidth(self.bounds);
+    CGFloat height = [mutAttri boundingRectWithSize:CGSizeMake(selfWidth - 8, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size.height;
+    // textView高度必须比文字高度多2 * 8的额外高度
+    self.frame = (CGRect){CGPointZero, selfWidth, height+16};
+    
+    self.selectedRange = NSMakeRange(self.text.length - 2, 2);
+    NSArray *textSelectionRects = [self selectionRectsForRange:self.selectedTextRange];
+    for (UITextSelectionRect *selectionRect in textSelectionRects) {
+        CGRect frame = selectionRect.rect;
+        // 改变button的frame
+        button.frame = frame;
+        [self addSubview:button];
+    }
+}
+
+
 @end

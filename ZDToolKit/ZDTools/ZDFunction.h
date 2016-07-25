@@ -79,6 +79,11 @@ FOUNDATION_EXPORT NSMutableAttributedString *SetAttributeString(NSString *string
 ///  @param filterFont   指定字体
 ///  @return NSMutableAttributedString
 FOUNDATION_EXPORT NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont);
+///  在文字中添加图片
+///  @param image 图片
+///  @return NSMutableAttributedString
+FOUNDATION_EXPORT NSMutableAttributedString *AddImageToAttributeString(UIImage *image);
+
 FOUNDATION_EXPORT NSString *URLEncodedString(NSString *sourceText);
 FOUNDATION_EXPORT CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth);
 FOUNDATION_EXPORT CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight);
