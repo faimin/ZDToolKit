@@ -747,9 +747,25 @@ double ZD_MemoryUsage(void)
 #pragma mark -
 double ZD_Round(CGFloat num, NSInteger num_digits)
 {
-    double zdpow = pow(10, num_digits);
-    double i = round(num * zdpow) / zdpow;
+    double zd_pow = pow(10, num_digits); // 指数函数，相当于10的digits次方
+    double i = round(num * zd_pow) / zd_pow;
     return i;
+}
+
+// http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/
+// 原理：给主队列设置一个标签，然后在当前队列获取标签，
+// 如果获取到的标签与设置的标签不一样，说明当前队列就不是主队列
+bool ZD_IsMainQueue()
+{
+    static const void *mainQueueKey = &mainQueueKey;
+    static void *mainQueueContext = &mainQueueContext;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dispatch_queue_set_specific(dispatch_get_main_queue(), mainQueueKey, mainQueueContext, nil);
+    });
+    void *context = dispatch_get_specific(mainQueueKey);
+    return (context == mainQueueContext);
 }
 
 #pragma mark - Runtime

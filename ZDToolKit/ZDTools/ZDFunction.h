@@ -54,14 +54,13 @@ UIKIT_EXTERN UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur);
 //===============================================================
 
 #pragma mark - UIView
-#pragma mark - 
-/**
- * lineFrame:     虚线的 frame
- * length:        虚线中短线的宽度
- * spacing:       虚线中短线之间的间距
- * color:         虚线中短线的颜色
- */
-UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor);
+#pragma mark -
+/// @brief 画虚线
+/// @param lineFrame:     虚线的 frame
+/// @param length:        虚线中短线的宽度
+/// @param spacing:       虚线中短线之间的间距
+/// @param color:         虚线中短线的颜色
+UIKIT_EXTERN UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor);
 
 #pragma mark - String
 #pragma mark -
@@ -146,6 +145,11 @@ FOUNDATION_EXPORT double ZD_MemoryUsage(void);
 #pragma mark -
 /// 处理精度问题
 FOUNDATION_EXPORT double ZD_Round(CGFloat num, NSInteger num_digits);
+
+#pragma mark - GCD
+#pragma mark -
+/// 判断当前是不是主队列
+FOUNDATION_EXPORT bool ZD_IsMainQueue();
 
 #pragma mark - Runtime
 #pragma mark -

@@ -60,6 +60,15 @@
     
     //id obj = [self zd_deepCopy];
     //NSLog(@"\n\n%@", obj);
+    
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (ZD_IsMainQueue()) {
+            NSLog(@"主队列");
+        }
+        else {
+            NSLog(@"子队列");
+        }
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated
