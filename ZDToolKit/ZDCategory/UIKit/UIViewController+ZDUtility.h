@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <StoreKit/StoreKit.h>
 
-@interface UIViewController (ZDUtility)
+@interface UIViewController (ZDUtility)<SKStoreProductViewControllerDelegate>
 
 - (BOOL)isSupport3DTouch;
 
