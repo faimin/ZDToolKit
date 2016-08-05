@@ -55,6 +55,7 @@
 		BC1349D11C60E26000BEB91D /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499B1C60E26000BEB91D /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC1349D21C60E26000BEB91D /* ZDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499D1C60E26000BEB91D /* ZDTools.m */; };
 		BC1349D31C60E26000BEB91D /* ZDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */; };
+		BC3A9A921D544D5800F446EE /* NSInvocation+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3A9A911D544D5800F446EE /* NSInvocation+Block.m */; };
 		BC5877881CBD073A00466FB8 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877631CBD073A00466FB8 /* NSArray+BlocksKit.m */; };
 		BC5877891CBD073A00466FB8 /* NSDictionary+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877651CBD073A00466FB8 /* NSDictionary+BlocksKit.m */; };
 		BC58778A1CBD073A00466FB8 /* NSIndexSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877671CBD073A00466FB8 /* NSIndexSet+BlocksKit.m */; };
@@ -201,6 +202,8 @@
 		BC13499D1C60E26000BEB91D /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
 		BC13499E1C60E26000BEB91D /* ZDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWeakProxy.h; sourceTree = "<group>"; };
 		BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWeakProxy.m; sourceTree = "<group>"; };
+		BC3A9A901D544D5800F446EE /* NSInvocation+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Block.h"; sourceTree = "<group>"; };
+		BC3A9A911D544D5800F446EE /* NSInvocation+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Block.m"; sourceTree = "<group>"; };
 		BC5877611CBD073A00466FB8 /* BKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMacros.h; sourceTree = "<group>"; };
 		BC5877621CBD073A00466FB8 /* NSArray+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BlocksKit.h"; sourceTree = "<group>"; };
 		BC5877631CBD073A00466FB8 /* NSArray+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BlocksKit.m"; sourceTree = "<group>"; };
@@ -461,12 +464,14 @@
 				BC1349571C60E26000BEB91D /* NSObject+DLIntrospection.m */,
 				BCE9474D1CA2A3E9006A4AAE /* NSObject+ZDUtility.h */,
 				BCE9474E1CA2A3E9006A4AAE /* NSObject+ZDUtility.m */,
+				BC002CF51CFE842900292CCC /* NSObject+JKAutoCoding.h */,
+				BC002CF61CFE842900292CCC /* NSObject+JKAutoCoding.m */,
 				BC13495C1C60E26000BEB91D /* NSString+ZDUtility.h */,
 				BC13495D1C60E26000BEB91D /* NSString+ZDUtility.m */,
 				BC1349541C60E26000BEB91D /* NSArray+ZDExtend.h */,
 				BC1349551C60E26000BEB91D /* NSArray+ZDExtend.m */,
-				BC002CF51CFE842900292CCC /* NSObject+JKAutoCoding.h */,
-				BC002CF61CFE842900292CCC /* NSObject+JKAutoCoding.m */,
+				BC3A9A901D544D5800F446EE /* NSInvocation+Block.h */,
+				BC3A9A911D544D5800F446EE /* NSInvocation+Block.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -835,6 +840,7 @@
 				BC5877901CBD073A00466FB8 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				BC10BEC91C8EA127006D4C17 /* ZDNavigationController.m in Sources */,
 				BC1349BF1C60E26000BEB91D /* UIView+ZDUtility.m in Sources */,
+				BC3A9A921D544D5800F446EE /* NSInvocation+Block.m in Sources */,
 				BC1349B91C60E26000BEB91D /* UIButton+ZDUtility.m in Sources */,
 				BC1349D21C60E26000BEB91D /* ZDTools.m in Sources */,
 				BC58778B1CBD073A00466FB8 /* NSInvocation+BlocksKit.m in Sources */,

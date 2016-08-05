@@ -357,6 +357,7 @@ static inline void dispatch_sync_on_main_queue(void (^block)()) {
 #endif
 
 #if DEBUG
+
 #define zd_keywordify @autoreleasepool {}
 #else
 #define zd_keywordify @try {} @catch (...) {}
@@ -365,6 +366,8 @@ static inline void dispatch_sync_on_main_queue(void (^block)()) {
 #endif
 
 
+//@autoreleasepool {} __attribute__((objc_ownership(weak))) __typeof__(self) self_weak_ = (self);
+//@autoreleasepool {} __attribute__((objc_ownership(strong))) __typeof__(self) self = self_weak_;
 
 
 
