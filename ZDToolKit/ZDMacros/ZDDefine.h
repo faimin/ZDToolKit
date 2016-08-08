@@ -365,9 +365,11 @@ static inline void dispatch_sync_on_main_queue(void (^block)()) {
 
 #endif
 
+#define weakObjc(objc_) \
+@autoreleasepool {} __attribute__((objc_ownership(weak))) __typeof__(objc_) self_weak_ = (objc_);
 
-//@autoreleasepool {} __attribute__((objc_ownership(weak))) __typeof__(self) self_weak_ = (self);
-//@autoreleasepool {} __attribute__((objc_ownership(strong))) __typeof__(self) self = self_weak_;
+#define strongObjc(objc_) \
+@autoreleasepool {} __attribute__((objc_ownership(strong))) __typeof__(objc_) self = self_weak_;
 
 
 
