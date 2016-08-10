@@ -22,6 +22,8 @@
 
 /// 去重
 - (NSArray *)zd_deduplication;
+/// 获取两个数组中的相同元素
+- (NSArray *)zd_collectSameElementWithArray:(__kindof NSArray *)otherArray;
 
 /// 求和
 - (CGFloat)zd_sum;

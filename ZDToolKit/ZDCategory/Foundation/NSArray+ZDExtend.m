@@ -54,6 +54,14 @@
 #endif
 }
 
+- (NSArray *)zd_collectSameElementWithArray:(__kindof NSArray *)otherArray
+{
+    if (!otherArray || otherArray.count == 0) return @[];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", otherArray];
+    NSArray *sameElements = [self filteredArrayUsingPredicate:predicate];
+    return sameElements;
+}
+
 - (CGFloat)zd_sum
 {
     return [[self valueForKeyPath:@"@sum.floatValue"] floatValue];
