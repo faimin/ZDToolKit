@@ -12,4 +12,7 @@
 
 - (CGSize)zd_contentSize;
 
+/// get content text in every line
+- (__kindof NSArray *)linesArrayOfString;
+
 @end
