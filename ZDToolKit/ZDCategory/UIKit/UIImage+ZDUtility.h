@@ -22,7 +22,8 @@
 - (UIImage *)resizeToSize:(CGSize)newSize;
 - (UIImage *)thumbnailWithSize:(int)imageWidthOrHeight;
 
-- (UIImage *)imageByInsetEdge:(UIEdgeInsets)insets withColor:(UIColor *)color;
+- (UIImage *)imageByInsetEdge:(UIEdgeInsets)insets
+                    withColor:(UIColor *)color;
 
 - (UIImage *)imageByRoundCornerRadius:(CGFloat)radius;
 - (UIImage *)imageByRoundCornerRadius:(CGFloat)radius

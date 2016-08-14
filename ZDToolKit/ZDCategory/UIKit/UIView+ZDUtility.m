@@ -134,9 +134,11 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     CGFloat viewMaxWidth = maxWidth ? : CGRectGetWidth([UIScreen mainScreen].bounds);
     NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:viewMaxWidth];
+    
     [self addConstraint:widthConstraint];
     CGSize fittingSize = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     [self removeConstraint:widthConstraint];
+    
     return fittingSize.height;
 }
 

@@ -85,7 +85,7 @@
 @property (nonatomic, readonly) CGFloat middleY;
 
 // Layer
-@property (nonatomic, assign) CGFloat zd_cornerRadius;
+//@property (nonatomic, assign) CGFloat zd_cornerRadius;
 
 /// Extend clickable area, e.g: self.zd_touchExtendInsets = UIEdgeInsetsMake(10, 20, 40, 10);
 @property (nonatomic, assign) UIEdgeInsets zd_touchExtendInsets;

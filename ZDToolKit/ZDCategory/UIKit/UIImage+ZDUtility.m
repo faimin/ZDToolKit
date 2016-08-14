@@ -115,8 +115,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     if (self.imageOrientation == UIImageOrientationLeft
         || self.imageOrientation == UIImageOrientationLeftMirrored
         || self.imageOrientation == UIImageOrientationRight
-        || self.imageOrientation == UIImageOrientationRightMirrored)
-    {
+        || self.imageOrientation == UIImageOrientationRightMirrored) {
         size_t temp = destWidth;
         destWidth = destHeight;
         destHeight = temp;
@@ -124,8 +123,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     
     /// Create an ARGB bitmap context
     CGContextRef bmContext = CreateARGBBitmapContext(destWidth, destHeight, destWidth * 4, [self zd_hasAlphaChannel]);
-    if (!bmContext)
-        return nil;
+    if (!bmContext) return nil;
     
     /// Image quality
     CGContextSetShouldAntialias(bmContext, true);
@@ -133,14 +131,13 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     CGContextSetInterpolationQuality(bmContext, kCGInterpolationHigh);
     
     /// Draw the image in the bitmap context
-    
     UIGraphicsPushContext(bmContext);
     CGContextDrawImage(bmContext, CGRectMake(0.0f, 0.0f, destWidth, destHeight), self.CGImage);
     UIGraphicsPopContext();
     
     /// Create an image object from the context
     CGImageRef scaledImageRef = CGBitmapContextCreateImage(bmContext);
-    UIImage* scaled = [UIImage imageWithCGImage:scaledImageRef scale:self.scale orientation:self.imageOrientation];
+    UIImage *scaled = [UIImage imageWithCGImage:scaledImageRef scale:self.scale orientation:self.imageOrientation];
     
     /// Cleanup
     CGImageRelease(scaledImageRef);
@@ -153,8 +150,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 {
     /// Keep aspect ratio
     size_t destWidth, destHeight;
-    if (self.size.width > self.size.height)
-    {
+    if (self.size.width > self.size.height) {
         destWidth = (size_t)newSize.width;
         destHeight = (size_t)(self.size.height * newSize.width / self.size.width);
     } else {
@@ -177,12 +173,29 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 - (UIImage *)resizeToSize:(CGSize)newSize
 {
 #if 0
+//    if (newSize.width <= 0 || newSize.height <= 0) return nil;
+//    UIGraphicsBeginImageContextWithOptions(newSize, NO, self.scale);
+//    [self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return image;
     if (newSize.width <= 0 || newSize.height <= 0) return nil;
+    
     UIGraphicsBeginImageContextWithOptions(newSize, NO, self.scale);
-    [self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    // Flip the context because UIKit coordinate system is upside down to Quartz coordinate system
+    CGContextTranslateCTM(context, 1.0, newSize.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    // Draw the original image to the context
+    CGContextSetBlendMode(context, kCGBlendModeCopy);
+    CGContextDrawImage(context, (CGRect){CGPointZero, newSize}, self.CGImage);
+    
+    // Retrieve the UIImage from the current context
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return image;
+    return newImage;
     
 #else
     CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
@@ -194,7 +207,6 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     // Set the quality level to use when rescaling
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     CGAffineTransform flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height);
-    
     CGContextConcatCTM(context, flipVertical);
     // Draw into the context; this scales the image
     CGContextDrawImage(context, newRect, imageRef);
