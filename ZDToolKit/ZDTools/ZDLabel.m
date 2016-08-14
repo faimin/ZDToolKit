@@ -17,10 +17,92 @@
     NSMutableDictionary *_targetActions;
     CTFrameRef _ctFrameRef;
 }
+@property (nonatomic, strong) NSTextStorage *textStorage;
+@property (nonatomic, strong) NSLayoutManager *layoutManager;
+@property (nonatomic, strong) NSTextContainer *textContainer;
+@property (nonatomic, strong) NSInvocation *invocation;
+@property (nonatomic, strong) NSArray<NSValue *> *ranges;
 @end
 
 @implementation ZDLabel
 
+#pragma mark - TextKit
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self setup];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.textContainer.size = self.bounds.size;
+}
+
+- (void)setup {
+    self.userInteractionEnabled = YES;
+    
+    self.textStorage = [[NSTextStorage alloc] init];
+    self.layoutManager = [[NSLayoutManager alloc] init];
+    self.textContainer = [[NSTextContainer alloc] init];
+    
+    [self.textStorage addLayoutManager:self.layoutManager];
+    [self.layoutManager addTextContainer:self.textContainer];
+}
+
+- (void)setText:(NSString *)text {
+    if (text) {
+        [self.textStorage setAttributedString:[[NSAttributedString alloc] initWithString:text]];
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)setAttributedText:(NSAttributedString *)attributedText {
+    if (attributedText) {
+        [self.textStorage setAttributedString:attributedText];
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)addTarget:(id)target action:(SEL)action ranges:(NSArray<NSValue *> *)ranges {
+    if (!target || NULL == action) return;
+    
+    self.invocation = ({
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:action]];
+        [invocation setTarget:target];
+        [invocation setSelector:action];
+        //[invocation setArgument:&ranges atIndex:2];
+        //[invocation retainArguments];
+        invocation;
+    });
+    self.ranges = ranges;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    //获取点击字符的索引位置
+    NSUInteger index = [self.layoutManager glyphIndexForPoint:point inTextContainer:self.textContainer];
+    for (NSValue *rangeValue in self.ranges) {
+        NSRange range = rangeValue.rangeValue;
+        // 索引是否在要响应的range里
+        BOOL isClicked = NSLocationInRange(index, range);
+        if (isClicked) {
+            [self.invocation invoke];
+            break;
+        }
+    }
+}
+
+/*
 /// CoreText实现图文混排之点击事件：http://www.jianshu.com/p/51c47329203e
 - (void)setTarget:(id)target action:(SEL)selector forRange:(NSRange)range
 {
@@ -107,6 +189,7 @@
         }
     }
 }
+*/
 
 #pragma mark - Change text frame
 - (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
@@ -121,9 +204,15 @@
     return newRect;
 }
 
+// 绘制文本
 - (void)drawTextInRect:(CGRect)rect {
     // 3.再用通过textRectForBounds:方法计算出的rect，经过edge处理后获取到实际的rect，然后绘制到这个实际的rect上
     [super drawTextInRect:UIEdgeInsetsInsetRect(rect, self.zd_edgeInsets)];
+    
+    //===================================================
+    // textKit重绘文字
+    NSRange range = NSMakeRange(0, self.textStorage.length);
+    [self.layoutManager drawGlyphsForGlyphRange:range atPoint:CGPointZero];
 }
 
 @end

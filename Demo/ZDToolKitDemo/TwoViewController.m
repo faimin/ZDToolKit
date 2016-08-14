@@ -7,13 +7,14 @@
 //
 
 #import "TwoViewController.h"
-//#import "UIControl+ZDUtility.h"
 #import "UIView+ZDUtility.h"
 #import "ZDFunction.h"
+#import "ZDLabel.h"
 
 @interface TwoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet ZDLabel *zdLabel;
 @end
 
 @implementation TwoViewController
@@ -26,11 +27,20 @@
     self.imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
     [self.imageView addGestureRecognizer:tap];
+    
+    NSString *text = @"链接地址: www.baidu.com";
+    self.zdLabel.text = text;
+    NSRange range = [text rangeOfString:@"www.baidu.com"];
+    [self.zdLabel addTarget:self action:@selector(textAction) ranges:@[[NSValue valueWithRange:range]]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)textAction {
+    NSLog(@"label响应了");
 }
 
 - (void)tapAction {

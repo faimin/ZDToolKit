@@ -110,10 +110,23 @@
                                     <constraint firstAttribute="height" constant="128" id="sP9-9J-n3R"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyS-XL-4kt" customClass="ZDLabel">
+                                <rect key="frame" x="20" y="113" width="560" height="90"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="DxR-Ct-stA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CyS-XL-4kt" secondAttribute="trailing" constant="20" id="R7s-UN-FMo"/>
+                            <constraint firstItem="CyS-XL-4kt" firstAttribute="top" secondItem="pzt-8m-sx9" secondAttribute="bottom" constant="50" id="arX-HL-CxM"/>
                             <constraint firstItem="IsT-Wc-Gaf" firstAttribute="centerY" secondItem="psP-jv-VBi" secondAttribute="centerY" constant="-50" id="b8x-D0-dsJ"/>
+                            <constraint firstItem="CyS-XL-4kt" firstAttribute="leading" secondItem="psP-jv-VBi" secondAttribute="leading" constant="20" id="bt9-3n-AdT"/>
                             <constraint firstItem="ErQ-jd-VOr" firstAttribute="top" secondItem="IsT-Wc-Gaf" secondAttribute="bottom" constant="50" id="fRu-BF-eRA"/>
                             <constraint firstItem="IsT-Wc-Gaf" firstAttribute="centerX" secondItem="psP-jv-VBi" secondAttribute="centerX" id="iy6-3f-z7G"/>
                             <constraint firstItem="ErQ-jd-VOr" firstAttribute="centerX" secondItem="psP-jv-VBi" secondAttribute="centerX" id="ya9-2p-1fB"/>
@@ -122,6 +135,7 @@
                     <connections>
                         <outlet property="button" destination="IsT-Wc-Gaf" id="cRx-1R-GRj"/>
                         <outlet property="imageView" destination="ErQ-jd-VOr" id="nVN-tm-gyV"/>
+                        <outlet property="zdLabel" destination="CyS-XL-4kt" id="RTW-Ke-ODh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnP-oC-xSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
