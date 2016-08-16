@@ -8,8 +8,8 @@
 
 #import "ZDLabel.h"
 #import <CoreText/CoreText.h>
-#import <objc/message.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface ZDLabel ()
 {
 //    CGFloat _iLineSpacing;
@@ -17,13 +17,12 @@
 //    CGRect _textRect;
 //    NSMutableDictionary *_targetActions;
 //    CTFrameRef _ctFrameRef;
-    SEL _selector;
 }
 @property (nonatomic, strong) NSTextStorage *textStorage;
 @property (nonatomic, strong) NSLayoutManager *layoutManager;
 @property (nonatomic, strong) NSTextContainer *textContainer;
-//@property (nonatomic, strong) NSInvocation *invocation;
-@property (nonatomic, weak) id target;
+@property (nonatomic, strong) NSInvocation *invocation;
+@property (nonatomic, strong) NSArray *params;
 @property (nonatomic, strong) NSArray<NSValue *> *ranges;
 @end
 
@@ -59,38 +58,38 @@
     [self.layoutManager addTextContainer:self.textContainer];
 }
 
-- (void)setText:(NSString *)text {
+- (void)setText:(nullable NSString *)text {
     if (text) {
         [self.textStorage setAttributedString:[[NSAttributedString alloc] initWithString:text]];
         [self setNeedsDisplay];
     }
 }
 
-- (void)setAttributedText:(NSAttributedString *)attributedText {
+- (void)setAttributedText:(nullable NSAttributedString *)attributedText {
     if (attributedText) {
         [self.textStorage setAttributedString:attributedText];
         [self setNeedsDisplay];
     }
 }
 
-- (void)addTarget:(id)target action:(SEL)action ranges:(NSArray<NSValue *> *)ranges {
+- (void)addTarget:(id)target action:(SEL)action params:(nullable NSArray *)params ranges:(NSArray<NSValue *> *)ranges {
     if (!target || NULL == action) return;
-    
-    self.target = target;
-    self->_selector = action;
-    
-//    self.invocation = ({
-//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:action]];
-//        [invocation setTarget:target];
-//        [invocation setSelector:action];
-//        //[invocation setArgument:&xxx atIndex:2];
-//        //[invocation retainArguments];
-//        invocation;
-//    });
+    NSUInteger paramsCount = [NSStringFromSelector(action) componentsSeparatedByString:@":"].count - 1;
+    NSAssert(paramsCount == params.count, @"参数个数不符");
+    self.invocation = ({
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:action]];
+        [invocation setTarget:target];
+        [invocation setSelector:action];
+        [params enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [invocation setArgument:&obj atIndex:idx + 2];
+        }];
+        [invocation retainArguments];
+        invocation;
+    });
     self.ranges = ranges;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
     
     UITouch *touch = [touches anyObject];
@@ -102,8 +101,8 @@
         // 索引是否在要响应的range里
         BOOL isInRange = NSLocationInRange(index, range);
         if (isInRange) {
-            //[self.invocation invoke];
-            ( (void (*)(id, SEL))(void *) objc_msgSend)(self.target, self->_selector);
+            [self.invocation invoke];
+            //( (void (*)(id, SEL))(void *) objc_msgSend)(self.target, self->_selector);
             break;
         }
     }
@@ -223,3 +222,4 @@
 }
 
 @end
+NS_ASSUME_NONNULL_END

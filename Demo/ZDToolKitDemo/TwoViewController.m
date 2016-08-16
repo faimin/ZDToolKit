@@ -31,7 +31,7 @@
     NSString *text = @"链接地址: www.baidu.com";
     self.zdLabel.text = text;
     NSRange range = [text rangeOfString:@"www.baidu.com"];
-    [self.zdLabel addTarget:self action:@selector(textAction) ranges:@[[NSValue valueWithRange:range]]];
+    [self.zdLabel addTarget:self action:@selector(textActionWithParams::) params:@[@"参数1", @"参数2"] ranges:@[[NSValue valueWithRange:range]]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,8 +39,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)textAction {
-    NSLog(@"www.baidu.com被点击了");
+- (void)textActionWithParams:(NSString *)param1 :(NSString *)param2 {
+    NSLog(@"www.baidu.com被点击了,参数:\n%@, %@", param1, param2);
 }
 
 - (void)tapAction {
