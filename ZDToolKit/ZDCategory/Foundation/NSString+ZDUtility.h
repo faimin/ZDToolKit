@@ -61,6 +61,7 @@ static NSString *const ZDRegexStr[] = {
 - (BOOL)zd_isAllNumber;
 - (BOOL)zd_isEmptyOrNil;
 - (BOOL)zd_isEmpty;
+- (NSUInteger)zd_countForTargetString:(NSString *)targetString;
 
 // MARK: Validate
 - (BOOL)zd_isValidWithRegex:(ZDRegex)regex;

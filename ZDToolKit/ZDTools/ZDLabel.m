@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addTarget:(id)target action:(SEL)action params:(nullable NSArray *)params ranges:(NSArray<NSValue *> *)ranges {
     if (!target || NULL == action) return;
-    NSUInteger paramsCount = [NSStringFromSelector(action) componentsSeparatedByString:@":"].count - 1;
+    NSUInteger paramsCount = MAX([NSStringFromSelector(action) componentsSeparatedByString:@":"].count - 1, 0);
     NSAssert(paramsCount == params.count, @"参数个数不符");
     self.invocation = ({
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:action]];

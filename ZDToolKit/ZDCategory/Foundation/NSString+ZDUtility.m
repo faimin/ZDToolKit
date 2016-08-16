@@ -282,6 +282,12 @@
     return NO;
 }
 
+- (NSUInteger)zd_countForTargetString:(NSString *)targetString
+{
+    if (!targetString || targetString.length == 0) return 0;
+    return MAX([self componentsSeparatedByString:targetString].count - 1, 0);
+}
+
 #pragma mark - Validate(验证)
 
 - (BOOL)zd_isValidWithRegex:(ZDRegex)regex
