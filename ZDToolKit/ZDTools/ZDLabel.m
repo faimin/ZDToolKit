@@ -8,19 +8,22 @@
 
 #import "ZDLabel.h"
 #import <CoreText/CoreText.h>
+#import <objc/message.h>
 
 @interface ZDLabel ()
 {
-    CGFloat _iLineSpacing;
-    CALayer *_underlindeLayer;
-    CGRect _textRect;
-    NSMutableDictionary *_targetActions;
-    CTFrameRef _ctFrameRef;
+//    CGFloat _iLineSpacing;
+//    CALayer *_underlindeLayer;
+//    CGRect _textRect;
+//    NSMutableDictionary *_targetActions;
+//    CTFrameRef _ctFrameRef;
+    SEL _selector;
 }
 @property (nonatomic, strong) NSTextStorage *textStorage;
 @property (nonatomic, strong) NSLayoutManager *layoutManager;
 @property (nonatomic, strong) NSTextContainer *textContainer;
-@property (nonatomic, strong) NSInvocation *invocation;
+//@property (nonatomic, strong) NSInvocation *invocation;
+@property (nonatomic, weak) id target;
 @property (nonatomic, strong) NSArray<NSValue *> *ranges;
 @end
 
@@ -73,14 +76,17 @@
 - (void)addTarget:(id)target action:(SEL)action ranges:(NSArray<NSValue *> *)ranges {
     if (!target || NULL == action) return;
     
-    self.invocation = ({
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:action]];
-        [invocation setTarget:target];
-        [invocation setSelector:action];
-        //[invocation setArgument:&ranges atIndex:2];
-        //[invocation retainArguments];
-        invocation;
-    });
+    self.target = target;
+    self->_selector = action;
+    
+//    self.invocation = ({
+//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:action]];
+//        [invocation setTarget:target];
+//        [invocation setSelector:action];
+//        //[invocation setArgument:&xxx atIndex:2];
+//        //[invocation retainArguments];
+//        invocation;
+//    });
     self.ranges = ranges;
 }
 
@@ -94,9 +100,10 @@
     for (NSValue *rangeValue in self.ranges) {
         NSRange range = rangeValue.rangeValue;
         // 索引是否在要响应的range里
-        BOOL isClicked = NSLocationInRange(index, range);
-        if (isClicked) {
-            [self.invocation invoke];
+        BOOL isInRange = NSLocationInRange(index, range);
+        if (isInRange) {
+            //[self.invocation invoke];
+            ( (void (*)(id, SEL))(void *) objc_msgSend)(self.target, self->_selector);
             break;
         }
     }

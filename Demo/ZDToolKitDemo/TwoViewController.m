@@ -40,7 +40,7 @@
 }
 
 - (void)textAction {
-    NSLog(@"label响应了");
+    NSLog(@"www.baidu.com被点击了");
 }
 
 - (void)tapAction {
