@@ -10,6 +10,7 @@
 #import "UIView+ZDUtility.h"
 #import "ZDFunction.h"
 #import "ZDLabel.h"
+#import "NSObject+ZDRuntime.h"
 
 @interface TwoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
@@ -32,6 +33,17 @@
     self.zdLabel.text = text;
     NSRange range = [text rangeOfString:@"www.baidu.com"];
     [self.zdLabel addTarget:self action:@selector(textActionWithParams::) params:@[@"参数1", @"参数2"] ranges:@[[NSValue valueWithRange:range]]];
+    
+    NSObject *objc = [NSObject new];
+    void *key = &key;
+    {
+        NSObject *weakObjc = [NSObject new];
+        [objc zd_setWeakAssociateValue:weakObjc forKey:key];
+        id a = [objc zd_getWeakAssociateValueForKey:key];
+        NSLog(@"%@", a);
+    }
+    id b = [objc zd_getWeakAssociateValueForKey:key];
+    NSLog(@"%@", b);
 }
 
 - (void)didReceiveMemoryWarning {

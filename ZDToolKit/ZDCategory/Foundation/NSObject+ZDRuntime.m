@@ -98,19 +98,53 @@ static char ZDRuntimeDeallocBlocks;
 
 #pragma mark - Associate
 
-- (void)zd_setAssociateValue:(id)value forKey:(void *)key
+- (void)zd_setStrongAssociateValue:(id)value forKey:(void *)key
 {
-    objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN);
 }
 
-- (void)zd_setAssociateWeakValue:(id)value forKey:(void *)key
-{
-	objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (id)zd_getAssociatedValueForKey:(void *)key
+- (id)zd_getStrongAssociatedValueForKey:(void *)key
 {
     return objc_getAssociatedObject(self, key);
+}
+
+- (void)zd_setCopyAssociateValue:(id)value forKey:(void *)key
+{
+    objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY);
+}
+
+- (id)zd_getCopyAssociatedValueForKey:(void *)key
+{
+    return objc_getAssociatedObject(self, key);
+}
+
+- (void)zd_setWeakAssociateValue:(id)value forKey:(void *)key
+{
+#if 0
+    __weak id weakValue = value;
+    objc_setAssociatedObject(self, key, ^{
+        return weakValue;
+    }, OBJC_ASSOCIATION_COPY);
+#else
+    NSPointerArray *pointerArr = [NSPointerArray weakObjectsPointerArray];
+    [pointerArr addPointer:(__bridge void *)(value)];
+    objc_setAssociatedObject(self, key, pointerArr, OBJC_ASSOCIATION_COPY);
+#endif
+}
+
+- (id)zd_getWeakAssociateValueForKey:(void *)key
+{
+#if 0
+    id(^tempBlock)() = objc_getAssociatedObject(self, key);
+    if (tempBlock) {
+        return tempBlock();
+    }
+    return nil;
+#else
+    NSPointerArray *pointerArr = objc_getAssociatedObject(self, key);
+    id value = pointerArr.count > 0 ? (__bridge id)[pointerArr pointerAtIndex:0] : nil;
+    return value;
+#endif
 }
 
 - (void)zd_removeAssociatedValues

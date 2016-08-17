@@ -52,11 +52,14 @@
 
 #pragma mark - Associate
 
-- (void)zd_setAssociateValue:(id)value forKey:(void *)key;
+- (void)zd_setStrongAssociateValue:(id)value forKey:(void *)key;
+- (id)zd_getStrongAssociatedValueForKey:(void *)key;
 
-- (void)zd_setAssociateWeakValue:(id)value forKey:(void *)key;
+- (void)zd_setCopyAssociateValue:(id)value forKey:(void *)key;
+- (id)zd_getCopyAssociatedValueForKey:(void *)key;
 
-- (id)zd_getAssociatedValueForKey:(void *)key;
+- (void)zd_setWeakAssociateValue:(id)value forKey:(void *)key;
+- (id)zd_getWeakAssociateValueForKey:(void *)key;
 
 - (void)zd_removeAssociatedValues;
 
