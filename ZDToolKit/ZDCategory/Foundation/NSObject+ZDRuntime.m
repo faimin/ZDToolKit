@@ -120,31 +120,19 @@ static char ZDRuntimeDeallocBlocks;
 
 - (void)zd_setWeakAssociateValue:(id)value forKey:(void *)key
 {
-#if 0
     __weak id weakValue = value;
     objc_setAssociatedObject(self, key, ^{
         return weakValue;
     }, OBJC_ASSOCIATION_COPY);
-#else
-    NSPointerArray *pointerArr = [NSPointerArray weakObjectsPointerArray];
-    [pointerArr addPointer:(__bridge void *)(value)];
-    objc_setAssociatedObject(self, key, pointerArr, OBJC_ASSOCIATION_COPY);
-#endif
 }
 
 - (id)zd_getWeakAssociateValueForKey:(void *)key
 {
-#if 0
     id(^tempBlock)() = objc_getAssociatedObject(self, key);
     if (tempBlock) {
         return tempBlock();
     }
     return nil;
-#else
-    NSPointerArray *pointerArr = objc_getAssociatedObject(self, key);
-    id value = pointerArr.count > 0 ? (__bridge id)[pointerArr pointerAtIndex:0] : nil;
-    return value;
-#endif
 }
 
 - (void)zd_removeAssociatedValues

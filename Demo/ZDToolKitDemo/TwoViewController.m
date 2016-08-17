@@ -44,6 +44,13 @@
     }
     id b = [objc zd_getWeakAssociateValueForKey:key];
     NSLog(@"%@", b);
+    
+    NSString *str = @"dga";
+    NSPointerArray *arr = [NSPointerArray weakObjectsPointerArray];
+    [arr addPointer:(__bridge void *)str];
+    str = nil;
+    id s = [arr pointerAtIndex:0];
+    NSLog(@"%@", s);
 }
 
 - (void)didReceiveMemoryWarning {
