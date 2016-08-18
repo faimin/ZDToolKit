@@ -45,12 +45,20 @@
     id b = [objc zd_getWeakAssociateValueForKey:key];
     NSLog(@"%@", b);
     
-    NSString *str = @"dga";
+    // 初步结论:NSPointerArray这种方式实现不了weak绑定
     NSPointerArray *arr = [NSPointerArray weakObjectsPointerArray];
-    [arr addPointer:(__bridge void *)str];
-    str = nil;
+    {
+        NSString *str = @"dga";
+        [arr addPointer:(__bridge void *)str];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        id s = [arr pointerAtIndex:0];
+        NSArray *objcs = arr.allObjects;
+        NSLog(@"%@, %@", s, objcs);
+    });
     id s = [arr pointerAtIndex:0];
-    NSLog(@"%@", s);
+    NSArray *objcs = arr.allObjects;
+    NSLog(@"%@, %@", s, objcs);
 }
 
 - (void)didReceiveMemoryWarning {

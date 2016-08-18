@@ -11,7 +11,7 @@
 
 @implementation NSObject (ZDRuntime)
 
-static char ZDRuntimeDeallocBlocks;
+static const char ZDRuntimeDeallocBlocks;
 
 #pragma mark - Dealloc Blocks
 
@@ -57,7 +57,7 @@ static char ZDRuntimeDeallocBlocks;
 #if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_7
     void *impBlockForIMP = (void *)objc_unretainedPointer(block);
 #else
-    id impBlockForIMP = (__bridge id)objc_unretainedPointer(block);
+    id impBlockForIMP = (__bridge id)(__bridge void *)(block);
 #endif
     
     IMP myIMP = imp_implementationWithBlock(impBlockForIMP);
@@ -118,6 +118,8 @@ static char ZDRuntimeDeallocBlocks;
     return objc_getAssociatedObject(self, key);
 }
 
+// 此处是利用block捕获外部变量的原理实现的.
+// 其实把value作为一个对象的weak属性,然后绑定这个对象也可以实现,当get时拿到这个对象,并获取它那个weak属性即可.
 - (void)zd_setWeakAssociateValue:(id)value forKey:(void *)key
 {
     __weak id weakValue = value;
