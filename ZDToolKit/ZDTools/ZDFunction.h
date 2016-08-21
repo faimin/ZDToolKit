@@ -145,6 +145,8 @@ FOUNDATION_EXPORT double ZD_MemoryUsage(void);
 #pragma mark -
 /// 处理精度问题
 FOUNDATION_EXPORT double ZD_Round(CGFloat num, NSInteger num_digits);
+/// Int转NSData
+FOUNDATION_EXPORT NSData *ZD_ConvertIntToData(int value);
 
 #pragma mark - GCD
 #pragma mark -

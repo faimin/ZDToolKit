@@ -752,6 +752,17 @@ double ZD_Round(CGFloat num, NSInteger num_digits)
     return i;
 }
 
+NSData *ZD_ConvertIntToData(int intValue)
+{
+    Byte bytes[4];
+    bytes[0] = (Byte)(intValue>>24);
+    bytes[1] = (Byte)(intValue>>16);
+    bytes[2] = (Byte)(intValue>>8);
+    bytes[3] = (Byte)(intValue);
+    NSData *data = [NSData dataWithBytes:bytes length:4];
+    return data;
+}
+
 // http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/
 // 原理：给主队列设置一个标签，然后在当前队列获取标签，
 // 如果获取到的标签与设置的标签不一样，说明当前队列就不是主队列
