@@ -75,6 +75,7 @@
 		BC5877981CBD073A00466FB8 /* NSTimer+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877831CBD073A00466FB8 /* NSTimer+BlocksKit.m */; };
 		BC5877991CBD073A00466FB8 /* UIControl+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877851CBD073A00466FB8 /* UIControl+BlocksKit.m */; };
 		BC58779A1CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877871CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.m */; };
+		BC5A641A1D6AF9EC004D8E3E /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = BC5A64191D6AF9EC004D8E3E /* uncrustify.cfg */; };
 		BCB0AB411CEDC50B00268D2A /* ZDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB0AB401CEDC50B00268D2A /* ZDLabel.m */; };
 		BCCE43B61D13B36600EAE5E3 /* ZDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCE43B51D13B36600EAE5E3 /* ZDTextView.m */; };
 		BCE9474F1CA2A3E9006A4AAE /* NSObject+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE9474E1CA2A3E9006A4AAE /* NSObject+ZDUtility.m */; };
@@ -244,6 +245,7 @@
 		BC5877861CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+BlocksKit.h"; sourceTree = "<group>"; };
 		BC5877871CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+BlocksKit.m"; sourceTree = "<group>"; };
 		BC58779B1CBD078A00466FB8 /* BKDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKDefines.h; sourceTree = "<group>"; };
+		BC5A64191D6AF9EC004D8E3E /* uncrustify.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		BCB0AB3F1CEDC50B00268D2A /* ZDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDLabel.h; sourceTree = "<group>"; };
 		BCB0AB401CEDC50B00268D2A /* ZDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDLabel.m; sourceTree = "<group>"; };
 		BCCE43B41D13B36600EAE5E3 /* ZDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDTextView.h; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 				BCB0AB401CEDC50B00268D2A /* ZDLabel.m */,
 				BCCE43B41D13B36600EAE5E3 /* ZDTextView.h */,
 				BCCE43B51D13B36600EAE5E3 /* ZDTextView.m */,
+				BC5A64191D6AF9EC004D8E3E /* uncrustify.cfg */,
 			);
 			path = ZDTools;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC5A641A1D6AF9EC004D8E3E /* uncrustify.cfg in Resources */,
 				05EC9C791C53CDC300BACFE9 /* LaunchScreen.storyboard in Resources */,
 				05EC9C761C53CDC300BACFE9 /* Assets.xcassets in Resources */,
 				05EC9C741C53CDC300BACFE9 /* Main.storyboard in Resources */,
