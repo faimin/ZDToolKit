@@ -17,6 +17,9 @@
 #import "NSObject+DLIntrospection.h"
 #import "NSObject+ZDUtility.h"
 #import "ZDFunction.h"
+#import <dlfcn.h>
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 @interface ViewController ()
 
@@ -115,7 +118,19 @@
     NSLog(@"%@", isAllNum ? @"YES" : @"NO");
 }
 
-
+- (void)privateLib {
+    void *FrontBoard = dlopen("/System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard", RTLD_LAZY);
+    if (FrontBoard) {
+        Class FBProcessManager = objc_getClass("FBProcessManager");
+        //NSArray* allProcesses = [[FBProcessManager sharedInstance] allProcesses];
+        if (FBProcessManager) {
+            NSLog(@"find it");
+        }
+        id manager = ( (id (*)(id, SEL)) (void *) objc_msgSend )((id)objc_getClass("FBProcessManager"), sel_registerName("sharedInstance"));
+        NSLog(@"%@", manager);
+        dlclose(FrontBoard);
+    }
+}
 
 
 

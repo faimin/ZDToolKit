@@ -33,7 +33,7 @@ static NSString *const ZDRegexStr[] = {
 @interface NSString (ZDUtility)
 
 // MARK: Size
-///宽和高都是0的时候为默认值CGFloat_MAX
+/// 宽和高都是0的时候为默认值CGFloat_MAX
 - (CGFloat)zd_widthWithFont:(UIFont *)font;
 - (CGFloat)zd_heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;
 - (CGFloat)zd_widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height;
@@ -61,9 +61,9 @@ static NSString *const ZDRegexStr[] = {
 - (BOOL)zd_isAllNumber;
 - (BOOL)zd_isEmptyOrNil;
 - (BOOL)zd_isEmpty;
-- (NSUInteger)zd_countForTargetString:(NSString *)targetString;
+- (NSUInteger)zd_countForTargetString:(NSString *)targetString; ///< 包含的指定字符串的个数
 
-// MARK: Validate
+// MARK: Validate(Regex)
 - (BOOL)zd_isValidWithRegex:(ZDRegex)regex;
 - (BOOL)zd_isValidEmail;
 - (BOOL)zd_isValidIdCard;
@@ -85,7 +85,7 @@ static NSString *const ZDRegexStr[] = {
 - (NSString *)zd_stringByURLEncode;
 - (NSString *)zd_stringByURLDecode;
 
-// MARK:获取url中的参数
+// MARK:Get all parameters in url
 - (NSDictionary *)zd_parameters;
 
 @end

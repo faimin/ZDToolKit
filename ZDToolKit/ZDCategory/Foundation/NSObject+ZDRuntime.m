@@ -43,7 +43,6 @@ static const char ZDRuntimeDeallocBlocks;
     }
 }
 
-
 + (BOOL)zd_addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block
 {
     // don't accept nil name
@@ -89,6 +88,7 @@ static const char ZDRuntimeDeallocBlocks;
 {
     /// http://nshipster.com/method-swizzling/
     /// 文中指出swizzle一个类方法用 Class class = object_getClass((id)self);
+    /// 原因: class方法默认是调用的object_getClass(self),但是KVO方法中重写了原来对象的class方法,如果还调原来的class方法,有可能会返回KVO新创建的那个类,所以为了防止这种情况出现,直接调用底层的object_getClass()方法.
     Class myClass = object_getClass(self);
     Method originalMethod = class_getClassMethod(myClass, selector);
     Method otherMethod = class_getClassMethod(myClass, otherSelector);
@@ -158,8 +158,7 @@ static const char ZDRuntimeDeallocBlocks;
 
 - (void)dealloc
 {
-    if (_deallocBlock)
-    {
+    if (_deallocBlock) {
         _deallocBlock();
         _deallocBlock = nil;
     }
