@@ -37,7 +37,7 @@
 		BC1349BE1C60E26000BEB91D /* UIView+RZBorders.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13496A1C60E26000BEB91D /* UIView+RZBorders.m */; };
 		BC1349BF1C60E26000BEB91D /* UIView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13496C1C60E26000BEB91D /* UIView+ZDUtility.m */; };
 		BC1349C01C60E26000BEB91D /* UIViewController+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13496E1C60E26000BEB91D /* UIViewController+ZDUtility.m */; };
-		BC1349C11C60E26000BEB91D /* UIWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349701C60E26000BEB91D /* UIWebView+ZDUtility.m */; };
+		BC1349C11C60E26000BEB91D /* UIWebView+ZDExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349701C60E26000BEB91D /* UIWebView+ZDExtend.m */; };
 		BC1349C21C60E26000BEB91D /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349771C60E26000BEB91D /* JRSwizzle.m */; };
 		BC1349C31C60E26000BEB91D /* NOBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349791C60E26000BEB91D /* NOBRuntime.m */; };
 		BC1349C51C60E26000BEB91D /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13497E1C60E26000BEB91D /* MAKVONotificationCenter.m */; };
@@ -77,6 +77,7 @@
 		BC58779A1CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877871CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.m */; };
 		BC5A641A1D6AF9EC004D8E3E /* uncrustify.cfg in Resources */ = {isa = PBXBuildFile; fileRef = BC5A64191D6AF9EC004D8E3E /* uncrustify.cfg */; };
 		BCB0AB411CEDC50B00268D2A /* ZDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB0AB401CEDC50B00268D2A /* ZDLabel.m */; };
+		BCC003AA1D6D4AD4008971F6 /* WKWebView+ZDExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC003A91D6D4AD4008971F6 /* WKWebView+ZDExtend.m */; };
 		BCCE43B61D13B36600EAE5E3 /* ZDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCE43B51D13B36600EAE5E3 /* ZDTextView.m */; };
 		BCE9474F1CA2A3E9006A4AAE /* NSObject+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE9474E1CA2A3E9006A4AAE /* NSObject+ZDUtility.m */; };
 		BCFAB7AF1C9CFDE800E453DC /* UILabel+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFAB7AE1C9CFDE800E453DC /* UILabel+ZDUtility.m */; };
@@ -163,8 +164,8 @@
 		BC13496C1C60E26000BEB91D /* UIView+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZDUtility.m"; sourceTree = "<group>"; };
 		BC13496D1C60E26000BEB91D /* UIViewController+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZDUtility.h"; sourceTree = "<group>"; };
 		BC13496E1C60E26000BEB91D /* UIViewController+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZDUtility.m"; sourceTree = "<group>"; };
-		BC13496F1C60E26000BEB91D /* UIWebView+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+ZDUtility.h"; sourceTree = "<group>"; };
-		BC1349701C60E26000BEB91D /* UIWebView+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+ZDUtility.m"; sourceTree = "<group>"; };
+		BC13496F1C60E26000BEB91D /* UIWebView+ZDExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+ZDExtend.h"; sourceTree = "<group>"; };
+		BC1349701C60E26000BEB91D /* UIWebView+ZDExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+ZDExtend.m"; sourceTree = "<group>"; };
 		BC1349721C60E26000BEB91D /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		BC1349731C60E26000BEB91D /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
 		BC1349741C60E26000BEB91D /* ZDDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDDefine.h; sourceTree = "<group>"; };
@@ -248,6 +249,8 @@
 		BC5A64191D6AF9EC004D8E3E /* uncrustify.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uncrustify.cfg; sourceTree = "<group>"; };
 		BCB0AB3F1CEDC50B00268D2A /* ZDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDLabel.h; sourceTree = "<group>"; };
 		BCB0AB401CEDC50B00268D2A /* ZDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDLabel.m; sourceTree = "<group>"; };
+		BCC003A81D6D4AD4008971F6 /* WKWebView+ZDExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+ZDExtend.h"; sourceTree = "<group>"; };
+		BCC003A91D6D4AD4008971F6 /* WKWebView+ZDExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+ZDExtend.m"; sourceTree = "<group>"; };
 		BCCE43B41D13B36600EAE5E3 /* ZDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDTextView.h; sourceTree = "<group>"; };
 		BCCE43B51D13B36600EAE5E3 /* ZDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTextView.m; sourceTree = "<group>"; };
 		BCE9474D1CA2A3E9006A4AAE /* NSObject+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDUtility.h"; sourceTree = "<group>"; };
@@ -505,8 +508,10 @@
 				BC1349641C60E26000BEB91D /* UIImage+ZDUtility.m */,
 				BC13496D1C60E26000BEB91D /* UIViewController+ZDUtility.h */,
 				BC13496E1C60E26000BEB91D /* UIViewController+ZDUtility.m */,
-				BC13496F1C60E26000BEB91D /* UIWebView+ZDUtility.h */,
-				BC1349701C60E26000BEB91D /* UIWebView+ZDUtility.m */,
+				BC13496F1C60E26000BEB91D /* UIWebView+ZDExtend.h */,
+				BC1349701C60E26000BEB91D /* UIWebView+ZDExtend.m */,
+				BCC003A81D6D4AD4008971F6 /* WKWebView+ZDExtend.h */,
+				BCC003A91D6D4AD4008971F6 /* WKWebView+ZDExtend.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -680,6 +685,7 @@
 				TargetAttributes = {
 					05EC9C651C53CDC300BACFE9 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 36NX5886GJ;
 					};
 					05EC9C7E1C53CDC300BACFE9 = {
 						CreatedOnToolsVersion = 7.2;
@@ -840,6 +846,7 @@
 				BC1349C31C60E26000BEB91D /* NOBRuntime.m in Sources */,
 				BC5877961CBD073A00466FB8 /* NSOrderedSet+BlocksKit.m in Sources */,
 				BC1349CA1C60E26000BEB91D /* UIViewController+KMNavigationBarTransition.m in Sources */,
+				BCC003AA1D6D4AD4008971F6 /* WKWebView+ZDExtend.m in Sources */,
 				BC5877951CBD073A00466FB8 /* NSObject+BKBlockObservation.m in Sources */,
 				BC5877901CBD073A00466FB8 /* NSMutableOrderedSet+BlocksKit.m in Sources */,
 				BC10BEC91C8EA127006D4C17 /* ZDNavigationController.m in Sources */,
@@ -857,7 +864,7 @@
 				BCE9474F1CA2A3E9006A4AAE /* NSObject+ZDUtility.m in Sources */,
 				BC1349D01C60E26000BEB91D /* ZDFunction.m in Sources */,
 				BC58778A1CBD073A00466FB8 /* NSIndexSet+BlocksKit.m in Sources */,
-				BC1349C11C60E26000BEB91D /* UIWebView+ZDUtility.m in Sources */,
+				BC1349C11C60E26000BEB91D /* UIWebView+ZDExtend.m in Sources */,
 				BC1349B41C60E26000BEB91D /* NSArray+ZDExtend.m in Sources */,
 				BC002CF71CFE842900292CCC /* NSObject+JKAutoCoding.m in Sources */,
 			);
@@ -1001,6 +1008,7 @@
 			baseConfigurationReference = C6DA40A502271BE759216C8F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 36NX5886GJ;
 				INFOPLIST_FILE = ZDToolKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1014,6 +1022,7 @@
 			baseConfigurationReference = 0BB03F39B2E15BAA99ED0C8B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 36NX5886GJ;
 				INFOPLIST_FILE = ZDToolKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -6,9 +6,9 @@
 //  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
-#import "UIWebView+ZDUtility.h"
+#import "UIWebView+ZDExtend.h"
 
-@implementation UIWebView (ZDUtility)
+@implementation UIWebView (ZDExtend)
 
 #pragma mark -
 #pragma mark 获取网页中的数据

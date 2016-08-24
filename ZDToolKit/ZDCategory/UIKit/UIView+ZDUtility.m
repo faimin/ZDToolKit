@@ -84,6 +84,11 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     }
 }
 
+- (BOOL)isSubviewForView:(UIView *)superView {
+    BOOL isSubview = [self isDescendantOfView:superView];
+    return isSubview;
+}
+
 - (UIImage *)snapshotImage {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];

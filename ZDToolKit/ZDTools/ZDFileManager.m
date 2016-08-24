@@ -236,6 +236,21 @@
 	return freespace;
 }
 
++ (void)clearUserDefaults
+{
+#if 1
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+#else
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *dict = [userDefaults dictionaryRepresentation];
+    for (id key in dict) {
+        [userDefaults removeObjectForKey:key];
+    }
+    [userDefaults synchronize];
+#endif
+}
+
 @end
 
 ///===================================================================

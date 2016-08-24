@@ -61,7 +61,8 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
                                                           8,
                                                           0,
                                                           CGImageGetColorSpace(imageRef),
-                                                          kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+                                                          kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst
+                                                          );
     
     // Draw the image into the context and retrieve the new image, which will now have an alpha layer
     CGContextDrawImage(offscreenContext, CGRectMake(0, 0, width, height), imageRef);
@@ -73,6 +74,100 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     CGImageRelease(imageRefWithAlpha);
     
     return imageWithAlpha;
+}
+
+- (UIColor *)getPixelColorAtLocation:(CGPoint)point
+{
+    UIColor* color = nil;
+    CGImageRef inImage = self.CGImage;
+    CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
+    
+    if (cgctx == NULL) {
+        return nil; /* error */
+    }
+    size_t w = CGImageGetWidth(inImage);
+    size_t h = CGImageGetHeight(inImage);
+    CGRect rect = {{0,0},{w,h}};
+    
+    CGContextDrawImage(cgctx, rect, inImage);
+    unsigned char* data = CGBitmapContextGetData (cgctx);
+    if (data != NULL) {
+        int offset = 4*((w*round(point.y))+round(point.x));
+        int alpha =  data[offset];
+        int red = data[offset+1];
+        int green = data[offset+2];
+        int blue = data[offset+3];
+        color = [UIColor colorWithRed:(red/255.0f)
+                                green:(green/255.0f)
+                                 blue:(blue/255.0f)
+                                alpha:(alpha/255.0f)];
+    }
+    CGContextRelease(cgctx);
+    if (data) {
+        free(data);
+    }
+    return color;
+}
+
+- (CGContextRef)createARGBBitmapContextFromImage:(CGImageRef)inImage
+{
+    CGContextRef context = NULL;
+    CGColorSpaceRef colorSpace;
+    void *bitmapData;
+    int bitmapByteCount;
+    int bitmapBytesPerRow;
+    
+    // Get image width, height. We'll use the entire image.
+    size_t pixelsWide = CGImageGetWidth(inImage);
+    size_t pixelsHigh = CGImageGetHeight(inImage);
+    
+    // Declare the number of bytes per row. Each pixel in the bitmap in this
+    // example is represented by 4 bytes; 8 bits each of red, green, blue, and
+    // alpha.
+    bitmapBytesPerRow   = (int)(pixelsWide * 4);
+    bitmapByteCount     = (int)(bitmapBytesPerRow * pixelsHigh);
+    
+    // Use the generic RGB color space.
+    colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    if (colorSpace == NULL)
+    {
+        fprintf(stderr,"Error allocating color space\n");
+        return NULL;
+    }
+    
+    // Allocate memory for image data. This is the destination in memory
+    // where any drawing to the bitmap context will be rendered.
+    bitmapData = malloc(bitmapByteCount);
+    if (bitmapData == NULL)
+    {
+        fprintf(stderr,"Memory not allocated!");
+        CGColorSpaceRelease(colorSpace);
+        return NULL;
+    }
+    
+    // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
+    // per component. Regardless of what the source image format is
+    // (CMYK, Grayscale, and so on) it will be converted over to the format
+    // specified here by CGBitmapContextCreate.
+    context = CGBitmapContextCreate(bitmapData,
+                                    pixelsWide,
+                                    pixelsHigh,
+                                    8,   // bits per component
+                                    bitmapBytesPerRow,
+                                    colorSpace,
+                                    kCGImageAlphaPremultipliedFirst
+                                    );
+    if (context == NULL)
+    {
+        free(bitmapData);
+        fprintf(stderr,"Context not created!");
+    }
+    
+    // Make sure and release colorspace before returning
+    CGColorSpaceRelease(colorSpace);
+    
+    return context;
 }
 
 #pragma mark - Resize / Thumbnail
@@ -455,7 +550,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 {
     size_t width = (size_t)CGImageGetWidth(self.CGImage);
     size_t height = (size_t)CGImageGetHeight(self.CGImage);
-    CGRect newRect = CGRectApplyAffineTransform(CGRectMake(0., 0., width, height),
+    CGRect newRect = CGRectApplyAffineTransform(CGRectMake(0.0, 0.0, width, height),
                                                 fitSize ? CGAffineTransformMakeRotation(radians) : CGAffineTransformIdentity);
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -473,7 +568,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     CGContextSetAllowsAntialiasing(context, true);
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     
-    CGContextTranslateCTM(context, +(newRect.size.width * 0.5), +(newRect.size.height * 0.5));
+    CGContextTranslateCTM(context, (newRect.size.width * 0.5), (newRect.size.height * 0.5));
     CGContextRotateCTM(context, radians);
     
     CGContextDrawImage(context, CGRectMake(-(width * 0.5), -(height * 0.5), width, height), self.CGImage);
@@ -540,6 +635,43 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+#pragma mark - Draw
+
+/// 在图片上绘制文字
+- (UIImage *)imageWithTitle:(NSString *)title fontSize:(CGFloat)fontSize
+{
+    //画布大小
+    CGSize size = CGSizeMake(self.size.width, self.size.height);
+    //创建一个基于位图的上下文
+    UIGraphicsBeginImageContextWithOptions(size,NO,0.0);//opaque:NO  scale:0.0
+    
+    [self drawAtPoint:CGPointZero];
+    
+    //文字居中显示在画布上
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paragraphStyle.alignment=NSTextAlignmentCenter;//文字居中
+    
+    //计算文字所占的size,文字居中显示在画布上
+    CGSize sizeText = [title boundingRectWithSize:self.size
+                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                       attributes:@{ NSFontAttributeName:[UIFont systemFontOfSize:fontSize] }
+                                          context:nil].size;
+    CGFloat width = self.size.width;
+    CGFloat height = self.size.height;
+    
+    CGRect rect = CGRectMake((width-sizeText.width)/2, (height-sizeText.height)/2, sizeText.width, sizeText.height);
+    //绘制文字
+    [title drawInRect:rect withAttributes:@{ NSFontAttributeName:[UIFont systemFontOfSize:fontSize],
+                                             NSForegroundColorAttributeName:[ UIColor whiteColor],
+                                             NSParagraphStyleAttributeName:paragraphStyle }];
+    
+    //返回绘制的新图形
+    UIImage *newImage= UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 @end

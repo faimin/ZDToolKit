@@ -12,7 +12,8 @@
 
 @interface NSObject (DLIntrospection)
 
-+ (NSArray *)classes;
++ (NSArray<NSString *> *)classes;
++ (NSArray<NSString *> *)subClasses;
 + (NSArray *)properties;
 + (NSArray *)instanceVariables;
 + (NSArray *)classMethods;

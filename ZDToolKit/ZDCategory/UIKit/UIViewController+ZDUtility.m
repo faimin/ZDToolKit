@@ -42,4 +42,25 @@
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+// refer: http://stackoverflow.com/questions/19140530/toplayoutguide-in-child-view-controller
+- (id<UILayoutSupport>)zd_navigationBarTopLayoutGuide
+{
+    if (self.parentViewController && ![self.parentViewController isKindOfClass:[UINavigationController class]]) {
+        return self.parentViewController.zd_navigationBarTopLayoutGuide;
+    }
+    else {
+        return self.topLayoutGuide;
+    }
+}
+
+- (id<UILayoutSupport>)zd_navigationBarBottomLayoutGuide
+{
+    if (self.parentViewController && ![self.parentViewController isKindOfClass:[UINavigationController class]]) {
+        return self.parentViewController.zd_navigationBarBottomLayoutGuide;
+    }
+    else {
+        return self.topLayoutGuide;
+    }
+}
+
 @end

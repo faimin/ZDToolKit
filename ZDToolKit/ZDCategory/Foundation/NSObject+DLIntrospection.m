@@ -65,6 +65,26 @@ static void getSuper(Class class, NSMutableString *result) {
     return [result sortedArrayUsingSelector:@selector(compare:)];
 }
 
++ (NSArray<NSString *> *)subClasses {
+    Class myClass = [self class];
+    NSMutableArray *mySubclasses = [NSMutableArray array];
+    unsigned int classesCount;
+    Class *classes = objc_copyClassList(&classesCount);
+    for (unsigned int i = 0; i < classesCount; i++) {
+        Class superClass = classes[i];
+        do {
+            superClass = class_getSuperclass(superClass);
+        } while (superClass && superClass != myClass);
+        
+        if (superClass) {
+            [mySubclasses addObject:NSStringFromClass(classes[i])];
+        }
+    }
+    
+    free(classes);
+    return mySubclasses;
+}
+
 + (NSArray *)classMethods {
     return [self methodsForClass:object_getClass([self class]) typeFormat:@"+"];
 }

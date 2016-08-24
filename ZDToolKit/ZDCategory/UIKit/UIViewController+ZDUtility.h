@@ -13,4 +13,10 @@
 
 - (BOOL)isSupport3DTouch;
 
+- (void)presentModalBuyItemVCWithId:(NSString *)itemId
+                           animated:(BOOL)animated;
+
+- (id<UILayoutSupport>)zd_navigationBarTopLayoutGuide;
+- (id<UILayoutSupport>)zd_navigationBarBottomLayoutGuide;
+
 @end

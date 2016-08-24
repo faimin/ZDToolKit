@@ -18,6 +18,7 @@
 /// Traverse all subviews
 - (void)eachSubview:(void (^)(UIView *subview))block;
 - (void)removeAllSubviews;
+- (BOOL)isSubviewForView:(UIView *)superView; ///< 是不是superView的子视图
 
 /// Create a snapshot image of the complete view hierarchy.
 - (UIImage *)snapshotImage;
