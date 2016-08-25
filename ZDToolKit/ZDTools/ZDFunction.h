@@ -151,7 +151,7 @@ FOUNDATION_EXPORT NSData *ZD_ConvertIntToData(int value);
 #pragma mark - GCD
 #pragma mark -
 /// 判断当前是不是主队列
-FOUNDATION_EXPORT bool ZD_IsMainQueue();
+FOUNDATION_EXPORT BOOL ZD_IsMainQueue();
 
 #pragma mark - Runtime
 #pragma mark -

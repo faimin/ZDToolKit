@@ -16,6 +16,7 @@
 #import <net/if.h>
 #import <arpa/inet.h>
 #import <mach/mach.h>
+#import <pthread/pthread.h>
 #import <Accelerate/Accelerate.h>
 
 #pragma mark - Gif Image
@@ -766,8 +767,9 @@ NSData *ZD_ConvertIntToData(int intValue)
 // http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/
 // 原理：给主队列设置一个标签，然后在当前队列获取标签，
 // 如果获取到的标签与设置的标签不一样，说明当前队列就不是主队列
-bool ZD_IsMainQueue()
+BOOL ZD_IsMainQueue()
 {
+#if 1
     static const void *mainQueueKey = &mainQueueKey;
     static void *mainQueueContext = &mainQueueContext;
     
@@ -777,6 +779,11 @@ bool ZD_IsMainQueue()
     });
     void *context = dispatch_get_specific(mainQueueKey);
     return (context == mainQueueContext);
+#else
+    dispatch_queue_t mainQueue = (__bridge dispatch_queue_t)(pthread_getspecific(20));
+    BOOL isMainQueue = !strcmp(dispatch_queue_get_label(mainQueue), @"com.apple.main-thread".UTF8String);
+    return isMainQueue;
+#endif
 }
 
 #pragma mark - Runtime

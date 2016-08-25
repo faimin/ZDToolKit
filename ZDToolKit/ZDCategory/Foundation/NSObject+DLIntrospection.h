@@ -14,12 +14,12 @@
 
 + (NSArray<NSString *> *)classes;
 + (NSArray<NSString *> *)subClasses;
-+ (NSArray *)properties;
-+ (NSArray *)instanceVariables;
-+ (NSArray *)classMethods;
-+ (NSArray *)instanceMethods;
++ (NSArray<NSString *> *)properties;
++ (NSArray<NSString *> *)instanceVariables;
++ (NSArray<NSString *> *)classMethods;
++ (NSArray<NSString *> *)instanceMethods;
 
-+ (NSArray *)protocols;
++ (NSArray<NSString *> *)protocols;
 + (NSDictionary *)descriptionForProtocol:(Protocol *)proto;
 
 + (NSString *)parentClassHierarchy;

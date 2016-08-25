@@ -32,12 +32,36 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    self.title = @"ZDToolKitDemo";
-    //[self functionTest];
-    //[self numberTest];
+	[super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+	self.title = @"ZDToolKitDemo";
     
+    [self uiTest];
+	//[self functionTest];
+	//[self numberTest];
+    [self mainqueueTest];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	/// 对于autolayout布局的视图，只有在视图显示出来的时候才能获取到真实的frame
+	/// viewDidLoad和viewWillAppear方法中都不行，时机过早
+	//self.testView.zd_cornerRadius = 30;
+}
+
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Test
+
+- (void)uiTest {
     NSString *urlStr = @"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg";
     //[self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
 #if 1
@@ -63,75 +87,66 @@
     
     //id obj = [self zd_deepCopy];
     //NSLog(@"\n\n%@", obj);
-    
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (ZD_IsMainQueue()) {
-            NSLog(@"主队列");
-        }
-        else {
-            NSLog(@"子队列");
-        }
-    });
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+- (void)functionTest {
+	UIView *view = ({
+		UIView *view = [UIView new];
+		zd_defer {
+		    /// 所谓作用域结束，包括大括号结束、return、goto、break、exception等各种情况
+			NSLog(@"当前作用域结束,马上要出作用域了");
+		};
+		view.backgroundColor = [UIColor redColor];
+		view.frame = CGRectMake(20, 100, 50, 50);
+		view;
+	});
+
+	[self.view addSubview:view];
+
+	NSLog(@"执行完毕");
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    /// 对于autolayout布局的视图，只有在视图显示出来的时候才能获取到真实的frame
-    /// viewDidLoad和viewWillAppear方法中都不行，时机过早
-    //self.testView.zd_cornerRadius = 30;
+- (void)numberTest {
+	NSString *str = @"2345";
+	BOOL isAllNum = [str zd_isAllNumber];
+
+	NSLog(@"%@", isAllNum ? @"YES" : @"NO");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+- (void)mainqueueTest {
+	dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		if (ZD_IsMainQueue()) {
+			NSLog(@"主队列");
+		}
+		else {
+			NSLog(@"子队列");
+		}
+	});
 
-- (void)functionTest
-{
-    UIView *view = ({
-        UIView *view = [UIView new];
-        zd_defer{
-            /// 所谓作用域结束，包括大括号结束、return、goto、break、exception等各种情况
-            NSLog(@"当前作用域结束,马上要出作用域了");
-        };
-        view.backgroundColor = [UIColor redColor];
-        view.frame = CGRectMake(20, 100, 50, 50);
-        view;
-    });
-    [self.view addSubview:view];
-    
-    NSLog(@"执行完毕");
-    
-}
-
-- (void)numberTest
-{
-    NSString *str = @"2345";
-    BOOL isAllNum = [str zd_isAllNumber];
-    NSLog(@"%@", isAllNum ? @"YES" : @"NO");
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if (ZD_IsMainQueue()) {
+			NSLog(@"主队列");
+		}
+		else {
+			NSLog(@"子队列");
+		}
+	});
 }
 
 - (void)privateLib {
-    void *FrontBoard = dlopen("/System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard", RTLD_LAZY);
-    if (FrontBoard) {
-        Class FBProcessManager = objc_getClass("FBProcessManager");
-        //NSArray* allProcesses = [[FBProcessManager sharedInstance] allProcesses];
-        if (FBProcessManager) {
-            NSLog(@"find it");
-        }
-        id manager = ( (id (*)(id, SEL)) (void *) objc_msgSend )((id)objc_getClass("FBProcessManager"), sel_registerName("sharedInstance"));
-        NSLog(@"%@", manager);
-        dlclose(FrontBoard);
-    }
+	void *FrontBoard = dlopen("/System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard", RTLD_LAZY);
+
+	if (FrontBoard) {
+		Class FBProcessManager = objc_getClass("FBProcessManager");
+
+		//NSArray* allProcesses = [[FBProcessManager sharedInstance] allProcesses];
+		if (FBProcessManager) {
+			NSLog(@"find it");
+		}
+		id manager = ( (id (*)(id, SEL))(void *) objc_msgSend)((id)objc_getClass("FBProcessManager"), sel_registerName("sharedInstance"));
+		NSLog(@"%@", manager);
+		dlclose(FrontBoard);
+	}
 }
-
-
 
 @end
