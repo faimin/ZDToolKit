@@ -11,8 +11,7 @@
 @implementation WKWebView (ZDExtend)
 
 ///  获取所有图片链接
-- (void)getImageUrls:(void(^)(id _Nullable imageUrls))block
-{
+- (void)getImageUrls:(void(^)(id _Nullable imageUrls))block {
     static NSString * const jsGetImages =
     @"function getImages(){\
     var objs = document.getElementsByTagName(\"img\");\
@@ -32,6 +31,5 @@
         }
     }];
 }
-
 
 @end

@@ -12,7 +12,8 @@
 @interface UIViewController (ZDUtility)<SKStoreProductViewControllerDelegate>
 
 - (BOOL)isSupport3DTouch;
-
+- (BOOL)isComefromPresent;  ///< 当前控制是不是present来的
+- (void)popOrDismiss;
 - (void)presentModalBuyItemVCWithId:(NSString *)itemId
                            animated:(BOOL)animated;
 

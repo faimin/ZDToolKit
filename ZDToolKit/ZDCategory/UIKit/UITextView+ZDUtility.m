@@ -13,8 +13,7 @@ static const void *PlaceHolderLabelKey = &PlaceHolderLabelKey;
 
 @implementation UITextView (ZDUtility)
 
-- (NSUInteger)letterCountWithMaxLength:(NSUInteger)maxLength
-{
+- (NSUInteger)letterCountWithMaxLength:(NSUInteger)maxLength {
     NSString *toBeString = self.text;
     NSUInteger txtCount = toBeString.length;
     
@@ -45,8 +44,7 @@ static const void *PlaceHolderLabelKey = &PlaceHolderLabelKey;
     return txtCount;
 }
 
-- (void)setZd_placeHolderLabel:(UILabel *)zd_placeHolderLabel
-{
+- (void)setZd_placeHolderLabel:(UILabel *)zd_placeHolderLabel {
     if (!zd_placeHolderLabel) {
         return;
     }
@@ -55,14 +53,12 @@ static const void *PlaceHolderLabelKey = &PlaceHolderLabelKey;
     objc_setAssociatedObject(self, PlaceHolderLabelKey, zd_placeHolderLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UILabel *)zd_placeHolderLabel
-{
+- (UILabel *)zd_placeHolderLabel {
     return objc_getAssociatedObject(self, PlaceHolderLabelKey);
 }
 
 // http://www.tuicool.com/articles/IBFbMfn
-- (void)addButton:(UIControl *)button
-{
+- (void)addButton:(UIControl *)button {
     NSMutableAttributedString *mutAttri = [[NSMutableAttributedString alloc] initWithString:self.text];
     
     // 注意：占位符不能用数字

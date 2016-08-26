@@ -13,15 +13,13 @@
 
 #pragma mark - Radius
 
-- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius
-{
+- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius {
     return [self imageByRoundCornerRadius:radius borderWidth:0 borderColor:nil];
 }
 
 - (UIImage *)imageByRoundCornerRadius:(CGFloat)radius
                           borderWidth:(CGFloat)borderWidth
-                          borderColor:(UIColor *)borderColor
-{
+                          borderColor:(UIColor *)borderColor {
     return [self imageByRoundCornerRadius:radius
                                   corners:UIRectCornerAllCorners
                               borderWidth:borderWidth
@@ -34,8 +32,7 @@
                               corners:(UIRectCorner)corners
                           borderWidth:(CGFloat)borderWidth
                           borderColor:(UIColor *)borderColor
-                       borderLineJoin:(CGLineJoin)borderLineJoin
-{
+                       borderLineJoin:(CGLineJoin)borderLineJoin {
     if (corners != UIRectCornerAllCorners) {
         UIRectCorner tmp = 0;
         if (corners & UIRectCornerTopLeft) tmp |= UIRectCornerBottomLeft;
@@ -89,8 +86,7 @@
 @implementation UIImageView (ZDUtility)
 
 - (void)zd_roundedImageWithCornerRadius:(CGFloat)cornerRadius
-                             completion:(void (^)(UIImage *image))completion
-{
+                             completion:(void (^)(UIImage *image))completion {
     UIImage *image = self.image;
     NSAssert(image, @"此方法执行的前提是image必须提前设置好");
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -120,8 +116,7 @@
  */
 - (void)zd_setImageWithURL:(NSString *)urlStr
           placeholderImage:(NSString *)placeHolderStr
-              cornerRadius:(CGFloat)radius
-{
+              cornerRadius:(CGFloat)radius {
     NSURL *url = [NSURL URLWithString:urlStr];
     
     if (radius != 0.0) {
@@ -181,8 +176,7 @@
 
 #pragma mark - Private Method
 
-- (void)makeBackgroundColorToSuperView
-{
+- (void)makeBackgroundColorToSuperView {
     if (self.superview && ![self.backgroundColor isEqual:self.superview.backgroundColor]) {
         self.backgroundColor = self.superview.backgroundColor;
     }

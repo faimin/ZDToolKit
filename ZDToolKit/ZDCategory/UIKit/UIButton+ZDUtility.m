@@ -10,8 +10,7 @@
 
 @implementation UIButton (ZDUtility)
 
-- (void)zd_verticalImageAndTitle:(CGFloat)spacing
-{
+- (void)zd_verticalImageAndTitle:(CGFloat)spacing {
     self.titleLabel.backgroundColor = [UIColor greenColor];
     CGSize imageSize = self.imageView.frame.size;
     CGSize titleSize = self.titleLabel.frame.size;
@@ -33,8 +32,7 @@
     self.titleEdgeInsets = UIEdgeInsetsMake(0, - imageSize.width, - (totalHeight - titleSize.height), 0);
 }
 
-- (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing
-{
+- (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing {
     [self setTitle:self.currentTitle forState:UIControlStateNormal];
     [self setImage:self.currentImage forState:UIControlStateNormal];
     
@@ -86,13 +84,11 @@
     }
 }
 
-- (void)zd_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state
-{
+- (void)zd_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state {
     [self setBackgroundImage:[self zd_imageWithColor:backgroundColor] forState:state];
 }
 
-- (UIImage *)zd_imageWithColor:(UIColor *)color
-{
+- (UIImage *)zd_imageWithColor:(UIColor *)color {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();

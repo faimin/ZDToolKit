@@ -11,8 +11,7 @@
 
 @implementation UILabel (ZDUtility)
 
-- (CGSize)zd_contentSize
-{
+- (CGSize)zd_contentSize {
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = self.lineBreakMode;
     paragraphStyle.alignment = self.textAlignment;
@@ -27,8 +26,7 @@
 }
 
 // http://stackoverflow.com/questions/34867231/issue-get-lines-array-of-string-inn-label
-- (__kindof NSArray *)linesArrayOfString
-{
+- (__kindof NSArray *)linesArrayOfString {
     NSString *text = self.text;
     UIFont *font = self.font;
     CGRect rect = self.frame;

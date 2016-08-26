@@ -61,6 +61,17 @@
     NSLog(@"%@, %@", s, objcs);
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    BOOL isContains = [self.navigationController.childViewControllers containsObject:self];
+    if (isContains) {
+        NSLog(@"消失");
+    } else {
+        NSLog(@"释放");
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

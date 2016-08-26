@@ -13,8 +13,7 @@
 ///  获取UIColor对象的CMYK字符串值。
 ///
 ///  @return CMYK字符串
-- (NSString *)zd_CMYKStringValue
-{
+- (NSString *)zd_CMYKStringValue {
 	// Method provided by the Colours class extension
 	NSDictionary *cmykDict = [self zd_getCMYKValueByColor:self];
 	return [NSString stringWithFormat:@"(%0.2f, %0.2f, %0.2f, %0.2f)",

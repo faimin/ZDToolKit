@@ -54,6 +54,17 @@
 	//self.testView.zd_cornerRadius = 30;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    BOOL isContains = [self.navigationController.childViewControllers containsObject:self];
+    if (isContains) {
+        NSLog(@"控制器只是单纯的disappear，比如pushToVC");
+    } else {
+        NSLog(@"控制器将要释放了");
+    }
+}
+
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
