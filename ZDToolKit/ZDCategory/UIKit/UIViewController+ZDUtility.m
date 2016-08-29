@@ -23,6 +23,22 @@
     return isPresent;
 }
 
+- (UIScreenEdgePanGestureRecognizer *)screenEdgePanGesture {
+    if (!self.navigationController) return nil;
+    
+    UIScreenEdgePanGestureRecognizer *edgePanGesture = nil;
+    
+    NSArray *gestures = self.navigationController.view.gestureRecognizers;
+    for (__kindof UIGestureRecognizer *gesture in gestures) {
+        if ([gesture isKindOfClass:[UIScreenEdgePanGestureRecognizer class]]) {
+            edgePanGesture = gesture;
+            break;
+        }
+    }
+    
+    return edgePanGesture;
+}
+
 - (void)popOrDismiss {
     if (self.presentationController) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
