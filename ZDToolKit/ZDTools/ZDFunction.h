@@ -15,14 +15,10 @@
 
 #pragma mark - Gif Image
 #pragma mark -
-/**
- Loads an animated GIF from file, compatible with UIImageView
- */
+/// Loads an animated GIF from file, compatible with UIImageView
 UIKIT_EXTERN UIImage *ZDAnimatedGIFFromFile(NSString *path);
 
-/**
- Loads an animated GIF from data, compatible with UIImageView
- */
+/// Loads an animated GIF from data, compatible with UIImageView
 UIKIT_EXTERN UIImage *ZDAnimatedGIFFromData(NSData *data);
 
 
@@ -108,13 +104,13 @@ FOUNDATION_EXPORT NSDictionary *DictionaryOrderByCharacterWithOriginalArray(NSAr
 
 #pragma mark - InterfaceOrientation
 #pragma mark -
-///屏幕是横屏还是竖屏
+/// 屏幕是横屏还是竖屏
 FOUNDATION_EXPORT BOOL isPortrait();     ///< 横屏
 FOUNDATION_EXPORT BOOL isLandscape();    ///< 竖屏
 
 #pragma mark - NSBundle
 #pragma mark -
-///get list of classes already loaded into memory in specific bundle (or binary)
+/// get list of classes already loaded into memory in specific bundle (or binary)
 FOUNDATION_EXPORT NSArray *GetClassNames();
 
 //===============================================================

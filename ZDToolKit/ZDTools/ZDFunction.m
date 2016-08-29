@@ -804,6 +804,7 @@ void ZD_PrintObjectMethods()
 
 void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector)
 {
+    aClass = object_getClass(aClass);
     Method origMethod = class_getClassMethod(aClass, originalSelector);
     Method newMethod = class_getClassMethod(aClass, newSelector);
     method_exchangeImplementations(origMethod, newMethod);

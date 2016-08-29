@@ -44,7 +44,7 @@
 
 + (long long)freeDiskSpace;
 
-/// 清空NSUserDefaults中的全部保存内容
+/// 清空NSUserDefaults中的全部数据
 + (void)clearUserDefaults;
 
 @end

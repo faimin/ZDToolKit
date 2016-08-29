@@ -9,7 +9,8 @@
 #import "ZDTools.h"
 #import <objc/runtime.h>
 
-static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel) {
+static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
+{
     Method origMethod = class_getInstanceMethod(aClass, originalSel);
     Method replMethod = class_getInstanceMethod(aClass, replacementSel);
     if (!origMethod || !replMethod) {
@@ -29,15 +30,18 @@ static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL r
 
 @implementation ZDTools
 
-void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)()) {
+void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)())
+{
     [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:dispatch_get_main_queue() key:[NSThread callStackSymbols][1] block:block];
 }
 
-void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)()) {
+void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)())
+{
     [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:queue key:[NSThread callStackSymbols][1] block:block];
 }
 
-+ (NSMutableDictionary *)scheduleSourceDic {
++ (NSMutableDictionary *)scheduleSourceDic
+{
     static NSMutableDictionary *_sourceDic = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -47,7 +51,8 @@ void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_qu
 }
 
 // https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
-+ (void)zd_throttleWithTimeinterval:(NSTimeInterval)intervalInSeconds queue:(dispatch_queue_t)queue key:(NSString *)key block:(void(^)())block {
++ (void)zd_throttleWithTimeinterval:(NSTimeInterval)intervalInSeconds queue:(dispatch_queue_t)queue key:(NSString *)key block:(void(^)())block
+{
     NSMutableDictionary *scheduleSourceDic = [self scheduleSourceDic];
     dispatch_source_t timer = scheduleSourceDic[key];
     if (timer) {
