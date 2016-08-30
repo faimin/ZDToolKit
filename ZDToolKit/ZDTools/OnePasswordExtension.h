@@ -3,6 +3,7 @@
 //
 //  Lovingly handcrafted by Dave Teare, Michael Fey, Rad Azzouz, and Roustem Karimov.
 //  Copyright (c) 2014 AgileBits. All rights reserved.
+//
 //  https://github.com/AgileBits/onepassword-app-extension
 
 #import <Foundation/Foundation.h>
@@ -56,8 +57,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Note to creators of libraries or frameworks:
 // If you include this code within your library, then to prevent potential duplicate symbol
-// conflicts for adopters of your library, you should rename the OnePasswordExtension class.
-// You might to so by adding your own project prefix, e.g., MyLibraryOnePasswordExtension.
+// conflicts for adopters of your library, you should rename the OnePasswordExtension class
+// and associated typedefs. You might to so by adding your own project prefix, e.g.,
+// MyLibraryOnePasswordExtension.
+
+typedef void (^OnePasswordLoginDictionaryCompletionBlock)(NSDictionary * __nullable loginDictionary, NSError * __nullable error);
+typedef void (^OnePasswordSuccessCompletionBlock)(BOOL success, NSError * __nullable error);
+typedef void (^OnePasswordExtensionItemCompletionBlock)(NSExtensionItem * __nullable extensionItem, NSError * __nullable error);
 
 @interface OnePasswordExtension : NSObject
 
@@ -92,11 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param sender The sender which triggers the share sheet to show. UIButton, UIBarButtonItem or UIView. Can also be nil on iPhone, but not on iPad.
  
- @param LoginDictionary Reply parameter that contains the username, password and the One-Time Password if available.
- 
- @param error Reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
+ @param completion A completion block called with two parameters loginDictionary and error once completed. The loginDictionary reply parameter that contains the username, password and the One-Time Password if available. The error Reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
  */
-- (void)findLoginForURLString:(nonnull NSString *)URLString forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender completion:(nullable void (^)(NSDictionary * __nullable loginDictionary, NSError * __nullable error))completion;
+- (void)findLoginForURLString:(nonnull NSString *)URLString forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender completion:(nonnull OnePasswordLoginDictionaryCompletionBlock)completion;
 
 /*!
  Create a new login within 1Password and allow the user to generate a new password before saving.
@@ -115,11 +119,9 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param sender The sender which triggers the share sheet to show. UIButton, UIBarButtonItem or UIView. Can also be nil on iPhone, but not on iPad.
  
- @param LoginDictionary Reply parameter which contain all the information about the newly saved Login. Use the `Login Dictionary keys` above to extract the needed information and update your UI. For example, updating the UI with the newly generated password lets the user know their action was successful.
- 
- @param error Reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
+ @param completion A completion block which is called with type parameters loginDictionary and error. The loginDictionary reply parameter which contain all the information about the newly saved Login. Use the `Login Dictionary keys` above to extract the needed information and update your UI. For example, updating the UI with the newly generated password lets the user know their action was successful. The error reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
  */
-- (void)storeLoginForURLString:(nonnull NSString *)URLString loginDetails:(nullable NSDictionary *)loginDetailsDictionary passwordGenerationOptions:(nullable NSDictionary *)passwordGenerationOptions forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender completion:(nullable void (^)(NSDictionary * __nullable loginDictionary, NSError * __nullable error))completion;
+- (void)storeLoginForURLString:(nonnull NSString *)URLString loginDetails:(nullable NSDictionary *)loginDetailsDictionary passwordGenerationOptions:(nullable NSDictionary *)passwordGenerationOptions forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender completion:(nonnull OnePasswordLoginDictionaryCompletionBlock)completion;
 
 /*!
  Change the password for an existing login within 1Password.
@@ -145,11 +147,9 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param sender The sender which triggers the share sheet to show. UIButton, UIBarButtonItem or UIView. Can also be nil on iPhone, but not on iPad.
  
- @param LoginDictionary Reply parameter which contain all the information about the newly updated Login, including the newly generated and the old password. Use the `Login Dictionary keys` above to extract the needed information and update your UI. For example, updating the UI with the newly generated password lets the user know their action was successful.
- 
- @param error Reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
+ @param completion A completion block which is called with type parameters loginDictionary and error. The loginDictionary reply parameter which contain all the information about the newly updated Login, including the newly generated and the old password. Use the `Login Dictionary keys` above to extract the needed information and update your UI. For example, updating the UI with the newly generated password lets the user know their action was successful. The error reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
  */
-- (void)changePasswordForLoginForURLString:(nonnull NSString *)URLString loginDetails:(nullable NSDictionary *)loginDetailsDictionary passwordGenerationOptions:(nullable NSDictionary *)passwordGenerationOptions forViewController:(UIViewController *)viewController sender:(nullable id)sender completion:(nullable void (^)(NSDictionary * __nullable loginDictionary, NSError * __nullable error))completion;
+- (void)changePasswordForLoginForURLString:(nonnull NSString *)URLString loginDetails:(nullable NSDictionary *)loginDetailsDictionary passwordGenerationOptions:(nullable NSDictionary *)passwordGenerationOptions forViewController:(UIViewController *)viewController sender:(nullable id)sender completion:(nonnull OnePasswordLoginDictionaryCompletionBlock)completion;
 
 /*!
  Called from your web view controller, this method will show all the saved logins for the active page in the provided web
@@ -167,11 +167,9 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param yesOrNo Boolean flag. If YES is passed only matching Login items will be shown, otherwise the 1Password Extension will also display Credit Cards and Identities.
  
- @param success Reply parameter that is YES if the 1Password Extension has been successfully completed or NO otherwise.
- 
- @param error Reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
+ @param completion Completion block called on completion with parameters success, and error. The success reply parameter that is YES if the 1Password Extension has been successfully completed or NO otherwise. The error reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
  */
-- (void)fillItemIntoWebView:(nonnull id)webView forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender showOnlyLogins:(BOOL)yesOrNo completion:(nullable void (^)(BOOL success, NSError * __nullable error))completion;
+- (void)fillItemIntoWebView:(nonnull id)webView forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender showOnlyLogins:(BOOL)yesOrNo completion:(nonnull OnePasswordSuccessCompletionBlock)completion;
 
 /*!
  Called in the UIActivityViewController completion block to find out whether or not the user selected the 1Password Extension activity.
@@ -187,11 +185,9 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param webView The web view which displays the form to be filled. The active UIWebView Or WKWebView. Must not be nil.
  
- @param extensionItem Reply parameter that is contains all the info required by the 1Password extension if has been successfully completed or nil otherwise.
- 
- @param error Reply parameter that is nil if the 1Password extension item has been successfully created, or it contains error information about the completion failure.
+ @param completion Completion block called on completion with extensionItem and error. The extensionItem reply parameter that is contains all the info required by the 1Password extension if has been successfully completed or nil otherwise. The error reply parameter that is nil if the 1Password extension item has been successfully created, or it contains error information about the completion failure.
  */
-- (void)createExtensionItemForWebView:(nonnull id)webView completion:(void (^)(NSExtensionItem * __nullable extensionItem, NSError * __nullable error))completion;
+- (void)createExtensionItemForWebView:(nonnull id)webView completion:(nonnull OnePasswordExtensionItemCompletionBlock)completion;
 
 /*!
  Method used in the UIActivityViewController completion block to fill information into a web view.
@@ -199,17 +195,15 @@ NS_ASSUME_NONNULL_BEGIN
  @param returnedItems Array which contains the selected activity in the share sheet. Empty array if the share sheet is cancelled by the user.
  @param webView The web view which displays the form to be filled. The active UIWebView Or WKWebView. Must not be nil.
  
- @param success Reply parameter that is YES if the 1Password Extension has been successfully completed or NO otherwise.
- 
- @param error Reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
+ @param completion Completion block called on completion with parameters success, and error. The success reply parameter that is YES if the 1Password Extension has been successfully completed or NO otherwise. The error reply parameter that is nil if the 1Password Extension has been successfully completed, or it contains error information about the completion failure.
  */
-- (void)fillReturnedItems:(nullable NSArray *)returnedItems intoWebView:(nonnull id)webView completion:(nullable void (^)(BOOL success, NSError * __nullable error))completion;
+- (void)fillReturnedItems:(nullable NSArray *)returnedItems intoWebView:(nonnull id)webView completion:(nonnull OnePasswordSuccessCompletionBlock)completion;
 
 /*!
  Deprecated in version 1.5
  @see Use fillItemIntoWebView:forViewController:sender:showOnlyLogins:completion: instead
  */
-- (void)fillLoginIntoWebView:(nonnull id)webView forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender completion:(nullable void (^)(BOOL success, NSError * __nullable error))completion __attribute__((deprecated("Use fillItemIntoWebView:forViewController:sender:showOnlyLogins:completion: instead. Deprecated in version 1.5")));
+- (void)fillLoginIntoWebView:(nonnull id)webView forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender completion:(nonnull OnePasswordSuccessCompletionBlock)completion __attribute__((deprecated("Use fillItemIntoWebView:forViewController:sender:showOnlyLogins:completion: instead. Deprecated in version 1.5")));
 @end
 
 #if __has_feature(nullability)

@@ -590,7 +590,7 @@ NSArray *GetClassNames()
 /// http://stackoverflow.com/questions/25871858/what-is-the-difference-between-nativescale-and-scale-on-uiscreen-in-ios8
 BOOL isRetina()
 {
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale >= 2;
     }
     else {
@@ -618,24 +618,61 @@ BOOL isSimulator()
     return simu;
 }
 
+// 是否越狱 refer:YYCategories
+BOOL isJailbroken()
+{
+    if (isSimulator()) return NO; // Dont't check simulator
+    
+    // iOS9 URL Scheme query changed ...
+    // NSURL *cydiaURL = [NSURL URLWithString:@"cydia://package"];
+    // if ([[UIApplication sharedApplication] canOpenURL:cydiaURL]) return YES;
+    
+    NSArray *paths = @[@"/Applications/Cydia.app",
+                       @"/private/var/lib/apt/",
+                       @"/private/var/lib/cydia",
+                       @"/private/var/stash"];
+    for (NSString *path in paths) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) return YES;
+    }
+    
+    FILE *bash = fopen("/bin/bash", "r");
+    if (bash != NULL) {
+        fclose(bash);
+        return YES;
+    }
+    
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    NSString *UUIDString = (__bridge_transfer NSString *)string;
+    NSString *path = [NSString stringWithFormat:@"/private/%@", UUIDString];
+    if ([@"test" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:NULL]) {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+        return YES;
+    }
+    
+    return NO;
+}
+
+double SystemVersion()
+{
+    static double _version;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _version = [UIDevice currentDevice].systemVersion.doubleValue;
+        
+    });
+    return _version;
+}
+
 CGFloat Scale()
 {
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale;
     }
     else {
         return [UIScreen mainScreen].scale;
     }
-}
-
-CGFloat SystemVersion()
-{
-    static CGFloat _version = 0.0;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _version = [[UIDevice currentDevice].systemVersion floatValue];
-    });
-    return _version;
 }
 
 CGSize ScreenSize()
@@ -695,6 +732,61 @@ BOOL iPhone6p()
 		return YES;
 	}
 	return NO;
+}
+
+// refer: http://www.cnblogs.com/tandaxia/p/5820217.html
+/// 获取 app 的 icon 图标名称
+NSString *IconName() {
+    NSDictionary *infoDict = [NSBundle mainBundle].infoDictionary;
+    NSArray<NSString *> *iconArr = infoDict[@"CFBundleIcons"][@"CFBundlePrimaryIcon"][@"CFBundleIconFiles"];
+    NSString *iconLastName = iconArr.lastObject;
+    return iconLastName;
+}
+
+NSString *LaunchImageName() {
+    NSString *launchImageName = @"";  //启动图片名称变量
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height; //屏幕高度
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width; //屏幕宽度
+    
+    //设备界面方向
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    BOOL isPortrait = UIInterfaceOrientationIsPortrait(orientation);// 是否竖屏
+    BOOL isLandscape = UIInterfaceOrientationIsLandscape(orientation);//是否横屏
+    
+    //获取与当前设备匹配的启动图片名称
+    //4、4S 竖屏，横屏
+    if ((isPortrait && screenHeight == 480) || (isLandscape && screenWidth == 480)){
+        launchImageName = @"LaunchImage-700";
+    }
+    //5、5C、5S、iPod 竖屏，横屏
+    else if ((isPortrait && screenHeight == 568) || (isLandscape && screenWidth == 568)){
+        launchImageName = @"LaunchImage-700-568h";
+    }
+    //6、6S 竖屏，横屏
+    else if ((isPortrait && screenHeight == 667) || (isLandscape && screenWidth == 667)){
+        launchImageName = @"LaunchImage-800-667h";
+    }
+    //6Plus、6SPlus竖屏
+    else if (isPortrait && screenHeight == 736){
+        launchImageName = @"LaunchImage-800-Portrait-736h";
+    }
+    //6Plus、6SPlus 横屏
+    else if (isLandscape && screenWidth == 736){
+        launchImageName = @"LaunchImage-800-Landscape-736h";
+    }
+    //iPad 竖屏
+    else if (isPortrait && screenHeight == 1024){
+        launchImageName = @"LaunchImage-700-Portrait";
+    }
+    //iPad 横屏
+    else if (isLandscape && screenWidth == 1024){
+        launchImageName = @"LaunchImage-700-Landscape";
+    }
+    
+    if (launchImageName.length < 1) return nil;
+    
+    return launchImageName;
 }
 
 NSArray *IPAddresses()

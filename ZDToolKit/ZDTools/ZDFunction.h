@@ -121,8 +121,9 @@ FOUNDATION_EXPORT BOOL isRetina();
 FOUNDATION_EXPORT BOOL isRetina();
 FOUNDATION_EXPORT BOOL isPad();
 FOUNDATION_EXPORT BOOL isSimulator();
+FOUNDATION_EXPORT BOOL isJailbroken();
+FOUNDATION_EXPORT double SystemVersion();
 FOUNDATION_EXPORT CGFloat Scale();
-FOUNDATION_EXPORT CGFloat SystemVersion();
 FOUNDATION_EXPORT CGSize ScreenSize();
 FOUNDATION_EXPORT CGFloat ScreenWidth();
 FOUNDATION_EXPORT CGFloat ScreenHeight();
@@ -130,6 +131,9 @@ FOUNDATION_EXPORT BOOL iPhone4s();
 FOUNDATION_EXPORT BOOL iPhone5s();
 FOUNDATION_EXPORT BOOL iPhone6();
 FOUNDATION_EXPORT BOOL iPhone6p();
+
+FOUNDATION_EXPORT NSString *IconNameForApp();
+FOUNDATION_EXPORT NSString *LaunchImageName();
 
 /// 数组两个值，第一个是本地地址，127.0.0.1也就是localhost，
 /// 第二个是路由器DNS分配的公网地址。
