@@ -654,6 +654,15 @@ BOOL isJailbroken()
     return NO;
 }
 
+// 当前设备是否设置了代理
+BOOL isSetProxy() {
+    NSDictionary *proxySettings = (__bridge NSDictionary *)(CFNetworkCopySystemProxySettings());
+    NSArray *proxies = (__bridge NSArray *)(CFNetworkCopyProxiesForURL((__bridge CFURLRef _Nonnull)([NSURL URLWithString:@"http://www.baidu.com"]), (__bridge CFDictionaryRef _Nonnull)(proxySettings)));
+    
+    NSDictionary *settings = proxies[0];
+    return ![[settings objectForKey:(NSString *)kCFProxyTypeKey] isEqualToString:(NSString *)kCFProxyTypeNone];
+}
+
 double SystemVersion()
 {
     static double _version;
@@ -744,48 +753,17 @@ NSString *IconName() {
 }
 
 NSString *LaunchImageName() {
-    NSString *launchImageName = @"";  //启动图片名称变量
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height; //屏幕高度
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width; //屏幕宽度
-    
-    //设备界面方向
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    
-    BOOL isPortrait = UIInterfaceOrientationIsPortrait(orientation);// 是否竖屏
-    BOOL isLandscape = UIInterfaceOrientationIsLandscape(orientation);//是否横屏
-    
-    //获取与当前设备匹配的启动图片名称
-    //4、4S 竖屏，横屏
-    if ((isPortrait && screenHeight == 480) || (isLandscape && screenWidth == 480)){
-        launchImageName = @"LaunchImage-700";
+    CGSize viewSize = [UIApplication sharedApplication].delegate.window.bounds.size;
+    // 竖屏
+    NSString *viewOrientation = @"Portrait";
+    NSString *launchImageName = nil;
+    NSArray* imagesDict = [[NSBundle mainBundle].infoDictionary valueForKey:@"UILaunchImages"];
+    for (NSDictionary* dict in imagesDict) {
+        CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+        if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]) {
+            launchImageName = dict[@"UILaunchImageName"];
+        }
     }
-    //5、5C、5S、iPod 竖屏，横屏
-    else if ((isPortrait && screenHeight == 568) || (isLandscape && screenWidth == 568)){
-        launchImageName = @"LaunchImage-700-568h";
-    }
-    //6、6S 竖屏，横屏
-    else if ((isPortrait && screenHeight == 667) || (isLandscape && screenWidth == 667)){
-        launchImageName = @"LaunchImage-800-667h";
-    }
-    //6Plus、6SPlus竖屏
-    else if (isPortrait && screenHeight == 736){
-        launchImageName = @"LaunchImage-800-Portrait-736h";
-    }
-    //6Plus、6SPlus 横屏
-    else if (isLandscape && screenWidth == 736){
-        launchImageName = @"LaunchImage-800-Landscape-736h";
-    }
-    //iPad 竖屏
-    else if (isPortrait && screenHeight == 1024){
-        launchImageName = @"LaunchImage-700-Portrait";
-    }
-    //iPad 横屏
-    else if (isLandscape && screenWidth == 1024){
-        launchImageName = @"LaunchImage-700-Landscape";
-    }
-    
-    if (launchImageName.length < 1) return nil;
-    
     return launchImageName;
 }
 

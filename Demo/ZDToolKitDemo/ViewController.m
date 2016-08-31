@@ -40,6 +40,9 @@
 	//[self functionTest];
 	//[self numberTest];
     [self mainqueueTest];
+    
+    BOOL setProxy = isSetProxy();
+    NSLog(@"%@", setProxy ? @"本机设置了代理" : @"没设置代理");
 }
 
 - (void)viewWillAppear:(BOOL)animated {

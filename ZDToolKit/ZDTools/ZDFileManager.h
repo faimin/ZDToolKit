@@ -34,7 +34,7 @@
 
 + (BOOL)copyFromParh:(NSString *)fromPath toPath:(NSString *)toPath;
 
-+ (long long)fileSizeAtPath:(NSString*)path;
++ (long long)fileSizeAtPath:(NSString *)path;
 
 + (long long)folderSizeAtPath:(const char*)folderPath;
 

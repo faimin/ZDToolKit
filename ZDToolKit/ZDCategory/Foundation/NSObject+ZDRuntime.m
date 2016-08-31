@@ -122,19 +122,32 @@ static const char ZDRuntimeDeallocBlocks;
 // 其实把value作为一个对象的weak属性,然后绑定这个对象也可以实现,当get时拿到这个对象,并获取它那个weak属性即可.
 - (void)zd_setWeakAssociateValue:(id)value forKey:(void *)key
 {
+#if 1
     __weak id weakValue = value;
     objc_setAssociatedObject(self, key, ^{
         return weakValue;
     }, OBJC_ASSOCIATION_COPY);
+#else
+    NSHashTable *table = [NSHashTable weakObjectsHashTable];
+    __weak id weakValue = value;
+    [table addObject:weakValue];
+    objc_setAssociatedObject(self, key, table, OBJC_ASSOCIATION_RETAIN);
+#endif
 }
 
 - (id)zd_getWeakAssociateValueForKey:(void *)key
 {
+#if 1
     id(^tempBlock)() = objc_getAssociatedObject(self, key);
     if (tempBlock) {
         return tempBlock();
     }
     return nil;
+#else
+    NSHashTable *table = objc_getAssociatedObject(self, key);
+    id value = [table allObjects].firstObject;
+    return value;
+#endif
 }
 
 - (void)zd_removeAssociatedValues

@@ -17,6 +17,14 @@
 void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)());
 void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)());
 
-+ (void)zd_throttleWithTimeinterval:(NSTimeInterval)timeInterval queue:(dispatch_queue_t)queue key:(NSString *)key block:(void(^)())block;
+///  避免方法频繁调用
+///  @param timeInterval 时间间隔
+///  @param queue        指定的队列
+///  @param key          key，用于判断是不是同一个事件
+///  @param block        方法回调block
++ (void)zd_throttleWithTimeinterval:(NSTimeInterval)timeInterval
+                              queue:(dispatch_queue_t)queue
+                                key:(NSString *)key
+                              block:(void(^)())block;
 
 @end

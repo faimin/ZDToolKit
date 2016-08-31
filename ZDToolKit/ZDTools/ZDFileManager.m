@@ -194,7 +194,9 @@
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 
 	if ([fileManager fileExistsAtPath:directoryPath isDirectory:&isDir] && isDir) {
-		NSArray *contents = [fileManager contentsOfDirectoryAtPath:directoryPath error:nil];
+        NSError * __autoreleasing error;
+		NSArray *contents = [fileManager contentsOfDirectoryAtPath:directoryPath error:&error];
+        if (error) NSLog(@"%@", error);
 
 		for (NSString *item in contents) {
 			NSString *fullItem = [directoryPath stringByAppendingPathComponent:item];

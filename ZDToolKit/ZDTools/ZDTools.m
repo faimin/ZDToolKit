@@ -45,13 +45,16 @@ void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_qu
     static NSMutableDictionary *_sourceDic = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sourceDic = [NSMutableDictionary new];
+        _sourceDic = [[NSMutableDictionary alloc] init];
     });
     return _sourceDic;
 }
 
 // https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
-+ (void)zd_throttleWithTimeinterval:(NSTimeInterval)intervalInSeconds queue:(dispatch_queue_t)queue key:(NSString *)key block:(void(^)())block
++ (void)zd_throttleWithTimeinterval:(NSTimeInterval)intervalInSeconds
+                              queue:(dispatch_queue_t)queue
+                                key:(NSString *)key
+                              block:(void(^)())block
 {
     NSMutableDictionary *scheduleSourceDic = [self scheduleSourceDic];
     dispatch_source_t timer = scheduleSourceDic[key];
@@ -78,9 +81,7 @@ void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_qu
 
 NSString *StringByReplaceUnicode(NSString *unicodeStr)
 {
-    if (!unicodeStr) {
-        return @"";
-    }
+    if (!unicodeStr) return @"";
     
 #if 0
 	NSString *tempStr1 = [unicodeStr stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
