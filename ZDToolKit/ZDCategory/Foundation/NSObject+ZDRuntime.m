@@ -11,8 +11,6 @@
 
 @implementation NSObject (ZDRuntime)
 
-static const char ZDRuntimeDeallocBlocks;
-
 #pragma mark - Dealloc Blocks
 
 - (void)addDeallocBlock:(void(^)())block
@@ -20,13 +18,12 @@ static const char ZDRuntimeDeallocBlocks;
     // don't accept NULL block
     NSParameterAssert(block);
     
-    NSMutableArray *deallocBlocks = objc_getAssociatedObject(self, &ZDRuntimeDeallocBlocks);
+    NSMutableArray *deallocBlocks = objc_getAssociatedObject(self, _cmd);
     
     // add array of dealloc blocks if not existing yet
     if (!deallocBlocks) {
         deallocBlocks = [[NSMutableArray alloc] init];
-        
-        objc_setAssociatedObject(self, &ZDRuntimeDeallocBlocks, deallocBlocks, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(self, _cmd, deallocBlocks, OBJC_ASSOCIATION_RETAIN);
     }
     
     ZDObjectBlockExecutor *executor = [ZDObjectBlockExecutor blockExecutorWithDeallocBlock:block];
