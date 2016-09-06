@@ -9,13 +9,14 @@
 #import "TwoViewController.h"
 #import "UIView+ZDUtility.h"
 #import "ZDFunction.h"
-#import "ZDLabel.h"
+#import "ZDActionLabel.h"
+#import "ZDEdgeLabel.h"
 #import "NSObject+ZDRuntime.h"
 
 @interface TwoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet ZDLabel *zdLabel;
+@property (weak, nonatomic) IBOutlet ZDEdgeLabel *zdLabel;
 @end
 
 @implementation TwoViewController
@@ -30,9 +31,15 @@
     [self.imageView addGestureRecognizer:tap];
     
     NSString *text = @"链接地址: www.baidu.com";
+#if 1
     self.zdLabel.text = text;
+    self.zdLabel.zd_edgeInsets = UIEdgeInsetsMake(10, 20, 0, 0);
+    //self.zdLabel.zdAlignment = ZDAlignment_Bottom;
+    [self.zdLabel sizeToFit];
+#else
     NSRange range = [text rangeOfString:@"www.baidu.com"];
     [self.zdLabel addTarget:self action:@selector(textActionWithParams::) params:@[@"参数1", @"参数2"] ranges:@[[NSValue valueWithRange:range]]];
+#endif
     
     NSObject *objc = [NSObject new];
     void *key = &key;
@@ -48,7 +55,7 @@
     // 初步结论:NSPointerArray这种方式实现不了weak绑定
     NSPointerArray *arr = [NSPointerArray weakObjectsPointerArray];
     {
-        NSString *str = @"dga";
+        NSString *str = @"weak 绑定测试";
         [arr addPointer:(__bridge void *)str];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

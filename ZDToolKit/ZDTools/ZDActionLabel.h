@@ -9,13 +9,9 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface ZDLabel : UILabel
+@interface ZDActionLabel : UILabel
 
-///  设置文字在label中的边距（上、左、下、右）;
-///  @discussion 设置此属性后需要设置[self.label sizeToFit]，
-@property (nonatomic, assign) UIEdgeInsets zd_edgeInsets;
-
-///  响应文字的点击
+///  给指定文字添加点击事件
 ///  @param target 执行事件的目标对象
 ///  @param action 选择子(暂时还不支持携带参数)
 ///  @param params 参数数组(暂不支持block类型的参数)
@@ -24,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
            action:(SEL)action
            params:(nullable NSArray *)params
            ranges:(NSArray<NSValue *> *)ranges;
-//- (void)setTarget:(id)target action:(SEL)selector forRange:(NSRange)range;
 
 @end
 NS_ASSUME_NONNULL_END
