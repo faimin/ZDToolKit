@@ -10,7 +10,7 @@
 
 @interface ZDFileManager : NSObject
 
-//MARK:path
+//MARK:Path
 + (NSString *)documentsPath;
 
 + (NSString *)libraryPath;

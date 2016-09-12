@@ -20,4 +20,6 @@
 /// 当前文字行数
 @property (nonatomic, assign, readonly) NSUInteger numberOfLines;
 
+- (void)removeExtraSpaces;
+
 @end

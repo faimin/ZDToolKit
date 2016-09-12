@@ -60,6 +60,11 @@
     return fabs( (self.contentSize.height - self.contentInset.top - self.contentInset.bottom) / self.font.lineHeight );
 }
 
+- (void)removeExtraSpaces {
+    self.textContainer.lineFragmentPadding = 0;
+    self.textContainerInset = UIEdgeInsetsZero;
+}
+
 #pragma mark - Private Method
 - (void)zd_didChangeText:(NSNotification *)notification {
     if (![notification.object isEqual:self]) return;
