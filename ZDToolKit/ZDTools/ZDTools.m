@@ -9,36 +9,11 @@
 #import "ZDTools.h"
 #import <objc/runtime.h>
 
-static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
-{
-    Method origMethod = class_getInstanceMethod(aClass, originalSel);
-    Method replMethod = class_getInstanceMethod(aClass, replacementSel);
-    if (!origMethod || !replMethod) {
-        !origMethod ? NSLog(@"original method %@ not found for class %@", NSStringFromSelector(originalSel), aClass) : nil;
-        !replMethod ? NSLog(@"replace method %@ not found for class %@", NSStringFromSelector(replacementSel), aClass) : nil;
-        return NO;
-    }
-    if (class_addMethod(aClass, originalSel, method_getImplementation(replMethod), method_getTypeEncoding(replMethod))) {
-        class_replaceMethod(aClass, replacementSel, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
-    }
-    else {
-        method_exchangeImplementations(origMethod, replMethod);
-    }
-    return YES;
-}
-
+///==================================================================
+#pragma mark - Implementation of ZDTools
+///==================================================================
 
 @implementation ZDTools
-
-void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)())
-{
-    [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:dispatch_get_main_queue() key:[NSThread callStackSymbols][1] block:block];
-}
-
-void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)())
-{
-    [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:queue key:[NSThread callStackSymbols][1] block:block];
-}
 
 + (NSMutableDictionary *)scheduleSourceDic
 {
@@ -72,12 +47,41 @@ void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_qu
     scheduleSourceDic[key] = timer;
 }
 
-
 @end
 
 ///==================================================================
-#pragma mark - Function
+#pragma mark - Functions
 ///==================================================================
+
+static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
+{
+    Method origMethod = class_getInstanceMethod(aClass, originalSel);
+    Method replMethod = class_getInstanceMethod(aClass, replacementSel);
+    if (!origMethod || !replMethod) {
+        !origMethod ? NSLog(@"original method %@ not found for class %@", NSStringFromSelector(originalSel), aClass) : nil;
+        !replMethod ? NSLog(@"replace method %@ not found for class %@", NSStringFromSelector(replacementSel), aClass) : nil;
+        return NO;
+    }
+    
+    if (class_addMethod(aClass, originalSel, method_getImplementation(replMethod), method_getTypeEncoding(replMethod))) {
+        class_replaceMethod(aClass, replacementSel, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
+    }
+    else {
+        method_exchangeImplementations(origMethod, replMethod);
+    }
+    return YES;
+}
+
+void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)())
+{
+    [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:dispatch_get_main_queue() key:[NSThread callStackSymbols][1] block:block];
+}
+
+void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)())
+{
+    [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:queue key:[NSThread callStackSymbols][1] block:block];
+}
+
 
 NSString *StringByReplaceUnicode(NSString *unicodeStr)
 {
@@ -93,10 +97,12 @@ NSString *StringByReplaceUnicode(NSString *unicodeStr)
 	NSString *returnStr = [NSPropertyListSerialization propertyListWithData:tempData options:NSPropertyListMutableContainersAndLeaves format:NULL error:NULL];
 
 	return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
-
 #else
 	NSMutableString *convertedString = [unicodeStr mutableCopy];
-	[convertedString replaceOccurrencesOfString:@"\\U" withString:@"\\u" options:0 range:NSMakeRange(0, convertedString.length)];
+	[convertedString replaceOccurrencesOfString:@"\\U"
+                                     withString:@"\\u"
+                                        options:0
+                                          range:NSMakeRange(0, convertedString.length)];
 	CFStringRef transform = CFSTR("Any-Hex/Java");
 	CFStringTransform((__bridge CFMutableStringRef)convertedString, NULL, transform, YES);
 	return convertedString;
@@ -148,7 +154,6 @@ NSString *StringByReplaceUnicode(NSString *unicodeStr)
 @interface NSDictionary (Unicode)
 
 @end
-
 
 @implementation NSDictionary (Unicode)
 

@@ -864,6 +864,40 @@ BOOL ZD_IsMainQueue()
 #endif
 }
 
+// https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
+void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, void(^block)())
+{
+    static NSMutableDictionary *scheduleSourceDic = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        scheduleSourceDic = [[NSMutableDictionary alloc] init];
+    });
+    
+    dispatch_source_t timer = scheduleSourceDic[key];
+    if (timer) {
+        dispatch_source_cancel(timer);
+    }
+    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        block();
+        dispatch_source_cancel(timer);
+        [scheduleSourceDic removeObjectForKey:key];
+    });
+    dispatch_resume(timer);
+    scheduleSourceDic[key] = timer;
+}
+
+void ZD_Dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)())
+{
+    ZD_ExecuteFunctionThrottle(intervalInSeconds, dispatch_get_main_queue(), [NSThread callStackSymbols][1], block);
+}
+
+void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)())
+{
+    ZD_ExecuteFunctionThrottle(intervalInSeconds, queue, [NSThread callStackSymbols][1], block);
+}
+
 #pragma mark - Runtime
 #pragma mark -
 void ZD_PrintObjectMethods()
