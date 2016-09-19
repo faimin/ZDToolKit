@@ -10,12 +10,20 @@
 #define ZDUtility_ZDDefine_h
 #import <pthread.h>
 
+
 //-------------------屏幕物理尺寸-------------------------
 //NavBar高度
-#define NavigationBar_HEIGHT	44
-//获取屏幕 宽度、高度
-#define kSCREEN_WIDTH			([UIScreen mainScreen].bounds.size.width)
-#define kSCREEN_HEIGHT			([UIScreen mainScreen].bounds.size.height)
+#define NavigationBar_HEIGHT 44
+//获取屏幕宽度、高度
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0 // 当前Xcode支持iOS8及以上
+#define kSCREEN_WIDTH   ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? [UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale : [UIScreen mainScreen].bounds.size.width)
+#define kSCREENH_HEIGHT ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? [UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale : [UIScreen mainScreen].bounds.size.height)
+#define kSCREEN_SIZE    ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? CGSizeMake([UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale, [UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale) : [UIScreen mainScreen].bounds.size)
+#else
+#define kSCREEN_WIDTH   ([UIScreen mainScreen].bounds.size.width)
+#define kSCREENH_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define kSCREEN_SIZE    ([UIScreen mainScreen].bounds.size)
+#endif
 
 
 //-------------------打印日志-------------------------
@@ -35,7 +43,7 @@
     [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
     __LINE__, __PRETTY_FUNCTION__);                                             \
     (NSLog)((format), ##__VA_ARGS__);                                           \
-    fprintf(stderr, "----------万恶的分割线---------\n\n");                                     \
+    fprintf(stderr, "----------万恶的分割线---------\n\n");                       \
     } while (0)
 #endif
 

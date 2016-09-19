@@ -288,6 +288,17 @@
     return MAX([self componentsSeparatedByString:targetString].count - 1, 0);
 }
 
+- (NSUInteger)zd_wordCount {
+    // This word counting algorithm is from : http://stackoverflow.com/a/13367063
+    __block NSUInteger wordCount = 0;
+    [self enumerateSubstringsInRange:NSMakeRange(0, [self length])
+                             options:NSStringEnumerationByWords | NSStringEnumerationLocalized
+                          usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+                              wordCount++;
+                          }];
+    return wordCount;
+}
+
 #pragma mark - Validate(验证)
 
 - (BOOL)zd_isValidWithRegex:(ZDRegex)regex
@@ -554,7 +565,10 @@
 }
 
 - (NSString *)zd_stringByTrimHTML {
-    return [self stringByReplacingOccurrencesOfString:@"<[^>]+>" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, self.length)];
+    return [self stringByReplacingOccurrencesOfString:@"<[^>]+>"
+                                           withString:@""
+                                              options:NSRegularExpressionSearch
+                                                range:NSMakeRange(0, self.length)];
 }
 
 - (NSString *)zd_stringByTrimScriptAndHTML {

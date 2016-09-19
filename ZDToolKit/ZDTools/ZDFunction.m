@@ -610,12 +610,21 @@ BOOL isPad()
 
 BOOL isSimulator()
 {
+#if 1
+    
+#if TARGET_IPHONE_SIMULATOR
+    return YES;
+#endif
+    return NO;
+    
+#else
     static dispatch_once_t one;
     static BOOL simu;
     dispatch_once(&one, ^{
         simu = NSNotFound != [[UIDevice currentDevice].model rangeOfString:@"Simulator"].location;
     });
     return simu;
+#endif
 }
 
 // 是否越狱 refer:YYCategories
@@ -669,7 +678,6 @@ double SystemVersion()
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _version = [UIDevice currentDevice].systemVersion.doubleValue;
-        
     });
     return _version;
 }

@@ -118,7 +118,6 @@ FOUNDATION_EXPORT NSArray *GetClassNames();
 #pragma mark - Device
 #pragma mark -
 FOUNDATION_EXPORT BOOL isRetina();
-FOUNDATION_EXPORT BOOL isRetina();
 FOUNDATION_EXPORT BOOL isPad();
 FOUNDATION_EXPORT BOOL isSimulator();
 FOUNDATION_EXPORT BOOL isJailbroken();
