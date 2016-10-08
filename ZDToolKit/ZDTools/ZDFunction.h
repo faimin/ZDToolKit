@@ -132,7 +132,7 @@ FOUNDATION_EXPORT BOOL iPhone5s();
 FOUNDATION_EXPORT BOOL iPhone6();
 FOUNDATION_EXPORT BOOL iPhone6p();
 
-FOUNDATION_EXPORT NSString *IconNameForApp();
+FOUNDATION_EXPORT NSString *IconName();
 FOUNDATION_EXPORT NSString *LaunchImageName();
 
 /// 数组两个值，第一个是本地地址，127.0.0.1也就是localhost，
