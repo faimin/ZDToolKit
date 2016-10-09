@@ -94,6 +94,7 @@ FOUNDATION_EXPORT CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFl
 /// 反转字符串
 FOUNDATION_EXPORT NSString *ReverseString(NSString *sourceString);
 FOUNDATION_EXPORT BOOL IsEmptyString(NSString *string);
+FOUNDATION_EXPORT BOOL IsEmptyOrNilString(NSString *string);
 /// 获取字符串(或汉字)首字母
 FOUNDATION_EXPORT NSString *FirstCharacterWithString(NSString *string);
 /// 将字符串数组按照元素首字母顺序进行排序分组
