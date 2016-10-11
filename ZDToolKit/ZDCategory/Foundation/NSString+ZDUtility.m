@@ -2,7 +2,7 @@
 //  NSString+ZDUtility.m
 //  ZDUtility
 //
-//  Created by 符现超 on 15/12/26.
+//  Created by Zero on 15/12/26.
 //  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 

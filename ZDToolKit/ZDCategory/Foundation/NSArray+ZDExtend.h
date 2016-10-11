@@ -2,7 +2,7 @@
 //  NSArray+ZDExtend.h
 //  ZDUtility
 //
-//  Created by 符现超 on 15/11/28.
+//  Created by Zero on 15/11/28.
 //  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 

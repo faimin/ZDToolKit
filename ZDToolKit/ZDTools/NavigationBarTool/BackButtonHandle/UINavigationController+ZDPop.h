@@ -2,7 +2,7 @@
 //  UINavigationController+ZDPop.h
 //  UINavigationControllerStudy
 //
-//  Created by 符现超 on 15/10/25.
+//  Created by Zero on 15/10/25.
 //  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //  refer： http://www.jianshu.com/p/6376149a2c4c
 

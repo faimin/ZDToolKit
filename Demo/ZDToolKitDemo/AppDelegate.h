@@ -2,7 +2,7 @@
 //  AppDelegate.h
 //  ZDToolKitDemo
 //
-//  Created by 符现超 on 16/1/23.
+//  Created by Zero on 16/1/23.
 //  Copyright © 2016年 Zero.D.Saber. All rights reserved.
 //
 

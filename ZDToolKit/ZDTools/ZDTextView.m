@@ -2,7 +2,7 @@
 //  ZDTextView.m
 //  ZDToolKitDemo
 //
-//  Created by 符现超 on 16/6/17.
+//  Created by Zero on 16/6/17.
 //  Copyright © 2016年 Zero.D.Saber. All rights reserved.
 //
 

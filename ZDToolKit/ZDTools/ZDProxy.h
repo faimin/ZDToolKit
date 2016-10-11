@@ -2,12 +2,15 @@
 //  ZDWeakProxy.h
 //  ZDProxy
 //
-//  Created by 符现超 on 16/1/6.
+//  Created by Zero on 16/1/6.
 //  Copyright © 2016年 Zero.D.Saber. All rights reserved.
 //  https://github.com/mikeash/MAZeroingWeakRef
 //  https://github.com/ibireme/YYKit/blob/master/YYKit%2FUtility%2FYYWeakProxy.h
 
 #import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+#pragma mark - ZDWeakProxy
 
 @interface ZDWeakProxy : NSProxy
 
@@ -19,3 +22,20 @@
 + (instancetype)proxyWithTarget:(id)target;
 
 @end
+
+
+#pragma mark - ZDMutiDelegatesProxy
+
+@interface ZDMutiDelegatesProxy : NSObject
+
+@property (nonatomic, strong) IBOutletCollection(id) NSArray *delegateTargets;
+
+- (instancetype)initWithDelegates:(NSArray *)aDelegates;
+
+- (void)addDelegate:(id)aDelegate;
+
+- (void)removeDelegate:(id)aDelegate;
+
+@end
+NS_ASSUME_NONNULL_END
+

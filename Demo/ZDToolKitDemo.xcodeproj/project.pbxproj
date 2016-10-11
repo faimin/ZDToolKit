@@ -54,7 +54,7 @@
 		BC1349D01C60E26000BEB91D /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1349991C60E26000BEB91D /* ZDFunction.m */; };
 		BC1349D11C60E26000BEB91D /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499B1C60E26000BEB91D /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC1349D21C60E26000BEB91D /* ZDTools.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499D1C60E26000BEB91D /* ZDTools.m */; };
-		BC1349D31C60E26000BEB91D /* ZDWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */; };
+		BC1349D31C60E26000BEB91D /* ZDProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC13499F1C60E26000BEB91D /* ZDProxy.m */; };
 		BC3A9A921D544D5800F446EE /* NSInvocation+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3A9A911D544D5800F446EE /* NSInvocation+Block.m */; };
 		BC5877881CBD073A00466FB8 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877631CBD073A00466FB8 /* NSArray+BlocksKit.m */; };
 		BC5877891CBD073A00466FB8 /* NSDictionary+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5877651CBD073A00466FB8 /* NSDictionary+BlocksKit.m */; };
@@ -203,8 +203,8 @@
 		BC13499B1C60E26000BEB91D /* ZDSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSafe.m; sourceTree = "<group>"; };
 		BC13499C1C60E26000BEB91D /* ZDTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDTools.h; sourceTree = "<group>"; };
 		BC13499D1C60E26000BEB91D /* ZDTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDTools.m; sourceTree = "<group>"; };
-		BC13499E1C60E26000BEB91D /* ZDWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWeakProxy.h; sourceTree = "<group>"; };
-		BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWeakProxy.m; sourceTree = "<group>"; };
+		BC13499E1C60E26000BEB91D /* ZDProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDProxy.h; sourceTree = "<group>"; };
+		BC13499F1C60E26000BEB91D /* ZDProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDProxy.m; sourceTree = "<group>"; };
 		BC3A9A901D544D5800F446EE /* NSInvocation+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Block.h"; sourceTree = "<group>"; };
 		BC3A9A911D544D5800F446EE /* NSInvocation+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Block.m"; sourceTree = "<group>"; };
 		BC5877611CBD073A00466FB8 /* BKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMacros.h; sourceTree = "<group>"; };
@@ -553,8 +553,8 @@
 				BC13498F1C60E26000BEB91D /* RZAutolayoutLabel.m */,
 				BC1349961C60E26000BEB91D /* ZDFileManager.h */,
 				BC1349971C60E26000BEB91D /* ZDFileManager.m */,
-				BC13499E1C60E26000BEB91D /* ZDWeakProxy.h */,
-				BC13499F1C60E26000BEB91D /* ZDWeakProxy.m */,
+				BC13499E1C60E26000BEB91D /* ZDProxy.h */,
+				BC13499F1C60E26000BEB91D /* ZDProxy.m */,
 				BC1349981C60E26000BEB91D /* ZDFunction.h */,
 				BC1349991C60E26000BEB91D /* ZDFunction.m */,
 				BC13499A1C60E26000BEB91D /* ZDSafe.h */,
@@ -813,7 +813,7 @@
 				BC1349BC1C60E26000BEB91D /* UIImageView+FaceAwareFill.m in Sources */,
 				BC58779A1CBD073A00466FB8 /* UIGestureRecognizer+BlocksKit.m in Sources */,
 				BC5877971CBD073A00466FB8 /* NSSet+BlocksKit.m in Sources */,
-				BC1349D31C60E26000BEB91D /* ZDWeakProxy.m in Sources */,
+				BC1349D31C60E26000BEB91D /* ZDProxy.m in Sources */,
 				BC1349CE1C60E26000BEB91D /* RZCollectionTableViewCell.m in Sources */,
 				BC1349A31C60E26000BEB91D /* UIView+RZAutoLayoutHelpers.m in Sources */,
 				05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */,

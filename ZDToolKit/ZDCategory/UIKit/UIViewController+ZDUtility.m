@@ -2,7 +2,7 @@
 //  UIViewController+ZDUtility.m
 //  ZDUtility
 //
-//  Created by 符现超 on 16/1/16.
+//  Created by Zero on 16/1/16.
 //  Copyright © 2016年 Zero.D.Saber. All rights reserved.
 //
 

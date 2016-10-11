@@ -2,7 +2,7 @@
 //  ViewController.m
 //  ZDToolKitDemo
 //
-//  Created by 符现超 on 16/1/23.
+//  Created by Zero on 16/1/23.
 //  Copyright © 2016年 Zero.D.Saber. All rights reserved.
 //
 
@@ -135,6 +135,16 @@
 		else {
 			NSLog(@"子队列");
 		}
+        
+        if ([NSThread isMainThread]) {
+            NSLog(@"主线程");
+        }
+        
+        int mm = pthread_main_np();
+        if (mm) {
+            NSLog(@"主线程");
+        }
+        
 	});
 
 	dispatch_async(dispatch_get_main_queue(), ^{
