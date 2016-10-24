@@ -38,7 +38,8 @@
     NSString *result = [NSString stringWithCString:cString encoding:NSUTF8StringEncoding];
     if ([[result substringToIndex:1] isEqualToString:@"@"] && [result rangeOfString:@"?"].location == NSNotFound) {
         result = [[result substringWithRange:NSMakeRange(2, result.length - 3)] stringByAppendingString:@"*"];
-    } else if ([[result substringToIndex:1] isEqualToString:@"^"]) {
+    }
+    else if ([[result substringToIndex:1] isEqualToString:@"^"]) {
         result = [NSString stringWithFormat:@"%@ *",
                    [NSString decodeType:[[result substringFromIndex:1] cStringUsingEncoding:NSUTF8StringEncoding]]];
     }
@@ -59,7 +60,7 @@ static void getSuper(Class class, NSMutableString *result) {
     unsigned int classesCount;
     Class *classes = objc_copyClassList(&classesCount);
     NSMutableArray *result = [NSMutableArray array];
-    for (int i = 0 ; i < classesCount; i++) {
+    for (unsigned int i = 0 ; i < classesCount; i++) {
         [result addObject:NSStringFromClass(classes[i])];
     }
     return [result sortedArrayUsingSelector:@selector(compare:)];
@@ -97,7 +98,7 @@ static void getSuper(Class class, NSMutableString *result) {
     unsigned int outCount;
     objc_property_t *properties = class_copyPropertyList([self class], &outCount);
     NSMutableArray *result = [NSMutableArray array];
-    for (int i = 0; i < outCount; i++) {        
+    for (unsigned int i = 0; i < outCount; i++) {
         [result addObject:[self formattedPropery:properties[i]]];
     }
     free(properties);
@@ -108,7 +109,7 @@ static void getSuper(Class class, NSMutableString *result) {
     unsigned int outCount;
     Ivar *ivars = class_copyIvarList([self class], &outCount);
     NSMutableArray *result = [NSMutableArray array];
-    for (int i = 0; i < outCount; i++) {
+    for (unsigned int i = 0; i < outCount; i++) {
         NSString *type = [NSString decodeType:ivar_getTypeEncoding(ivars[i])];
         NSString *name = [NSString stringWithCString:ivar_getName(ivars[i]) encoding:NSUTF8StringEncoding];
         NSString *ivarDescription = [NSString stringWithFormat:@"%@ %@", type, name];
@@ -123,13 +124,13 @@ static void getSuper(Class class, NSMutableString *result) {
     Protocol * const *protocols = class_copyProtocolList([self class], &outCount);
 
     NSMutableArray *result = [NSMutableArray array];
-    for (int i = 0; i < outCount; i++) {
+    for (unsigned int i = 0; i < outCount; i++) {
         unsigned int adoptedCount;
         Protocol * const *adotedProtocols = protocol_copyProtocolList(protocols[i], &adoptedCount);
         NSString *protocolName = [NSString stringWithCString:protocol_getName(protocols[i]) encoding:NSUTF8StringEncoding];
 
         NSMutableArray *adoptedProtocolNames = [NSMutableArray array];
-        for (int idx = 0; idx < adoptedCount; idx++) {
+        for (unsigned int idx = 0; idx < adoptedCount; idx++) {
             [adoptedProtocolNames addObject:[NSString stringWithCString:protocol_getName(adotedProtocols[idx]) encoding:NSUTF8StringEncoding]];
         }
         NSString *protocolDescription = protocolName;
@@ -154,7 +155,7 @@ static void getSuper(Class class, NSMutableString *result) {
     unsigned int propertiesCount;
     NSMutableArray *propertyDescriptions = [NSMutableArray array];
     objc_property_t *properties = protocol_copyPropertyList(proto, &propertiesCount);
-    for (int i = 0; i < propertiesCount; i++) {
+    for (unsigned int i = 0; i < propertiesCount; i++) {
         [propertyDescriptions addObject:[self formattedPropery:properties[i]]];
     }
     
@@ -183,7 +184,7 @@ static void getSuper(Class class, NSMutableString *result) {
     unsigned int outCount;
     Method *methods = class_copyMethodList(class, &outCount);
     NSMutableArray *result = [NSMutableArray array];
-    for (int i = 0; i < outCount; i++) {
+    for (unsigned int i = 0; i < outCount; i++) {
         NSString *methodDescription = [NSString stringWithFormat:@"%@ (%@)%@",
                                        type,
                                        [NSString decodeType:method_copyReturnType(methods[i])],
@@ -191,7 +192,7 @@ static void getSuper(Class class, NSMutableString *result) {
         
         NSInteger args = method_getNumberOfArguments(methods[i]);
         NSMutableArray *selParts = [[methodDescription componentsSeparatedByString:@":"] mutableCopy];
-        int offset = 2; //1-st arg is object (@), 2-nd is SEL (:)
+        NSInteger offset = 2; //1-st arg is object (@), 2-nd is SEL (:)
         
         for (int idx = offset; idx < args; idx++) {
             NSString *returnType = [NSString decodeType:method_copyArgumentType(methods[i], idx)];
@@ -210,11 +211,11 @@ static void getSuper(Class class, NSMutableString *result) {
     unsigned int methodCount;
     struct objc_method_description *methods = protocol_copyMethodDescriptionList(proto, required, instance, &methodCount);
     NSMutableArray *methodsDescription = [NSMutableArray array];
-    for (int i = 0; i < methodCount; i++) {
+    for (unsigned int i = 0; i < methodCount; i++) {
         [methodsDescription addObject:
          [NSString stringWithFormat:@"%@ (%@)%@",
           instance ? @"-" : @"+",
-//MARK: return correct type
+#warning return correct type
           @"void",
           NSStringFromSelector(methods[i].name)]];
     }
@@ -227,7 +228,7 @@ static void getSuper(Class class, NSMutableString *result) {
     unsigned int attrCount;
     objc_property_attribute_t *attrs = property_copyAttributeList(prop, &attrCount);
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    for (int idx = 0; idx < attrCount; idx++) {
+    for (unsigned int idx = 0; idx < attrCount; idx++) {
         NSString *name = [NSString stringWithCString:attrs[idx].name encoding:NSUTF8StringEncoding];
         NSString *value = [NSString stringWithCString:attrs[idx].value encoding:NSUTF8StringEncoding];
         [attributes setObject:value forKey:name];
@@ -256,7 +257,10 @@ static void getSuper(Class class, NSMutableString *result) {
         [attrsArray addObject:[NSString stringWithFormat:@"setter=%@", [attributes objectForKey:@"G"]]];
     }
     
-    [property appendFormat:@"(%@) %@ %@", [attrsArray componentsJoinedByString:@", "], [NSString decodeType:[[attributes objectForKey:@"T"] cStringUsingEncoding:NSUTF8StringEncoding]], [NSString stringWithCString:property_getName(prop) encoding:NSUTF8StringEncoding]];
+    [property appendFormat:@"(%@) %@ %@",
+     [attrsArray componentsJoinedByString:@", "],
+     [NSString decodeType:[[attributes objectForKey:@"T"] cStringUsingEncoding:NSUTF8StringEncoding]],
+     [NSString stringWithCString:property_getName(prop) encoding:NSUTF8StringEncoding]];
     return [property copy];
 }
 @end
