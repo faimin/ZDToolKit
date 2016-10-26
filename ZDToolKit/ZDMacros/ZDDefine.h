@@ -48,6 +48,12 @@
 #endif
 
 
+//打印宏展开后的函数
+#define __toString(x) __toString_0(x)
+#define __toString_0(x) #x
+#define ZDLOG_MACRO(x) NSLog(@"%s=\n%s", #x, __toString(x))
+
+
 //DEBUG  模式下打印日志,当前行 并弹出一个警告
 #ifdef DEBUG
   #define ZDAlertLog(fmt, ...) {UIAlertView *alert = [[UIAlertView alloc]	\
