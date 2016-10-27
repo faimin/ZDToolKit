@@ -1,12 +1,13 @@
 ##ZDToolKit
-### Collected some tools，including categories,functions
+### Brief Introduction:
+some awesome development tools, e.g. category、functions、subclass、macro, and so on!
 
->* ZDDefine
->* ZDFunction
->* ZDFileManager
->* UIView+Utility
->* ZDSafe
->* ZDAutoLayout    
->* Runtime
+###Install:
+支持CocoaPods
+
+```ruby
+pod 'ZDToolKit'
+```
+
 
 
