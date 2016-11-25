@@ -7,7 +7,7 @@
 //
 
 #import "UILabel+ZDUtility.h"
-@import CoreText;
+#import <CoreText/CoreText.h>
 
 @implementation UILabel (ZDUtility)
 
