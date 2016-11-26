@@ -15,19 +15,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import <pthread.h>
 
-#if __has_include("YYDispatchQueuePool.h")
-#import "YYDispatchQueuePool.h"
-#endif
 
-#ifdef YYDispatchQueuePool_h
-static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
-    return YYDispatchQueueGetForQOS(NSQualityOfServiceUtility);
-}
-#else
 static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
 }
-#endif
 
 /**
  A node in linked map.
@@ -352,6 +343,7 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
     [_lru removeAll];
+    pthread_mutex_destroy(&_lock);
 }
 
 - (NSUInteger)totalCount {
@@ -368,16 +360,16 @@ static inline dispatch_queue_t YYMemoryCacheGetReleaseQueue() {
     return totalCost;
 }
 
-- (BOOL)releaseInMainThread {
+- (BOOL)releaseOnMainThread {
     pthread_mutex_lock(&_lock);
-    BOOL releaseInMainThread = _lru->_releaseOnMainThread;
+    BOOL releaseOnMainThread = _lru->_releaseOnMainThread;
     pthread_mutex_unlock(&_lock);
-    return releaseInMainThread;
+    return releaseOnMainThread;
 }
 
-- (void)setReleaseInMainThread:(BOOL)releaseInMainThread {
+- (void)setReleaseOnMainThread:(BOOL)releaseOnMainThread {
     pthread_mutex_lock(&_lock);
-    _lru->_releaseOnMainThread = releaseInMainThread;
+    _lru->_releaseOnMainThread = releaseOnMainThread;
     pthread_mutex_unlock(&_lock);
 }
 

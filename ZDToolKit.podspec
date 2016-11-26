@@ -1,4 +1,3 @@
-source 'https://github.com/CocoaPods/Specs.git'
 
 Pod::Spec.new do |s|
 
@@ -22,18 +21,6 @@ Pod::Spec.new do |s|
     :git =>'https://github.com/faimin/ZDToolKit.git', 
     :tag => s.version
   }
-  # s.source_files = 'ZDToolKit', 
-  # 'ZDToolKit/ZDAutoLayout/*.{h, m}', 
-  # 'ZDToolKit/ZDBlock/*.{h, m}', 
-  # 'ZDToolKit/ZDCategory/Foundation/*.{h, m}',
-  # 'ZDToolKit/ZDCategory/UIKit/*.{h, m}', 
-  # 'ZDToolKit/ZDMacros/*', 
-  # 'ZDToolKit/ZDRuntime/*.{h, m}', 
-  # 'ZDToolKit/ZDTools/*.{h, m}', 
-  # 'ZDToolKit/ZDTools/RZCollectionTableView/*.{h, m}', 
-  # 'ZDToolKit/ZDTools/NavigationBarTool/BackButtonHandle/*.{h, m}', 
-  # 'ZDToolKit/ZDTools/NavigationBarTool/KMNavigationBarTransition/*.{h, m}'
-  # s.exclude_files = 'ZDToolKit/ZDTools/NavigationBarTool/ZDNavigationController.{h,m}'
 
   s.subspec 'ZDAutoLayout' do |ss|
     ss.source_files = 'ZDToolKit/ZDAutoLayout/*.{h,m}'
@@ -53,7 +40,7 @@ Pod::Spec.new do |s|
     ss.subspec 'UIKit' do |sss|
       sss.source_files = 'ZDToolKit/ZDCategory/UIKit/*.{h,m}'
       sss.frameworks = 'UIKit', 'QuartzCore', 'CoreImage', 'CoreGraphics', 'ImageIO', 'CoreText', 'WebKit'
-      sss.dependency 'SDWebImage/Core', '~> 3.8.2'
+      sss.dependency 'SDWebImage', '~> 3.8.2'
     end
   end
 

@@ -25,25 +25,14 @@
 #import "YYCache.h"
 #endif
 
-#if __has_include("YYDispatchQueuePool.h")
-#import "YYDispatchQueuePool.h"
-#endif
 
 
 static inline dispatch_queue_t YYImageCacheIOQueue() {
-#ifdef YYDispatchQueuePool_h
-    return YYDispatchQueueGetForQOS(NSQualityOfServiceDefault);
-#else
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-#endif
 }
 
 static inline dispatch_queue_t YYImageCacheDecodeQueue() {
-#ifdef YYDispatchQueuePool_h
-    return YYDispatchQueueGetForQOS(NSQualityOfServiceUtility);
-#else
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-#endif
 }
 
 
@@ -148,7 +137,7 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
                 __strong typeof(_self) self = _self;
                 if (!self) return;
                 UIImage *newImage = [self imageFromData:imageData];
-                [self.memoryCache setObject:[self imageFromData:imageData] forKey:key withCost:[self imageCost:newImage]];
+                [self.memoryCache setObject:newImage forKey:key withCost:[self imageCost:newImage]];
             });
         }
     }

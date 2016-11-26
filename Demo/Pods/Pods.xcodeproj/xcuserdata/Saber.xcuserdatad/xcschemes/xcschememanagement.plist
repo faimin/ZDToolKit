@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-ZDToolKitDemo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,30 +29,40 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ZDToolKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1CD3303E8C4982B25DAA3E4C6ADF51C7</key>
+		<key>3767A5D8BB3D07025DCF467BEEF50939</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>41FBD912213AA8F24F290DEC27DB4A2F</key>
+		<key>5C25D7C297FC764D962B9F8CFFCA7BDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C948148A84915DCED9FA26F67F0F2F9</key>
+		<key>661A3FE87C6755F36D29DE1F3BB4F53A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>66CC389458E6CEA1971E46C242EAAA1E</key>
+		<key>702619501F0DA6DB39FEAC5B09D1B2A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D354D0995133F5648DAB288E4B68BD86</key>
+		<key>BCE76FC1437789EE0971984A891BE691</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC7A8F6496D97D72FBFA8258AC8EC2F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
