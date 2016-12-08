@@ -192,6 +192,7 @@
 		BBA4B9253983CCC936DFE32F1681771D /* NSString+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = CDBBE53635F62404537200C80C52436D /* NSString+ZDUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBC557CE65C70B17AB1102808D2ECED0 /* SDWebImageCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = C3123603AC75BF91017F19617C04EDD1 /* SDWebImageCompat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC849D29F9BE5499DCEA9CA6854DA40C /* NOBRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = A95C7E8675C24C2FB702104E2643FEE4 /* NOBRuntime.m */; };
+		BC91607F1DF929F5005A5D5B /* ZDWatchdog.m in Sources */ = {isa = PBXBuildFile; fileRef = BC91607E1DF929F5005A5D5B /* ZDWatchdog.m */; };
 		C0C464A84BCC4ADACDC627F828CBA869 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F280AA8E8C8A55AB4E616A5560EFBA0 /* UIImage+MultiFormat.m */; };
 		C1A1291CA3FCDC5B1C52BCF821D55CF4 /* EMCI.m in Sources */ = {isa = PBXBuildFile; fileRef = 725F5CCDCB6D8F431E4DF8B53C38C15A /* EMCI.m */; };
 		C22DEA1533D85D2929D137A0426D00B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CF700D73A79BAB243AD7EDF0471F88 /* CoreGraphics.framework */; };
@@ -340,7 +341,7 @@
 		2D3FD03F7FDF87884E2D6F2F56E9E870 /* NSIndexSet+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+BlocksKit.h"; sourceTree = "<group>"; };
 		300F0F0EC7B11830252171F6320A3968 /* NSOrderedSet+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSOrderedSet+BlocksKit.m"; sourceTree = "<group>"; };
 		30387F0C774B08065EAEE09443CA6E06 /* NSMutableSet+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+BlocksKit.m"; sourceTree = "<group>"; };
-		3184E14128A7A1B174A749EE90CA449C /* libYYImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libYYImage.a; path = libYYImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3184E14128A7A1B174A749EE90CA449C /* libYYImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYYImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CD3831333C13BE04C67A0A23AE194D /* UIImageView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZDUtility.h"; sourceTree = "<group>"; };
 		34AB3F436928204D67178DD0BB53E26D /* NSString+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZDUtility.m"; sourceTree = "<group>"; };
 		34CFB6A50335B5F71967A3EA0C31CC29 /* NSObject+JKAutoCoding.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JKAutoCoding.m"; sourceTree = "<group>"; };
@@ -396,7 +397,7 @@
 		657EBC64B864DCE014B2C989788AFA8F /* UIView+AutoFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoFlowLayout.h"; sourceTree = "<group>"; };
 		6616EA18875FB3090BCE9480425182F1 /* ZDDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDDefine.h; sourceTree = "<group>"; };
 		67359245AA00D6247FF7DBBC1E667D6C /* NSArray+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+BlocksKit.h"; sourceTree = "<group>"; };
-		676C5D236FEEFD7DE9F4C62236E81A0F /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-ZDToolKitDemo.a"; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		676C5D236FEEFD7DE9F4C62236E81A0F /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68D3CC95B61AFCC9394A2FD5D556BABB /* NSInvocation+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+BlocksKit.h"; sourceTree = "<group>"; };
 		68E4F321AB17A4A00702E03E0429BE5E /* YYImageCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYImageCoder.h; path = YYImage/YYImageCoder.h; sourceTree = "<group>"; };
 		6A738B10C957291DB55450FF639415A6 /* NSMutableDictionary+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+BlocksKit.h"; sourceTree = "<group>"; };
@@ -432,7 +433,7 @@
 		8FD9CEFAF324E019990B28AEF8A7E856 /* NSMutableIndexSet+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSMutableIndexSet+BlocksKit.m"; sourceTree = "<group>"; };
 		90241F22EFFE1F7A15926357B4C5E833 /* SDImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = SDWebImage/SDImageCache.h; sourceTree = "<group>"; };
 		90D452D83C3E31549C1F37386A34E028 /* UITextView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZDUtility.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94110F757A43C0C908879695B51CA8F1 /* NSNumber+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BlocksKit.m"; sourceTree = "<group>"; };
 		946AEC06CABFDFA5C4718AB34334AAB0 /* YYWebImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYWebImage-dummy.m"; sourceTree = "<group>"; };
 		959FAAC28470988314EE0C13D5819658 /* NSObject+ZDRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDRuntime.h"; sourceTree = "<group>"; };
@@ -463,13 +464,15 @@
 		B949B42B5C5C9A8321DE2512C9C474D4 /* YYKVStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYKVStorage.m; path = YYCache/YYKVStorage.m; sourceTree = "<group>"; };
 		BA0A75176A62943082EEEF097AD727D4 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		BA193C3E4F8B1A4D1691CD65E708A82F /* NSObject+RZBlockKVO.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RZBlockKVO.m"; sourceTree = "<group>"; };
+		BC91607D1DF929F5005A5D5B /* ZDWatchdog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDWatchdog.h; sourceTree = "<group>"; };
+		BC91607E1DF929F5005A5D5B /* ZDWatchdog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDWatchdog.m; sourceTree = "<group>"; };
 		BE274057C384DD3D3B2F02E420E94A77 /* UIImage+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZDUtility.h"; sourceTree = "<group>"; };
 		C0B2C7350C9513E727A52470C656F630 /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
 		C18E85B9F0D22CBD5F4C567544EB8FF5 /* NSObject+BKBlockObservation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+BKBlockObservation.h"; sourceTree = "<group>"; };
 		C3123603AC75BF91017F19617C04EDD1 /* SDWebImageCompat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCompat.h; path = SDWebImage/SDWebImageCompat.h; sourceTree = "<group>"; };
 		C3242E5D878A33D0B27169D3E2E05196 /* NSMutableArray+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+BlocksKit.h"; sourceTree = "<group>"; };
 		C40C3E491356EB65ED564A3C65211900 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
-		C41B78E81DE92FB21D2E8431FF9AAF76 /* libYYWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libYYWebImage.a; path = libYYWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C41B78E81DE92FB21D2E8431FF9AAF76 /* libYYWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYYWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4CBC460F140FE11A4B8B4A8B53C94D /* YYAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYAnimatedImageView.h; path = YYImage/YYAnimatedImageView.h; sourceTree = "<group>"; };
 		CB70D0383F8648152E63E41C603F033C /* YYWebImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYWebImageManager.h; path = YYWebImage/YYWebImageManager.h; sourceTree = "<group>"; };
 		CBABB187175DAC06C25C2DB53E2454B5 /* UIControl+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIControl+ZDUtility.h"; sourceTree = "<group>"; };
@@ -487,7 +490,7 @@
 		D587D1E4B852F10E44B894F0A9A5619D /* NSMutableArray+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+BlocksKit.m"; sourceTree = "<group>"; };
 		D68F9985BF9A0D19F16BFFE4117B03B8 /* YYWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYWebImageManager.m; path = YYWebImage/YYWebImageManager.m; sourceTree = "<group>"; };
 		D6CF700D73A79BAB243AD7EDF0471F88 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		D701F27EE52D075E319AA3485FE49F6B /* libZDToolKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libZDToolKit.a; path = libZDToolKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D701F27EE52D075E319AA3485FE49F6B /* libZDToolKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZDToolKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D915CF81BC369F4D06158FBAAF680DFE /* ZDToolKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZDToolKit-dummy.m"; sourceTree = "<group>"; };
 		DB39325CAACC8435EB4FE611A0F0C006 /* BKDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BKDefines.h; sourceTree = "<group>"; };
 		DC074F0E64E0C84DABAE06166D1AE1DC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -504,7 +507,7 @@
 		EDEF08ECBE2A6EF5341C3DF114582A5B /* SDWebImageDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloader.m; path = SDWebImage/SDWebImageDownloader.m; sourceTree = "<group>"; };
 		EE34A9819C408ED3186AB7AFFBFF125F /* NSArray+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BlocksKit.m"; sourceTree = "<group>"; };
 		EE3CDEC4B6ECDAEA28F726C4B2F03CA1 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MultiFormat.h"; path = "SDWebImage/UIImage+MultiFormat.h"; sourceTree = "<group>"; };
-		F01B20F42174273BBB77D518D01278E9 /* libYYCache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libYYCache.a; path = libYYCache.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F01B20F42174273BBB77D518D01278E9 /* libYYCache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYYCache.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33F21658D81BFBFE94A060835AB8E5B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		F3BA0C806956D0CB0FACDEE0DE732A76 /* ZDToolKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDToolKit-prefix.pch"; sourceTree = "<group>"; };
 		F60D60DB48F20E0627D18507810D5D96 /* YYCache-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YYCache-prefix.pch"; sourceTree = "<group>"; };
@@ -512,7 +515,7 @@
 		F6BB4AD35CD05758478D8C1C6F157FC0 /* WKWebView+ZDExtend.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WKWebView+ZDExtend.h"; sourceTree = "<group>"; };
 		F6CC12B612CCBE1B9F7430E05C840AB0 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreImage.framework; sourceTree = DEVELOPER_DIR; };
 		F79DDF3F80A3B264D798707B662B20CC /* ZDActionLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ZDActionLabel.m; sourceTree = "<group>"; };
-		F8B82FF6335C81E0C6A5A488D90FFFA8 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSDWebImage.a; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8B82FF6335C81E0C6A5A488D90FFFA8 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F99A108F2FED500B500240A420758A43 /* NSInvocation+Block.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Block.m"; sourceTree = "<group>"; };
 		F9DFE70DEC27064F40D47C731DF105C7 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "SDWebImage/NSData+ImageContentType.m"; sourceTree = "<group>"; };
 		F9EAC73B6E2ABFD6D29AF9BDD5E3065F /* YYCache-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYCache-dummy.m"; sourceTree = "<group>"; };
@@ -640,7 +643,6 @@
 				F6BB4AD35CD05758478D8C1C6F157FC0 /* WKWebView+ZDExtend.h */,
 				1BFF7BB8D9C1506980C2CDF791F10B0A /* WKWebView+ZDExtend.m */,
 			);
-			name = UIKit;
 			path = UIKit;
 			sourceTree = "<group>";
 		};
@@ -679,7 +681,6 @@
 				785B2BCC6E1A9D20D874C93C8A209E5C /* YYWebImageOperation.m */,
 				EE48C80E7A72EEDFD9B056B3F77553C4 /* Support Files */,
 			);
-			name = YYWebImage;
 			path = YYWebImage;
 			sourceTree = "<group>";
 		};
@@ -715,7 +716,6 @@
 			children = (
 				3E4757590E0B53FD967EF6D655527EA9 /* ZDMacros */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -727,7 +727,6 @@
 				6459A6B5D47695BA3A754DC40330AB78 /* NOBRuntime.h */,
 				A95C7E8675C24C2FB702104E2643FEE4 /* NOBRuntime.m */,
 			);
-			name = ZDRuntime;
 			path = ZDRuntime;
 			sourceTree = "<group>";
 		};
@@ -750,8 +749,9 @@
 				4FE1EDFFFEE3704542A743BF664908E9 /* ZDTextView.m */,
 				782EC10B081A3A7CBE1EA12C476FA597 /* ZDTools.h */,
 				B811A48BBC7C9AC69A5B4295C4825917 /* ZDTools.m */,
+				BC91607D1DF929F5005A5D5B /* ZDWatchdog.h */,
+				BC91607E1DF929F5005A5D5B /* ZDWatchdog.m */,
 			);
-			name = ZDTools;
 			path = ZDTools;
 			sourceTree = "<group>";
 		};
@@ -768,7 +768,6 @@
 			children = (
 				1DE606764EB7493CEF8FB3E62E7BC3CE /* ZDRuntime */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -779,7 +778,6 @@
 				2C39F7D3F1D53B7CA837D6910A55FBDD /* metamacros.h */,
 				6616EA18875FB3090BCE9480425182F1 /* ZDDefine.h */,
 			);
-			name = ZDMacros;
 			path = ZDMacros;
 			sourceTree = "<group>";
 		};
@@ -797,7 +795,6 @@
 				3FA7210F4241C91693D737295D1774C7 /* Core */,
 				594A1432F70F60B2968F3376BC1C54B9 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -881,7 +878,6 @@
 				27F31168E9ECF1F88D182D47C682B40D /* UIGestureRecognizer+BlocksKit.h */,
 				37E991BA3E63A61D7EDDA1457366E50A /* UIGestureRecognizer+BlocksKit.m */,
 			);
-			name = ZDBlock;
 			path = ZDBlock;
 			sourceTree = "<group>";
 		};
@@ -895,7 +891,6 @@
 				ADB35E75647ABC3132A7786D3B4C5857 /* UIViewController+ZDPop.h */,
 				37F0DAE537801EC635DA8F9BEE234A35 /* UIViewController+ZDPop.m */,
 			);
-			name = BackButtonHandle;
 			path = BackButtonHandle;
 			sourceTree = "<group>";
 		};
@@ -920,7 +915,6 @@
 				8E8A64194392C91857F868F73BB4B9FD /* UIView+RZAutoLayoutHelpers.h */,
 				FBD54B7F996755321C334DCC5A06A010 /* UIView+RZAutoLayoutHelpers.m */,
 			);
-			name = ZDAutoLayout;
 			path = ZDAutoLayout;
 			sourceTree = "<group>";
 		};
@@ -929,7 +923,6 @@
 			children = (
 				4204FC728340ED96FD37903552D1C7A3 /* ZDBlock */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -960,7 +953,6 @@
 			children = (
 				E23C79B148B3E77958685F6A07EFCEF0 /* ZDCategory */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -980,7 +972,6 @@
 			children = (
 				D47229D70105D0C5151662CB32836C02 /* ZDCategory */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -1068,7 +1059,6 @@
 			children = (
 				B933813DFFB89AA0A61CC1DE5AC9E9E7 /* ZDTools */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -1088,7 +1078,6 @@
 			children = (
 				4897D23B3CAD1C7A53AFC7EF94C0B255 /* ZDAutoLayout */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -1098,7 +1087,6 @@
 				676AB2662D8F1CFFA16C13071B36FAF0 /* Core */,
 				83C6EAD8F032A40E7A160F0B739A2F3E /* Support Files */,
 			);
-			name = YYImage;
 			path = YYImage;
 			sourceTree = "<group>";
 		};
@@ -1134,7 +1122,6 @@
 			children = (
 				F379DF81AA6F38B27DC127F087504D2B /* ZDTools */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -1160,7 +1147,6 @@
 				CDBBE53635F62404537200C80C52436D /* NSString+ZDUtility.h */,
 				34AB3F436928204D67178DD0BB53E26D /* NSString+ZDUtility.m */,
 			);
-			name = Foundation;
 			path = Foundation;
 			sourceTree = "<group>";
 		};
@@ -1170,7 +1156,6 @@
 				DFA6004CE40153782C14F77DED38CFE8 /* ZDSafe.h */,
 				A582B5B13461CB665268DD4773480F35 /* ZDSafe.m */,
 			);
-			name = ZDTools;
 			path = ZDTools;
 			sourceTree = "<group>";
 		};
@@ -1187,7 +1172,6 @@
 			children = (
 				24A2835C3E18A7D74190BF572B270F2C /* ZDTools */,
 			);
-			name = ZDToolKit;
 			path = ZDToolKit;
 			sourceTree = "<group>";
 		};
@@ -1196,7 +1180,6 @@
 			children = (
 				B7CEA9443FEE0895FC26C303C3F9C973 /* Foundation */,
 			);
-			name = ZDCategory;
 			path = ZDCategory;
 			sourceTree = "<group>";
 		};
@@ -1221,7 +1204,6 @@
 			children = (
 				0DD0E3D76EA8EF8651595EBA746B525B /* UIKit */,
 			);
-			name = ZDCategory;
 			path = ZDCategory;
 			sourceTree = "<group>";
 		};
@@ -1257,7 +1239,6 @@
 			children = (
 				43C4F7DFE4194593D0DAFFEB47B796A2 /* BackButtonHandle */,
 			);
-			name = ZDTools;
 			path = ZDTools;
 			sourceTree = "<group>";
 		};
@@ -1274,7 +1255,6 @@
 				0755A6E3A29D146589BDB7DEA927E514 /* YYMemoryCache.m */,
 				10EA7FE0D312AAAE596436D824DD4C73 /* Support Files */,
 			);
-			name = YYCache;
 			path = YYCache;
 			sourceTree = "<group>";
 		};
@@ -1670,6 +1650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC91607F1DF929F5005A5D5B /* ZDWatchdog.m in Sources */,
 				A6DBA8A18CC5CD2488B75559808BE531 /* Pods-ZDToolKitDemo-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
