@@ -6,63 +6,63 @@
 	<dict>
 		<key>Pods-ZDToolKitDemo.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>YYCache.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>YYImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>YYWebImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>ZDToolKit.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3767A5D8BB3D07025DCF467BEEF50939</key>
+		<key>3133752160C6E3D77C1D40CEA0A47E29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C25D7C297FC764D962B9F8CFFCA7BDB</key>
+		<key>37658E4A621319F2D9CC4FA6C24F63F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>661A3FE87C6755F36D29DE1F3BB4F53A</key>
+		<key>893AF3F0D01FBB7F0464A763719A357F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>702619501F0DA6DB39FEAC5B09D1B2A0</key>
+		<key>9B6627545A0B98F98507C80ADC8A45E1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BCE76FC1437789EE0971984A891BE691</key>
+		<key>9DF8D1C0822C37025D7734E6205FF2B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FC7A8F6496D97D72FBFA8258AC8EC2F6</key>
+		<key>D2029036F05FC3DFA51B3A5BD3812BCD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
