@@ -64,27 +64,29 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     
     // 在子线程监控
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSUInteger timeout = 0;
+        NSUInteger timeoutCount = 0; // 一次循环过程中的卡顿次数
         
         while (true) {
             //超时后返回非0值,未超时返回0。默认等待50毫秒（0.05秒）
             long semaphoreResult = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval>0 ?: 50) * NSEC_PER_MSEC));
             if (semaphoreResult != 0) { //超时
+                //runloop观察者不存在时，所有条件重置
                 if (!_observer) {
-                    timeout = 0;
-                    _semaphore = nil;
+                    timeoutCount = 0;
+                    _semaphore = NULL;
                     _activity = 0;
                 }
                 
                 if (_activity == kCFRunLoopBeforeSources || _activity == kCFRunLoopAfterWaiting) {
-                    if (++timeout < 5) {
+                    if (++timeoutCount < 5) {
                         continue;
                     } else {
                         [self printTrace];
                     }
                 }
             }
-            timeout = 0;
+            //不超时的时候把卡顿次数重置为0（超时时执行++操作，然后continue，跳过此处）
+            timeoutCount = 0;
         }
     });
 }

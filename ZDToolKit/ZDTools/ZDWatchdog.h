@@ -12,7 +12,7 @@
 
 @property long long timeInterval;
 
-+ (instancetype)alloc __attribute__((unavailable("alloc方法不可用，请用shareInstance")));
++ (instancetype)new UNAVAILABLE_ATTRIBUTE;
 
 + (instancetype)shareInstance;
 
