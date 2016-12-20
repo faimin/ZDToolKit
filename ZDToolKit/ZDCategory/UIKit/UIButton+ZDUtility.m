@@ -15,14 +15,14 @@
     CGSize imageSize = self.imageView.frame.size;
     CGSize titleSize = self.titleLabel.frame.size;
     CGSize textSize = CGSizeZero;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if ([self respondsToSelector:@selector(sizeWithAttributes:)]) {
         textSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName : self.titleLabel.font}];
     } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         textSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
-    }
 #pragma clang diagnostic pop
+    }
     CGSize frameSize = CGSizeMake(ceilf(textSize.width), ceilf(textSize.height));
     if (titleSize.width + 0.5 < frameSize.width) {
         titleSize.width = frameSize.width;
@@ -38,11 +38,10 @@
     
     CGFloat imageWidth = self.imageView.image.size.width;
     CGFloat imageHeight = self.imageView.image.size.height;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    CGFloat labelWidth = [self.titleLabel.text sizeWithFont:self.titleLabel.font].width;
-    CGFloat labelHeight = [self.titleLabel.text sizeWithFont:self.titleLabel.font].height;
-#pragma clang diagnostic pop
+    
+    CGSize labelSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName : self.titleLabel.font}];
+    CGFloat labelWidth = labelSize.width;
+    CGFloat labelHeight = labelSize.height;
     
     CGFloat imageOffsetX = (imageWidth + labelWidth) / 2.0f - imageWidth / 2.0f;//image中心移动的x距离
     CGFloat imageOffsetY = imageHeight / 2.0f + spacing / 2.0f;//image中心移动的y距离
