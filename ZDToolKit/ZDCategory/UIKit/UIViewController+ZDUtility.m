@@ -19,8 +19,19 @@
 }
 
 - (BOOL)isComefromPresent {
-    BOOL isPresent = (self.presentationController != nil);
-    return isPresent;
+    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) {
+        BOOL isPresent = (self.presentationController != nil);
+        return isPresent;
+    }
+    else {
+        if (self.navigationController && [self.navigationController.viewControllers indexOfObject:self] > 0) {
+            return NO;
+        }
+        if (self.presentingViewController) {
+            return YES;
+        }
+        return NO;
+    }
 }
 
 - (UIScreenEdgePanGestureRecognizer *)screenEdgePanGesture {
