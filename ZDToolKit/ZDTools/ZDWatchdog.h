@@ -10,9 +10,10 @@
 
 @interface ZDWatchdog : NSObject
 
-@property long long timeInterval;
+@property (nonatomic, assign) long long timeInterval;
 
-+ (instancetype)new UNAVAILABLE_ATTRIBUTE;
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)shareInstance;
 

@@ -68,7 +68,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
         
         while (true) {
             //超时后返回非0值,未超时返回0。默认等待50毫秒（0.05秒）
-            long semaphoreResult = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval>0 ?: 50) * NSEC_PER_MSEC));
+            long semaphoreResult = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval > 0 ?: 50) * NSEC_PER_MSEC));
             if (semaphoreResult != 0) { //超时
                 //runloop观察者不存在时，所有条件重置
                 if (!_observer) {
