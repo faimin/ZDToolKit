@@ -573,7 +573,7 @@
 
 - (NSString *)zd_stringByTrimScriptAndHTML {
     NSMutableString *mutStr = self.mutableCopy;
-    NSError *error;
+    NSError *__autoreleasing error;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<script[^>]*>[\\w\\W]*</script>" options:NSRegularExpressionCaseInsensitive error:&error];
     NSArray *matches = [regex matchesInString:mutStr options:NSMatchingReportProgress range:NSMakeRange(0, mutStr.length)];
     for (NSTextCheckingResult *result in [matches reverseObjectEnumerator]) {
