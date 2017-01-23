@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ZDToolKitFramework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>05EC9C891C53CDC300BACFE9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC7DE25B1E35DADD00F508E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC7DE2631E35DADD00F508E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

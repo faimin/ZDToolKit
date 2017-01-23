@@ -17,6 +17,7 @@
 		05EC9C841C53CDC300BACFE9 /* ZDToolKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C831C53CDC300BACFE9 /* ZDToolKitDemoTests.m */; };
 		05EC9C8F1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */; };
 		6B5B9619027F9C748DB1165A /* libPods-ZDToolKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9C7A6C92796933E4365A37 /* libPods-ZDToolKitDemo.a */; };
+		BC7DE26C1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7DE26B1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,27 @@
 			remoteGlobalIDString = 05EC9C651C53CDC300BACFE9;
 			remoteInfo = ZDToolKitDemo;
 		};
+		BC7DE2681E35DADD00F508E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05EC9C5E1C53CDC300BACFE9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05EC9C651C53CDC300BACFE9;
+			remoteInfo = ZDToolKitDemo;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC7DE2781E35DADD00F508E2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05B5D1B11CEE1153000CC089 /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
@@ -56,6 +77,9 @@
 		05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDToolKitDemoUITests.m; sourceTree = "<group>"; };
 		05EC9C901C53CDC300BACFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8EF744B07E4BBB4DCB36658 /* Pods-ZDToolKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemo/Pods-ZDToolKitDemo.release.xcconfig"; sourceTree = "<group>"; };
+		BC7DE2641E35DADD00F508E2 /* ZDToolKitFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZDToolKitFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC7DE26B1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDToolKitFrameworkTests.m; sourceTree = "<group>"; };
+		BC7DE26D1E35DADD00F508E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC9C7A6C92796933E4365A37 /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84DF037340E0064B80C4264 /* Pods-ZDToolKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemo/Pods-ZDToolKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +107,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC7DE2611E35DADD00F508E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -92,6 +123,7 @@
 				05EC9C681C53CDC300BACFE9 /* ZDToolKitDemo */,
 				05EC9C821C53CDC300BACFE9 /* ZDToolKitDemoTests */,
 				05EC9C8D1C53CDC300BACFE9 /* ZDToolKitDemoUITests */,
+				BC7DE26A1E35DADD00F508E2 /* ZDToolKitFrameworkTests */,
 				05EC9C671C53CDC300BACFE9 /* Products */,
 				AE7A395C3ACEBDE15542BFE4 /* Pods */,
 				ABA3FA43F51770BBC25641E6 /* Frameworks */,
@@ -104,6 +136,7 @@
 				05EC9C661C53CDC300BACFE9 /* ZDToolKitDemo.app */,
 				05EC9C7F1C53CDC300BACFE9 /* ZDToolKitDemoTests.xctest */,
 				05EC9C8A1C53CDC300BACFE9 /* ZDToolKitDemoUITests.xctest */,
+				BC7DE2641E35DADD00F508E2 /* ZDToolKitFrameworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +202,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BC7DE26A1E35DADD00F508E2 /* ZDToolKitFrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				BC7DE26B1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m */,
+				BC7DE26D1E35DADD00F508E2 /* Info.plist */,
+			);
+			path = ZDToolKitFrameworkTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,6 +224,7 @@
 				05EC9C641C53CDC300BACFE9 /* Resources */,
 				A9FC769D47A61ABB60700DF3 /* [CP] Embed Pods Frameworks */,
 				1E4659E410259FD8E4DD94CF /* [CP] Copy Pods Resources */,
+				BC7DE2781E35DADD00F508E2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,6 +271,24 @@
 			productReference = 05EC9C8A1C53CDC300BACFE9 /* ZDToolKitDemoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		BC7DE2631E35DADD00F508E2 /* ZDToolKitFrameworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC7DE2791E35DADD00F508E2 /* Build configuration list for PBXNativeTarget "ZDToolKitFrameworkTests" */;
+			buildPhases = (
+				BC7DE2601E35DADD00F508E2 /* Sources */,
+				BC7DE2611E35DADD00F508E2 /* Frameworks */,
+				BC7DE2621E35DADD00F508E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BC7DE2691E35DADD00F508E2 /* PBXTargetDependency */,
+			);
+			name = ZDToolKitFrameworkTests;
+			productName = ZDToolKitFrameworkTests;
+			productReference = BC7DE2641E35DADD00F508E2 /* ZDToolKitFrameworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -250,6 +311,11 @@
 						CreatedOnToolsVersion = 7.2;
 						TestTargetID = 05EC9C651C53CDC300BACFE9;
 					};
+					BC7DE2631E35DADD00F508E2 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 05EC9C651C53CDC300BACFE9;
+					};
 				};
 			};
 			buildConfigurationList = 05EC9C611C53CDC300BACFE9 /* Build configuration list for PBXProject "ZDToolKitDemo" */;
@@ -268,6 +334,7 @@
 				05EC9C651C53CDC300BACFE9 /* ZDToolKitDemo */,
 				05EC9C7E1C53CDC300BACFE9 /* ZDToolKitDemoTests */,
 				05EC9C891C53CDC300BACFE9 /* ZDToolKitDemoUITests */,
+				BC7DE2631E35DADD00F508E2 /* ZDToolKitFrameworkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -291,6 +358,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		05EC9C881C53CDC300BACFE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC7DE2621E35DADD00F508E2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,6 +449,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC7DE2601E35DADD00F508E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC7DE26C1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -387,6 +469,11 @@
 			isa = PBXTargetDependency;
 			target = 05EC9C651C53CDC300BACFE9 /* ZDToolKitDemo */;
 			targetProxy = 05EC9C8B1C53CDC300BACFE9 /* PBXContainerItemProxy */;
+		};
+		BC7DE2691E35DADD00F508E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05EC9C651C53CDC300BACFE9 /* ZDToolKitDemo */;
+			targetProxy = BC7DE2681E35DADD00F508E2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -446,7 +533,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -484,7 +571,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -570,6 +657,38 @@
 			};
 			name = Release;
 		};
+		BC7DE2751E35DADD00F508E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = ZDToolKitFrameworkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Zero.ZDToolKitFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZDToolKitDemo.app/ZDToolKitDemo";
+			};
+			name = Debug;
+		};
+		BC7DE2761E35DADD00F508E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = ZDToolKitFrameworkTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Zero.ZDToolKitFrameworkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZDToolKitDemo.app/ZDToolKitDemo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -608,6 +727,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		BC7DE2791E35DADD00F508E2 /* Build configuration list for PBXNativeTarget "ZDToolKitFrameworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC7DE2751E35DADD00F508E2 /* Debug */,
+				BC7DE2761E35DADD00F508E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
