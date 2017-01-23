@@ -194,7 +194,7 @@
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 
 	if ([fileManager fileExistsAtPath:directoryPath isDirectory:&isDir] && isDir) {
-        NSError * __autoreleasing error;
+        NSError *__autoreleasing error;
 		NSArray *contents = [fileManager contentsOfDirectoryAtPath:directoryPath error:&error];
         if (error) NSLog(@"%@", error);
 

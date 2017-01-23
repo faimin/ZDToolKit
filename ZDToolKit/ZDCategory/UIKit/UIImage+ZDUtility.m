@@ -284,6 +284,8 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     
     CGRect newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
     CGImageRef imageRef = self.CGImage;
+    //返回包围源矩形的最小整数矩形 http://nshipster.cn/cggeometry/
+    newRect = CGRectIntegral(newRect);
     
     UIGraphicsBeginImageContextWithOptions(newSize, NO, self.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
