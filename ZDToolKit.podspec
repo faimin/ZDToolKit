@@ -26,12 +26,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'ZDToolKit/ZDAutoLayout/*.{h,m}'
   end
 
-  s.subspec 'ZDBlock' do |ss|
-    ss.source_files = 'ZDToolKit/ZDBlock/*.{h,m}'
-  end
-
   s.subspec 'ZDCategory' do |ss|
-    # ss.source_files = 'ZDToolKit/ZDAutoLayout/*.{h,m}'
     ss.subspec 'Foundation' do |sss|
       sss.source_files = 'ZDToolKit/ZDCategory/Foundation/*.{h,m}'
       sss.frameworks = 'UIKit', 'Foundation', 'CoreText'

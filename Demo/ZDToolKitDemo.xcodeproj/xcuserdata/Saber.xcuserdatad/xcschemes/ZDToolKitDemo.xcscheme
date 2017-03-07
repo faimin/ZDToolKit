@@ -48,6 +48,16 @@
                ReferencedContainer = "container:ZDToolKitDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BC7DE2631E35DADD00F508E2"
+               BuildableName = "ZDToolKitFrameworkTests.xctest"
+               BlueprintName = "ZDToolKitFrameworkTests"
+               ReferencedContainer = "container:ZDToolKitDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

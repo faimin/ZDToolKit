@@ -25,10 +25,6 @@
       "source_files": "ZDToolKit/ZDAutoLayout/*.{h,m}"
     },
     {
-      "name": "ZDBlock",
-      "source_files": "ZDToolKit/ZDBlock/*.{h,m}"
-    },
-    {
       "name": "ZDCategory",
       "subspecs": [
         {
