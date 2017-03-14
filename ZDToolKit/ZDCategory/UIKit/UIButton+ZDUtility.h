@@ -18,10 +18,8 @@ typedef NS_ENUM(NSUInteger, ZDImagePosition) {
 
 @interface UIButton (ZDUtility)
 
-/// @brief 垂直排列image和title
+/// @brief 排列button中的image和title
 /// @param spacing 图片和文字的间隔
-- (void)zd_verticalImageAndTitle:(CGFloat)spacing;
-
 - (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing;
 
 - (void)zd_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;

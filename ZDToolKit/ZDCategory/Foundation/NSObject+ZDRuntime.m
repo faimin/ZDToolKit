@@ -73,6 +73,8 @@
     Method originalMethod = class_getInstanceMethod(myClass, selector);
     Method otherMethod = class_getInstanceMethod(myClass, otherSelector);
     
+    // 把swizzle的实现方法添加给originMethod，如果没有实现origin方法，则添加成功，否则添加失败。
+    // 如果直接exchange的话，那么会覆盖掉父类的方法。
     if (class_addMethod(myClass, selector, method_getImplementation(otherMethod), method_getTypeEncoding(otherMethod))) {
         class_replaceMethod(myClass, otherSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
     }
