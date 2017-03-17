@@ -28,7 +28,9 @@
 //
 // 3. This notice may not be removed or altered from any source distribution.
 //
+
 #import <Foundation/Foundation.h>
+
 @interface NSObject (JKAutoCoding) <NSSecureCoding>
 //coding
 + (NSDictionary *)jk_codableProperties;
@@ -40,3 +42,5 @@
 + (instancetype)jk_objectWithContentsOfFile:(NSString *)path;
 - (BOOL)jk_writeToFile:(NSString *)filePath atomically:(BOOL)useAuxiliaryFile;
 @end
+
+

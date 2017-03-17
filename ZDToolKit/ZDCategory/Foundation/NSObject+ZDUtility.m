@@ -102,41 +102,6 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     }
 }
 
-//- (id)deepCopy
-//{
-//    unsigned int outCount;
-//    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
-//    
-//    for (int i = 0; i < outCount; i++) {
-//        objc_property_t property = properties[i];
-//        PropertyType propertyType = [self propertyType:property];
-////        switch (propertyType) {
-////            case PropertyType_Strong: {
-////                <#statement#>
-////                break;
-////            }
-////            case PropertyType_Copy: {
-////                <#statement#>
-////                break;
-////            }
-////            case PropertyType_Weak: {
-////                <#statement#>
-////                break;
-////            }
-////            case PropertyType_Assign: {
-////                <#statement#>
-////                break;
-////            }
-////            case PropertyType_UnKnown: {
-////                <#statement#>
-////                break;
-////            }
-////        }
-//    }
-//    
-//    return nil;
-//}
-
 - (PropertyType)propertyType:(objc_property_t)property
 {
     unsigned int attributeCount;
@@ -151,13 +116,13 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     free(attrs);
     
     PropertyType type = PropertyType_UnKnown;
-    if (attributes[@"&"]) {/// < strong
+    if (attributes[@"&"]) {         ///< strong
         type = PropertyType_Strong;
-    } else if (attributes[@"C"]) {/// < copy
+    } else if (attributes[@"C"]) {  ///< copy
         type = PropertyType_Copy;
-    } else if (attributes[@"W"]) {/// < weak
+    } else if (attributes[@"W"]) {  ///< weak
         type = PropertyType_Weak;
-    } else {/// < assign
+    } else {                        ///< assign
         type = PropertyType_Assign;
     }
     return type;
@@ -199,4 +164,38 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 @end
 
 
+//- (id)deepCopy
+//{
+//    unsigned int outCount;
+//    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
+//
+//    for (int i = 0; i < outCount; i++) {
+//        objc_property_t property = properties[i];
+//        PropertyType propertyType = [self propertyType:property];
+////        switch (propertyType) {
+////            case PropertyType_Strong: {
+////                <#statement#>
+////                break;
+////            }
+////            case PropertyType_Copy: {
+////                <#statement#>
+////                break;
+////            }
+////            case PropertyType_Weak: {
+////                <#statement#>
+////                break;
+////            }
+////            case PropertyType_Assign: {
+////                <#statement#>
+////                break;
+////            }
+////            case PropertyType_UnKnown: {
+////                <#statement#>
+////                break;
+////            }
+////        }
+//    }
+//
+//    return nil;
+//}
 

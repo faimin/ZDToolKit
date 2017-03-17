@@ -29,15 +29,20 @@
 //
 // 3. This notice may not be removed or altered from any source distribution.
 //
+
 #import "NSObject+JKAutoCoding.h"
 #import <objc/runtime.h>
+
 #pragma GCC diagnostic ignored "-Wgnu"
 static NSString *const JKAutocodingException = @"JKAutocodingException";
+
 @implementation NSObject (JKAutoCoding)
+
 + (BOOL)supportsSecureCoding
 {
     return YES;
 }
+
 + (instancetype)jk_objectWithContentsOfFile:(NSString *)filePath
 {
     //load the file
@@ -66,6 +71,7 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
     //return object
     return object;
 }
+
 - (BOOL)jk_writeToFile:(NSString *)filePath atomically:(BOOL)useAuxiliaryFile
 {
     //note: NSData, NSDictionary and NSArray already implement this method
@@ -75,6 +81,7 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
     return [data writeToFile:filePath atomically:useAuxiliaryFile];
 }
+
 + (NSDictionary *)jk_codableProperties
 {
     //deprecated
@@ -187,6 +194,7 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
     free(properties);
     return codableProperties;
 }
+
 - (NSDictionary *)jk_codableProperties
 {
     __autoreleasing NSDictionary *codableProperties = objc_getAssociatedObject([self class], _cmd);
@@ -205,6 +213,7 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
     }
     return codableProperties;
 }
+
 - (NSDictionary *)jk_dictionaryRepresentation
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -215,6 +224,7 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
     }
     return dict;
 }
+
 - (void)jk_setWithCoder:(NSCoder *)aDecoder
 {
     BOOL secureAvailable = [aDecoder respondsToSelector:@selector(decodeObjectOfClass:forKey:)];
@@ -248,6 +258,7 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
     [self jk_setWithCoder:aDecoder];
     return self;
 }
+
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     for (NSString *key in [self jk_codableProperties])
@@ -256,4 +267,8 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
         if (object) [aCoder encodeObject:object forKey:key];
     }
 }
+
 @end
+
+
+

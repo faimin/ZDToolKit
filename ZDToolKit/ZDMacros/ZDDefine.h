@@ -371,12 +371,10 @@ static inline void dispatch_sync_on_main_queue(void (^block)()) {
 #endif
 
 #if DEBUG
-
 #define zd_keywordify @autoreleasepool {}
 #else
 #define zd_keywordify @try {} @catch (...) {}
 #endif
-
 #endif
 
 #define weakObjc(objc_) \
@@ -385,7 +383,14 @@ static inline void dispatch_sync_on_main_queue(void (^block)()) {
 #define strongObjc(objc_) \
 @autoreleasepool {} __strong __typeof__(objc_) self = self_weak_;
 
-
+/// 消除performSelector警告
+#define SuppressPerformSelectorLeakWarning(Stuff)                       \
+do {                                                                    \
+    _Pragma("clang diagnostic push")                                    \
+    _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+    Stuff                                                               \
+    _Pragma("clang diagnostic pop")                                     \
+} while (0)
 
 
 
