@@ -73,6 +73,49 @@
 	// Dispose of any resources that can be recreated.
 }
 
+#pragma mark -
+
+UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
+    //! General Declarations
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //! Combined Shape
+    UIBezierPath *combinedShape = [UIBezierPath bezierPath];
+    
+    [combinedShape moveToPoint:CGPointZero];
+    [combinedShape addLineToPoint:CGPointMake(300, 0)];
+    [combinedShape addLineToPoint:CGPointMake(300, 300)];
+    [combinedShape addLineToPoint:CGPointMake(0, 300)];
+    [combinedShape addLineToPoint:CGPointZero];
+    [combinedShape closePath];
+    
+    [combinedShape moveToPoint:CGPointMake(150, 300)];
+    [combinedShape addCurveToPoint:CGPointMake(300, 150) controlPoint1:CGPointMake(232.84, 300) controlPoint2:CGPointMake(300, 232.84)];
+    [combinedShape addCurveToPoint:CGPointMake(150, 0) controlPoint1:CGPointMake(300, 67.16) controlPoint2:CGPointMake(232.84, 0)];
+    [combinedShape addCurveToPoint:CGPointMake(0, 150) controlPoint1:CGPointMake(67.16, 0) controlPoint2:CGPointMake(0, 67.16)];
+    [combinedShape addCurveToPoint:CGPointMake(150, 300) controlPoint1:CGPointMake(0, 232.84) controlPoint2:CGPointMake(67.16, 300)];
+    [combinedShape closePath];
+    
+    [combinedShape moveToPoint:CGPointMake(150, 300)];
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, -280, -207);
+    combinedShape.usesEvenOddFillRule = YES;
+    [[UIColor colorWithWhite:0.847 alpha:1] setFill];
+    [combinedShape fill];
+    CGContextSaveGState(context);
+    combinedShape.lineWidth = 2;
+    
+    CGContextBeginPath(context);
+    CGContextAddPath(context, combinedShape.CGPath);
+    CGContextEOClip(context);
+    [[UIColor colorWithWhite:0.592 alpha:1] setStroke];
+    [combinedShape stroke];
+    CGContextRestoreGState(context);
+    CGContextRestoreGState(context);
+    
+    return nil;
+}
+
 #pragma mark - Test
 
 - (void)uiTest {
