@@ -34,14 +34,14 @@ void ZDLog(NSString *fmt, ...)
 
 #pragma mark - Swizzle Function
 
-BOOL zd_swizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
+static BOOL zd_swizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
 {
 	Method origMethod = class_getInstanceMethod(aClass, originalSel);
 	Method replMethod = class_getInstanceMethod(aClass, replacementSel);
 
 	if (!origMethod || !replMethod) {
-		if (!origMethod) NSLog(@"original method %@ not found for class %@", NSStringFromSelector(originalSel), aClass);
-        if (!replMethod) NSLog(@"replace method %@ not found for class %@", NSStringFromSelector(replacementSel), aClass);
+		if (!origMethod) ZDLog(@"original method %@ not found for class %@", NSStringFromSelector(originalSel), aClass);
+        if (!replMethod) ZDLog(@"replace method %@ not found for class %@", NSStringFromSelector(replacementSel), aClass);
 		return NO;
 	}
 
@@ -54,7 +54,7 @@ BOOL zd_swizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
 	return YES;
 }
 
-BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
+static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
 {
     Class aClass = object_getClass(zdClass);
     Method origMethod = class_getClassMethod(aClass, originalSel);

@@ -75,7 +75,7 @@
 
 #pragma mark -
 
-UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
+__unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
     //! General Declarations
     CGContextRef context = UIGraphicsGetCurrentContext();
     

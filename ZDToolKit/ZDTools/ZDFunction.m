@@ -870,7 +870,7 @@ BOOL ZD_IsMainQueue()
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        dispatch_queue_set_specific(dispatch_get_main_queue(), mainQueueKey, mainQueueContext, nil);
+        dispatch_queue_set_specific(dispatch_get_main_queue(), mainQueueKey, mainQueueContext, (dispatch_function_t)CFRelease);
     });
     void *context = dispatch_get_specific(mainQueueKey);
     return (context == mainQueueContext);
