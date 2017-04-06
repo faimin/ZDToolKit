@@ -18,6 +18,7 @@
 		05EC9C8F1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */; };
 		0F6AEFFEBE7AF7403FA6CBCF /* libPods-ZDToolKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E76D488BCA2B39CC971B7B /* libPods-ZDToolKitDemo.a */; };
 		BC7DE26C1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7DE26B1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m */; };
+		BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5A8031E96136F00271230 /* ZDQueuePool.m */; };
 		BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,8 @@
 		BC7DE2641E35DADD00F508E2 /* ZDToolKitFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZDToolKitFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7DE26B1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDToolKitFrameworkTests.m; sourceTree = "<group>"; };
 		BC7DE26D1E35DADD00F508E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BCB5A8021E96136F00271230 /* ZDQueuePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDQueuePool.h; sourceTree = "<group>"; };
+		BCB5A8031E96136F00271230 /* ZDQueuePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDQueuePool.m; sourceTree = "<group>"; };
 		BCCC57CD1E77E29A006F7276 /* NSObject+ZDParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDParams.h"; sourceTree = "<group>"; };
 		BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDParams.m"; sourceTree = "<group>"; };
 		E0E76D488BCA2B39CC971B7B /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +158,8 @@
 				05B5D1B21CEE1153000CC089 /* TwoViewController.m */,
 				BCCC57CD1E77E29A006F7276 /* NSObject+ZDParams.h */,
 				BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */,
+				BCB5A8021E96136F00271230 /* ZDQueuePool.h */,
+				BCB5A8031E96136F00271230 /* ZDQueuePool.m */,
 				05EC9C721C53CDC300BACFE9 /* Main.storyboard */,
 				05EC9C751C53CDC300BACFE9 /* Assets.xcassets */,
 				05EC9C771C53CDC300BACFE9 /* LaunchScreen.storyboard */,
@@ -432,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */,
+				BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */,
 				05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */,
 				05EC9C711C53CDC300BACFE9 /* ViewController.m in Sources */,
 				05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */,

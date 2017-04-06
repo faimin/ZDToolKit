@@ -192,7 +192,7 @@ static void getSuper(Class class, NSMutableString *result) {
         
         NSInteger args = method_getNumberOfArguments(methods[i]);
         NSMutableArray *selParts = [[methodDescription componentsSeparatedByString:@":"] mutableCopy];
-        NSInteger offset = 2; //1-st arg is object (@), 2-nd is SEL (:)
+        int offset = 2; //1-st arg is object (@), 2-nd is SEL (:)
         
         for (int idx = offset; idx < args; idx++) {
             NSString *returnType = [NSString decodeType:method_copyArgumentType(methods[i], idx)];
