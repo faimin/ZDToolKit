@@ -25,8 +25,8 @@
     return _target;
 }
 
-///注册方法签名
-///注册为NSObject的init方法
+/// 注册方法签名
+/// 注册为NSObject的init方法
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
     return [NSObject instanceMethodSignatureForSelector:@selector(init)];
 }

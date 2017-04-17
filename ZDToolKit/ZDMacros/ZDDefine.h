@@ -393,6 +393,9 @@ static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
 @autoreleasepool {} __strong __typeof__(objc_) self = self_weak_;
 
 
+#define ZD_BeforeMainFunction __attribute__((constructor))
+
+
 /// 消除performSelector警告
 #define ZD_SuppressPerformSelectorLeakWarning(Stuff)                    \
 do {                                                                    \

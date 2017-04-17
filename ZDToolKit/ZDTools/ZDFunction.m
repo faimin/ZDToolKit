@@ -386,10 +386,32 @@ UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSp
     return dashedLine;
 }
 
+void ZDAddHollowoutLayerToView(UIView *view, CGSize size, UIColor *fillColor) {
+    if (!view) return;
+    
+    if (CGSizeEqualToSize(size, CGSizeZero)) {
+        size = view.bounds.size;
+    }
+    
+    CAShapeLayer *hollowLayer = [CAShapeLayer layer];
+    hollowLayer.bounds = (CGRect){CGPointZero, size};
+    hollowLayer.position = (CGPoint){size.width/2.0, size.height/2.0};
+    [view.layer addSublayer:hollowLayer];
+    
+    UIBezierPath *squarePath = [UIBezierPath bezierPathWithRect:hollowLayer.bounds];
+    UIBezierPath *hollowPath = [UIBezierPath bezierPathWithOvalInRect:hollowLayer.bounds];
+    [squarePath appendPath:hollowPath];
+    hollowLayer.path = squarePath.CGPath;
+    
+    hollowLayer.fillColor = fillColor ? fillColor.CGColor : [UIColor whiteColor].CGColor;
+    //设置路径的填充模式为两个图形的非交集
+    hollowLayer.fillRule = kCAFillRuleEvenOdd;
+}
+
 #pragma mark - String
 #pragma mark -
 /// 设置文字行间距
-NSMutableAttributedString *SetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize)
+NSMutableAttributedString *ZDSetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize)
 {
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.lineSpacing = lineSpace;
@@ -398,7 +420,7 @@ NSMutableAttributedString *SetAttributeString(NSString *originString, CGFloat li
 }
 
 /// 筛选设置文字color && font
-NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont)
+NSMutableAttributedString *ZDSetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont)
 {
 	NSRange range = [orignString rangeOfString:filterString];
 	NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
@@ -406,7 +428,7 @@ NSMutableAttributedString *SetAttributeStringByFilterStringAndColor(NSString *or
 	return mutAttributeStr;
 }
 
-NSMutableAttributedString *AddImageToAttributeString(UIImage *image) {
+NSMutableAttributedString *ZDAddImageToAttributeString(UIImage *image) {
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = image;
     attachment.bounds = CGRectMake(0, -2, image.size.width, image.size.height);

@@ -234,10 +234,13 @@ NS_ASSUME_NONNULL_END
     CGPoint lineOrigin = CGPointZero;
     CGPathRef path = CTFrameGetPath(_ctFrameRef);
     CGRect rect = CGPathGetBoundingBox(path);
-    for (int i= 0; i < CFArrayGetCount(lines); i++){
+    for (int i = 0; i < CFArrayGetCount(lines); i++) {
         CGPoint origin = origins[i];
         CGFloat y = rect.origin.y + rect.size.height - origin.y;
-        if ((location.y >= y - _iLineSpacing/2.0f) && (location.y <= y + self.font.lineHeight + _iLineSpacing/2.0f) && (location.x >= origin.x)){
+        if ((location.y >= y - _iLineSpacing/2.0f)
+            && (location.y <= y + self.font.lineHeight + _iLineSpacing/2.0f)
+            && (location.x >= origin.x)) {
+            
             line = CFArrayGetValueAtIndex(lines, i);
             lineOrigin = origin;
             break;
