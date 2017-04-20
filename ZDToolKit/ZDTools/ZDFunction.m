@@ -314,6 +314,7 @@ UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur)
     //从CGImage中获取数据
     CGDataProviderRef inProvider = CGImageGetDataProvider(img);
     CFDataRef inBitmapData = CGDataProviderCopyData(inProvider);
+    
     //设置从CGImage获取对象的属性
     inBuffer.width = CGImageGetWidth(img);
     inBuffer.height = CGImageGetHeight(img);
@@ -344,11 +345,10 @@ UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur)
                                              outBuffer.rowBytes,
                                              colorSpace,
                                              kCGImageAlphaNoneSkipLast);
-    CGImageRef imageRef = CGBitmapContextCreateImage (ctx);
+    CGImageRef imageRef = CGBitmapContextCreateImage(ctx);
     UIImage *returnImage = [UIImage imageWithCGImage:imageRef];
     
     //clean up
-    CGContextRelease(ctx);
     CGColorSpaceRelease(colorSpace);
     
     free(pixelBuffer);
@@ -356,6 +356,8 @@ UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur)
     
     CGColorSpaceRelease(colorSpace);
     CGImageRelease(imageRef);
+    
+    CGContextRelease(ctx);
     
     return returnImage;
 }
