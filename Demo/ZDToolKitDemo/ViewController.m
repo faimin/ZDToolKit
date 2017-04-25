@@ -198,6 +198,64 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 			NSLog(@"子队列");
 		}
 	});
+    
+}
+
+- (void)getCurrentQueue {
+    dispatch_queue_t queueA = dispatch_queue_create("com.zd.queueA", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queueB = dispatch_queue_create("com.zd.queueB", DISPATCH_QUEUE_SERIAL);
+    
+    // deadlock 1
+    dispatch_sync(queueA, ^{
+        dispatch_sync(queueB, ^{
+            dispatch_sync(queueA, ^{
+                // Deadlock
+            });
+        });
+    });
+    
+    // deadlock 2
+    dispatch_sync(queueA, ^{
+        dispatch_sync(queueB, ^{
+            dispatch_block_t block = ^{
+                // block
+            };
+            
+            if (dispatch_get_current_queue() == queueA) {
+                block();
+            } else {
+                dispatch_sync(queueA, block);
+            }
+        });
+    });
+    
+    // correct
+    static int kQueueSpecific;
+    CFStringRef queueSpecificValue = CFSTR("queueA");
+    
+    dispatch_queue_set_specific(queueA,
+                                &kQueueSpecific,
+                                (void *)queueSpecificValue,
+                                (dispatch_function_t)CFRelease);
+    
+    dispatch_sync(queueA, ^{
+        dispatch_sync(queueB, ^{
+            dispatch_block_t block = ^{
+                // block
+            };
+            
+            CFStringRef retrievedValue = dispatch_get_specific(&kQueueSpecific);
+            if (retrievedValue) {
+                // 当前队列是queueA
+                block();
+            }
+            else {
+                // 当前队列不是queueA
+                dispatch_sync(queueA, block);
+            }
+        });
+    });
+
 }
 
 - (void)privateLib {
