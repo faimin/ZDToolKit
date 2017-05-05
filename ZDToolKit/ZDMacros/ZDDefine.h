@@ -390,7 +390,7 @@ static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
 @autoreleasepool {} __weak __typeof__(objc_) self_weak_ = (objc_);
 
 #define zd_strongObjc(objc_) \
-@autoreleasepool {} __strong __typeof__(objc_) self = self_weak_;
+@autoreleasepool {} __strong __typeof__(self_weak_) objc_ = self_weak_;
 
 
 #define ZD_BeforeMainFunction __attribute__((constructor))
