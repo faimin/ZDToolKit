@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
     ss.subspec 'UIKit' do |sss|
       sss.source_files = 'ZDToolKit/ZDCategory/UIKit/*.{h,m}'
       sss.frameworks = 'UIKit', 'QuartzCore', 'CoreImage', 'CoreGraphics', 'ImageIO', 'CoreText', 'WebKit'
-      sss.dependency 'SDWebImage', '~> 3.8.2'
+      sss.dependency 'SDWebImage', '~> 4.0.0'
     end
   end
 

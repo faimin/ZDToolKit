@@ -21,7 +21,7 @@
             NSLog(@"绑定时缺失key-->：%@", key);
         }
         else {
-            Class paramClass = [self classFromClassName:@""];
+            __unused Class paramClass = [self classFromClassName:@""];
         }
     }];
 }

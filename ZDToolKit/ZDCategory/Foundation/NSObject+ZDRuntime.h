@@ -19,7 +19,7 @@
  */
 - (void)addDeallocBlock:(void(^)())block;
 
-/// 对象释放时执行block
+/// deallocBlock executed when the object dealloc
 - (void)zd_deallocBlcok:(void(^)())deallocBlock;
 
 #pragma mark - Swizzeling

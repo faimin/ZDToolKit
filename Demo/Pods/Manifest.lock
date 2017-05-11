@@ -1,7 +1,7 @@
 PODS:
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - YYCache (1.0.4)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
@@ -23,7 +23,7 @@ PODS:
     - ZDToolKit/ZDCategory/UIKit (= 0.0.2)
   - ZDToolKit/ZDCategory/Foundation (0.0.2)
   - ZDToolKit/ZDCategory/UIKit (0.0.2):
-    - SDWebImage (~> 3.8.2)
+    - SDWebImage (~> 4.0.0)
   - ZDToolKit/ZDMacros (0.0.2)
   - ZDToolKit/ZDRuntime (0.0.2)
   - ZDToolKit/ZDTools (0.0.2):
@@ -31,7 +31,7 @@ PODS:
   - ZDToolKit/ZDTools/BackButtonHandle (0.0.2)
 
 DEPENDENCIES:
-  - SDWebImage (~> 3.8.2)
+  - SDWebImage (~> 4.0.0)
   - YYWebImage (~> 1.0)
   - ZDToolKit (from `../`)
 
@@ -40,12 +40,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
-  ZDToolKit: 9d50328f610e87a3458a2903cfbe360e69af0e9a
+  ZDToolKit: 97dd95873af6d842e94b28b290096426cc545ab0
 
-PODFILE CHECKSUM: 170e2aec1759a2a87d66f1b5af23f2144635051f
+PODFILE CHECKSUM: 798c55452a569edecfc5e67f5a899a0c32b5b64a
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

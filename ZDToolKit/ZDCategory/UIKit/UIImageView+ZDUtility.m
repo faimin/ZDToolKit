@@ -139,9 +139,9 @@
                     
                     [self makeBackgroundColorToSuperView];
                     self.image = radiusImage;
-                    [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr];
+                    [[SDImageCache sharedImageCache] storeImage:radiusImage forKey:cacheurlStr completion:nil];
                     //清除原有非圆角图片缓存
-                    [[SDImageCache sharedImageCache] removeImageForKey:urlStr];
+                    [[SDImageCache sharedImageCache] removeImageForKey:urlStr withCompletion:nil];
                 }
                 else {
                     NSString *errorStr = error.localizedDescription;

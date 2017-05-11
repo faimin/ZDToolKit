@@ -52,10 +52,10 @@ UIKIT_EXTERN UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur);
 #pragma mark - UIView
 #pragma mark -
 /// @brief 画虚线
-/// @param lineFrame 虚线的 frame
-/// @param length    虚线中短线的宽度
-/// @param spacing   虚线中短线之间的间距
-/// @param color     虚线中短线的颜色
+/// @param lineFrame    虚线的frame
+/// @param lineLength   虚线中短线的宽度
+/// @param lineSpacing  虚线中短线之间的间距
+/// @param lineColor    虚线中短线的颜色
 UIKIT_EXTERN UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor);
 
 /// @brief 给视图添加一个镂空的遮罩(圆角效果)
