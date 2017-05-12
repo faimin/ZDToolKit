@@ -14,9 +14,11 @@
 - (void)zd_roundedImageWithCornerRadius:(CGFloat)cornerRadius
                              completion:(void (^)(UIImage *image))completion;
 
+#if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 /// radius传CGFLOAT_MIN，就是默认以视图宽度的一半为圆角
 - (void)zd_setImageWithURL:(NSString *)urlStr
           placeholderImage:(NSString *)placeHolderStr
               cornerRadius:(CGFloat)radius;
+#endif
 
 @end

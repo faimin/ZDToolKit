@@ -7,7 +7,9 @@
 //
 
 #import "UIImageView+ZDUtility.h"
-#import "UIImageView+WebCache.h"
+#if __has_include(<SDWebImage/UIImageView+WebCache.h>)
+#import <SDWebImage/UIImageView+WebCache.h>
+#endif
 
 @implementation UIImage (CornerRadius)
 
@@ -89,7 +91,7 @@
                              completion:(void (^)(UIImage *image))completion {
     UIImage *image = self.image;
     NSAssert(image, @"此方法执行的前提是image必须提前设置好");
-    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
         CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
         
@@ -103,7 +105,7 @@
         
         // Lets forget about that we were drawing
         UIGraphicsEndImageContext();
-        dispatch_async( dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion(roundedImage);
             }
@@ -114,6 +116,7 @@
 /**
  *  大致原理：当sd下载图片成功后，拿到那张图片，然后对图片进行裁剪，结束之后再给imageView显示
  */
+#if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 - (void)zd_setImageWithURL:(NSString *)urlStr
           placeholderImage:(NSString *)placeHolderStr
               cornerRadius:(CGFloat)radius {
@@ -154,6 +157,7 @@
         [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeHolderStr]];
     }
 }
+#endif
 
 - (void)zd_cornerRadiusWithImage:(UIImage *)image cornerRadius:(CGFloat)cornerRadius cornerType:(UIRectCorner)rectConterType backgroundColor:(UIColor *)backgroundColor {
     
