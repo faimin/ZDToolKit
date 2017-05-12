@@ -22,8 +22,7 @@ PODS:
     - ZDToolKit/ZDCategory/Foundation (= 0.0.2)
     - ZDToolKit/ZDCategory/UIKit (= 0.0.2)
   - ZDToolKit/ZDCategory/Foundation (0.0.2)
-  - ZDToolKit/ZDCategory/UIKit (0.0.2):
-    - SDWebImage (~> 4.0.0)
+  - ZDToolKit/ZDCategory/UIKit (0.0.2)
   - ZDToolKit/ZDMacros (0.0.2)
   - ZDToolKit/ZDRuntime (0.0.2)
   - ZDToolKit/ZDTools (0.0.2):
@@ -44,7 +43,7 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
-  ZDToolKit: 97dd95873af6d842e94b28b290096426cc545ab0
+  ZDToolKit: c0e9d9b737187945c806df4b371272f31b616fb0
 
 PODFILE CHECKSUM: 798c55452a569edecfc5e67f5a899a0c32b5b64a
 

@@ -47,12 +47,7 @@
             "ImageIO",
             "CoreText",
             "WebKit"
-          ],
-          "dependencies": {
-            "SDWebImage": [
-              "~> 4.0.0"
-            ]
-          }
+          ]
         }
       ]
     },

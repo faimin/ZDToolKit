@@ -259,13 +259,6 @@
 			remoteGlobalIDString = FC7A8F6496D97D72FBFA8258AC8EC2F6;
 			remoteInfo = YYWebImage;
 		};
-		F8096D5262F32BBBBDDEAA4732274F07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BCE76FC1437789EE0971984A891BE691;
-			remoteInfo = SDWebImage;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -1342,7 +1335,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A159D219A0FF1C19DE904A28179EBADC /* PBXTargetDependency */,
 			);
 			name = ZDToolKit;
 			productName = ZDToolKit;
@@ -1593,12 +1585,6 @@
 			name = YYCache;
 			target = 5C25D7C297FC764D962B9F8CFFCA7BDB /* YYCache */;
 			targetProxy = 191B9700C83625419C854F37CD278B2E /* PBXContainerItemProxy */;
-		};
-		A159D219A0FF1C19DE904A28179EBADC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SDWebImage;
-			target = BCE76FC1437789EE0971984A891BE691 /* SDWebImage */;
-			targetProxy = F8096D5262F32BBBBDDEAA4732274F07 /* PBXContainerItemProxy */;
 		};
 		C569129FED27C5C2E2023022AD221609 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
