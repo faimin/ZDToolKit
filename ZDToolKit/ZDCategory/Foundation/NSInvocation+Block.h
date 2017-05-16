@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSInvocation (Block)
-+ (instancetype) invocationWithBlock:(id)block;
-+ (instancetype) invocationWithBlockAndArguments:(id)block ,...;
+
++ (instancetype)zd_invocationWithBlock:(id)block;
++ (instancetype)zd_invocationWithBlockAndArguments:(id)block ,...;
+
 @end

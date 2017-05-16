@@ -12,20 +12,20 @@
 @interface UIViewController (ZDUtility)<SKStoreProductViewControllerDelegate>
 
 /// 当前控制器是否支持3D Touch
-- (BOOL)isSupport3DTouch;
+- (BOOL)zd_isSupport3DTouch;
 
 /// 当前控制是不是present来的
-- (BOOL)isComefromPresent;
+- (BOOL)zd_isComefromPresent;
 
 /// 获取当前控制器的导航控制器的右滑返回手势
-- (UIScreenEdgePanGestureRecognizer *)screenEdgePanGesture;
+- (UIScreenEdgePanGestureRecognizer *)zd_screenEdgePanGesture;
 
 /// 让当前界面消失
-- (void)popOrDismiss;
+- (void)zd_popOrDismiss;
 
 /// 弹出AppStore中的某一应用界面
-- (void)presentModalBuyItemVCWithId:(NSString *)itemId
-                           animated:(BOOL)animated;
+- (void)zd_presentModalBuyItemVCWithId:(NSString *)itemId
+                              animated:(BOOL)animated;
 
 - (id<UILayoutSupport>)zd_navigationBarTopLayoutGuide;
 - (id<UILayoutSupport>)zd_navigationBarBottomLayoutGuide;

@@ -11,34 +11,34 @@
 @interface UIView (ZDUtility)
 
 //MARK: Controller
-@property (nonatomic, strong, readonly) UIViewController *viewController;
-@property (nonatomic, strong, readonly) UIViewController *topMostController;
+@property (nonatomic, strong, readonly) UIViewController *zd_viewController;
+@property (nonatomic, strong, readonly) UIViewController *zd_topMostController;
 
 //MARK: Method
 /// Traverse all subviews
-- (void)eachSubview:(void (^)(UIView *subview))block;
-- (void)removeAllSubviews;
-- (BOOL)isSubviewForView:(UIView *)superView; ///< 是不是superView的子视图
+- (void)zd_eachSubview:(void (^)(UIView *subview))block;
+- (void)zd_removeAllSubviews;
+- (BOOL)zd_isSubviewForView:(UIView *)superView; ///< 是不是superView的子视图
 
 /// Create a snapshot image of the complete view hierarchy.
-- (UIImage *)snapshotImage;
+- (UIImage *)zd_snapshotImage;
 
 /// Create a snapshot image of the complete view hierarchy.
 /// @discussion It's faster than "snapshotImage", but may cause screen updates.
 /// See -[UIView drawViewHierarchyInRect:afterScreenUpdates:] for more information.
-- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
+- (UIImage *)zd_snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
 
 ///  Create a snapshot PDF of the complete view hierarchy.
-- (NSData *)snapshotPDF;
+- (NSData *)zd_snapshotPDF;
 
 ///  view shake
 ///  @param range 角度
-- (void)shake:(CGFloat)range;
+- (void)zd_shake:(CGFloat)range;
 
 ///  计算添加约束后视图的高度
 ///  @param maxWidth 最大宽度
 ///  @return 适应的高度
-- (CGFloat)calculateDynamicHeightWithMaxWidth:(CGFloat)maxWidth;
+- (CGFloat)zd_calculateDynamicHeightWithMaxWidth:(CGFloat)maxWidth;
 
 /// load view from xib 
 + (instancetype)zd_loadViewFromXib;

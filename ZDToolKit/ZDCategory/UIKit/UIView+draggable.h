@@ -6,7 +6,7 @@
 //  Copyright (c) 2016 Andrea Mazzini. All rights reserved.
 //  https://github.com/andreamazz/UIView-draggable
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 /**
  * @name UIView+draggable
@@ -16,7 +16,7 @@
 
 /** The pan gestures that handles the view dragging
  *
- * @param panGesture The tint color of the blurred view. Set to nil to reset.
+ *  panGesture The tint color of the blurred view. Set to nil to reset.
  */
 @property (nonatomic) UIPanGestureRecognizer *panGesture;
 

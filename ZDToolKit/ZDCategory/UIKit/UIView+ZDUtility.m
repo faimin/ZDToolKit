@@ -31,7 +31,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 #pragma mark Controller
 
-- (UIViewController *)viewController {
+- (UIViewController *)zd_viewController {
 	UIResponder *nextResponder = self;
 
 	do {
@@ -45,7 +45,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 	return nil;
 }
 
-- (UIViewController *)topMostController {
+- (UIViewController *)zd_topMostController {
 	NSMutableArray *controllersHierarchy = [[NSMutableArray alloc] init];
 	UIViewController *topController = self.window.rootViewController;
 
@@ -58,7 +58,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 		[controllersHierarchy addObject:topController];
 	}
 
-	UIResponder *matchController = [self viewController];
+	UIResponder *matchController = self.zd_viewController;
 
 	while (matchController != nil && [controllersHierarchy containsObject:matchController] == NO) {
 		do {
@@ -71,25 +71,25 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 #pragma mark Method
 
-- (void)eachSubview:(void (^)(UIView *subview))block {
+- (void)zd_eachSubview:(void (^)(UIView *subview))block {
 	NSParameterAssert(block != nil);
 	[self.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
 		block(subview);
 	}];
 }
 
-- (void)removeAllSubviews {
+- (void)zd_removeAllSubviews {
     while (self.subviews.count) {
         [self.subviews.lastObject removeFromSuperview];
     }
 }
 
-- (BOOL)isSubviewForView:(UIView *)superView {
+- (BOOL)zd_isSubviewForView:(UIView *)superView {
     BOOL isSubview = [self isDescendantOfView:superView];
     return isSubview;
 }
 
-- (UIImage *)snapshotImage {
+- (UIImage *)zd_snapshotImage {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
@@ -97,9 +97,9 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return snap;
 }
 
-- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
+- (UIImage *)zd_snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
     if (![self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        return [self snapshotImage];
+        return [self zd_snapshotImage];
     }
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
     [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:afterUpdates];
@@ -108,7 +108,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return snap;
 }
 
-- (NSData *)snapshotPDF {
+- (NSData *)zd_snapshotPDF {
     CGRect bounds = self.bounds;
     NSMutableData* data = [NSMutableData data];
     CGDataConsumerRef consumer = CGDataConsumerCreateWithCFData((__bridge CFMutableDataRef)data);
@@ -125,7 +125,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return data;
 }
 
-- (void)shake:(CGFloat)range {
+- (void)zd_shake:(CGFloat)range {
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     animation.duration = 0.5;
@@ -135,7 +135,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 }
 
 /// Inspiration from ‘UITableView+FDTemplateLayoutCell’
-- (CGFloat)calculateDynamicHeightWithMaxWidth:(CGFloat)maxWidth {
+- (CGFloat)zd_calculateDynamicHeightWithMaxWidth:(CGFloat)maxWidth {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     CGFloat viewMaxWidth = maxWidth ? : CGRectGetWidth([UIScreen mainScreen].bounds);
     NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:viewMaxWidth];

@@ -28,9 +28,11 @@
  * (like a one line \c if). In practice, this is not an issue, since \@onExit is
  * a useless construct in such a case anyways.
  */
+#ifndef onExit
 #define onExit \
     rac_keywordify \
     __strong rac_cleanupBlock_t metamacro_concat(rac_exitBlock_, __LINE__) __attribute__((cleanup(rac_executeCleanupBlock), unused)) = ^
+#endif
 
 /**
  * Creates \c __weak shadow variables for each of the variables provided as
@@ -42,17 +44,21 @@
  *
  * See #strongify for an example of usage.
  */
+#ifndef weakify(...)
 #define weakify(...) \
     rac_keywordify \
     metamacro_foreach_cxt(rac_weakify_,, __weak, __VA_ARGS__)
+#endif
 
 /**
  * Like #weakify, but uses \c __unsafe_unretained instead, for targets or
  * classes that do not support weak references.
  */
+#ifndef unsafeify(...)
 #define unsafeify(...) \
     rac_keywordify \
     metamacro_foreach_cxt(rac_weakify_,, __unsafe_unretained, __VA_ARGS__)
+#endif
 
 /**
  * Strongly references each of the variables provided as arguments, which must
@@ -80,12 +86,14 @@
 
  * @endcode
  */
+#ifndef strongify(...)
 #define strongify(...) \
     rac_keywordify \
     _Pragma("clang diagnostic push") \
     _Pragma("clang diagnostic ignored \"-Wshadow\"") \
     metamacro_foreach(rac_strongify_,, __VA_ARGS__) \
     _Pragma("clang diagnostic pop")
+#endif
 
 /*** implementation details follow ***/
 typedef void (^rac_cleanupBlock_t)();
@@ -94,11 +102,15 @@ static inline void rac_executeCleanupBlock (__strong rac_cleanupBlock_t *block) 
     (*block)();
 }
 
+#ifndef rac_weakify_(INDEX, CONTEXT, VAR)
 #define rac_weakify_(INDEX, CONTEXT, VAR) \
     CONTEXT __typeof__(VAR) metamacro_concat(VAR, _weak_) = (VAR);
+#endif
 
+#ifndef rac_strongify_(INDEX, VAR)
 #define rac_strongify_(INDEX, VAR) \
     __strong __typeof__(VAR) VAR = metamacro_concat(VAR, _weak_);
+#endif
 
 // Details about the choice of backing keyword:
 //
@@ -112,7 +124,9 @@ static inline void rac_executeCleanupBlock (__strong rac_cleanupBlock_t *block) 
 // analysis, and to use @try/@catch otherwise to avoid insertion of unnecessary
 // autorelease pools.
 #if DEBUG
+#ifndef rac_keywordify
 #define rac_keywordify autoreleasepool {}
 #else
 #define rac_keywordify try {} @catch (...) {}
+#endif
 #endif

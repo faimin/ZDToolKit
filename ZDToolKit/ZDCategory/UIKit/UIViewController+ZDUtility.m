@@ -11,14 +11,14 @@
 
 @implementation UIViewController (ZDUtility)
 
-- (BOOL)isSupport3DTouch {
+- (BOOL)zd_isSupport3DTouch {
     if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         return YES;
     }
     return NO;
 }
 
-- (BOOL)isComefromPresent {
+- (BOOL)zd_isComefromPresent {
     if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) {
         BOOL isPresent = (self.presentationController != nil);
         return isPresent;
@@ -34,7 +34,7 @@
     }
 }
 
-- (UIScreenEdgePanGestureRecognizer *)screenEdgePanGesture {
+- (UIScreenEdgePanGestureRecognizer *)zd_screenEdgePanGesture {
     if (!self.navigationController) return nil;
     
     UIScreenEdgePanGestureRecognizer *edgePanGesture = nil;
@@ -50,7 +50,7 @@
     return edgePanGesture;
 }
 
-- (void)popOrDismiss {
+- (void)zd_popOrDismiss {
     if (self.presentationController) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
@@ -59,7 +59,7 @@
     }
 }
 
-- (void)presentModalBuyItemVCWithId:(NSString *)itemId animated:(BOOL)animated {
+- (void)zd_presentModalBuyItemVCWithId:(NSString *)itemId animated:(BOOL)animated {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
         SKStoreProductViewController *skvc = [[SKStoreProductViewController alloc] init];
         skvc.delegate = self;
@@ -94,7 +94,7 @@
     }
 }
 
-- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
+- (void)zd_productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
