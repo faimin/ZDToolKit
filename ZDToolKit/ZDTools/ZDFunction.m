@@ -23,7 +23,7 @@
 #pragma mark -
 // returns the frame duration for a given image in 1/100th seconds
 // source: http://stackoverflow.com/questions/16964366/delaytime-or-unclampeddelaytime-for-gifs
-static NSUInteger ZDAnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef source, NSUInteger index)
+static NSUInteger ZD_AnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef source, NSUInteger index)
 {
 	NSUInteger frameDuration = 10;
 
@@ -56,7 +56,7 @@ static NSUInteger ZDAnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef sou
 }
 
 // returns the great common factor of two numbers
-static NSUInteger ZDAnimatedGIFGreatestCommonFactor(NSUInteger num1, NSUInteger num2)
+static NSUInteger ZD_AnimatedGIFGreatestCommonFactor(NSUInteger num1, NSUInteger num2)
 {
 	NSUInteger t, remainder;
 
@@ -72,22 +72,22 @@ static NSUInteger ZDAnimatedGIFGreatestCommonFactor(NSUInteger num1, NSUInteger 
 		return num2;
 	}
 	else {
-		return ZDAnimatedGIFGreatestCommonFactor(num2, remainder);
+		return ZD_AnimatedGIFGreatestCommonFactor(num2, remainder);
 	}
 }
 
-static UIImage *ZDAnimatedGIFFromImageSource(CGImageSourceRef source)
+static UIImage *ZD_AnimatedGIFFromImageSource(CGImageSourceRef source)
 {
 	size_t const numImages = CGImageSourceGetCount(source);
 
 	NSMutableArray *frames = [NSMutableArray arrayWithCapacity:numImages];
 
 	// determine gretest common factor of all image durations
-	NSUInteger greatestCommonFactor = ZDAnimatedGIFFrameDurationForImageAtIndex(source, 0);
+	NSUInteger greatestCommonFactor = ZD_AnimatedGIFFrameDurationForImageAtIndex(source, 0);
 
 	for (NSUInteger i = 1; i < numImages; i++) {
-		NSUInteger centiSecs = ZDAnimatedGIFFrameDurationForImageAtIndex(source, i);
-		greatestCommonFactor = ZDAnimatedGIFGreatestCommonFactor(greatestCommonFactor, centiSecs);
+		NSUInteger centiSecs = ZD_AnimatedGIFFrameDurationForImageAtIndex(source, i);
+		greatestCommonFactor = ZD_AnimatedGIFGreatestCommonFactor(greatestCommonFactor, centiSecs);
 	}
 
 	// build array of images, duplicating as necessary
@@ -95,7 +95,7 @@ static UIImage *ZDAnimatedGIFFromImageSource(CGImageSourceRef source)
 		CGImageRef cgImage = CGImageSourceCreateImageAtIndex(source, i, NULL);
 		UIImage *frame = [UIImage imageWithCGImage:cgImage];
 
-		NSUInteger centiSecs = ZDAnimatedGIFFrameDurationForImageAtIndex(source, i);
+		NSUInteger centiSecs = ZD_AnimatedGIFFrameDurationForImageAtIndex(source, i);
 		NSUInteger repeat = centiSecs / greatestCommonFactor;
 
 		for (NSUInteger j = 0; j < repeat; j++) {
@@ -110,28 +110,28 @@ static UIImage *ZDAnimatedGIFFromImageSource(CGImageSourceRef source)
 	return [UIImage animatedImageWithImages:frames duration:totalDuration];
 }
 
-UIImage *ZDAnimatedGIFFromFile(NSString *path)
+UIImage *ZD_AnimatedGIFFromFile(NSString *path)
 {
 	NSURL *URL = [NSURL fileURLWithPath:path];
 	CGImageSourceRef source = CGImageSourceCreateWithURL((__bridge CFURLRef)(URL), NULL);
-	UIImage *image = ZDAnimatedGIFFromImageSource(source);
+	UIImage *image = ZD_AnimatedGIFFromImageSource(source);
 
 	CFRelease(source);
 
 	return image;
 }
 
-UIImage *ZDAnimatedGIFFromData(NSData *data)
+UIImage *ZD_AnimatedGIFFromData(NSData *data)
 {
 	CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)(data), NULL);
-	UIImage *image = ZDAnimatedGIFFromImageSource(source);
+	UIImage *image = ZD_AnimatedGIFFromImageSource(source);
 
 	CFRelease(source);
 
 	return image;
 }
 
-UIImage *TintedImageWithColor(UIColor *tintColor, UIImage *image) {
+UIImage *ZD_TintedImageWithColor(UIColor *tintColor, UIImage *image) {
     UIGraphicsBeginImageContextWithOptions(image.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -154,7 +154,7 @@ UIImage *TintedImageWithColor(UIColor *tintColor, UIImage *image) {
     return coloredImage;
 }
 
-UIImage *ThumbnailImageFromURl(NSURL *url, int imageSize)
+UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize)
 {
      CGImageRef myThumbnailImage = NULL;
      CGImageSourceRef myImageSource;
@@ -211,7 +211,7 @@ UIImage *ThumbnailImageFromURl(NSURL *url, int imageSize)
      return thumbnail;
 }
 
-NSString *TypeForImageData(NSData *data)
+NSString *ZD_TypeForImageData(NSData *data)
 {
     uint8_t c;
     [data getBytes:&c length:1];
@@ -229,7 +229,7 @@ NSString *TypeForImageData(NSData *data)
     return @"未知格式";
 }
 
-NSString *TypeForData(NSData *data)
+NSString *ZD_TypeForData(NSData *data)
 {
     if (data.length < 2) {
         return @"NOT FILE";
@@ -297,7 +297,7 @@ NSString *TypeForData(NSData *data)
     return dataFormatString;
 }
 
-UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur)
+UIImage *ZD_BlurImageWithBlurPercent(UIImage *image, CGFloat blur)
 {
     if (blur < 0.f || blur > 1.f) {
         blur = 0.5f;
@@ -367,7 +367,7 @@ UIImage *ZDBlurImageWithBlurPercent(UIImage *image, CGFloat blur)
 #pragma mark - UIView
 #pragma mark -
 /// 画虚线
-UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor)
+UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor)
 {
     UIView *dashedLine = [[UIView alloc] initWithFrame:lineFrame];
     dashedLine.backgroundColor = [UIColor clearColor];
@@ -388,7 +388,7 @@ UIView *ZDCreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSp
     return dashedLine;
 }
 
-void ZDAddHollowoutLayerToView(UIView *view, CGSize size, UIColor *fillColor) {
+void ZD_AddHollowoutLayerToView(UIView *view, CGSize size, UIColor *fillColor) {
     if (!view) return;
     
     if (CGSizeEqualToSize(size, CGSizeZero)) {
@@ -413,7 +413,7 @@ void ZDAddHollowoutLayerToView(UIView *view, CGSize size, UIColor *fillColor) {
 #pragma mark - String
 #pragma mark -
 /// 设置文字行间距
-NSMutableAttributedString *ZDSetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize)
+NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize)
 {
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.lineSpacing = lineSpace;
@@ -422,7 +422,7 @@ NSMutableAttributedString *ZDSetAttributeString(NSString *originString, CGFloat 
 }
 
 /// 筛选设置文字color && font
-NSMutableAttributedString *ZDSetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont)
+NSMutableAttributedString *ZD_SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont)
 {
 	NSRange range = [orignString rangeOfString:filterString];
 	NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
@@ -430,7 +430,7 @@ NSMutableAttributedString *ZDSetAttributeStringByFilterStringAndColor(NSString *
 	return mutAttributeStr;
 }
 
-NSMutableAttributedString *ZDAddImageToAttributeString(UIImage *image) {
+NSMutableAttributedString *ZD_AddImageToAttributeString(UIImage *image) {
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = image;
     attachment.bounds = CGRectMake(0, -2, image.size.width, image.size.height);
@@ -441,7 +441,7 @@ NSMutableAttributedString *ZDAddImageToAttributeString(UIImage *image) {
     return mutAttri;
 }
 
-NSString *URLEncodedString(NSString *sourceText)
+NSString *ZD_URLEncodedString(NSString *sourceText)
 {
 	NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)sourceText, NULL, CFSTR("!*'();:@&=+$,/?%#[]"), kCFStringEncodingUTF8));
 
@@ -449,18 +449,18 @@ NSString *URLEncodedString(NSString *sourceText)
 }
 
 /// 计算文字高度
-CGFloat HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth)
+CGFloat ZD_HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth)
 {
-    return SizeOfString(sourceString, font, maxWidth, 0).height;
+    return ZD_SizeOfString(sourceString, font, maxWidth, 0).height;
 }
 
 /// 计算文字宽度
-CGFloat WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight)
+CGFloat ZD_WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight)
 {
-    return SizeOfString(sourceString, font, 0, maxHeight).width;
+    return ZD_SizeOfString(sourceString, font, 0, maxHeight).width;
 }
 
-CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight)
+CGSize ZD_SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight)
 {
     UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
     CGSize needSize = CGSizeZero;
@@ -493,7 +493,7 @@ CGSize SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFl
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-NSString *ReverseString(NSString *sourceString)
+NSString *ZD_ReverseString(NSString *sourceString)
 {
 	NSMutableString *reverseString = [[NSMutableString alloc] init];
 	NSInteger charIndex = [sourceString length];
@@ -507,7 +507,7 @@ NSString *ReverseString(NSString *sourceString)
 	return reverseString;
 }
 
-BOOL IsEmptyString(NSString *str)
+BOOL ZD_IsEmptyString(NSString *str)
 {
     if (!str || str == (id)[NSNull null]) return YES;
     if ([str isKindOfClass:[NSString class]]) {
@@ -518,7 +518,7 @@ BOOL IsEmptyString(NSString *str)
     }
 }
 
-BOOL IsEmptyOrNilString(NSString *string)
+BOOL ZD_IsEmptyOrNilString(NSString *string)
 {
     if (string == nil || string == NULL) {
         return YES;
@@ -535,7 +535,7 @@ BOOL IsEmptyOrNilString(NSString *string)
     return NO;
 }
 
-NSString *FirstCharacterWithString(NSString *string)
+NSString *ZD_FirstCharacterWithString(NSString *string)
 {
     NSMutableString *str = [NSMutableString stringWithString:string];
     CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformMandarinLatin, NO);
@@ -544,7 +544,7 @@ NSString *FirstCharacterWithString(NSString *string)
     return [pingyin substringToIndex:1];
 }
 
-NSDictionary *DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array)
+NSDictionary *ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array)
 {
     if (array.count == 0) {
         return nil;
@@ -578,8 +578,8 @@ NSDictionary *DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *a
     }
     //获取索引字母
     for (NSMutableArray *obj in objects) {
-        NSString *str = obj[0];
-        NSString *key = FirstCharacterWithString(str);
+        NSString *str = obj.firstObject;
+        NSString *key = ZD_FirstCharacterWithString(str);
         [keys addObject:key];
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -593,7 +593,7 @@ NSDictionary *DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *a
 
 #pragma mark - InterfaceOrientation
 
-UIInterfaceOrientation CurrentInterfaceOrientation()
+UIInterfaceOrientation ZD_CurrentInterfaceOrientation()
 {
     UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
     return orient;
@@ -601,12 +601,12 @@ UIInterfaceOrientation CurrentInterfaceOrientation()
 
 BOOL isPortrait()
 {
-    return UIInterfaceOrientationIsPortrait(CurrentInterfaceOrientation());
+    return UIInterfaceOrientationIsPortrait(ZD_CurrentInterfaceOrientation());
 }
 
 BOOL isLandscape()
 {
-    return UIInterfaceOrientationIsLandscape(CurrentInterfaceOrientation());
+    return UIInterfaceOrientationIsLandscape(ZD_CurrentInterfaceOrientation());
 }
 
 #pragma mark - NSBundle
@@ -794,20 +794,20 @@ BOOL iPhone6p()
 
 // refer: http://www.cnblogs.com/tandaxia/p/5820217.html
 /// 获取 app 的 icon 图标名称
-NSString *IconName() {
+NSString *ZD_IconName() {
     NSDictionary *infoDict = [NSBundle mainBundle].infoDictionary;
     NSArray<NSString *> *iconArr = infoDict[@"CFBundleIcons"][@"CFBundlePrimaryIcon"][@"CFBundleIconFiles"];
     NSString *iconLastName = iconArr.lastObject;
     return iconLastName;
 }
 
-NSString *LaunchImageName() {
+NSString *ZD_LaunchImageName() {
     CGSize viewSize = [UIApplication sharedApplication].delegate.window.bounds.size;
     // 竖屏
     NSString *viewOrientation = @"Portrait";
     NSString *launchImageName = nil;
-    NSArray* imagesDict = [[NSBundle mainBundle].infoDictionary valueForKey:@"UILaunchImages"];
-    for (NSDictionary* dict in imagesDict) {
+    NSArray *imagesDict = [[NSBundle mainBundle].infoDictionary valueForKey:@"UILaunchImages"];
+    for (NSDictionary *dict in imagesDict) {
         CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
         if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]) {
             launchImageName = dict[@"UILaunchImageName"];
@@ -816,7 +816,7 @@ NSString *LaunchImageName() {
     return launchImageName;
 }
 
-NSArray *IPAddresses()
+NSArray *ZD_IPAddresses()
 {
     int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0) return nil;
