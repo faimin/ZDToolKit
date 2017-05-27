@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import <ZDToolKit/ZDWatchdog.h>
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 @interface AppDelegate ()
 
@@ -19,7 +21,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[ZDWatchdog shareInstance] start];
+    
+    [self debug];
+    
     return YES;
+}
+
+/**
+ 1、Call [UIDebuggingInformationOverlay prepareDebuggingOverlay] - I’m not sure exactly what this method does, but the overlay will be empty if you don’t call it.
+ 2、Call [[UIDebuggingInformationOverlay overlay] toggleVisibility] - This shows the overlay window (assuming it’s not already visible).
+ */
+
+- (void)debug {
+#if DEBUG
+    Class aClass = objc_getClass("UIDebuggingInformationOverlay");
+    ((void (*) (id, SEL))(void *)objc_msgSend) ((id)aClass, sel_registerName("prepareDebuggingOverlay"));
+    id returnInstance = ((id (*) (id, SEL))(void *)objc_msgSend) ((id)aClass, sel_registerName("overlay"));
+    ((void* (*) (id, SEL))(void *)objc_msgSend) ((id)returnInstance, sel_registerName("toggleVisibility"));
+#endif
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
