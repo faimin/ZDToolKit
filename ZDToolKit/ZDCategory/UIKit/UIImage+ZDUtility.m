@@ -13,7 +13,7 @@
 
 #pragma mark - Function
 
-CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow, BOOL withAlpha) {
+UIKIT_STATIC_INLINE CGContextRef ZD_CreateARGBBitmapContext(const size_t width, const size_t height, const size_t bytesPerRow, BOOL withAlpha) {
     /// Use the generic RGB color space
     /// We avoid the NULL check because CGColorSpaceRelease() NULL check the value anyway, and worst case scenario = fail to create context
     /// Create the bitmap context, we want pre-multiplied ARGB, 8-bits per component
@@ -73,10 +73,10 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     return imageWithAlpha;
 }
 
-- (UIColor *)getPixelColorAtLocation:(CGPoint)point {
+- (UIColor *)zd_getPixelColorAtLocation:(CGPoint)point {
     UIColor* color = nil;
     CGImageRef inImage = self.CGImage;
-    CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
+    CGContextRef cgctx = [self zd_createARGBBitmapContextFromImage:inImage];
     
     if (cgctx == NULL) {
         return nil; /* error */
@@ -105,7 +105,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     return color;
 }
 
-- (CGContextRef)createARGBBitmapContextFromImage:(CGImageRef)inImage {
+- (CGContextRef)zd_createARGBBitmapContextFromImage:(CGImageRef)inImage {
     CGContextRef context = NULL;
     CGColorSpaceRef colorSpace;
     void *bitmapData;
@@ -164,7 +164,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 
 #pragma mark - Resize / Thumbnail
 
-- (UIImage *)scaleWithLimitLength:(CGFloat)length {
+- (UIImage *)zd_scaleWithLimitLength:(CGFloat)length {
     CGSize newSize = CGSizeZero;
     CGFloat newWidth = 0.0f;
     CGFloat newHeight = 0.0f;
@@ -194,7 +194,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     return newImage;
 }
 
-- (UIImage *)scaleToFillSize:(CGSize)newSize {
+- (UIImage *)zd_scaleToFillSize:(CGSize)newSize {
     size_t destWidth = (size_t)(newSize.width * self.scale);
     size_t destHeight = (size_t)(newSize.height * self.scale);
     if (self.imageOrientation == UIImageOrientationLeft
@@ -207,7 +207,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     }
     
     /// Create an ARGB bitmap context
-    CGContextRef bmContext = CreateARGBBitmapContext(destWidth, destHeight, destWidth * 4, [self zd_hasAlphaChannel]);
+    CGContextRef bmContext = ZD_CreateARGBBitmapContext(destWidth, destHeight, destWidth * 4, [self zd_hasAlphaChannel]);
     if (!bmContext) return nil;
     
     /// Image quality
@@ -231,8 +231,8 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     return scaled;
 }
 
-- (UIImage *)scaleToFitSize:(CGSize)newSize {
-    /// Keep aspect ratio
+- (UIImage *)zd_scaleToFitSize:(CGSize)newSize {
+    // Keep aspect ratio
     size_t destWidth, destHeight;
     if (self.size.width > self.size.height) {
         destWidth = (size_t)newSize.width;
@@ -251,10 +251,10 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
         destHeight = (size_t)newSize.height;
         destWidth = (size_t)(self.size.width * newSize.height / self.size.height);
     }
-    return [self scaleToFillSize:CGSizeMake(destWidth, destHeight)];
+    return [self zd_scaleToFillSize:CGSizeMake(destWidth, destHeight)];
 }
 
-- (UIImage *)resizeToSize:(CGSize)newSize {
+- (UIImage *)zd_resizeToSize:(CGSize)newSize {
 #if 0
 //    if (newSize.width <= 0 || newSize.height <= 0) return nil;
 //    UIGraphicsBeginImageContextWithOptions(newSize, NO, self.scale);
@@ -308,11 +308,11 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 #endif
 }
 
-- (UIImage *)thumbnailWithSize:(int)imageWidthOrHeight {
-    return [self thumbnailWithLocalURL:nil scaleToSize:imageWidthOrHeight];
+- (UIImage *)zd_thumbnailWithSize:(int)imageWidthOrHeight {
+    return [self zd_thumbnailWithLocalURL:nil scaleToSize:imageWidthOrHeight];
 }
 
-- (UIImage *)thumbnailWithLocalURL:(NSURL *)url scaleToSize:(int)imageSize {
+- (UIImage *)zd_thumbnailWithLocalURL:(NSURL *)url scaleToSize:(int)imageSize {
     CGImageRef        myThumbnailImage = NULL;
     CGImageSourceRef  myImageSource;
     CFDictionaryRef   myOptions = NULL;
@@ -376,7 +376,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 }
 
 ///====================== by ibireme =======================
-- (UIImage *)imageByInsetEdge:(UIEdgeInsets)insets withColor:(UIColor *)color {
+- (UIImage *)zd_imageByInsetEdge:(UIEdgeInsets)insets withColor:(UIColor *)color {
     CGSize size = self.size;
     size.width -= insets.left + insets.right;
     size.height -= insets.top + insets.bottom;
@@ -401,25 +401,25 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 
 #pragma mark - Radius
 
-- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius {
-    return [self imageByRoundCornerRadius:radius borderWidth:0 borderColor:nil];
+- (UIImage *)zd_imageByRoundCornerRadius:(CGFloat)radius {
+    return [self zd_imageByRoundCornerRadius:radius borderWidth:0 borderColor:nil];
 }
 
-- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius
+- (UIImage *)zd_imageByRoundCornerRadius:(CGFloat)radius
                           borderWidth:(CGFloat)borderWidth
                           borderColor:(UIColor *)borderColor {
-    return [self imageByRoundCornerRadius:radius
-                                  corners:UIRectCornerAllCorners
-                              borderWidth:borderWidth
-                              borderColor:borderColor
-                           borderLineJoin:kCGLineJoinMiter];
+    return [self zd_imageByRoundCornerRadius:radius
+                                     corners:UIRectCornerAllCorners
+                                 borderWidth:borderWidth
+                                 borderColor:borderColor
+                              borderLineJoin:kCGLineJoinMiter];
 }
 
-- (UIImage *)imageByRoundCornerRadius:(CGFloat)radius
-                              corners:(UIRectCorner)corners
-                          borderWidth:(CGFloat)borderWidth
-                          borderColor:(UIColor *)borderColor
-                       borderLineJoin:(CGLineJoin)borderLineJoin {
+- (UIImage *)zd_imageByRoundCornerRadius:(CGFloat)radius
+                                 corners:(UIRectCorner)corners
+                             borderWidth:(CGFloat)borderWidth
+                             borderColor:(UIColor *)borderColor
+                          borderLineJoin:(CGLineJoin)borderLineJoin {
     if (corners != UIRectCornerAllCorners) {
         UIRectCorner tmp = 0;
         if (corners & UIRectCornerTopLeft) tmp |= UIRectCornerBottomLeft;
@@ -466,7 +466,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 
 #pragma mark - Transform
 
-- (UIImage *)fixOrientation {
+- (UIImage *)zd_fixOrientation {
     if (self.imageOrientation == UIImageOrientationUp) return self;
     
     CGAffineTransform transform = CGAffineTransformIdentity;
@@ -531,7 +531,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 }
 
 ///====================== by ibireme =======================
-- (UIImage *)imageByRotate:(CGFloat)radians fitSize:(BOOL)fitSize {
+- (UIImage *)zd_imageByRotate:(CGFloat)radians fitSize:(BOOL)fitSize {
     size_t width = (size_t)CGImageGetWidth(self.CGImage);
     size_t height = (size_t)CGImageGetHeight(self.CGImage);
     CGRect newRect = CGRectApplyAffineTransform(CGRectMake(0.0, 0.0, width, height),
@@ -568,7 +568,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 /**
  *  @brief 根据bundle中的文件名读取图片,返回无缓存的图片
  */
-+ (UIImage *)imageWithFileName:(NSString *)name {
++ (UIImage *)zd_imageWithFileName:(NSString *)name {
     NSString *extension = @"png";
     NSArray *components = [name componentsSeparatedByString:@"."];
     
@@ -605,7 +605,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
     return nil;
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)color {
++ (UIImage *)zd_imageWithColor:(UIColor *)color {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -622,7 +622,7 @@ CGContextRef CreateARGBBitmapContext(const size_t width, const size_t height, co
 #pragma mark - Draw
 
 /// 在图片上绘制文字
-- (UIImage *)imageWithTitle:(NSString *)title fontSize:(CGFloat)fontSize {
+- (UIImage *)zd_imageWithTitle:(NSString *)title fontSize:(CGFloat)fontSize {
     //画布大小
     CGSize size = CGSizeMake(self.size.width, self.size.height);
     //创建一个基于位图的上下文

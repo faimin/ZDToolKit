@@ -208,6 +208,8 @@
 		F9FECD98B261A32F70D823391309D3E3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6551F8D72EE7A0EDFC2C53D299B98B /* CoreFoundation.framework */; };
 		FA39709A1ED044DB005DC6BC /* NSDictionary+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FA3970981ED044DB005DC6BC /* NSDictionary+ZDUtility.h */; };
 		FA39709B1ED044DB005DC6BC /* NSDictionary+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3970991ED044DB005DC6BC /* NSDictionary+ZDUtility.m */; };
+		FA3970CD1ED91C51005DC6BC /* CALayer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FA3970CB1ED91C51005DC6BC /* CALayer+ZDUtility.h */; };
+		FA3970CE1ED91C51005DC6BC /* CALayer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3970CC1ED91C51005DC6BC /* CALayer+ZDUtility.m */; };
 		FD3D8CF63DFC7A54677F35B79193E0CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1E90B1DEC91B4EBF83BFEFFC68F35C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -466,6 +468,8 @@
 		F9EAC73B6E2ABFD6D29AF9BDD5E3065F /* YYCache-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYCache-dummy.m"; sourceTree = "<group>"; };
 		FA3970981ED044DB005DC6BC /* NSDictionary+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ZDUtility.h"; sourceTree = "<group>"; };
 		FA3970991ED044DB005DC6BC /* NSDictionary+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ZDUtility.m"; sourceTree = "<group>"; };
+		FA3970CB1ED91C51005DC6BC /* CALayer+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+ZDUtility.h"; sourceTree = "<group>"; };
+		FA3970CC1ED91C51005DC6BC /* CALayer+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+ZDUtility.m"; sourceTree = "<group>"; };
 		FAFEB2B4851FC0E4C08F431EAC585BE6 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		FBD1EB005AB1B589AA6F9653AF7DCB24 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		FC54E2FF88BB18EE913E6FC052374FF4 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYSpriteSheetImage.h; path = YYImage/YYSpriteSheetImage.h; sourceTree = "<group>"; };
@@ -924,6 +928,8 @@
 				FC963280B4E2F9605C72F5CCBDA516CA /* UIWebView+ZDExtend.m */,
 				96108C24C3FE99CC629556F1A5CA1675 /* WKWebView+ZDExtend.h */,
 				3470CC79CBD690BE8CD4893E178E0CF9 /* WKWebView+ZDExtend.m */,
+				FA3970CB1ED91C51005DC6BC /* CALayer+ZDUtility.h */,
+				FA3970CC1ED91C51005DC6BC /* CALayer+ZDUtility.m */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -1259,6 +1265,7 @@
 				E6DF767EFB08398FBEBAC28F373713D6 /* ZDFunction.h in Headers */,
 				6C2A6CA913C1053053A7AB19465F1D8A /* ZDMetamacros.h in Headers */,
 				F2772184800A4277F8241048BC774140 /* ZDProxy.h in Headers */,
+				FA3970CD1ED91C51005DC6BC /* CALayer+ZDUtility.h in Headers */,
 				D722C6A7DAF93C7C901EFEF3E93A7E4B /* ZDReusePool.h in Headers */,
 				7161CF55131D4B9F2543829C14FF1928 /* ZDSafe.h in Headers */,
 				955DCEC1A396B8570B4C7F28A3EEF691 /* ZDTextView.h in Headers */,
@@ -1471,6 +1478,7 @@
 				5B857C4833680B4315C66AD7BC599F98 /* UIViewController+ZDBackButtonHandler.m in Sources */,
 				561A480D526C0C73367F853A656B4881 /* UIViewController+ZDPop.m in Sources */,
 				37EA246528690797A7E97070D5318F2D /* UIViewController+ZDUtility.m in Sources */,
+				FA3970CE1ED91C51005DC6BC /* CALayer+ZDUtility.m in Sources */,
 				2A9AC9374E2E239B47B71A10DD8F54CF /* UIWebView+ZDExtend.m in Sources */,
 				FA39709B1ED044DB005DC6BC /* NSDictionary+ZDUtility.m in Sources */,
 				779DC70C620EFC239B84FFA1C800583F /* WKWebView+ZDExtend.m in Sources */,

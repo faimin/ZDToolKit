@@ -16,6 +16,8 @@ Pod::Spec.new do |s|
   s.author       = { 'Zero.D.Saber' => 'fuxianchao@gmail.com' }
   s.platform     = :ios, '8.0'
   s.requires_arc = true
+  s.public_header_files = 'ZDToolKit/ZDToolKit.h'
+  
 
   s.source       = {
     :git =>'https://github.com/faimin/ZDToolKit.git', 

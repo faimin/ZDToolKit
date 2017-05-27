@@ -45,6 +45,8 @@
 #improt "NSObject+ZDRuntime.h"
 #improt "NSObject+ZDUtility.h"
 #improt "NSString+ZDUtility.h"
+#import "NSTimer+ZDUtility.h"
+#import "NSDictionary+ZDUtility.h"
 // UIKit
 #improt "UIButton+ZDUtility.h"
 #improt "UIColor+ZDUtility.h"
@@ -60,6 +62,7 @@
 #improt "UIViewController+ZDUtility.h"
 #improt "UIWebView+ZDExtend.h"
 #improt "WKWebView+ZDExtend.h"
+#import "CALayer+ZDUtility.h"
 
 // Macros
 #improt "EXTScope.h"
@@ -84,6 +87,7 @@
 #improt "ZDTextView.h"
 #improt "ZDTools.h"
 #improt "ZDWatchdog.h"
+#import "ZDReusePool.h"
 
 
 #endif /* ZDToolKit_h */
