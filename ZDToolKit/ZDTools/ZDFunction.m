@@ -599,12 +599,12 @@ UIInterfaceOrientation ZD_CurrentInterfaceOrientation()
     return orient;
 }
 
-BOOL isPortrait()
+BOOL ZD_isPortrait()
 {
     return UIInterfaceOrientationIsPortrait(ZD_CurrentInterfaceOrientation());
 }
 
-BOOL isLandscape()
+BOOL ZD_isLandscape()
 {
     return UIInterfaceOrientationIsLandscape(ZD_CurrentInterfaceOrientation());
 }
@@ -613,7 +613,7 @@ BOOL isLandscape()
 #pragma mark -
 
 ///refer: http://stackoverflow.com/questions/6887464/how-can-i-get-list-of-classes-already-loaded-into-memory-in-specific-bundle-or
-NSArray *GetClassNames()
+NSArray *ZD_GetClassNames()
 {
     NSMutableArray *classNames = [NSMutableArray array];
     unsigned int count = 0;
@@ -629,7 +629,7 @@ NSArray *GetClassNames()
 #pragma mark -
 /// nativeScale与scale的区别
 /// http://stackoverflow.com/questions/25871858/what-is-the-difference-between-nativescale-and-scale-on-uiscreen-in-ios8
-BOOL isRetina()
+BOOL ZD_isRetina()
 {
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale >= 2;
@@ -639,7 +639,7 @@ BOOL isRetina()
     }
 }
 
-BOOL isPad()
+BOOL ZD_isPad()
 {
     static dispatch_once_t one;
     static BOOL pad;
@@ -649,7 +649,7 @@ BOOL isPad()
     return pad;
 }
 
-BOOL isSimulator()
+BOOL ZD_isSimulator()
 {
 #if 1
     
@@ -669,9 +669,9 @@ BOOL isSimulator()
 }
 
 // 是否越狱 refer:YYCategories
-BOOL isJailbroken()
+BOOL ZD_isJailbroken()
 {
-    if (isSimulator()) return NO; // Dont't check simulator
+    if (ZD_isSimulator()) return NO; // Dont't check simulator
     
     // iOS9 URL Scheme query changed ...
     // NSURL *cydiaURL = [NSURL URLWithString:@"cydia://package"];
@@ -705,7 +705,7 @@ BOOL isJailbroken()
 }
 
 // 当前设备是否设置了代理
-BOOL isSetProxy() {
+BOOL ZD_isSetProxy() {
     NSDictionary *proxySettings = (__bridge NSDictionary *)(CFNetworkCopySystemProxySettings());
     NSArray *proxies = (__bridge NSArray *)(CFNetworkCopyProxiesForURL((__bridge CFURLRef _Nonnull)([NSURL URLWithString:@"http://www.baidu.com"]), (__bridge CFDictionaryRef _Nonnull)(proxySettings)));
     
@@ -713,7 +713,7 @@ BOOL isSetProxy() {
     return ![[settings objectForKey:(NSString *)kCFProxyTypeKey] isEqualToString:(NSString *)kCFProxyTypeNone];
 }
 
-double SystemVersion()
+double ZD_SystemVersion()
 {
     static double _version;
     static dispatch_once_t onceToken;
@@ -723,7 +723,7 @@ double SystemVersion()
     return _version;
 }
 
-CGFloat Scale()
+CGFloat ZD_Scale()
 {
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale;
@@ -733,7 +733,7 @@ CGFloat Scale()
     }
 }
 
-CGSize ScreenSize()
+CGSize ZD_ScreenSize()
 {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) { // 横屏
@@ -745,48 +745,48 @@ CGSize ScreenSize()
 }
 
 /// 竖屏状态下
-CGSize PrivateScreenSize()
+CGSize ZD_PrivateScreenSize()
 {
     return [UIScreen mainScreen].bounds.size;
 }
 
-CGFloat ScreenWidth()
+CGFloat ZD_ScreenWidth()
 {
-    return ScreenSize().width;
+    return ZD_ScreenSize().width;
 }
 
-CGFloat ScreenHeight()
+CGFloat ZD_ScreenHeight()
 {
-    return ScreenSize().height;
+    return ZD_ScreenSize().height;
 }
 
-BOOL iPhone4s()
+BOOL ZD_iPhone4s()
 {
-	if (PrivateScreenSize().height == 480) {
+	if (ZD_PrivateScreenSize().height == 480) {
 		return YES;
 	}
 	return NO;
 }
 
-BOOL iPhone5s()
+BOOL ZD_iPhone5s()
 {
-	if (PrivateScreenSize().height == 568) {
+	if (ZD_PrivateScreenSize().height == 568) {
 		return YES;
 	}
 	return NO;
 }
 
-BOOL iPhone6()
+BOOL ZD_iPhone6()
 {
-	if (PrivateScreenSize().width == 375) {
+	if (ZD_PrivateScreenSize().width == 375) {
 		return YES;
 	}
 	return NO;
 }
 
-BOOL iPhone6p()
+BOOL ZD_iPhone6p()
 {
-	if (PrivateScreenSize().width == 414) {
+	if (ZD_PrivateScreenSize().width == 414) {
 		return YES;
 	}
 	return NO;

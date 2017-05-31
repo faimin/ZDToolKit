@@ -16,6 +16,7 @@
 
 - (void)setZdAlignment:(ZDAlignment)zdAlignment {
     _zdAlignment = zdAlignment;
+    self.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     [self setNeedsDisplay];
 }
 
@@ -44,7 +45,10 @@
                 textRect.origin.y = bounds.origin.y + bounds.size.height - textRect.size.height;
                 break;
             }
-            case ZDAlignment_Middle:
+            case ZDAlignment_Middle: {
+                textRect.origin.y = bounds.origin.y + (bounds.size.height - textRect.size.height) / 2.0;
+                break;
+            }
             default: {
                 break;
             }

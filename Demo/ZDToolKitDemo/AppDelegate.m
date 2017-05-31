@@ -35,9 +35,11 @@
 - (void)debug {
 #if DEBUG
     Class aClass = objc_getClass("UIDebuggingInformationOverlay");
+    // 运行程序后，执行下面方法后，两根手指点击状态栏即可调起这个调试的悬浮层
     ((void (*) (id, SEL))(void *)objc_msgSend) ((id)aClass, sel_registerName("prepareDebuggingOverlay"));
-    id returnInstance = ((id (*) (id, SEL))(void *)objc_msgSend) ((id)aClass, sel_registerName("overlay"));
-    ((void* (*) (id, SEL))(void *)objc_msgSend) ((id)returnInstance, sel_registerName("toggleVisibility"));
+    // 下面方法是可选的，可以不调用
+    __unused id returnInstance = ((id (*) (id, SEL))(void *)objc_msgSend) ((id)aClass, sel_registerName("overlay"));
+    // ((void* (*) (id, SEL))(void *)objc_msgSend) ((id)returnInstance, sel_registerName("toggleVisibility"));
 #endif
 }
 

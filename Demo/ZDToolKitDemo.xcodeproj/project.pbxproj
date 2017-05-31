@@ -311,7 +311,7 @@
 				TargetAttributes = {
 					05EC9C651C53CDC300BACFE9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 9RX2YUH426;
+						DevelopmentTeam = 36NX5886GJ;
 					};
 					05EC9C7E1C53CDC300BACFE9 = {
 						CreatedOnToolsVersion = 7.2;
@@ -601,7 +601,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9RX2YUH426;
+				DEVELOPMENT_TEAM = 36NX5886GJ;
 				INFOPLIST_FILE = ZDToolKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -616,7 +616,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9RX2YUH426;
+				DEVELOPMENT_TEAM = 36NX5886GJ;
 				INFOPLIST_FILE = ZDToolKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

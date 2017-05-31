@@ -41,7 +41,7 @@
 	//[self numberTest];
     [self mainqueueTest];
     
-    BOOL setProxy = isSetProxy();
+    BOOL setProxy = ZD_isSetProxy();
     NSLog(@"%@", setProxy ? @"本机设置了代理" : @"没设置代理");
 }
 
