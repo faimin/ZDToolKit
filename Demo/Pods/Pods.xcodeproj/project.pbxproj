@@ -210,6 +210,8 @@
 		FA39709B1ED044DB005DC6BC /* NSDictionary+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3970991ED044DB005DC6BC /* NSDictionary+ZDUtility.m */; };
 		FA3970CD1ED91C51005DC6BC /* CALayer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FA3970CB1ED91C51005DC6BC /* CALayer+ZDUtility.h */; };
 		FA3970CE1ED91C51005DC6BC /* CALayer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3970CC1ED91C51005DC6BC /* CALayer+ZDUtility.m */; };
+		FA3970FD1EE02972005DC6BC /* NSDate+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FA3970FB1EE02972005DC6BC /* NSDate+ZDUtility.h */; };
+		FA3970FE1EE02972005DC6BC /* NSDate+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3970FC1EE02972005DC6BC /* NSDate+ZDUtility.m */; };
 		FD3D8CF63DFC7A54677F35B79193E0CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1E90B1DEC91B4EBF83BFEFFC68F35C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -470,6 +472,8 @@
 		FA3970991ED044DB005DC6BC /* NSDictionary+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ZDUtility.m"; sourceTree = "<group>"; };
 		FA3970CB1ED91C51005DC6BC /* CALayer+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+ZDUtility.h"; sourceTree = "<group>"; };
 		FA3970CC1ED91C51005DC6BC /* CALayer+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+ZDUtility.m"; sourceTree = "<group>"; };
+		FA3970FB1EE02972005DC6BC /* NSDate+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ZDUtility.h"; sourceTree = "<group>"; };
+		FA3970FC1EE02972005DC6BC /* NSDate+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ZDUtility.m"; sourceTree = "<group>"; };
 		FAFEB2B4851FC0E4C08F431EAC585BE6 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		FBD1EB005AB1B589AA6F9653AF7DCB24 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		FC54E2FF88BB18EE913E6FC052374FF4 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYSpriteSheetImage.h; path = YYImage/YYSpriteSheetImage.h; sourceTree = "<group>"; };
@@ -1034,6 +1038,8 @@
 				61FF9C9E0966B0D3B5D3D37F8D15BCC5 /* NSTimer+ZDUtility.m */,
 				FA3970981ED044DB005DC6BC /* NSDictionary+ZDUtility.h */,
 				FA3970991ED044DB005DC6BC /* NSDictionary+ZDUtility.m */,
+				FA3970FB1EE02972005DC6BC /* NSDate+ZDUtility.h */,
+				FA3970FC1EE02972005DC6BC /* NSDate+ZDUtility.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1258,6 +1264,7 @@
 				3B2CB1D630B181381F6CD10098337BC8 /* WKWebView+ZDExtend.h in Headers */,
 				FA39709A1ED044DB005DC6BC /* NSDictionary+ZDUtility.h in Headers */,
 				D92362531D410221D684D6E0AA843678 /* ZDActionLabel.h in Headers */,
+				FA3970FD1EE02972005DC6BC /* NSDate+ZDUtility.h in Headers */,
 				BEEC8C6E14CA664CBB4D942DCFC4A55B /* ZDDefine.h in Headers */,
 				28EDB8EE296A56C7EFA9D1FB6F48C1ED /* ZDEdgeLabel.h in Headers */,
 				4D19CA797F50D755DAFBE4F2734CC6DA /* ZDEXTScope.h in Headers */,
@@ -1487,6 +1494,7 @@
 				11A0E2F62C12108257959C511AB2AC48 /* ZDFileManager.m in Sources */,
 				77DE8AC08B4AD6BB54C62213C812174C /* ZDFunction.m in Sources */,
 				7CB8DE40DD6F5E6A0BE3E0D2FBFE3446 /* ZDProxy.m in Sources */,
+				FA3970FE1EE02972005DC6BC /* NSDate+ZDUtility.m in Sources */,
 				CA00AF949FFCF32CA296F7750BFBEC45 /* ZDReusePool.m in Sources */,
 				7A17790B0905F65E306923716286AC08 /* ZDSafe.m in Sources */,
 				AD25EF08DF04574FFF8247BE46523B7C /* ZDTextView.m in Sources */,

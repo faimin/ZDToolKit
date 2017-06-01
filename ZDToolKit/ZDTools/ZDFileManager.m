@@ -10,6 +10,15 @@
 #import <dirent.h>
 #import <sys/mount.h>
 #import <sys/stat.h>
+//
+#import <sys/types.h>
+#import <sys/param.h>
+#import <unistd.h>
+#import <fcntl.h>
+#import <pwd.h>
+#import <grp.h>
+#import <dirent.h>
+#import <errno.h>
 
 @implementation ZDFileManager
 
@@ -238,6 +247,95 @@
 	return freespace;
 }
 
+/*
+// https://github.com/mpw/marcelweiher-libobjc2/blob/4612302061a3657bc95a387ddca8db58c6dd60c5/Foundation/platform_posix/NSFileManager_posix.m
++ (NSDictionary *)attributesOfItemAtPath:(NSString *)filePath {
+    struct stat statbuf;
+    const char *cpath = [filePath fileSystemRepresentation];
+    if (cpath && stat(cpath, &statbuf) == 0) {
+        NSNumber *fileSize = [NSNumber numberWithUnsignedLongLong:statbuf.st_size];
+        NSDate *creationDate = [NSDate dateWithTimeIntervalSince1970:statbuf.st_ctime];
+        NSDate *modificationDate = [NSDate dateWithTimeIntervalSince1970:statbuf.st_mtime];
+        // etc
+    }
+}
+
+- (NSDictionary *)fileAttributesAtPath:(NSString *)path traverseLink:(BOOL)traverse {
+    NSMutableDictionary *result=[NSMutableDictionary dictionary];
+    struct stat statBuf;
+    struct passwd *pwd;
+    struct group *grp;
+    NSString *type;
+    
+    if (lstat([path fileSystemRepresentation], &statBuf) != 0)
+        return nil;
+    
+    // (Not in POSIX.1-1996.)
+    if (S_ISLNK(statBuf.st_mode) && traverse) {
+        NSString *linkContents = [self pathContentOfSymbolicLinkAtPath:path];
+        return [self fileAttributesAtPath:linkContents traverseLink:traverse];
+    }
+    
+    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_size]
+               forKey:NSFileSize];
+    [result setObject:[NSDate dateWithTimeIntervalSince1970:statBuf.st_mtime]
+               forKey:NSFileModificationDate];
+    
+    // User/group names don't always exist for the IDs in the filesystem.
+    // If we don't check for NULLs, we'll segfault.
+    pwd = getpwuid(statBuf.st_uid);
+    if (pwd != NULL)
+        [result setObject:[NSString stringWithCString:pwd->pw_name]
+                   forKey:NSFileOwnerAccountName];
+    
+    grp = getgrgid(statBuf.st_gid);
+    if (grp != NULL)
+        [result setObject:[NSString stringWithCString:grp->gr_name]
+                   forKey:NSFileGroupOwnerAccountName];
+    
+    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_nlink]
+               forKey:NSFileReferenceCount];
+    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_ino]
+               forKey:NSFileIdentifier];
+    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_dev]
+               forKey:NSFileDeviceIdentifier];
+    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_mode]
+               forKey:NSFilePosixPermissions];
+    
+    // ugh.. skip this if we can
+    if (!S_ISREG(statBuf.st_mode)) {
+        if (S_ISDIR(statBuf.st_mode))
+            [result setObject:NSFileTypeDirectory forKey:NSFileType];
+        else if (S_ISCHR(statBuf.st_mode))
+            [result setObject:NSFileTypeCharacterSpecial forKey:NSFileType];
+        else if (S_ISBLK(statBuf.st_mode))
+            [result setObject:NSFileTypeBlockSpecial forKey:NSFileType];
+        else if (S_ISFIFO(statBuf.st_mode))
+            [result setObject:NSFileTypeFIFO forKey:NSFileType];
+        else if (S_ISLNK(statBuf.st_mode))
+            [result setObject:NSFileTypeSymbolicLink forKey:NSFileType];
+        else if (S_ISSOCK(statBuf.st_mode))
+            [result setObject:NSFileTypeSocket forKey:NSFileType];
+    }
+    else
+        [result setObject:NSFileTypeRegular forKey:NSFileType];
+    
+    return result;
+}
+
+- (NSString *)pathContentOfSymbolicLinkAtPath:(NSString *)path {
+    char linkbuf[MAXPATHLEN+1];
+    size_t length;
+    
+    length = readlink([path fileSystemRepresentation], linkbuf, MAXPATHLEN);
+    if (length ==-1)
+        return nil;
+    
+    linkbuf[length] = 0;
+    return [NSString stringWithCString:linkbuf encoding:NSUTF8StringEncoding];
+}
+*/
+ 
 + (void)clearUserDefaults
 {
 #if 1
