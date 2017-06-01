@@ -247,17 +247,18 @@
 	return freespace;
 }
 
-/*
+
 // https://github.com/mpw/marcelweiher-libobjc2/blob/4612302061a3657bc95a387ddca8db58c6dd60c5/Foundation/platform_posix/NSFileManager_posix.m
 + (NSDictionary *)attributesOfItemAtPath:(NSString *)filePath {
     struct stat statbuf;
     const char *cpath = [filePath fileSystemRepresentation];
     if (cpath && stat(cpath, &statbuf) == 0) {
-        NSNumber *fileSize = [NSNumber numberWithUnsignedLongLong:statbuf.st_size];
-        NSDate *creationDate = [NSDate dateWithTimeIntervalSince1970:statbuf.st_ctime];
-        NSDate *modificationDate = [NSDate dateWithTimeIntervalSince1970:statbuf.st_mtime];
+        __unused NSNumber *fileSize = [NSNumber numberWithUnsignedLongLong:statbuf.st_size];
+        __unused NSDate *creationDate = [NSDate dateWithTimeIntervalSince1970:statbuf.st_ctime];
+        __unused NSDate *modificationDate = [NSDate dateWithTimeIntervalSince1970:statbuf.st_mtime];
         // etc
     }
+    return nil;
 }
 
 - (NSDictionary *)fileAttributesAtPath:(NSString *)path traverseLink:(BOOL)traverse {
@@ -265,7 +266,7 @@
     struct stat statBuf;
     struct passwd *pwd;
     struct group *grp;
-    NSString *type;
+    __unused NSString *type;
     
     if (lstat([path fileSystemRepresentation], &statBuf) != 0)
         return nil;
@@ -285,18 +286,18 @@
     // If we don't check for NULLs, we'll segfault.
     pwd = getpwuid(statBuf.st_uid);
     if (pwd != NULL)
-        [result setObject:[NSString stringWithCString:pwd->pw_name]
+        [result setObject:[NSString stringWithCString:pwd->pw_name encoding:NSUTF8StringEncoding]
                    forKey:NSFileOwnerAccountName];
     
     grp = getgrgid(statBuf.st_gid);
     if (grp != NULL)
-        [result setObject:[NSString stringWithCString:grp->gr_name]
+        [result setObject:[NSString stringWithCString:grp->gr_name encoding:NSUTF8StringEncoding]
                    forKey:NSFileGroupOwnerAccountName];
     
     [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_nlink]
                forKey:NSFileReferenceCount];
     [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_ino]
-               forKey:NSFileIdentifier];
+               forKey:NSFileSystemFileNumber];
     [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_dev]
                forKey:NSFileDeviceIdentifier];
     [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_mode]
@@ -311,7 +312,7 @@
         else if (S_ISBLK(statBuf.st_mode))
             [result setObject:NSFileTypeBlockSpecial forKey:NSFileType];
         else if (S_ISFIFO(statBuf.st_mode))
-            [result setObject:NSFileTypeFIFO forKey:NSFileType];
+            [result setObject:NSFileTypeSocket forKey:NSFileType];
         else if (S_ISLNK(statBuf.st_mode))
             [result setObject:NSFileTypeSymbolicLink forKey:NSFileType];
         else if (S_ISSOCK(statBuf.st_mode))
@@ -324,17 +325,54 @@
 }
 
 - (NSString *)pathContentOfSymbolicLinkAtPath:(NSString *)path {
-    char linkbuf[MAXPATHLEN+1];
+    char linkbuf[MAXPATHLEN + 1];
     size_t length;
     
     length = readlink([path fileSystemRepresentation], linkbuf, MAXPATHLEN);
-    if (length ==-1)
+    if (length == -1)
         return nil;
     
     linkbuf[length] = 0;
     return [NSString stringWithCString:linkbuf encoding:NSUTF8StringEncoding];
 }
-*/
+
+- (NSArray *)directoryContentsAtPath:(NSString *)path {
+    NSMutableArray *result=nil;
+    DIR *dirp = NULL;
+    struct dirent *dire;
+    
+    if(path == nil) {
+        return nil;
+    }
+    
+    dirp = opendir([path fileSystemRepresentation]);
+    
+    if (dirp == NULL)
+        return nil;
+    
+    result = [[NSMutableArray alloc] init];
+    
+    while ((dire = readdir(dirp))){
+        if(strcmp(".",dire->d_name)==0)
+            continue;
+        if(strcmp("..",dire->d_name)==0)
+            continue;
+        [result addObject:[NSString stringWithCString:dire->d_name encoding:NSUTF8StringEncoding]];
+    }
+    
+    closedir(dirp);
+    
+    return result;
+}
+
+- (NSString *)currentDirectoryPath {
+    char  path[MAXPATHLEN + 1];
+    
+    if (getcwd(path, sizeof(path)) != NULL)
+        return [NSString stringWithCString:path encoding:NSUTF8StringEncoding];
+    
+    return nil;
+}
  
 + (void)clearUserDefaults
 {

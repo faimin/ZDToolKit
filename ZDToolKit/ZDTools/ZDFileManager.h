@@ -44,7 +44,11 @@
 
 + (long long)freeDiskSpace;
 
+- (NSString *)pathContentOfSymbolicLinkAtPath:(NSString *)path;
 
+- (NSArray *)directoryContentsAtPath:(NSString *)path;
+
+- (NSString *)currentDirectoryPath;
 
 /// 清空NSUserDefaults中的全部数据
 + (void)clearUserDefaults;
