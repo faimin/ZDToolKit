@@ -288,29 +288,19 @@ do {                                                 							\
 
 //----------------------颜色类---------------------------
 /// RGB颜色转换（16进制->10进制）
-#define ZD_UIColorFromHEX(rgbValue)                                     \
-[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0    \
-                green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0       \
-                 blue:((float)(rgbValue & 0xFF)) / 255.0 alpha: 1.0]    \
-
 ///  Create UIColor with a hex string.
 ///
-///  Example: self.backgroundColor = UIColorHex(f9f9f9);
-///  UIColorHex(0xF0F), UIColorHex(66ccff), UIColorHex(#66CCFF88)
-//#ifndef UIColorHex
-//#define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
-//#endif
+///  Example: self.backgroundColor = ZD_UIColorFromHEX(f9f9f9);
+#define ZD_UIColorFromHEX(hexValue)                                         \
+[UIColor colorWithRed:((float)((0x##hexValue & 0xFF0000) >> 16)) / 255.0    \
+                green:((float)((0x##hexValue & 0xFF00) >> 8)) / 255.0       \
+                 blue:((float)(0x##hexValue & 0xFF)) / 255.0                \
+                alpha: 1.0]
+
 
 // 获取RGB颜色
 #define ZD_RGBA(r, g, b, a)	[UIColor colorWithRed: r / 255.0f green: g / 255.0f blue: b / 255.0f alpha: a]
 #define ZD_RGB(r, g, b)		ZD_RGBA(r, g, b, 1.0f)
-
-//十六进制颜色
-//#define COLOR_RGBA(r, g, b, a) \
-//	[UIColor colorWithRed: (r) / 255.0 green: (g) / 255.0 blue: (b) / 255.0 alpha: a]
-//#define COLOR_HEXA(hexValue, alpha)	\
-//	COLOR_RGBA( ( (hexValue) >> 16) & 0xff, ( (hexValue) >> 8) & 0xff, ( (hexValue) >> 0) & 0xff, alpha)
-//#define COLOR_HEX(hexValue) COLOR_HEXA(hexValue, 1)
 
 //----------------------颜色类--------------------------
 
@@ -359,6 +349,7 @@ static inline void ZD_Dispatch_sync_on_main_queue(void (^block)()) {
     }
 }
 
+/// 打印view的坐标系信息
 static inline void ZD_PrintViewCoordinateInfo(UIView *view) {
     NSLog(@"\n frame = %@, bounds = %@, center = %@",
           NSStringFromCGRect(view.frame),
@@ -368,15 +359,20 @@ static inline void ZD_PrintViewCoordinateInfo(UIView *view) {
 }
 
 //defer(swift延迟调用关键字)宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
-static inline void CleanupBlock(__strong void(^*executeCleanupBlock)()) {
+static inline void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
     (*executeCleanupBlock)();
 }
 
-/// 出了作用域时执行block
+/// 出了作用域时执行block,类似于swift中的defer和EXTScope中的onExit
+/// Example
+/// zd_defer {
+///    /// 所谓作用域结束，包括大括号结束、return、goto、break、exception等各种情况
+///    NSLog(@"当前作用域结束,马上要出作用域了");
+/// };
 #ifndef zd_defer
-	#define zd_defer \
+	#define zd_defer  \
         zd_keywordify \
-        __strong void(^executeCleanupBlock)() __attribute__((cleanup(CleanupBlock), unused)) = ^
+        __strong void(^executeCleanupBlock)() __attribute__((cleanup(ZD_CleanupBlock), unused)) = ^
 #endif
 
 #if DEBUG
