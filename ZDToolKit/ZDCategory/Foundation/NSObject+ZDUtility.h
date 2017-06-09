@@ -15,5 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable id)zd_deepCopy;
 
+- (id)zd_invokeSelectorWithArgs:(SEL)selector, ...;
+
 @end
 NS_ASSUME_NONNULL_END

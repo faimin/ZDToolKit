@@ -61,7 +61,7 @@ static const char *__BlockSignature__(id blockObj)
     NSUInteger argsCount = invocation.methodSignature.numberOfArguments - 1;
     va_list args;
     va_start(args, block);
-    for(NSUInteger i = 0; i < argsCount ; ++i) {
+    for (NSUInteger i = 0; i < argsCount ; ++i) {
         const char* argType = [invocation.methodSignature getArgumentTypeAtIndex:i + 1];
         if (argType[0] == _C_CONST) argType++;
 
