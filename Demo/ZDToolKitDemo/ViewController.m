@@ -20,6 +20,7 @@
 #import <dlfcn.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import <NSObject+ZDUtility.h>
 
 @interface ViewController ()
 
@@ -43,6 +44,34 @@
     
     BOOL setProxy = ZD_isSetProxy();
     NSLog(@"%@", setProxy ? @"本机设置了代理" : @"没设置代理");
+    
+    Class aClass = objc_getClass("TwoViewController");
+    SEL selector = sel_registerName("executeMethodWithStr:num:");
+    id result = [[aClass new] zd_invokeSelectorWithArgs:selector, @"数字", 999];
+    NSLog(@"%@", result);
+
+    /*
+     id target = [aClass new];
+    NSString *str = @"数字";
+    NSUInteger num = 999;
+    //__unsafe_unretained id returnValue;
+    void *returnValue;
+    
+    id result00 = ({
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:selector]];
+        [invocation setTarget:target];
+        [invocation setSelector:selector];
+        [invocation setArgument:&str atIndex:2];
+        [invocation setArgument:&num atIndex:3];
+        [invocation retainArguments];
+        [invocation setReturnValue:&returnValue];
+        [invocation invoke];
+        [invocation getReturnValue:&returnValue];
+        (__bridge id)returnValue;
+    });
+    
+    NSLog(@"%@", result00);
+     */
 }
 
 - (void)viewWillAppear:(BOOL)animated {

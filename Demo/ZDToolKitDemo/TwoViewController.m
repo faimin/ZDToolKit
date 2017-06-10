@@ -119,6 +119,12 @@
     });
 }
 
+- (NSString *)executeMethodWithStr:(NSString *)str num:(NSUInteger)num {
+    NSString *string = [NSString stringWithFormat:@"%@ + %zd", str, num];
+    return string;
+}
+
+
 /*
 #pragma mark - Navigation
 

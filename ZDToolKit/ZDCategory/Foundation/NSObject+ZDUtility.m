@@ -358,7 +358,7 @@ struct dummy arg = va_arg(args, struct dummy); \
                  */
                 struct dummy {char tmp;};
                 for (int i = 0; i < size; i++) va_arg(args, struct dummy);
-                NSLog(@"YYKit performSelectorWithArgs unsupported type:%s (%lu bytes)",
+                NSLog(@"ZDToolKit zd_invokeSelectorWithArgs unsupported type:%s (%lu bytes)",
                       [sig getArgumentTypeAtIndex:index],(unsigned long)size);
             }
 #undef case_size
@@ -411,9 +411,9 @@ return @(ret); \
         };
             
         case '@': { // id
-            id ret = nil;
+            void *ret;
             [inv getReturnValue:&ret];
-            return ret;
+            return (__bridge id)ret;
         };
             
         case '#': { // Class
