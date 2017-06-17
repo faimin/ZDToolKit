@@ -250,7 +250,10 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
                 // block
             };
             
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
             if (dispatch_get_current_queue() == queueA) {
+#pragma clang diagnostic pop
                 block();
             } else {
                 dispatch_sync(queueA, block);

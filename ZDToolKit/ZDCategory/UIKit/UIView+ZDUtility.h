@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface UIView (ZDUtility)
 
 //MARK: Controller
-@property (nonatomic, strong, readonly) UIViewController *zd_viewController;
-@property (nonatomic, strong, readonly) UIViewController *zd_topMostController;
+@property (nullable, nonatomic, strong, readonly) UIViewController *zd_viewController;
+@property (nullable, nonatomic, strong, readonly) UIViewController *zd_topMostController;
 
 //MARK: Method
 /// Traverse all subviews
@@ -29,7 +30,10 @@
 - (UIImage *)zd_snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
 
 ///  Create a snapshot PDF of the complete view hierarchy.
-- (NSData *)zd_snapshotPDF;
+- (nullable NSData *)zd_snapshotPDF;
+
+/// set corner radius for view
+- (void)zd_roundedCorners:(UIRectCorner)corners radius:(CGFloat)radius;
 
 ///  view shake
 ///  @param range 角度
@@ -46,6 +50,9 @@
 ///  add tap && longPress gesture to view
 - (void)zd_addTapGestureWithBlock:(void(^)(UITapGestureRecognizer *tapGesture))tapBlock;
 - (void)zd_addLongPressGestureWithBlock:(void(^)(UILongPressGestureRecognizer *longPressGesture))longPressBlock;
+
+/// find the contraint
+- (nullable NSLayoutConstraint *)zd_constraintForAttribute:(NSLayoutAttribute)attribute;
 
 @end
 
@@ -80,19 +87,19 @@
 @property (nonatomic) CGFloat centerX;
 @property (nonatomic) CGFloat centerY;
 
-// Middle Point
+// Middle Point, base on the view's bounds
 @property (nonatomic, readonly) CGPoint middlePoint;
 @property (nonatomic, readonly) CGFloat middleX;
 @property (nonatomic, readonly) CGFloat middleY;
 
 // Layer
-//@property (nonatomic, assign) CGFloat zd_cornerRadius;
+@property (nonatomic, assign) CGFloat zd_cornerRadius;
 
 /// Extend clickable area, e.g: self.zd_touchExtendInsets = UIEdgeInsetsMake(10, 20, 40, 10);
 @property (nonatomic, assign) UIEdgeInsets zd_touchExtendInsets;
 
 @end
-
+NS_ASSUME_NONNULL_END
 
 
 

@@ -85,7 +85,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 }
 
 - (BOOL)zd_isSubviewForView:(UIView *)superView {
-    BOOL isSubview = [self isDescendantOfView:superView];
+    BOOL isSubview = ([self isDescendantOfView:superView] && ![self isEqual:superView]);
     return isSubview;
 }
 
@@ -123,6 +123,22 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     CGPDFContextClose(context);
     CGContextRelease(context);
     return data;
+}
+
+- (void)zd_roundedCorners:(UIRectCorner)corners radius:(CGFloat)radius {
+    CGRect frame = self.bounds;
+    // NSAssert(!CGRectIsEmpty(frame), @"宽和高不能为0");
+    if (CGRectIsEmpty(frame)) return;
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:frame
+                                                   byRoundingCorners:corners
+                                                         cornerRadii:(CGSize){radius, radius}];
+    
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = frame;
+    maskLayer.path = maskPath.CGPath;
+    
+    self.layer.mask = maskLayer;
 }
 
 - (void)zd_shake:(CGFloat)range {
@@ -199,6 +215,20 @@ static void Swizzle(Class c, SEL orig, SEL new) {
             longPressActionBlock(longPressGesture);
         }
     }
+}
+
+#pragma mark - Constraints
+
+- (NSLayoutConstraint *)zd_constraintForAttribute:(NSLayoutAttribute)attribute {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"firstAttribute = %d && (firstItem = %@ || secondItem = %@)", attribute, self, self];
+    NSArray *constraintArray = [self.superview constraints];
+    
+    if (attribute == NSLayoutAttributeWidth || attribute == NSLayoutAttributeHeight) {
+        constraintArray = [self constraints];
+    }
+    
+    NSArray *fillteredArray = [constraintArray filteredArrayUsingPredicate:predicate];
+    return fillteredArray.firstObject;
 }
 
 @end
@@ -372,9 +402,11 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                         cornerRadius:zd_cornerRadius];
     [maskPath addClip];
+    
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.bounds;
     maskLayer.path = maskPath.CGPath;
+    
     self.layer.mask = maskLayer;
 }
 
