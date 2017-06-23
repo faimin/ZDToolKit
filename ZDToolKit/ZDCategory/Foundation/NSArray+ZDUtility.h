@@ -1,5 +1,5 @@
 //
-//  NSArray+ZDExtend.h
+//  NSArray+ZDUtility.h
 //  ZDUtility
 //
 //  Created by Zero on 15/11/28.
@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSArray (ZDExtend)
+@interface NSArray (ZDUtility)
+
+- (id)zd_anyObject;
 
 /// 反转数组中元素的顺序
 - (NSArray *)zd_reverse;
@@ -33,6 +35,8 @@
 - (CGFloat)zd_max;
 /// 最小值
 - (CGFloat)zd_min;
+
+- (NSMutableArray *)zd_map:(id (^)(id objc))block;
 
 @end
 

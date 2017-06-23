@@ -19,8 +19,10 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 
 @implementation NSObject (ZDUtility)
 
-+ (id)zd_cast:(id)objc
++ (instancetype)zd_cast:(id)objc
 {
+    if (!objc) return nil;
+    
     if ([objc isKindOfClass:[self class]]) {
         return objc;
     }

@@ -15,10 +15,12 @@
     "ios": "8.0"
   },
   "requires_arc": true,
+  "public_header_files": "ZDToolKit/ZDToolKit.h",
   "source": {
     "git": "https://github.com/faimin/ZDToolKit.git",
     "tag": "0.0.2"
   },
+  "source_files": "ZDToolKit/ZDToolKit.h",
   "subspecs": [
     {
       "name": "ZDAutoLayout",
