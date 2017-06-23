@@ -215,7 +215,6 @@ static void getSuper(Class class, NSMutableString *result) {
         [methodsDescription addObject:
          [NSString stringWithFormat:@"%@ (%@)%@",
           instance ? @"-" : @"+",
-#warning return correct type
           @"void",
           NSStringFromSelector(methods[i].name)]];
     }

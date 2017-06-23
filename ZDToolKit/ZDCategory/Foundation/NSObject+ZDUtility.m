@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 
 @implementation NSObject (ZDUtility)
 
-+ (instancetype)zd_cast:(id)objc
++ (id)zd_cast:(id)objc
 {
     if (!objc) return nil;
     
@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     return nil;
 }
 
-- (id)zd_deepCopy_archiver
+- (id)zd_deepCopy
 {
     id obj = nil;
     @try {
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 
 /// http://nathanli.cn/2015/12/14/objective-c-%E5%85%83%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-%E5%88%86%E7%B1%BB%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7/
 /// AutoCoding: https://github.com/nicklockwood/AutoCoding/blob/master/AutoCoding/AutoCoding.m
-- (id)zd_deepCopy
+- (id)zd_deepCopy_inComplete
 {
     Class selfClass = [self class];
     

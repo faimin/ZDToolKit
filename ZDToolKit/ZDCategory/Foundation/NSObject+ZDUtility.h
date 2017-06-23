@@ -11,11 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (ZDUtility)
 
-+ (nullable instancetype)zd_cast:(id)objc;
++ (nullable id)zd_cast:(id)objc;
 
 - (nullable id)zd_deepCopy;
 
-- (id)zd_invokeSelectorWithArgs:(SEL)selector, ...;
+- (nullable id)zd_invokeSelectorWithArgs:(SEL)selector, ...;
 
 @end
 NS_ASSUME_NONNULL_END
