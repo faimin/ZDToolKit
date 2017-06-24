@@ -191,13 +191,14 @@
 - (BOOL)zd_isContainString:(NSString *)string
 {
     if (!string || (string.length == 0) || ![string isKindOfClass:[NSString class]]) return NO;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
-    NSRange rang = [self rangeOfString:string];
-    if (rang.location == NSNotFound) return NO;
-    return YES;
-#else
-    return [self containsString:string];
-#endif
+    
+    if ([self respondsToSelector:@selector(containsString:)]) {
+        return [self containsString:string];
+    }
+    else {
+        NSRange range = [self rangeOfString:string];
+        return (range.location != NSNotFound);
+    }
 }
 
 - (BOOL)zd_isContainChinese
@@ -211,7 +212,7 @@
             return YES;
         }
 #else
-        unichar a =[self characterAtIndex:i];
+        unichar a = [self characterAtIndex:i];
         if(a > 0x4e00 && a < 0x9fff) {
             return YES;
         }
