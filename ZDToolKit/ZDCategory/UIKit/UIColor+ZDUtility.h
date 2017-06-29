@@ -26,6 +26,8 @@
 
 - (NSString *)zd_rgbStringValueWithAlpha:(BOOL)alpha;
 
+- (BOOL)zd_isEqualToColor:(UIColor *)otherColor;
+
 @end
 
 

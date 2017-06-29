@@ -15,7 +15,9 @@
 /// 获取图片上某一点的颜色
 - (UIColor *)zd_getPixelColorAtLocation:(CGPoint)point;
 
-///限制最大边的长度为多少,然后进行等比缩放
+/// 拉伸图片
+- (UIImage *)zd_resizeable;
+/// 限制最大边的长度为多少,然后进行等比缩放
 - (UIImage *)zd_scaleWithLimitLength:(CGFloat)length;
 /// Same as 'scale to fill' in IB.
 - (UIImage *)zd_scaleToFillSize:(CGSize)newSize;

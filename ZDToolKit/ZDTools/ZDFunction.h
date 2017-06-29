@@ -143,6 +143,8 @@ FOUNDATION_EXPORT BOOL ZD_iPhone6p();
 FOUNDATION_EXPORT NSString *ZD_IconName();
 FOUNDATION_EXPORT NSString *ZD_LaunchImageName();
 
+/// 获取设备MAC地址
+FOUNDATION_EXPORT NSString *ZD_MacAddress();
 /// 数组两个值，第一个是本地地址，127.0.0.1也就是localhost，
 /// 第二个是路由器DNS分配的公网地址。
 FOUNDATION_EXPORT NSArray *ZD_IPAddresses();
