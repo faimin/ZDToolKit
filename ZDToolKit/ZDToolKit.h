@@ -33,6 +33,7 @@
 #improt "UIImage+ZDUtility.h"
 #improt "UIImageView+FaceAwareFill.h"
 #improt "UIImageView+ZDUtility.h"
+#import "UIImageView+ZDGIF.h"
 #improt "UILabel+ZDUtility.h"
 #improt "UITextView+ZDUtility.h"
 #improt "UIView+draggable.h"
