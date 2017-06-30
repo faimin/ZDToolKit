@@ -113,12 +113,12 @@ const void *FrameIntervalKey = &FrameIntervalKey;
     return [objc_getAssociatedObject(self, ExecuteIntervalKey) doubleValue];
 }
 
-- (void)setFrameInterval:(NSTimeInterval)frameInterval {
+- (void)setFrameInterval:(NSInteger)frameInterval {
     objc_setAssociatedObject(self, FrameIntervalKey, @(frameInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSTimeInterval)frameInterval {
-    return [objc_getAssociatedObject(self, FrameIntervalKey) doubleValue];
+- (NSInteger)frameInterval {
+    return [objc_getAssociatedObject(self, FrameIntervalKey) integerValue];
 }
 
 @end
