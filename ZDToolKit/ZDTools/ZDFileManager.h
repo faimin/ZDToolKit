@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface ZDFileManager : NSObject
 
 //MARK:Path
@@ -30,21 +31,24 @@
 
 + (BOOL)removeAtPath:(NSString *)path;
 
-+ (BOOL)moveFromParh:(NSString *)fromPath toPath:(NSString *)toPath;
++ (BOOL)moveFromParh:(NSString *)fromPath
+              toPath:(NSString *)toPath;
 
-+ (BOOL)copyFromParh:(NSString *)fromPath toPath:(NSString *)toPath;
++ (BOOL)copyFromParh:(NSString *)fromPath
+              toPath:(NSString *)toPath;
 
 + (long long)fileSizeAtPath:(NSString *)path;
 
 + (long long)folderSizeAtPath:(const char*)folderPath;
 
-+ (unsigned long long)directorySize:(NSString*)directoryPath recursive:(BOOL)recursive;
++ (unsigned long long)directorySize:(NSString *)directoryPath
+                          recursive:(BOOL)recursive;
 
 + (long long)totalDiskSpace;
 
 + (long long)freeDiskSpace;
 
-- (NSString *)pathContentOfSymbolicLinkAtPath:(NSString *)path;
+- (nullable NSString *)pathContentOfSymbolicLinkAtPath:(NSString *)path;
 
 - (NSArray *)directoryContentsAtPath:(NSString *)path;
 
@@ -95,7 +99,7 @@
 - (NSString *)pathByDeletingSequenceNumber;
 
 @end
-
+NS_ASSUME_NONNULL_END
 
 
 

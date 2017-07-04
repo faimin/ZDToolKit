@@ -29,7 +29,9 @@ const void *FrameIntervalKey = &FrameIntervalKey;
 #pragma mark - Public
 
 - (void)startAnimation {
-    [self startAnimationIfNeed];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self startTimer];
+    });
 }
 
 - (void)stopAnimation {
@@ -49,22 +51,16 @@ const void *FrameIntervalKey = &FrameIntervalKey;
     
     if (m < imageCount) {
         UIImage *image;
-        if (self.imageNames && self.imageNames.count > 0) {
+        if (self.imageNames && self.imageNames.count > i) {
             image = [UIImage imageNamed:self.imageNames[i]];
         }
-        else if (self.imagePaths && self.imagePaths.count > 0) {
+        else if (self.imagePaths && self.imagePaths.count > i) {
             image = [UIImage imageWithContentsOfFile:self.imagePaths[i]];
         }
         self.image = image;
     } else if (m >= imageCount + duration) {
         m = 0;
     }
-}
-
-- (void)startAnimationIfNeed {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self startTimer];
-    });
 }
 
 - (void)startTimer {

@@ -11,14 +11,14 @@
 #import <sys/mount.h>
 #import <sys/stat.h>
 //
-#import <sys/types.h>
-#import <sys/param.h>
-#import <unistd.h>
-#import <fcntl.h>
-#import <pwd.h>
-#import <grp.h>
-#import <dirent.h>
-#import <errno.h>
+//#import <sys/types.h>
+//#import <sys/param.h>
+//#import <unistd.h>
+//#import <fcntl.h>
+//#import <pwd.h>
+//#import <grp.h>
+//#import <dirent.h>
+//#import <errno.h>
 
 @implementation ZDFileManager
 
@@ -247,83 +247,7 @@
 	return freespace;
 }
 
-
 // https://github.com/mpw/marcelweiher-libobjc2/blob/4612302061a3657bc95a387ddca8db58c6dd60c5/Foundation/platform_posix/NSFileManager_posix.m
-+ (NSDictionary *)attributesOfItemAtPath:(NSString *)filePath {
-    struct stat statbuf;
-    const char *cpath = [filePath fileSystemRepresentation];
-    if (cpath && stat(cpath, &statbuf) == 0) {
-        __unused NSNumber *fileSize = [NSNumber numberWithUnsignedLongLong:statbuf.st_size];
-        __unused NSDate *creationDate = [NSDate dateWithTimeIntervalSince1970:statbuf.st_ctime];
-        __unused NSDate *modificationDate = [NSDate dateWithTimeIntervalSince1970:statbuf.st_mtime];
-        // etc
-    }
-    return nil;
-}
-
-- (NSDictionary *)fileAttributesAtPath:(NSString *)path traverseLink:(BOOL)traverse {
-    NSMutableDictionary *result=[NSMutableDictionary dictionary];
-    struct stat statBuf;
-    struct passwd *pwd;
-    struct group *grp;
-    __unused NSString *type;
-    
-    if (lstat([path fileSystemRepresentation], &statBuf) != 0)
-        return nil;
-    
-    // (Not in POSIX.1-1996.)
-    if (S_ISLNK(statBuf.st_mode) && traverse) {
-        NSString *linkContents = [self pathContentOfSymbolicLinkAtPath:path];
-        return [self fileAttributesAtPath:linkContents traverseLink:traverse];
-    }
-    
-    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_size]
-               forKey:NSFileSize];
-    [result setObject:[NSDate dateWithTimeIntervalSince1970:statBuf.st_mtime]
-               forKey:NSFileModificationDate];
-    
-    // User/group names don't always exist for the IDs in the filesystem.
-    // If we don't check for NULLs, we'll segfault.
-    pwd = getpwuid(statBuf.st_uid);
-    if (pwd != NULL)
-        [result setObject:[NSString stringWithCString:pwd->pw_name encoding:NSUTF8StringEncoding]
-                   forKey:NSFileOwnerAccountName];
-    
-    grp = getgrgid(statBuf.st_gid);
-    if (grp != NULL)
-        [result setObject:[NSString stringWithCString:grp->gr_name encoding:NSUTF8StringEncoding]
-                   forKey:NSFileGroupOwnerAccountName];
-    
-    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_nlink]
-               forKey:NSFileReferenceCount];
-    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_ino]
-               forKey:NSFileSystemFileNumber];
-    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_dev]
-               forKey:NSFileDeviceIdentifier];
-    [result setObject:[NSNumber numberWithUnsignedLong:statBuf.st_mode]
-               forKey:NSFilePosixPermissions];
-    
-    // ugh.. skip this if we can
-    if (!S_ISREG(statBuf.st_mode)) {
-        if (S_ISDIR(statBuf.st_mode))
-            [result setObject:NSFileTypeDirectory forKey:NSFileType];
-        else if (S_ISCHR(statBuf.st_mode))
-            [result setObject:NSFileTypeCharacterSpecial forKey:NSFileType];
-        else if (S_ISBLK(statBuf.st_mode))
-            [result setObject:NSFileTypeBlockSpecial forKey:NSFileType];
-        else if (S_ISFIFO(statBuf.st_mode))
-            [result setObject:NSFileTypeSocket forKey:NSFileType];
-        else if (S_ISLNK(statBuf.st_mode))
-            [result setObject:NSFileTypeSymbolicLink forKey:NSFileType];
-        else if (S_ISSOCK(statBuf.st_mode))
-            [result setObject:NSFileTypeSocket forKey:NSFileType];
-    }
-    else
-        [result setObject:NSFileTypeRegular forKey:NSFileType];
-    
-    return result;
-}
-
 - (NSString *)pathContentOfSymbolicLinkAtPath:(NSString *)path {
     char linkbuf[MAXPATHLEN + 1];
     size_t length;
@@ -337,7 +261,7 @@
 }
 
 - (NSArray *)directoryContentsAtPath:(NSString *)path {
-    NSMutableArray *result=nil;
+    NSMutableArray *result = nil;
     DIR *dirp = NULL;
     struct dirent *dire;
     
@@ -352,12 +276,13 @@
     
     result = [[NSMutableArray alloc] init];
     
-    while ((dire = readdir(dirp))){
-        if(strcmp(".",dire->d_name)==0)
+    while ((dire = readdir(dirp))) {
+        if (strcmp(".", dire->d_name) == 0)
             continue;
-        if(strcmp("..",dire->d_name)==0)
+        if (strcmp("..", dire->d_name) == 0)
             continue;
-        [result addObject:[NSString stringWithCString:dire->d_name encoding:NSUTF8StringEncoding]];
+        NSString *str = [NSString stringWithCString:dire->d_name encoding:NSUTF8StringEncoding];
+        if (str) [result addObject:str];
     }
     
     closedir(dirp);
@@ -366,7 +291,7 @@
 }
 
 - (NSString *)currentDirectoryPath {
-    char  path[MAXPATHLEN + 1];
+    char path[MAXPATHLEN + 1];
     
     if (getcwd(path, sizeof(path)) != NULL)
         return [NSString stringWithCString:path encoding:NSUTF8StringEncoding];

@@ -181,6 +181,8 @@
 		D525BE574DEC1466222FB07EBB1A8617 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6551F8D72EE7A0EDFC2C53D299B98B /* CoreFoundation.framework */; };
 		D5A2BFFE95962E79B22134FDD5CC016C /* _YYWebImageSetter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E1491C894BF7E1E3BF0BBD022D7927B /* _YYWebImageSetter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D66419E3CB72A27B6593ACB6CCDB53F9 /* NSInvocation+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7A072973D9D7319C6A303B7F29CAC8 /* NSInvocation+Block.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA92B15C1F0A6F03002EE33E /* ZDGifImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = DA92B15A1F0A6F03002EE33E /* ZDGifImageView.h */; };
+		DA92B15D1F0A6F03002EE33E /* ZDGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA92B15B1F0A6F03002EE33E /* ZDGifImageView.m */; };
 		E2DF8F4F3746135EAC4B3FD168B5092A /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4560C80D29817F2C3317FE6873F7D6C /* ImageIO.framework */; };
 		E2E7172D7C839B24B8BAE0BC2140F8BE /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4571DE9F7CA830731314FB4599920360 /* MAKVONotificationCenter.m */; };
 		E30D92B840CF65BAE3C2503DAB0468DE /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF28A8A28B0BF8AD1D1072C970E4A64 /* UIView+WebCache.m */; };
@@ -450,6 +452,8 @@
 		D701F27EE52D075E319AA3485FE49F6B /* libZDToolKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZDToolKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D858029A676BAA3D19EFEAC6B1C0EA46 /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
 		DA73CE73FEAE0DC0D96CCA174236A54E /* SDImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = SDWebImage/SDImageCache.h; sourceTree = "<group>"; };
+		DA92B15A1F0A6F03002EE33E /* ZDGifImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDGifImageView.h; sourceTree = "<group>"; };
+		DA92B15B1F0A6F03002EE33E /* ZDGifImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDGifImageView.m; sourceTree = "<group>"; };
 		DC8AF4CFAE07D0BA5E2FE8757A7F4D2E /* YYImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YYImage.xcconfig; sourceTree = "<group>"; };
 		DE6AE3AA007117E6AB74D8F6C0375321 /* UIView+FDCollapsibleConstraints.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+FDCollapsibleConstraints.m"; sourceTree = "<group>"; };
 		E0BC6803D2260A7A86E974866D0D58AF /* ZDWatchdog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ZDWatchdog.h; sourceTree = "<group>"; };
@@ -709,6 +713,8 @@
 				29F0EB54161B3367E48818641F28B98A /* ZDTools.m */,
 				E0BC6803D2260A7A86E974866D0D58AF /* ZDWatchdog.h */,
 				CA4DD73AED815122BD62B20AA26A2EB1 /* ZDWatchdog.m */,
+				DA92B15A1F0A6F03002EE33E /* ZDGifImageView.h */,
+				DA92B15B1F0A6F03002EE33E /* ZDGifImageView.m */,
 			);
 			path = ZDTools;
 			sourceTree = "<group>";
@@ -1210,6 +1216,7 @@
 				D2CDFD2A1E72589E0C67FA8BC04F52E6 /* NSDate+ZDUtility.h in Headers */,
 				1F49258E360AD25C3FE34D61CE183FAB /* NSDictionary+ZDUtility.h in Headers */,
 				D66419E3CB72A27B6593ACB6CCDB53F9 /* NSInvocation+Block.h in Headers */,
+				DA92B15C1F0A6F03002EE33E /* ZDGifImageView.h in Headers */,
 				CD2982DD87743BBFDCE2E629DB8D4C07 /* NSObject+DLIntrospection.h in Headers */,
 				90B5CD353AA7809362CEF56F96ACDF93 /* NSObject+JKAutoCoding.h in Headers */,
 				769F34CD40C54ADE8D1D37DA053F56C0 /* NSObject+RZBlockKVO.h in Headers */,
@@ -1463,6 +1470,7 @@
 				9C64FC3206317445A7D7DD4FA090FDF3 /* UIImageView+FaceAwareFill.m in Sources */,
 				EB25014836E2ED9EBF694A3D1F154752 /* UIImageView+ZDUtility.m in Sources */,
 				B72A6A59FE61CEB3BC071FCF3FD0CA84 /* UILabel+ZDUtility.m in Sources */,
+				DA92B15D1F0A6F03002EE33E /* ZDGifImageView.m in Sources */,
 				A3786B0442C79AD165C8BC53CCBC3403 /* UINavigationController+ZDPop.m in Sources */,
 				20BA54B06BD59F6A02E3CFBBAC213303 /* UITextView+ZDUtility.m in Sources */,
 				04AA7562D2F43412F4D75CD5008C15B8 /* UIView+AutoFlowLayout.m in Sources */,
