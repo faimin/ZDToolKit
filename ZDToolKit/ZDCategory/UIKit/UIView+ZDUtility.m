@@ -63,7 +63,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 	while (matchController != nil && [controllersHierarchy containsObject:matchController] == NO) {
 		do {
 			matchController = [matchController nextResponder];
-		} while (matchController != nil && [matchController isKindOfClass:[UIViewController class]] == NO);
+		} while (matchController != nil && ![matchController isKindOfClass:[UIViewController class]]);
 	}
 
 	return (UIViewController *)matchController;

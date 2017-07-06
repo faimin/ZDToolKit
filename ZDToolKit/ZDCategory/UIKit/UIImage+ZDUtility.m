@@ -167,7 +167,7 @@ UIKIT_STATIC_INLINE CGContextRef ZD_CreateARGBBitmapContext(const size_t width, 
 - (UIImage *)zd_resizeable {
     CGFloat imageW = self.size.width;
     CGFloat imageH = self.size.height;
-    return [self resizableImageWithCapInsets:UIEdgeInsetsMake(imageH * 0.5, imageW * 0.5, imageH * 0.5, imageW * 0.5) resizingMode:UIImageResizingModeStretch];
+    return [self resizableImageWithCapInsets:UIEdgeInsetsMake(imageH * 0.2, imageW * 0.2, imageH * 0.2, imageW * 0.2) resizingMode:UIImageResizingModeStretch];
 }
 
 - (UIImage *)zd_scaleWithLimitLength:(CGFloat)length {

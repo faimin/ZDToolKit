@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSArray (ZDUtility)
+@interface NSArray<__covariant ObjectType> (ZDUtility)
 
 - (id)zd_anyObject;
 
@@ -24,6 +24,7 @@
 
 /// 去重
 - (NSArray *)zd_deduplication;
+
 /// 获取两个数组中的相同元素
 - (NSArray *)zd_collectSameElementWithArray:(__kindof NSArray *)otherArray;
 

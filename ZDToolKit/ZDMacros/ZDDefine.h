@@ -331,7 +331,7 @@ do {                                                 							\
 #define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))// 最终使用的宏
 
 
-static inline void ZD_Dispatch_async_on_main_queue(void (^block)()) {
+NS_INLINE void ZD_Dispatch_async_on_main_queue(void (^block)()) {
     if (pthread_main_np()) {
         block();
     }
@@ -340,7 +340,7 @@ static inline void ZD_Dispatch_async_on_main_queue(void (^block)()) {
     }
 }
 
-static inline void ZD_Dispatch_sync_on_main_queue(void (^block)()) {
+NS_INLINE void ZD_Dispatch_sync_on_main_queue(void (^block)()) {
     if (pthread_main_np()) {
         block();
     }
@@ -350,7 +350,7 @@ static inline void ZD_Dispatch_sync_on_main_queue(void (^block)()) {
 }
 
 /// 打印view的坐标系信息
-static inline void ZD_PrintViewCoordinateInfo(UIView *view) {
+NS_INLINE void ZD_PrintViewCoordinateInfo(UIView *view) {
     NSLog(@"\n frame = %@, bounds = %@, center = %@",
           NSStringFromCGRect(view.frame),
           NSStringFromCGRect(view.bounds),
@@ -389,7 +389,7 @@ static inline void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
 @autoreleasepool {} __strong __typeof__(self_weak_) objc_ = self_weak_;
 
 
-#define ZD_BeforeMainFunction __attribute__((constructor))
+#define ZD_ExcuteBeforeMainFunction __attribute__((constructor))
 
 
 /// 消除performSelector警告

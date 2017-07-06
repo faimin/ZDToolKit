@@ -13,7 +13,7 @@
 /// 暂停动画
 - (void)zd_pauseAnimation;
 
-/// 重新开始动画
+/// 恢复动画
 - (void)zd_resumeAnimation;
 
 @end
