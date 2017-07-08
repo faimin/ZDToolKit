@@ -359,16 +359,21 @@ NS_INLINE void ZD_PrintViewCoordinateInfo(UIView *view) {
 }
 
 //defer(swift延迟调用关键字)宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
-static inline void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
+/// 注意`ZD_CleanupBlock`函数的入参是`cleanup`所修饰变量的地址,类型要一样
+NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
     (*executeCleanupBlock)();
 }
 
 /// 出了作用域时执行block,类似于swift中的defer和EXTScope中的onExit
-/// Example
+///
+/// Example:
 /// zd_defer {
 ///    /// 所谓作用域结束，包括大括号结束、return、goto、break、exception等各种情况
 ///    NSLog(@"当前作用域结束,马上要出作用域了");
 /// };
+///
+/// 加了个`unused`的attribute用来消除`unused variable`的warning
+/// 注意`ZD_CleanupBlock`函数的入参是所修饰变量的地址,类型要一样
 #ifndef zd_defer
 	#define zd_defer  \
         zd_keywordify \
