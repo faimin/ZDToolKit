@@ -170,9 +170,10 @@
 
 - (NSString *)zd_reservedNumberOnly
 {
-    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
-    NSString *resultStr = [[self componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-    //BOOL isChange = ![self isEqualToString:resultStr];
+    NSCharacterSet *numberSet = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+    // or
+    // NSCharacterSet *numberSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    NSString *resultStr = [[self componentsSeparatedByCharactersInSet:numberSet] componentsJoinedByString:@""];
     return resultStr;
 }
 
