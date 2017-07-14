@@ -10,10 +10,10 @@
 
 @interface NSDictionary (ZDUtility)
 
-- (void)storeToKeychainWithKey:(NSString *)aKey;
+- (void)zd_storeToKeychainWithKey:(NSString *)aKey;
 
-- (void)deleteFromKeychainWithKey:(NSString *)aKey;
+- (void)zd_deleteFromKeychainWithKey:(NSString *)aKey;
 
-+ (NSDictionary *)dictionaryFromKeychainWithKey:(NSString *)aKey;
++ (NSDictionary *)zd_dictionaryFromKeychainWithKey:(NSString *)aKey;
 
 @end

@@ -63,6 +63,8 @@ static NSString *const ZDRegexStr[] = {
 - (BOOL)zd_isEmpty;
 - (NSUInteger)zd_countForTargetString:(NSString *)targetString; ///< 包含的指定字符串的个数
 - (NSUInteger)zd_wordCount;
+- (NSString *)zd_hexString;
+- (NSString *)zd_md5String;
 
 // MARK: Validate(Regex)
 - (BOOL)zd_isValidWithRegex:(ZDRegex)regex;

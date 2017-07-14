@@ -11,7 +11,7 @@
 
 @implementation NSDate (ZDUtility)
 
-+ (NSDate *)dateWithISO8601String:(NSString *)iso8601String {
++ (NSDate *)zd_dateWithISO8601String:(NSString *)iso8601String {
     time_t t;
     struct tm tm;
     strptime([iso8601String cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%dT%H:%M:%S%z", &tm);

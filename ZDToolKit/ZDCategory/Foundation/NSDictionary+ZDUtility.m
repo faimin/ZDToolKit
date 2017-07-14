@@ -12,7 +12,7 @@
 @implementation NSDictionary (ZDUtility)
 
 // reference: http://stackoverflow.com/questions/9948698/store-nsdictionary-in-keychain
-- (void)storeToKeychainWithKey:(NSString *)aKey {
+- (void)zd_storeToKeychainWithKey:(NSString *)aKey {
     // serialize dict
     NSData *serializedDictionary = [NSKeyedArchiver archivedDataWithRootObject:self];
     //[NSPropertyListSerialization dataWithPropertyList:self format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
@@ -20,7 +20,7 @@
     // encrypt in keychain
 
     // first, delete potential existing entries with this key (it won't auto update)
-    [self deleteFromKeychainWithKey:aKey];
+    [self zd_deleteFromKeychainWithKey:aKey];
     
     // setup keychain storage properties
     NSDictionary *storageQuery = @{
@@ -30,12 +30,12 @@
                                    (__bridge id)kSecAttrAccessible: (__bridge id)kSecAttrAccessibleWhenUnlocked
                                    };
     OSStatus osStatus = SecItemAdd((__bridge CFDictionaryRef)storageQuery, nil);
-    if(osStatus != noErr) {
+    if (osStatus != noErr) {
         // do someting with error
     }
 }
 
-+ (NSDictionary *)dictionaryFromKeychainWithKey:(NSString *)aKey {
++ (NSDictionary *)zd_dictionaryFromKeychainWithKey:(NSString *)aKey {
     // setup keychain query properties
     NSDictionary *readQuery = @{
                                 (__bridge id)kSecAttrAccount: aKey,
@@ -45,7 +45,7 @@
     
     CFDataRef serializedDictionary = NULL;
     OSStatus osStatus = SecItemCopyMatching((__bridge CFDictionaryRef)readQuery, (CFTypeRef *)&serializedDictionary);
-    if(osStatus == noErr) {
+    if (osStatus == noErr) {
         // deserialize dictionary
         NSData *data = (__bridge NSData *)serializedDictionary;
         NSDictionary *storedDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -58,13 +58,13 @@
     }
 }
 
-- (void)deleteFromKeychainWithKey:(NSString *)aKey {
+- (void)zd_deleteFromKeychainWithKey:(NSString *)aKey {
     // setup keychain query properties
     NSDictionary *deletableItemsQuery = @{
-                                          (__bridge id)kSecAttrAccount:        aKey,
-                                          (__bridge id)kSecClass:              (__bridge id)kSecClassGenericPassword,
-                                          (__bridge id)kSecMatchLimit:         (__bridge id)kSecMatchLimitAll,
-                                          (__bridge id)kSecReturnAttributes:   (id)kCFBooleanTrue
+                                          (__bridge id)kSecAttrAccount :      aKey,
+                                          (__bridge id)kSecClass :            (__bridge id)kSecClassGenericPassword,
+                                          (__bridge id)kSecMatchLimit :       (__bridge id)kSecMatchLimitAll,
+                                          (__bridge id)kSecReturnAttributes : (id)kCFBooleanTrue
                                           };
     
     CFArrayRef itemList = NULL;

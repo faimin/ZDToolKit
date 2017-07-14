@@ -8,6 +8,7 @@
 
 #import "NSString+ZDUtility.h"
 #import <CoreText/CoreText.h>
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (ZDUtility)
 
@@ -197,8 +198,7 @@
         return [self containsString:string];
     }
     else {
-        NSRange range = [self rangeOfString:string];
-        return (range.location != NSNotFound);
+        return ([self rangeOfString:string].location != NSNotFound);
     }
 }
 
@@ -290,7 +290,8 @@
     return MAX([self componentsSeparatedByString:targetString].count - 1, 0);
 }
 
-- (NSUInteger)zd_wordCount {
+- (NSUInteger)zd_wordCount
+{
     // This word counting algorithm is from : http://stackoverflow.com/a/13367063
     __block NSUInteger wordCount = 0;
     [self enumerateSubstringsInRange:NSMakeRange(0, [self length])
@@ -299,6 +300,31 @@
                               wordCount++;
                           }];
     return wordCount;
+}
+
+- (NSString *)zd_hexString
+{
+    const char *utf8 = [self UTF8String];
+    NSMutableString *hex = [NSMutableString string];
+    while (*utf8) {
+        [hex appendFormat:@"%02X", *utf8++ & 0x00FF];
+    }
+    return [NSString stringWithFormat:@"%@", hex];
+}
+
+- (NSString *)zd_md5String
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(data.bytes, (CC_LONG) data.length, result);
+    data = [NSData dataWithBytes:result length:CC_MD5_DIGEST_LENGTH];
+    
+    NSMutableString *stringBuffer = [NSMutableString stringWithCapacity:(data.length * 2)];
+    const unsigned char *dataBuffer = data.bytes;
+    for (NSUInteger i = 0; i < data.length; ++i) {
+        [stringBuffer appendFormat:@"%02lx", (unsigned long)dataBuffer[i]];
+    }
+    return stringBuffer;
 }
 
 #pragma mark - Validate(验证)

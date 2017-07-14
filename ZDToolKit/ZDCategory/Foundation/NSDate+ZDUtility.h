@@ -10,6 +10,6 @@
 
 @interface NSDate (ZDUtility)
 
-+ (NSDate *)dateWithISO8601String:(NSString *)iso8601String;
++ (NSDate *)zd_dateWithISO8601String:(NSString *)iso8601String;
 
 @end
