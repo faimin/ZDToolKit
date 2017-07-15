@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UITextView (ZDUtility)
 
 /// 利用KVC替换textView隐藏的label属性
@@ -20,3 +22,5 @@
 - (void)addButton:(UIControl *)button;
 
 @end
+
+NS_ASSUME_NONNULL_END

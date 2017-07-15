@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <StoreKit/StoreKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIViewController (ZDUtility)<SKStoreProductViewControllerDelegate>
 
 /// 当前控制器是否支持3D Touch
@@ -31,3 +33,5 @@
 - (id<UILayoutSupport>)zd_navigationBarBottomLayoutGuide;
 
 @end
+
+NS_ASSUME_NONNULL_END

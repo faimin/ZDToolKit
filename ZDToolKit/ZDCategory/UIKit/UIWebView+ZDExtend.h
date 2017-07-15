@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIWebView (ZDExtend)
 
 #pragma mark -
@@ -166,9 +168,9 @@
 ///取两个颜色的中间
 - (UIColor *)mix:(UIColor *)color;
 
-
 @end
 
+NS_ASSUME_NONNULL_END
 
 
 

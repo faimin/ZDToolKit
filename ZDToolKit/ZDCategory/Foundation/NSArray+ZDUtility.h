@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSArray<__covariant ObjectType> (ZDUtility)
 
-- (id)zd_anyObject;
+- (nullable ObjectType)zd_anyObject;
 
 /// 反转数组中元素的顺序
 - (NSArray *)zd_reverse;
@@ -20,7 +22,7 @@
 - (__kindof NSArray *)zd_shuffle;
 
 /// 把某一元素移动到最前面
-- (__kindof NSArray *)zd_moveObjcToFront:(id)objc;
+- (__kindof NSArray *)zd_moveObjcToFront:(ObjectType)objc;
 
 /// 去重
 - (NSArray *)zd_deduplication;
@@ -41,3 +43,4 @@
 
 @end
 
+NS_ASSUME_NONNULL_END

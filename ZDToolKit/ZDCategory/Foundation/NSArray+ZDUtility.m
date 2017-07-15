@@ -89,9 +89,9 @@
     return [[self valueForKeyPath:@"@min.floatValue"] floatValue];
 }
 
-- (NSMutableArray *)zd_map:(id (^)(id objc))block {
+- (NSMutableArray *)zd_map:(id (^)(id objc))block
+{
     NSMutableArray *mutArr = [NSMutableArray arrayWithCapacity:self.count];
-    
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [mutArr addObject:block(obj) ?: [NSNull null]];
     }];

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, ZDAlignment) {
     ZDAlignment_Middle = 0,
     ZDAlignment_Top,
@@ -25,3 +27,5 @@ typedef NS_ENUM(NSUInteger, ZDAlignment) {
 @property (nonatomic, assign) ZDAlignment zdAlignment;
 
 @end
+
+NS_ASSUME_NONNULL_END

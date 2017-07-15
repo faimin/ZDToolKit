@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * @name UIView+draggable
  * Adds the ability to drag a UIView
  */
-@interface UIView (draggable)
+@interface UIView (ZDDraggable)
 
 /** The pan gestures that handles the view dragging
  *
@@ -78,3 +80,5 @@
 - (void)setDraggable:(BOOL)draggable;
 
 @end
+
+NS_ASSUME_NONNULL_END

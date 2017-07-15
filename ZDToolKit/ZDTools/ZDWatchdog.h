@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ZDWatchdog : NSObject
 
 @property (nonatomic, assign) long long timeInterval;
@@ -22,3 +24,5 @@
 - (void)stop;
 
 @end
+
+NS_ASSUME_NONNULL_END

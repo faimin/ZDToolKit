@@ -412,8 +412,8 @@ UIKIT_STATIC_INLINE CGContextRef ZD_CreateARGBBitmapContext(const size_t width, 
 }
 
 - (UIImage *)zd_imageByRoundCornerRadius:(CGFloat)radius
-                          borderWidth:(CGFloat)borderWidth
-                          borderColor:(UIColor *)borderColor {
+                             borderWidth:(CGFloat)borderWidth
+                             borderColor:(UIColor *)borderColor {
     return [self zd_imageByRoundCornerRadius:radius
                                      corners:UIRectCornerAllCorners
                                  borderWidth:borderWidth

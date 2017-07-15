@@ -16,6 +16,8 @@ typedef NS_ENUM(NSUInteger, ZDImagePosition) {
     ZDImagePosition_Bottom
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIButton (ZDUtility)
 
 /// @brief 排列button中的image和title
@@ -25,3 +27,5 @@ typedef NS_ENUM(NSUInteger, ZDImagePosition) {
 - (void)zd_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;
 
 @end
+
+NS_ASSUME_NONNULL_END

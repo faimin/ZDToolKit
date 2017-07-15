@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UILabel (ZDUtility)
 
 - (CGSize)zd_contentSize;
@@ -16,3 +18,5 @@
 - (__kindof NSArray *)zd_linesArrayOfString;
 
 @end
+
+NS_ASSUME_NONNULL_END

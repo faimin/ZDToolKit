@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 @interface ZDActionLabel : UILabel
 
 ///  给指定文字添加点击事件
@@ -22,4 +23,5 @@ NS_ASSUME_NONNULL_BEGIN
            ranges:(NSArray<NSValue *> *)ranges;
 
 @end
+
 NS_ASSUME_NONNULL_END

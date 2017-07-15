@@ -8,6 +8,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CALayer (ZDUtility)
 
 /// 暂停动画
@@ -17,3 +19,5 @@
 - (void)zd_resumeAnimation;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSDictionary (ZDUtility)
 
 - (void)zd_storeToKeychainWithKey:(NSString *)aKey;
 
 - (void)zd_deleteFromKeychainWithKey:(NSString *)aKey;
 
-+ (NSDictionary *)zd_dictionaryFromKeychainWithKey:(NSString *)aKey;
++ (nullable NSDictionary *)zd_dictionaryFromKeychainWithKey:(NSString *)aKey;
 
 @end
+
+NS_ASSUME_NONNULL_END

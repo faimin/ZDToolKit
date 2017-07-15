@@ -21,7 +21,4 @@
     return date;
 }
 
-
-
-
 @end

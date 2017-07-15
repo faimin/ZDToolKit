@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 #pragma mark - ZDWeakProxy
 
 @interface ZDWeakProxy : NSProxy
@@ -37,5 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeDelegate:(id)aDelegate;
 
 @end
+
 NS_ASSUME_NONNULL_END
 

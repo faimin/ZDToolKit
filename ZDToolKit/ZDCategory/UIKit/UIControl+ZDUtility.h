@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIControl (ZDUtility)
 
 /// 防止用户多次点击,点击的时间间隔
@@ -17,3 +19,5 @@
                               block:(void(^)(id sender))block;
 
 @end
+
+NS_ASSUME_NONNULL_END

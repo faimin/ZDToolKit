@@ -419,10 +419,10 @@
 
 - (NSDictionary *)zd_dictionaryValue
 {
-    NSError *__autoreleasing errorJson;
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:[self dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&errorJson];
+    NSError *__autoreleasing *errorJson = NULL;
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:[self dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:errorJson];
     if (errorJson != nil) {
-        NSLog(@"fail to get dictioanry from JSON: %@, error: %@", self, errorJson);
+        NSLog(@"fail to get dictioanry from JSON: %@, error: %@", self, *errorJson);
     }
     return jsonDict;
 }
@@ -714,6 +714,17 @@
         return decoded;
 #pragma clang diagnostic pop
     }
+}
+
+- (NSString *)zd_base64Encode {
+    NSString *base64EncodeString = [[self dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return base64EncodeString;
+}
+
+- (NSString *)zd_base64Decode {
+    NSData *base64StringData = [[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSString *base64DecodeString = [[NSString alloc] initWithData:base64StringData encoding:NSUTF8StringEncoding];
+    return base64DecodeString;
 }
 
 - (NSDictionary *)zd_parameters

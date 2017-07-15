@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSMutableArray (ZDUtility)
 
 + (id)zd_mutableArrayUsingWeakReferences;
@@ -15,3 +17,5 @@
 + (id)zd_mutableArrayUsingWeakReferencesWithCapacity:(NSUInteger)capacity;
 
 @end
+
+NS_ASSUME_NONNULL_END

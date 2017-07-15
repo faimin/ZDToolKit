@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// 自适应高度变化
 @interface ZDTextView : UITextView
 
@@ -24,3 +26,5 @@
 - (void)removeExtraSpaces;
 
 @end
+
+NS_ASSUME_NONNULL_END

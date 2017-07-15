@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImageView (ZDGIF)
 
 @property (nonatomic, strong) NSArray<NSString *> *imagePaths;///< 所有的图片路径(此方式不推荐通过路径读写IO占用CPU较多,耗电）
@@ -20,3 +22,5 @@
 - (void)stopAnimation;
 
 @end
+
+NS_ASSUME_NONNULL_END

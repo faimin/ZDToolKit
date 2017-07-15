@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 @interface ZDFileManager : NSObject
 
 //MARK:Path
@@ -99,6 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)pathByDeletingSequenceNumber;
 
 @end
+
 NS_ASSUME_NONNULL_END
 
 

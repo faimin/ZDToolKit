@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImageView (ZDUtility)
 
 /// 此方法执行的前提是image必须提前设置好
@@ -22,3 +24,5 @@
 #endif
 
 @end
+
+NS_ASSUME_NONNULL_END

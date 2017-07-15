@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIColor (ZDUtility)
 
 /// 获取UIColor对象的CMYK字符串值。
@@ -29,6 +31,8 @@
 - (BOOL)zd_isEqualToColor:(UIColor *)otherColor;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 
 

@@ -6,10 +6,10 @@
 //  Copyright (c) 2016 Andrea Mazzini. All rights reserved.
 //
 
-#import "UIView+draggable.h"
+#import "UIView+ZDDraggable.h"
 #import <objc/runtime.h>
 
-@implementation UIView (draggable)
+@implementation UIView (ZDDraggable)
 
 #pragma mark - Associated properties
 

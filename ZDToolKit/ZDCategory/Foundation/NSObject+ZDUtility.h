@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (ZDUtility)
 
 + (nullable id)zd_cast:(id)objc;
@@ -18,4 +19,5 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable id)zd_invokeSelectorWithArgs:(SEL)selector, ...;
 
 @end
+
 NS_ASSUME_NONNULL_END

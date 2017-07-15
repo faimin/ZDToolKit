@@ -78,5 +78,12 @@
     return [NSData dataWithBytes:result length:CC_SHA1_DIGEST_LENGTH];
 }
 
+- (NSData *)zd_base64Encode {
+    return [self base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
+- (NSData *)zd_base64Decode {
+    return [[NSData alloc] initWithBase64EncodedData:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+}
 
 @end

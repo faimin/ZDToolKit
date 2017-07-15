@@ -13,13 +13,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSData (ZDUtility)
 
 - (NSString *)zd_hexString;
-+ (NSData *)zd_dataWithHexString:(NSString *)hexStr;
++ (nullable NSData *)zd_dataWithHexString:(NSString *)hexStr;
 
 - (NSString *)zd_md5String;
 - (NSData *)zd_md5Data;
 
 - (NSString *)zd_sha1String;
 - (NSData *)zd_sha1Data;
+
+- (NSData *)zd_base64Encode;
+- (nullable NSData *)zd_base64Decode;
 
 @end
 

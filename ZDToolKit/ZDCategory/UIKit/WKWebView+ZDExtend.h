@@ -8,8 +8,12 @@
 
 #import <WebKit/WebKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WKWebView (ZDExtend)
 
-- (void)getImageUrls:(void(^)(id imageUrls))block;
+- (void)zd_getImageUrls:(void(^)(id imageUrls))block;
 
 @end
+
+NS_ASSUME_NONNULL_END

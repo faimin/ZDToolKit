@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImage (ZDUtility)
 
 - (BOOL)zd_hasAlphaChannel;
 - (UIImage *)zd_addAlphaChannle;
 /// 获取图片上某一点的颜色
-- (UIColor *)zd_getPixelColorAtLocation:(CGPoint)point;
+- (nullable UIColor *)zd_getPixelColorAtLocation:(CGPoint)point;
 
 /// 拉伸图片
 - (UIImage *)zd_resizeable;
@@ -32,11 +34,11 @@
 - (UIImage *)zd_imageByRoundCornerRadius:(CGFloat)radius;
 - (UIImage *)zd_imageByRoundCornerRadius:(CGFloat)radius
                              borderWidth:(CGFloat)borderWidth
-                             borderColor:(UIColor *)borderColor;
+                             borderColor:(nullable UIColor *)borderColor;
 - (UIImage *)zd_imageByRoundCornerRadius:(CGFloat)radius
                                  corners:(UIRectCorner)corners
                              borderWidth:(CGFloat)borderWidth
-                             borderColor:(UIColor *)borderColor
+                             borderColor:(nullable UIColor *)borderColor
                           borderLineJoin:(CGLineJoin)borderLineJoin;
 
 /// 方向旋转
@@ -53,3 +55,5 @@
                       fontSize:(CGFloat)fontSize;
 
 @end
+
+NS_ASSUME_NONNULL_END

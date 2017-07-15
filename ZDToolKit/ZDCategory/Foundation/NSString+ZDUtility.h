@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, ZDRegex) {
     ZDRegex_Email,                  ///< 邮箱
 };
 
-static NSString *const ZDRegexStr[] = {
+static NSString * _Nonnull const ZDRegexStr[] = {
     //@"^(0|86|17951)?(13[0-9]|14[57])[0-9]{8}|15[012356789]|17[678]|18[0-9]$"
     [ZDRegex_PhoneNumber] = @"^1[34578]\\d{9}$",
     [ZDRegex_SMSVerifyCode] = @"^\\d{6}$",
@@ -29,6 +29,7 @@ static NSString *const ZDRegexStr[] = {
 };
 
 //=================================================
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (ZDUtility)
 
@@ -73,8 +74,8 @@ static NSString *const ZDRegexStr[] = {
 - (BOOL)zd_isValidCardNo;
 
 // MARK: JSON
-- (NSDictionary *)zd_dictionaryValue;
-+ (NSString *)zd_stringValueFromJson:(id)arrayOrDic;
+- (nullable NSDictionary *)zd_dictionaryValue;
++ (nullable NSString *)zd_stringValueFromJson:(id)arrayOrDic;
 
 // MARK: HTML
 - (NSString *)zd_decodeHTMLCharacterEntities;
@@ -83,12 +84,18 @@ static NSString *const ZDRegexStr[] = {
 - (NSString *)zd_stringByTrimScriptAndHTML;
 
 // MARK: Decode && Encode
-- (NSString *)zd_stringByAddingPercentEncodingForRFC3986;
+- (nullable NSString *)zd_stringByAddingPercentEncodingForRFC3986;
 - (NSString *)zd_stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace;
 - (NSString *)zd_stringByURLEncode;
 - (NSString *)zd_stringByURLDecode;
 
-// MARK:Get all parameters in url
-- (NSDictionary *)zd_parameters;
+// MARK: Base64
+- (nullable NSString *)zd_base64Encode;
+- (nullable NSString *)zd_base64Decode;
+
+// MARK: Get all parameters in url
+- (nullable NSDictionary *)zd_parameters;
 
 @end
+
+NS_ASSUME_NONNULL_END

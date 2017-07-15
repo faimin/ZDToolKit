@@ -10,6 +10,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (ZDRuntime)
 
 #pragma mark - Dealloc Block
@@ -19,7 +21,7 @@
  */
 - (void)addDeallocBlock:(void(^)())block;
 
-/// deallocBlock executed when the object dealloc
+/// deallocBlock executed after the object dealloc
 - (void)zd_deallocBlcok:(void(^)())deallocBlock;
 
 #pragma mark - Swizzeling
@@ -95,3 +97,5 @@
 - (instancetype)initWithBlock:(void(^)())deallocBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END
