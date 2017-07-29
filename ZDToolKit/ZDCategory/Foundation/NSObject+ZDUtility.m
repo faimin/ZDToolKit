@@ -360,8 +360,7 @@ struct dummy arg = va_arg(args, struct dummy); \
                  */
                 struct dummy {char tmp;};
                 for (int i = 0; i < size; i++) va_arg(args, struct dummy);
-                NSLog(@"ZDToolKit zd_invokeSelectorWithArgs unsupported type:%s (%lu bytes)",
-                      [sig getArgumentTypeAtIndex:index],(unsigned long)size);
+                NSLog(@"ZDToolKit zd_invokeSelectorWithArgs unsupported type:%s (%lu bytes)", [sig getArgumentTypeAtIndex:index],(unsigned long)size);
             }
 #undef case_size
             
@@ -440,38 +439,4 @@ return @(ret); \
 @end
 
 
-//- (id)deepCopy
-//{
-//    unsigned int outCount;
-//    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
-//
-//    for (int i = 0; i < outCount; i++) {
-//        objc_property_t property = properties[i];
-//        PropertyType propertyType = [self propertyType:property];
-////        switch (propertyType) {
-////            case PropertyType_Strong: {
-////                <#statement#>
-////                break;
-////            }
-////            case PropertyType_Copy: {
-////                <#statement#>
-////                break;
-////            }
-////            case PropertyType_Weak: {
-////                <#statement#>
-////                break;
-////            }
-////            case PropertyType_Assign: {
-////                <#statement#>
-////                break;
-////            }
-////            case PropertyType_UnKnown: {
-////                <#statement#>
-////                break;
-////            }
-////        }
-//    }
-//
-//    return nil;
-//}
 
