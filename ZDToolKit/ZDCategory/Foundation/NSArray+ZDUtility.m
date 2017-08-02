@@ -54,7 +54,7 @@
 - (NSArray *)zd_deduplication
 {
 #if 1
-    // https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/KeyValueCoding/Articles/CollectionOperators.html
+    // https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueCoding/CollectionOperators.html
     return [self valueForKeyPath:@"@distinctUnionOfObjects.self"];
 #else
     return [NSSet setWithArray:self].allObjects;

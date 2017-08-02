@@ -181,6 +181,8 @@
 		D525BE574DEC1466222FB07EBB1A8617 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6551F8D72EE7A0EDFC2C53D299B98B /* CoreFoundation.framework */; };
 		D5A2BFFE95962E79B22134FDD5CC016C /* _YYWebImageSetter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E1491C894BF7E1E3BF0BBD022D7927B /* _YYWebImageSetter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D66419E3CB72A27B6593ACB6CCDB53F9 /* NSInvocation+Block.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7A072973D9D7319C6A303B7F29CAC8 /* NSInvocation+Block.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA0935A61F2F35B2005CBB69 /* ZDPermissionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0935A41F2F35B2005CBB69 /* ZDPermissionHandler.h */; };
+		DA0935A71F2F35B2005CBB69 /* ZDPermissionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0935A51F2F35B2005CBB69 /* ZDPermissionHandler.m */; };
 		DA1564141F17AA810061FA2E /* NSURLSession+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DA1564121F17AA810061FA2E /* NSURLSession+ZDUtility.h */; };
 		DA1564151F17AA810061FA2E /* NSURLSession+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1564131F17AA810061FA2E /* NSURLSession+ZDUtility.m */; };
 		DA1564261F1876B50061FA2E /* NSData+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DA1564241F1876B50061FA2E /* NSData+ZDUtility.h */; };
@@ -457,6 +459,8 @@
 		D68F9985BF9A0D19F16BFFE4117B03B8 /* YYWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYWebImageManager.m; path = YYWebImage/YYWebImageManager.m; sourceTree = "<group>"; };
 		D701F27EE52D075E319AA3485FE49F6B /* libZDToolKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZDToolKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D858029A676BAA3D19EFEAC6B1C0EA46 /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
+		DA0935A41F2F35B2005CBB69 /* ZDPermissionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDPermissionHandler.h; sourceTree = "<group>"; };
+		DA0935A51F2F35B2005CBB69 /* ZDPermissionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDPermissionHandler.m; sourceTree = "<group>"; };
 		DA1564121F17AA810061FA2E /* NSURLSession+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+ZDUtility.h"; sourceTree = "<group>"; };
 		DA1564131F17AA810061FA2E /* NSURLSession+ZDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+ZDUtility.m"; sourceTree = "<group>"; };
 		DA1564241F1876B50061FA2E /* NSData+ZDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ZDUtility.h"; sourceTree = "<group>"; };
@@ -727,6 +731,8 @@
 				CA4DD73AED815122BD62B20AA26A2EB1 /* ZDWatchdog.m */,
 				DA92B15A1F0A6F03002EE33E /* ZDGifImageView.h */,
 				DA92B15B1F0A6F03002EE33E /* ZDGifImageView.m */,
+				DA0935A41F2F35B2005CBB69 /* ZDPermissionHandler.h */,
+				DA0935A51F2F35B2005CBB69 /* ZDPermissionHandler.m */,
 			);
 			path = ZDTools;
 			sourceTree = "<group>";
@@ -1279,6 +1285,7 @@
 				0044ACC4A2036D2B743C5B8F3D5CAC2B /* ZDSafe.h in Headers */,
 				239F8BC744BD9C601A14A0176DAD67EA /* ZDTextView.h in Headers */,
 				0B960D3D83A8A75D7CE1E34FC29D60A1 /* ZDToolKit.h in Headers */,
+				DA0935A61F2F35B2005CBB69 /* ZDPermissionHandler.h in Headers */,
 				3A3D5D5D901ABBC6B1E1968101605364 /* ZDTools.h in Headers */,
 				AB0976650FCDDC78BEB9B3CB644ADF33 /* ZDWatchdog.h in Headers */,
 			);
@@ -1504,6 +1511,7 @@
 				9C5AA0D0611180398D032580FBF4A5FE /* UIView+RZAutoLayoutHelpers.m in Sources */,
 				4B467AB2688FBBB2C6964CFE3E2A6E20 /* UIView+RZBorders.m in Sources */,
 				282A6A9A07C77D65DA042F3742D05AA1 /* UIView+ZDUtility.m in Sources */,
+				DA0935A71F2F35B2005CBB69 /* ZDPermissionHandler.m in Sources */,
 				558A7E8344225F91658083875A8177B9 /* UIViewController+ZDBackButtonHandler.m in Sources */,
 				15F98B24F3E0F421AE9BCAF36D30E8E9 /* UIViewController+ZDPop.m in Sources */,
 				375E93394F10E990EE847D028285B0A7 /* UIViewController+ZDUtility.m in Sources */,

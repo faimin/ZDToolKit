@@ -4,7 +4,7 @@
 //
 //  Created by 郑宇琦 on 2016/10/20.
 //  Copyright © 2016年 郑宇琦. All rights reserved.
-//  https://github.com/trmbhs/EMClassIntrospection
+//  https://github.com/enums/EMClassIntrospection
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>

@@ -70,6 +70,7 @@
 #improt "ZDTools.h"
 #improt "ZDWatchdog.h"
 #import "ZDReusePool.h"
+#import "ZDPermissionHandler.h"
 
 
 #endif /* ZDToolKit_h */

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDReusePool<__covariant ValueType> : NSObject
 
-- (_Nullable ValueType)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+- (nullable ValueType)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
 - (void)addReusePoolObject:(ValueType)object withIdentifier:(NSString *)identifier;
 
