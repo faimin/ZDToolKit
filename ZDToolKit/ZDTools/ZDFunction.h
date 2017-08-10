@@ -173,7 +173,8 @@ void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector
 void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector);
 IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
 BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP);
-
+/// 判断selector是否属于某一protocol
+BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel);
 
 
 

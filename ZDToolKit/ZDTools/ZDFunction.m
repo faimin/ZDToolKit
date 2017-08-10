@@ -1063,5 +1063,39 @@ BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementI
     return (imp != NULL);
 }
 
+struct objc_method_description ZD_MethodDescriptionForSELInProtocol(Protocol *protocol, SEL sel) {
+    struct objc_method_description description = protocol_getMethodDescription(protocol, sel, YES, YES);
+    if (description.types) return description;
+    
+    description = protocol_getMethodDescription(protocol, sel, NO, YES);
+    if (description.types) return description;
+    
+    return (struct objc_method_description){NULL, NULL};
+}
+
+BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel) {
+    return ZD_MethodDescriptionForSELInProtocol(protocol, sel).types ? YES : NO;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

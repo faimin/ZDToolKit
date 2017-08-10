@@ -415,10 +415,32 @@ do {                                                                    \
     _Pragma("clang diagnostic pop")                                     \
 } while (0)
 
+/// 消除定义未使用变量的警告
+#define ZD_SuppressUnusedVariableWarning(Stuff)                         \
+do {                                                                    \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Wunused-variable\"")               \
+Stuff                                                                   \
+_Pragma("clang diagnostic pop")                                         \
+} while (0)
 
+/// 消除使用不存在的方法名的警告
+#define ZD_SuppressUndeclaredSelectorWarning(Stuff)                     \
+do {                                                                    \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")           \
+Stuff                                                                   \
+_Pragma("clang diagnostic pop")                                         \
+} while (0)
 
-
-
+/// 消除不兼容指针类型的警告
+#define ZD_SuppressIncompatiblePointerTypeWarning(Stuff)                \
+do {                                                                    \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Wincompatible-pointer-types\"")    \
+Stuff                                                                   \
+_Pragma("clang diagnostic pop")                                         \
+} while (0)
 
 
 
