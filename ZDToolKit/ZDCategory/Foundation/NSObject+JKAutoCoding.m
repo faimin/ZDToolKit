@@ -253,11 +253,14 @@ static NSString *const JKAutocodingException = @"JKAutocodingException";
     }
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     [self jk_setWithCoder:aDecoder];
     return self;
 }
+#pragma clang diagnostic pop
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
