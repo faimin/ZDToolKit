@@ -37,6 +37,7 @@ Pod::Spec.new do |s|
       sss.source_files = 'ZDToolKit/ZDCategory/UIKit/*.{h,m}'
       sss.frameworks = 'UIKit', 'QuartzCore', 'CoreImage', 'CoreGraphics', 'ImageIO', 'CoreText', 'WebKit'
       # sss.dependency 'SDWebImage', '~> 4.0.0'
+      sss.dependency 'ZDToolKit/ZDTools/ZDProxy'
     end
   end
 
@@ -54,8 +55,8 @@ Pod::Spec.new do |s|
     ss.source_files = 'ZDToolKit/ZDTools/*.{h,m}'
     ss.exclude_files = no_arc_source_files
 
-    ss.subspec 'BackButtonHandle' do |sss|
-      sss.source_files = 'ZDToolKit/ZDTools/BackButtonHandle/*.{h,m}'
+    ss.subspec 'ZDProxy' do |sss|
+      sss.source_files = 'ZDToolKit/ZDTools/ZDProxy/*.{h,m}'
     end
   end
 

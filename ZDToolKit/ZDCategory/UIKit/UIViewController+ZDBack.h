@@ -19,6 +19,6 @@
 
 @end
 
-@interface UIViewController (ZDBackButtonHandler) <ZDBackButtonHandler>
+@interface UIViewController (ZDBack) <ZDBackButtonHandler>
 
 @end

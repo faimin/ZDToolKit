@@ -44,7 +44,7 @@
  *
  * See #strongify for an example of usage.
  */
-#ifndef weakify(...)
+#ifndef weakify
 #define weakify(...) \
     rac_keywordify \
     metamacro_foreach_cxt(rac_weakify_,, __weak, __VA_ARGS__)
@@ -54,7 +54,7 @@
  * Like #weakify, but uses \c __unsafe_unretained instead, for targets or
  * classes that do not support weak references.
  */
-#ifndef unsafeify(...)
+#ifndef unsafeify
 #define unsafeify(...) \
     rac_keywordify \
     metamacro_foreach_cxt(rac_weakify_,, __unsafe_unretained, __VA_ARGS__)
@@ -86,7 +86,7 @@
 
  * @endcode
  */
-#ifndef strongify(...)
+#ifndef strongify
 #define strongify(...) \
     rac_keywordify \
     _Pragma("clang diagnostic push") \
@@ -102,12 +102,12 @@ static inline void rac_executeCleanupBlock (__strong rac_cleanupBlock_t *block) 
     (*block)();
 }
 
-#ifndef rac_weakify_(INDEX, CONTEXT, VAR)
+#ifndef rac_weakify_
 #define rac_weakify_(INDEX, CONTEXT, VAR) \
     CONTEXT __typeof__(VAR) metamacro_concat(VAR, _weak_) = (VAR);
 #endif
 
-#ifndef rac_strongify_(INDEX, VAR)
+#ifndef rac_strongify_
 #define rac_strongify_(INDEX, VAR) \
     __strong __typeof__(VAR) VAR = metamacro_concat(VAR, _weak_);
 #endif

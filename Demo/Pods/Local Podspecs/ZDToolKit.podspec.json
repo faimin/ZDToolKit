@@ -49,7 +49,12 @@
             "ImageIO",
             "CoreText",
             "WebKit"
-          ]
+          ],
+          "dependencies": {
+            "ZDToolKit/ZDTools/ZDProxy": [
+
+            ]
+          }
         }
       ]
     },
@@ -67,8 +72,8 @@
       "exclude_files": "ZDToolKit/ZDTools/ZDSafe.{h,m}",
       "subspecs": [
         {
-          "name": "BackButtonHandle",
-          "source_files": "ZDToolKit/ZDTools/BackButtonHandle/*.{h,m}"
+          "name": "ZDProxy",
+          "source_files": "ZDToolKit/ZDTools/ZDProxy/*.{h,m}"
         }
       ]
     },

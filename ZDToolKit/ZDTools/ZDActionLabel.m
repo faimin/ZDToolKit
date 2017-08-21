@@ -146,8 +146,8 @@ NS_ASSUME_NONNULL_BEGIN
            ranges:(NSArray<NSValue *> *)ranges {
     if (!target || NULL == action) return;
     
-    NSUInteger paramsCount = MAX([NSStringFromSelector(action) componentsSeparatedByString:@":"].count - 1, 0);
-    NSAssert(paramsCount == params.count, @"参数个数不符");
+    __unused NSUInteger paramsCount = MAX([NSStringFromSelector(action) componentsSeparatedByString:@":"].count - 1, 0);
+    NSCAssert(paramsCount == params.count, @"参数个数不符");
     self.invocation = ({
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:action]];
         [invocation setTarget:target];

@@ -6,9 +6,9 @@
 //  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
-#import "UIViewController+ZDBackButtonHandler.h"
+#import "UIViewController+ZDBack.h"
 
-@implementation UIViewController (ZDBackButtonHandler)
+@implementation UIViewController (ZDBack)
 
 @end
 
