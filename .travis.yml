@@ -5,7 +5,7 @@ os: osx
 cache: cocoapods
 osx_image: xcode8.3
 
-xcode_workspace: Demo/ZDToolKitDemo.xcodeproj 
+xcode_workspace: Demo/ZDToolKitDemo.workspace 
 xcode_scheme: ZDToolKitDemo
 podfile: Demo/Podfile
 
@@ -13,10 +13,10 @@ env:
  global:
  - LANG=en_US.UTF-8
  - LC_ALL=en_US.UTF-8
- - XCODE_WORKSPACE=Demo/ZDToolKitDemo.xcworkspace
- matrix:
- - SCHEME=ZDToolKitDemo
-
+ - XCODE_WORKSPACE="Demo/ZDToolKitDemo.xcworkspace"
+ - SCHEME="ZDToolKitDemo"
+ # matrix:
+ 
 before_install:
   # - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
@@ -37,7 +37,7 @@ notifications:
     recipients:
       - fuxianchao2009@163.com
       # - fuxianchao@xxx.com
-    on_success: never
+    on_success: always
     on_failure: always  
 after_success:
   # - bash <(curl -s https://codecov.io/bash)
