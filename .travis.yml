@@ -1,0 +1,44 @@
+# https://docs.travis-ci.com/user/languages/objective-c/
+
+language: objective-c
+os: osx
+cache: cocoapods
+osx_image: xcode8.3
+
+xcode_workspace: Demo/ZDToolKitDemo.xcodeproj 
+xcode_scheme: ZDToolKitDemo
+podfile: Demo/Podfile
+
+env:
+ global:
+ - LANG=en_US.UTF-8
+ - LC_ALL=en_US.UTF-8
+ - XCODE_WORKSPACE=Demo/ZDToolKitDemo.xcworkspace
+ matrix:
+ - SCHEME=ZDToolKitDemo
+
+before_install:
+  # - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+  - pod repo update --silent
+  - pod install --project-directory=Demo
+branches:
+  only:
+  - master
+  - develop
+script:
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcodebuild clean -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator10.3 CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty -c
+notifications:
+  email:
+    recipients:
+      - fuxianchao2009@163.com
+      # - fuxianchao@xxx.com
+    on_success: never
+    on_failure: always  
+after_success:
+  # - bash <(curl -s https://codecov.io/bash)
+  - sleep 5
