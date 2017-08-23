@@ -1,4 +1,6 @@
 # https://docs.travis-ci.com/user/languages/objective-c/
+# https://www.objc.io/issues/6-build-tools/travis-ci/
+# https://github.com/Hearst-DD/ObjectMapper/blob/master/.travis.yml
 
 language: objective-c
 os: osx
@@ -11,34 +13,61 @@ podfile: Demo/Podfile
 
 env:
  global:
- - LANG=en_US.UTF-8
- - LC_ALL=en_US.UTF-8
- - XCODE_WORKSPACE="Demo/ZDToolKitDemo.xcworkspace"
- - SCHEME="ZDToolKitDemo"
- # matrix:
+    - LANG=en_US.UTF-8
+    - LC_ALL=en_US.UTF-8
+    - XCODE_WORKSPACE="Demo/ZDToolKitDemo.xcworkspace"
+    - IOS_SCHEME="ZDToolKitDemo"
+    - IOS_SDK=iphonesimulator10.3
+ matrix:
+    - DESTINATION="OS=10.3.1,name=iPhone 5s"           SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
+    - DESTINATION="OS=10.3.1,name=iPhone 6"            SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
+    - DESTINATION="OS=10.3.1,name=iPhone 6 Plus"       SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
+    - DESTINATION="OS=10.3.1,name=iPhone 6s"           SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
+    - DESTINATION="OS=10.3.1,name=iPhone 6s Plus"      SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
+    - DESTINATION="OS=10.3.1,name=iPhone 7"            SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES"
  
+branches:
+  only:
+    - master
+    - develop
+
 before_install:
-  # - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - env
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
   - pod repo update --silent
   - pod install --project-directory=Demo
-branches:
-  only:
-  - master
-  - develop
+
 script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - xcodebuild clean -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" CODE_SIGNING_REQUIRED=NO | xcpretty -c
-  - xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator10.3 CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO | xcpretty -c
+  - xcodebuild clean -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+
+  # Build Framework in Debug and Run Tests if specified
+  - if [ $RUN_TESTS == "YES" ]; then
+      travis_retry xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO test | xcpretty -c;
+    else
+      travis_retry xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
+    fi
+
 notifications:
-  email:
+  email: # false
     recipients:
       - fuxianchao2009@163.com
-      # - fuxianchao@xxx.com
     on_success: always
     on_failure: always  
+
 after_success:
   # - bash <(curl -s https://codecov.io/bash)
   - sleep 5
+
+
+
+
+
+
+
+
+
+
