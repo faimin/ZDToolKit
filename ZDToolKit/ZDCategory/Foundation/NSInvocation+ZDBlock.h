@@ -10,11 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSInvocation (Block)
+@interface NSInvocation (ZDBlock)
 
 + (instancetype)zd_invocationWithBlock:(id)block;
 
-+ (instancetype)zd_invocationWithBlockAndArguments:(id)block ,...;
++ (instancetype)zd_invocationWithBlockAndArguments:(id)block, ...;
 
 @end
 

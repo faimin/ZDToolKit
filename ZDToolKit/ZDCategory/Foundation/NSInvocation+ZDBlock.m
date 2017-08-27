@@ -6,7 +6,7 @@
 //  Copyright © 2015 deput. All rights reserved.
 //  https://github.com/deput/NSInvocation-Block
 
-#import "NSInvocation+Block.h"
+#import "NSInvocation+ZDBlock.h"
 #import <objc/runtime.h>
 
 struct Block_literal_1 {
@@ -46,7 +46,7 @@ static const char *__BlockSignature__(id blockObj)
     return (char*)(descriptor->rest[offset]);
 }
 
-@implementation NSInvocation (Block)
+@implementation NSInvocation (ZDBlock)
 
 + (instancetype)zd_invocationWithBlock:(id)block
 {
