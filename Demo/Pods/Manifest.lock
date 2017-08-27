@@ -9,26 +9,26 @@ PODS:
   - YYWebImage (1.0.5):
     - YYCache
     - YYImage
-  - ZDToolKit (0.0.2):
-    - ZDToolKit/no-arc (= 0.0.2)
-    - ZDToolKit/ZDAutoLayout (= 0.0.2)
-    - ZDToolKit/ZDCategory (= 0.0.2)
-    - ZDToolKit/ZDMacros (= 0.0.2)
-    - ZDToolKit/ZDRuntime (= 0.0.2)
-    - ZDToolKit/ZDTools (= 0.0.2)
-  - ZDToolKit/no-arc (0.0.2)
-  - ZDToolKit/ZDAutoLayout (0.0.2)
-  - ZDToolKit/ZDCategory (0.0.2):
-    - ZDToolKit/ZDCategory/Foundation (= 0.0.2)
-    - ZDToolKit/ZDCategory/UIKit (= 0.0.2)
-  - ZDToolKit/ZDCategory/Foundation (0.0.2)
-  - ZDToolKit/ZDCategory/UIKit (0.0.2):
+  - ZDToolKit (0.0.3):
+    - ZDToolKit/no-arc (= 0.0.3)
+    - ZDToolKit/ZDAutoLayout (= 0.0.3)
+    - ZDToolKit/ZDCategory (= 0.0.3)
+    - ZDToolKit/ZDMacros (= 0.0.3)
+    - ZDToolKit/ZDRuntime (= 0.0.3)
+    - ZDToolKit/ZDTools (= 0.0.3)
+  - ZDToolKit/no-arc (0.0.3)
+  - ZDToolKit/ZDAutoLayout (0.0.3)
+  - ZDToolKit/ZDCategory (0.0.3):
+    - ZDToolKit/ZDCategory/Foundation (= 0.0.3)
+    - ZDToolKit/ZDCategory/UIKit (= 0.0.3)
+  - ZDToolKit/ZDCategory/Foundation (0.0.3)
+  - ZDToolKit/ZDCategory/UIKit (0.0.3):
     - ZDToolKit/ZDTools/ZDProxy
-  - ZDToolKit/ZDMacros (0.0.2)
-  - ZDToolKit/ZDRuntime (0.0.2)
-  - ZDToolKit/ZDTools (0.0.2):
-    - ZDToolKit/ZDTools/ZDProxy (= 0.0.2)
-  - ZDToolKit/ZDTools/ZDProxy (0.0.2)
+  - ZDToolKit/ZDMacros (0.0.3)
+  - ZDToolKit/ZDRuntime (0.0.3)
+  - ZDToolKit/ZDTools (0.0.3):
+    - ZDToolKit/ZDTools/ZDProxy (= 0.0.3)
+  - ZDToolKit/ZDTools/ZDProxy (0.0.3)
 
 DEPENDENCIES:
   - SDWebImage (~> 4.0.0)
@@ -44,7 +44,7 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
-  ZDToolKit: 8b93718949188c33a004c1c833f5949322ea1347
+  ZDToolKit: d62a1f9a135aeaab51075bd9063db9dae7316a4f
 
 PODFILE CHECKSUM: 798c55452a569edecfc5e67f5a899a0c32b5b64a
 

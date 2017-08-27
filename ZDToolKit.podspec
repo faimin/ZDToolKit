@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'ZDToolKit'
-  s.version      = '0.0.2'
+  s.version      = '0.0.3'
   s.summary      = 'awesome iOS development tools（Objective-C）'
   s.description  = <<-DESC
                    collect some iOS development tools, e.g: category、block、runtime、subclass、macro, and so on...
