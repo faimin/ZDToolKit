@@ -20,6 +20,7 @@
 #import <mach/mach.h>
 #import <pthread/pthread.h>
 #import <Accelerate/Accelerate.h>
+#import <AVFoundation/AVAsset.h>
 
 #pragma mark - Gif Image
 #pragma mark -
@@ -591,6 +592,21 @@ NSDictionary *ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *>
      以下为苹果自己提供的方法：
      NSArray *resultArr = [array sortedArrayUsingSelector:@selector(localizedCompare:)];
      */
+}
+
+BOOL ZD_VideoIsPlayable(NSString *urlString) {
+    if (ZD_IsEmptyString(urlString)) return NO;
+    
+    NSURL *url = nil;
+    if ([urlString hasPrefix:@"http"]) {
+        url = [NSURL URLWithString:urlString];
+    }
+    else {
+        url = [NSURL fileURLWithPath:urlString];
+    }
+    
+    AVAsset *asset = [AVAsset assetWithURL:url];
+    return asset.isPlayable;
 }
 
 #pragma mark - InterfaceOrientation

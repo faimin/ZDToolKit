@@ -6,6 +6,7 @@
 //  Copyright © 2016年 Zero.D.Saber. All rights reserved.
 //
 //  https://github.com/Flipboard/FLAnimatedImage/blob/76a31aefc645cc09463a62d42c02954a30434d7d/FLAnimatedImage/FLAnimatedImage.m#L786-L807
+//  https://github.com/steipete/PSTDelegateProxy/blob/master/PSTDelegateProxy.m
 
 #import "ZDProxy.h"
 

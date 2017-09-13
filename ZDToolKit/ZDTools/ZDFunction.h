@@ -106,6 +106,7 @@ FOUNDATION_EXPORT NSString *ZD_FirstCharacterWithString(NSString *string);
 /// 将字符串数组按照元素首字母顺序进行排序分组
 FOUNDATION_EXPORT NSDictionary *ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array);
 
+FOUNDATION_EXPORT BOOL ZD_VideoIsPlayable(NSString *urlString);
 
 //===============================================================
 
@@ -175,20 +176,6 @@ IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
 BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP);
 /// 判断selector是否属于某一protocol
 BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
