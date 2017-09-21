@@ -26,8 +26,7 @@
 #pragma mark -
 // returns the frame duration for a given image in 1/100th seconds
 // source: http://stackoverflow.com/questions/16964366/delaytime-or-unclampeddelaytime-for-gifs
-static NSUInteger ZD_AnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef source, NSUInteger index)
-{
+static NSUInteger ZD_AnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef source, NSUInteger index) {
 	NSUInteger frameDuration = 10;
 
 	NSDictionary *frameProperties = CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(source, index, nil));
@@ -59,8 +58,7 @@ static NSUInteger ZD_AnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef so
 }
 
 // returns the great common factor of two numbers
-static NSUInteger ZD_AnimatedGIFGreatestCommonFactor(NSUInteger num1, NSUInteger num2)
-{
+static NSUInteger ZD_AnimatedGIFGreatestCommonFactor(NSUInteger num1, NSUInteger num2) {
 	NSUInteger t, remainder;
 
 	if (num1 < num2) {
@@ -79,8 +77,7 @@ static NSUInteger ZD_AnimatedGIFGreatestCommonFactor(NSUInteger num1, NSUInteger
 	}
 }
 
-static UIImage *ZD_AnimatedGIFFromImageSource(CGImageSourceRef source)
-{
+static UIImage *ZD_AnimatedGIFFromImageSource(CGImageSourceRef source) {
 	size_t const numImages = CGImageSourceGetCount(source);
 
 	NSMutableArray *frames = [NSMutableArray arrayWithCapacity:numImages];
@@ -113,8 +110,7 @@ static UIImage *ZD_AnimatedGIFFromImageSource(CGImageSourceRef source)
 	return [UIImage animatedImageWithImages:frames duration:totalDuration];
 }
 
-UIImage *ZD_AnimatedGIFFromFile(NSString *path)
-{
+UIImage *ZD_AnimatedGIFFromFile(NSString *path) {
 	NSURL *URL = [NSURL fileURLWithPath:path];
 	CGImageSourceRef source = CGImageSourceCreateWithURL((__bridge CFURLRef)(URL), NULL);
 	UIImage *image = ZD_AnimatedGIFFromImageSource(source);
@@ -124,8 +120,7 @@ UIImage *ZD_AnimatedGIFFromFile(NSString *path)
 	return image;
 }
 
-UIImage *ZD_AnimatedGIFFromData(NSData *data)
-{
+UIImage *ZD_AnimatedGIFFromData(NSData *data) {
 	CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)(data), NULL);
 	UIImage *image = ZD_AnimatedGIFFromImageSource(source);
 
@@ -157,8 +152,7 @@ UIImage *ZD_TintedImageWithColor(UIColor *tintColor, UIImage *image) {
     return coloredImage;
 }
 
-UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize)
-{
+UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize) {
      CGImageRef myThumbnailImage = NULL;
      CGImageSourceRef myImageSource;
      CFDictionaryRef myOptions = NULL;
@@ -214,8 +208,7 @@ UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize)
      return thumbnail;
 }
 
-NSString *ZD_TypeForImageData(NSData *data)
-{
+NSString *ZD_TypeForImageData(NSData *data) {
     uint8_t c;
     [data getBytes:&c length:1];
     switch (c) {
@@ -232,8 +225,7 @@ NSString *ZD_TypeForImageData(NSData *data)
     return @"未知格式";
 }
 
-NSString *ZD_TypeForData(NSData *data)
-{
+NSString *ZD_TypeForData(NSData *data) {
     if (data.length < 2) {
         return @"NOT FILE";
     }
@@ -300,8 +292,7 @@ NSString *ZD_TypeForData(NSData *data)
     return dataFormatString;
 }
 
-UIImage *ZD_BlurImageWithBlurPercent(UIImage *image, CGFloat blur)
-{
+UIImage *ZD_BlurImageWithBlurPercent(UIImage *image, CGFloat blur) {
     if (blur < 0.f || blur > 1.f) {
         blur = 0.5f;
     }
@@ -370,8 +361,7 @@ UIImage *ZD_BlurImageWithBlurPercent(UIImage *image, CGFloat blur)
 #pragma mark - UIView
 #pragma mark -
 /// 画虚线
-UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor)
-{
+UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineSpacing, UIColor *lineColor) {
     UIView *dashedLine = [[UIView alloc] initWithFrame:lineFrame];
     dashedLine.backgroundColor = [UIColor clearColor];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
@@ -416,8 +406,7 @@ void ZD_AddHollowoutLayerToView(UIView *view, CGSize size, UIColor *fillColor) {
 #pragma mark - String
 #pragma mark -
 /// 设置文字行间距
-NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize)
-{
+NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize) {
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.lineSpacing = lineSpace;
 	NSMutableAttributedString *mutStr = [[NSMutableAttributedString alloc] initWithString:originString attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName : paragraphStyle}];
@@ -425,8 +414,7 @@ NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat
 }
 
 /// 筛选设置文字color && font
-NSMutableAttributedString *ZD_SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont)
-{
+NSMutableAttributedString *ZD_SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont) {
 	NSRange range = [orignString rangeOfString:filterString];
 	NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
     [mutAttributeStr addAttributes:@{NSForegroundColorAttributeName : filterColor, NSFontAttributeName : filterFont} range:range];
@@ -444,27 +432,23 @@ NSMutableAttributedString *ZD_AddImageToAttributeString(UIImage *image) {
     return mutAttri;
 }
 
-NSString *ZD_URLEncodedString(NSString *sourceText)
-{
+NSString *ZD_URLEncodedString(NSString *sourceText) {
 	NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)sourceText, NULL, CFSTR("!*'();:@&=+$,/?%#[]"), kCFStringEncodingUTF8));
 
 	return result;
 }
 
 /// 计算文字高度
-CGFloat ZD_HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth)
-{
+CGFloat ZD_HeightOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth) {
     return ZD_SizeOfString(sourceString, font, maxWidth, 0).height;
 }
 
 /// 计算文字宽度
-CGFloat ZD_WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight)
-{
+CGFloat ZD_WidthOfString(NSString *sourceString, UIFont *font, CGFloat maxHeight) {
     return ZD_SizeOfString(sourceString, font, 0, maxHeight).width;
 }
 
-CGSize ZD_SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight)
-{
+CGSize ZD_SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, CGFloat maxHeight) {
     UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
     CGSize needSize = CGSizeZero;
     if (maxWidth > 0) {
@@ -496,8 +480,7 @@ CGSize ZD_SizeOfString(NSString *sourceString, UIFont *font, CGFloat maxWidth, C
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-NSString *ZD_ReverseString(NSString *sourceString)
-{
+NSString *ZD_ReverseString(NSString *sourceString) {
 	NSMutableString *reverseString = [[NSMutableString alloc] init];
 	NSInteger charIndex = [sourceString length];
 
@@ -510,8 +493,7 @@ NSString *ZD_ReverseString(NSString *sourceString)
 	return reverseString;
 }
 
-BOOL ZD_IsEmptyString(NSString *str)
-{
+BOOL ZD_IsEmptyString(NSString *str) {
     if (!str || str == (id)[NSNull null]) return YES;
     if ([str isKindOfClass:[NSString class]]) {
         return str.length == 0;
@@ -521,8 +503,7 @@ BOOL ZD_IsEmptyString(NSString *str)
     }
 }
 
-BOOL ZD_IsEmptyOrNilString(NSString *string)
-{
+BOOL ZD_IsEmptyOrNilString(NSString *string) {
     if (string == nil || string == NULL) {
         return YES;
     }
@@ -538,8 +519,7 @@ BOOL ZD_IsEmptyOrNilString(NSString *string)
     return NO;
 }
 
-NSString *ZD_FirstCharacterWithString(NSString *string)
-{
+NSString *ZD_FirstCharacterWithString(NSString *string) {
     NSMutableString *str = [NSMutableString stringWithString:string];
     CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformMandarinLatin, NO);
     CFStringTransform((CFMutableStringRef)str, NULL, kCFStringTransformStripDiacritics, NO);
@@ -547,8 +527,7 @@ NSString *ZD_FirstCharacterWithString(NSString *string)
     return [pingyin substringToIndex:1];
 }
 
-NSDictionary *ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array)
-{
+NSDictionary *ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array) {
     if (array.count == 0) {
         return nil;
     }
@@ -611,19 +590,16 @@ BOOL ZD_VideoIsPlayable(NSString *urlString) {
 
 #pragma mark - InterfaceOrientation
 
-UIInterfaceOrientation ZD_CurrentInterfaceOrientation()
-{
+UIInterfaceOrientation ZD_CurrentInterfaceOrientation() {
     UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
     return orient;
 }
 
-BOOL ZD_isPortrait()
-{
+BOOL ZD_isPortrait() {
     return UIInterfaceOrientationIsPortrait(ZD_CurrentInterfaceOrientation());
 }
 
-BOOL ZD_isLandscape()
-{
+BOOL ZD_isLandscape() {
     return UIInterfaceOrientationIsLandscape(ZD_CurrentInterfaceOrientation());
 }
 
@@ -631,8 +607,7 @@ BOOL ZD_isLandscape()
 #pragma mark -
 
 ///refer: http://stackoverflow.com/questions/6887464/how-can-i-get-list-of-classes-already-loaded-into-memory-in-specific-bundle-or
-NSArray *ZD_GetClassNames()
-{
+NSArray *ZD_GetClassNames() {
     NSMutableArray *classNames = [NSMutableArray array];
     unsigned int count = 0;
     const char** classes = objc_copyClassNamesForImage([[[NSBundle mainBundle] executablePath] UTF8String], &count);
@@ -647,8 +622,7 @@ NSArray *ZD_GetClassNames()
 #pragma mark -
 /// nativeScale与scale的区别
 /// http://stackoverflow.com/questions/25871858/what-is-the-difference-between-nativescale-and-scale-on-uiscreen-in-ios8
-BOOL ZD_isRetina()
-{
+BOOL ZD_isRetina() {
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale >= 2;
     }
@@ -657,8 +631,7 @@ BOOL ZD_isRetina()
     }
 }
 
-BOOL ZD_isPad()
-{
+BOOL ZD_isPad() {
     static dispatch_once_t one;
     static BOOL pad;
     dispatch_once(&one, ^{
@@ -667,8 +640,7 @@ BOOL ZD_isPad()
     return pad;
 }
 
-BOOL ZD_isSimulator()
-{
+BOOL ZD_isSimulator() {
 #if 1
     
 #if TARGET_IPHONE_SIMULATOR
@@ -687,8 +659,7 @@ BOOL ZD_isSimulator()
 }
 
 // 是否越狱 refer:YYCategories
-BOOL ZD_isJailbroken()
-{
+BOOL ZD_isJailbroken() {
     if (ZD_isSimulator()) return NO; // Dont't check simulator
     
     // iOS9 URL Scheme query changed ...
@@ -731,8 +702,7 @@ BOOL ZD_isSetProxy() {
     return ![[settings objectForKey:(NSString *)kCFProxyTypeKey] isEqualToString:(NSString *)kCFProxyTypeNone];
 }
 
-double ZD_SystemVersion()
-{
+double ZD_SystemVersion() {
     static double _version;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -741,8 +711,7 @@ double ZD_SystemVersion()
     return _version;
 }
 
-CGFloat ZD_Scale()
-{
+CGFloat ZD_Scale() {
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale;
     }
@@ -751,8 +720,7 @@ CGFloat ZD_Scale()
     }
 }
 
-CGSize ZD_ScreenSize()
-{
+CGSize ZD_ScreenSize() {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) { // 横屏
         return CGSizeMake(screenSize.height, screenSize.width);
@@ -763,51 +731,55 @@ CGSize ZD_ScreenSize()
 }
 
 /// 竖屏状态下
-CGSize ZD_PrivateScreenSize()
-{
+CGSize ZD_PrivateScreenSize() {
     return [UIScreen mainScreen].bounds.size;
 }
 
-CGFloat ZD_ScreenWidth()
-{
+CGFloat ZD_ScreenWidth() {
     return ZD_ScreenSize().width;
 }
 
-CGFloat ZD_ScreenHeight()
-{
+CGFloat ZD_ScreenHeight() {
     return ZD_ScreenSize().height;
 }
 
-BOOL ZD_iPhone4s()
-{
+BOOL ZD_iPhone4s() {
 	if (ZD_PrivateScreenSize().height == 480) {
 		return YES;
 	}
 	return NO;
 }
 
-BOOL ZD_iPhone5s()
-{
+BOOL ZD_iPhone5s() {
 	if (ZD_PrivateScreenSize().height == 568) {
 		return YES;
 	}
 	return NO;
 }
 
-BOOL ZD_iPhone6()
-{
+BOOL ZD_iPhone6() {
 	if (ZD_PrivateScreenSize().width == 375) {
 		return YES;
 	}
 	return NO;
 }
 
-BOOL ZD_iPhone6p()
-{
+BOOL ZD_iPhone6p() {
 	if (ZD_PrivateScreenSize().width == 414) {
 		return YES;
 	}
 	return NO;
+}
+
+/**
+ 竖屏尺寸：1125px × 2436px(375pt × 812pt @3x)
+ 横屏尺寸：2436px × 1125px(812pt × 375pt @3x)
+ */
+BOOL ZD_iPhoneX() {
+    if (ZD_PrivateScreenSize().height == 812) {
+        return YES;
+    }
+    return NO;
 }
 
 // refer: http://www.cnblogs.com/tandaxia/p/5820217.html
@@ -932,8 +904,7 @@ double ZD_Round(CGFloat num, NSInteger num_digits)
     return i;
 }
 
-NSData *ZD_ConvertIntToData(int intValue)
-{
+NSData *ZD_ConvertIntToData(int intValue) {
     Byte bytes[4];
     bytes[0] = (Byte)(intValue>>24);
     bytes[1] = (Byte)(intValue>>16);
@@ -946,8 +917,7 @@ NSData *ZD_ConvertIntToData(int intValue)
 // http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/
 // 原理：给主队列设置一个标签，然后在当前队列获取标签，
 // 如果获取到的标签与设置的标签不一样，说明当前队列就不是主队列
-BOOL ZD_IsMainQueue()
-{
+BOOL ZD_IsMainQueue() {
 #if 1
     static const void *mainQueueKey = &mainQueueKey;
     static void *mainQueueContext = &mainQueueContext;
@@ -966,8 +936,7 @@ BOOL ZD_IsMainQueue()
 }
 
 // https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
-void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, void(^block)())
-{
+void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, void(^block)()) {
     static NSMutableDictionary *scheduleSourceDic = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -989,20 +958,17 @@ void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue
     scheduleSourceDic[key] = timer;
 }
 
-void ZD_Dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)())
-{
+void ZD_Dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)()) {
     ZD_ExecuteFunctionThrottle(intervalInSeconds, dispatch_get_main_queue(), [NSThread callStackSymbols][1], block);
 }
 
-void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)())
-{
+void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)()) {
     ZD_ExecuteFunctionThrottle(intervalInSeconds, queue, [NSThread callStackSymbols][1], block);
 }
 
 #pragma mark - Runtime
 #pragma mark -
-void ZD_PrintObjectMethods()
-{
+void ZD_PrintObjectMethods() {
 	unsigned int count = 0;
 	Method *methods = class_copyMethodList([NSObject class], &count);
 
@@ -1015,16 +981,14 @@ void ZD_PrintObjectMethods()
 	free(methods);
 }
 
-void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector)
-{
+void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector) {
     aClass = object_getClass(aClass);
     Method origMethod = class_getClassMethod(aClass, originalSelector);
     Method newMethod = class_getClassMethod(aClass, newSelector);
     method_exchangeImplementations(origMethod, newMethod);
 }
 
-void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector)
-{
+void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector) {
     Method origMethod = class_getInstanceMethod(aClass, originalSelector);
     Method newMethod = class_getInstanceMethod(aClass, newSelector);
     
@@ -1036,8 +1000,7 @@ void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelec
     }
 }
 
-IMP ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP)
-{
+IMP ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP) {
     Method origMethod = class_getInstanceMethod(aClass, originalSel);
     
     if (!origMethod) {
@@ -1056,8 +1019,7 @@ IMP ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP)
 }
 
 // other way implement
-BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP)
-{
+BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP) {
     IMP imp = NULL;
     Method method = class_getInstanceMethod(aClass, originalSel);
     

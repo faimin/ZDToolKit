@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// @brief 排列button中的image和title
 /// @param spacing 图片和文字的间隔
+/// @param insets 文字内边距
+- (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing contentInsets:(UIEdgeInsets)insets;
 - (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing;
 
 - (void)zd_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;

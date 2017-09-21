@@ -33,6 +33,10 @@
 }
 
 - (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing {
+    [self zd_imagePosition:postion spacing:spacing contentInsets:UIEdgeInsetsZero];
+}
+
+- (void)zd_imagePosition:(ZDImagePosition)postion spacing:(CGFloat)spacing contentInsets:(UIEdgeInsets)insets {
     [self setTitle:self.currentTitle forState:UIControlStateNormal];
     [self setImage:self.currentImage forState:UIControlStateNormal];
     
@@ -57,25 +61,25 @@
         case ZDImagePosition_Left:
             self.imageEdgeInsets = UIEdgeInsetsMake(0, -spacing/2.0f, 0, spacing/2.0f);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, spacing/2.0f, 0, -spacing/2.0f);
-            self.contentEdgeInsets = UIEdgeInsetsMake(0, spacing/2.0f, 0, spacing/2.0f);
+            self.contentEdgeInsets = UIEdgeInsetsMake(insets.top, spacing/2.0f + insets.left, insets.bottom, spacing/2.0f + insets.right);
             break;
             
         case ZDImagePosition_Right:
             self.imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth + spacing/2.0f, 0, -(labelWidth + spacing/2.0f));
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageWidth + spacing/2.0f), 0, imageWidth + spacing/2.0f);
-            self.contentEdgeInsets = UIEdgeInsetsMake(0, spacing/2.0f, 0, spacing/2.0f);
+            self.contentEdgeInsets = UIEdgeInsetsMake(insets.top, spacing/2.0f + insets.left, insets.bottom, spacing/2.0f + insets.right);
             break;
             
         case ZDImagePosition_Top:
             self.imageEdgeInsets = UIEdgeInsetsMake(-imageOffsetY, imageOffsetX, imageOffsetY, -imageOffsetX);
             self.titleEdgeInsets = UIEdgeInsetsMake(labelOffsetY, -labelOffsetX, -labelOffsetY, labelOffsetX);
-            self.contentEdgeInsets = UIEdgeInsetsMake(imageOffsetY, -changedWidth/2.0f, changedHeight-imageOffsetY, -changedWidth/2.0f);
+            self.contentEdgeInsets = UIEdgeInsetsMake(imageOffsetY + insets.top, -changedWidth/2.0f + insets.left, changedHeight-imageOffsetY + insets.bottom, -changedWidth/2.0f + insets.right);
             break;
             
         case ZDImagePosition_Bottom:
             self.imageEdgeInsets = UIEdgeInsetsMake(imageOffsetY, imageOffsetX, -imageOffsetY, -imageOffsetX);
             self.titleEdgeInsets = UIEdgeInsetsMake(-labelOffsetY, -labelOffsetX, labelOffsetY, labelOffsetX);
-            self.contentEdgeInsets = UIEdgeInsetsMake(changedHeight-imageOffsetY, -changedWidth/2.0f, imageOffsetY, -changedWidth/2.0f);
+            self.contentEdgeInsets = UIEdgeInsetsMake(changedHeight-imageOffsetY + insets.top, -changedWidth/2.0f + insets.left, imageOffsetY + insets.bottom, -changedWidth/2.0f + insets.right);
             break;
             
         default:
