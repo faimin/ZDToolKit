@@ -1,7 +1,7 @@
 PODS:
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
   - YYCache (1.0.4)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
@@ -9,29 +9,29 @@ PODS:
   - YYWebImage (1.0.5):
     - YYCache
     - YYImage
-  - ZDToolKit (0.0.3):
-    - ZDToolKit/no-arc (= 0.0.3)
-    - ZDToolKit/ZDAutoLayout (= 0.0.3)
-    - ZDToolKit/ZDCategory (= 0.0.3)
-    - ZDToolKit/ZDMacros (= 0.0.3)
-    - ZDToolKit/ZDRuntime (= 0.0.3)
-    - ZDToolKit/ZDTools (= 0.0.3)
-  - ZDToolKit/no-arc (0.0.3)
-  - ZDToolKit/ZDAutoLayout (0.0.3)
-  - ZDToolKit/ZDCategory (0.0.3):
-    - ZDToolKit/ZDCategory/Foundation (= 0.0.3)
-    - ZDToolKit/ZDCategory/UIKit (= 0.0.3)
-  - ZDToolKit/ZDCategory/Foundation (0.0.3)
-  - ZDToolKit/ZDCategory/UIKit (0.0.3):
+  - ZDToolKit (0.0.4):
+    - ZDToolKit/no-arc (= 0.0.4)
+    - ZDToolKit/ZDAutoLayout (= 0.0.4)
+    - ZDToolKit/ZDCategory (= 0.0.4)
+    - ZDToolKit/ZDMacros (= 0.0.4)
+    - ZDToolKit/ZDRuntime (= 0.0.4)
+    - ZDToolKit/ZDTools (= 0.0.4)
+  - ZDToolKit/no-arc (0.0.4)
+  - ZDToolKit/ZDAutoLayout (0.0.4)
+  - ZDToolKit/ZDCategory (0.0.4):
+    - ZDToolKit/ZDCategory/Foundation (= 0.0.4)
+    - ZDToolKit/ZDCategory/UIKit (= 0.0.4)
+  - ZDToolKit/ZDCategory/Foundation (0.0.4)
+  - ZDToolKit/ZDCategory/UIKit (0.0.4):
     - ZDToolKit/ZDTools/ZDProxy
-  - ZDToolKit/ZDMacros (0.0.3)
-  - ZDToolKit/ZDRuntime (0.0.3)
-  - ZDToolKit/ZDTools (0.0.3):
-    - ZDToolKit/ZDTools/ZDProxy (= 0.0.3)
-  - ZDToolKit/ZDTools/ZDProxy (0.0.3)
+  - ZDToolKit/ZDMacros (0.0.4)
+  - ZDToolKit/ZDRuntime (0.0.4)
+  - ZDToolKit/ZDTools (0.0.4):
+    - ZDToolKit/ZDTools/ZDProxy (= 0.0.4)
+  - ZDToolKit/ZDTools/ZDProxy (0.0.4)
 
 DEPENDENCIES:
-  - SDWebImage (~> 4.0.0)
+  - SDWebImage
   - YYWebImage (~> 1.0)
   - ZDToolKit (from `../`)
 
@@ -40,12 +40,12 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
-  ZDToolKit: d62a1f9a135aeaab51075bd9063db9dae7316a4f
+  ZDToolKit: cacfc710fbaf130d9397f5bca77d4503bffb1d9b
 
-PODFILE CHECKSUM: 798c55452a569edecfc5e67f5a899a0c32b5b64a
+PODFILE CHECKSUM: 4c9930b375d72789078b9ed46789b70941c1cd44
 
 COCOAPODS: 1.3.1

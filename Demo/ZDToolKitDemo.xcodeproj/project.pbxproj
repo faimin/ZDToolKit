@@ -16,7 +16,9 @@
 		05EC9C791C53CDC300BACFE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05EC9C771C53CDC300BACFE9 /* LaunchScreen.storyboard */; };
 		05EC9C841C53CDC300BACFE9 /* ZDToolKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C831C53CDC300BACFE9 /* ZDToolKitDemoTests.m */; };
 		05EC9C8F1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */; };
+		0C1B30D731E13E5AC0F29B69 /* libPods-ZDToolKitDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EEE867971D34CD8CCDDCA1 /* libPods-ZDToolKitDemoTests.a */; };
 		0F6AEFFEBE7AF7403FA6CBCF /* libPods-ZDToolKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E76D488BCA2B39CC971B7B /* libPods-ZDToolKitDemo.a */; };
+		6A05546871BE8D6C2C807A4A /* libPods-ZDToolKitDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 619C3227EFA66427A461EF55 /* libPods-ZDToolKitDemoUITests.a */; };
 		BC7DE26C1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7DE26B1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m */; };
 		BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5A8031E96136F00271230 /* ZDQueuePool.m */; };
 		BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */; };
@@ -78,8 +80,11 @@
 		05EC9C8A1C53CDC300BACFE9 /* ZDToolKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZDToolKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EC9C8E1C53CDC300BACFE9 /* ZDToolKitDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDToolKitDemoUITests.m; sourceTree = "<group>"; };
 		05EC9C901C53CDC300BACFE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2602573CB157475901DD54A5 /* Pods-ZDToolKitDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		47A4D4529E1D34151DC36DB8 /* Pods-ZDToolKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemo/Pods-ZDToolKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		619C3227EFA66427A461EF55 /* libPods-ZDToolKitDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9470E03B639C21C375B2B85C /* Pods-ZDToolKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemo/Pods-ZDToolKitDemo.release.xcconfig"; sourceTree = "<group>"; };
+		95C88FBA6F257E7952B72571 /* Pods-ZDToolKitDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemoTests/Pods-ZDToolKitDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		BC7DE2641E35DADD00F508E2 /* ZDToolKitFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZDToolKitFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7DE26B1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDToolKitFrameworkTests.m; sourceTree = "<group>"; };
 		BC7DE26D1E35DADD00F508E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,7 +92,10 @@
 		BCB5A8031E96136F00271230 /* ZDQueuePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDQueuePool.m; sourceTree = "<group>"; };
 		BCCC57CD1E77E29A006F7276 /* NSObject+ZDParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDParams.h"; sourceTree = "<group>"; };
 		BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDParams.m"; sourceTree = "<group>"; };
+		D6D7B32B37336F4FBD082569 /* Pods-ZDToolKitDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemoTests/Pods-ZDToolKitDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0E76D488BCA2B39CC971B7B /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0807BCA73EA1D8C20D7A355 /* Pods-ZDToolKitDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F9EEE867971D34CD8CCDDCA1 /* libPods-ZDToolKitDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C1B30D731E13E5AC0F29B69 /* libPods-ZDToolKitDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A05546871BE8D6C2C807A4A /* libPods-ZDToolKitDemoUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +210,10 @@
 			children = (
 				47A4D4529E1D34151DC36DB8 /* Pods-ZDToolKitDemo.debug.xcconfig */,
 				9470E03B639C21C375B2B85C /* Pods-ZDToolKitDemo.release.xcconfig */,
+				D6D7B32B37336F4FBD082569 /* Pods-ZDToolKitDemoTests.debug.xcconfig */,
+				95C88FBA6F257E7952B72571 /* Pods-ZDToolKitDemoTests.release.xcconfig */,
+				F0807BCA73EA1D8C20D7A355 /* Pods-ZDToolKitDemoUITests.debug.xcconfig */,
+				2602573CB157475901DD54A5 /* Pods-ZDToolKitDemoUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -208,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				E0E76D488BCA2B39CC971B7B /* libPods-ZDToolKitDemo.a */,
+				F9EEE867971D34CD8CCDDCA1 /* libPods-ZDToolKitDemoTests.a */,
+				619C3227EFA66427A461EF55 /* libPods-ZDToolKitDemoUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -249,9 +265,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05EC9C961C53CDC300BACFE9 /* Build configuration list for PBXNativeTarget "ZDToolKitDemoTests" */;
 			buildPhases = (
+				D0671607CDE9CBA671907CF3 /* [CP] Check Pods Manifest.lock */,
 				05EC9C7B1C53CDC300BACFE9 /* Sources */,
 				05EC9C7C1C53CDC300BACFE9 /* Frameworks */,
 				05EC9C7D1C53CDC300BACFE9 /* Resources */,
+				9A2D4EE41DD23F607F3442AC /* [CP] Embed Pods Frameworks */,
+				4D62BD00B8508A3944868BC5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,9 +286,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05EC9C991C53CDC300BACFE9 /* Build configuration list for PBXNativeTarget "ZDToolKitDemoUITests" */;
 			buildPhases = (
+				B50D3D989A68444241C76A2E /* [CP] Check Pods Manifest.lock */,
 				05EC9C861C53CDC300BACFE9 /* Sources */,
 				05EC9C871C53CDC300BACFE9 /* Frameworks */,
 				05EC9C881C53CDC300BACFE9 /* Resources */,
+				33A9BD25110E516CA575ECFF /* [CP] Embed Pods Frameworks */,
+				4D33EF1BD7A0E2141AE8CE86 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -384,6 +406,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		33A9BD25110E516CA575ECFF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D33EF1BD7A0E2141AE8CE86 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D62BD00B8508A3944868BC5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemoTests/Pods-ZDToolKitDemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6C6ED9B4F6BBE9F86751EB6C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +497,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemo/Pods-ZDToolKitDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A2D4EE41DD23F607F3442AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemoTests/Pods-ZDToolKitDemoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B50D3D989A68444241C76A2E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZDToolKitDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0671607CDE9CBA671907CF3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZDToolKitDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -642,6 +760,7 @@
 		};
 		05EC9C971C53CDC300BACFE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6D7B32B37336F4FBD082569 /* Pods-ZDToolKitDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ZDToolKitDemoTests/Info.plist;
@@ -654,6 +773,7 @@
 		};
 		05EC9C981C53CDC300BACFE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95C88FBA6F257E7952B72571 /* Pods-ZDToolKitDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ZDToolKitDemoTests/Info.plist;
@@ -666,6 +786,7 @@
 		};
 		05EC9C9A1C53CDC300BACFE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0807BCA73EA1D8C20D7A355 /* Pods-ZDToolKitDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ZDToolKitDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -678,6 +799,7 @@
 		};
 		05EC9C9B1C53CDC300BACFE9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2602573CB157475901DD54A5 /* Pods-ZDToolKitDemoUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ZDToolKitDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
