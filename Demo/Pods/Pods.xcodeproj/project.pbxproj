@@ -219,6 +219,7 @@
 		F930E74489C30C9A3C75E73E5299FF9B /* YYImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F2D1A3F8CDFEF2FB968A9106A325DD /* YYImage.m */; };
 		F9E062DB34EFEE780B37A42F0915A724 /* ZDTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F5331EFBEB748FAB6849CE56BFA869 /* ZDTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F9FECD98B261A32F70D823391309D3E3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6551F8D72EE7A0EDFC2C53D299B98B /* CoreFoundation.framework */; };
+		FA3A17C31F76359C0013FCF5 /* UIView+ZDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3A17C21F76359C0013FCF5 /* UIView+ZDCollapsibleConstraints.m */; };
 		FBC30964E2A31B27CFAAB19133B9AD76 /* UIImage+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD4949412765281B84207A8D16AFC00 /* UIImage+ZDUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD3D8CF63DFC7A54677F35B79193E0CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1E90B1DEC91B4EBF83BFEFFC68F35C /* QuartzCore.framework */; };
 		FE25EF5EF10457A68300AE7B88DDDC4B /* ZDActionLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 23CA089F31A0340AD5BD621DEE5FFD4B /* ZDActionLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -492,6 +493,8 @@
 		F8234900A96C876B0A82C3F0933EFDE1 /* NSObject+RZBlockKVO.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RZBlockKVO.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+RZBlockKVO.m"; sourceTree = "<group>"; };
 		F8B82FF6335C81E0C6A5A488D90FFFA8 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EAC73B6E2ABFD6D29AF9BDD5E3065F /* YYCache-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYCache-dummy.m"; sourceTree = "<group>"; };
+		FA3A17C11F76359C0013FCF5 /* UIView+ZDCollapsibleConstraints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDCollapsibleConstraints.h"; path = "ZDToolKit/ZDAutoLayout/UIView+ZDCollapsibleConstraints.h"; sourceTree = "<group>"; };
+		FA3A17C21F76359C0013FCF5 /* UIView+ZDCollapsibleConstraints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDCollapsibleConstraints.m"; path = "ZDToolKit/ZDAutoLayout/UIView+ZDCollapsibleConstraints.m"; sourceTree = "<group>"; };
 		FBBD8172D9480FF3797D4E51121D041D /* ZDReusePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDReusePool.m; path = ZDToolKit/ZDTools/ZDReusePool.m; sourceTree = "<group>"; };
 		FC54E2FF88BB18EE913E6FC052374FF4 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYSpriteSheetImage.h; path = YYImage/YYSpriteSheetImage.h; sourceTree = "<group>"; };
 		FC82E23BCD5F546333A2BF99A79F5DF0 /* UIView+RZBorders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+RZBorders.h"; path = "ZDToolKit/ZDCategory/UIKit/UIView+RZBorders.h"; sourceTree = "<group>"; };
@@ -669,6 +672,8 @@
 				F682DEE7755EA3F04B248854449B73B5 /* UIView+AutoLayout.m */,
 				336164292FF4CE0E1CDCA0B4E5675625 /* UIView+FDCollapsibleConstraints.h */,
 				0FB189B6E84519F82208E8D0BAD0B3D3 /* UIView+FDCollapsibleConstraints.m */,
+				FA3A17C11F76359C0013FCF5 /* UIView+ZDCollapsibleConstraints.h */,
+				FA3A17C21F76359C0013FCF5 /* UIView+ZDCollapsibleConstraints.m */,
 				D225B470C044F8451CE4696D361BA032 /* UIView+RZAutoLayoutHelpers.h */,
 				519D67686C3023C0D4168774BF06254B /* UIView+RZAutoLayoutHelpers.m */,
 			);
@@ -1357,6 +1362,7 @@
 				C6290BEB8970C6C6FB99C152F3431B0D /* ZDReusePool.m in Sources */,
 				8F3394B5A610CC1D3F4287D1A96A152D /* ZDSafe.m in Sources */,
 				D0B200C424D3E977EC60AFB42820BFDD /* ZDTextView.m in Sources */,
+				FA3A17C31F76359C0013FCF5 /* UIView+ZDCollapsibleConstraints.m in Sources */,
 				5531A803228F25504889B8B17CF09BB7 /* ZDToolKit-dummy.m in Sources */,
 				95332841611F70743D3B25D14B2CCC57 /* ZDTools.m in Sources */,
 				9E9C3B781C03FBF617EB41E068F6D90B /* ZDWatchdog.m in Sources */,

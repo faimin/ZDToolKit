@@ -21,6 +21,8 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+
 /**
  *  AutoLayout abstract item
  */

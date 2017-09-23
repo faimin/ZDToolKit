@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (ZDUtility)

@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
 
 //===============================================================
 

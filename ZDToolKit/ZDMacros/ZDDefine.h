@@ -442,6 +442,14 @@ Stuff                                                                   \
 _Pragma("clang diagnostic pop")                                         \
 } while (0)
 
+/// 消除block不定数个参数的警告
+#define ZD_SuppressNotPrototypeWarning(Stuff)                           \
+do {                                                                    \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Wstrict-prototypes\"")             \
+Stuff                                                                   \
+_Pragma("clang diagnostic pop")                                         \
+} while (0)
 
 
 

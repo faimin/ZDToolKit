@@ -743,6 +743,10 @@ CGFloat ZD_ScreenHeight() {
     return ZD_ScreenSize().height;
 }
 
+/**
+ 竖屏尺寸：640px × 960px(320pt × 480pt @2x)
+ 横屏尺寸：960px × 640px(480pt × 320pt @2x)
+ */
 BOOL ZD_iPhone4s() {
 	if (ZD_PrivateScreenSize().height == 480) {
 		return YES;
@@ -750,6 +754,10 @@ BOOL ZD_iPhone4s() {
 	return NO;
 }
 
+/**
+ 竖屏尺寸：640px × 1136px(320pt × 568pt @2x)
+ 横屏尺寸：1136px × 640px(568pt × 320pt @2x)
+ */
 BOOL ZD_iPhone5s() {
 	if (ZD_PrivateScreenSize().height == 568) {
 		return YES;
@@ -757,13 +765,21 @@ BOOL ZD_iPhone5s() {
 	return NO;
 }
 
+/**
+ 竖屏尺寸：750px × 1334px(375pt × 667pt @2x)
+ 横屏尺寸：1334px × 750px(667pt × 375pt @2x)
+ */
 BOOL ZD_iPhone6() {
-	if (ZD_PrivateScreenSize().width == 375) {
+	if (CGSizeEqualToSize(ZD_PrivateScreenSize(), CGSizeMake(375, 667))) {
 		return YES;
 	}
 	return NO;
 }
 
+/**
+ 竖屏尺寸：1242px × 2208px(414pt × 736pt @3x)
+ 横屏尺寸：2208px × 1242px(736pt × 414pt @3x)
+ */
 BOOL ZD_iPhone6p() {
 	if (ZD_PrivateScreenSize().width == 414) {
 		return YES;
@@ -1054,17 +1070,6 @@ struct objc_method_description ZD_MethodDescriptionForSELInProtocol(Protocol *pr
 BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel) {
     return ZD_MethodDescriptionForSELInProtocol(protocol, sel).types ? YES : NO;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

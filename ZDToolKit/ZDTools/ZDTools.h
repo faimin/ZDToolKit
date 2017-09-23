@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDTools : NSObject
