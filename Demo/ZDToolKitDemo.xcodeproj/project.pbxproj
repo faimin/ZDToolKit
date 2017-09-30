@@ -22,6 +22,7 @@
 		BC7DE26C1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7DE26B1E35DADD00F508E2 /* ZDToolKitFrameworkTests.m */; };
 		BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5A8031E96136F00271230 /* ZDQueuePool.m */; };
 		BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */; };
+		FA067AA51F7FBF7B00F6F89E /* MDBannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA067AA31F7FBF7A00F6F89E /* MDBannerScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		E0E76D488BCA2B39CC971B7B /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0807BCA73EA1D8C20D7A355 /* Pods-ZDToolKitDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9EEE867971D34CD8CCDDCA1 /* libPods-ZDToolKitDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA067AA31F7FBF7A00F6F89E /* MDBannerScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDBannerScrollView.m; sourceTree = "<group>"; };
+		FA067AA41F7FBF7A00F6F89E /* MDBannerScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDBannerScrollView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,8 @@
 		05EC9C681C53CDC300BACFE9 /* ZDToolKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				FA067AA41F7FBF7A00F6F89E /* MDBannerScrollView.h */,
+				FA067AA31F7FBF7A00F6F89E /* MDBannerScrollView.m */,
 				05EC9C6C1C53CDC300BACFE9 /* AppDelegate.h */,
 				05EC9C6D1C53CDC300BACFE9 /* AppDelegate.m */,
 				05EC9C6F1C53CDC300BACFE9 /* ViewController.h */,
@@ -560,6 +565,7 @@
 				BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */,
 				BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */,
 				05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */,
+				FA067AA51F7FBF7B00F6F89E /* MDBannerScrollView.m in Sources */,
 				05EC9C711C53CDC300BACFE9 /* ViewController.m in Sources */,
 				05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */,
 				05EC9C6B1C53CDC300BACFE9 /* main.m in Sources */,
