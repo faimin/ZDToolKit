@@ -930,6 +930,13 @@ NSData *ZD_ConvertIntToData(int intValue) {
     return data;
 }
 
+UIColor *ZD_RandomColor() {
+    CGFloat hue = (arc4random() % 256 / 256.0);
+    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
+    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
+    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+}
+
 // http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/
 // 原理：给主队列设置一个标签，然后在当前队列获取标签，
 // 如果获取到的标签与设置的标签不一样，说明当前队列就不是主队列

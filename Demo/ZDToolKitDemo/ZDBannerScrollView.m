@@ -3,13 +3,12 @@
 //  MMUIDemo
 //
 //  Created by Zero.D.Saber on 2017/5/5.
-//  Copyright © 2017年 MOMO. All rights reserved.
+//  Copyright © 2017年 Zero.D.Saber. All rights reserved.
 //
 
-#import "MDBannerScrollView.h"
+#import "ZDBannerScrollView.h"
 #import <ZDToolKit/NSTimer+ZDUtility.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-
 
 @interface MDImageCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) NSString *placeholderImageName;
@@ -17,17 +16,16 @@
 @end
 
 
-
-@interface MDBannerScrollView () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ZDBannerScrollView () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong, readonly) NSMutableArray<NSString *> *innerDataSource; ///< 真正的数据源（比传入的数据多2条）
 @property (nonatomic, strong) UIPageControl *pageControl;
-@property (nonatomic, weak  ) id<MDBannerScrollViewDelegate> delegate;
+@property (nonatomic, weak  ) id<ZDBannerScrollViewDelegate> delegate;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, copy  ) NSString *placeholderImageName;
 @end
 
-@implementation MDBannerScrollView
+@implementation ZDBannerScrollView
 
 - (void)dealloc {
     if (_timer) {
@@ -49,8 +47,8 @@
     self.timer.fireDate = [NSDate date];
 }
 
-+ (instancetype)scrollViewWithFrame:(CGRect)frame delegate:(id<MDBannerScrollViewDelegate>)delegate placeholderImage:(NSString *)placeholderImageName {
-    MDBannerScrollView *view = [[self alloc] initWithFrame:frame];
++ (instancetype)scrollViewWithFrame:(CGRect)frame delegate:(id<ZDBannerScrollViewDelegate>)delegate placeholderImage:(NSString *)placeholderImageName {
+    ZDBannerScrollView *view = [[self alloc] initWithFrame:frame];
     view.delegate = delegate;
     view.placeholderImageName = placeholderImageName;
     
@@ -65,13 +63,6 @@
 }
 
 - (void)setup {
-    
-    CAShapeLayer *cornerLayer = [[CAShapeLayer alloc] init];
-    UIBezierPath *cornerPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(6, 6)];
-    cornerLayer.frame = self.bounds;
-    cornerLayer.path = cornerPath.CGPath;
-    self.layer.mask = cornerLayer;
-
     _innerDataSource = @[].mutableCopy;
     
     [self addSubview:self.collectionView];
@@ -80,13 +71,13 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
-    if (newSuperview) {
-        __weak typeof(self)weakSelf = self;
-        self.timer = [NSTimer zd_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : 2.5) block:^(NSTimer * _Nonnull timer) {
-            __strong typeof(weakSelf)self = weakSelf;
-            [self autoScroll];
-        } repeats:YES];
-    }
+    if (!newSuperview) return;
+    
+    __weak typeof(self)weakSelf = self;
+    self.timer = [NSTimer zd_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : 2.5) repeats:YES block:^(NSTimer * _Nonnull timer) {
+        __strong typeof(weakSelf)self = weakSelf;
+        [self autoScroll];
+    }];
 }
 
 - (void)autoScroll {
@@ -101,7 +92,8 @@
         if (self.innerDataSource.count <= 2) return;
         
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-    } else {
+    }
+    else {
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:targetIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
     }
 }
@@ -203,15 +195,18 @@
             flowLayout.itemSize = self.bounds.size;
             
             UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
-            collectionView.scrollsToTop = NO;
             collectionView.dataSource = self;
             collectionView.delegate = self;
+            collectionView.scrollsToTop = NO;
             collectionView.pagingEnabled = YES;
             collectionView.showsHorizontalScrollIndicator = NO;
             collectionView.showsVerticalScrollIndicator = NO;
             [collectionView registerClass:[MDImageCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([MDImageCollectionViewCell class])];
             collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            
+            if (@available(iOS 11, *)) {
+                collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }
+                        
             collectionView.contentOffset = CGPointMake(CGRectGetWidth(collectionView.frame), collectionView.contentOffset.y);
             
             collectionView;

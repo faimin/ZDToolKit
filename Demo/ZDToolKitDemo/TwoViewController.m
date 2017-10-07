@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = NSStringFromClass(self.class);
     
     self.imageView.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
     self.imageView.userInteractionEnabled = YES;

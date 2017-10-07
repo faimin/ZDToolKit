@@ -12,11 +12,11 @@
 
 #pragma mark - Public Method
 
-+ (NSTimer *)zd_scheduledTimerWithTimeInterval:(NSTimeInterval)seconds block:(void (^)(NSTimer *timer))block repeats:(BOOL)repeats {
++ (NSTimer *)zd_scheduledTimerWithTimeInterval:(NSTimeInterval)seconds repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block {
     return [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(executeTimerBlock:) userInfo:[block copy] repeats:repeats];
 }
 
-+ (NSTimer *)zd_timerWithTimeInterval:(NSTimeInterval)seconds block:(void (^)(NSTimer *timer))block repeats:(BOOL)repeats {
++ (NSTimer *)zd_timerWithTimeInterval:(NSTimeInterval)seconds repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block {
     return [NSTimer timerWithTimeInterval:seconds target:self selector:@selector(executeTimerBlock:) userInfo:[block copy] repeats:repeats];
 }
 

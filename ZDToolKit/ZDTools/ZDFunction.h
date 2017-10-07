@@ -160,6 +160,8 @@ FOUNDATION_EXPORT double ZD_MemoryUsage(void);
 FOUNDATION_EXPORT double ZD_Round(CGFloat num, NSInteger num_digits);
 /// Int转NSData
 FOUNDATION_EXPORT NSData *ZD_ConvertIntToData(int value);
+/// 随机色
+FOUNDATION_EXPORT UIColor *ZD_RandomColor();
 
 #pragma mark - GCD
 #pragma mark -
