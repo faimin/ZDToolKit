@@ -10,8 +10,8 @@
 #import <ZDToolKit/NSTimer+ZDUtility.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface MDImageCollectionViewCell : UICollectionViewCell
-@property (nonatomic, strong) NSString *placeholderImageName;
+@interface ZDImageCollectionViewCell : UICollectionViewCell
+@property (nonatomic, strong) UIImage *placeholderImage;
 @property (nonatomic, strong) NSString *urlString;
 @end
 
@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, weak  ) id<ZDBannerScrollViewDelegate> delegate;
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, copy  ) NSString *placeholderImageName;
+@property (nonatomic, strong) UIImage *placeholderImage;
 @end
 
 @implementation ZDBannerScrollView
@@ -47,10 +47,10 @@
     self.timer.fireDate = [NSDate date];
 }
 
-+ (instancetype)scrollViewWithFrame:(CGRect)frame delegate:(id<ZDBannerScrollViewDelegate>)delegate placeholderImage:(NSString *)placeholderImageName {
++ (instancetype)scrollViewWithFrame:(CGRect)frame delegate:(id<ZDBannerScrollViewDelegate>)delegate placeholderImage:(UIImage *)placeholderImage {
     ZDBannerScrollView *view = [[self alloc] initWithFrame:frame];
     view.delegate = delegate;
-    view.placeholderImageName = placeholderImageName;
+    view.placeholderImage = placeholderImage;
     
     return view;
 }
@@ -74,7 +74,7 @@
     if (!newSuperview) return;
     
     __weak typeof(self)weakSelf = self;
-    self.timer = [NSTimer zd_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : 2.5) repeats:YES block:^(NSTimer * _Nonnull timer) {
+    self.timer = [NSTimer zd_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : 3.5) repeats:YES block:^(NSTimer * _Nonnull timer) {
         __strong typeof(weakSelf)self = weakSelf;
         [self autoScroll];
     }];
@@ -109,8 +109,8 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    MDImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MDImageCollectionViewCell class]) forIndexPath:indexPath];
-    cell.placeholderImageName = self.placeholderImageName;
+    ZDImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class]) forIndexPath:indexPath];
+    cell.placeholderImage = self.placeholderImage;
     cell.urlString = [self.innerDataSource objectAtIndex:indexPath.item];
     
     return cell;
@@ -145,11 +145,16 @@
         scrollView.contentOffset = CGPointMake(boundsWidth, scrollView.contentOffset.y);
     }
     else if (offsetX < boundsWidth) {
-        // 1.3改成2的话会有bug
+        // 乘以一个大于1小于1.5的数，可以利用pagingEnabled特性，使滑动更自然
         scrollView.contentOffset = CGPointMake(contentWidth - boundsWidth * 1.3, scrollView.contentOffset.y);
     }
     
     NSInteger currentPage = scrollView.contentOffset.x / boundsWidth - 1;
+    if (currentPage < 0) {
+        currentPage = self.innerDataSource.count - 2 - 1;
+    } else if (currentPage > self.innerDataSource.count - 2 - 1) {
+        currentPage = 0;
+    }
     self.pageControl.currentPage = currentPage;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(scrollView:didScrollToIndex:)]) {
@@ -201,7 +206,7 @@
             collectionView.pagingEnabled = YES;
             collectionView.showsHorizontalScrollIndicator = NO;
             collectionView.showsVerticalScrollIndicator = NO;
-            [collectionView registerClass:[MDImageCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([MDImageCollectionViewCell class])];
+            [collectionView registerClass:[ZDImageCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class])];
             collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             if (@available(iOS 11, *)) {
                 collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -231,12 +236,11 @@
 
 //======================================================
 
-@interface MDImageCollectionViewCell ()
+@interface ZDImageCollectionViewCell ()
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UIImage *defaultImage;
 @end
 
-@implementation MDImageCollectionViewCell
+@implementation ZDImageCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -247,7 +251,6 @@
 
 - (void)setup {
     self.backgroundColor = [UIColor yellowColor];
-    //_defaultImage = [UIImage imageWithColor:[UIColor lightGrayColor] finalSize:self.bounds.size];
     
     [self.contentView addSubview:self.imageView];
 }
@@ -259,13 +262,7 @@
     
     _urlString = urlString;
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:({
-        UIImage *image = nil;
-        if (self.placeholderImageName.length > 0) {
-            image = [UIImage imageNamed:self.placeholderImageName];
-        }
-        image ?: _defaultImage;
-    })];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:self.placeholderImage];
 }
 
 //MARK: Getter
@@ -274,7 +271,6 @@
         _imageView = ({
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
             imageView.backgroundColor = [UIColor whiteColor];
-            //imageView.clipsToBounds = YES;
             imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             imageView;
         });
