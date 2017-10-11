@@ -451,7 +451,14 @@ Stuff                                                                   \
 _Pragma("clang diagnostic pop")                                         \
 } while (0)
 
-
+/// 消除函数不适合的警告
+#define ZD_SuppressNotAvailableWarning(Stuff)                           \
+do {                                                                    \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Wpartial-availability\"")             \
+Stuff                                                                   \
+_Pragma("clang diagnostic pop")                                         \
+} while (0)
 
 
 
