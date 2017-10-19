@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ZDBannerScrollViewDelegate <NSObject>
 @optional
 - (void)scrollView:(ZDBannerScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index;
-
 - (void)scrollView:(ZDBannerScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index;
-
+// 如果你引入了SDWebImage则自动用SD下载，不用实现此协议；此协议方法是让用户自己调用非SD库下载用的
+- (void)customDownloadWithImageView:(UIImageView *)imageView url:(NSString *)urlString placeHolderImage:(nullable UIImage *)placeHolderImage;
 @end
 
 @interface ZDBannerScrollView : UIView
@@ -24,8 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSTimeInterval interval;              ///< 定时器的间隔时间,默认3.5s
 @property (nonatomic, strong) NSArray<NSString *> *imageURLStrings; ///< 图片地址数组
 
-+ (instancetype)scrollViewWithFrame:(CGRect)frame delegate:(nullable id<ZDBannerScrollViewDelegate>)delegate placeholderImage:(nullable UIImage *)placeholderImage;
++ (instancetype)scrollViewWithFrame:(CGRect)frame
+                           delegate:(nullable id<ZDBannerScrollViewDelegate>)delegate
+                   placeholderImage:(nullable UIImage *)placeholderImage;
 
+- (void)invalidateTimer;
 - (void)pauseTimer;
 - (void)resumeTimer;
 

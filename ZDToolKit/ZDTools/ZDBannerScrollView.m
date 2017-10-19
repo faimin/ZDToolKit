@@ -8,11 +8,14 @@
 
 #import "ZDBannerScrollView.h"
 #import <ZDToolKit/NSTimer+ZDUtility.h>
+#if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 #import <SDWebImage/UIImageView+WebCache.h>
+#endif
 
 @interface ZDImageCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) UIImage *placeholderImage;
 @property (nonatomic, strong) NSString *urlString;
+@property (nonatomic, copy) void(^zdDownloadBlock)(UIImageView *imageView, NSString *urlString, UIImage *placeHolderImage);
 @end
 
 
@@ -28,14 +31,24 @@
 @implementation ZDBannerScrollView
 
 - (void)dealloc {
-    if (_timer) {
-        [_timer invalidate];
-        _timer = nil;
+    [self invalidateTimer];
+    
+    if (_collectionView) {
+        _collectionView.delegate = nil;
+        _collectionView.dataSource = nil;
     }
+    
     NSLog(@"%@-->%@, %s", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __PRETTY_FUNCTION__);
 }
 
 #pragma mark - Public Method
+
+- (void)invalidateTimer {
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
 
 - (void)pauseTimer {
     if (!_timer) return;
@@ -55,12 +68,23 @@
     return view;
 }
 
+#pragma mark -
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setup];
     }
     return self;
 }
+
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    [super willMoveToSuperview:newSuperview];
+    if (!newSuperview) return;
+    
+    [self setupTimer];
+}
+
+#pragma mark -
 
 - (void)setup {
     _innerDataSource = @[].mutableCopy;
@@ -69,10 +93,8 @@
     [self addSubview:self.pageControl];
 }
 
-- (void)willMoveToSuperview:(UIView *)newSuperview {
-    [super willMoveToSuperview:newSuperview];
-    if (!newSuperview) return;
-    
+- (void)setupTimer {
+    [self invalidateTimer];
     __weak typeof(self)weakSelf = self;
     self.timer = [NSTimer zd_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : 3.5) repeats:YES block:^(NSTimer * _Nonnull timer) {
         __strong typeof(weakSelf)self = weakSelf;
@@ -110,6 +132,14 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZDImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class]) forIndexPath:indexPath];
+    // 用自己外面的下载库下载
+    if (self.delegate && [self.delegate respondsToSelector:@selector(customDownloadWithImageView:url:placeHolderImage:)]) {
+        __weak typeof(self) weakTarget = self;
+        cell.zdDownloadBlock = ^(UIImageView *imageView, NSString *urlString, UIImage *placeHolderImage) {
+            __strong typeof(weakTarget) self = weakTarget;
+            [self.delegate customDownloadWithImageView:imageView url:urlString placeHolderImage:placeHolderImage];
+        };
+    }
     cell.placeholderImage = self.placeholderImage;
     cell.urlString = [self.innerDataSource objectAtIndex:indexPath.item];
     
@@ -261,8 +291,14 @@
     if (!urlString || urlString.length == 0) return;
     
     _urlString = urlString;
-    
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:self.placeholderImage];
+
+#if __has_include(<SDWebImage/UIImageView+WebCache.h>)
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:self.placeholderImage];
+#else
+        if (self.zdDownloadBlock) {
+            self.zdDownloadBlock(self.imageView, urlString, self.placeholderImage);
+        }
+#endif
 }
 
 //MARK: Getter
