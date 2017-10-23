@@ -398,65 +398,65 @@ NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
 
 
 /// 消除performSelector警告
-#define ZD_SuppressPerformSelectorLeakWarning(Stuff)                    \
+#define ZD_SuppressPerformSelectorLeakWarning(...)                      \
 do {                                                                    \
     _Pragma("clang diagnostic push")                                    \
     _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
-    Stuff;                                                              \
+    __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
 } while (0)
 
 /// 消除deprecated方法的警告
-#define ZD_SuppressDeprecatedWarning(Stuff)                             \
+#define ZD_SuppressDeprecatedWarning(...)                               \
 do {                                                                    \
     _Pragma("clang diagnostic push")                                    \
     _Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"")   \
-    Stuff;                                                              \
+    __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
 } while (0)
 
 /// 消除定义未使用变量的警告
-#define ZD_SuppressUnusedVariableWarning(Stuff)                         \
+#define ZD_SuppressUnusedVariableWarning(...)                           \
 do {                                                                    \
     _Pragma("clang diagnostic push")                                    \
     _Pragma("clang diagnostic ignored \"-Wunused-variable\"")           \
-    Stuff;                                                              \
+    __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
 } while (0)
 
 /// 消除使用不存在的方法名的警告
-#define ZD_SuppressUndeclaredSelectorWarning(Stuff)                     \
+#define ZD_SuppressUndeclaredSelectorWarning(...)                       \
 do {                                                                    \
     _Pragma("clang diagnostic push")                                    \
     _Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")       \
-    Stuff;                                                              \
+    __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
 } while (0)
 
 /// 消除不兼容指针类型的警告
-#define ZD_SuppressIncompatiblePointerTypeWarning(Stuff)                \
+#define ZD_SuppressIncompatiblePointerTypeWarning(...)                  \
 do {                                                                    \
     _Pragma("clang diagnostic push")                                    \
     _Pragma("clang diagnostic ignored \"-Wincompatible-pointer-types\"")\
-    Stuff;                                                              \
+    __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
 } while (0)
 
 /// 消除block不定数个参数的警告
-#define ZD_SuppressNotPrototypeWarning(Stuff)                           \
+#define ZD_SuppressNotPrototypeWarning(...)                             \
 do {                                                                    \
     _Pragma("clang diagnostic push")                                    \
     _Pragma("clang diagnostic ignored \"-Wstrict-prototypes\"")         \
-    Stuff;                                                              \
+    __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
 } while (0)
 
 /// 消除函数不适合的警告
-#define ZD_SuppressNotAvailableWarning(Stuff)                           \
+#define ZD_SuppressNotAvailableWarning(...)                             \
 do {                                                                    \
     _Pragma("clang diagnostic push")                                    \
     _Pragma("clang diagnostic ignored \"-Wpartial-availability\"")      \
-    Stuff;                                                              \
+    __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
 } while (0)
 
