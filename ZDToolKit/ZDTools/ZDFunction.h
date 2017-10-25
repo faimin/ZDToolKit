@@ -63,7 +63,10 @@ UIKIT_EXTERN UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLeng
 /// @param view       需要添加镂空layer的视图
 /// @param size       镂空layer的尺寸,默认为view的尺寸
 /// @param fillColor  镂空layer的填充颜色(边缘色),默认为白色
-UIKIT_EXTERN void ZD_AddHollowoutLayerToView(UIView *view, CGSize size, UIColor *fillColor);
+UIKIT_EXTERN void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fillColor);
+
+/// 打印view的坐标系信息
+UIKIT_EXTERN void ZD_PrintViewCoordinateInfo(__kindof UIView *view);
 
 #pragma mark - String
 #pragma mark -
@@ -165,6 +168,8 @@ FOUNDATION_EXPORT UIColor *ZD_RandomColor();
 
 #pragma mark - GCD
 #pragma mark -
+FOUNDATION_EXPORT void ZD_Dispatch_async_on_main_queue(void (^block)());
+FOUNDATION_EXPORT void ZD_Dispatch_sync_on_main_queue(void (^block)());
 /// 判断当前是不是主队列
 FOUNDATION_EXPORT BOOL ZD_IsMainQueue();
 /// 让某一方法在固定的时间间隔内只执行一次

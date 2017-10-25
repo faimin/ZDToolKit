@@ -381,7 +381,7 @@ UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineS
     return dashedLine;
 }
 
-void ZD_AddHollowoutLayerToView(UIView *view, CGSize size, UIColor *fillColor) {
+void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fillColor) {
     if (!view) return;
     
     if (CGSizeEqualToSize(size, CGSizeZero)) {
@@ -401,6 +401,15 @@ void ZD_AddHollowoutLayerToView(UIView *view, CGSize size, UIColor *fillColor) {
     hollowLayer.fillColor = fillColor ? fillColor.CGColor : [UIColor whiteColor].CGColor;
     //设置路径的填充模式为两个图形的非交集
     hollowLayer.fillRule = kCAFillRuleEvenOdd;
+}
+
+/// 打印view的坐标系信息
+void ZD_PrintViewCoordinateInfo(__kindof UIView *view) {
+    NSLog(@"\n frame = %@, bounds = %@, center = %@",
+          NSStringFromCGRect(view.frame),
+          NSStringFromCGRect(view.bounds),
+          NSStringFromCGPoint(view.center)
+          );
 }
 
 #pragma mark - String
@@ -935,6 +944,24 @@ UIColor *ZD_RandomColor() {
     CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
     CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+}
+
+OS_ALWAYS_INLINE void ZD_Dispatch_async_on_main_queue(void (^block)()) {
+    if (pthread_main_np()) {
+        block();
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), block);
+    }
+}
+
+OS_ALWAYS_INLINE void ZD_Dispatch_sync_on_main_queue(void (^block)()) {
+    if (pthread_main_np()) {
+        block();
+    }
+    else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
 }
 
 // http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/

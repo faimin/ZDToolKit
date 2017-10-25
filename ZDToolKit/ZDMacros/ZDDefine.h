@@ -330,34 +330,6 @@ do {                                                 							\
 #define KEYWORDIFY try {} @catch (...) {}           // 使宏前面可以加@
 #define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))// 最终使用的宏
 
-
-NS_INLINE void ZD_Dispatch_async_on_main_queue(void (^block)()) {
-    if (pthread_main_np()) {
-        block();
-    }
-    else {
-        dispatch_async(dispatch_get_main_queue(), block);
-    }
-}
-
-NS_INLINE void ZD_Dispatch_sync_on_main_queue(void (^block)()) {
-    if (pthread_main_np()) {
-        block();
-    }
-    else {
-        dispatch_sync(dispatch_get_main_queue(), block);
-    }
-}
-
-/// 打印view的坐标系信息
-NS_INLINE void ZD_PrintViewCoordinateInfo(UIView *view) {
-    NSLog(@"\n frame = %@, bounds = %@, center = %@",
-          NSStringFromCGRect(view.frame),
-          NSStringFromCGRect(view.bounds),
-          NSStringFromCGPoint(view.center)
-    );
-}
-
 //defer(swift延迟调用关键字)宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
 /// 注意`ZD_CleanupBlock`函数的入参是`cleanup`所修饰变量的地址,类型要一样
 NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
