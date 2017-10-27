@@ -26,6 +26,8 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = NSStringFromClass(self.class);
     
+    //[self deadLock];
+    
     self.imageView.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
     self.imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
@@ -125,6 +127,14 @@
     return string;
 }
 
+- (void)deadLock {
+    dispatch_semaphore_t signal = dispatch_semaphore_create(0);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"执行了");
+        dispatch_semaphore_signal(signal);
+    });
+    dispatch_semaphore_wait(signal, DISPATCH_TIME_FOREVER);
+}
 
 /*
 #pragma mark - Navigation

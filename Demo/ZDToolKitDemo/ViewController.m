@@ -230,7 +230,7 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 	});
     
     //dispatch_queue_create("com.zd.saber", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_DEFAULT, 0))
-    ZD_CREATE_SERIAL_QUEUE(com.zd, QOS_CLASS_DEFAULT);
+    //ZD_CREATE_SERIAL_QUEUE(com.zd, QOS_CLASS_DEFAULT);
     
 }
 
