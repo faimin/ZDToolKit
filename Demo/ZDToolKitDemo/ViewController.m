@@ -21,6 +21,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import <NSObject+ZDUtility.h>
+#import <ZDToolKit/ZDDefine.h>
 
 @interface ViewController ()
 
@@ -227,6 +228,9 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 			NSLog(@"子队列");
 		}
 	});
+    
+    //dispatch_queue_create("com.zd.saber", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_DEFAULT, 0))
+    ZD_CREATE_SERIAL_QUEUE(com.zd, QOS_CLASS_DEFAULT);
     
 }
 

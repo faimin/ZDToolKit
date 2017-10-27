@@ -282,7 +282,7 @@ do {                                                 							\
 //读取本地图片
 #define ZD_BUNDLEIMAGE(file, type)	[UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:type]]
 //定义UIImage对象
-#define ZD_ImageNamed(_imageName)	[UIImage imageNamed:_imageName]
+#define ZD_IMAGENAMED(_imageName)	[UIImage imageNamed:@#_imageName]
 
 //----------------------图片----------------------------
 
@@ -311,9 +311,11 @@ do {                                                 							\
 //程序的本地化,引用国际化的文件
 #define ZD_LOCAL(x, ...)				NSLocalizedString(x, nil)
 
-//G－C－D
-#define ZD_GLOBALQUEUE(block)  	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
-#define ZD_MAINQUEUE(block)		dispatch_async(dispatch_get_main_queue(), block)
+//GCD
+#define ZD_GLOBAL_QUEUE(block)  	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#define ZD_MAIN_QUEUE(block)		dispatch_async(dispatch_get_main_queue(), block)
+#define ZD_CREATE_SERIAL_QUEUE(_label, QOS_CLASS_DEFAULT)    dispatch_queue_create(#_label, dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_DEFAULT, 0))
+#define ZD_CREATE_CONCURRENT_QUEUE(_label, QOS_CLASS_DEFAULT)   dispatch_queue_create(#_label, dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_DEFAULT, 0))
 
 //由角度获取弧度 有弧度获取角度
 #define ZD_DegreesToRadian(x)          (M_PI * (x) / 180.0)
@@ -376,7 +378,7 @@ do {                                                                    \
     _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
     __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
-} while (0)
+} while (0);
 
 /// 消除deprecated方法的警告
 #define ZD_SuppressDeprecatedWarning(...)                               \
@@ -385,7 +387,7 @@ do {                                                                    \
     _Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"")   \
     __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
-} while (0)
+} while (0);
 
 /// 消除定义未使用变量的警告
 #define ZD_SuppressUnusedVariableWarning(...)                           \
@@ -394,7 +396,7 @@ do {                                                                    \
     _Pragma("clang diagnostic ignored \"-Wunused-variable\"")           \
     __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
-} while (0)
+} while (0);
 
 /// 消除使用不存在的方法名的警告
 #define ZD_SuppressUndeclaredSelectorWarning(...)                       \
@@ -403,7 +405,7 @@ do {                                                                    \
     _Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")       \
     __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
-} while (0)
+} while (0);
 
 /// 消除不兼容指针类型的警告
 #define ZD_SuppressIncompatiblePointerTypeWarning(...)                  \
@@ -412,7 +414,7 @@ do {                                                                    \
     _Pragma("clang diagnostic ignored \"-Wincompatible-pointer-types\"")\
     __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
-} while (0)
+} while (0);
 
 /// 消除block不定数个参数的警告
 #define ZD_SuppressNotPrototypeWarning(...)                             \
@@ -421,7 +423,7 @@ do {                                                                    \
     _Pragma("clang diagnostic ignored \"-Wstrict-prototypes\"")         \
     __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
-} while (0)
+} while (0);
 
 /// 消除函数不适合的警告
 #define ZD_SuppressNotAvailableWarning(...)                             \
@@ -430,7 +432,7 @@ do {                                                                    \
     _Pragma("clang diagnostic ignored \"-Wpartial-availability\"")      \
     __VA_ARGS__;                                                        \
     _Pragma("clang diagnostic pop")                                     \
-} while (0)
+} while (0);
 
 
 
