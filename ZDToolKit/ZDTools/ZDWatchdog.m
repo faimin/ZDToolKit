@@ -9,6 +9,8 @@
 #import "ZDWatchdog.h"
 #import <execinfo.h>
 
+static const NSTimeInterval kDefaultInterval = 50.0; // 单位：毫秒
+
 @interface ZDWatchdog ()
 {
     CFRunLoopObserverRef _observer;
@@ -82,7 +84,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
         NSUInteger timeoutCount = 0; // 一次循环过程中的卡顿次数
         while (true) {
             //超时后返回非0值,未超时返回0;默认等待50毫秒 = 50/1000 秒
-            long semaphoreResult = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval > 0 ?: 50) * NSEC_PER_MSEC));
+            long semaphoreResult = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval ?: kDefaultInterval) * NSEC_PER_MSEC));
             if (semaphoreResult != 0) { //超时
                 //runloop观察者不存在时所有条件重置
                 if (!_observer) {
@@ -114,7 +116,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     dispatch_queue_t serialQueue = dispatch_queue_create("zd.com.queue.serial", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_DEFAULT, 0));
     
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, serialQueue);
-    dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC, 0);
+    dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, kDefaultInterval * NSEC_PER_MSEC, 0);
     __weak __typeof__(self) weakTarget = self;
     dispatch_source_set_event_handler(self.timer, ^{
         __strong __typeof__(weakTarget) self = weakTarget;
@@ -143,7 +145,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
             });
             
             // 超时时返回非0的数值
-            long timeOut = dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval > 0 ?: 50) * NSEC_PER_MSEC));
+            long timeOut = dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval ?: kDefaultInterval) * NSEC_PER_MSEC));
             if (timeOut != 0) {
                 isNotTimeOut = NO;
             };
