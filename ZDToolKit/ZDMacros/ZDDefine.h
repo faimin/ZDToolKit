@@ -43,6 +43,11 @@
 	#endif
 #endif
 
+#define ZD_StatusBar_Height      (ZD_SCREENH_HEIGHT == 812.0 ? 44 : 20)     ///< 状态栏高度
+#define ZD_SafeArea_FringeHeight (ZD_SCREENH_HEIGHT == 812.0 ? 30 : 0)      ///< 刘海高度
+#define ZD_SafeArea_TopHeight    (ZD_SCREENH_HEIGHT == 812.0 ? 88 : 64)     ///< 导航栏高度
+#define ZD_SafeArea_BottomHeight (ZD_SCREENH_HEIGHT == 812.0 ? 34 : 0)      ///< 安全区域下方高度
+#define ZD_SafeArea_TabBarHeight (ZD_SCREENH_HEIGHT == 812.0 ? 83 : 49)     ///< 导航栏高度
 
 //-------------------打印日志-------------------------
 //DEBUG  模式下打印日志,当前行
