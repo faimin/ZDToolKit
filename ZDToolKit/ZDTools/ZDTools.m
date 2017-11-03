@@ -15,14 +15,14 @@
 
 @implementation ZDTools
 
-+ (NSMutableDictionary *)scheduleSourceDic
++ (NSMutableDictionary *)scheduleSourceDict
 {
-    static NSMutableDictionary *_sourceDic = nil;
+    static NSMutableDictionary *_sourceDict = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sourceDic = [[NSMutableDictionary alloc] init];
+        _sourceDict = [[NSMutableDictionary alloc] init];
     });
-    return _sourceDic;
+    return _sourceDict;
 }
 
 // https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
@@ -31,8 +31,11 @@
                                 key:(NSString *)key
                               block:(void(^)())block
 {
-    NSMutableDictionary *scheduleSourceDic = [self scheduleSourceDic];
-    dispatch_source_t timer = scheduleSourceDic[key];
+    NSCParameterAssert(key);
+    if (!key || key.length == 0) return;
+    
+    NSMutableDictionary *scheduleSourceDict = [self scheduleSourceDict];
+    dispatch_source_t timer = scheduleSourceDict[key];
     if (timer) {
         dispatch_source_cancel(timer);
     }
@@ -41,10 +44,10 @@
     dispatch_source_set_event_handler(timer, ^{
         block();
         dispatch_source_cancel(timer);
-        [scheduleSourceDic removeObjectForKey:key];
+        scheduleSourceDict[key] = nil;
     });
     dispatch_resume(timer);
-    scheduleSourceDic[key] = timer;
+    scheduleSourceDict[key] = timer;
 }
 
 @end
@@ -82,8 +85,7 @@ void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_qu
     [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:queue key:[NSThread callStackSymbols][1] block:block];
 }
 
-
-NSString *StringByReplaceUnicode(NSString *unicodeStr)
+NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr)
 {
     if (!unicodeStr) return @"";
     
