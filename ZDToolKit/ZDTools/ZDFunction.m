@@ -968,7 +968,7 @@ OS_ALWAYS_INLINE void ZD_Dispatch_sync_on_main_queue(void (^block)()) {
 // 原理：给主队列设置一个标签，然后在当前队列获取标签，
 // 如果获取到的标签与设置的标签不一样，说明当前队列就不是主队列
 BOOL ZD_IsMainQueue() {
-#if 1
+    // 方案1:(最佳)
     static const void *mainQueueKey = &mainQueueKey;
     static void *mainQueueContext = &mainQueueContext;
     
@@ -978,11 +978,15 @@ BOOL ZD_IsMainQueue() {
     });
     void *context = dispatch_get_specific(mainQueueKey);
     return (context == mainQueueContext);
-#else
+    /*
+    // 方案2:
+    return strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL),  dispatch_queue_get_label(dispatch_get_main_queue())) == 0;
+    
+    // 方案3:
     dispatch_queue_t mainQueue = (__bridge dispatch_queue_t)(pthread_getspecific(20));
     BOOL isMainQueue = !strcmp(dispatch_queue_get_label(mainQueue), @"com.apple.main-thread".UTF8String);
     return isMainQueue;
-#endif
+     */
 }
 
 // https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
