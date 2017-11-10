@@ -84,7 +84,10 @@
         {kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(linespace), &linespace},
         {kCTParagraphStyleSpecifierLineBreakMode, sizeof(CTLineBreakMode), &lineBreakMode}
     }, 6);
-    NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:(__bridge id)fontRef,(NSString*)kCTFontAttributeName,(__bridge id)style,(NSString*)kCTParagraphStyleAttributeName,nil];
+    NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                (__bridge id)fontRef, (NSString *)kCTFontAttributeName,
+                                (__bridge id)style, (NSString *)kCTParagraphStyleAttributeName,
+                                nil];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:self attributes:attributes];
     CFAttributedStringRef attributedString = (__bridge CFAttributedStringRef)string;
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);

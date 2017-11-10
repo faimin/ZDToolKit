@@ -10,9 +10,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ZDTextView ()
-
 @property (nonatomic, strong) UILabel *placeholderLabel;
-
 @end
 
 @implementation ZDTextView
@@ -44,8 +42,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self zd_placeholderLabelHidden];
-    if (!self.placeholderLabel.hidden)
-    {
+    if (!self.placeholderLabel.hidden) {
         [UIView performWithoutAnimation: ^{
             CGRect bounds = self.bounds;
             //bounds.size.width -= 5;
@@ -75,8 +72,7 @@
     self.placeholderLabel.hidden = ((self.placeholder.length == 0 && self.attributedPlaceholder.length == 0) || self.text.length > 0);
 }
 
-- (CGRect)zd_placeholderRectThatFits:(CGRect)bounds
-{
+- (CGRect)zd_placeholderRectThatFits:(CGRect)bounds {
     CGRect rect = CGRectZero;
     
     rect.size = [self.placeholderLabel sizeThatFits:bounds.size];

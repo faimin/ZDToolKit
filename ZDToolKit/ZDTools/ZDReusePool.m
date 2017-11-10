@@ -15,7 +15,7 @@
 @implementation ZDReusePool
 
 - (id)dequeueReusableCellWithIdentifier:(NSString *)identifier {
-    NSParameterAssert(identifier);
+    NSCParameterAssert(identifier);
     
     if (!identifier) return nil;
     

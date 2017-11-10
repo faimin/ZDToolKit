@@ -35,29 +35,34 @@ enum {
     BLOCK_HAS_SIGNATURE =     (1 << 30),
 };
 
-static const char *__BlockSignature__(id blockObj)
-{
+static const char *__BlockSignature__(id blockObj) {
     struct Block_literal_1 *block = (__bridge void *)blockObj;
     struct Block_descriptor_1 *descriptor = block->descriptor;
     assert(block->flags & BLOCK_HAS_SIGNATURE);
     int offset = 0;
-    if(block->flags & BLOCK_HAS_COPY_DISPOSE)
+    if (block->flags & BLOCK_HAS_COPY_DISPOSE) {
         offset += 2;
+    }
     return (char*)(descriptor->rest[offset]);
 }
 
 @implementation NSInvocation (ZDBlock)
 
-+ (instancetype)zd_invocationWithBlock:(id)block
-{
-    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:[NSMethodSignature signatureWithObjCTypes:__BlockSignature__(block)]];
++ (instancetype)zd_invocationWithBlock:(id)block {
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[NSMethodSignature signatureWithObjCTypes:__BlockSignature__(block)]];
     invocation.target = block;
     return invocation;
 }
-#define ARG_GET_SET(type) do { type val = 0; val = va_arg(args,type); [invocation setArgument:&val atIndex:1 + i];} while (0)
-+ (instancetype)zd_invocationWithBlockAndArguments:(id)block, ...
-{
-    NSInvocation* invocation = [NSInvocation zd_invocationWithBlock:block];
+
+#define ARG_GET_SET(type)                           \
+do {                                                \
+    type val = 0;                                   \
+    val = va_arg(args,type);                        \
+    [invocation setArgument:&val atIndex:1 + i];    \
+} while (0)
+
++ (instancetype)zd_invocationWithBlockAndArguments:(id)block, ... {
+    NSInvocation *invocation = [NSInvocation zd_invocationWithBlock:block];
     NSUInteger argsCount = invocation.methodSignature.numberOfArguments - 1;
     va_list args;
     va_start(args, block);
@@ -65,24 +70,24 @@ static const char *__BlockSignature__(id blockObj)
         const char* argType = [invocation.methodSignature getArgumentTypeAtIndex:i + 1];
         if (argType[0] == _C_CONST) argType++;
 
-        if (argType[0] == '@') {                                //id and block
+        if (argType[0] == '@') {                                    //id and block
             ARG_GET_SET(id);
-        } else if (strcmp(argType, @encode(Class)) == 0 ) {       //Class
+        } else if (strcmp(argType, @encode(Class)) == 0 ) {         //Class
             ARG_GET_SET(Class);
-        } else if (strcmp(argType, @encode(IMP)) == 0 ) {         //IMP
+        } else if (strcmp(argType, @encode(IMP)) == 0 ) {           //IMP
             ARG_GET_SET(IMP);
-        } else if (strcmp(argType, @encode(SEL)) == 0) {         //SEL
+        } else if (strcmp(argType, @encode(SEL)) == 0) {            //SEL
             ARG_GET_SET(SEL);
-        } else if (strcmp(argType, @encode(double)) == 0) {       //
+        } else if (argType[0] == '^'){                              //pointer ( andconst pointer)
+            ARG_GET_SET(void*);
+        } else if (strcmp(argType, @encode(char *)) == 0) {         //char* (and const char*)
+            ARG_GET_SET(char *);
+        } else if (strcmp(argType, @encode(double)) == 0) {         //double
             ARG_GET_SET(double);
         } else if (strcmp(argType, @encode(float)) == 0) {
-            float val = 0;
-            val = (float)va_arg(args,double);
+            float val = 0.f;
+            val = (float)va_arg(args, double);
             [invocation setArgument:&val atIndex:1 + i];
-        } else if (argType[0] == '^'){                           //pointer ( andconst pointer)
-            ARG_GET_SET(void*);
-        } else if (strcmp(argType, @encode(char *)) == 0) {      //char* (and const char*)
-            ARG_GET_SET(char *);
         } else if (strcmp(argType, @encode(unsigned long)) == 0) {
             ARG_GET_SET(unsigned long);
         } else if (strcmp(argType, @encode(unsigned long long)) == 0) {
@@ -99,7 +104,7 @@ static const char *__BlockSignature__(id blockObj)
                   || strcmp(argType, @encode(char)) == 0 || strcmp(argType, @encode(unsigned char)) == 0
                   || strcmp(argType, @encode(short)) == 0 || strcmp(argType, @encode(unsigned short)) == 0) {
             ARG_GET_SET(int);
-        } else {                  //struct union and array
+        } else {                                                    //struct union and array
             assert(false && "struct union array unsupported!");
         }
     }

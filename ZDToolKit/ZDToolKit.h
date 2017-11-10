@@ -69,10 +69,12 @@
 #import "ZDProxy.h"
 #import "ZDSafe.h"
 #import "ZDTextView.h"
-#import "ZDTools.h"
+#import "ZDGifImageView.h"
 #import "ZDWatchdog.h"
 #import "ZDReusePool.h"
 #import "ZDPermissionHandler.h"
+#import "ZDBannerScrollView.h"
+#import "ZDTools.h"
 
 
 #endif /* ZDToolKit_h */
