@@ -21,12 +21,12 @@
             NSLog(@"绑定时缺失key-->：%@", key);
         }
         else {
-            __unused Class paramClass = [self classFromClassName:@""];
+            __unused Class paramClass = [self parameterClassFromName:@""];
         }
     }];
 }
 
-- (Class)classFromClassName:(NSString *)className {
+- (Class)parameterClassFromName:(NSString *)className {
     static NSDictionary *numberClassTypes;
     static NSDictionary *valueClassTypes;
     

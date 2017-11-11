@@ -47,6 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGSize)zd_sizeWithFont:(UIFont *)customFont
         constrainedToSize:(CGSize)size
                 lineSpace:(CGFloat)lineSpace;
+- (CGSize)zd_sizeWithFont:(UIFont *)customFont
+        constrainedToSize:(CGSize)size
+                lineSpace:(CGFloat)lineSpace
+    limiteToNumberOfLines:(NSUInteger)numberOfLines;
 
 // MARK: Emoji
 - (BOOL)zd_isContainsEmoji;

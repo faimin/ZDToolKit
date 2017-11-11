@@ -100,6 +100,73 @@
     return result;
 }
 
+// this code quote TTTAttributedLabel
+static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstraints(CTFramesetterRef framesetter, NSAttributedString *attributedString, CGSize size, NSUInteger numberOfLines) {
+    CFRange rangeToSize = CFRangeMake(0, (CFIndex)[attributedString length]);
+    CGSize constraints = CGSizeMake(size.width, MAXFLOAT);
+    
+    if (numberOfLines == 1) {
+        // If there is one line, the size that fits is the full width of the line
+        constraints = CGSizeMake(MAXFLOAT, MAXFLOAT);
+    } else if (numberOfLines > 0) {
+        // If the line count of the label more than 1, limit the range to size to the number of lines that have been set
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathAddRect(path, NULL, CGRectMake(0.0f, 0.0f, constraints.width, CGFLOAT_MAX));
+        CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+        CFArrayRef lines = CTFrameGetLines(frame);
+        
+        if (CFArrayGetCount(lines) > 0) {
+            NSInteger lastVisibleLineIndex = MIN((CFIndex)numberOfLines, CFArrayGetCount(lines)) - 1;
+            CTLineRef lastVisibleLine = CFArrayGetValueAtIndex(lines, lastVisibleLineIndex);
+            
+            CFRange rangeToLayout = CTLineGetStringRange(lastVisibleLine);
+            rangeToSize = CFRangeMake(0, rangeToLayout.location + rangeToLayout.length);
+        }
+        
+        CFRelease(frame);
+        CFRelease(path);
+    }
+    
+    CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, rangeToSize, NULL, constraints, NULL);
+    
+    return CGSizeMake(ceilf(suggestedSize.width), ceilf(suggestedSize.height));
+}
+
+- (CGSize)zd_sizeWithFont:(UIFont *)customFont constrainedToSize:(CGSize)size lineSpace:(CGFloat)lineSpace limiteToNumberOfLines:(NSUInteger)numberOfLines
+{
+    customFont = customFont ?: [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    
+    CGFloat minimumLineHeight = customFont.pointSize, maximumLineHeight = minimumLineHeight, linespace = lineSpace;
+    CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)customFont.fontName, customFont.pointSize, NULL);
+    CTLineBreakMode lineBreakMode = kCTLineBreakByWordWrapping;
+    //Apply paragraph settings
+    CTTextAlignment alignment = kCTLeftTextAlignment;
+    CTParagraphStyleRef style = CTParagraphStyleCreate((CTParagraphStyleSetting[6]){
+        {kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment},
+        {kCTParagraphStyleSpecifierMinimumLineHeight, sizeof(minimumLineHeight), &minimumLineHeight},
+        {kCTParagraphStyleSpecifierMaximumLineHeight, sizeof(maximumLineHeight), &maximumLineHeight},
+        {kCTParagraphStyleSpecifierMinimumLineSpacing, sizeof(linespace), &linespace},
+        {kCTParagraphStyleSpecifierMaximumLineSpacing, sizeof(linespace), &linespace},
+        {kCTParagraphStyleSpecifierLineBreakMode, sizeof(CTLineBreakMode), &lineBreakMode}
+    }, 6);
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                (__bridge id)fontRef, (NSString *)kCTFontAttributeName,
+                                (__bridge id)style, (NSString *)kCTParagraphStyleAttributeName,
+                                nil];
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:self attributes:attributes];
+    
+    CFAttributedStringRef cfAttributedString = (__bridge CFAttributedStringRef)attributeString;
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)cfAttributedString);
+    CGSize suggestSize = CTFramesetterSuggestFrameSizeForAttributedStringWithConstraints(framesetter, attributeString, size, numberOfLines);
+    //CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, [string length]), NULL, size, NULL);
+    CFRelease(framesetter);
+    CFRelease(fontRef);
+    CFRelease(style);
+    attributeString = nil;
+    attributes = nil;
+    return suggestSize;
+}
+
 #pragma mark - Emoji
 
 - (BOOL)zd_isContainsEmoji
