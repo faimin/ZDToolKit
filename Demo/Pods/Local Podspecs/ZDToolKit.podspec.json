@@ -59,6 +59,10 @@
       ]
     },
     {
+      "name": "ZDSubclass",
+      "source_files": "ZDToolKit/ZDSubclass/*.{h,m}"
+    },
+    {
       "name": "ZDMacros",
       "source_files": "ZDToolKit/ZDMacros/*.{h,m}"
     },

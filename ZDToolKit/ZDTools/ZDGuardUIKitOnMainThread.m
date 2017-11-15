@@ -63,6 +63,7 @@ static void ZD_AssertIfNotMainThread(void) {
 //-----------------------------------------------------------------------
 
 #if DEBUG
+
 __attribute__((constructor)) static void ZD_UIKitMainThreadGuard(void) {
     @autoreleasepool {
         for (NSString *selStr in @[PROPERTY(setNeedsLayout), PROPERTY(setNeedsDisplay), PROPERTY(setNeedsDisplayInRect:)]) {
@@ -102,6 +103,7 @@ __attribute__((constructor)) static void ZD_UIKitMainThreadGuard(void) {
         }
     }
 }
+
 #endif
 
 //-----------------------------------------------------------------------

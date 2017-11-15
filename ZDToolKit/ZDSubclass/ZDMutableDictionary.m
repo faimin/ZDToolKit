@@ -1,0 +1,180 @@
+//
+//  ZDMutableDictionary.m
+//  ZDToolKit
+//
+//  Created by Zero.D.Saber on 2017/11/13.
+//
+//  https://github.com/ibireme/YYKit/blob/master/YYKit/Utility/YYThreadSafeDictionary.m
+
+#import "ZDMutableDictionary.h"
+
+#define INIT(...) self = super.init; \
+if (!self) return nil; \
+__VA_ARGS__; \
+if (!_zdInnerMutDict) return nil; \
+_zdInnerQueue = dispatch_queue_create("com.queue.concurrent.dictionary", DISPATCH_QUEUE_CONCURRENT); \
+_lock = dispatch_semaphore_create(1); \
+return self;
+
+@implementation ZDMutableDictionary {
+    dispatch_semaphore_t _lock;
+    dispatch_queue_t _zdInnerQueue;
+    NSMutableDictionary *_zdInnerMutDict;
+}
+
+//- (instancetype)initCommon {
+//    self = [super init];
+//    if (self) {
+//        _zdInnerQueue = dispatch_queue_create("com.queue.concurrent.dictionary", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_DEFAULT, 0));
+//    }
+//    return self;
+//}
+
+- (instancetype)init {
+    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] init];)
+}
+
+- (instancetype)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys {
+    INIT(_zdInnerQueue = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];)
+}
+
+- (instancetype)initWithCapacity:(NSUInteger)numItems {
+    INIT(_zdInnerMutDict = [NSMutableDictionary dictionaryWithCapacity:numItems];)
+}
+
+- (NSDictionary *)initWithContentsOfFile:(NSString *)path {
+    INIT(_zdInnerMutDict = [NSMutableDictionary dictionaryWithContentsOfFile:path];)
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithCoder:aDecoder];)
+}
+
+//- (instancetype)initWithObjects:(const id [])objects forKeys:(const id<NSCopying> [])keys count:(NSUInteger)cnt {
+//    self = [self initCommon];
+//    if (self) {
+//        if (!objects || !keys) {
+//            [NSException raise:NSInvalidArgumentException format:@"objects and keys cannot be nil"];
+//        } else {
+//            for (NSUInteger i = 0; i < cnt; ++i) {
+//                _zdInnerMutDict[keys[i]] = objects[i];
+//            }
+//        }
+//    }
+//    return self;
+//}
+
+- (instancetype)initWithObjects:(const id[])objects forKeys:(const id <NSCopying>[])keys count:(NSUInteger)cnt {
+    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys count:cnt]);
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)otherDictionary {
+    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithDictionary:otherDictionary]);
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)otherDictionary copyItems:(BOOL)flag {
+    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithDictionary:otherDictionary copyItems:flag]);
+}
+
+#pragma mmark -
+
+- (NSUInteger)count {
+    __block NSUInteger count;
+    dispatch_sync(_zdInnerQueue, ^{
+        count = _zdInnerMutDict.count;
+    });
+    return count;
+}
+
+- (id)objectForKey:(id)aKey {
+    if (!aKey) return nil;
+    
+    __block id obj;
+    dispatch_sync(_zdInnerQueue, ^{
+        obj = _zdInnerMutDict[aKey];
+    });
+    return obj;
+}
+
+- (NSEnumerator *)keyEnumerator {
+    __block NSEnumerator *enu;
+    dispatch_sync(_zdInnerQueue, ^{
+        enu = [_zdInnerMutDict keyEnumerator];
+    });
+    return enu;
+}
+
+- (NSArray *)allKeys {
+    __block NSArray *allKeys;
+    dispatch_sync(_zdInnerQueue, ^{
+        allKeys = [_zdInnerMutDict allKeys];
+    });
+    return allKeys;
+}
+
+- (NSArray *)allKeysForObject:(id)anObject {
+    __block NSArray *allKeys;
+    dispatch_sync(_zdInnerQueue, ^{
+        allKeys = [_zdInnerMutDict allKeysForObject:anObject];
+    });
+    return allKeys;
+}
+
+- (NSArray *)allValues {
+    __block NSArray *allValues;
+    dispatch_sync(_zdInnerQueue, ^{
+        allValues = [_zdInnerMutDict allValues];
+    });
+    return allValues;
+}
+
+#pragma mark -
+
+- (void)setObject:(id)anObject forKey:(id<NSCopying>)aKey {
+    if (!aKey) return;
+    
+    aKey = [aKey copyWithZone:NULL];
+    dispatch_barrier_async(_zdInnerQueue, ^{
+        _zdInnerMutDict[aKey] = anObject;
+    });
+}
+
+- (void)removeObjectForKey:(id)aKey {
+    if (!aKey) return;
+    
+    dispatch_barrier_async(_zdInnerQueue, ^{
+        [_zdInnerMutDict removeObjectForKey:aKey];
+    });
+}
+
+- (void)addEntriesFromDictionary:(NSDictionary *)otherDictionary {
+    dispatch_barrier_async(_zdInnerQueue, ^{
+        [_zdInnerMutDict addEntriesFromDictionary:otherDictionary];
+    });
+}
+
+- (void)removeAllObjects {
+    dispatch_barrier_async(_zdInnerQueue, ^{
+        [_zdInnerMutDict removeAllObjects];
+    });
+}
+
+- (void)removeObjectsForKeys:(NSArray *)keyArray {
+    dispatch_barrier_async(_zdInnerQueue, ^{
+        [_zdInnerMutDict removeObjectsForKeys:keyArray];
+    });
+}
+
+- (void)setDictionary:(NSDictionary *)otherDictionary {
+    dispatch_barrier_async(_zdInnerQueue, ^{
+        [_zdInnerMutDict setDictionary:otherDictionary];
+    });
+}
+
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying> )key {
+    dispatch_barrier_async(_zdInnerQueue, ^{
+        [_zdInnerMutDict setObject:obj forKeyedSubscript:key];
+    });
+}
+
+@end

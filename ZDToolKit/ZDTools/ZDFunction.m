@@ -391,7 +391,6 @@ void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fil
     CAShapeLayer *hollowLayer = [CAShapeLayer layer];
     hollowLayer.bounds = (CGRect){CGPointZero, size};
     hollowLayer.position = (CGPoint){size.width/2.0, size.height/2.0};
-    [view.layer addSublayer:hollowLayer];
     
     UIBezierPath *squarePath = [UIBezierPath bezierPathWithRect:hollowLayer.bounds];
     UIBezierPath *hollowPath = [UIBezierPath bezierPathWithOvalInRect:hollowLayer.bounds];
@@ -401,6 +400,8 @@ void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fil
     hollowLayer.fillColor = fillColor ? fillColor.CGColor : [UIColor whiteColor].CGColor;
     //设置路径的填充模式为两个图形的非交集
     hollowLayer.fillRule = kCAFillRuleEvenOdd;
+    
+    [view.layer addSublayer:hollowLayer];
 }
 
 /// 打印view的坐标系信息

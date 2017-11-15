@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'ZDToolKit'
-  s.version      = '0.0.4'
+  s.version      = '0.0.5'
   s.summary      = 'awesome iOS development tools（Objective-C）'
   s.description  = <<-DESC
                    collect some iOS development tools, e.g: category、block、runtime、subclass、macro, and so on...
@@ -38,6 +38,10 @@ Pod::Spec.new do |s|
       sss.frameworks = 'UIKit', 'QuartzCore', 'CoreImage', 'CoreGraphics', 'ImageIO', 'CoreText', 'WebKit'
       sss.dependency 'ZDToolKit/ZDTools/ZDProxy'
     end
+  end
+
+  s.subspec 'ZDSubclass' do |ss|
+    ss.source_files = 'ZDToolKit/ZDSubclass/*.{h,m}'
   end
 
   s.subspec 'ZDMacros' do |ss|
