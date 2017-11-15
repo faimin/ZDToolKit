@@ -22,20 +22,14 @@ return self;
     NSMutableDictionary *_zdInnerMutDict;
 }
 
-//- (instancetype)initCommon {
-//    self = [super init];
-//    if (self) {
-//        _zdInnerQueue = dispatch_queue_create("com.queue.concurrent.dictionary", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_DEFAULT, 0));
-//    }
-//    return self;
-//}
+#pragma mark - Initialization
 
 - (instancetype)init {
     INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] init];)
 }
 
-- (instancetype)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys {
-    INIT(_zdInnerQueue = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];)
+- (instancetype)initWithObjects:(NSArray *)objects forKeys:(NSArray<id<NSCopying>> *)keys {
+    INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys];)
 }
 
 - (instancetype)initWithCapacity:(NSUInteger)numItems {
@@ -50,21 +44,12 @@ return self;
     INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithCoder:aDecoder];)
 }
 
-//- (instancetype)initWithObjects:(const id [])objects forKeys:(const id<NSCopying> [])keys count:(NSUInteger)cnt {
-//    self = [self initCommon];
-//    if (self) {
-//        if (!objects || !keys) {
-//            [NSException raise:NSInvalidArgumentException format:@"objects and keys cannot be nil"];
-//        } else {
-//            for (NSUInteger i = 0; i < cnt; ++i) {
-//                _zdInnerMutDict[keys[i]] = objects[i];
-//            }
-//        }
-//    }
-//    return self;
-//}
-
-- (instancetype)initWithObjects:(const id[])objects forKeys:(const id <NSCopying>[])keys count:(NSUInteger)cnt {
+- (instancetype)initWithObjects:(id  _Nonnull const [])objects forKeys:(id<NSCopying>  _Nonnull const [])keys count:(NSUInteger)cnt {
+    if (!objects || !keys) {
+        [NSException raise:NSInvalidArgumentException format:@"objects and keys cannot be nil"];
+        return nil;
+    }
+    
     INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithObjects:objects forKeys:keys count:cnt]);
 }
 
@@ -76,7 +61,7 @@ return self;
     INIT(_zdInnerMutDict = [[NSMutableDictionary alloc] initWithDictionary:otherDictionary copyItems:flag]);
 }
 
-#pragma mmark -
+#pragma mark -
 
 - (NSUInteger)count {
     __block NSUInteger count;
