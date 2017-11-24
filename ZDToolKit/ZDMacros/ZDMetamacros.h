@@ -5,6 +5,8 @@
  * Copyright (C) 2012 Justin Spahr-Summers
  * Released under the MIT license
  */
+//  https://github.com/ReactiveCocoa/ReactiveObjC
+//  https://github.com/jspahrsummers/libextobjc
 
 #ifndef EXTC_METAMACROS_H
 #define EXTC_METAMACROS_H

@@ -51,6 +51,13 @@
 #import "WKWebView+ZDExtend.h"
 #import "CALayer+ZDUtility.h"
 
+// SubClass
+#import "ZDActionLabel.h"
+#import "ZDEdgeLabel.h"
+#import "ZDTextView.h"
+#import "ZDGifImageView.h"
+#import "ZDMutableDictionary.h"
+
 // Macros
 #import "ZDEXTScope.h"
 #import "ZDMetamacros.h"
@@ -62,14 +69,10 @@
 
 // Tools
 #import "MAKVONotificationCenter.h"
-#import "ZDActionLabel.h"
-#import "ZDEdgeLabel.h"
 #import "ZDFileManager.h"
 #import "ZDFunction.h"
 #import "ZDProxy.h"
 #import "ZDSafe.h"
-#import "ZDTextView.h"
-#import "ZDGifImageView.h"
 #import "ZDWatchdog.h"
 #import "ZDReusePool.h"
 #import "ZDPermissionHandler.h"

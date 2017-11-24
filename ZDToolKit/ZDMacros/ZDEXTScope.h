@@ -6,6 +6,8 @@
 //  Copyright (C) 2012 Justin Spahr-Summers.
 //  Released under the MIT license.
 //
+//  https://github.com/ReactiveCocoa/ReactiveObjC
+//  https://github.com/jspahrsummers/libextobjc
 
 #import "ZDMetamacros.h"
 

@@ -178,13 +178,13 @@ FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSe
 
 #pragma mark - Runtime
 #pragma mark -
-void ZD_PrintObjectMethods();
-void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector);
-void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector);
-IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
-BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP);
+FOUNDATION_EXPORT void ZD_PrintObjectMethods();
+FOUNDATION_EXPORT void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector);
+FOUNDATION_EXPORT void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector);
+FOUNDATION_EXPORT IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
+FOUNDATION_EXPORT BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP);
 /// 判断selector是否属于某一protocol
-BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel);
+FOUNDATION_EXPORT BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel);
 
 
 
