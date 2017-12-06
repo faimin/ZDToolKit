@@ -1000,12 +1000,15 @@ void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue
     
     dispatch_source_t timer = scheduleSourceDic[key];
     if (timer) {
-        dispatch_source_cancel(timer);
+        //dispatch_source_cancel(timer);
+        return;
     }
+    
+    block();
+    
     timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
     dispatch_source_set_event_handler(timer, ^{
-        block();
         dispatch_source_cancel(timer);
         [scheduleSourceDic removeObjectForKey:key];
     });

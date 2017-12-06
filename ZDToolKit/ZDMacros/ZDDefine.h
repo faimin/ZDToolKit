@@ -320,8 +320,8 @@ do {                                                 							\
 //GCD
 #define ZD_GLOBAL_QUEUE(block)  	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define ZD_MAIN_QUEUE(block)		dispatch_async(dispatch_get_main_queue(), block)
-#define ZD_CREATE_SERIAL_QUEUE(_label, QOS_CLASS_DEFAULT)    dispatch_queue_create(#_label, dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_DEFAULT, 0))
-#define ZD_CREATE_CONCURRENT_QUEUE(_label, QOS_CLASS_DEFAULT)   dispatch_queue_create(#_label, dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_DEFAULT, 0))
+#define ZD_CREATE_SERIAL_QUEUE(_label, QOS_CLASS_DEFAULT)    dispatch_queue_create(#_label, dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INITIATED, 0))
+#define ZD_CREATE_CONCURRENT_QUEUE(_label, QOS_CLASS_DEFAULT)   dispatch_queue_create(#_label, dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_USER_INITIATED, 0))
 
 //由角度获取弧度 有弧度获取角度
 #define ZD_DegreesToRadian(x)          (M_PI * (x) / 180.0)
