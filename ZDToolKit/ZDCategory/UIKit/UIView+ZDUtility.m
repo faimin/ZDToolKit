@@ -394,6 +394,105 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 	return self.height / 2;
 }
 
+#pragma mark - Chain Caller
+
+- (UIView *(^)(CGFloat))zd_left {
+    return ^UIView *(CGFloat left) {
+        CGRect frame = self.frame;
+        frame.origin.x = left;
+        self.frame = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat))zd_right {
+    return ^UIView *(CGFloat right) {
+        CGRect frame = self.frame;
+        frame.origin.x = right - CGRectGetWidth(frame);
+        self.frame = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat))zd_top {
+    return ^UIView *(CGFloat top) {
+        CGRect frame = self.frame;
+        frame.origin.y = top;
+        self.frame = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat))zd_bottom {
+    return ^UIView *(CGFloat bottom) {
+        CGRect frame = self.frame;
+        frame.origin.y = bottom - CGRectGetHeight(frame);
+        self.frame = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat))zd_width {
+    return ^UIView *(CGFloat width) {
+        CGRect frame = self.frame;
+        frame.size.width = width;
+        self.frame = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat))zd_height {
+    return ^UIView *(CGFloat height) {
+        CGRect frame = self.frame;
+        frame.size.height = height;
+        self.frame = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat))zd_centerX {
+    return ^UIView *(CGFloat centerX) {
+        CGPoint center = self.center;
+        center.x = centerX;
+        self.center = center;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGFloat))zd_centerY {
+    return ^UIView *(CGFloat centerY) {
+        CGPoint center = self.center;
+        center.y = centerY;
+        self.center = center;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGPoint))zd_center {
+    return ^UIView *(CGPoint center) {
+        self.center = center;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGPoint))zd_origin {
+    return ^UIView *(CGPoint origin) {
+        CGRect frame = self.frame;
+        frame.origin = origin;
+        self.frame = frame;
+        return self;
+    };
+}
+
+- (UIView *(^)(CGSize))zd_size {
+    return ^UIView *(CGSize size) {
+        CGRect frame = self.frame;
+        frame.size = size;
+        self.frame = frame;
+        return self;
+    };
+}
+
 #pragma mark Layer
 
 - (void)setZd_cornerRadius:(CGFloat)zd_cornerRadius {

@@ -16,7 +16,7 @@
     paragraphStyle.lineBreakMode = self.lineBreakMode;
     paragraphStyle.alignment = self.textAlignment;
     
-    NSDictionary * attributes = @{NSFontAttributeName : self.font, NSParagraphStyleAttributeName : paragraphStyle};
+    NSDictionary *attributes = @{NSFontAttributeName : self.font, NSParagraphStyleAttributeName : paragraphStyle};
     
     CGSize contentSize = [self.text boundingRectWithSize:self.frame.size
                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -26,7 +26,7 @@
 }
 
 // http://stackoverflow.com/questions/34867231/issue-get-lines-array-of-string-inn-label
-- (__kindof NSArray *)zd_linesArrayOfString {
+- (NSArray<NSString *> *)zd_textInLine {
     NSString *text = self.text;
     UIFont *font = self.font;
     CGRect rect = self.frame;
@@ -40,7 +40,7 @@
     
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString(( CFAttributedStringRef)attStr);
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, CGRectMake(0,0,rect.size.width,100000));
+    CGPathAddRect(path, NULL, CGRectMake(0, 0, rect.size.width, 100000));
     CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
     NSArray *lines = (NSArray *)CTFrameGetLines(frame);
     NSMutableArray *linesArray = [[NSMutableArray alloc] init];
@@ -57,7 +57,72 @@
     CGPathRelease(path);
     CFRelease(frame);
     CFRelease(frameSetter);
-    return linesArray;
+    return [NSArray arrayWithArray:linesArray];
+}
+
+#pragma mark - Chain Caller
+
++ (UILabel *(^)(CGRect frame))zd_initWithFrame {
+    return ^UILabel *(CGRect frame) {
+        UILabel *label = [[self alloc] initWithFrame:frame];
+        return label;
+    };
+}
+
+- (UILabel *(^)(UIFont *font))zd_font {
+    return ^UILabel *(UIFont *font) {
+        self.font = font;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSString *))zd_text {
+    return ^UILabel *(NSString *text) {
+        self.text = text;
+        return self;
+    };
+}
+
+- (UILabel *(^)(UIColor *color))zd_textColor {
+    return ^UILabel *(UIColor *color) {
+        self.textColor = color;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSTextAlignment alignment))zd_textAlignment {
+    return ^UILabel *(NSTextAlignment alignment) {
+        self.textAlignment = alignment;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSLineBreakMode))zd_lineBreakMode {
+    return ^UILabel *(NSLineBreakMode lineBreakMode) {
+        self.lineBreakMode = lineBreakMode;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSInteger))zd_numberOfLines {
+    return ^UILabel *(NSInteger lines) {
+        self.numberOfLines = lines;
+        return self;
+    };
+}
+
+- (UILabel *(^)(NSAttributedString *))zd_attributedText {
+    return ^UILabel *(NSAttributedString *attributedText) {
+        self.attributedText = attributedText;
+        return self;
+    };
+}
+
+- (UILabel *(^)(CGFloat))zd_preferredMaxLayoutWidth {
+    return ^UILabel *(CGFloat preferMaxLayoutWidth) {
+        self.preferredMaxLayoutWidth = preferMaxLayoutWidth;
+        return self;
+    };
 }
 
 @end

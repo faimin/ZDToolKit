@@ -14,8 +14,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGSize)zd_contentSize;
 
-/// get content text in every line
-- (__kindof NSArray *)zd_linesArrayOfString;
+/// text in every line
+- (NSArray<NSString *> *)zd_textInLine;
+
+/// chain caller
++ (UILabel *(^)(CGRect))zd_initWithFrame;
+- (UILabel *(^)(UIFont *))zd_font;
+- (UILabel *(^)(NSString *))zd_text;
+- (UILabel *(^)(UIColor *))zd_textColor;
+- (UILabel *(^)(NSInteger))zd_numberOfLines;
+- (UILabel *(^)(NSTextAlignment))zd_textAlignment;
+- (UILabel *(^)(NSLineBreakMode))zd_lineBreakMode;
+- (UILabel *(^)(NSAttributedString *))zd_attributedText;
+- (UILabel *(^)(CGFloat))zd_preferredMaxLayoutWidth;
 
 @end
 

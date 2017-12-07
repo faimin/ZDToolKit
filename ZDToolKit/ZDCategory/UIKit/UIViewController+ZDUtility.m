@@ -12,8 +12,10 @@
 @implementation UIViewController (ZDUtility)
 
 - (BOOL)zd_isSupport3DTouch {
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
-        return YES;
+    if (@available(iOS 9.0, *)) {
+        if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+            return YES;
+        }
     }
     return NO;
 }
@@ -69,7 +71,7 @@
                 UIApplication *application = [UIApplication sharedApplication];
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=%@&mt=8", itemId]];
                 /// options目前可传入参数Key在UIApplication头文件只有一个:UIApplicationOpenURLOptionUniversalLinksOnly,其对应的Value为布尔值,默认为False.如该Key对应的Value为True,那么打开所传入的Universal Link时,只允许通过这个Link所代表的iOS应用跳转的方式打开这个链接,否则就会返回success为false,也就是说只有安装了Link所对应的App的情况下才能打开这个Universal Link,而不是通过启动Safari方式打开这个Link的代表的网站.
-                if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+                if (@available(iOS 10.0, *)) {
                     [[UIApplication sharedApplication] openURL:url
                                                        options:@{UIApplicationOpenURLOptionUniversalLinksOnly : @NO}
                                              completionHandler:^(BOOL success) {
