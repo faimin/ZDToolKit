@@ -22,7 +22,7 @@
 #import "NSInvocation+ZDBlock.h"
 #import "NSObject+DLIntrospection.h"
 #import "NSObject+ZDAutoCoding.h"
-#import "NSObject+RZBlockKVO.h"
+#import "NSObject+ZDBlockKVO.h"
 #import "NSObject+ZDRuntime.h"
 #import "NSObject+ZDUtility.h"
 #import "NSDictionary+ZDUtility.h"

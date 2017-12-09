@@ -121,7 +121,7 @@ __attribute__((constructor)) static void PSPDFUIKitMainThreadGuard(void) {
 {
     if (deallocBlock) {
         ZDWeakSelf *blockExecutor = [[ZDWeakSelf alloc] initWithBlock:deallocBlock];
-        ///原理: 当self释放时,它所绑定的属性也自动会释放,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
+        ///原理: 当self释放时,会先释放它本身的关联对象,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
         objc_setAssociatedObject(self, (__bridge const void *)deallocBlock, blockExecutor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
@@ -256,8 +256,8 @@ __attribute__((constructor)) static void PSPDFUIKitMainThreadGuard(void) {
 
 - (void)dealloc
 {
-    if (_deallocBlock) {
-        _deallocBlock();
+    if (self.deallocBlock) {
+        self.deallocBlock();
         _deallocBlock = nil;
     }
 }
@@ -285,9 +285,7 @@ __attribute__((constructor)) static void PSPDFUIKitMainThreadGuard(void) {
 {
     if (nil != self.deallocBlock) {
         self.deallocBlock();
-#if DEBUG
         NSLog(@"成功移除对象");
-#endif
     }
 }
 
