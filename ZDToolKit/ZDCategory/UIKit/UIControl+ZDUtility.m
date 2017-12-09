@@ -24,9 +24,7 @@ static void SwizzleInstanceMethod(Class c, SEL orig, SEL new) {
     }
 }
 
-static NSTimeInterval const defaultIntervalTime = 2.5f;
 static BOOL _isIgnoreEvent = NO;
-
 
 @interface ZDControlWrap : NSObject
 
@@ -68,7 +66,6 @@ static BOOL _isIgnoreEvent = NO;
 }
 
 - (void)zd_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
-    self.zd_clickIntervalTime = (self.zd_clickIntervalTime > 0) ? self.zd_clickIntervalTime : defaultIntervalTime;
     if (_isIgnoreEvent) {
         return;
     }

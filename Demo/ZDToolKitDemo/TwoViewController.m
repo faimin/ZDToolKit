@@ -11,15 +11,21 @@
 #import "ZDFunction.h"
 #import "ZDActionLabel.h"
 #import "ZDEdgeLabel.h"
-#import "NSObject+ZDRuntime.h"
+#import <ZDToolKit/ZDToolKit.h>
 
 @interface TwoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet ZDEdgeLabel *zdLabel;
+@property (nonatomic, assign) NSInteger count1;
+@property (nonatomic, assign) NSInteger count2;
 @end
 
 @implementation TwoViewController
+
+- (void)dealloc {
+    NSLog(@"");
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +33,7 @@
     self.navigationItem.title = NSStringFromClass(self.class);
     
     //[self deadLock];
+    [self kvoTest];
     
     self.imageView.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
     self.imageView.userInteractionEnabled = YES;
@@ -82,9 +89,18 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark -
+
+- (void)kvoTest {
+    [self zd_addObserver:self forKeyPath:@"count1" options:NSKeyValueObservingOptionNew changeBlock:^(id object, NSDictionary<NSKeyValueChangeKey,id> *change) {
+        NSNumber *number = change[NSKeyValueChangeNewKey];
+        NSLog(@"============ kvo1: %@", number);
+    }];
+    
+    [self zd_addObserver:self forKeyPath:@"count2" options:NSKeyValueObservingOptionNew changeBlock:^(id object, NSDictionary<NSKeyValueChangeKey,id> *change) {
+        NSNumber *number = change[NSKeyValueChangeNewKey];
+        NSLog(@"============ kvo2: %@", number);
+    }];
 }
 
 - (void)textActionWithParams:(NSString *)param1 :(NSString *)param2 {
@@ -140,6 +156,10 @@
     ZD_Dispatch_throttle_on_mainQueue(3, ^{
         NSLog(@"throttle方法执行了");
     });
+    
+    ++self.count1;
+    
+    ++self.count2;
 }
 
 /*
