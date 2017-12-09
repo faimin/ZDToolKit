@@ -71,6 +71,21 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 #pragma mark Method
 
+- (UIWindow *)zd_normalLevelWindow {
+    UIWindow *targetWindow = [[UIApplication sharedApplication] keyWindow];
+    //app默认windowLevel是UIWindowLevelNormal，如果不是，找到UIWindowLevelNormal的
+    if (targetWindow.windowLevel != UIWindowLevelNormal) {
+        NSEnumerator<UIWindow *> *windows = [[UIApplication sharedApplication].windows reverseObjectEnumerator];
+        for (UIWindow *tempWindow in windows) {
+            if (tempWindow.windowLevel == UIWindowLevelNormal) {
+                targetWindow = tempWindow;
+                break;
+            }
+        }
+    }
+    return targetWindow;
+}
+
 - (void)zd_eachSubview:(void (^)(UIView *subview))block {
 	NSParameterAssert(block != nil);
 	[self.subviews enumerateObjectsUsingBlock:^(UIView *subview, NSUInteger idx, BOOL *stop) {
@@ -493,7 +508,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     };
 }
 
-#pragma mark Layer
+#pragma mark - Layer
 
 - (void)setZd_cornerRadius:(CGFloat)zd_cornerRadius {
     objc_setAssociatedObject(self, CornerRadiusKey, @(zd_cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -513,7 +528,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
     return [objc_getAssociatedObject(self, CornerRadiusKey) integerValue];
 }
 
-#pragma mark TouchExtendInset
+#pragma mark - TouchExtendInset
 
 - (BOOL)zdPointInside:(CGPoint)point withEvent:(UIEvent *)event {
     if (UIEdgeInsetsEqualToEdgeInsets(self.zd_touchExtendInsets, UIEdgeInsetsZero) || self.hidden) {

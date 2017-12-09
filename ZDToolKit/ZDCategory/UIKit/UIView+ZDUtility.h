@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong, readonly) UIViewController *zd_topMostController;
 
 //MARK: Method
+- (UIWindow *)zd_normalLevelWindow;
 /// Traverse all subviews
 - (void)zd_eachSubview:(void (^)(UIView *subview))block;
 - (void)zd_removeAllSubviews;
