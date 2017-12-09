@@ -21,8 +21,8 @@ env:
     - IOS_VERSON=11.2
  matrix:
     - DESTINATION="OS=$IOS_VERSON,name=iPhone 5s"           SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"
-    - DESTINATION="OS=$IOS_VERSON,name=iPhone 7"           SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"
-    - DESTINATION="OS=$IOS_VERSON,name=iPhone 7 Plus"      SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"
+    - DESTINATION="OS=$IOS_VERSON,name=iPhone 8"           SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"
+    - DESTINATION="OS=$IOS_VERSON,name=iPhone 8 Plus"      SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"
     - DESTINATION="OS=$IOS_VERSON,name=iPhone X"            SCHEME="$IOS_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="NO"
  
 branches:
