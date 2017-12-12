@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 
 @implementation NSObject (ZDUtility)
 
-+ (id)zd_cast:(id)objc
++ (instancetype)zd_cast:(id)objc
 {
     if (!objc) return nil;
     
@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     return nil;
 }
 
-- (id)zd_deepCopy
+- (instancetype)zd_deepCopy
 {
     id obj = nil;
     @try {
