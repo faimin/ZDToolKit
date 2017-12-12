@@ -1,35 +1,10 @@
 //
-//  NSObject+RZBlockKVO.m
+//  NSObject+ZDBlockKVO.m
 //
-//  Created by Nick Donaldson on 10/21/13.
-
-// Copyright 2014 Raizlabs and other contributors
-// http://raizlabs.com/
-// 
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-// 
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+//  Created by Zero.D.Saber on 2017/12/10.
 
 #import "NSObject+ZDBlockKVO.h"
 #import <objc/runtime.h>
-
-static void *kZDAssociatedObservationsKey = &kZDAssociatedObservationsKey;
 
 @interface ZDBlockObservation : NSObject
 
@@ -42,7 +17,11 @@ static void *kZDAssociatedObservationsKey = &kZDAssociatedObservationsKey;
 @property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, copy) ZDKVOChangeBlock block;
 
-- (instancetype)initWithObservedObject:(NSObject *)object observer:(NSObject *)observer keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(ZDKVOChangeBlock)block;
+- (instancetype)initWithObservedObject:(NSObject *)object
+                              observer:(NSObject *)observer
+                               keyPath:(NSString *)keyPath
+                               options:(NSKeyValueObservingOptions)options
+                                 block:(ZDKVOChangeBlock)block;
 
 @end
 
@@ -50,11 +29,14 @@ static void *kZDAssociatedObservationsKey = &kZDAssociatedObservationsKey;
 
 @implementation NSObject (ZDBlockKVO)
 
-#pragma mark - Auto Remove
-
-- (void)zd_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options withChangeBlock:(ZDKVOChangeBlock)block {
+- (void)zd_addObserver:(NSObject *)observer
+            forKeyPath:(NSString *)keyPath
+               options:(NSKeyValueObservingOptions)options
+           changeBlock:(ZDKVOChangeBlock)block {
+    if (!observer || !keyPath) return;
+    
     ZDBlockObservation *observation = [[ZDBlockObservation alloc] initWithObservedObject:self observer:observer keyPath:keyPath options:options block:block];
-    objc_setAssociatedObject(self, kZDAssociatedObservationsKey, observation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, keyPath.UTF8String, observation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
@@ -72,7 +54,11 @@ static void *kZDAssociatedObservationsKey = &kZDAssociatedObservationsKey;
     }
 }
 
-- (instancetype)initWithObservedObject:(NSObject *)object observer:(NSObject *)observer keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(ZDKVOChangeBlock)block {
+- (instancetype)initWithObservedObject:(NSObject *)object
+                              observer:(NSObject *)observer
+                               keyPath:(NSString *)keyPath
+                               options:(NSKeyValueObservingOptions)options
+                                 block:(ZDKVOChangeBlock)block {
     if ( self = [super init] ) {
         self.observedObject = object;
         self.observer = observer;
@@ -84,7 +70,10 @@ static void *kZDAssociatedObservationsKey = &kZDAssociatedObservationsKey;
     return self;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey, id> *)change
+                       context:(void *)context {
     if ( self.block ) {
         self.block(object, change);
     }
