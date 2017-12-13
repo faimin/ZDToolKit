@@ -159,7 +159,7 @@ FOUNDATION_EXPORT double ZD_MemoryUsage(void);
 
 #pragma mark - Function
 #pragma mark -
-/// 处理精度问题
+/// 处理精度问题: num * (10^num_digits) / (10^num_digits)
 FOUNDATION_EXPORT double ZD_Round(CGFloat num, NSInteger num_digits);
 /// Int转NSData
 FOUNDATION_EXPORT NSData *ZD_ConvertIntToData(int value);
