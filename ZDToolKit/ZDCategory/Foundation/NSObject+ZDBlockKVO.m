@@ -36,7 +36,7 @@
     if (!observer || !keyPath) return;
     
     ZDBlockObservation *observation = [[ZDBlockObservation alloc] initWithObservedObject:self observer:observer keyPath:keyPath options:options block:block];
-    objc_setAssociatedObject(self, keyPath.UTF8String, observation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, keyPath.UTF8String, observation, OBJC_ASSOCIATION_RETAIN);
 }
 
 @end
@@ -50,7 +50,9 @@
         @try {
             [self.observedObject removeObserver:self forKeyPath:self.keyPath];
         }
-        @catch (NSException *exception) {}
+        @catch (NSException *exception) {
+            NSLog(@"%@", exception.reason);
+        }
     }
 }
 

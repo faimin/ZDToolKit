@@ -990,8 +990,7 @@ BOOL ZD_IsMainQueue() {
      */
 }
 
-// https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
-void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, void(^block)()) {
+void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block) {
     static NSMutableDictionary *scheduleSourceDic = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -999,12 +998,9 @@ void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue
     });
     
     dispatch_source_t timer = scheduleSourceDic[key];
-    if (timer) {
-        //dispatch_source_cancel(timer);
-        return;
-    }
+    if (timer) return;
     
-    block();
+    if (block) block();
     
     timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
@@ -1016,11 +1012,11 @@ void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue
     scheduleSourceDic[key] = timer;
 }
 
-void ZD_Dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)()) {
+void ZD_Dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, dispatch_block_t block) {
     ZD_ExecuteFunctionThrottle(intervalInSeconds, dispatch_get_main_queue(), [NSThread callStackSymbols][1], block);
 }
 
-void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)()) {
+void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, dispatch_block_t block) {
     ZD_ExecuteFunctionThrottle(intervalInSeconds, queue, [NSThread callStackSymbols][1], block);
 }
 
@@ -1040,7 +1036,7 @@ void ZD_PrintObjectMethods() {
 }
 
 void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector) {
-    aClass = object_getClass(aClass);
+    aClass = object_getClass(aClass); 
     Method origMethod = class_getClassMethod(aClass, originalSelector);
     Method newMethod = class_getClassMethod(aClass, newSelector);
     method_exchangeImplementations(origMethod, newMethod);

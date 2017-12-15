@@ -173,8 +173,8 @@ FOUNDATION_EXPORT void ZD_Dispatch_sync_on_main_queue(void (^block)());
 /// 判断当前是不是主队列
 FOUNDATION_EXPORT BOOL ZD_IsMainQueue();
 /// 让某一方法在固定的时间间隔内只执行一次
-FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)());
-FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)());
+FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, dispatch_block_t block);
+FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, dispatch_block_t block);
 
 #pragma mark - Runtime
 #pragma mark -
