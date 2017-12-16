@@ -10,8 +10,9 @@
 #import <ImageIO/ImageIO.h>
 #import <objc/runtime.h>
 #import <pthread/pthread.h>
-#import <stdlib.h>
-#import <sys/socket.h>
+#import <Accelerate/Accelerate.h>
+#import <AVFoundation/AVAsset.h>
+// -------- IP & Address --------
 #import <sys/sockio.h>
 #import <sys/ioctl.h>
 #import <sys/sysctl.h>
@@ -19,8 +20,8 @@
 #import <net/if.h>
 #import <arpa/inet.h>
 #import <mach/mach.h>
-#import <Accelerate/Accelerate.h>
-#import <AVFoundation/AVAsset.h>
+//-----------------------------
+
 
 #pragma mark - Gif Image
 #pragma mark -
@@ -990,7 +991,7 @@ BOOL ZD_IsMainQueue() {
      */
 }
 
-void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block) {
+OS_OVERLOADABLE void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block) {
     static NSMutableDictionary *scheduleSourceDic = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -1005,6 +1006,39 @@ void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue
     timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
     dispatch_source_set_event_handler(timer, ^{
+        dispatch_source_cancel(timer);
+        [scheduleSourceDic removeObjectForKey:key];
+    });
+    dispatch_resume(timer);
+    scheduleSourceDic[key] = timer;
+}
+
+typedef NS_ENUM(NSInteger, ZDType) {
+    ZDType_Exe_First,
+    ZDType_Exe_Last,
+};
+
+OS_OVERLOADABLE void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block, ZDType type) {
+    static NSMutableDictionary *scheduleSourceDic = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        scheduleSourceDic = [[NSMutableDictionary alloc] init];
+    });
+    
+    dispatch_source_t timer = scheduleSourceDic[key];
+    
+    if (timer) {
+        
+    } else {
+        if (block) block();
+    }
+    
+    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        if (type == ZDType_Exe_Last) {
+            if (block) block();
+        }
         dispatch_source_cancel(timer);
         [scheduleSourceDic removeObjectForKey:key];
     });

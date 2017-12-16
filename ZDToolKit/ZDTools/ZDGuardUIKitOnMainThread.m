@@ -86,13 +86,19 @@ __attribute__((constructor)) static void ZD_UIKitMainThreadGuard(void) {
                 ZD_ReplaceMethodWithBlock(UIView.class, selector, newSelector, ^(__unsafe_unretained UIView *_self) {
                     if (_self.window) {
                         if (!NSThread.isMainThread) {
+                            /*
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                            /*dispatch_queue_t queue = dispatch_get_current_queue();*/
+                            dispatch_queue_t queue = dispatch_get_current_queue();
 #pragma clang diagnostic pop
                             // iOS 8 layouts the MFMailComposeController in a background thread on an UIKit queue.
                             // https://github.com/PSPDFKit/PSPDFKit/issues/1423
-                            if (/*!queue ||*/ !strstr(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), "UIKit")) {
+                            if (!queue || !strstr(dispatch_queue_get_label(queue), "UIKit")) {
+                                ZD_AssertIfNotMainThread();
+                            }
+                            */
+                            
+                            if (!strstr(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), "UIKit")) {
                                 ZD_AssertIfNotMainThread();
                             }
                         }

@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// chain caller
 + (UILabel *(^)(CGRect))zd_initWithFrame;
 - (UILabel *(^)(UIFont *))zd_font;
+- (UILabel *(^)(CGFloat))zd_fontSize;
+- (UILabel *(^)(CGFloat))zd_boldFontSize;
 - (UILabel *(^)(NSString *))zd_text;
 - (UILabel *(^)(UIColor *))zd_textColor;
 - (UILabel *(^)(NSInteger))zd_numberOfLines;

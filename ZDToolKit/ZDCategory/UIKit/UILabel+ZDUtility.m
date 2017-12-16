@@ -76,6 +76,20 @@
     };
 }
 
+- (UILabel *(^)(CGFloat fontSize))zd_fontSize {
+    return ^UILabel *(CGFloat fontSize) {
+        self.font = [UIFont systemFontOfSize:fontSize];
+        return self;
+    };
+}
+
+- (UILabel *(^)(CGFloat boldFontSize))zd_boldFontSize {
+    return ^UILabel *(CGFloat boldFontSize) {
+        self.font = [UIFont boldSystemFontOfSize:boldFontSize];
+        return self;
+    };
+}
+
 - (UILabel *(^)(NSString *))zd_text {
     return ^UILabel *(NSString *text) {
         self.text = text;
