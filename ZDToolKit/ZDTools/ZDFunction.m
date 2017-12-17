@@ -991,67 +991,53 @@ BOOL ZD_IsMainQueue() {
      */
 }
 
-OS_OVERLOADABLE void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block) {
+void ZD_ExecuteFunctionThrottle(ZDThrottleType type, NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block) {
     static NSMutableDictionary *scheduleSourceDic = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         scheduleSourceDic = [[NSMutableDictionary alloc] init];
     });
     
-    dispatch_source_t timer = scheduleSourceDic[key];
-    if (timer) return;
-    
-    if (block) block();
-    
-    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
-    dispatch_source_set_event_handler(timer, ^{
-        dispatch_source_cancel(timer);
-        [scheduleSourceDic removeObjectForKey:key];
-    });
-    dispatch_resume(timer);
-    scheduleSourceDic[key] = timer;
-}
-
-typedef NS_ENUM(NSInteger, ZDType) {
-    ZDType_Exe_First,
-    ZDType_Exe_Last,
-};
-
-OS_OVERLOADABLE void ZD_ExecuteFunctionThrottle(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block, ZDType type) {
-    static NSMutableDictionary *scheduleSourceDic = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        scheduleSourceDic = [[NSMutableDictionary alloc] init];
-    });
-    
-    dispatch_source_t timer = scheduleSourceDic[key];
-    
-    if (timer) {
+    if (type == ZDThrottleType_Invoke_First) {
+        dispatch_source_t timer = scheduleSourceDic[key];
+        if (timer) return;
         
-    } else {
         if (block) block();
+        
+        timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+        dispatch_source_set_event_handler(timer, ^{
+            dispatch_source_cancel(timer);
+            [scheduleSourceDic removeObjectForKey:key];
+        });
+        dispatch_resume(timer);
+        scheduleSourceDic[key] = timer;
     }
-    
-    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
-    dispatch_source_set_event_handler(timer, ^{
-        if (type == ZDType_Exe_Last) {
-            if (block) block();
+    else if (type == ZDThrottleType_Invoke_Last) {
+        dispatch_source_t timer = scheduleSourceDic[key];
+        
+        if (timer) {
+            dispatch_source_cancel(timer);
         }
-        dispatch_source_cancel(timer);
-        [scheduleSourceDic removeObjectForKey:key];
-    });
-    dispatch_resume(timer);
-    scheduleSourceDic[key] = timer;
+        
+        timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+        dispatch_source_set_event_handler(timer, ^{
+            if (block) block();
+            dispatch_source_cancel(timer);
+            [scheduleSourceDic removeObjectForKey:key];
+        });
+        dispatch_resume(timer);
+        scheduleSourceDic[key] = timer;
+    }
 }
 
-void ZD_Dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, dispatch_block_t block) {
-    ZD_ExecuteFunctionThrottle(intervalInSeconds, dispatch_get_main_queue(), [NSThread callStackSymbols][1], block);
+void ZD_Dispatch_throttle_on_mainQueue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_block_t block) {
+    ZD_ExecuteFunctionThrottle(throttleType, intervalInSeconds, dispatch_get_main_queue(), [NSThread callStackSymbols][1], block);
 }
 
-void ZD_Dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, dispatch_block_t block) {
-    ZD_ExecuteFunctionThrottle(intervalInSeconds, queue, [NSThread callStackSymbols][1], block);
+void ZD_Dispatch_throttle_on_queue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_queue_t queue, dispatch_block_t block) {
+    ZD_ExecuteFunctionThrottle(throttleType, intervalInSeconds, queue, [NSThread callStackSymbols][1], block);
 }
 
 #pragma mark - Runtime

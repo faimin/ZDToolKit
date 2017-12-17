@@ -36,13 +36,13 @@
     
     NSMutableDictionary *scheduleSourceDict = [self scheduleSourceDict];
     dispatch_source_t timer = scheduleSourceDict[key];
-    if (timer) {
-        dispatch_source_cancel(timer);
-    }
+    if (timer) return;
+    
+    if (block) block();
+    
     timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
     dispatch_source_set_event_handler(timer, ^{
-        block();
         dispatch_source_cancel(timer);
         scheduleSourceDict[key] = nil;
     });
@@ -124,7 +124,6 @@ NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr)
 + (void)load
 {
 	static dispatch_once_t onceToken;
-
 	dispatch_once(&onceToken, ^{
         zd_swizzleExchageInstanceMethod([self class], @selector(description), @selector(replaceDescription));
         zd_swizzleExchageInstanceMethod([self class], @selector(descriptionWithLocale:), @selector(replaceDescriptionWithLocale:));

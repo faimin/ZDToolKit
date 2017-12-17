@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDTools : NSObject
 
-///  避免方法频繁调用
+///  避免方法频繁调用,在指定的时间内只执行第一次,忽略剩余事件
 ///  @param timeInterval 时间间隔
 ///  @param queue        指定的队列
 ///  @param key          key，用于判断是不是同一个事件
