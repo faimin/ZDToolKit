@@ -152,8 +152,8 @@
     dispatch_semaphore_wait(signal, DISPATCH_TIME_FOREVER);
 }
 
-- (IBAction)click:(UIButton *)sender forEvent:(UIEvent *)event {
-    ZD_Dispatch_throttle_on_mainQueue(3, ^{
+- (IBAction)click:(UIButton *)sender forEvent:(UIEvent *)event {    
+    ZD_Dispatch_throttle_on_mainQueue(ZDThrottleType_Invoke_First, 3, ^{
         NSLog(@"throttle方法执行了");
     });
     

@@ -29,7 +29,7 @@
 + (void)zd_throttleWithTimeinterval:(NSTimeInterval)intervalInSeconds
                               queue:(dispatch_queue_t)queue
                                 key:(NSString *)key
-                              block:(void(^)())block
+                              block:(dispatch_block_t)block
 {
     NSCParameterAssert(key);
     if (!key || key.length == 0) return;
@@ -73,16 +73,6 @@ static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL r
         method_exchangeImplementations(origMethod, replMethod);
     }
     return YES;
-}
-
-void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)())
-{
-    [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:dispatch_get_main_queue() key:[NSThread callStackSymbols][1] block:block];
-}
-
-void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)())
-{
-    [ZDTools zd_throttleWithTimeinterval:intervalInSeconds queue:queue key:[NSThread callStackSymbols][1] block:block];
 }
 
 NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr)

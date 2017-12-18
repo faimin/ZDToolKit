@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma clang diagnostic ignored "-Wstrict-prototypes"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZDTools : NSObject
@@ -22,13 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)zd_throttleWithTimeinterval:(NSTimeInterval)timeInterval
                               queue:(dispatch_queue_t)queue
                                 key:(NSString *)key
-                              block:(void(^)())block;
+                              block:(dispatch_block_t)block;
 
 @end
-
-#pragma mark - Functions
-void zd_dispatch_throttle_on_mainQueue(NSTimeInterval intervalInSeconds, void(^block)());
-void zd_dispatch_throttle_on_queue(NSTimeInterval intervalInSeconds, dispatch_queue_t queue, void(^block)());
 
 
 ///================================================
