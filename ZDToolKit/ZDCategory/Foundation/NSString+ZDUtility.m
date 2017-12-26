@@ -797,7 +797,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return base64DecodeString;
 }
 
-- (NSDictionary *)zd_parameters
+- (NSDictionary<NSString *, NSString *> *)zd_parameters
 {
     if (![self hasPrefix:@"http"]) {
         return nil;
@@ -819,18 +819,18 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
         id value = nil;
         if (components.count == 1) {
             // key with no value
-            value = [NSNull null];
+            value = @"";
         }
         else if (components.count == 2) {
             value = [components[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             // cover case where there is a separator, but no actual value
-            value = [value length] ? value : [NSNull null];
+            value = [value length] ? value : @"";
         }
         else if (components.count > 2) {
             // invalid - ignore this pair. is this best, though?
             continue;
         }
-        mutableDic[key] = value ? : [NSNull null];
+        mutableDic[key] = value ? : @"";
     }
     return mutableDic.count ? mutableDic.copy : nil;
 }

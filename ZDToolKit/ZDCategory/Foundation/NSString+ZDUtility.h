@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString *)zd_base64Decode;
 
 // MARK: Get all parameters in url
-- (nullable NSDictionary *)zd_parameters;
+- (nullable NSDictionary<NSString *, NSString *> *)zd_parameters;
 
 @end
 
