@@ -15,7 +15,7 @@
 @interface ZDImageCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) UIImage *placeholderImage;
 @property (nonatomic, strong) NSString *urlString;
-@property (nonatomic, copy) void(^zdDownloadBlock)(UIImageView *imageView, NSString *urlString, UIImage *placeHolderImage);
+@property (nonatomic, copy  ) void(^zdDownloadBlock)(UIImageView *imageView, NSString *urlString, UIImage *placeHolderImage);
 @end
 
 
@@ -26,6 +26,7 @@
 @property (nonatomic, weak  ) id<ZDBannerScrollViewDelegate> delegate;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIImage *placeholderImage;
+@property (nonatomic, assign) NSInteger currentIndex;
 @end
 
 @implementation ZDBannerScrollView
@@ -179,17 +180,15 @@
         scrollView.contentOffset = CGPointMake(contentWidth - boundsWidth * 1.3, scrollView.contentOffset.y);
     }
     
-    NSInteger currentPage = scrollView.contentOffset.x / boundsWidth - 1;
+    NSInteger currentPage = offsetX / boundsWidth - 1;
     if (currentPage < 0) {
         currentPage = self.innerDataSource.count - 2 - 1;
     } else if (currentPage > self.innerDataSource.count - 2 - 1) {
         currentPage = 0;
     }
-    self.pageControl.currentPage = currentPage;
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollView:didScrollToIndex:)]) {
-        [self.delegate scrollView:self didScrollToIndex:currentPage];
-    }
+    self.currentIndex = currentPage;
+    self.pageControl.currentPage = currentPage;
 }
 
 #pragma mark - Property
@@ -217,6 +216,14 @@
     self.pageControl.numberOfPages = imageURLStrings.count;
     
     [self.collectionView reloadData];
+}
+
+- (void)setCurrentIndex:(NSInteger)currentIndex {
+    if (_currentIndex == currentIndex) return;
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollView:didScrollToIndex:)]) {
+        [self.delegate scrollView:self didScrollToIndex:currentIndex];
+    }
 }
 
 //MARK: Getter

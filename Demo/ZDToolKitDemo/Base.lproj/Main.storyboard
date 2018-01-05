@@ -132,6 +132,16 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="To4-AW-VaW">
+                                <rect key="frame" x="119" y="573" width="130" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.96955958549999999" green="0.29392821790000001" blue="0.89104060549999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="ThreeVC"/>
+                                <connections>
+                                    <segue destination="n4z-Ej-t9c" kind="show" id="mNv-B5-FRi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -152,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnP-oC-xSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1172" y="134"/>
+            <point key="canvasLocation" x="1172" y="133.5832083958021"/>
         </scene>
         <!--Three Controller-->
         <scene sceneID="9KZ-5b-KCD">
@@ -170,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rxj-g0-PiF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810" y="134"/>
+            <point key="canvasLocation" x="1873" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MtG-3y-meJ">

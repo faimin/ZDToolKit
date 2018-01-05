@@ -10,6 +10,7 @@
 #import "ZDBannerScrollView.h"
 #import <ZDToolKit/UIView+ZDUtility.h>
 #import <ZDToolKit/ZDFunction.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ThreeController () <ZDBannerScrollViewDelegate>
 @property (nonatomic, strong) NSArray<NSString *> *dataSource;
@@ -40,8 +41,12 @@
 
 #pragma mark -
 
+- (void)customDownloadWithImageView:(UIImageView *)imageView url:(NSString *)urlString placeHolderImage:(UIImage *)placeHolderImage {
+    [imageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
+}
+
 - (void)scrollView:(ZDBannerScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    
+    NSLog(@"滑动到的index：%zd", index);
 }
 
 #pragma mark - Getter
