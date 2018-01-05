@@ -245,6 +245,12 @@
 		F930E74489C30C9A3C75E73E5299FF9B /* YYImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F2D1A3F8CDFEF2FB968A9106A325DD /* YYImage.m */; };
 		F9D51822035EB7F40FB5A0458791F906 /* UIView+AutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C3B46FE55186CF85A38B942073D18B /* UIView+AutoLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F9FECD98B261A32F70D823391309D3E3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6551F8D72EE7A0EDFC2C53D299B98B /* CoreFoundation.framework */; };
+		FA8565C51FFFA66300DCD176 /* ZDImageGroupPreviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FA8565C31FFFA66300DCD176 /* ZDImageGroupPreviewController.h */; };
+		FA8565C61FFFA66300DCD176 /* ZDImageGroupPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8565C41FFFA66300DCD176 /* ZDImageGroupPreviewController.m */; };
+		FA8565C91FFFADD300DCD176 /* ZDImagePreviewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = FA8565C71FFFADD300DCD176 /* ZDImagePreviewCell.h */; };
+		FA8565CA1FFFADD300DCD176 /* ZDImagePreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8565C81FFFADD300DCD176 /* ZDImagePreviewCell.m */; };
+		FA8565CD1FFFB2DF00DCD176 /* ZDImageModel.h in Headers */ = {isa = PBXBuildFile; fileRef = FA8565CB1FFFB2DF00DCD176 /* ZDImageModel.h */; };
+		FA8565CE1FFFB2DF00DCD176 /* ZDImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8565CC1FFFB2DF00DCD176 /* ZDImageModel.m */; };
 		FAEFB3126D3E723DDBCEB320BF0B5904 /* SDWebImageCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = D667A5359A30BA57A5043159559A89B0 /* SDWebImageCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAFB96E11FF22C260092A8D3 /* ZDAlertControllerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = FAFB96DF1FF22C260092A8D3 /* ZDAlertControllerHelper.h */; };
 		FAFB96E21FF22C260092A8D3 /* ZDAlertControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFB96E01FF22C260092A8D3 /* ZDAlertControllerHelper.m */; };
@@ -562,6 +568,12 @@
 		F8F138B3B609A849A838F99773ADF097 /* ZDActionLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDActionLabel.m; path = ZDToolKit/ZDSubclass/ZDActionLabel.m; sourceTree = "<group>"; };
 		F9EAC73B6E2ABFD6D29AF9BDD5E3065F /* YYCache-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYCache-dummy.m"; sourceTree = "<group>"; };
 		FA1082D585EA8073AD985E9A2B74F6FB /* Pods-ZDToolKitDemoUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZDToolKitDemoUITests-dummy.m"; sourceTree = "<group>"; };
+		FA8565C31FFFA66300DCD176 /* ZDImageGroupPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZDImageGroupPreviewController.h; path = ZDToolKit/ZDTools/ZDImageGroupPreviewController.h; sourceTree = "<group>"; };
+		FA8565C41FFFA66300DCD176 /* ZDImageGroupPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZDImageGroupPreviewController.m; path = ZDToolKit/ZDTools/ZDImageGroupPreviewController.m; sourceTree = "<group>"; };
+		FA8565C71FFFADD300DCD176 /* ZDImagePreviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZDImagePreviewCell.h; path = ZDToolKit/ZDTools/ZDImagePreviewCell.h; sourceTree = "<group>"; };
+		FA8565C81FFFADD300DCD176 /* ZDImagePreviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZDImagePreviewCell.m; path = ZDToolKit/ZDTools/ZDImagePreviewCell.m; sourceTree = "<group>"; };
+		FA8565CB1FFFB2DF00DCD176 /* ZDImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZDImageModel.h; path = ZDToolKit/ZDTools/ZDImageModel.h; sourceTree = "<group>"; };
+		FA8565CC1FFFB2DF00DCD176 /* ZDImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZDImageModel.m; path = ZDToolKit/ZDTools/ZDImageModel.m; sourceTree = "<group>"; };
 		FAFB96DF1FF22C260092A8D3 /* ZDAlertControllerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZDAlertControllerHelper.h; path = ZDToolKit/ZDTools/ZDAlertControllerHelper.h; sourceTree = "<group>"; };
 		FAFB96E01FF22C260092A8D3 /* ZDAlertControllerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZDAlertControllerHelper.m; path = ZDToolKit/ZDTools/ZDAlertControllerHelper.m; sourceTree = "<group>"; };
 		FC54E2FF88BB18EE913E6FC052374FF4 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYSpriteSheetImage.h; path = YYImage/YYSpriteSheetImage.h; sourceTree = "<group>"; };
@@ -930,6 +942,12 @@
 				A8B79D98950C87801F2ADC3B4CD90F93 /* YYDispatchQueuePool.m */,
 				E37F31D641CED5F78FAC8211AC26D60E /* ZDBannerScrollView.h */,
 				C354DA132EED70795AE42F556DEC3AD4 /* ZDBannerScrollView.m */,
+				FA8565CB1FFFB2DF00DCD176 /* ZDImageModel.h */,
+				FA8565CC1FFFB2DF00DCD176 /* ZDImageModel.m */,
+				FA8565C71FFFADD300DCD176 /* ZDImagePreviewCell.h */,
+				FA8565C81FFFADD300DCD176 /* ZDImagePreviewCell.m */,
+				FA8565C31FFFA66300DCD176 /* ZDImageGroupPreviewController.h */,
+				FA8565C41FFFA66300DCD176 /* ZDImageGroupPreviewController.m */,
 				FAFB96DF1FF22C260092A8D3 /* ZDAlertControllerHelper.h */,
 				FAFB96E01FF22C260092A8D3 /* ZDAlertControllerHelper.m */,
 				6F48F2E4B320797894E577235D2CA78A /* ZDFileManager.h */,
@@ -1274,6 +1292,7 @@
 				ACF1B9765CF1ED320E4EB571E90F46F3 /* NSObject+ZDBlockKVO.h in Headers */,
 				74F3636EFCC600D71EF1D5259AF93D43 /* NSObject+ZDRuntime.h in Headers */,
 				C0F9021CAB2C2826F6970289B10C79C1 /* NSObject+ZDUtility.h in Headers */,
+				FA8565C91FFFADD300DCD176 /* ZDImagePreviewCell.h in Headers */,
 				849FF1BD7575BF0842D8B7578DF3BD2D /* NSString+ZDUtility.h in Headers */,
 				EAD2130DA5DDEF6DC0A3B370E60CABA7 /* NSTimer+ZDUtility.h in Headers */,
 				3903992211E974C32BC16DE05D6E797F /* NSURLSession+ZDUtility.h in Headers */,
@@ -1315,6 +1334,8 @@
 				F1F848025255E39F9DCA2D5E63DB2A38 /* ZDPermissionHandler.h in Headers */,
 				38B9A3BF28607A4FF5EA3B7159B39DDA /* ZDProxy.h in Headers */,
 				85C3DDE66AC89739326558A37DF1458C /* ZDReusePool.h in Headers */,
+				FA8565C51FFFA66300DCD176 /* ZDImageGroupPreviewController.h in Headers */,
+				FA8565CD1FFFB2DF00DCD176 /* ZDImageModel.h in Headers */,
 				4394C0EF3E6C8E1D420C0B12547068AA /* ZDRunloopQueue.h in Headers */,
 				A17B8F884628B3DB7361B18B85473745 /* ZDSafe.h in Headers */,
 				41C59EB103EA804DE346C13816C96A65 /* ZDTextView.h in Headers */,
@@ -1531,12 +1552,14 @@
 				9E718B7364BE9AFB7ED6755A4BE76A90 /* MAKVONotificationCenter.m in Sources */,
 				8980C922A3C414702125EE145CAE480F /* NOBRuntime.m in Sources */,
 				15F0A8B658CAD7170F33A6622815DEE1 /* NSArray+ZDUtility.m in Sources */,
+				FA8565CE1FFFB2DF00DCD176 /* ZDImageModel.m in Sources */,
 				9BB29EC47BEFCD50DBB93FD4C03D8AB2 /* NSData+ZDUtility.m in Sources */,
 				FAFB96E21FF22C260092A8D3 /* ZDAlertControllerHelper.m in Sources */,
 				2EE4D90725FC05E652C6FBFC4AD0121D /* NSDate+ZDUtility.m in Sources */,
 				32DBE3B13F0CFE3FE06FC43272B76E4F /* NSDictionary+ZDUtility.m in Sources */,
 				D7048DCC6B929C34E3DB92CE373B9D7B /* NSInvocation+ZDBlock.m in Sources */,
 				6DC1E212E9A7C747C6150521E68D0D17 /* NSMutableArray+ZDUtility.m in Sources */,
+				FA8565CA1FFFADD300DCD176 /* ZDImagePreviewCell.m in Sources */,
 				B9F62F17C7BC17AA764F3B01C36D7562 /* NSObject+DLIntrospection.m in Sources */,
 				530ED4C70D5BF23BF2498F8842E7FFFF /* NSObject+ZDAutoCoding.m in Sources */,
 				5DD6571CCA85971704DE09D67B594C0E /* NSObject+ZDBlockKVO.m in Sources */,
@@ -1557,6 +1580,7 @@
 				C3DA2E5AB4F5529FFEFE78471BA236D1 /* UIView+AutoFlowLayout.m in Sources */,
 				6C0601782AF9D827CA2455AD39E0D20E /* UIView+AutoLayout.m in Sources */,
 				CC207F1860E03BCF05092DBE51197CC1 /* UIView+FDCollapsibleConstraints.m in Sources */,
+				FA8565C61FFFA66300DCD176 /* ZDImageGroupPreviewController.m in Sources */,
 				B443E0954512C90F43E38E290D07AF07 /* UIView+RZAutoLayoutHelpers.m in Sources */,
 				AD1D303866A16E8367F9094DF85D3162 /* UIView+RZBorders.m in Sources */,
 				66E4503B80A74B4ECBABF433CAD79A4F /* UIView+ZDCollapsibleConstraints.m in Sources */,
