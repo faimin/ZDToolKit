@@ -82,6 +82,20 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
     }
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offSetWidth = scrollView.contentOffset.x;
+    offSetWidth = offSetWidth +  ((CGRectGetWidth(self.view.frame) + 20) * 0.5);
+    
+    NSInteger currentIndex = offSetWidth / (CGRectGetWidth(self.view.frame) + 20);
+    if (currentIndex < _models.count && _currentIndex != currentIndex) {
+        _currentIndex = currentIndex;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"photoPreviewCollectionViewDidScroll" object:nil];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
