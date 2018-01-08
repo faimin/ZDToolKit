@@ -9,4 +9,6 @@
 
 @interface ZDImageModel : NSObject
 
+@property (nonatomic, assign) BOOL isSelected;      ///< The select status of a photo, default is No
+
 @end

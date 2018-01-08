@@ -9,6 +9,10 @@
 #import "ZDImageModel.h"
 #import "UIView+ZDUtility.h"
 
+@interface ZDImagePreviewCell ()
+@property (nonatomic, weak  ) UIImageView *imageView;
+@property (nonatomic, strong) ZDProgressView *progressView;
+@end
 
 @implementation ZDImagePreviewCell
 
@@ -16,19 +20,22 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor blackColor];
-        [self configSubviews];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photoPreviewCollectionViewDidScroll) name:@"photoPreviewCollectionViewDidScroll" object:nil];
+        [self setup];
     }
     return self;
+}
+
+- (void)setup {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photoPreviewCollectionViewDidScroll) name:@"photoPreviewCollectionViewDidScroll" object:nil];
+    [self setupUI];
+}
+
+- (void)setupUI {
+    self.backgroundColor = [UIColor blackColor];
+    [self configSubviews];
 }
 
 - (void)configSubviews {
@@ -50,7 +57,9 @@
 }
 
 - (void)setModel:(ZDImageModel *)model {
-    
+    _model = model;
+
+    [self setNeedsLayout];
 }
 
 - (void)recoverSubviews {
@@ -69,6 +78,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
     self.previewView.frame = self.bounds;
 }
 
@@ -76,6 +86,26 @@
 
 - (void)photoPreviewCollectionViewDidScroll {
     
+}
+
+#pragma mark - Property
+
+- (UIImageView *)imageView {
+    if (!_imageView) {
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        _imageView = imageView;
+    }
+    return _imageView;
+}
+
+- (ZDProgressView *)progressView {
+    if (!_progressView) {
+        _progressView = [[ZDProgressView alloc] init];
+        _progressView.hidden = YES;
+    }
+    return _progressView;
 }
 
 @end

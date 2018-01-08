@@ -12,7 +12,6 @@
 static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
 
 @interface ZDImageGroupPreviewController() <UICollectionViewDataSource, UICollectionViewDelegate> {
-    NSArray *_photosTemp;
     NSArray *_assetsTemp;
     CGFloat _offsetItemCount;
 }
@@ -58,11 +57,6 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
 - (void)setupUI {
     [self.view addSubview:self.collectionView];
     self.view.clipsToBounds = YES;
-}
-
-- (void)setPhotos:(NSMutableArray *)photos {
-    _photos = photos;
-    _photosTemp = [NSArray arrayWithArray:photos];
 }
 
 #pragma mark - Layout
@@ -132,10 +126,8 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         return;
     }
+    
     [self.navigationController popViewControllerAnimated:YES];
-    if (self.backButtonClickBlock) {
-        self.backButtonClickBlock(_isSelectOriginalPhoto);
-    }
 }
 
 #pragma mark - Notification
