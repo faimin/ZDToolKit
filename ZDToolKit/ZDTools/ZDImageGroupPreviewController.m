@@ -10,9 +10,9 @@
 #import "ZDImageModel.h"
 
 static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
+static CGFloat const Padding = 20.0;
 
 @interface ZDImageGroupPreviewController() <UICollectionViewDataSource, UICollectionViewDelegate> {
-    NSArray *_assetsTemp;
     CGFloat _offsetItemCount;
 }
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -29,8 +29,8 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    if (_currentIndex) {
-        [_collectionView setContentOffset:CGPointMake((CGRectGetWidth(self.view.bounds) + 20) * _currentIndex, 0) animated:NO];
+    if (self.currentIndex) {
+        [self.collectionView setContentOffset:CGPointMake((CGRectGetWidth(self.view.bounds) + Padding) * self.currentIndex, 0) animated:NO];
     }
 }
 
@@ -55,8 +55,8 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
 }
 
 - (void)setupUI {
-    [self.view addSubview:self.collectionView];
     self.view.clipsToBounds = YES;
+    [self.view addSubview:self.collectionView];
 }
 
 #pragma mark - Layout
@@ -64,26 +64,26 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    _layout.itemSize = (CGSize){CGRectGetWidth(self.view.frame) + 20, CGRectGetHeight(self.view.frame)};
+    _layout.itemSize = (CGSize){CGRectGetWidth(self.view.frame) + Padding, CGRectGetHeight(self.view.frame)};
     _layout.minimumInteritemSpacing = 0;
     _layout.minimumLineSpacing = 0;
-    _collectionView.frame = (CGRect){-10, 0, CGRectGetWidth(self.view.frame) + 20, CGRectGetHeight(self.view.frame)};
+    _collectionView.frame = (CGRect){-Padding*0.5, 0, CGRectGetWidth(self.view.frame) + Padding, CGRectGetHeight(self.view.frame)};
     self.collectionView.collectionViewLayout = _layout;
     
     if (_offsetItemCount > 0) {
         CGFloat offsetX = _offsetItemCount * _layout.itemSize.width;
-        [_collectionView setContentOffset:CGPointMake(offsetX, 0)];
+        [_collectionView setContentOffset:(CGPoint){offsetX, 0}];
     }
 }
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat offSetWidth = scrollView.contentOffset.x;
-    offSetWidth = offSetWidth +  ((CGRectGetWidth(self.view.frame) + 20) * 0.5);
+    CGFloat offsetWidth = scrollView.contentOffset.x;
+    offsetWidth += ((CGRectGetWidth(self.view.frame) + Padding) * 0.5);
     
-    NSInteger currentIndex = offSetWidth / (CGRectGetWidth(self.view.frame) + 20);
-    if (currentIndex < _models.count && _currentIndex != currentIndex) {
+    NSInteger currentIndex = offsetWidth / (CGRectGetWidth(self.view.frame) + Padding);
+    if (currentIndex < self.models.count && _currentIndex != currentIndex) {
         _currentIndex = currentIndex;
     }
     
@@ -93,27 +93,28 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _models.count;
+    return self.models.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZDImagePreviewCell *cell = (id)[collectionView dequeueReusableCellWithReuseIdentifier:CellReuseIdentifier forIndexPath:indexPath];
-    
-    ZDImageModel *model = _models[indexPath.row];
-    cell.model = model;
+    if (self.models.count > indexPath.item) {
+        ZDImageModel *model = self.models[indexPath.item];
+        cell.model = model;
+    }
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([cell isKindOfClass:[ZDImagePreviewCell class]]) {
-        //[(ZDPhotoPreviewCell *)cell recoverSubviews];
+        [(ZDImagePreviewCell *)cell recoverSubviews];
     }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if ([cell isKindOfClass:[ZDImagePreviewCell class]]) {
-        //[(ZDPhotoPreviewCell *)cell recoverSubviews];
+        [(ZDImagePreviewCell *)cell recoverSubviews];
     }
 }
 
@@ -121,14 +122,14 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
 
 #pragma mark - Events
 
-- (void)backButtonClick {
-    if (self.navigationController.childViewControllers.count < 2) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        return;
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)backButtonClick {
+//    if (self.navigationController.childViewControllers.count < 2) {
+//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//        return;
+//    }
+//
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 #pragma mark - Notification
 
@@ -150,24 +151,17 @@ static NSString * const CellReuseIdentifier = @"ZDPhotoPreviewCell";
         view.delegate = self;
         view.pagingEnabled = YES;
         view.scrollsToTop = NO;
-        view.showsHorizontalScrollIndicator = NO;
         view.contentOffset = CGPointZero;
-        view.contentSize = (CGSize){(CGRectGetWidth(self.view.frame) + 20) * self.models.count, 0};
+        view.showsHorizontalScrollIndicator = NO;
+        view.contentSize = (CGSize){(CGRectGetWidth(self.view.frame) + Padding) * self.models.count, 0};
         [view registerClass:[ZDImagePreviewCell class] forCellWithReuseIdentifier:CellReuseIdentifier];
+        
         _collectionView = view;
     }
     return _collectionView;
 }
 
 @end
-
-
-
-
-
-
-
-
 
 
 

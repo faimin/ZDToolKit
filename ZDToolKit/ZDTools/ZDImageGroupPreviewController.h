@@ -9,7 +9,7 @@
 
 @interface ZDImageGroupPreviewController : UIViewController
 
-@property (nonatomic, strong) NSMutableArray *models;           ///< All photo models / 所有图片模型数组
-@property (nonatomic, assign) NSInteger currentIndex;           ///< Index of the photo user click / 用户点击的图片的索引
+@property (nonatomic, strong) NSMutableArray *models; ///< All photo models / 所有图片模型数组
+@property (nonatomic, assign) NSInteger currentIndex; ///< Index of the photo user click / 用户点击的图片的索引
 
 @end

@@ -10,15 +10,13 @@
 @class ZDImageModel, ZDPhotoPreviewView, ZDProgressView;
 @interface ZDImagePreviewCell : UICollectionViewCell
 @property (nonatomic, strong) ZDImageModel *model;
-@property (nonatomic, copy) void (^singleTapGestureBlock)(void);
-@property (nonatomic, copy) void (^imageProgressUpdateBlock)(double progress);
+@property (nonatomic, copy  ) void (^singleTapGestureBlock)(void);
+@property (nonatomic, copy  ) void (^imageProgressUpdateBlock)(double progress);
 @property (nonatomic, strong) ZDPhotoPreviewView *previewView;
 @property (nonatomic, assign) BOOL allowCrop;
 @property (nonatomic, assign) CGRect cropRect;
 
 - (void)recoverSubviews;
-- (void)configSubviews;
-- (void)photoPreviewCollectionViewDidScroll;
 @end
 
 
@@ -32,10 +30,9 @@
 @property (nonatomic, assign) CGRect cropRect;
 
 @property (nonatomic, strong) ZDImageModel *model;
-@property (nonatomic, strong) id asset;
-@property (nonatomic, copy) void (^singleTapGestureBlock)();
-@property (nonatomic, copy) void (^imageProgressUpdateBlock)(double progress);
-@property (nonatomic, assign) int32_t imageRequestID;
+//@property (nonatomic, strong) id asset;
+@property (nonatomic, copy  ) void (^singleTapGestureBlock)();
+@property (nonatomic, copy  ) void (^imageProgressUpdateBlock)(double progress);
 
 - (void)recoverSubviews;
 @end
