@@ -251,6 +251,8 @@
 		FA8565CA1FFFADD300DCD176 /* ZDImagePreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8565C81FFFADD300DCD176 /* ZDImagePreviewCell.m */; };
 		FA8565CD1FFFB2DF00DCD176 /* ZDImageModel.h in Headers */ = {isa = PBXBuildFile; fileRef = FA8565CB1FFFB2DF00DCD176 /* ZDImageModel.h */; };
 		FA8565CE1FFFB2DF00DCD176 /* ZDImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8565CC1FFFB2DF00DCD176 /* ZDImageModel.m */; };
+		FA93EA942004B0E80006D256 /* YYPhotoGroupView.h in Headers */ = {isa = PBXBuildFile; fileRef = FA93EA922004B0E70006D256 /* YYPhotoGroupView.h */; };
+		FA93EA952004B0E80006D256 /* YYPhotoGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA93EA932004B0E70006D256 /* YYPhotoGroupView.m */; };
 		FAEFB3126D3E723DDBCEB320BF0B5904 /* SDWebImageCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = D667A5359A30BA57A5043159559A89B0 /* SDWebImageCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAFB96E11FF22C260092A8D3 /* ZDAlertControllerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = FAFB96DF1FF22C260092A8D3 /* ZDAlertControllerHelper.h */; };
 		FAFB96E21FF22C260092A8D3 /* ZDAlertControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFB96E01FF22C260092A8D3 /* ZDAlertControllerHelper.m */; };
@@ -574,6 +576,8 @@
 		FA8565C81FFFADD300DCD176 /* ZDImagePreviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZDImagePreviewCell.m; path = ZDToolKit/ZDTools/ZDImagePreviewCell.m; sourceTree = "<group>"; };
 		FA8565CB1FFFB2DF00DCD176 /* ZDImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZDImageModel.h; path = ZDToolKit/ZDTools/ZDImageModel.h; sourceTree = "<group>"; };
 		FA8565CC1FFFB2DF00DCD176 /* ZDImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZDImageModel.m; path = ZDToolKit/ZDTools/ZDImageModel.m; sourceTree = "<group>"; };
+		FA93EA922004B0E70006D256 /* YYPhotoGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YYPhotoGroupView.h; path = ZDToolKit/ZDTools/YYPhotoGroupView.h; sourceTree = "<group>"; };
+		FA93EA932004B0E70006D256 /* YYPhotoGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YYPhotoGroupView.m; path = ZDToolKit/ZDTools/YYPhotoGroupView.m; sourceTree = "<group>"; };
 		FAFB96DF1FF22C260092A8D3 /* ZDAlertControllerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZDAlertControllerHelper.h; path = ZDToolKit/ZDTools/ZDAlertControllerHelper.h; sourceTree = "<group>"; };
 		FAFB96E01FF22C260092A8D3 /* ZDAlertControllerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZDAlertControllerHelper.m; path = ZDToolKit/ZDTools/ZDAlertControllerHelper.m; sourceTree = "<group>"; };
 		FC54E2FF88BB18EE913E6FC052374FF4 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYSpriteSheetImage.h; path = YYImage/YYSpriteSheetImage.h; sourceTree = "<group>"; };
@@ -948,6 +952,8 @@
 				FA8565C81FFFADD300DCD176 /* ZDImagePreviewCell.m */,
 				FA8565C31FFFA66300DCD176 /* ZDImageGroupPreviewController.h */,
 				FA8565C41FFFA66300DCD176 /* ZDImageGroupPreviewController.m */,
+				FA93EA922004B0E70006D256 /* YYPhotoGroupView.h */,
+				FA93EA932004B0E70006D256 /* YYPhotoGroupView.m */,
 				FAFB96DF1FF22C260092A8D3 /* ZDAlertControllerHelper.h */,
 				FAFB96E01FF22C260092A8D3 /* ZDAlertControllerHelper.m */,
 				6F48F2E4B320797894E577235D2CA78A /* ZDFileManager.h */,
@@ -1303,6 +1309,7 @@
 				4B17824E31BA65404F41271F1D3259C3 /* UIImageView+FaceAwareFill.h in Headers */,
 				951BAF17A5291F7F6CF5D12659A2D47D /* UIImageView+ZDGIF.h in Headers */,
 				E34D582D7E052912B3633FF19375123B /* UIImageView+ZDUtility.h in Headers */,
+				FA93EA942004B0E80006D256 /* YYPhotoGroupView.h in Headers */,
 				E88E2A5A60BFA2F70AEE677F0E753AA8 /* UILabel+ZDUtility.h in Headers */,
 				87887B962D56E8DB7397FC096E609E40 /* UITextView+ZDUtility.h in Headers */,
 				9EFA0847F941D2D2DBD4D302B7E1CC1A /* UIView+AutoFlowLayout.h in Headers */,
@@ -1564,6 +1571,7 @@
 				530ED4C70D5BF23BF2498F8842E7FFFF /* NSObject+ZDAutoCoding.m in Sources */,
 				5DD6571CCA85971704DE09D67B594C0E /* NSObject+ZDBlockKVO.m in Sources */,
 				7EDA76E6735BE82E974DF80922747C2B /* NSObject+ZDRuntime.m in Sources */,
+				FA93EA952004B0E80006D256 /* YYPhotoGroupView.m in Sources */,
 				24AF417A86634DCD35E68225974375CA /* NSObject+ZDUtility.m in Sources */,
 				5C3C8B1F5B89BE6BB52B663D1A5A0DCC /* NSString+ZDUtility.m in Sources */,
 				039F12633AB5C55AFE7D49AB896E98D0 /* NSTimer+ZDUtility.m in Sources */,
