@@ -402,11 +402,11 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 }
 
 - (CGFloat)middleX {
-	return self.width / 2;
+	return self.width * 0.5;
 }
 
 - (CGFloat)middleY {
-	return self.height / 2;
+	return self.height * 0.5;
 }
 
 #pragma mark - Chain Caller
