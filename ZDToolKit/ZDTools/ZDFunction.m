@@ -948,7 +948,8 @@ UIColor *ZD_RandomColor() {
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
-OS_ALWAYS_INLINE void ZD_Dispatch_async_on_main_queue(void (^block)()) {
+OS_ALWAYS_INLINE void ZD_Dispatch_async_on_main_queue(dispatch_block_t block) {
+    if (!block) return;
     if (pthread_main_np()) {
         block();
     }
@@ -957,7 +958,8 @@ OS_ALWAYS_INLINE void ZD_Dispatch_async_on_main_queue(void (^block)()) {
     }
 }
 
-OS_ALWAYS_INLINE void ZD_Dispatch_sync_on_main_queue(void (^block)()) {
+OS_ALWAYS_INLINE void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block) {
+    if (!block) return;
     if (pthread_main_np()) {
         block();
     }
@@ -997,6 +999,8 @@ void ZD_ExecuteFunctionThrottle(ZDThrottleType type, NSTimeInterval intervalInSe
     dispatch_once(&onceToken, ^{
         scheduleSourceDic = [[NSMutableDictionary alloc] init];
     });
+    
+    if (!key) return;
     
     if (type == ZDThrottleType_Invoke_First) {
         dispatch_source_t timer = scheduleSourceDic[key];

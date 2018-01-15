@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
-#pragma clang diagnostic ignored "-Wstrict-prototypes"
+//#pragma clang diagnostic ignored "-Wstrict-prototypes"
 
 typedef NS_ENUM(NSInteger, ZDThrottleType) {
     ZDThrottleType_Invoke_First,
@@ -122,43 +122,43 @@ FOUNDATION_EXPORT BOOL ZD_VideoIsPlayable(NSString *urlString);
 #pragma mark - InterfaceOrientation
 #pragma mark -
 /// 屏幕是横屏还是竖屏
-FOUNDATION_EXPORT BOOL ZD_isPortrait();     ///< 横屏
-FOUNDATION_EXPORT BOOL ZD_isLandscape();    ///< 竖屏
+FOUNDATION_EXPORT BOOL ZD_isPortrait(void);     ///< 横屏
+FOUNDATION_EXPORT BOOL ZD_isLandscape(void);    ///< 竖屏
 
 #pragma mark - NSBundle
 #pragma mark -
 /// get list of classes already loaded into memory in specific bundle (or binary)
-FOUNDATION_EXPORT NSArray *ZD_GetClassNames();
+FOUNDATION_EXPORT NSArray *ZD_GetClassNames(void);
 
 //===============================================================
 
 #pragma mark - Device
 #pragma mark -
-FOUNDATION_EXPORT BOOL ZD_isRetina();
-FOUNDATION_EXPORT BOOL ZD_isPad();
-FOUNDATION_EXPORT BOOL ZD_isSimulator();
-FOUNDATION_EXPORT BOOL ZD_isJailbroken();
-FOUNDATION_EXPORT BOOL ZD_isSetProxy();
-FOUNDATION_EXPORT double ZD_SystemVersion();
-FOUNDATION_EXPORT CGFloat ZD_Scale();
-FOUNDATION_EXPORT CGSize ZD_ScreenSize();
-FOUNDATION_EXPORT CGFloat ZD_ScreenWidth();
-FOUNDATION_EXPORT CGFloat ZD_ScreenHeight();
-FOUNDATION_EXPORT BOOL ZD_iPhone4s();
-FOUNDATION_EXPORT BOOL ZD_iPhone5s();
-FOUNDATION_EXPORT BOOL ZD_iPhone6();
-FOUNDATION_EXPORT BOOL ZD_iPhone6p();
-FOUNDATION_EXPORT BOOL ZD_iPhoneX();
+FOUNDATION_EXPORT BOOL ZD_isRetina(void);
+FOUNDATION_EXPORT BOOL ZD_isPad(void);
+FOUNDATION_EXPORT BOOL ZD_isSimulator(void);
+FOUNDATION_EXPORT BOOL ZD_isJailbroken(void);
+FOUNDATION_EXPORT BOOL ZD_isSetProxy(void);
+FOUNDATION_EXPORT double ZD_SystemVersion(void);
+FOUNDATION_EXPORT CGFloat ZD_Scale(void);
+FOUNDATION_EXPORT CGSize ZD_ScreenSize(void);
+FOUNDATION_EXPORT CGFloat ZD_ScreenWidth(void);
+FOUNDATION_EXPORT CGFloat ZD_ScreenHeight(void);
+FOUNDATION_EXPORT BOOL ZD_iPhone4s(void);
+FOUNDATION_EXPORT BOOL ZD_iPhone5s(void);
+FOUNDATION_EXPORT BOOL ZD_iPhone6(void);
+FOUNDATION_EXPORT BOOL ZD_iPhone6p(void);
+FOUNDATION_EXPORT BOOL ZD_iPhoneX(void);
 
 /// 获取 app 的 icon 图标名称
-FOUNDATION_EXPORT NSString *ZD_IconName();
-FOUNDATION_EXPORT NSString *ZD_LaunchImageName();
+FOUNDATION_EXPORT NSString *ZD_IconName(void);
+FOUNDATION_EXPORT NSString *ZD_LaunchImageName(void);
 
 /// 获取设备MAC地址
-FOUNDATION_EXPORT NSString *ZD_MacAddress();
+FOUNDATION_EXPORT NSString *ZD_MacAddress(void);
 /// 数组两个值，第一个是本地地址，127.0.0.1也就是localhost，
 /// 第二个是路由器DNS分配的公网地址。
-FOUNDATION_EXPORT NSArray *ZD_IPAddresses();
+FOUNDATION_EXPORT NSArray *ZD_IPAddresses(void);
 /// 获取当前的内存使用情况
 FOUNDATION_EXPORT double ZD_MemoryUsage(void);
 
@@ -169,21 +169,21 @@ FOUNDATION_EXPORT double ZD_Round(CGFloat num, NSInteger num_digits);
 /// Int转NSData
 FOUNDATION_EXPORT NSData *ZD_ConvertIntToData(int value);
 /// 随机色
-FOUNDATION_EXPORT UIColor *ZD_RandomColor();
+FOUNDATION_EXPORT UIColor *ZD_RandomColor(void);
 
 #pragma mark - GCD
 #pragma mark -
-FOUNDATION_EXPORT void ZD_Dispatch_async_on_main_queue(void (^block)());
-FOUNDATION_EXPORT void ZD_Dispatch_sync_on_main_queue(void (^block)());
+FOUNDATION_EXPORT void ZD_Dispatch_async_on_main_queue(dispatch_block_t block);
+FOUNDATION_EXPORT void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block);
 /// 判断当前是不是主队列
-FOUNDATION_EXPORT BOOL ZD_IsMainQueue();
+FOUNDATION_EXPORT BOOL ZD_IsMainQueue(void);
 /// 让某一方法在固定的时间间隔内只执行一次
 FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_mainQueue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_block_t block);
 FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_queue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_queue_t queue, dispatch_block_t block);
 
 #pragma mark - Runtime
 #pragma mark -
-FOUNDATION_EXPORT void ZD_PrintObjectMethods();
+FOUNDATION_EXPORT void ZD_PrintObjectMethods(void);
 FOUNDATION_EXPORT void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector);
 FOUNDATION_EXPORT void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector);
 FOUNDATION_EXPORT IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
