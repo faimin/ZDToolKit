@@ -32,25 +32,63 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = NSStringFromClass(self.class);
     
+    [self setupTest];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    BOOL isContains = [self.navigationController.childViewControllers containsObject:self];
+    if (isContains) {
+        NSLog(@"消失");
+    } else {
+        NSLog(@"释放");
+    }
+}
+
+#pragma mark -
+
+- (void)setupTest {
+    [self autoreleaseTest];
+    
+    [self clickTextTest];
+    
+    //[self associateTest];
+    
     //[self deadLock];
     [self kvoTest];
+}
+
+#pragma mark -
+
+- (void)autoreleaseTest {
+    dispatch_queue_t zdQueue = dispatch_queue_create("zdQueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(zdQueue, ^{
+        if ([NSThread isMainThread]) {
+            NSLog(@"主线程");
+        }
+        
+        for (NSUInteger i = 0; i < 500000; i++) {
+            @autoreleasepool {
+                // 说明： 当在一个特别多的循环里创建多个临时变量时，需要加上@autoreleasepool，不加的话会导致内存升高
+                NSNumber *num = [NSNumber numberWithUnsignedInteger:i];
+                NSString *str = [NSString stringWithFormat:@"%zd ", i];
+                [NSString stringWithFormat:@"%@%@", num, str];
+                
+                if (i % 3 == 0) {
+                    NSString *str = [NSString stringWithFormat:@"%f", ZD_MemoryUsage()];
+                    NSLog(@"   %@", str);
+                }
+            }
+        }
+    });
     
-    self.imageView.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
-    self.imageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
-    [self.imageView addGestureRecognizer:tap];
-    
-    NSString *text = @"链接地址: www.baidu.com";
-#if 1
-    self.zdLabel.text = text;
-    self.zdLabel.zd_edgeInsets = UIEdgeInsetsMake(10, 20, 0, 0);
-    //self.zdLabel.zdAlignment = ZDAlignment_Bottom;
-    [self.zdLabel sizeToFit];
-#else
-    NSRange range = [text rangeOfString:@"www.baidu.com"];
-    [self.zdLabel addTarget:self action:@selector(textActionWithParams::) params:@[@"参数1", @"参数2"] ranges:@[[NSValue valueWithRange:range]]];
-#endif
-    
+    dispatch_sync(zdQueue, ^{
+        NSLog(@"Over");
+    });
+}
+
+- (void)associateTest {
     NSObject *objc = [NSObject new];
     void *key = &key;
     {
@@ -78,18 +116,23 @@
     NSLog(@"%@, %@", s, objcs);
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+- (void)clickTextTest {
+    self.imageView.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
+    self.imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+    [self.imageView addGestureRecognizer:tap];
     
-    BOOL isContains = [self.navigationController.childViewControllers containsObject:self];
-    if (isContains) {
-        NSLog(@"消失");
-    } else {
-        NSLog(@"释放");
-    }
+    NSString *text = @"链接地址: www.baidu.com";
+#if 1
+    self.zdLabel.text = text;
+    self.zdLabel.zd_edgeInsets = UIEdgeInsetsMake(10, 20, 0, 0);
+    //self.zdLabel.zdAlignment = ZDAlignment_Bottom;
+    [self.zdLabel sizeToFit];
+#else
+    NSRange range = [text rangeOfString:@"www.baidu.com"];
+    [self.zdLabel addTarget:self action:@selector(textActionWithParams::) params:@[@"参数1", @"参数2"] ranges:@[[NSValue valueWithRange:range]]];
+#endif
 }
-
-#pragma mark -
 
 - (void)kvoTest {
     [self zd_addObserver:self forKeyPath:@"count1" options:NSKeyValueObservingOptionNew changeBlock:^(id object, NSDictionary<NSKeyValueChangeKey,id> *change) {
@@ -103,6 +146,17 @@
     }];
 }
 
+- (void)deadLock {
+    dispatch_semaphore_t signal = dispatch_semaphore_create(0);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"执行了");
+        dispatch_semaphore_signal(signal);
+    });
+    dispatch_semaphore_wait(signal, DISPATCH_TIME_FOREVER);
+}
+
+#pragma mark -
+
 - (void)textActionWithParams:(NSString *)param1 :(NSString *)param2 {
     NSLog(@"www.baidu.com被点击了,参数:\n%@, %@", param1, param2);
 }
@@ -111,45 +165,9 @@
     NSLog(@"点到了。。。。。。");
 }
 
-- (void)autoreleaseTest {
-    dispatch_queue_t zdQueue = dispatch_queue_create("zdQueue", DISPATCH_QUEUE_SERIAL);
-    dispatch_sync(zdQueue, ^{
-        if ([NSThread isMainThread]) {
-            NSLog(@"主线程");
-        }
-        
-        for (int i = 0; i < 500000; i++) {
-            @autoreleasepool {
-                // 说明： 当在一个特别多的循环里创建多个临时变量时，需要加上@autoreleasepool，不加的话会导致内存升高
-                NSNumber *num = [NSNumber numberWithInt:i];
-                NSString *str = [NSString stringWithFormat:@"%d ", i];
-                [NSString stringWithFormat:@"%@%@", num, str];
-                
-                if (i % 3 == 0) {
-                    NSString *str = [NSString stringWithFormat:@"%f", ZD_MemoryUsage()];
-                    NSLog(@"   %@", str);
-                }
-            }
-        }
-    });
-    
-    dispatch_sync(zdQueue, ^{
-        NSLog(@"Over");
-    });
-}
-
 - (NSString *)executeMethodWithStr:(NSString *)str num:(NSUInteger)num {
     NSString *string = [NSString stringWithFormat:@"%@ + %zd", str, num];
     return string;
-}
-
-- (void)deadLock {
-    dispatch_semaphore_t signal = dispatch_semaphore_create(0);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"执行了");
-        dispatch_semaphore_signal(signal);
-    });
-    dispatch_semaphore_wait(signal, DISPATCH_TIME_FOREVER);
 }
 
 - (IBAction)click:(UIButton *)sender forEvent:(UIEvent *)event {    
