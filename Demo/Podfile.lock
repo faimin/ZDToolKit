@@ -29,7 +29,9 @@ PODS:
   - ZDToolKit/ZDRuntime (0.0.5)
   - ZDToolKit/ZDSubclass (0.0.5)
   - ZDToolKit/ZDTools (0.0.5):
+    - ZDToolKit/ZDTools/ProtocolKit (= 0.0.5)
     - ZDToolKit/ZDTools/ZDProxy (= 0.0.5)
+  - ZDToolKit/ZDTools/ProtocolKit (0.0.5)
   - ZDToolKit/ZDTools/ZDProxy (0.0.5)
 
 DEPENDENCIES:
@@ -46,7 +48,7 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
-  ZDToolKit: 52af95eb5b99c8c5deb5b63737d0ba34d992e861
+  ZDToolKit: 9dc8c17683ac948e017b36967cad8e96688577d0
 
 PODFILE CHECKSUM: 4c9930b375d72789078b9ed46789b70941c1cd44
 

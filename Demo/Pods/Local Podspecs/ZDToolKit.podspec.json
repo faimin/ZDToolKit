@@ -78,6 +78,10 @@
         {
           "name": "ZDProxy",
           "source_files": "ZDToolKit/ZDTools/ZDProxy/*.{h,m}"
+        },
+        {
+          "name": "ProtocolKit",
+          "source_files": "ZDToolKit/ZDTools/ProtocolKit/*.{h,m}"
         }
       ]
     },

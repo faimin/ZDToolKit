@@ -61,6 +61,10 @@ Pod::Spec.new do |s|
     ss.subspec 'ZDProxy' do |sss|
       sss.source_files = 'ZDToolKit/ZDTools/ZDProxy/*.{h,m}'
     end
+
+    ss.subspec 'ProtocolKit' do |sss|
+      sss.source_files = 'ZDToolKit/ZDTools/ProtocolKit/*.{h,m}'
+    end
   end
 
   s.subspec 'no-arc' do |ss|
