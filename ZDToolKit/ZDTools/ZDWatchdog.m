@@ -11,8 +11,7 @@
 
 static const NSTimeInterval kDefaultInterval = 50.0; // 单位：毫秒
 
-@interface ZDWatchdog ()
-{
+@interface ZDWatchdog () {
     CFRunLoopObserverRef _observer;
     @public
     dispatch_semaphore_t _semaphore;
@@ -73,7 +72,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
 - (void)start {
     [self setupRunLoopObserver];
     [self commonMethod];
-    [self otherMethod];
+    [self timerMethod];
 }
 
 - (void)commonMethod {
@@ -86,7 +85,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
             //超时后返回非0值,未超时返回0;默认等待50毫秒 = 50/1000 秒
             long semaphoreResult = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval ?: kDefaultInterval) * NSEC_PER_MSEC));
             if (semaphoreResult != 0) { //超时
-                //runloop观察者不存在时所有条件重置
+                //runloop观察者不存在时重置所有条件
                 if (!_observer) {
                     timeoutCount = 0;
                     _semaphore = NULL;
@@ -109,11 +108,11 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
 }
 
 // https://www.tuicool.com/articles/bUv6fq6
-- (void)otherMethod {
+- (void)timerMethod {
     __block int8_t chokeCount = 0;
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
-    dispatch_queue_t serialQueue = dispatch_queue_create("zd.com.queue.serial", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_DEFAULT, 0));
+    dispatch_queue_t serialQueue = dispatch_queue_create("zd.com.queue.serial.watchdog", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, 0));
     
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, serialQueue);
     dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, kDefaultInterval * NSEC_PER_MSEC, 0);
@@ -126,13 +125,13 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
             if (isNotTimeOut == NO) {
                 chokeCount ++;
                 if (chokeCount > 40) {
-                    NSLog(@"看样子是卡死了~~~~~");
+                    NSLog(@"貌似卡死了❌❌❌");
                     dispatch_suspend(self.timer);
                     return;
                 }
                 else if (chokeCount > 5) {
-                    NSLog(@"卡顿了。。。");
-                    [self printTrace];
+                    NSLog(@"丢帧了❗️❗️❗️");
+                    //[self printTrace];
                 }
                 return ;
             }
@@ -172,7 +171,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     for (int i = 0; i < count; i++) {
         [backtraceArr addObject:[NSString stringWithUTF8String:strs[i]]];
     }
-    NSLog(@"卡顿信息===> \n%@", backtraceArr);
+    NSLog(@"卡顿堆栈===>\n%@\n----------------------------", backtraceArr);
 }
 
 @end

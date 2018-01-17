@@ -68,16 +68,17 @@
             NSLog(@"主线程");
         }
         
+        
         for (NSUInteger i = 0; i < 500000; i++) {
             @autoreleasepool {
-                // 说明： 当在一个特别多的循环里创建多个临时变量时，需要加上@autoreleasepool，不加的话会导致内存升高
+                // 说明：当在一个特别多的循环里创建多个临时变量时，需要加上@autoreleasepool，不加的话会导致内存升高
                 NSNumber *num = [NSNumber numberWithUnsignedInteger:i];
                 NSString *str = [NSString stringWithFormat:@"%zd ", i];
                 [NSString stringWithFormat:@"%@%@", num, str];
                 
                 if (i % 3 == 0) {
                     NSString *str = [NSString stringWithFormat:@"%f", ZD_MemoryUsage()];
-                    NSLog(@"   %@", str);
+                    //NSLog(@"   %@", str);
                 }
             }
         }
