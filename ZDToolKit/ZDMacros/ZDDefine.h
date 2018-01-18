@@ -360,18 +360,25 @@ NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
         __strong void(^executeCleanupBlock)() __attribute__((cleanup(ZD_CleanupBlock), unused)) = ^
 #endif
 
-#if DEBUG
-	#define zd_keywordify @autoreleasepool {}
-#else
-	#define zd_keywordify @try {} @catch (...) {}
+
+#ifndef zd_keywordify
+    #if DEBUG
+        #define zd_keywordify @autoreleasepool {}
+    #else
+        #define zd_keywordify @try {} @catch (...) {}
+    #endif
 #endif
 
 
-#define zd_weakObjc(objc_) \
-@autoreleasepool {} __weak __typeof__(objc_) self_weak_ = (objc_);
+#ifndef zd_weakTarget
+#define zd_weakTarget(objc_)  \
+zd_keywordify __weak __typeof__(objc_) weak##_##objc_ = (objc_);
+#endif
 
-#define zd_strongObjc(objc_) \
-@autoreleasepool {} __strong __typeof__(self_weak_) objc_ = self_weak_;
+#ifndef zd_strongTarget
+#define zd_strongTarget(objc_)  \
+zd_keywordify __strong __typeof__(weak##_##objc_) objc_ = weak##_##objc_;
+#endif
 
 
 #define ZD_ExcuteBeforeMainFunction __attribute__((constructor))
