@@ -5,6 +5,7 @@
 //  Created by Zero.D.Saber on 2017/11/13.
 //
 //  https://github.com/ibireme/YYKit/blob/master/YYKit/Utility/YYThreadSafeDictionary.m
+//  https://github.com/githubliuming/QYFoundationHelper/blob/5dbe7a503269ce503f6a6e6bea846e49f93ddbee/QYFoundationHelper/QYContainer/QYMutableDictionary.m
 
 #import "ZDMutableDictionary.h"
 
@@ -20,6 +21,12 @@ return self;
     dispatch_semaphore_t _lock;
     dispatch_queue_t _zdInnerQueue;
     NSMutableDictionary *_zdInnerMutDict;
+}
+
+- (void)dealloc {
+    _zdInnerMutDict = nil;
+    _zdInnerQueue = nil;
+    _lock = nil;
 }
 
 #pragma mark - Initialization
