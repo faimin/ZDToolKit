@@ -378,7 +378,7 @@ zd_keywordify __strong __typeof__(weak##_##objc_) objc_ = weak##_##objc_;
 #if defined(__cplusplus)
 #define zdlet auto const
 #else
-#define zdlet const __auto_type
+#define zdlet __auto_type const
 #endif
 
 #if defined(__cplusplus)
@@ -389,9 +389,9 @@ zd_keywordify __strong __typeof__(weak##_##objc_) objc_ = weak##_##objc_;
 
 //MARK:- KeyPath
 #if DEBUG
-#define ZD_KEYPATH(object, property) ((void)(NO && ((void)object.property, NO)), @ #property)
+#define ZD_KEYPATH(object, property) ((void)(NO && ((void)object.property, NO)), @#property)
 #else
-#define ZD_KEYPATH(object, property) @ #property
+#define ZD_KEYPATH(object, property) @#property
 #endif
 
 
