@@ -7,20 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "ZDDefine.h"
-#import "NSString+ZDUtility.h"
-#import "UIView+ZDUtility.h"
-#import "UIView+RZBorders.h"
-#import "UIImageView+ZDUtility.h"
-#import "UIImageView+WebCache.h"
-#import "UITextView+ZDUtility.h"
-#import "NSObject+DLIntrospection.h"
-#import "ZDFunction.h"
-#import <dlfcn.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
-#import <NSObject+ZDUtility.h>
-#import <ZDToolKit/ZDDefine.h>
+#import <dlfcn.h>
+#import <ZDToolKit/ZDToolKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <ZDToolKit/ZDFastEnumeration.h>
+
 
 @interface ViewController ()
 
@@ -49,6 +42,11 @@
     SEL selector = sel_registerName("executeMethodWithStr:num:");
     id result = [[aClass new] zd_invokeSelectorWithArgs:selector, @"数字", 999];
     NSLog(@"%@", result);
+    
+    NSArray<NSString *> *arr = @[@"awgea", @"125", @"145", @"880"];
+    foreach(a, arr) {
+        NSLog(@"%@", a.zd_isEmpty ? @"空字符串" : @"非空");
+    }
 
     /*
      id target = [aClass new];

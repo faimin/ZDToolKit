@@ -6,49 +6,14 @@
 //  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
-#import "ZDTools.h"
+#import "ZDConsoleUnicode.h"
 #import <objc/runtime.h>
 
 ///==================================================================
 #pragma mark - Implementation of ZDTools
 ///==================================================================
 
-@implementation ZDTools
-
-+ (NSMutableDictionary *)scheduleSourceDict
-{
-    static NSMutableDictionary *_sourceDict = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sourceDict = [[NSMutableDictionary alloc] init];
-    });
-    return _sourceDict;
-}
-
-// https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
-+ (void)zd_throttleWithTimeinterval:(NSTimeInterval)intervalInSeconds
-                              queue:(dispatch_queue_t)queue
-                                key:(NSString *)key
-                              block:(dispatch_block_t)block
-{
-    NSCParameterAssert(key);
-    if (!key || key.length == 0) return;
-    
-    NSMutableDictionary *scheduleSourceDict = [self scheduleSourceDict];
-    dispatch_source_t timer = scheduleSourceDict[key];
-    if (timer) return;
-    
-    if (block) block();
-    
-    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
-    dispatch_source_set_event_handler(timer, ^{
-        dispatch_source_cancel(timer);
-        scheduleSourceDict[key] = nil;
-    });
-    dispatch_resume(timer);
-    scheduleSourceDict[key] = timer;
-}
+@implementation ZDConsoleUnicode
 
 @end
 
@@ -56,8 +21,7 @@
 #pragma mark - Functions
 ///==================================================================
 
-static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
-{
+static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel) {
     Method origMethod = class_getInstanceMethod(aClass, originalSel);
     Method replMethod = class_getInstanceMethod(aClass, replacementSel);
     if (!origMethod || !replMethod) {
@@ -75,8 +39,7 @@ static BOOL zd_swizzleExchageInstanceMethod(Class aClass, SEL originalSel, SEL r
     return YES;
 }
 
-NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr)
-{
+NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr) {
     if (!unicodeStr) return @"";
     
 #if 0
@@ -105,14 +68,9 @@ NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr)
 #pragma mark - NSArray
 ///==================================================================
 
-@interface NSArray (Unicode)
-
-@end
-
 @implementation NSArray (Unicode)
 
-+ (void)load
-{
++ (void)load {
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
         zd_swizzleExchageInstanceMethod([self class], @selector(description), @selector(replaceDescription));
@@ -121,18 +79,15 @@ NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr)
 	});
 }
 
-- (NSString *)replaceDescription
-{
+- (NSString *)replaceDescription {
 	return StringByReplaceUnicode([self replaceDescription]);
 }
 
-- (NSString *)replaceDescriptionWithLocale:(nullable id)locale
-{
+- (NSString *)replaceDescriptionWithLocale:(nullable id)locale {
 	return StringByReplaceUnicode([self replaceDescriptionWithLocale:locale]);
 }
 
-- (NSString *)replaceDescriptionWithLocale:(nullable id)locale indent:(NSUInteger)level
-{
+- (NSString *)replaceDescriptionWithLocale:(nullable id)locale indent:(NSUInteger)level {
     return StringByReplaceUnicode([self replaceDescriptionWithLocale:locale indent:level]);
 }
 
@@ -142,14 +97,9 @@ NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr)
 #pragma mark - NSDictionary
 ///==================================================================
 
-@interface NSDictionary (Unicode)
-
-@end
-
 @implementation NSDictionary (Unicode)
 
-+ (void)load
-{
++ (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         zd_swizzleExchageInstanceMethod([self class], @selector(description), @selector(replaceDescription));
@@ -158,18 +108,15 @@ NS_INLINE NSString *StringByReplaceUnicode(NSString *unicodeStr)
     });
 }
 
-- (NSString *)replaceDescription
-{
+- (NSString *)replaceDescription {
     return StringByReplaceUnicode([self replaceDescription]);
 }
 
-- (NSString *)replaceDescriptionWithLocale:(nullable id)locale
-{
+- (NSString *)replaceDescriptionWithLocale:(nullable id)locale {
     return StringByReplaceUnicode([self replaceDescriptionWithLocale:locale]);
 }
 
-- (NSString *)replaceDescriptionWithLocale:(nullable id)locale indent:(NSUInteger)level
-{
+- (NSString *)replaceDescriptionWithLocale:(nullable id)locale indent:(NSUInteger)level {
     return StringByReplaceUnicode([self replaceDescriptionWithLocale:locale indent:level]);
 }
 

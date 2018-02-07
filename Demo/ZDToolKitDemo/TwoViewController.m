@@ -7,10 +7,6 @@
 //
 
 #import "TwoViewController.h"
-#import "UIView+ZDUtility.h"
-#import "ZDFunction.h"
-#import "ZDActionLabel.h"
-#import "ZDEdgeLabel.h"
 #import <ZDToolKit/ZDToolKit.h>
 
 @interface TwoViewController ()

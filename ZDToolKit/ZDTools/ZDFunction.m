@@ -993,6 +993,7 @@ BOOL ZD_IsMainQueue() {
      */
 }
 
+// https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
 void ZD_ExecuteFunctionThrottle(ZDThrottleType type, NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block) {
     static NSMutableDictionary *scheduleSourceDict = nil;
     static dispatch_once_t onceToken;

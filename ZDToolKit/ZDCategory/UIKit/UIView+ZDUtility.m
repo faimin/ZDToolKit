@@ -216,16 +216,16 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 
 - (void)zd_handleTapAction:(UITapGestureRecognizer *)tapGesture {
     if (tapGesture.state == UIGestureRecognizerStateRecognized) {
-        void(^tapActionBlock)() = objc_getAssociatedObject(tapGesture, TapGestureBlockKey);
+        void(^tapActionBlock)(UITapGestureRecognizer *) = objc_getAssociatedObject(tapGesture, TapGestureBlockKey);
         if (tapActionBlock) {
             tapActionBlock(tapGesture);
         }
     }
 }
 
-- (void)zd_handleLongPressAction:(UITapGestureRecognizer *)longPressGesture {
+- (void)zd_handleLongPressAction:(UILongPressGestureRecognizer *)longPressGesture {
     if (longPressGesture.state == UIGestureRecognizerStateRecognized) {
-        void(^longPressActionBlock)() = objc_getAssociatedObject(longPressGesture, LongPressGestureBlockKey);
+        void(^longPressActionBlock)(UILongPressGestureRecognizer *) = objc_getAssociatedObject(longPressGesture, LongPressGestureBlockKey);
         if (longPressActionBlock) {
             longPressActionBlock(longPressGesture);
         }

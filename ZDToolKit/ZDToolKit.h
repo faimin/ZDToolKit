@@ -79,7 +79,7 @@
 #import "ZDBannerScrollView.h"
 #import "ZDRunloopQueue.h"
 #import "ZDGuardUIKitOnMainThread.h"
-#import "ZDTools.h"
+#import "ZDConsoleUnicode.h"
 
 
 #endif /* ZDToolKit_h */
