@@ -31,7 +31,7 @@
 
 @property (nonatomic, strong) ZDImageModel *model;
 //@property (nonatomic, strong) id asset;
-@property (nonatomic, copy  ) void (^singleTapGestureBlock)();
+@property (nonatomic, copy  ) void (^singleTapGestureBlock)(void);
 @property (nonatomic, copy  ) void (^imageProgressUpdateBlock)(double progress);
 
 - (void)recoverSubviews;

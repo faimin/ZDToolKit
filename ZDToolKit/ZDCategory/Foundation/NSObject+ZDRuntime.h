@@ -10,8 +10,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma clang diagnostic ignored "-Wstrict-prototypes"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (ZDRuntime)
@@ -21,10 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
  Adds a block to be executed as soon as the receiver's memory is deallocated
  @param block The block to execute when the receiver is being deallocated
  */
-- (void)addDeallocBlock:(void(^)())block;
+- (void)addDeallocBlock:(dispatch_block_t)block;
 
 /// deallocBlock executed after the object dealloc
-- (void)zd_deallocBlcok:(void(^)())deallocBlock;
+- (void)zd_deallocBlcok:(dispatch_block_t)deallocBlock;
 
 #pragma mark - Swizzeling
 
@@ -55,14 +53,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Associate
 
-- (void)zd_setStrongAssociateValue:(id)value forKey:(void *)key;
-- (id)zd_getStrongAssociatedValueForKey:(void *)key;
+- (void)zd_setStrongAssociateValue:(nullable id)value forKey:(const void *)key;
+- (nullable id)zd_getStrongAssociatedValueForKey:(const void *)key;
 
-- (void)zd_setCopyAssociateValue:(id)value forKey:(void *)key;
-- (id)zd_getCopyAssociatedValueForKey:(void *)key;
+- (void)zd_setCopyAssociateValue:(nullable id)value forKey:(const void *)key;
+- (nullable id)zd_getCopyAssociatedValueForKey:(const void *)key;
 
-- (void)zd_setWeakAssociateValue:(id)value forKey:(void *)key;
-- (id)zd_getWeakAssociateValueForKey:(void *)key;
+- (void)zd_setWeakAssociateValue:(id)value forKey:(const void *)key;
+- (nullable id)zd_getWeakAssociateValueForKey:(const void *)key;
+
+- (void)zd_setUnsafeUnretainedAssociateValue:(nullable id)value forKey:(const void *)key;
+- (nullable id)zd_getUnsafeUnretainedAssociatedValueForKey:(const void *)key;
 
 - (void)zd_removeAssociatedValues;
 
@@ -80,12 +81,12 @@ NS_ASSUME_NONNULL_BEGIN
  Convenience method to create a block executor with a deallocation block
  @param block The block to execute when the created receiver is being deallocated
  */
-+ (instancetype)blockExecutorWithDeallocBlock:(void(^)())block;
++ (instancetype)blockExecutorWithDeallocBlock:(dispatch_block_t)block;
 
 /**
  Block to execute when dealloc of the receiver is called
  */
-@property (nonatomic, copy) void (^deallocBlock)();
+@property (nonatomic, copy) dispatch_block_t deallocBlock;
 
 @end
 
@@ -94,9 +95,9 @@ NS_ASSUME_NONNULL_BEGIN
 //========================================================
 @interface ZDWeakSelf : NSObject
 
-@property (nonatomic, copy, readonly) void(^deallocBlock)();
+@property (nonatomic, copy, readonly) dispatch_block_t deallocBlock;
 
-- (instancetype)initWithBlock:(void(^)())deallocBlock;
+- (instancetype)initWithBlock:(dispatch_block_t)deallocBlock;
 
 @end
 
