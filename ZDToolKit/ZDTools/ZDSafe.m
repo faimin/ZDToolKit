@@ -339,7 +339,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayI"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
         zd_swizzleClassMethod([NSArray class], @selector(arrayWithObjects:count:), @selector(zd_arrayWithObjects:count:));
         
-        // NAMutableArray
+        // NSMutableArray
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(objectAtIndex:), @selector(zd_objectAtIndex:));
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(replaceObjectAtIndex:withObject:), @selector(zd_replaceObjectAtIndex:withObject:));
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(addObject:), @selector(zd_addObject:));
