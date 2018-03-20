@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)zd_isContainsEmoji;
 - (NSString *)zd_filterEmoji;
 - (NSString *)zd_removeHalfEmoji;
+- (NSString *)zd_subEmojiStringToIndex:(NSUInteger)index;   ///< 安全截取包含emoji的文本
 
 // MARK: Function
 - (NSString *)zd_reservedNumberOnly;   ///< 只保留数字

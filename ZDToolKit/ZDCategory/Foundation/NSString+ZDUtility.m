@@ -237,6 +237,16 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return self;
 }
 
+- (NSString *)zd_subEmojiStringToIndex:(NSUInteger)index
+{
+    if (self.length > index) {
+        NSRange rangeIndex = [self rangeOfComposedCharacterSequenceAtIndex:index];
+        NSString *result = [self substringToIndex:rangeIndex.location];
+        return result;
+    }
+    return self;
+}
+
 #pragma mark - Function
 
 - (NSString *)zd_reservedNumberOnly
@@ -250,7 +260,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 
 - (NSString *)zd_reverse
 {
-    NSMutableString* reverseString = [[NSMutableString alloc] init];
+    NSMutableString *reverseString = [[NSMutableString alloc] init];
     NSUInteger charIndex = [self length];
     while (charIndex > 0) {
         charIndex --;
