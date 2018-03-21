@@ -180,6 +180,8 @@ FOUNDATION_EXPORT BOOL ZD_IsMainQueue(void);
 /// 让某一方法在固定的时间间隔内只执行一次
 FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_mainQueue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_block_t block);
 FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_queue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_queue_t queue, dispatch_block_t block);
+/// 根据当前活跃的处理器个数来创建队列
+FOUNDATION_EXPORT dispatch_queue_t ZD_TaskQueue(void);
 
 #pragma mark - Runtime
 #pragma mark -

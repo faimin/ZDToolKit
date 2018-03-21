@@ -262,14 +262,14 @@
 		FA6244CE200CBFAE007A9EDC /* ZDImageGroupPreview */ = {
 			isa = PBXGroup;
 			children = (
-				FA6244CF200CBFAE007A9EDC /* YYPhotoGroupView.h */,
-				FA6244D0200CBFAE007A9EDC /* ZDImageGroupPreviewController.h */,
 				FA6244D1200CBFAE007A9EDC /* ZDImageModel.h */,
-				FA6244D2200CBFAE007A9EDC /* ZDImagePreviewCell.m */,
-				FA6244D3200CBFAE007A9EDC /* YYPhotoGroupView.m */,
-				FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */,
-				FA6244D5200CBFAE007A9EDC /* ZDImagePreviewCell.h */,
 				FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */,
+				FA6244CF200CBFAE007A9EDC /* YYPhotoGroupView.h */,
+				FA6244D3200CBFAE007A9EDC /* YYPhotoGroupView.m */,
+				FA6244D5200CBFAE007A9EDC /* ZDImagePreviewCell.h */,
+				FA6244D2200CBFAE007A9EDC /* ZDImagePreviewCell.m */,
+				FA6244D0200CBFAE007A9EDC /* ZDImageGroupPreviewController.h */,
+				FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */,
 			);
 			path = ZDImageGroupPreview;
 			sourceTree = "<group>";

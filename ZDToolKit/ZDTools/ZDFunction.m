@@ -12,6 +12,7 @@
 #import <pthread/pthread.h>
 #import <Accelerate/Accelerate.h>
 #import <AVFoundation/AVAsset.h>
+#import <libkern/OSAtomic.h>
 // -------- IP & Address --------
 #import <sys/sockio.h>
 #import <sys/ioctl.h>
@@ -996,9 +997,11 @@ BOOL ZD_IsMainQueue() {
 // https://github.com/cyanzhong/GCDThrottle/blob/master/GCDThrottle/GCDThrottle.m
 void ZD_ExecuteFunctionThrottle(ZDThrottleType type, NSTimeInterval intervalInSeconds, dispatch_queue_t queue, NSString *key, dispatch_block_t block) {
     static NSMutableDictionary *scheduleSourceDict = nil;
+    static dispatch_queue_t zd_releaseQueue = NULL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         scheduleSourceDict = [[NSMutableDictionary alloc] init];
+        zd_releaseQueue = dispatch_queue_create("com.zero.d.saber.freeTempObjC", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, 0));
     });
     
     if (!key) return;
@@ -1013,7 +1016,7 @@ void ZD_ExecuteFunctionThrottle(ZDThrottleType type, NSTimeInterval intervalInSe
         dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, intervalInSeconds * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
         dispatch_source_set_event_handler(timer, ^{
             dispatch_source_cancel(timer);
-            [scheduleSourceDict removeObjectForKey:key];
+            scheduleSourceDict[key] = nil;
         });
         dispatch_resume(timer);
         scheduleSourceDict[key] = timer;
@@ -1029,7 +1032,12 @@ void ZD_ExecuteFunctionThrottle(ZDThrottleType type, NSTimeInterval intervalInSe
         dispatch_source_set_event_handler(timer, ^{
             if (block) block();
             dispatch_source_cancel(timer);
+            dispatch_source_t tempTimer = scheduleSourceDict[key];
             scheduleSourceDict[key] = nil;
+            // 在异步队列释放对象
+            dispatch_async(zd_releaseQueue, ^{
+                [tempTimer description];
+            });
         });
         dispatch_resume(timer);
         scheduleSourceDict[key] = timer;
@@ -1042,6 +1050,26 @@ void ZD_Dispatch_throttle_on_mainQueue(ZDThrottleType throttleType, NSTimeInterv
 
 void ZD_Dispatch_throttle_on_queue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_queue_t queue, dispatch_block_t block) {
     ZD_ExecuteFunctionThrottle(throttleType, intervalInSeconds, queue, [NSThread callStackSymbols][1], block);
+}
+
+static const NSUInteger MaxQueueCount = 8;
+dispatch_queue_t ZD_TaskQueue(void) {
+    static NSUInteger queueCount;
+    static dispatch_queue_t queues[MaxQueueCount];
+    static volatile int32_t counter = 0;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queueCount = [NSProcessInfo processInfo].activeProcessorCount;
+        queueCount = MIN(MAX(queueCount, 1), MaxQueueCount);
+        for (NSUInteger i = 0; i < queueCount; i++) {
+            dispatch_queue_attr_t attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, 0);
+            queues[i] = dispatch_queue_create("com.zero.d.saber.heavy.task", attr);
+        }
+    });
+    
+    uint32_t cur = OSAtomicIncrement32(&counter);
+    return queues[cur % queueCount];
 }
 
 #pragma mark - Runtime
