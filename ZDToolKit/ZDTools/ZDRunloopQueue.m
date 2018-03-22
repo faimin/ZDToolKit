@@ -106,6 +106,10 @@
 
 //------------------------------------------------------------------
 
+static void _sourceContextPerformCallBack(void *info) {
+    NSLog(@"execute...");
+}
+
 @interface ZDRunloopQueueThread ()
 @property (nonatomic, assign) CFRunLoopSourceRef runloopSource;
 @property (nonatomic, assign) CFRunLoopRef currentRunloop;
@@ -122,7 +126,7 @@
 }
 
 - (void)setup {
-    CFRunLoopSourceContext sourceContext = {0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+    CFRunLoopSourceContext sourceContext = {0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &_sourceContextPerformCallBack};
     self.runloopSource = CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &sourceContext);
 }
 
