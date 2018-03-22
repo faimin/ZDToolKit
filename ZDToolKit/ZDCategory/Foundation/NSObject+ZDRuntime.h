@@ -12,6 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ZD_FreeBlock)(id realTarget);
+
 @interface NSObject (ZDRuntime)
 
 #pragma mark - Dealloc Block
@@ -22,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addDeallocBlock:(dispatch_block_t)block;
 
 /// deallocBlock executed after the object dealloc
-- (void)zd_deallocBlcok:(dispatch_block_t)deallocBlock;
+- (void)zd_deallocBlcok:(ZD_FreeBlock)deallocBlock;
 
 #pragma mark - Swizzeling
 
@@ -95,9 +97,10 @@ NS_ASSUME_NONNULL_BEGIN
 //========================================================
 @interface ZDWeakSelf : NSObject
 
-@property (nonatomic, copy, readonly) dispatch_block_t deallocBlock;
+@property (nonatomic, copy, readonly) ZD_FreeBlock deallocBlock;
+@property (nonatomic, unsafe_unretained, readonly) id realTarget;
 
-- (instancetype)initWithBlock:(dispatch_block_t)deallocBlock;
+- (instancetype)initWithBlock:(ZD_FreeBlock)deallocBlock realTarget:(id)realTarget;
 
 @end
 
