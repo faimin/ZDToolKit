@@ -169,8 +169,9 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat offsetX = scrollView.contentOffset.x;
     CGFloat contentWidth = scrollView.contentSize.width;
+    if (contentWidth <= 0.01) return; // 此时还没有数据源
+    CGFloat offsetX = scrollView.contentOffset.x;
     CGFloat boundsWidth = self.bounds.size.width;
     if (offsetX >= (contentWidth - boundsWidth)) {
         scrollView.contentOffset = CGPointMake(boundsWidth, scrollView.contentOffset.y);
@@ -188,7 +189,6 @@
     }
     
     self.currentIndex = currentPage;
-    self.pageControl.currentPage = currentPage;
 }
 
 #pragma mark - Property
@@ -220,6 +220,9 @@
 
 - (void)setCurrentIndex:(NSInteger)currentIndex {
     if (_currentIndex == currentIndex) return;
+    _currentIndex = currentIndex;
+    
+    self.pageControl.currentPage = currentIndex;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(scrollView:didScrollToIndex:)]) {
         [self.delegate scrollView:self didScrollToIndex:currentIndex];
@@ -229,42 +232,41 @@
 //MARK: Getter
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
-        _collectionView = ({
-            UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-            flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            flowLayout.minimumInteritemSpacing = 0;
-            flowLayout.minimumLineSpacing = 0;
-            flowLayout.itemSize = self.bounds.size;
-            
-            UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
-            collectionView.dataSource = self;
-            collectionView.delegate = self;
-            collectionView.scrollsToTop = NO;
-            collectionView.pagingEnabled = YES;
-            collectionView.showsHorizontalScrollIndicator = NO;
-            collectionView.showsVerticalScrollIndicator = NO;
-            [collectionView registerClass:[ZDImageCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class])];
-            collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            if (@available(iOS 11, *)) {
-                collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            }
-                        
-            collectionView.contentOffset = CGPointMake(CGRectGetWidth(collectionView.frame), collectionView.contentOffset.y);
-            
-            collectionView;
-        });
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        flowLayout.minimumInteritemSpacing = 0;
+        flowLayout.minimumLineSpacing = 0;
+        flowLayout.itemSize = self.bounds.size;
+        
+        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
+        collectionView.dataSource = self;
+        collectionView.delegate = self;
+        collectionView.scrollsToTop = NO;
+        collectionView.pagingEnabled = YES;
+        collectionView.showsHorizontalScrollIndicator = NO;
+        collectionView.showsVerticalScrollIndicator = NO;
+        [collectionView registerClass:[ZDImageCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class])];
+        collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        if (@available(iOS 11, *)) {
+            collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        
+        collectionView.contentOffset = CGPointMake(CGRectGetWidth(collectionView.frame), collectionView.contentOffset.y);
+        
+        _collectionView = collectionView;
     }
     return _collectionView;
 }
 
 - (UIPageControl *)pageControl {
     if (!_pageControl) {
-        _pageControl = [[UIPageControl alloc] initWithFrame:(CGRect){0, CGRectGetHeight(self.bounds) - 20, CGRectGetWidth(self.bounds), 20}];
-        _pageControl.numberOfPages = self.imageURLStrings.count;
-        _pageControl.currentPage = 0;
-        _pageControl.hidesForSinglePage = YES;
-        _pageControl.pageIndicatorTintColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
-        _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.57 green:0.45 blue:0.57 alpha:1.0];
+        UIPageControl *view = [[UIPageControl alloc] initWithFrame:(CGRect){0, CGRectGetHeight(self.bounds) - 20, CGRectGetWidth(self.bounds), 20}];
+        view.pageIndicatorTintColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
+        view.currentPageIndicatorTintColor = [UIColor colorWithRed:0.57 green:0.45 blue:0.57 alpha:1.0];
+        view.hidesForSinglePage = YES;
+        view.numberOfPages = self.imageURLStrings.count;
+        view.currentPage = 0;
+        _pageControl = view;
     }
     return _pageControl;
 }
