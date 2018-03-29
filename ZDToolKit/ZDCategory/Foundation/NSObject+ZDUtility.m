@@ -412,9 +412,9 @@ return @(ret); \
         };
             
         case '@': { // id
-            void *ret;
+            __autoreleasing id ret; //void *ret;
             [inv getReturnValue:&ret];
-            return (__bridge id)ret;
+            return ret; //(__bridge id)ret;
         };
             
         case '#': { // Class
