@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 最小值
 - (CGFloat)zd_min;
 
-- (NSMutableArray *)zd_map:(id (^)(id objc))block;
+- (NSMutableArray *)zd_map:(id (^)(ObjectType objc))block;
 
 @end
 

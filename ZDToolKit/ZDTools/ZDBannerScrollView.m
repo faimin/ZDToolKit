@@ -152,7 +152,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.delegate && [self.delegate respondsToSelector:@selector(scrollView:didSelectItemAtIndex:)]) {
         if (self.innerDataSource.count == 3) { // 此时说明只有一条数据
-            NSLog(@"点击了第%zd个", 0);
+            NSLog(@"点击了第0个");
             [self.delegate scrollView:self didSelectItemAtIndex:0];
         }
         else {

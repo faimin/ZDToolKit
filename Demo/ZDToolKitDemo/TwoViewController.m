@@ -73,7 +73,7 @@
                 [NSString stringWithFormat:@"%@%@", num, str];
                 
                 if (i % 3 == 0) {
-                    NSString *str = [NSString stringWithFormat:@"%f", ZD_MemoryUsage()];
+                    __unused NSString *str = [NSString stringWithFormat:@"%f", ZD_MemoryUsage()];
                     //NSLog(@"   %@", str);
                 }
             }
