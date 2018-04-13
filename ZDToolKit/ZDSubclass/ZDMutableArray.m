@@ -57,7 +57,7 @@ return self;
 - (NSUInteger)count {
     __block NSUInteger count;
     dispatch_sync(_zdInnerQueue, ^{
-        count = _zdInnerMutArray.count;
+        count = self->_zdInnerMutArray.count;
     });
     return count;
 }
@@ -67,7 +67,7 @@ return self;
     
     __block id obj;
     dispatch_sync(_zdInnerQueue, ^{
-        obj = _zdInnerMutArray[index];
+        obj = self->_zdInnerMutArray[index];
     });
     return obj;
 }
@@ -75,14 +75,14 @@ return self;
 - (NSEnumerator *)keyEnumerator {
     __block NSEnumerator *enu;
     dispatch_sync(_zdInnerQueue, ^{
-        enu = [_zdInnerMutArray objectEnumerator];
+        enu = [self->_zdInnerMutArray objectEnumerator];
     });
     return enu;
 }
 
 - (void)insertObject:(id)anObject atIndex:(NSUInteger)index {
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutArray insertObject:anObject atIndex:index];
+        [self->_zdInnerMutArray insertObject:anObject atIndex:index];
     });
 }
 
@@ -90,7 +90,7 @@ return self;
     if (!anObject) return;
     
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutArray addObject:anObject];
+        [self->_zdInnerMutArray addObject:anObject];
     });
 }
 
@@ -98,13 +98,13 @@ return self;
     if (self.zdInnerMutArray.count <= index) return;
     
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutArray removeObjectAtIndex:index];
+        [self->_zdInnerMutArray removeObjectAtIndex:index];
     });
 }
 
 - (void)removeLastObject {
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutArray removeLastObject];
+        [self->_zdInnerMutArray removeLastObject];
     });
 }
 
@@ -112,7 +112,7 @@ return self;
     if (self.zdInnerMutArray.count <= index) return;
     
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutArray replaceObjectAtIndex:index withObject:anObject];
+        [self->_zdInnerMutArray replaceObjectAtIndex:index withObject:anObject];
     });
 }
 
@@ -121,7 +121,7 @@ return self;
     if (!anObject) return index;
     
     dispatch_sync(_zdInnerQueue, ^{
-        index = [_zdInnerMutArray indexOfObject:anObject];
+        index = [self->_zdInnerMutArray indexOfObject:anObject];
     });
     return index;
 }

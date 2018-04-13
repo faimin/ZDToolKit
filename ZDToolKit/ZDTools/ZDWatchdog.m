@@ -83,16 +83,16 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
         NSUInteger timeoutCount = 0; // 一次循环过程中的卡顿次数
         while (true) {
             //超时后返回非0值,未超时返回0;默认等待50毫秒 = 50/1000 秒
-            long semaphoreResult = dispatch_semaphore_wait(_semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval ?: kDefaultInterval) * NSEC_PER_MSEC));
+            long semaphoreResult = dispatch_semaphore_wait(self->_semaphore, dispatch_time(DISPATCH_TIME_NOW, (self.timeInterval ?: kDefaultInterval) * NSEC_PER_MSEC));
             if (semaphoreResult != 0) { //超时
                 //runloop观察者不存在时重置所有条件
-                if (!_observer) {
+                if (!self->_observer) {
                     timeoutCount = 0;
-                    _semaphore = NULL;
-                    _activity = 0;
+                    self->_semaphore = NULL;
+                    self->_activity = 0;
                 }
 
-                if (_activity == kCFRunLoopBeforeSources || _activity == kCFRunLoopAfterWaiting) {
+                if (self->_activity == kCFRunLoopBeforeSources || self->_activity == kCFRunLoopAfterWaiting) {
                     if (++timeoutCount < 5) {
                         continue;
                     } else {
@@ -164,11 +164,11 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
 #pragma mark - Private Method
 
 - (void)printTrace {
-    void* callstack[128];
+    void *callstack[128];
     int count = backtrace(callstack, 128);
     char **strs = backtrace_symbols(callstack, count);
-    NSMutableArray *backtraceArr = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i < count; i++) {
+    NSMutableArray<NSString *> *backtraceArr = [NSMutableArray arrayWithCapacity:count];
+    for (NSInteger i = 0; i < count; i++) {
         [backtraceArr addObject:[NSString stringWithUTF8String:strs[i]]];
     }
     NSLog(@"卡顿堆栈===>\n%@\n----------------------------", backtraceArr);

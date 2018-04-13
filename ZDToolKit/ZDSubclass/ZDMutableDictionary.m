@@ -73,7 +73,7 @@ return self;
 - (NSUInteger)count {
     __block NSUInteger count;
     dispatch_sync(_zdInnerQueue, ^{
-        count = _zdInnerMutDict.count;
+        count = self->_zdInnerMutDict.count;
     });
     return count;
 }
@@ -83,7 +83,7 @@ return self;
     
     __block id obj;
     dispatch_sync(_zdInnerQueue, ^{
-        obj = _zdInnerMutDict[aKey];
+        obj = self->_zdInnerMutDict[aKey];
     });
     return obj;
 }
@@ -91,7 +91,7 @@ return self;
 - (NSEnumerator *)keyEnumerator {
     __block NSEnumerator *enu;
     dispatch_sync(_zdInnerQueue, ^{
-        enu = [_zdInnerMutDict keyEnumerator];
+        enu = [self->_zdInnerMutDict keyEnumerator];
     });
     return enu;
 }
@@ -99,7 +99,7 @@ return self;
 - (NSArray *)allKeys {
     __block NSArray *allKeys;
     dispatch_sync(_zdInnerQueue, ^{
-        allKeys = [_zdInnerMutDict allKeys];
+        allKeys = [self->_zdInnerMutDict allKeys];
     });
     return allKeys;
 }
@@ -107,7 +107,7 @@ return self;
 - (NSArray *)allKeysForObject:(id)anObject {
     __block NSArray *allKeys;
     dispatch_sync(_zdInnerQueue, ^{
-        allKeys = [_zdInnerMutDict allKeysForObject:anObject];
+        allKeys = [self->_zdInnerMutDict allKeysForObject:anObject];
     });
     return allKeys;
 }
@@ -115,7 +115,7 @@ return self;
 - (NSArray *)allValues {
     __block NSArray *allValues;
     dispatch_sync(_zdInnerQueue, ^{
-        allValues = [_zdInnerMutDict allValues];
+        allValues = [self->_zdInnerMutDict allValues];
     });
     return allValues;
 }
@@ -127,7 +127,7 @@ return self;
     
     aKey = [aKey copyWithZone:NULL];
     dispatch_barrier_async(_zdInnerQueue, ^{
-        _zdInnerMutDict[aKey] = anObject;
+        self->_zdInnerMutDict[aKey] = anObject;
     });
 }
 
@@ -135,37 +135,37 @@ return self;
     if (!aKey) return;
     
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutDict removeObjectForKey:aKey];
+        [self->_zdInnerMutDict removeObjectForKey:aKey];
     });
 }
 
 - (void)addEntriesFromDictionary:(NSDictionary *)otherDictionary {
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutDict addEntriesFromDictionary:otherDictionary];
+        [self->_zdInnerMutDict addEntriesFromDictionary:otherDictionary];
     });
 }
 
 - (void)removeAllObjects {
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutDict removeAllObjects];
+        [self->_zdInnerMutDict removeAllObjects];
     });
 }
 
 - (void)removeObjectsForKeys:(NSArray *)keyArray {
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutDict removeObjectsForKeys:keyArray];
+        [self->_zdInnerMutDict removeObjectsForKeys:keyArray];
     });
 }
 
 - (void)setDictionary:(NSDictionary *)otherDictionary {
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutDict setDictionary:otherDictionary];
+        [self->_zdInnerMutDict setDictionary:otherDictionary];
     });
 }
 
 - (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying> )key {
     dispatch_barrier_async(_zdInnerQueue, ^{
-        [_zdInnerMutDict setObject:obj forKeyedSubscript:key];
+        [self->_zdInnerMutDict setObject:obj forKeyedSubscript:key];
     });
 }
 
