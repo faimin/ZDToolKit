@@ -295,8 +295,6 @@
 				05EC9C631C53CDC300BACFE9 /* Frameworks */,
 				05EC9C641C53CDC300BACFE9 /* Resources */,
 				BC7DE2781E35DADD00F508E2 /* Embed Frameworks */,
-				84E472C8B06DB1ADEE251218 /* [CP] Embed Pods Frameworks */,
-				7F9439B6E01EF1C0CBAAFF3E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -315,8 +313,6 @@
 				05EC9C7B1C53CDC300BACFE9 /* Sources */,
 				05EC9C7C1C53CDC300BACFE9 /* Frameworks */,
 				05EC9C7D1C53CDC300BACFE9 /* Resources */,
-				9A2D4EE41DD23F607F3442AC /* [CP] Embed Pods Frameworks */,
-				4D62BD00B8508A3944868BC5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -336,8 +332,6 @@
 				05EC9C861C53CDC300BACFE9 /* Sources */,
 				05EC9C871C53CDC300BACFE9 /* Frameworks */,
 				05EC9C881C53CDC300BACFE9 /* Resources */,
-				33A9BD25110E516CA575ECFF /* [CP] Embed Pods Frameworks */,
-				4D33EF1BD7A0E2141AE8CE86 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -452,51 +446,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33A9BD25110E516CA575ECFF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4D33EF1BD7A0E2141AE8CE86 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4D62BD00B8508A3944868BC5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemoTests/Pods-ZDToolKitDemoTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6C6ED9B4F6BBE9F86751EB6C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -513,51 +462,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7F9439B6E01EF1C0CBAAFF3E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemo/Pods-ZDToolKitDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		84E472C8B06DB1ADEE251218 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemo/Pods-ZDToolKitDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9A2D4EE41DD23F607F3442AC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZDToolKitDemoTests/Pods-ZDToolKitDemoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B50D3D989A68444241C76A2E /* [CP] Check Pods Manifest.lock */ = {

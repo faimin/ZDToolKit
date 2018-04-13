@@ -284,8 +284,8 @@
         [_scrollView zoomToRect:CGRectMake(touchPoint.x - xsize/2, touchPoint.y - ysize/2, xsize, ysize) animated:YES];
     }
 }
-/*
 - (void)pan:(UIPanGestureRecognizer *)g {
+    /*
     switch (g.state) {
         case UIGestureRecognizerStateBegan: {
             if (_isPresented) {
@@ -359,8 +359,8 @@
         }
         default:break;
     }
+     */
 }
-*/
 #pragma mark - UIScrollViewDelegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
