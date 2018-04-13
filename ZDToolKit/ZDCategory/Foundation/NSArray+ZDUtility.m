@@ -93,7 +93,10 @@
 {
     NSMutableArray *mutArr = [NSMutableArray arrayWithCapacity:self.count];
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [mutArr addObject:block(obj) ?: [NSNull null]];
+        id value = block ? block(obj) : nil;
+        if (value) {
+            [mutArr addObject:value];
+        }
     }];
     
     return mutArr;
