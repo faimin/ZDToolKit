@@ -82,4 +82,15 @@
     }
 }
 
+- (NSMutableDictionary *)zd_mutableDictionary {
+    if (![self isKindOfClass:[NSDictionary class]]) return nil;
+    
+    if ([self isKindOfClass:[NSMutableDictionary class]]) {
+        return (NSMutableDictionary *)self;
+    }
+    else {
+        return [NSMutableDictionary dictionaryWithDictionary:self];
+    }
+}
+
 @end

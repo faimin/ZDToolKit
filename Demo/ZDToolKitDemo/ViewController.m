@@ -13,7 +13,7 @@
 #import <ZDToolKit/ZDToolKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <ZDToolKit/ZDFastEnumeration.h>
-
+#import <ZDToolKit/NSArray+ZDUtility.h>
 
 @interface ViewController ()
 
@@ -33,7 +33,8 @@
     [self uiTest];
 	//[self functionTest];
 	//[self numberTest];
-    [self mainqueueTest];
+    //[self mainqueueTest];
+    [self arrayTest];
     
     BOOL setProxy = ZD_isSetProxy();
     NSLog(@"%@", setProxy ? @"本机设置了代理" : @"没设置代理");
@@ -144,6 +145,12 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 }
 
 #pragma mark - Test
+
+- (void)arrayTest {
+    NSArray *arr = @[@1, @[@2, @[@3, @4, @[@5, @6, @7, @[@8, @9, @10, @11] ] ] ] ];
+    NSMutableArray *mut = [arr zd_flatten];
+    NSLog(@"%@", mut);
+}
 
 - (void)uiTest {
     NSString *urlStr = @"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg";

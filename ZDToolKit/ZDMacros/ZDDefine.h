@@ -331,7 +331,7 @@ do {                                                 							\
 //MARK:- 超出作用域后执行
 //defer(swift延迟调用关键字)宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
 /// 注意`ZD_CleanupBlock`函数的入参是`cleanup`所修饰变量的地址,类型要一样
-NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
+NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)(void)) {
     (*executeCleanupBlock)();
 }
 
@@ -348,7 +348,7 @@ NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)()) {
 #ifndef zd_defer
 	#define zd_defer  \
         zd_keywordify \
-        __strong void(^executeCleanupBlock)() __attribute__((cleanup(ZD_CleanupBlock), unused)) = ^
+        __strong void(^executeCleanupBlock)(void) __attribute__((cleanup(ZD_CleanupBlock), unused)) = ^
 #endif
 
 //MARK:- 弱引用
