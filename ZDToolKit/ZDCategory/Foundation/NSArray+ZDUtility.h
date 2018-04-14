@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)zd_min;
 
 - (NSMutableArray *)zd_map:(id (^)(ObjectType objc))block;
+- (NSMutableArray *)zd_flatten;
 
 @end
 

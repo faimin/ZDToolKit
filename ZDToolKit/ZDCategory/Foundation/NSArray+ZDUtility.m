@@ -102,5 +102,27 @@
     return mutArr;
 }
 
+- (NSMutableArray *)zd_flatten
+{
+    NSMutableArray *(^flattenBlock)(NSArray *) = ^NSMutableArray *(NSArray *arr) {
+        NSMutableArray *tempMutArr = @[].mutableCopy;
+        for (id value in arr) {
+            [tempMutArr addObject:value];
+        }
+        return tempMutArr;
+    };
+    
+    NSMutableArray *resultMutArr = @[].mutableCopy;
+    for (id value in self) {
+        if ([value isKindOfClass:[NSArray class]]) {
+            [resultMutArr addObjectsFromArray:flattenBlock((NSArray *)value)];
+        }
+        else {
+            [resultMutArr addObject:value];
+        }
+    }
+    return resultMutArr;
+}
+
 @end
 
