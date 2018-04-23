@@ -79,8 +79,6 @@
 }
 
 - (NSMutableArray *)zd_map:(id (^)(id objc))block {
-    if (![self isKindOfClass:[NSArray class]]) return nil;
-    
     NSMutableArray *mapedMutArr = [NSMutableArray arrayWithCapacity:self.count];
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         id value = block ? block(obj) : nil;
@@ -93,8 +91,6 @@
 }
 
 - (NSMutableArray *)zd_filter:(BOOL (^)(id objc))block {
-    if (![self isKindOfClass:[NSArray class]]) return nil;
-    
     if (!block) return self.zd_mutableArray;
     
     NSMutableArray *filteredMutArr = @[].mutableCopy;
@@ -107,8 +103,6 @@
 }
 
 - (NSMutableArray *)zd_flatten {
-    if (![self isKindOfClass:[NSArray class]]) return nil;
-    
     NSMutableArray *flattenedMutArray = @[].mutableCopy;
     for (id value in self) {
         if ([value isKindOfClass:[NSArray class]]) {
@@ -122,8 +116,6 @@
 }
 
 - (NSMutableArray *)zd_mutableArray {
-    if (![self isKindOfClass:[NSArray class]]) return nil;
-    
     if ([self isKindOfClass:[NSMutableArray class]]) {
         return (NSMutableArray *)self;
     }
