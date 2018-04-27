@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSMutableArray *)zd_map:(id (^)(ObjectType objc))block;
 - (NSMutableArray<ObjectType> *)zd_filter:(BOOL (^)(ObjectType objc))block;
 - (NSMutableArray<ObjectType> *)zd_flatten;
+- (NSMutableArray<ObjectType> *)zd_zipWith:(NSArray<ObjectType> *)rightArray usingBlock:(id(^)(ObjectType left, ObjectType right))block;
 - (NSMutableArray<ObjectType> *)zd_mutableArray;
 
 @end

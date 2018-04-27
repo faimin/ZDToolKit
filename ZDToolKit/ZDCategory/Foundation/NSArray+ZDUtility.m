@@ -115,6 +115,20 @@
     return flattenedMutArray;
 }
 
+- (NSMutableArray *)zd_zipWith:(NSArray *)rightArray usingBlock:(id(^)(id left, id right))block {
+    NSUInteger minCount = MIN(self.count, rightArray.count);
+    
+    NSMutableArray *zipedMutableArray = [NSMutableArray arrayWithCapacity:minCount];
+    for (NSUInteger i = 0; i < minCount; i++) {
+        id value = block ? block(self[i], rightArray[i]) : nil;
+        if (value) {
+            [zipedMutableArray addObject:value];
+        }
+    }
+    
+    return zipedMutableArray;
+}
+
 - (NSMutableArray *)zd_mutableArray {
     if ([self isKindOfClass:[NSMutableArray class]]) {
         return (NSMutableArray *)self;

@@ -13,4 +13,6 @@ typedef ZDPromise* (^PromiseBlock)(id param);
 
 @interface ZDPromise : NSObject
 
+@property (nonatomic, class, readonly) dispatch_group_t zd_dispatchGroup;
+
 @end

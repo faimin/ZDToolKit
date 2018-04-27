@@ -15,22 +15,23 @@
 
 @implementation ZDPromise
 
-- (instancetype)init {
-    if (self = [super init]) {
-        _queue = dispatch_queue_create("com.zero.promise", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_UTILITY, 0));
-        _group = dispatch_group_create();
-        
-    }
-    return self;
++ (dispatch_group_t)zd_dispatchGroup {
+    static dispatch_group_t _zd_dispatchGroup;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _zd_dispatchGroup = dispatch_group_create();
+    });
+    return _zd_dispatchGroup;
 }
 
-- (instancetype)create:(PromiseBlock(^)(id))block {
-    
-    dispatch_group_notify(self.group, self.queue, ^{
-        
-    });
-    
-    return nil;
+#pragma mark -
+
+- (instancetype)initPending:(PromiseBlock(^)(id param))block {
+    if (self = [super init]) {
+        _queue = dispatch_queue_create("com.zero.promise", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_UTILITY, 0));
+        dispatch_group_enter(ZDPromise.zd_dispatchGroup);
+    }
+    return self;
 }
 
 @end
