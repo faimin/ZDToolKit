@@ -43,12 +43,16 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
 }
 
 + (dispatch_queue_t)defaultDispatchQueue {
-    return zdPromiseDefaultDispatchQueue;
+    @synchronized(self) {
+        return zdPromiseDefaultDispatchQueue;
+    }
 }
 
 + (void)setDefaultDispatchQueue:(dispatch_queue_t)queue {
     NSParameterAssert(queue);
-    zdPromiseDefaultDispatchQueue = queue;
+    @synchronized(self) {
+        zdPromiseDefaultDispatchQueue = queue;
+    }
 }
 
 #pragma mark -
@@ -91,7 +95,34 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
     
     return promise;
 }
+/*
+#pragma mark - All
 
++ (instancetype)all:(NSArray<ZDPromise *> *)allPromises {
+    return [self all:allPromises onQueue:ZDPromise.defaultDispatchQueue];
+}
+
++ (instancetype)all:(NSArray<ZDPromise *> *)allPromises onQueue:(dispatch_queue_t)queue {
+    NSMutableArray<ZDPromise *> *promises = [NSMutableArray arrayWithArray:allPromises];
+    ZDPromise *newPromise = [self async:^(ZDFulfillBlock fulfill, ZDRejectBlock reject) {
+        for (ZDPromise *promise in promises) {
+            [promise observeOnQueue:queue fulfill:^(id  _Nonnull value) {
+                // 每个promise fulfill时都会执行这里，以下方法是为了保证所有的promise都已完成
+                for (ZDPromise *tempPromise in promises) {
+                    if (!tempPromise.isFulfilled) {
+                        return;
+                    }
+                }
+                
+                fulfill([promises valueForKey:NSStringFromSelector(@selector(value))]);
+            } reject:^(NSError * _Nonnull error) {
+                reject(error);
+            }];
+        }
+    } onQueue:queue];
+    return newPromise;
+}
+*/
 #pragma mark - Then
 
 - (instancetype)then:(ZDThenBlock)thenBlock {
@@ -219,6 +250,38 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
         }
         _observers = nil;
         dispatch_group_leave(ZDPromise.zd_dispatchGroup);
+    }
+}
+
+#pragma mark - Getter
+
+- (BOOL)isPending {
+    @synchronized(self) {
+        return _state == ZDPromiseState_Pending;
+    }
+}
+
+- (BOOL)isFulfilled {
+    @synchronized(self) {
+        return _state == ZDPromiseState_Fulfilled;
+    }
+}
+
+- (BOOL)isRejected {
+    @synchronized(self) {
+        return _state == ZDPromiseState_Rejected;
+    }
+}
+
+- (nullable id)value {
+    @synchronized(self) {
+        return _value;
+    }
+}
+
+- (nullable NSError *)error {
+    @synchronized(self) {
+        return _error;
     }
 }
 

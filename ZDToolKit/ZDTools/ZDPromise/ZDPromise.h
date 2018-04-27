@@ -26,11 +26,17 @@ typedef void(^ZDPromiseObserver)(ZDPromiseState state, id resolve);
 @interface ZDPromise : NSObject
 
 @property (class, nonatomic, readonly) dispatch_group_t zd_dispatchGroup;
-@property (class, atomic) dispatch_queue_t defaultDispatchQueue;
+@property (class, nonatomic) dispatch_queue_t defaultDispatchQueue;
 
 + (instancetype)async:(void(^)(ZDFulfillBlock fulfill, ZDRejectBlock reject))block;
 - (instancetype)then:(ZDThenBlock)thenBlock;
 - (instancetype)catch:(ZDRejectBlock)catchBlock;
+
+- (BOOL)isPending;
+- (BOOL)isFulfilled;
+- (BOOL)isRejected;
+- (nullable id)value;
+- (nullable NSError *)error;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
