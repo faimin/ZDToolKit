@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.static_framework = true
   s.public_header_files = 'ZDToolKit/ZDToolKit.h'
   s.source       = {
-    :git =>'https://github.com/faimin/ZDToolKit.git', 
+    :git => 'https://github.com/faimin/ZDToolKit.git', 
     :tag => s.version.to_s
   }
   s.source_files = 'ZDToolKit/ZDToolKit.h'
