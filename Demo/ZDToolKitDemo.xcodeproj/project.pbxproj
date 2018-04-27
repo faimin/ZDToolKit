@@ -27,7 +27,6 @@
 		FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D3200CBFAE007A9EDC /* YYPhotoGroupView.m */; };
 		FA6244D9200CBFAE007A9EDC /* ZDImageGroupPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */; };
 		FA6244DA200CBFAE007A9EDC /* ZDImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */; };
-		FABF3C0020138DC80005DC65 /* ZDPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = FABF3BFF20138DC80005DC65 /* ZDPromise.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,8 +111,6 @@
 		FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageGroupPreviewController.m; sourceTree = "<group>"; };
 		FA6244D5200CBFAE007A9EDC /* ZDImagePreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImagePreviewCell.h; sourceTree = "<group>"; };
 		FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageModel.m; sourceTree = "<group>"; };
-		FABF3BFE20138DC80005DC65 /* ZDPromise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDPromise.h; sourceTree = "<group>"; };
-		FABF3BFF20138DC80005DC65 /* ZDPromise.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDPromise.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +188,6 @@
 				BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */,
 				BCB5A8021E96136F00271230 /* ZDQueuePool.h */,
 				BCB5A8031E96136F00271230 /* ZDQueuePool.m */,
-				FABF3BFD20138DA90005DC65 /* ZDTools */,
 				05EC9C721C53CDC300BACFE9 /* Main.storyboard */,
 				05EC9C751C53CDC300BACFE9 /* Assets.xcassets */,
 				05EC9C771C53CDC300BACFE9 /* LaunchScreen.storyboard */,
@@ -272,15 +268,6 @@
 				FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */,
 			);
 			path = ZDImageGroupPreview;
-			sourceTree = "<group>";
-		};
-		FABF3BFD20138DA90005DC65 /* ZDTools */ = {
-			isa = PBXGroup;
-			children = (
-				FABF3BFE20138DC80005DC65 /* ZDPromise.h */,
-				FABF3BFF20138DC80005DC65 /* ZDPromise.m */,
-			);
-			path = ZDTools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,7 +497,6 @@
 				FA6244DA200CBFAE007A9EDC /* ZDImageModel.m in Sources */,
 				DA6CBBDA1F886BC900A36EF4 /* ThreeController.m in Sources */,
 				BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */,
-				FABF3C0020138DC80005DC65 /* ZDPromise.m in Sources */,
 				FA6244D7200CBFAE007A9EDC /* ZDImagePreviewCell.m in Sources */,
 				BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */,
 				FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */,

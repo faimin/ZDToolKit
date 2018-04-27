@@ -14,7 +14,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <ZDToolKit/ZDFastEnumeration.h>
 #import <ZDToolKit/NSArray+ZDUtility.h>
-#import "ZDPromise.h"
+#import <ZDToolKit/ZDPromise.h>
 
 @interface ViewController ()
 

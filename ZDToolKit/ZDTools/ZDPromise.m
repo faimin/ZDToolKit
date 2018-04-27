@@ -43,16 +43,12 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
 }
 
 + (dispatch_queue_t)defaultDispatchQueue {
-    @synchronized(self) {
-        return zdPromiseDefaultDispatchQueue;
-    }
+    return zdPromiseDefaultDispatchQueue;
 }
 
 + (void)setDefaultDispatchQueue:(dispatch_queue_t)queue {
     NSParameterAssert(queue);
-    @synchronized(self) {
-        zdPromiseDefaultDispatchQueue = queue;
-    }
+    zdPromiseDefaultDispatchQueue = queue;
 }
 
 #pragma mark -

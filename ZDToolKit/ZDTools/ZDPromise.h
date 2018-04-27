@@ -10,7 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ZDPromise;
 typedef NS_ENUM(NSUInteger, ZDPromiseState) {
     ZDPromiseState_Pending = 0,
     ZDPromiseState_Fulfilled,
@@ -26,8 +25,8 @@ typedef void(^ZDPromiseObserver)(ZDPromiseState state, id resolve);
 
 @interface ZDPromise : NSObject
 
-@property (nonatomic, class, readonly) dispatch_group_t zd_dispatchGroup;
-@property (atomic, class) dispatch_queue_t defaultDispatchQueue;
+@property (class, nonatomic, readonly) dispatch_group_t zd_dispatchGroup;
+@property (class, atomic) dispatch_queue_t defaultDispatchQueue;
 
 + (instancetype)async:(void(^)(ZDFulfillBlock fulfill, ZDRejectBlock reject))block;
 - (instancetype)then:(ZDThenBlock)thenBlock;

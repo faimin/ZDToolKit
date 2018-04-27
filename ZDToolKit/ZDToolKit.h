@@ -80,6 +80,7 @@
 #import "ZDRunloopQueue.h"
 #import "ZDGuardUIKitOnMainThread.h"
 #import "ZDConsoleUnicode.h"
+#import "ZDPromise.h"
 
 
 #endif /* ZDToolKit_h */
