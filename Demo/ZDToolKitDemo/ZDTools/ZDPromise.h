@@ -31,6 +31,7 @@ typedef void(^ZDPromiseObserver)(ZDPromiseState state, id resolve);
 
 + (instancetype)async:(void(^)(ZDFulfillBlock fulfill, ZDRejectBlock reject))block;
 - (instancetype)then:(ZDThenBlock)thenBlock;
+- (instancetype)catch:(ZDRejectBlock)catchBlock;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;

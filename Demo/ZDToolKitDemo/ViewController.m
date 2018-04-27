@@ -150,7 +150,7 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 #pragma mark - Test
 
 - (void)promise {
-    [[[ZDPromise async:^(ZDFulfillBlock  _Nonnull fulfill, ZDRejectBlock  _Nonnull reject) {
+    [[[[ZDPromise async:^(ZDFulfillBlock  _Nonnull fulfill, ZDRejectBlock  _Nonnull reject) {
         [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"https://p.upyun.com/docs/cloud/demo.jpg"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (response) {
                 UIImage *image = [UIImage imageWithData:data];
@@ -161,10 +161,13 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
         }] resume];
     }] then:^id(UIImage * _Nonnull value) {
         NSLog(@"image = %@", value);
-        return @(111111);
+        //return @(111111);
+        return [NSError errorWithDomain:NSCocoaErrorDomain code:404 userInfo:@{@"info" : @"xxxx"}];
     }] then:^id(NSNumber * _Nonnull value) {
         NSLog(@"%@", value);
-        return nil;
+        return value;
+    }] catch:^(NSError * _Nonnull error) {
+        NSLog(@"error");
     }];
 }
 

@@ -72,6 +72,8 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
     return self;
 }
 
+#pragma mark - Async
+
 + (instancetype)async:(void(^)(ZDFulfillBlock, ZDRejectBlock))block {
     return [self async:block onQueue:ZDPromise.defaultDispatchQueue];
 }
@@ -94,13 +96,57 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
     return promise;
 }
 
+#pragma mark - Then
+
 - (instancetype)then:(ZDThenBlock)thenBlock {
     return [self then:thenBlock onQueue:ZDPromise.defaultDispatchQueue];
 }
 
 - (instancetype)then:(ZDThenBlock)thenBlock onQueue:(dispatch_queue_t)queue {
+    ZDPromise *newPromise = [self chainOnQueue:queue fulfill:thenBlock reject:nil];
+    return newPromise;
+}
+
+#pragma mark - Catch
+
+- (instancetype)catch:(ZDRejectBlock)catchBlock {
+    return [self catch:catchBlock onQueue:ZDPromise.defaultDispatchQueue];
+}
+
+- (instancetype)catch:(ZDRejectBlock)catchBlock onQueue:(dispatch_queue_t)queue {
+    ZDPromise *newPromise = [self chainOnQueue:queue fulfill:nil reject:^id(NSError *error) {
+        catchBlock(error);
+        return error;
+    }];
+    return newPromise;
+}
+
+#pragma mark - Observe
+
+- (instancetype)chainOnQueue:(dispatch_queue_t)queue
+                     fulfill:(id(^)(id value))chainedFulfill
+                      reject:(id(^)(NSError *error))chainedReject {
     // 创建一个新的promise
     ZDPromise *newPromise = [[ZDPromise alloc] initPending];
+    
+    void(^finishedBlock)(id) = ^(id value){
+        [newPromise fulfill:value];
+    };
+    
+    [self observeOnQueue:queue fulfill:^(id  _Nonnull value) {
+        value = chainedFulfill ? chainedFulfill(value) : value;
+        finishedBlock(value);
+    } reject:^(NSError * _Nonnull error) {
+        id value = chainedReject ? chainedReject(error) : error;
+        finishedBlock(value);
+    }];
+    
+    return newPromise;
+}
+
+- (void)observeOnQueue:(dispatch_queue_t)queue
+               fulfill:(ZDFulfillBlock)onFulfill
+                reject:(ZDRejectBlock)onReject {
     
     switch (_state) {
         case ZDPromiseState_Pending: {
@@ -108,18 +154,17 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
                 _observers = [[NSMutableArray alloc] init];
             }
             
-            ZDPromiseObserver observer = ^(ZDPromiseState state, id value){
+            // 创建并保存observer
+            ZDPromiseObserver observer = ^(ZDPromiseState state, id resolvedValue){
                 switch (state) {
                     case ZDPromiseState_Pending:
                         break;
                     case ZDPromiseState_Fulfilled: {
-                        value = thenBlock ? thenBlock(value) : value;
-                        [newPromise fulfill:value];
+                        onFulfill(resolvedValue);
                     }
                         break;
                     case ZDPromiseState_Rejected: {
-                        value = thenBlock ? thenBlock(value) : value;
-                        [newPromise fulfill:value];
+                        onReject(resolvedValue);
                     }
                         break;
                     default:
@@ -131,21 +176,19 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
             break;
         case ZDPromiseState_Fulfilled: {
             dispatch_group_async(ZDPromise.zd_dispatchGroup, queue, ^{
-                thenBlock(self.value);
+                onFulfill(self.value);
             });
         }
             break;
         case ZDPromiseState_Rejected: {
             dispatch_group_async(ZDPromise.zd_dispatchGroup, queue, ^{
-                thenBlock(self.error);
+                onReject(self.error);
             });
         }
             break;
         default:
             break;
     }
-    
-    return newPromise;
 }
 
 #pragma mark - Handle Result
