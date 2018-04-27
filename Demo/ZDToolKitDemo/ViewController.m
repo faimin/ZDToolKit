@@ -14,6 +14,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <ZDToolKit/ZDFastEnumeration.h>
 #import <ZDToolKit/NSArray+ZDUtility.h>
+#import "ZDPromise.h"
 
 @interface ViewController ()
 
@@ -35,6 +36,8 @@
 	//[self numberTest];
     //[self mainqueueTest];
     [self arrayTest];
+    
+    [self promise];
     
     BOOL setProxy = ZD_isSetProxy();
     NSLog(@"%@", setProxy ? @"本机设置了代理" : @"没设置代理");
@@ -145,6 +148,25 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 }
 
 #pragma mark - Test
+
+- (void)promise {
+    [[[ZDPromise async:^(ZDFulfillBlock  _Nonnull fulfill, ZDRejectBlock  _Nonnull reject) {
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"https://p.upyun.com/docs/cloud/demo.jpg"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (response) {
+                UIImage *image = [UIImage imageWithData:data];
+                fulfill(image);
+            } else if (error) {
+                reject(error);
+            }
+        }] resume];
+    }] then:^id(UIImage * _Nonnull value) {
+        NSLog(@"image = %@", value);
+        return @(111111);
+    }] then:^id(NSNumber * _Nonnull value) {
+        NSLog(@"%@", value);
+        return nil;
+    }];
+}
 
 - (void)arrayTest {
     NSArray *arr = @[@1, @[@2, @[@3, @4, @[@5, @6, @7, @[@8, @9, @10, @11] ] ] ] ];
