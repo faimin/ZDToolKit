@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'ZDToolKit'
-  s.version      = '0.0.5'
+  s.version      = '0.0.6'
   s.summary      = 'awesome iOS development tools（Objective-C）'
   s.description  = <<-DESC
                    collect some iOS development tools, e.g: category、block、runtime、subclass、macro, and so on...
@@ -61,6 +61,10 @@ Pod::Spec.new do |s|
 
     ss.subspec 'ZDProxy' do |sss|
       sss.source_files = 'ZDToolKit/ZDTools/ZDProxy/*.{h,m}'
+    end
+
+    ss.subspec 'ZDPromise' do |sss|
+      sss.source_files = 'ZDToolKit/ZDTools/ZDPromise/*.{h,m}'
     end
 
     ss.subspec 'ProtocolKit' do |sss|
