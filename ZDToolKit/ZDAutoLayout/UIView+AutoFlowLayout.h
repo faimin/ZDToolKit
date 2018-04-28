@@ -50,7 +50,7 @@ typedef struct ALMargin {
 }ALMargin;
 
 /* Make a margin from `(left, right, top, bottom)'. */
-UIKIT_EXTERN ALMargin ALMarginMake(CGFloat l,CGFloat r, CGFloat t, CGFloat b);
+UIKIT_EXTERN ALMargin ALMarginMake(CGFloat l, CGFloat r, CGFloat t, CGFloat b);
 
 /* Make a margin from `(left, 0, 0, 0)'. */
 UIKIT_EXTERN ALMargin ALMarginMakeLeft(CGFloat l);
@@ -98,7 +98,7 @@ typedef NS_ENUM(NSInteger, ALLayoutDirection){
  *  @param view     The view to be added. After being added, this view appears on top of any other subviews and auto layout by `margin` param.
  *  @param margin   Item of `ALMargin`, the item must confirm the view's four Constrant `Leading space`,`Trailing space`,`Top scpace` and `Bottom space`.
  */
-- (void)addSubview:(UIView*)view fillByMargin:(ALMargin)margin;
+- (void)addSubview:(UIView *)view fillByMargin:(ALMargin)margin;
 
 - (void)insertSubview:(UIView *)view aboveSubview:(UIView *)siblingSubview fillByMargin:(ALMargin)margin;
 - (void)insertSubview:(UIView *)view atIndex:(NSInteger)index fillByMargin:(ALMargin)margin;
@@ -111,7 +111,7 @@ typedef NS_ENUM(NSInteger, ALLayoutDirection){
  *  @param direction    Flow layout direction.
  *  @param margin       Consider all view as one view on the superview (This method set interval bettween views as `ZERO`), and make a sute margin item.
  */
-- (void)addSubviews:(NSArray*)views flowLayoutDirection:(ALLayoutDirection)direction fillByMargin:(ALMargin )margin;
+- (void)addSubviews:(NSArray *)views flowLayoutDirection:(ALLayoutDirection)direction fillByMargin:(ALMargin )margin;
 
 /**
  *  Add subviews by Flow Layout
@@ -121,7 +121,7 @@ typedef NS_ENUM(NSInteger, ALLayoutDirection){
  *  @param margin    Consider all view as one view on the superview, and make a sute margin item.
  *  @param interval  Interval bettween views
  */
-- (void)addSubviews:(NSArray*)views flowLayoutDirection:(ALLayoutDirection)direction fillByMargin:(ALMargin )margin interval:(CGFloat)interval;
+- (void)addSubviews:(NSArray *)views flowLayoutDirection:(ALLayoutDirection)direction fillByMargin:(ALMargin)margin interval:(CGFloat)interval;
 
 @end
 

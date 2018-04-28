@@ -7,10 +7,12 @@
 //
 
 #import "ZDBannerScrollView.h"
-#import <ZDToolKit/NSTimer+ZDUtility.h>
 #if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 #import <SDWebImage/UIImageView+WebCache.h>
 #endif
+
+#pragma mark - ZDImageCollectionViewCell
+#pragma mark -
 
 @interface ZDImageCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) UIImage *placeholderImage;
@@ -18,6 +20,16 @@
 @property (nonatomic, copy  ) void(^zdDownloadBlock)(UIImageView *imageView, NSString *urlString, UIImage *placeHolderImage);
 @end
 
+#pragma mark - NSTimer
+#pragma mark -
+
+@interface NSTimer (Banner)
++ (NSTimer *)zd_banner_scheduledTimerWithTimeInterval:(NSTimeInterval)seconds repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block;
+@end
+
+//*****************************************************************
+#pragma mark - ZDBannerScrollView
+#pragma mark -
 
 @interface ZDBannerScrollView () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -61,7 +73,9 @@
     self.timer.fireDate = [NSDate date];
 }
 
-+ (instancetype)scrollViewWithFrame:(CGRect)frame delegate:(id<ZDBannerScrollViewDelegate>)delegate placeholderImage:(UIImage *)placeholderImage {
++ (instancetype)scrollViewWithFrame:(CGRect)frame
+                           delegate:(id<ZDBannerScrollViewDelegate>)delegate
+                   placeholderImage:(UIImage *)placeholderImage {
     ZDBannerScrollView *view = [[self alloc] initWithFrame:frame];
     view.delegate = delegate;
     view.placeholderImage = placeholderImage;
@@ -97,7 +111,7 @@
 - (void)setupTimer {
     [self invalidateTimer];
     __weak typeof(self)weakSelf = self;
-    self.timer = [NSTimer zd_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : 3.5) repeats:YES block:^(NSTimer * _Nonnull timer) {
+    self.timer = [NSTimer zd_banner_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : 3.5) repeats:YES block:^(NSTimer * _Nonnull timer) {
         __strong typeof(weakSelf)self = weakSelf;
         [self autoScroll];
     }];
@@ -156,7 +170,7 @@
             [self.delegate scrollView:self didSelectItemAtIndex:0];
         }
         else {
-            NSLog(@"点击了第%zd个", indexPath.item - 1);
+            NSLog(@"点击了第%lu个", (unsigned long)(indexPath.item - 1));
             NSUInteger selectIndex = indexPath.item - 1;
             if (indexPath.item >= self.innerDataSource.count - 2) {
                 selectIndex = self.innerDataSource.count - 2 - 1;
@@ -275,6 +289,9 @@
 
 //======================================================
 
+#pragma mark - ZDImageCollectionViewCell
+#pragma mark -
+
 @interface ZDImageCollectionViewCell ()
 @property (nonatomic, strong) UIImageView *imageView;
 @end
@@ -324,5 +341,24 @@
 }
 
 @end
+
+#pragma mark - NSTimer
+#pragma mark -
+
+@implementation NSTimer (Banner)
+
++ (NSTimer *)zd_banner_scheduledTimerWithTimeInterval:(NSTimeInterval)seconds repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block {
+    return [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(zd_banner_executeTimerBlock:) userInfo:[block copy] repeats:repeats];
+}
+
++ (void)zd_banner_executeTimerBlock:(NSTimer *)timer {
+    if ([timer userInfo]) {
+        void(^timerBlock)(NSTimer *) = (void(^)(NSTimer *))[timer userInfo];
+        timerBlock(timer);
+    }
+}
+
+@end
+
 
 

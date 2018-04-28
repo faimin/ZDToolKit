@@ -158,12 +158,12 @@ UIKIT_STATIC_INLINE void cleanRemoveFromSuperview(UIView * view ) {
     NSMutableString * formartV  = [NSMutableString stringWithFormat:@""];
     
     //get layout data
-    NSMutableArray * orderedKey = [NSMutableArray arrayWithCapacity:views.count];
+    NSMutableArray *orderedKey = [NSMutableArray arrayWithCapacity:views.count];
     for (NSUInteger i = 0; i < views.count; i++) {
-        UIView * value = views[i];
+        UIView *value = views[i];
         cleanRemoveFromSuperview(value);
         [self addSubview:value];
-        NSString * key = [NSString stringWithFormat:@"%@%zd",@"view",i];
+        NSString *key = [NSString stringWithFormat:@"%@%lu", @"view", (unsigned long)i];
         [items setValue:value forKey:key];
         [orderedKey addObject:key];
     }

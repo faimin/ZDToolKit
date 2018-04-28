@@ -43,6 +43,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'ZDSubclass' do |ss|
     ss.source_files = 'ZDToolKit/ZDSubclass/*.{h,m}'
+    ss.dependency 'ZDToolKit/ZDTools/ZDProxy'
   end
 
   s.subspec 'ZDMacros' do |ss|

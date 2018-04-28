@@ -21,6 +21,8 @@
 #define PROPERTY(propName) @#propName
 #endif
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
 // http://www.mikeash.com/pyblog/friday-qa-2010-01-29-method-replacement-for-fun-and-profit.html
 static BOOL ZD_ReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block) {
     NSCParameterAssert(c);
@@ -46,19 +48,26 @@ static BOOL ZD_ReplaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id block
     }
     return YES;
 }
+#pragma clang diagnostic pop
+
 
 SEL __ZD_PrefixedSelector(SEL selector) {
     return NSSelectorFromString([NSString stringWithFormat:@"ZD_%@", NSStringFromSelector(selector)]);
 }
+
 
 #define ZD_Assert(expression, ...) \
 do { if(!(expression)) { \
 NSLog(@"%@", [NSString stringWithFormat: @"Assertion failure: %s in %s on line %s:%d. %@", #expression, __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
 abort(); }} while(0)
 
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
 static void ZD_AssertIfNotMainThread(void) {
     ZD_Assert(NSThread.isMainThread, @"\nERROR: All calls to UIKit need to happen on the main thread. You have a bug in your code. Use dispatch_async(dispatch_get_main_queue(), ^{ ... }); if you're unsure what thread you're in.\n\nBreak on ZD_AssertIfNotMainThread to find out where.\n\nStacktrace: %@", NSThread.callStackSymbols);
 }
+#pragma clang diagnostic pop
 
 //-----------------------------------------------------------------------
 
