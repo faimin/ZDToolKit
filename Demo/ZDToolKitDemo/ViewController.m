@@ -169,6 +169,33 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
     }] catch:^(NSError * _Nonnull error) {
         NSLog(@"error");
     }];
+    
+    ZDPromise *promise1 = [ZDPromise async:^(ZDFulfillBlock  _Nonnull fulfill, ZDRejectBlock  _Nonnull reject) {
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"https://p.upyun.com/docs/cloud/demo.jpg"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (response) {
+                UIImage *image = [UIImage imageWithData:data];
+                fulfill(image);
+            } else if (error) {
+                reject(error);
+            }
+        }] resume];
+    }];
+    
+    ZDPromise *promise2 = [ZDPromise async:^(ZDFulfillBlock  _Nonnull fulfill, ZDRejectBlock  _Nonnull reject) {
+        [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"https://p.upyun.com/docs/cloud/demo.jpg"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (response) {
+                UIImage *image = [UIImage imageWithData:data];
+                fulfill(image);
+            } else if (error) {
+                reject(error);
+            }
+        }] resume];
+    }];
+    
+    [[ZDPromise all:@[promise1, promise2]] then:^id _Nullable(NSArray * _Nullable value) {
+        NSLog(@"%@", value);
+        return nil;
+    }];
 }
 
 - (void)arrayTest {

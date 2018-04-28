@@ -31,7 +31,7 @@ typedef void(^ZDPromiseObserver)(ZDPromiseState state, Value resolve);
 + (instancetype)async:(void(^)(ZDFulfillBlock fulfill, ZDRejectBlock reject))block;
 - (instancetype)then:(ZDThenBlock)thenBlock;
 - (instancetype)catch:(ZDRejectBlock)catchBlock;
-+ (instancetype)all:(NSArray<ZDPromise *> *)allPromises;
++ (ZDPromise<NSArray *> *)all:(NSArray<ZDPromise *> *)allPromises;
 
 - (BOOL)isPending;
 - (BOOL)isFulfilled;
