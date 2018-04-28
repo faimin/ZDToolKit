@@ -16,14 +16,14 @@ typedef NS_ENUM(NSUInteger, ZDPromiseState) {
     ZDPromiseState_Rejected,
 };
 
-typedef void(^ZDFulfillBlock)(id value);
-typedef void(^ZDRejectBlock)(NSError *error);
-typedef id _Nullable (^ZDThenBlock)(id value);
-typedef void(^ZDPromiseObserver)(ZDPromiseState state, id resolve);
-
 //***************************************************************
 
-@interface ZDPromise : NSObject
+@interface ZDPromise<Value> : NSObject
+
+typedef void(^ZDFulfillBlock)(Value _Nullable value);
+typedef void(^ZDRejectBlock)(NSError *error);
+typedef id _Nullable (^ZDThenBlock)(Value _Nullable value);
+typedef void(^ZDPromiseObserver)(ZDPromiseState state, Value resolve);
 
 @property (class, nonatomic, readonly) dispatch_group_t zd_dispatchGroup;
 @property (class, nonatomic) dispatch_queue_t defaultDispatchQueue;
@@ -31,6 +31,7 @@ typedef void(^ZDPromiseObserver)(ZDPromiseState state, id resolve);
 + (instancetype)async:(void(^)(ZDFulfillBlock fulfill, ZDRejectBlock reject))block;
 - (instancetype)then:(ZDThenBlock)thenBlock;
 - (instancetype)catch:(ZDRejectBlock)catchBlock;
++ (instancetype)all:(NSArray<ZDPromise *> *)allPromises;
 
 - (BOOL)isPending;
 - (BOOL)isFulfilled;
