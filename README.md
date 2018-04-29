@@ -1,4 +1,5 @@
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/faimin/ZDToolKit/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg?style=flat)](#)
 [![Language](http://img.shields.io/badge/language-objc-brightgreen.svg?style=flat)](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html)
 [![](http://img.shields.io/travis/faimin/ZDToolKit.svg?style=flat)](https://travis-ci.org/faimin/ZDToolKit)
 ![](https://img.shields.io/cocoapods/v/ZDToolKit.svg?style=flat)
