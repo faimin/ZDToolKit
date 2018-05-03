@@ -128,7 +128,8 @@ FOUNDATION_EXPORT BOOL ZD_isLandscape(void);    ///< 竖屏
 #pragma mark - NSBundle
 #pragma mark -
 /// get list of classes already loaded into memory in specific bundle (or binary)
-FOUNDATION_EXPORT NSArray *ZD_GetClassNames(void);
+FOUNDATION_EXPORT NSArray<NSString *> *ZD_GetClassNames(void);
+FOUNDATION_EXPORT BOOL ZD_ClassIsCustomClass(Class aClass);
 
 //===============================================================
 
