@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,10 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 最小值
 - (CGFloat)zd_min;
 
-- (NSMutableArray *)zd_map:(id (^)(ObjectType objc))block;
-- (NSMutableArray<ObjectType> *)zd_filter:(BOOL (^)(ObjectType objc))block;
+- (NSMutableArray *)zd_map:(id(^)(ObjectType objc))block;
+- (NSMutableArray<ObjectType> *)zd_filter:(BOOL(^)(ObjectType objc))block;
 - (NSMutableArray<ObjectType> *)zd_flatten;
 - (NSMutableArray<ObjectType> *)zd_zipWith:(NSArray<ObjectType> *)rightArray usingBlock:(id(^)(ObjectType left, ObjectType right))block;
+- (id)zd_reduce:(id(^)(id _Nullable accumulator, ObjectType currentValue))block;
 - (NSMutableArray<ObjectType> *)zd_mutableArray;
 
 @end

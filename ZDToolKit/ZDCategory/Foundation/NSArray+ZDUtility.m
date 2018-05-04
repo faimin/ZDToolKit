@@ -129,6 +129,14 @@
     return zipedMutableArray;
 }
 
+- (id)zd_reduce:(id(^)(id accumulator, id currentValue))block {
+    id result = nil;
+    for (id tempValue in self) {
+        result = block(result, tempValue);
+    }
+    return result;
+}
+
 - (NSMutableArray *)zd_mutableArray {
     if ([self isKindOfClass:[NSMutableArray class]]) {
         return (NSMutableArray *)self;
