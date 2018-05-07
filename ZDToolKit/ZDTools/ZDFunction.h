@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
+NS_ASSUME_NONNULL_BEGIN
 //#pragma clang diagnostic ignored "-Wstrict-prototypes"
 
 typedef NS_ENUM(NSInteger, ZDThrottleType) {
@@ -113,7 +114,7 @@ FOUNDATION_EXPORT BOOL ZD_IsEmptyOrNilString(NSString *string);
 /// 获取字符串(或汉字)首字母
 FOUNDATION_EXPORT NSString *ZD_FirstCharacterWithString(NSString *string);
 /// 将字符串数组按照元素首字母顺序进行排序分组
-FOUNDATION_EXPORT NSDictionary *ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array);
+FOUNDATION_EXPORT NSDictionary *_Nullable ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array);
 
 FOUNDATION_EXPORT BOOL ZD_VideoIsPlayable(NSString *urlString);
 
@@ -186,16 +187,20 @@ FOUNDATION_EXPORT dispatch_queue_t ZD_TaskQueue(void);
 
 #pragma mark - Runtime
 #pragma mark -
+/// OBJC_ASSOCIATION_WEAK_NONATOMIC
+FOUNDATION_EXPORT void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id _Nullable value);
+FOUNDATION_EXPORT id _Nullable ZD_Objc_getWeakAssociatedObject(id object, const void *key);
+
 FOUNDATION_EXPORT void ZD_PrintObjectMethods(void);
 FOUNDATION_EXPORT void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector);
 FOUNDATION_EXPORT void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector);
-FOUNDATION_EXPORT IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
+FOUNDATION_EXPORT IMP _Nullable ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
 FOUNDATION_EXPORT BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP);
 /// 判断selector是否属于某一protocol
 FOUNDATION_EXPORT BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel);
 
 
 
-
+NS_ASSUME_NONNULL_END
 
 

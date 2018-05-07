@@ -1088,6 +1088,20 @@ dispatch_queue_t ZD_TaskQueue(void) {
 
 #pragma mark - Runtime
 #pragma mark -
+void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id value) {
+    __weak typeof(value) weakTarget = value;
+    __auto_type block = ^id{
+        return weakTarget;
+    };
+    objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+id ZD_Objc_getWeakAssociatedObject(id object, const void *key) {
+    id(^block)(void) = objc_getAssociatedObject(object, key);
+    id value = block ? block() : nil;
+    return value;
+}
+
 void ZD_PrintObjectMethods(void) {
 	unsigned int count = 0;
 	Method *methods = class_copyMethodList([NSObject class], &count);
@@ -1130,7 +1144,7 @@ IMP ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP) {
     
     IMP origIMP = method_getImplementation(origMethod);
     
-    if(!class_addMethod(aClass, originalSel, replacementIMP,
+    if (!class_addMethod(aClass, originalSel, replacementIMP,
                         method_getTypeEncoding(origMethod))) {
         method_setImplementation(origMethod, replacementIMP);
     }
