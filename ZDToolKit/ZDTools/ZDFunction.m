@@ -1093,7 +1093,7 @@ void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id value) {
     __auto_type block = ^id{
         return weakTarget;
     };
-    objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_COPY);
 }
 
 id ZD_Objc_getWeakAssociatedObject(id object, const void *key) {
