@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIWebView (ZDExtend)
+@interface UIWebView (ZDUtility)
 
 #pragma mark -
 #pragma mark 获取网页中的数据
@@ -25,10 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getTitle;
 
 ///  获取所有图片链接
-- (NSArray *)getImgs;
+- (NSArray<NSString *> *)getImgs;
 
 ///  获取当前页面所有链接
-- (NSArray *)getOnClicks;
+- (NSArray<NSString *> *)getOnClicks;
 
 #pragma mark -
 #pragma mark 改变网页样式和行为
@@ -171,19 +171,4 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

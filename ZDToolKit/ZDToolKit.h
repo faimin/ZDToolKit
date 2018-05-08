@@ -47,8 +47,8 @@
 #import "UIViewController+ZDUtility.h"
 #import "UIViewController+ZDPop.h"
 #import "UIViewController+ZDBack.h"
-#import "UIWebView+ZDExtend.h"
-#import "WKWebView+ZDExtend.h"
+#import "UIWebView+ZDUtility.h"
+#import "WKWebView+ZDUtility.h"
 #import "CALayer+ZDUtility.h"
 
 // SubClass

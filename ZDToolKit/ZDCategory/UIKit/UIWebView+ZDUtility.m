@@ -6,9 +6,9 @@
 //  Copyright © 2015年 Zero.D.Saber. All rights reserved.
 //
 
-#import "UIWebView+ZDExtend.h"
+#import "UIWebView+ZDUtility.h"
 
-@implementation UIWebView (ZDExtend)
+@implementation UIWebView (ZDUtility)
 
 #pragma mark -
 #pragma mark 获取网页中的数据
@@ -32,8 +32,8 @@
 }
 
 ///  获取所有图片链接
-- (NSArray *)getImgs {
-	NSMutableArray *arrImgURL = [[NSMutableArray alloc] init];
+- (NSArray<NSString *> *)getImgs {
+	NSMutableArray<NSString *> *arrImgURL = [[NSMutableArray alloc] init];
 
 	for (int i = 0; i < [self nodeCountOfTag:@"img"]; i++) {
 		NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('img')[%d].src", i];
@@ -44,13 +44,12 @@
 }
 
 ///  获取当前页面所有点击链接
-- (NSArray *)getOnClicks {
-	NSMutableArray *arrOnClicks = [[NSMutableArray alloc] init];
+- (NSArray<NSString *> *)getOnClicks {
+	NSMutableArray<NSString *> *arrOnClicks = [[NSMutableArray alloc] init];
 
 	for (int i = 0; i < [self nodeCountOfTag:@"a"]; i++) {
 		NSString *jsString = [NSString stringWithFormat:@"document.getElementsByTagName('a')[%d].getAttribute('onclick')", i];
 		NSString *clickString = [self stringByEvaluatingJavaScriptFromString:jsString];
-		NSLog(@"%@", clickString);
 		[arrOnClicks addObject:clickString];
 	}
 
