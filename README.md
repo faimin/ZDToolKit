@@ -17,7 +17,7 @@ some awesome development tools, e.g. `category`、`functions`、`subclass`、`ma
 Add the following line to your Podfile.
 
 ```ruby
-pod 'ZDToolKit', :git => 'https://github.com/faimin/ZDToolKit'
+pod 'ZDToolKit'
 ```
 
 Then, run the following command:
