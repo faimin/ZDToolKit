@@ -61,7 +61,7 @@
 // Macros
 #import "ZDEXTScope.h"
 #import "ZDMetamacros.h"
-#import "ZDDefine.h"
+#import "ZDMacro.h"
 
 // Runtime
 #import "EMCI.h"
