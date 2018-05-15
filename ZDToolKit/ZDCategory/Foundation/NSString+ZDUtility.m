@@ -43,8 +43,10 @@
     if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
         NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
         paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-        NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                     NSParagraphStyleAttributeName: paragraph};
+        NSDictionary *attributes = @{
+            NSFontAttributeName : textFont,
+            NSParagraphStyleAttributeName : paragraph
+        };
         textSize = [self boundingRectWithSize:needSize
                                       options:(NSStringDrawingUsesLineFragmentOrigin |
                                                NSStringDrawingTruncatesLastVisibleLine)
@@ -75,7 +77,7 @@
     CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)customFont.fontName, customFont.pointSize, NULL);
     CTLineBreakMode lineBreakMode = kCTLineBreakByWordWrapping;
     //Apply paragraph settings
-    CTTextAlignment alignment = kCTLeftTextAlignment;
+    CTTextAlignment alignment = kCTTextAlignmentLeft;
     CTParagraphStyleRef style = CTParagraphStyleCreate((CTParagraphStyleSetting[6]){
         {kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment},
         {kCTParagraphStyleSpecifierMinimumLineHeight, sizeof(minimumLineHeight), &minimumLineHeight},

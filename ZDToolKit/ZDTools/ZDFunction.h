@@ -81,7 +81,7 @@ UIKIT_EXTERN void ZD_PrintViewCoordinateInfo(__kindof UIView *view);
 ///  @param lineSpace 行间距
 ///  @param fontSize  字体大小
 ///  @return NSMutableAttributedString
-FOUNDATION_EXPORT NSMutableAttributedString *ZD_SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
+FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
 
 ///  设置某字符串为特定颜色和大小
 ///  @param orignString  原始字符串
@@ -89,7 +89,25 @@ FOUNDATION_EXPORT NSMutableAttributedString *ZD_SetAttributeString(NSString *str
 ///  @param filterColor  指定的颜色
 ///  @param filterFont   指定字体
 ///  @return NSMutableAttributedString
-FOUNDATION_EXPORT NSMutableAttributedString *ZD_SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont);
+FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont);
+
+/**
+ 创建富文本
+ 
+ @param orignString 原始字符串
+ @param filterString 要单独设置的字符串
+ @param originColor 原始字体颜色
+ @param filterColor 要单独给filter文字设置的颜色
+ @param originFont 原始字体
+ @param filterFont 要单独给filter文字设置的字体
+ @param lineSpacing 行间距
+ @param extendParagraphSet 给段落增加属性
+ @param extendOriginSetBlock 给原始文字增加属性
+ @param extendFilterSetBlock 给filter文字增加属性
+ @return 创建好的富文本
+ */
+FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *_Nullable filterString, UIColor *_Nullable originColor, UIColor *_Nullable filterColor, UIFont *_Nullable originFont, UIFont *_Nullable filterFont, CGFloat lineSpacing, void(^_Nullable extendParagraphSet)(NSMutableParagraphStyle *_Nullable mutiParagraphStyle), void(^_Nullable extendOriginSetBlock)(NSMutableDictionary *originMutiAttributeDict), void(^_Nullable extendFilterSetBlock)(NSMutableDictionary *filterMutiAttributeDict));
+
 ///  在文字中添加图片
 ///  @param image 图片
 ///  @return NSMutableAttributedString

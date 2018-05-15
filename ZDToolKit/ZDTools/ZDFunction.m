@@ -418,7 +418,7 @@ void ZD_PrintViewCoordinateInfo(__kindof UIView *view) {
 #pragma mark - String
 #pragma mark -
 /// 设置文字行间距
-NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize) {
+OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize) {
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.lineSpacing = lineSpace;
 	NSMutableAttributedString *mutStr = [[NSMutableAttributedString alloc] initWithString:originString attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName : paragraphStyle}];
@@ -426,11 +426,51 @@ NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat
 }
 
 /// 筛选设置文字color && font
-NSMutableAttributedString *ZD_SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont) {
+OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont) {
 	NSRange range = [orignString rangeOfString:filterString];
 	NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
     [mutAttributeStr addAttributes:@{NSForegroundColorAttributeName : filterColor, NSFontAttributeName : filterFont} range:range];
 	return mutAttributeStr;
+}
+
+OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString,
+                                                                      NSString *_Nullable filterString,
+                                                                      UIColor *_Nullable originColor,
+                                                                      UIColor *_Nullable filterColor,
+                                                                      UIFont *_Nullable originFont,
+                                                                      UIFont *_Nullable filterFont,
+                                                                      CGFloat lineSpacing,
+                                                                      void(^_Nullable extendParagraphSet)(NSMutableParagraphStyle *_Nullable mutiParagraphStyle),
+                                                                      void(^_Nullable extendOriginSetBlock)(NSMutableDictionary *originMutiAttributeDict),
+                                                                      void(^_Nullable extendFilterSetBlock)(NSMutableDictionary *filterMutiAttributeDict)) {
+    
+    if (!orignString) return nil;
+    
+    // 设置原始属性
+    NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
+    NSMutableDictionary *originAttributes = @{}.mutableCopy;
+    originAttributes[NSForegroundColorAttributeName] = originColor;
+    originAttributes[NSFontAttributeName] = originFont;
+    if (lineSpacing > 0) {
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        // https://juejin.im/post/5abc54edf265da23826e0dc9
+        paragraphStyle.lineSpacing = lineSpacing - (originFont.lineHeight - originFont.pointSize);
+        if (extendParagraphSet) extendParagraphSet(paragraphStyle);
+        originAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    }
+    if (extendOriginSetBlock) extendOriginSetBlock(originAttributes);
+    [mutAttributeStr addAttributes:originAttributes range:NSMakeRange(0, orignString.length)];
+    
+    // 设置filter属性
+    NSRange range = [orignString rangeOfString:filterString];
+    if (range.location == NSNotFound) return mutAttributeStr;
+    
+    NSMutableDictionary *attributes = @{}.mutableCopy;
+    attributes[NSForegroundColorAttributeName] = filterColor;
+    attributes[NSFontAttributeName] = filterFont;
+    if (extendFilterSetBlock) extendFilterSetBlock(attributes);
+    [mutAttributeStr addAttributes:attributes range:range];
+    return mutAttributeStr;
 }
 
 NSMutableAttributedString *ZD_AddImageToAttributeString(UIImage *image) {
