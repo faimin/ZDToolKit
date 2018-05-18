@@ -43,7 +43,7 @@ DEPENDENCIES:
   - ZDToolKit (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - SDWebImage
     - YYCache
     - YYImage
@@ -62,4 +62,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ca2ac18cae21edf8a183200853922334f9a831b8
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
