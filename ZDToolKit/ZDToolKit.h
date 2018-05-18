@@ -81,6 +81,6 @@
 #import "ZDGuardUIKitOnMainThread.h"
 #import "ZDConsoleUnicode.h"
 #import "ZDPromise.h"
-
+#import "ZDDispatchSourceMerge.h"
 
 #endif /* ZDToolKit_h */
