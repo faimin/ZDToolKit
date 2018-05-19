@@ -1225,7 +1225,7 @@ struct objc_method_description ZD_MethodDescriptionForSELInProtocol(Protocol *pr
     return (struct objc_method_description){NULL, NULL};
 }
 
-BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel) {
+BOOL ZD_ProtocolContainSEL(Protocol *protocol, SEL sel) {
     return ZD_MethodDescriptionForSELInProtocol(protocol, sel).types ? YES : NO;
 }
 

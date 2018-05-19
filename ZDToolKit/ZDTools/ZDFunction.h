@@ -215,7 +215,7 @@ FOUNDATION_EXPORT void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSele
 FOUNDATION_EXPORT IMP _Nullable ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
 FOUNDATION_EXPORT BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP);
 /// 判断selector是否属于某一protocol
-FOUNDATION_EXPORT BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel);
+FOUNDATION_EXPORT BOOL ZD_ProtocolContainSEL(Protocol *protocol, SEL sel);
 
 
 
