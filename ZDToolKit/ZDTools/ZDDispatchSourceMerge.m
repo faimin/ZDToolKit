@@ -8,8 +8,8 @@
 #import "ZDDispatchSourceMerge.h"
 
 struct ZDDelegateRespondTo {
-    uint refreshUI;
-    uint refreshData;
+    uint refreshUI : 1;
+    uint refreshData : 1;
 };
 
 @interface ZDDispatchSourceMerge ()
@@ -30,6 +30,7 @@ struct ZDDelegateRespondTo {
     if (self = [super init]) {
         _sourceType = type;
         _targetQueue = onQueue;
+        _delegate = delegate;
         [self setup];
     }
     return self;
@@ -41,7 +42,7 @@ struct ZDDelegateRespondTo {
 }
 
 - (void)delegateRespond {
-    struct ZDDelegateRespondTo newResponse = {0, 0};
+    struct ZDDelegateRespondTo newResponse;
     newResponse.refreshUI = [self.delegate respondsToSelector:@selector(refreshUI)];
     newResponse.refreshData = [self.delegate respondsToSelector:@selector(refreshData)];
     self.delegateRespondsTo = newResponse;
