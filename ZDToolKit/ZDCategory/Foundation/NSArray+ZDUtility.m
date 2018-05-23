@@ -90,23 +90,26 @@
     return mapedMutArr;
 }
 
-- (NSMutableArray *)zd_filter:(BOOL (^)(id objc))block {
+- (NSMutableArray *)zd_filter:(BOOL (^)(id objc, NSUInteger idx))block {
     if (!block) return self.zd_mutableArray;
     
     NSMutableArray *filteredMutArr = @[].mutableCopy;
-    for (id value in self) {
-        if (block(value)) {
-            [filteredMutArr addObject:value];
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        BOOL isPass = block(obj, idx);
+        if (!isPass) {
+            [filteredMutArr addObject:obj];
         }
-    }
+    }];
     return filteredMutArr;
 }
 
-- (id)zd_reduce:(id(^)(id accumulator, id currentValue))block {
-    id result = nil;
-    for (id tempValue in self) {
-        result = block(result, tempValue);
-    }
+- (id)zd_reduce:(id(^)(id lastResult, id currentValue, NSUInteger idx))block {
+    if (!block) return self;
+    
+    __block id result = nil;
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        result = block(result, obj, idx);
+    }];
     return result;
 }
 

@@ -39,8 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)zd_min;
 
 - (NSMutableArray *)zd_map:(id(^)(ObjectType objc, NSUInteger idx))block;
-- (NSMutableArray<ObjectType> *)zd_filter:(BOOL(^)(ObjectType objc))block;
-- (id)zd_reduce:(id(^)(id _Nullable accumulator, ObjectType currentValue))block;
+- (NSMutableArray<ObjectType> *)zd_filter:(BOOL(^)(ObjectType objc, NSUInteger idx))block;
+- (nullable id)zd_reduce:(id _Nullable (^)(id _Nullable lastResult, ObjectType currentValue, NSUInteger idx))block;
 - (NSMutableArray<ObjectType> *)zd_flatten;
 - (NSMutableArray<ObjectType> *)zd_zipWith:(NSArray<ObjectType> *)rightArray usingBlock:(id(^)(ObjectType left, ObjectType right))block;
 - (NSMutableArray<ObjectType> *)zd_mutableArray;
