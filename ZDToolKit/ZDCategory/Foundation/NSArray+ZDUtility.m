@@ -102,6 +102,14 @@
     return filteredMutArr;
 }
 
+- (id)zd_reduce:(id(^)(id accumulator, id currentValue))block {
+    id result = nil;
+    for (id tempValue in self) {
+        result = block(result, tempValue);
+    }
+    return result;
+}
+
 - (NSMutableArray *)zd_flatten {
     NSMutableArray *flattenedMutArray = @[].mutableCopy;
     for (id value in self) {
@@ -127,14 +135,6 @@
     }
     
     return zipedMutableArray;
-}
-
-- (id)zd_reduce:(id(^)(id accumulator, id currentValue))block {
-    id result = nil;
-    for (id tempValue in self) {
-        result = block(result, tempValue);
-    }
-    return result;
 }
 
 - (NSMutableArray *)zd_mutableArray {
