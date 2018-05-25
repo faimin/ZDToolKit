@@ -43,8 +43,10 @@
     if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
         NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
         paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-        NSDictionary *attributes = @{NSFontAttributeName: textFont,
-                                     NSParagraphStyleAttributeName: paragraph};
+        NSDictionary *attributes = @{
+            NSFontAttributeName : textFont,
+            NSParagraphStyleAttributeName : paragraph
+        };
         textSize = [self boundingRectWithSize:needSize
                                       options:(NSStringDrawingUsesLineFragmentOrigin |
                                                NSStringDrawingTruncatesLastVisibleLine)
@@ -75,7 +77,7 @@
     CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)customFont.fontName, customFont.pointSize, NULL);
     CTLineBreakMode lineBreakMode = kCTLineBreakByWordWrapping;
     //Apply paragraph settings
-    CTTextAlignment alignment = kCTLeftTextAlignment;
+    CTTextAlignment alignment = kCTTextAlignmentLeft;
     CTParagraphStyleRef style = CTParagraphStyleCreate((CTParagraphStyleSetting[6]){
         {kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment},
         {kCTParagraphStyleSpecifierMinimumLineHeight, sizeof(minimumLineHeight), &minimumLineHeight},
@@ -247,6 +249,28 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return self;
 }
 
+#pragma mark - Pinyin
+
+- (NSString *)zd_chineseToPinyin:(BOOL)isContainTone {
+    NSString *resultString = nil;
+    if (@available(iOS 9.0, *)) {
+        resultString = [self stringByApplyingTransform:NSStringTransformToLatin reverse:NO];
+        if (isContainTone) {
+            resultString = [resultString stringByApplyingTransform:NSStringTransformStripDiacritics reverse:NO];
+        }
+    }
+    else {
+        NSMutableString *mutableText = [[NSMutableString alloc] initWithString:self];
+        if (CFStringTransform((__bridge CFMutableStringRef)mutableText, NULL, kCFStringTransformToLatin, false)) {
+            if (isContainTone) {
+                CFStringTransform((__bridge CFMutableStringRef)mutableText, NULL, kCFStringTransformStripDiacritics, false);
+            }
+            resultString = mutableText.copy;
+        }
+    }
+    return resultString;
+}
+
 #pragma mark - Function
 
 - (NSString *)zd_reservedNumberOnly
@@ -256,6 +280,22 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     // NSCharacterSet *numberSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
     NSString *resultStr = [[self componentsSeparatedByCharactersInSet:numberSet] componentsJoinedByString:@""];
     return resultStr;
+}
+
+/// 删除所有特殊字符，包括标点和数字，只保留中文和英文
+- (NSString *)zd_reservedNormalCharacterOnly {
+    NSString *regex = @"[:^Letter:] Remove";
+    
+    NSString *result = nil;
+    if (@available(iOS 9.0, *)) {
+        result = [self stringByApplyingTransform:regex reverse:NO];
+    }
+    else {
+        NSMutableString *mutString = [[NSMutableString alloc] initWithString:self];
+        CFStringTransform((__bridge CFMutableStringRef)mutString, NULL, (__bridge CFStringRef)regex, false);
+        result = mutString.copy;
+    }
+    return result;
 }
 
 - (NSString *)zd_reverse

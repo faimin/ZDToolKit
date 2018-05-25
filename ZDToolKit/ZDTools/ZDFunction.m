@@ -418,7 +418,7 @@ void ZD_PrintViewCoordinateInfo(__kindof UIView *view) {
 #pragma mark - String
 #pragma mark -
 /// 设置文字行间距
-NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize) {
+OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *originString, CGFloat lineSpace, CGFloat fontSize) {
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.lineSpacing = lineSpace;
 	NSMutableAttributedString *mutStr = [[NSMutableAttributedString alloc] initWithString:originString attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize], NSParagraphStyleAttributeName : paragraphStyle}];
@@ -426,11 +426,51 @@ NSMutableAttributedString *ZD_SetAttributeString(NSString *originString, CGFloat
 }
 
 /// 筛选设置文字color && font
-NSMutableAttributedString *ZD_SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont) {
+OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont) {
 	NSRange range = [orignString rangeOfString:filterString];
 	NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
     [mutAttributeStr addAttributes:@{NSForegroundColorAttributeName : filterColor, NSFontAttributeName : filterFont} range:range];
 	return mutAttributeStr;
+}
+
+OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString,
+                                                                      NSString *_Nullable filterString,
+                                                                      UIColor *_Nullable originColor,
+                                                                      UIColor *_Nullable filterColor,
+                                                                      UIFont *_Nullable originFont,
+                                                                      UIFont *_Nullable filterFont,
+                                                                      CGFloat lineSpacing,
+                                                                      void(^_Nullable extendParagraphSet)(NSMutableParagraphStyle *_Nullable mutiParagraphStyle),
+                                                                      void(^_Nullable extendOriginSetBlock)(NSMutableDictionary *originMutiAttributeDict),
+                                                                      void(^_Nullable extendFilterSetBlock)(NSMutableDictionary *filterMutiAttributeDict)) {
+    
+    if (!orignString) return nil;
+    
+    // 设置原始属性
+    NSMutableAttributedString *mutAttributeStr = [[NSMutableAttributedString alloc] initWithString:orignString];
+    NSMutableDictionary *originAttributes = @{}.mutableCopy;
+    originAttributes[NSForegroundColorAttributeName] = originColor;
+    originAttributes[NSFontAttributeName] = originFont;
+    if (lineSpacing > 0) {
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        // https://juejin.im/post/5abc54edf265da23826e0dc9
+        paragraphStyle.lineSpacing = lineSpacing - (originFont.lineHeight - originFont.pointSize);
+        if (extendParagraphSet) extendParagraphSet(paragraphStyle);
+        originAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    }
+    if (extendOriginSetBlock) extendOriginSetBlock(originAttributes);
+    [mutAttributeStr addAttributes:originAttributes range:NSMakeRange(0, orignString.length)];
+    
+    // 设置filter属性
+    NSRange range = [orignString rangeOfString:filterString];
+    if (range.location == NSNotFound) return mutAttributeStr;
+    
+    NSMutableDictionary *attributes = @{}.mutableCopy;
+    attributes[NSForegroundColorAttributeName] = filterColor;
+    attributes[NSFontAttributeName] = filterFont;
+    if (extendFilterSetBlock) extendFilterSetBlock(attributes);
+    [mutAttributeStr addAttributes:attributes range:range];
+    return mutAttributeStr;
 }
 
 NSMutableAttributedString *ZD_AddImageToAttributeString(UIImage *image) {
@@ -602,16 +642,16 @@ BOOL ZD_VideoIsPlayable(NSString *urlString) {
 
 #pragma mark - InterfaceOrientation
 
-UIInterfaceOrientation ZD_CurrentInterfaceOrientation() {
+UIInterfaceOrientation ZD_CurrentInterfaceOrientation(void) {
     UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
     return orient;
 }
 
-BOOL ZD_isPortrait() {
+BOOL ZD_isPortrait(void) {
     return UIInterfaceOrientationIsPortrait(ZD_CurrentInterfaceOrientation());
 }
 
-BOOL ZD_isLandscape() {
+BOOL ZD_isLandscape(void) {
     return UIInterfaceOrientationIsLandscape(ZD_CurrentInterfaceOrientation());
 }
 
@@ -619,22 +659,36 @@ BOOL ZD_isLandscape() {
 #pragma mark -
 
 ///refer: http://stackoverflow.com/questions/6887464/how-can-i-get-list-of-classes-already-loaded-into-memory-in-specific-bundle-or
-NSArray *ZD_GetClassNames() {
+NSArray<NSString *> *ZD_GetClassNames(void) {
     NSMutableArray *classNames = [NSMutableArray array];
     unsigned int count = 0;
     const char** classes = objc_copyClassNamesForImage([[[NSBundle mainBundle] executablePath] UTF8String], &count);
-    for (unsigned int i = 0; i<count; i++) {
-        NSString* className = [NSString stringWithUTF8String:classes[i]];
+    for (u_int i = 0; i<count; i++) {
+        NSString *className = [NSString stringWithUTF8String:classes[i]];
         [classNames addObject:className];
     }
     return classNames.copy;
+}
+
+BOOL ZD_ClassIsCustomClass(Class aClass) {
+    NSCParameterAssert(aClass);
+    if (!aClass) return NO;
+    
+    NSString *bundlePath = [[NSBundle bundleForClass:aClass] bundlePath];
+    if ([bundlePath containsString:@"System/Library/"]) {
+        return NO;
+    }
+    else if ([bundlePath containsString:@"usr/"]) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Device
 #pragma mark -
 /// nativeScale与scale的区别
 /// http://stackoverflow.com/questions/25871858/what-is-the-difference-between-nativescale-and-scale-on-uiscreen-in-ios8
-BOOL ZD_isRetina() {
+BOOL ZD_isRetina(void) {
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale >= 2;
     }
@@ -643,7 +697,7 @@ BOOL ZD_isRetina() {
     }
 }
 
-BOOL ZD_isPad() {
+BOOL ZD_isPad(void) {
     static dispatch_once_t one;
     static BOOL pad;
     dispatch_once(&one, ^{
@@ -652,7 +706,7 @@ BOOL ZD_isPad() {
     return pad;
 }
 
-BOOL ZD_isSimulator() {
+BOOL ZD_isSimulator(void) {
 #if 1
     
 #if TARGET_IPHONE_SIMULATOR
@@ -671,7 +725,7 @@ BOOL ZD_isSimulator() {
 }
 
 // 是否越狱 refer:YYCategories
-BOOL ZD_isJailbroken() {
+BOOL ZD_isJailbroken(void) {
     if (ZD_isSimulator()) return NO; // Dont't check simulator
     
     // iOS9 URL Scheme query changed ...
@@ -706,7 +760,7 @@ BOOL ZD_isJailbroken() {
 }
 
 // 当前设备是否设置了代理
-BOOL ZD_isSetProxy() {
+BOOL ZD_isSetProxy(void) {
     NSDictionary *proxySettings = (__bridge NSDictionary *)(CFNetworkCopySystemProxySettings());
     NSArray *proxies = (__bridge NSArray *)(CFNetworkCopyProxiesForURL((__bridge CFURLRef _Nonnull)([NSURL URLWithString:@"http://www.baidu.com"]), (__bridge CFDictionaryRef _Nonnull)(proxySettings)));
     
@@ -714,7 +768,7 @@ BOOL ZD_isSetProxy() {
     return ![[settings objectForKey:(NSString *)kCFProxyTypeKey] isEqualToString:(NSString *)kCFProxyTypeNone];
 }
 
-double ZD_SystemVersion() {
+double ZD_SystemVersion(void) {
     static double _version;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -723,7 +777,7 @@ double ZD_SystemVersion() {
     return _version;
 }
 
-CGFloat ZD_Scale() {
+CGFloat ZD_Scale(void) {
     if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
         return [UIScreen mainScreen].nativeScale;
     }
@@ -732,7 +786,7 @@ CGFloat ZD_Scale() {
     }
 }
 
-CGSize ZD_ScreenSize() {
+CGSize ZD_ScreenSize(void) {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) { // 横屏
         return CGSizeMake(screenSize.height, screenSize.width);
@@ -743,15 +797,15 @@ CGSize ZD_ScreenSize() {
 }
 
 /// 竖屏状态下
-CGSize ZD_PrivateScreenSize() {
+CGSize ZD_PrivateScreenSize(void) {
     return [UIScreen mainScreen].bounds.size;
 }
 
-CGFloat ZD_ScreenWidth() {
+CGFloat ZD_ScreenWidth(void) {
     return ZD_ScreenSize().width;
 }
 
-CGFloat ZD_ScreenHeight() {
+CGFloat ZD_ScreenHeight(void) {
     return ZD_ScreenSize().height;
 }
 
@@ -759,7 +813,7 @@ CGFloat ZD_ScreenHeight() {
  竖屏尺寸：640px × 960px(320pt × 480pt @2x)
  横屏尺寸：960px × 640px(480pt × 320pt @2x)
  */
-BOOL ZD_iPhone4s() {
+BOOL ZD_iPhone4s(void) {
 	if (ZD_PrivateScreenSize().height == 480) {
 		return YES;
 	}
@@ -770,7 +824,7 @@ BOOL ZD_iPhone4s() {
  竖屏尺寸：640px × 1136px(320pt × 568pt @2x)
  横屏尺寸：1136px × 640px(568pt × 320pt @2x)
  */
-BOOL ZD_iPhone5s() {
+BOOL ZD_iPhone5s(void) {
 	if (ZD_PrivateScreenSize().height == 568) {
 		return YES;
 	}
@@ -781,7 +835,7 @@ BOOL ZD_iPhone5s() {
  竖屏尺寸：750px × 1334px(375pt × 667pt @2x)
  横屏尺寸：1334px × 750px(667pt × 375pt @2x)
  */
-BOOL ZD_iPhone6() {
+BOOL ZD_iPhone6(void) {
 	if (CGSizeEqualToSize(ZD_PrivateScreenSize(), CGSizeMake(375, 667))) {
 		return YES;
 	}
@@ -792,7 +846,7 @@ BOOL ZD_iPhone6() {
  竖屏尺寸：1242px × 2208px(414pt × 736pt @3x)
  横屏尺寸：2208px × 1242px(736pt × 414pt @3x)
  */
-BOOL ZD_iPhone6p() {
+BOOL ZD_iPhone6p(void) {
 	if (ZD_PrivateScreenSize().width == 414) {
 		return YES;
 	}
@@ -803,7 +857,7 @@ BOOL ZD_iPhone6p() {
  竖屏尺寸：1125px × 2436px(375pt × 812pt @3x)
  横屏尺寸：2436px × 1125px(812pt × 375pt @3x)
  */
-BOOL ZD_iPhoneX() {
+BOOL ZD_iPhoneX(void) {
     if (ZD_PrivateScreenSize().height == 812) {
         return YES;
     }
@@ -812,14 +866,14 @@ BOOL ZD_iPhoneX() {
 
 // refer: http://www.cnblogs.com/tandaxia/p/5820217.html
 /// 获取 app 的 icon 图标名称
-NSString *ZD_IconName() {
+NSString *ZD_IconName(void) {
     NSDictionary *infoDict = [NSBundle mainBundle].infoDictionary;
     NSArray<NSString *> *iconArr = infoDict[@"CFBundleIcons"][@"CFBundlePrimaryIcon"][@"CFBundleIconFiles"];
     NSString *iconLastName = iconArr.lastObject;
     return iconLastName;
 }
 
-NSString *ZD_LaunchImageName() {
+NSString *ZD_LaunchImageName(void) {
     CGSize viewSize = [UIApplication sharedApplication].delegate.window.bounds.size;
     // 竖屏
     NSString *viewOrientation = @"Portrait";
@@ -834,7 +888,7 @@ NSString *ZD_LaunchImageName() {
     return launchImageName;
 }
 
-NSArray *ZD_IPAddresses() {
+NSArray *ZD_IPAddresses(void) {
     int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0) return nil;
     NSMutableArray *ips = [NSMutableArray array];
@@ -869,7 +923,7 @@ NSArray *ZD_IPAddresses() {
     return ips;
 }
 
-NSString *ZD_MacAddress() {
+NSString *ZD_MacAddress(void) {
     int                 mib[6];
     size_t              len;
     char                *buf;
@@ -942,7 +996,7 @@ NSData *ZD_ConvertIntToData(int intValue) {
     return data;
 }
 
-UIColor *ZD_RandomColor() {
+UIColor *ZD_RandomColor(void) {
     CGFloat hue = (arc4random() % 256 / 256.0);
     CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;
     CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;
@@ -972,7 +1026,7 @@ OS_ALWAYS_INLINE void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block) {
 // http://blog.benjamin-encz.de/post/main-queue-vs-main-thread/
 // 原理：给主队列设置一个标签，然后在当前队列获取标签，
 // 如果获取到的标签与设置的标签不一样，说明当前队列就不是主队列
-BOOL ZD_IsMainQueue() {
+BOOL ZD_IsMainQueue(void) {
     // 方案1:(最佳)
     static const void *mainQueueKey = &mainQueueKey;
     static void *mainQueueContext = &mainQueueContext;
@@ -1074,11 +1128,25 @@ dispatch_queue_t ZD_TaskQueue(void) {
 
 #pragma mark - Runtime
 #pragma mark -
-void ZD_PrintObjectMethods() {
+void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id value) {
+    __weak typeof(value) weakTarget = value;
+    __auto_type block = ^id{
+        return weakTarget;
+    };
+    objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_COPY);
+}
+
+id ZD_Objc_getWeakAssociatedObject(id object, const void *key) {
+    id(^block)(void) = objc_getAssociatedObject(object, key);
+    id value = block ? block() : nil;
+    return value;
+}
+
+void ZD_PrintObjectMethods(void) {
 	unsigned int count = 0;
 	Method *methods = class_copyMethodList([NSObject class], &count);
 
-	for (unsigned int i = 0; i < count; ++i) {
+	for (u_int i = 0; i < count; ++i) {
 		SEL sel = method_getName(methods[i]);
 		const char *name = sel_getName(sel);
 		printf("\n方法名:%s\n", name);
@@ -1116,7 +1184,7 @@ IMP ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP) {
     
     IMP origIMP = method_getImplementation(origMethod);
     
-    if(!class_addMethod(aClass, originalSel, replacementIMP,
+    if (!class_addMethod(aClass, originalSel, replacementIMP,
                         method_getTypeEncoding(origMethod))) {
         method_setImplementation(origMethod, replacementIMP);
     }
@@ -1157,7 +1225,7 @@ struct objc_method_description ZD_MethodDescriptionForSELInProtocol(Protocol *pr
     return (struct objc_method_description){NULL, NULL};
 }
 
-BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel) {
+BOOL ZD_ProtocolContainSEL(Protocol *protocol, SEL sel) {
     return ZD_MethodDescriptionForSELInProtocol(protocol, sel).types ? YES : NO;
 }
 

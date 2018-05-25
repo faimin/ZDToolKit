@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
+NS_ASSUME_NONNULL_BEGIN
 //#pragma clang diagnostic ignored "-Wstrict-prototypes"
 
 typedef NS_ENUM(NSInteger, ZDThrottleType) {
@@ -80,7 +81,7 @@ UIKIT_EXTERN void ZD_PrintViewCoordinateInfo(__kindof UIView *view);
 ///  @param lineSpace 行间距
 ///  @param fontSize  字体大小
 ///  @return NSMutableAttributedString
-FOUNDATION_EXPORT NSMutableAttributedString *ZD_SetAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
+FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
 
 ///  设置某字符串为特定颜色和大小
 ///  @param orignString  原始字符串
@@ -88,7 +89,25 @@ FOUNDATION_EXPORT NSMutableAttributedString *ZD_SetAttributeString(NSString *str
 ///  @param filterColor  指定的颜色
 ///  @param filterFont   指定字体
 ///  @return NSMutableAttributedString
-FOUNDATION_EXPORT NSMutableAttributedString *ZD_SetAttributeStringByFilterStringAndColor(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont);
+FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont);
+
+/**
+ 创建富文本
+ 
+ @param orignString 原始字符串
+ @param filterString 要单独设置的字符串
+ @param originColor 原始字体颜色
+ @param filterColor 要单独给filter文字设置的颜色
+ @param originFont 原始字体
+ @param filterFont 要单独给filter文字设置的字体
+ @param lineSpacing 行间距
+ @param extendParagraphSet 给段落增加属性
+ @param extendOriginSetBlock 给原始文字增加属性
+ @param extendFilterSetBlock 给filter文字增加属性
+ @return 创建好的富文本
+ */
+FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *_Nullable filterString, UIColor *_Nullable originColor, UIColor *_Nullable filterColor, UIFont *_Nullable originFont, UIFont *_Nullable filterFont, CGFloat lineSpacing, void(^_Nullable extendParagraphSet)(NSMutableParagraphStyle *_Nullable mutiParagraphStyle), void(^_Nullable extendOriginSetBlock)(NSMutableDictionary *originMutiAttributeDict), void(^_Nullable extendFilterSetBlock)(NSMutableDictionary *filterMutiAttributeDict));
+
 ///  在文字中添加图片
 ///  @param image 图片
 ///  @return NSMutableAttributedString
@@ -113,7 +132,7 @@ FOUNDATION_EXPORT BOOL ZD_IsEmptyOrNilString(NSString *string);
 /// 获取字符串(或汉字)首字母
 FOUNDATION_EXPORT NSString *ZD_FirstCharacterWithString(NSString *string);
 /// 将字符串数组按照元素首字母顺序进行排序分组
-FOUNDATION_EXPORT NSDictionary *ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array);
+FOUNDATION_EXPORT NSDictionary *_Nullable ZD_DictionaryOrderByCharacterWithOriginalArray(NSArray<NSString *> *array);
 
 FOUNDATION_EXPORT BOOL ZD_VideoIsPlayable(NSString *urlString);
 
@@ -128,7 +147,8 @@ FOUNDATION_EXPORT BOOL ZD_isLandscape(void);    ///< 竖屏
 #pragma mark - NSBundle
 #pragma mark -
 /// get list of classes already loaded into memory in specific bundle (or binary)
-FOUNDATION_EXPORT NSArray *ZD_GetClassNames(void);
+FOUNDATION_EXPORT NSArray<NSString *> *ZD_GetClassNames(void);
+FOUNDATION_EXPORT BOOL ZD_ClassIsCustomClass(Class aClass);
 
 //===============================================================
 
@@ -185,16 +205,20 @@ FOUNDATION_EXPORT dispatch_queue_t ZD_TaskQueue(void);
 
 #pragma mark - Runtime
 #pragma mark -
+/// OBJC_ASSOCIATION_WEAK_NONATOMIC
+FOUNDATION_EXPORT void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id _Nullable value);
+FOUNDATION_EXPORT id _Nullable ZD_Objc_getWeakAssociatedObject(id object, const void *key);
+
 FOUNDATION_EXPORT void ZD_PrintObjectMethods(void);
 FOUNDATION_EXPORT void ZD_SwizzleClassSelector(Class aClass, SEL originalSelector, SEL newSelector);
 FOUNDATION_EXPORT void ZD_SwizzleInstanceSelector(Class aClass, SEL originalSelector, SEL newSelector);
-FOUNDATION_EXPORT IMP  ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
-FOUNDATION_EXPORT BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP *orignalStoreIMP);
+FOUNDATION_EXPORT IMP _Nullable ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP);
+FOUNDATION_EXPORT BOOL ZD_SwizzleMethodAndStoreIMP(Class aClass, SEL originalSel, IMP replacementIMP, IMP _Nullable *_Nullable orignalStoreIMP);
 /// 判断selector是否属于某一protocol
-FOUNDATION_EXPORT BOOL ZD_ProtocolContainSel(Protocol *protocol, SEL sel);
+FOUNDATION_EXPORT BOOL ZD_ProtocolContainSEL(Protocol *protocol, SEL sel);
 
 
 
-
+NS_ASSUME_NONNULL_END
 
 

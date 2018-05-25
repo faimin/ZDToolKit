@@ -78,10 +78,10 @@
     return [[self valueForKeyPath:@"@min.floatValue"] floatValue];
 }
 
-- (NSMutableArray *)zd_map:(id (^)(id objc))block {
+- (NSMutableArray *)zd_map:(id (^)(id, NSUInteger))block {
     NSMutableArray *mapedMutArr = [NSMutableArray arrayWithCapacity:self.count];
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        id value = block ? block(obj) : nil;
+        id value = block ? block(obj, idx) : nil;
         if (value) {
             [mapedMutArr addObject:value];
         }
@@ -90,16 +90,27 @@
     return mapedMutArr;
 }
 
-- (NSMutableArray *)zd_filter:(BOOL (^)(id objc))block {
+- (NSMutableArray *)zd_filter:(BOOL (^)(id objc, NSUInteger idx))block {
     if (!block) return self.zd_mutableArray;
     
     NSMutableArray *filteredMutArr = @[].mutableCopy;
-    for (id value in self) {
-        if (block(value)) {
-            [filteredMutArr addObject:value];
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        BOOL isPass = block(obj, idx);
+        if (!isPass) {
+            [filteredMutArr addObject:obj];
         }
-    }
+    }];
     return filteredMutArr;
+}
+
+- (id)zd_reduce:(id(^)(id lastResult, id currentValue, NSUInteger idx))block {
+    if (!block) return self;
+    
+    __block id result = nil;
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        result = block(result, obj, idx);
+    }];
+    return result;
 }
 
 - (NSMutableArray *)zd_flatten {

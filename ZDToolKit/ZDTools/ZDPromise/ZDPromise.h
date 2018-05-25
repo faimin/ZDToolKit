@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, ZDPromiseState) {
 
 //***************************************************************
 
-@interface ZDPromise<Value> : NSObject
+@interface ZDPromise<__covariant Value> : NSObject
 
 typedef void(^ZDFulfillBlock)(Value _Nullable value);
 typedef void(^ZDRejectBlock)(NSError *error);

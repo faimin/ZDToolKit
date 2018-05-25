@@ -1,18 +1,18 @@
 //
-//  ZDDefine.h
+//  ZDMacro.h
 //  ZDUtility
 //
 //  Created by Zero on 15/8/18.
 //  Copyright (c) 2015年 Zero.D.Saber. All rights reserved.
 //
 
-#ifndef ZDUtility_ZDDefine_h
-#define ZDUtility_ZDDefine_h
+#ifndef ZDUtility_ZDMacro_h
+#define ZDUtility_ZDMacro_h
 #endif
 
-#import <pthread.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <pthread.h>
 
 
 //MARK:- 屏幕物理尺寸
@@ -394,6 +394,20 @@ zd_keywordify __strong __typeof__(weak##_##objc_) objc_ = weak##_##objc_;
 #define ZD_KEYPATH(object, property) @#property
 #endif
 
+/**
+ http://www.enkichen.com/2017/09/13/ios-static-library-categories/ && YYKit
+ Add this macro before each category implementation, so we don't have to use
+ -all_load or -force_load to load object files from static libraries that only
+ contain categories and no classes.
+ *******************************************************************************
+ Example:
+ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSString_ZDUtility)
+ */
+#ifndef ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY
+#define ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(_name_) \
+@interface ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY_ ## _name_ : NSObject @end \
+@implementation ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY_ ## _name_ @end
+#endif
 
 //MARK:- 警告消除
 /// 消除performSelector警告

@@ -95,11 +95,13 @@
 @end
 
 
+#pragma mark - ************* ZDMutiDelegatesProxy *****************
 #pragma mark -
 
 @interface ZDMutiDelegatesProxy ()
 
-@property (nonatomic, strong) NSPointerArray *weakTargets;
+//@property (nonatomic, strong) NSPointerArray *weakTargets;
+@property (nonatomic, strong) NSMutableArray *weakTargets;
 
 @end
 
@@ -114,12 +116,17 @@
 
 - (void)addDelegate:(id)aDelegate {
     NSParameterAssert(aDelegate);
+    /*
     [self.weakTargets addPointer:(void *)aDelegate];
     _delegateTargets = self.weakTargets.allObjects;
+    */
+    [_weakTargets addObject:aDelegate];
+    _delegateTargets = _weakTargets.copy;
 }
 
 - (void)removeDelegate:(id)aDelegate {
     NSParameterAssert(aDelegate);
+    /*
     NSUInteger index = 0;
     for (id target in self.weakTargets) {
         if (target == aDelegate) {
@@ -128,6 +135,9 @@
         index++;
     }
     _delegateTargets = self.weakTargets.allObjects;
+    */
+    [_weakTargets removeObject:aDelegate];
+    _delegateTargets = _weakTargets.copy;
 }
 
 //MARK: Forward Message
@@ -165,13 +175,22 @@
 
 //MARK: Property
 - (void)setDelegateTargets:(NSArray *)delegateTargets {
+    /*
     self.weakTargets = [NSPointerArray weakObjectsPointerArray];
     for (id target in delegateTargets) {
         [self.weakTargets addPointer:(__bridge void *)(target)];
     }
+    */
+    _weakTargets = [self.class weakReferenceArray];
+    [_weakTargets addObjectsFromArray:delegateTargets];
 }
 
 //MARK: Private Method
++ (NSMutableArray *)weakReferenceArray {
+    CFArrayCallBacks callBacks = {0, NULL, NULL, CFCopyDescription, CFEqual};
+    return CFBridgingRelease(CFArrayCreateMutable(kCFAllocatorDefault, 0, &callBacks));
+}
+
 - (NSString *)debugDescription {
     NSString *allTargetsDebugDescription = @"";
     for (id target in self.weakTargets) {
@@ -181,15 +200,5 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
 
 
