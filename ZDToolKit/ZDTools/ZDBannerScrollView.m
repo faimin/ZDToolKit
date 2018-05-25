@@ -11,6 +11,12 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #endif
 
+struct ZDBannerDelegateResponseTo {
+    uint scrollViewDidSelectItemAtIndex : 1;
+    uint scrollViewDidScrollToIndex : 1;
+    uint customDownloadWithImageViewUrlPlaceHolderImage : 1;
+};
+
 #pragma mark - ZDImageCollectionViewCell
 #pragma mark -
 
@@ -39,6 +45,7 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIImage *placeholderImage;
 @property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, assign) struct ZDBannerDelegateResponseTo delegateResponseTo;
 @end
 
 @implementation ZDBannerScrollView
@@ -148,7 +155,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZDImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class]) forIndexPath:indexPath];
     // 用自己外面的下载库下载
-    if (self.delegate && [self.delegate respondsToSelector:@selector(customDownloadWithImageView:url:placeHolderImage:)]) {
+    if (self.delegateResponseTo.customDownloadWithImageViewUrlPlaceHolderImage) {
         __weak typeof(self) weakTarget = self;
         cell.zdDownloadBlock = ^(UIImageView *imageView, NSString *urlString, UIImage *placeHolderImage) {
             __strong typeof(weakTarget) self = weakTarget;
@@ -164,7 +171,7 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollView:didSelectItemAtIndex:)]) {
+    if (self.delegateResponseTo.scrollViewDidSelectItemAtIndex) {
         if (self.innerDataSource.count == 3) { // 此时说明只有一条数据
             NSLog(@"点击了第0个");
             [self.delegate scrollView:self didSelectItemAtIndex:0];
@@ -238,9 +245,20 @@
     
     self.pageControl.currentPage = currentIndex;
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollView:didScrollToIndex:)]) {
+    if (self.delegateResponseTo.scrollViewDidScrollToIndex) {
         [self.delegate scrollView:self didScrollToIndex:currentIndex];
     }
+}
+
+- (void)setDelegate:(id<ZDBannerScrollViewDelegate>)delegate {
+    if (_delegate == delegate) return;
+    _delegate = delegate;
+    
+    struct ZDBannerDelegateResponseTo newDelegateResponseTo;
+    newDelegateResponseTo.scrollViewDidScrollToIndex = [delegate respondsToSelector:@selector(scrollView:didScrollToIndex:)];
+    newDelegateResponseTo.scrollViewDidSelectItemAtIndex = [delegate respondsToSelector:@selector(scrollView:didSelectItemAtIndex:)];
+    newDelegateResponseTo.customDownloadWithImageViewUrlPlaceHolderImage = [delegate respondsToSelector:@selector(customDownloadWithImageView:url:placeHolderImage:)];
+    self.delegateResponseTo = newDelegateResponseTo;
 }
 
 //MARK: Getter
