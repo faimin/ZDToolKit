@@ -103,6 +103,7 @@
 		E0E76D488BCA2B39CC971B7B /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0807BCA73EA1D8C20D7A355 /* Pods-ZDToolKitDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9EEE867971D34CD8CCDDCA1 /* libPods-ZDToolKitDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA5EB81320BD03A200DD081C /* ZDProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDProtocols.h; sourceTree = "<group>"; };
 		FA6244CF200CBFAE007A9EDC /* YYPhotoGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYPhotoGroupView.h; sourceTree = "<group>"; };
 		FA6244D0200CBFAE007A9EDC /* ZDImageGroupPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImageGroupPreviewController.h; sourceTree = "<group>"; };
 		FA6244D1200CBFAE007A9EDC /* ZDImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImageModel.h; sourceTree = "<group>"; };
@@ -176,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6244CE200CBFAE007A9EDC /* ZDImageGroupPreview */,
+				FA5EB81320BD03A200DD081C /* ZDProtocols.h */,
 				05EC9C6C1C53CDC300BACFE9 /* AppDelegate.h */,
 				05EC9C6D1C53CDC300BACFE9 /* AppDelegate.m */,
 				05EC9C6F1C53CDC300BACFE9 /* ViewController.h */,

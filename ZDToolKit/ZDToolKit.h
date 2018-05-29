@@ -82,5 +82,6 @@
 #import "ZDConsoleUnicode.h"
 #import "ZDPromise.h"
 #import "ZDDispatchSourceMerge.h"
+#import "ZDIntegrationManager.h"
 
 #endif /* ZDToolKit_h */
