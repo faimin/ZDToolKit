@@ -15,16 +15,22 @@
 #import <ZDToolKit/ZDFastEnumeration.h>
 #import <ZDToolKit/NSArray+ZDUtility.h>
 #import <ZDToolKit/ZDPromise.h>
+#import <ZDToolKit/NSObject+ZDSimulateKVO.h>
 
-@interface ViewController ()
+@interface ViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *testView;
 @property (weak, nonatomic) IBOutlet UIImageView *testImageView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (nonatomic, copy) NSString *text;
 
 @end
 
 @implementation ViewController
+
+- (void)dealloc {
+    [self zd_removeObserver:self forKey:@"text"];
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -74,6 +80,8 @@
     
     NSLog(@"%@", result00);
      */
+    
+    [self addKVOMonitor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -145,6 +153,12 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
     CGContextRestoreGState(context);
     
     return nil;
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView {
+    self.text = textView.text;
 }
 
 #pragma mark - Test
@@ -364,6 +378,15 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 		NSLog(@"%@", manager);
 		dlclose(FrontBoard);
 	}
+}
+
+- (void)addKVOMonitor {
+    [self zd_addObserver:self forKey:@"text" callbackBlock:^(id  _Nonnull observer, NSString * _Nonnull key, id  _Nonnull newValue) {
+        NSLog(@"%@", newValue);
+    }];
+    
+    NSString *className = NSStringFromClass(self.class);
+    NSLog(@"类名：%@", className);
 }
 
 @end

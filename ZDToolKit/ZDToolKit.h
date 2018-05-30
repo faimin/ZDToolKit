@@ -31,6 +31,7 @@
 #import "NSTimer+ZDUtility.h"
 #import "NSData+ZDUtility.h"
 #import "NSDate+ZDUtility.h"
+#import "NSObject+ZDSimulateKVO.h"
 // UIKit
 #import "UIButton+ZDUtility.h"
 #import "UIColor+ZDUtility.h"
