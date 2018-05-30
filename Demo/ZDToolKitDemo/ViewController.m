@@ -29,6 +29,7 @@
 @implementation ViewController
 
 - (void)dealloc {
+    [self removeObserver:self forKeyPath:@"text"];
     [self zd_removeObserver:self forKey:@"text"];
 }
 
@@ -81,7 +82,7 @@
     NSLog(@"%@", result00);
      */
     
-    [self addKVOMonitor];
+    //[self addKVOMonitor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -380,13 +381,27 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 	}
 }
 
+/*
 - (void)addKVOMonitor {
+    [self addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+    NSString *className = NSStringFromClass(self.class);
+    NSLog(@"类名：%@", className);
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    NSString *className = NSStringFromClass([object class]);
+    NSLog(@"类名：%@", className);
+}
+ */
+
+- (IBAction)addObserver:(UIButton *)sender {
     [self zd_addObserver:self forKey:@"text" callbackBlock:^(id  _Nonnull observer, NSString * _Nonnull key, id  _Nonnull newValue) {
         NSLog(@"%@", newValue);
     }];
-    
-    NSString *className = NSStringFromClass(self.class);
-    NSLog(@"类名：%@", className);
+}
+
+- (IBAction)removeObserver:(UIButton *)sender {
+    [self zd_removeObserver:self forKey:@"text"];
 }
 
 @end

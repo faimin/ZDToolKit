@@ -45,6 +45,7 @@ static Class ZD_SimulateKVO_ClassGetter(id self, SEL _cmd) {
 
 - (void)zd_addObserver:(id)observer forKey:(NSString *)key callbackBlock:(void(^)(id observer, NSString *key, id newValue))block {
     if (key.length == 0) return;
+    NSCAssert(![NSStringFromClass(object_getClass(self)) hasPrefix:@"NSKVO"], @"don't use with system's KVO together");
     
     SEL setterSelector = ({
         NSString *selectorString = [NSString stringWithFormat:@"set%@:", [key capitalizedString]];
@@ -54,12 +55,13 @@ static Class ZD_SimulateKVO_ClassGetter(id self, SEL _cmd) {
     Method setterMethod = class_getInstanceMethod([self class], setterSelector);
     if (!setterMethod) return;
     
-    Class aClass = object_getClass(self);
-    NSString *aClassName = NSStringFromClass(aClass);
-    if (![aClassName hasPrefix:ZDKVOPrefix]) {
-        aClass = [self zd_setupKVOClassWithOriginalClassName:aClassName];
+    Class innerKVOSubClass = NULL;
+    Class realClass = object_getClass(self);
+    NSString *realClassName = NSStringFromClass(realClass);
+    if (![realClassName hasPrefix:ZDKVOPrefix]) {
+        innerKVOSubClass = [self zd_setupKVOClassWithOriginalClassName:NSStringFromClass(self.class)];
         // set self's isa point to KVOClass
-        object_setClass(self, aClass);
+        object_setClass(self, innerKVOSubClass);
     }
     
     if (![self zd_hasSelector:setterSelector]) {
@@ -67,7 +69,7 @@ static Class ZD_SimulateKVO_ClassGetter(id self, SEL _cmd) {
         
         // IMP起实质就是函数指针，所以这里可以直接强转
         IMP kvoSetterIMP = (void *)ZD_SimulateKVO_Setter;
-        class_addMethod(aClass, setterSelector, kvoSetterIMP, type);
+        class_addMethod(innerKVOSubClass, setterSelector, kvoSetterIMP, type);
     }
     
     NSMutableArray *observers = objc_getAssociatedObject(self, ZDKVOObserversKey);
