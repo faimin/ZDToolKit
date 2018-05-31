@@ -4,7 +4,6 @@
 //
 //  Created by Zero.D.Saber on 2018/5/29.
 //
-//  https://github.com/okcomp/ImplementKVO/blob/master/ImplementKVO/NSObject%2BKVO.m
 
 #import "NSObject+ZDSimulateKVO.h"
 #import <objc/runtime.h>
@@ -46,6 +45,7 @@ static Class ZD_SimulateKVO_ClassGetter(id self, SEL _cmd) {
 - (void)zd_addObserver:(id)observer forKey:(NSString *)key callbackBlock:(void(^)(id observer, NSString *key, id newValue))block {
     if (key.length == 0) return;
     NSCAssert(![NSStringFromClass(object_getClass(self)) hasPrefix:@"NSKVO"], @"don't use with system's KVO together");
+    //@throw [NSException exceptionWithName:@"ZDSimulateKVOException" reason:@"don't use with system's KVO together" userInfo:nil];
     
     SEL setterSelector = ({
         NSString *selectorString = [NSString stringWithFormat:@"set%@:", [key capitalizedString]];
