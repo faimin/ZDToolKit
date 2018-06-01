@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.author       = { 'Zero.D.Saber' => 'fuxianchao@gmail.com' }
   s.platform     = :ios, '8.0'
   s.requires_arc = true
-  s.static_framework = true
+  # s.static_framework = true
   s.public_header_files = 'ZDToolKit/ZDToolKit.h'
   s.module_name = 'ZDToolKit'
   s.source       = {
