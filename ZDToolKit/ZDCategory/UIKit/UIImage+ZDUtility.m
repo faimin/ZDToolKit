@@ -10,6 +10,9 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <CoreImage/CoreImage.h>
 #import <ImageIO/ImageIO.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIImage_ZDUtility)
 
 #pragma mark - Function
 

@@ -7,6 +7,9 @@
 //
 
 #import "NSArray+ZDUtility.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSArray_ZDUtility)
 
 @implementation NSArray (ZDUtility)
 

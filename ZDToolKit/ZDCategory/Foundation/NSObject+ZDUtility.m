@@ -8,6 +8,9 @@
 
 #import "NSObject+ZDUtility.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDUtility)
 
 typedef NS_ENUM(NSUInteger, PropertyType) {
     PropertyType_Strong,

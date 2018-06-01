@@ -7,6 +7,9 @@
 //
 
 #import "WKWebView+ZDUtility.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(WKWebView_ZDUtility)
 
 @implementation WKWebView (ZDUtility)
 

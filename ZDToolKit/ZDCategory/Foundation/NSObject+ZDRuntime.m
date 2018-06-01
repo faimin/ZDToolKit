@@ -9,6 +9,9 @@
 #import "NSObject+ZDRuntime.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 
 @implementation NSObject (ZDRuntime)
 

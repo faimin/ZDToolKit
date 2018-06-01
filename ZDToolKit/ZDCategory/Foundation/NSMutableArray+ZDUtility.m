@@ -7,6 +7,9 @@
 //
 
 #import "NSMutableArray+ZDUtility.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSMutableArray_ZDUtility)
 
 @implementation NSMutableArray (ZDUtility)
 

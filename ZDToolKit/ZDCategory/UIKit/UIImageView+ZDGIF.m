@@ -9,6 +9,9 @@
 #import "UIImageView+ZDGIF.h"
 #import <objc/runtime.h>
 #import "ZDProxy.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIImageView_ZDGIF)
 
 static NSUInteger m = 0;
 

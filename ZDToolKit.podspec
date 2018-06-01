@@ -25,6 +25,10 @@ Pod::Spec.new do |s|
   }
   s.source_files = 'ZDToolKit/ZDToolKit.h'
 
+  s.subspec 'ZDMacros' do |ss|
+    ss.source_files = 'ZDToolKit/ZDMacros/*.{h,m}'
+  end
+
   s.subspec 'ZDAutoLayout' do |ss|
     ss.source_files = 'ZDToolKit/ZDAutoLayout/*.{h,m}'
   end
@@ -40,15 +44,13 @@ Pod::Spec.new do |s|
       sss.frameworks = 'UIKit', 'QuartzCore', 'CoreImage', 'CoreGraphics', 'ImageIO', 'CoreText', 'WebKit'
       sss.dependency 'ZDToolKit/ZDTools/ZDProxy'
     end
+
+    ss.dependency 'ZDToolKit/ZDMacros'
   end
 
   s.subspec 'ZDSubclass' do |ss|
     ss.source_files = 'ZDToolKit/ZDSubclass/*.{h,m}'
     ss.dependency 'ZDToolKit/ZDTools/ZDProxy'
-  end
-
-  s.subspec 'ZDMacros' do |ss|
-    ss.source_files = 'ZDToolKit/ZDMacros/*.{h,m}'
   end
 
   s.subspec 'ZDRuntime' do |ss|

@@ -8,6 +8,9 @@
 
 #import "UILabel+ZDUtility.h"
 #import <CoreText/CoreText.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UILabel_ZDUtility)
 
 @implementation UILabel (ZDUtility)
 

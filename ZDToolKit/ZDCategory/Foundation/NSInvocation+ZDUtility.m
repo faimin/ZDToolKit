@@ -7,6 +7,9 @@
 //  https://github.com/ReactiveCocoa/ReactiveObjC/blob/master/ReactiveObjC/NSInvocation%2BRACTypeParsing.m
 
 #import "NSInvocation+ZDUtility.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSInvocation_ZDUtility)
 
 @implementation NSInvocation (ZDUtility)
 
