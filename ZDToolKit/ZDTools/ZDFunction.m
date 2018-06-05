@@ -8,6 +8,7 @@
 
 #import "ZDFunction.h"
 #import <ImageIO/ImageIO.h>
+#import <CoreText/CoreText.h>
 #import <objc/runtime.h>
 #import <pthread/pthread.h>
 #import <Accelerate/Accelerate.h>
@@ -471,6 +472,41 @@ OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *
     if (extendFilterSetBlock) extendFilterSetBlock(attributes);
     [mutAttributeStr addAttributes:attributes range:range];
     return mutAttributeStr;
+}
+
+NSArray<NSString *> *MD_SplitTextWithWidth(NSString *string, UIFont *font, CGFloat width) {
+    if (string.length == 0) return @[];
+    
+    CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
+    
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:string];
+    [attStr addAttribute:(__bridge NSString *)kCTFontAttributeName value:(__bridge id)fontRef range:NSMakeRange(0, string.length)];
+    CFRelease(fontRef);
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, (CGRect){CGPointZero, width, CGFLOAT_MAX});
+    
+    CTFramesetterRef framesetterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attStr);
+    CTFrameRef frameRef = CTFramesetterCreateFrame(framesetterRef, CFRangeMake(0, 0), path, NULL);
+    
+    NSMutableArray<NSString *> *linesArray = @[].mutableCopy;
+    NSArray *lines = (__bridge NSArray *)CTFrameGetLines(frameRef);
+    for (id line in lines) {
+        CTLineRef lineRef = (__bridge CTLineRef)line;
+        CFRange lineRange = CTLineGetStringRange(lineRef);
+        NSRange range = NSMakeRange(lineRange.location, lineRange.length);
+        NSString *lineString = [string substringWithRange:range];
+        CFAttributedStringSetAttribute( (__bridge CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)@(0.0) );
+        CFAttributedStringSetAttribute( (__bridge CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)@(0) );
+        
+        [linesArray addObject:lineString];
+    }
+    
+    CFRelease(path);
+    CFRelease(frameRef);
+    CFRelease(framesetterRef);
+    
+    return linesArray;
 }
 
 NSMutableAttributedString *ZD_AddImageToAttributeString(UIImage *image) {

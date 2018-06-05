@@ -108,6 +108,9 @@ FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttribut
  */
 FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *_Nullable filterString, UIColor *_Nullable originColor, UIColor *_Nullable filterColor, UIFont *_Nullable originFont, UIFont *_Nullable filterFont, CGFloat lineSpacing, void(^_Nullable extendParagraphSet)(NSMutableParagraphStyle *_Nullable mutiParagraphStyle), void(^_Nullable extendOriginSetBlock)(NSMutableDictionary *originMutiAttributeDict), void(^_Nullable extendFilterSetBlock)(NSMutableDictionary *filterMutiAttributeDict));
 
+/// 等宽分隔文字
+FOUNDATION_EXPORT NSArray<NSString *> *MD_SplitTextWithWidth(NSString *string, UIFont *font, CGFloat width);
+
 ///  在文字中添加图片
 ///  @param image 图片
 ///  @return NSMutableAttributedString
