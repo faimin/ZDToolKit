@@ -416,6 +416,62 @@ void ZD_PrintViewCoordinateInfo(__kindof UIView *view) {
           );
 }
 
+NSArray<UICollectionViewLayoutAttributes *> *ZD_LayoutAttributesForElementsInRect(CGRect rect, NSArray<UICollectionViewLayoutAttributes *> *cachedLayouts) {
+    if (cachedLayouts.count == 0) return @[];
+    
+    CGFloat rect_top = CGRectGetMinY(rect);
+    CGFloat rect_bottom = CGRectGetMaxY(rect);
+    
+    NSUInteger startIndex = 0;
+    NSUInteger endIndex = cachedLayouts.count;
+    NSUInteger middleIndex = (startIndex + endIndex) / 2;
+    
+    UICollectionViewLayoutAttributes *middleAttributes;
+    do {
+        middleAttributes = cachedLayouts[middleIndex];
+        CGFloat middle_top = CGRectGetMinY(middleAttributes.frame);
+        CGFloat middle_bottom = CGRectGetMaxY(middleAttributes.frame);
+        
+        // middle在可见屏幕内
+        if (!CGRectEqualToRect(CGRectIntersection(middleAttributes.frame, rect), CGRectZero)) {
+            break;
+        }
+        // 在前半部分查找
+        else if (middle_top < rect_bottom) {
+            endIndex = middleIndex;
+            middleIndex = (startIndex + endIndex) / 2;
+        }
+        // 在后半部分查找
+        else if (middle_bottom > rect_top) {
+            startIndex = middleIndex;
+            middleIndex = (startIndex + endIndex) / 2;
+        }
+    } while (YES);
+    
+    NSMutableArray<UICollectionViewLayoutAttributes *> *targetAttributes = [NSMutableArray array];
+    for (NSInteger i = middleIndex; i >= 0; i--) {
+        UICollectionViewLayoutAttributes *attributes = cachedLayouts[i];
+        if (CGRectGetMaxY(attributes.frame) >= CGRectGetMinY(rect)) {
+            [targetAttributes insertObject:attributes atIndex:0];
+        }
+        else {
+            break;
+        }
+    }
+    
+    for (NSInteger i = middleIndex+1; i < cachedLayouts.count; i++) {
+        UICollectionViewLayoutAttributes *attributes = cachedLayouts[i];
+        if (CGRectGetMinY(attributes.frame) <= CGRectGetMaxY(rect)) {
+            [targetAttributes addObject:attributes];
+        }
+        else {
+            break;
+        }
+    }
+    
+    return targetAttributes;
+}
+
 #pragma mark - String
 #pragma mark -
 /// 设置文字行间距

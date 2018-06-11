@@ -74,6 +74,12 @@ UIKIT_EXTERN void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size,
 /// 打印view的坐标系信息
 UIKIT_EXTERN void ZD_PrintViewCoordinateInfo(__kindof UIView *view);
 
+/// @brief 利用二分查找快速筛选出屏幕内的所有item的layout布局
+/// @param rect 即将显示的rect
+/// @param cachedLayouts layout布局数组
+/// @return 在即将显示的屏幕内的layout数组
+UIKIT_EXTERN NSArray<UICollectionViewLayoutAttributes *> *ZD_LayoutAttributesForElementsInRect(CGRect rect, NSArray<UICollectionViewLayoutAttributes *> *cachedLayouts);
+
 #pragma mark - String
 #pragma mark -
 ///  设置文字行间距
