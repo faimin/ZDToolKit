@@ -422,36 +422,33 @@ NSArray<UICollectionViewLayoutAttributes *> *ZD_LayoutAttributesForElementsInRec
     CGFloat rect_top = CGRectGetMinY(rect);
     CGFloat rect_bottom = CGRectGetMaxY(rect);
     
-    NSUInteger startIndex = 0;
+    NSUInteger beginIndex = 0;
     NSUInteger endIndex = cachedLayouts.count;
-    NSUInteger middleIndex = (startIndex + endIndex) / 2;
+    NSUInteger middleIndex = (beginIndex + endIndex) / 2;
     
-    UICollectionViewLayoutAttributes *middleAttributes;
-    do {
-        middleAttributes = cachedLayouts[middleIndex];
+    UICollectionViewLayoutAttributes *middleAttributes = cachedLayouts[middleIndex];
+    
+    while (CGRectEqualToRect(CGRectIntersection(middleAttributes.frame, rect), CGRectZero)) {
         CGFloat middle_top = CGRectGetMinY(middleAttributes.frame);
         CGFloat middle_bottom = CGRectGetMaxY(middleAttributes.frame);
         
-        // middle在可见屏幕内
-        if (!CGRectEqualToRect(CGRectIntersection(middleAttributes.frame, rect), CGRectZero)) {
-            break;
-        }
         // 在前半部分查找
-        else if (middle_top < rect_bottom) {
+        if (rect_bottom < middle_top) {
             endIndex = middleIndex;
-            middleIndex = (startIndex + endIndex) / 2;
         }
         // 在后半部分查找
-        else if (middle_bottom > rect_top) {
-            startIndex = middleIndex;
-            middleIndex = (startIndex + endIndex) / 2;
+        else if (rect_top > middle_bottom) {
+            beginIndex = middleIndex;
         }
-    } while (YES);
+        middleIndex = (beginIndex + endIndex) / 2;
+        
+        middleAttributes = cachedLayouts[middleIndex];
+    }
     
     NSMutableArray<UICollectionViewLayoutAttributes *> *targetAttributes = [NSMutableArray array];
     for (NSInteger i = middleIndex; i >= 0; i--) {
         UICollectionViewLayoutAttributes *attributes = cachedLayouts[i];
-        if (CGRectGetMaxY(attributes.frame) >= CGRectGetMinY(rect)) {
+        if (CGRectGetMaxY(attributes.frame) >= rect_top) {
             [targetAttributes insertObject:attributes atIndex:0];
         }
         else {
@@ -461,7 +458,7 @@ NSArray<UICollectionViewLayoutAttributes *> *ZD_LayoutAttributesForElementsInRec
     
     for (NSInteger i = middleIndex+1; i < cachedLayouts.count; i++) {
         UICollectionViewLayoutAttributes *attributes = cachedLayouts[i];
-        if (CGRectGetMinY(attributes.frame) <= CGRectGetMaxY(rect)) {
+        if (CGRectGetMinY(attributes.frame) <= rect_bottom) {
             [targetAttributes addObject:attributes];
         }
         else {
