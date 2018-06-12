@@ -527,7 +527,7 @@ OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *
     return mutAttributeStr;
 }
 
-NSArray<NSString *> *MD_SplitTextWithWidth(NSString *string, UIFont *font, CGFloat width) {
+NSArray<NSString *> *ZD_SplitTextWithWidth(NSString *string, UIFont *font, CGFloat width) {
     if (string.length == 0) return @[];
     
     CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);

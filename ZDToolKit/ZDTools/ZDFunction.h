@@ -89,7 +89,7 @@ UIKIT_EXTERN NSArray<UICollectionViewLayoutAttributes *> *ZD_LayoutAttributesFor
 ///  @return NSMutableAttributedString
 FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *string, CGFloat lineSpace, CGFloat fontSize);
 
-///  设置某字符串为特定颜色和大小
+///  @brief 设置某字符串为特定颜色和大小
 ///  @param orignString  原始字符串
 ///  @param filterString 指定的字符串
 ///  @param filterColor  指定的颜色
@@ -97,25 +97,22 @@ FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttribut
 ///  @return NSMutableAttributedString
 FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *filterString, UIColor *filterColor, __kindof UIFont *filterFont);
 
-/**
- 创建富文本
- 
- @param orignString 原始字符串
- @param filterString 要单独设置的字符串
- @param originColor 原始字体颜色
- @param filterColor 要单独给filter文字设置的颜色
- @param originFont 原始字体
- @param filterFont 要单独给filter文字设置的字体
- @param lineSpacing 行间距
- @param extendParagraphSet 给段落增加属性
- @param extendOriginSetBlock 给原始文字增加属性
- @param extendFilterSetBlock 给filter文字增加属性
- @return 创建好的富文本
- */
+/// @brief 创建富文本
+/// @param orignString 原始字符串
+/// @param filterString 要单独设置的字符串
+/// @param originColor 原始字体颜色
+/// @param filterColor 要单独给filter文字设置的颜色
+/// @param originFont 原始字体
+/// @param filterFont 要单独给filter文字设置的字体
+/// @param lineSpacing 行间距
+/// @param extendParagraphSet 给段落增加属性
+/// @param extendOriginSetBlock 给原始文字增加属性
+/// @param extendFilterSetBlock 给filter文字增加属性
+/// @return 创建好的富文本
 FOUNDATION_EXPORT OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *orignString, NSString *_Nullable filterString, UIColor *_Nullable originColor, UIColor *_Nullable filterColor, UIFont *_Nullable originFont, UIFont *_Nullable filterFont, CGFloat lineSpacing, void(^_Nullable extendParagraphSet)(NSMutableParagraphStyle *_Nullable mutiParagraphStyle), void(^_Nullable extendOriginSetBlock)(NSMutableDictionary *originMutiAttributeDict), void(^_Nullable extendFilterSetBlock)(NSMutableDictionary *filterMutiAttributeDict));
 
 /// 等宽分隔文字
-FOUNDATION_EXPORT NSArray<NSString *> *MD_SplitTextWithWidth(NSString *string, UIFont *font, CGFloat width);
+FOUNDATION_EXPORT NSArray<NSString *> *ZD_SplitTextWithWidth(NSString *string, UIFont *font, CGFloat width);
 
 ///  在文字中添加图片
 ///  @param image 图片
