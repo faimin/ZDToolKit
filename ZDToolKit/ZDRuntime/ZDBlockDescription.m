@@ -24,12 +24,13 @@ struct Block_literal_1 {
     void (*invoke)(void *, ...);
     struct Block_descriptor_1 {
         unsigned long int reserved;         // NULL
-        unsigned long int size;         // sizeof(struct Block_literal_1)
+        unsigned long int size;             // sizeof(struct Block_literal_1)
         // optional helper functions
-        void (*copy_helper)(void *dst, void *src);     // IFF (1<<25)
-        void (*dispose_helper)(void *src);             // IFF (1<<25)
+        void (*copy_helper)(void *dst, const void *src);     // IFF (1<<25)
+        void (*dispose_helper)(const void *src);             // IFF (1<<25)
         // required ABI.2010.3.16
         const char *signature;                         // IFF (1<<30)
+        const char *layout;
     } *descriptor;
     // imported variables
 };

@@ -29,7 +29,7 @@
 @implementation ViewController
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPath:@"text"];
+    //[self removeObserver:self forKeyPath:@"text"];
     [self zd_removeObserver:self forKey:@"text"];
 }
 
