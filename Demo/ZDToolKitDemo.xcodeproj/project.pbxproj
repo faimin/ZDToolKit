@@ -185,12 +185,12 @@
 		05EC9C681C53CDC300BACFE9 /* ZDToolKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				FA6244CE200CBFAE007A9EDC /* ZDImageGroupPreview */,
 				FA5EB81320BD03A200DD081C /* ZDProtocols.h */,
 				05EC9C6C1C53CDC300BACFE9 /* AppDelegate.h */,
 				05EC9C6D1C53CDC300BACFE9 /* AppDelegate.m */,
 				FA15D42520D3924000F4AFBC /* Controllers */,
 				FA15D42920D3967C00F4AFBC /* Tools */,
+				FA6244CE200CBFAE007A9EDC /* ZDImageGroupPreview */,
 				05EC9C721C53CDC300BACFE9 /* Main.storyboard */,
 				05EC9C751C53CDC300BACFE9 /* Assets.xcassets */,
 				05EC9C771C53CDC300BACFE9 /* LaunchScreen.storyboard */,

@@ -23,14 +23,13 @@ struct Block_literal_1 {
     int reserved;
     void (*invoke)(void *, ...);
     struct Block_descriptor_1 {
-        unsigned long int reserved;         // NULL
-        unsigned long int size;             // sizeof(struct Block_literal_1)
+        unsigned long int reserved;                    // NULL
+        unsigned long int size;                        // sizeof(struct Block_literal_1)
         // optional helper functions
-        void (*copy_helper)(void *dst, const void *src);     // IFF (1<<25)
-        void (*dispose_helper)(const void *src);             // IFF (1<<25)
+        void (*copy_helper)(void *dst, void *src);     // IFF (1<<25)
+        void (*dispose_helper)(const void *src);       // IFF (1<<25)
         // required ABI.2010.3.16
         const char *signature;                         // IFF (1<<30)
-        const char *layout;
     } *descriptor;
     // imported variables
 };
@@ -45,10 +44,13 @@ enum {
 
 typedef int BlockFlags;
 
-const char *ZD_BlockGetType(id block) {
+const char *ZD_BlockTypes(id block) {
+    if (!block) return NULL;
+    
     struct Block_literal_1 *blockRef = (__bridge struct Block_literal_1 *)block;
+    
+    // unsigned long int size = blockRef->descriptor->size;
     BlockFlags flags = blockRef->flags;
-    OS_UNUSED unsigned long int size = blockRef->descriptor->size;
     
     if (flags & BLOCK_HAS_SIGNATURE) {
         void *signatureLocation = blockRef->descriptor;
@@ -67,9 +69,16 @@ const char *ZD_BlockGetType(id block) {
     return NULL;
 }
 
+void *ZD_BlockInvokeIMP(id block) {
+    if (!block) return NULL;
+    
+    struct Block_literal_1 *blockRef = (__bridge struct Block_literal_1 *)block;
+    return blockRef->invoke;
+}
+
 BOOL ZD_BlockIsCompatibleWithMethodType(id block, const char *methodType) {
     // 1. blockSignature
-    const char *blockType = ZD_BlockGetType(block);
+    const char *blockType = ZD_BlockTypes(block);
     
     NSMethodSignature *blockSignature;
     

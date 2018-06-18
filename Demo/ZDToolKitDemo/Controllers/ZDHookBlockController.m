@@ -7,6 +7,9 @@
 //
 
 #import "ZDHookBlockController.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
+#import <ZDToolKit/ZDBlockDescription.h>
 
 @interface ZDHookBlockController ()
 
@@ -68,13 +71,15 @@ struct Block_layout {
     // imported variables
 };
 
-void printHookMsg(self, _cmd) {
+NSString *printHookMsg(self, _cmd) {
     NSLog(@"hookBlock");
+    return @"hook successed";
 }
 
 - (void)hookBlock {
-    __auto_type block = ^() {
+    __auto_type block = ^NSString *(NSString *name, NSUInteger age) {
         NSLog(@"block");
+        return [NSString stringWithFormat:@"%@ + %ld", name, age];
     };
     
     //IMP imp = imp_implementationWithBlock(block);
@@ -82,15 +87,36 @@ void printHookMsg(self, _cmd) {
     struct Block_layout *layout = (__bridge void *)block;
     if (!(layout->flags & BLOCK_HAS_SIGNATURE)) return;
     
-    // save orgin IMP
+    // ref orgin IMP
     IMP originIMP = (void *)(layout->invoke);
-    void (*originFunc)(void) = (void *)originIMP;
+    NSString *(*originFunc)(id blockSelf, NSString *name, NSUInteger age) = (void *)originIMP;
     
     // replace origin IMP by new IMP
     layout->invoke = (void *)printHookMsg;
     
-    block();
-    originFunc();
+    NSString *result = block(@"Zero.D.Saber", 28);
+    NSLog(@"原始block执行结果：---> %@", result);
+    
+    // 第一个参数是block自己，后面才是block需要的参数
+    NSString *originIMPResult = originFunc(block, @"OriginIMP", 100);
+    NSLog(@"原始IMP执行结果：====> %@", originIMPResult);
+    
+    
+    NSMutableArray<NSString *> *argsArray = @[].mutableCopy;
+    const char *codingType = ZD_BlockTypes(block);
+    NSLog(@"********* : %s", codingType);
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:codingType];
+    NSString *returnType = [[[NSString stringWithUTF8String:signature.methodReturnType] stringByReplacingOccurrencesOfString:@"\"" withString:@""] stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+    [argsArray addObject:returnType];
+    NSUInteger argsCount = signature.numberOfArguments;
+    for (NSUInteger i = 0; i < argsCount; i++) {
+        const char *arg = [signature getArgumentTypeAtIndex:i];
+        //NSLog(@"%s", arg);
+        NSString *argString = [NSString stringWithUTF8String:arg];
+        argString = [[argString stringByReplacingOccurrencesOfString:@"\"" withString:@""] stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+        [argsArray addObject:argString];
+    }
+    NSLog(@"返回值类型和参数类型：%@", argsArray);
 }
 
 #pragma mark -
