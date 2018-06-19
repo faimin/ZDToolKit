@@ -17,7 +17,7 @@
 #if !defined(NS_BLOCK_ASSERTIONS)
 
 // See http://clang.llvm.org/docs/Block-ABI-Apple.html#high-level
-struct Block_literal_1 {
+struct ZDBlockLiteral {
     void *isa; // initialized to &_NSConcreteStackBlock or &_NSConcreteGlobalBlock
     int flags;
     int reserved;
@@ -34,7 +34,7 @@ struct Block_literal_1 {
     // imported variables
 };
 
-enum {
+typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
     BLOCK_HAS_COPY_DISPOSE =  (1 << 25),
     BLOCK_HAS_CTOR =          (1 << 26), // helpers have C++ code
     BLOCK_IS_GLOBAL =         (1 << 28),
@@ -42,15 +42,13 @@ enum {
     BLOCK_HAS_SIGNATURE =     (1 << 30),
 };
 
-typedef int BlockFlags;
-
 const char *ZD_BlockTypes(id block) {
     if (!block) return NULL;
     
-    struct Block_literal_1 *blockRef = (__bridge struct Block_literal_1 *)block;
+    struct ZDBlockLiteral *blockRef = (__bridge struct ZDBlockLiteral *)block;
     
     // unsigned long int size = blockRef->descriptor->size;
-    BlockFlags flags = blockRef->flags;
+    ZDBlockDescriptionFlags flags = blockRef->flags;
     
     if (flags & BLOCK_HAS_SIGNATURE) {
         void *signatureLocation = blockRef->descriptor;
@@ -72,7 +70,7 @@ const char *ZD_BlockTypes(id block) {
 void *ZD_BlockInvokeIMP(id block) {
     if (!block) return NULL;
     
-    struct Block_literal_1 *blockRef = (__bridge struct Block_literal_1 *)block;
+    struct ZDBlockLiteral *blockRef = (__bridge struct ZDBlockLiteral *)block;
     return blockRef->invoke;
 }
 
