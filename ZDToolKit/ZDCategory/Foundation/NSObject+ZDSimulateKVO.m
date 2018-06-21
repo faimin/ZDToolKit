@@ -35,7 +35,7 @@ static void ZD_SimulateKVO_Setter(id self, SEL _cmd, id param) {
 }
 
 static Class ZD_SimulateKVO_ClassGetter(id self, SEL _cmd) {
-    // self had become ZDKVOClassPrefix_xxxClass, because of the isa chagned.
+    // self had become ZDKVOClassPrefix_xxxClass, because of the isa changed.
     return class_getSuperclass(object_getClass(self));
 }
 
