@@ -35,14 +35,18 @@ struct ZDBlockLiteral {
 };
 
 typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
-    BLOCK_HAS_COPY_DISPOSE =  (1 << 25),
+    BLOCK_DEALLOCATING =      (0x0001),  // runtime
+    BLOCK_REFCOUNT_MASK =     (0xfffe),  // runtime
+    BLOCK_NEEDS_FREE =        (1 << 24), // runtime
+    BLOCK_HAS_COPY_DISPOSE =  (1 << 25), // compiler
     BLOCK_HAS_CTOR =          (1 << 26), // helpers have C++ code
-    BLOCK_IS_GLOBAL =         (1 << 28),
-    BLOCK_HAS_STRET =         (1 << 29), // IFF BLOCK_HAS_SIGNATURE
-    BLOCK_HAS_SIGNATURE =     (1 << 30),
+    BLOCK_IS_GC =             (1 << 27), // runtime
+    BLOCK_IS_GLOBAL =         (1 << 28), // compiler
+    BLOCK_HAS_STRET =         (1 << 29), // compiler: IFF BLOCK_HAS_SIGNATURE
+    BLOCK_HAS_SIGNATURE =     (1 << 30), // compiler
 };
 
-const char *ZD_BlockTypes(id block) {
+const char *ZD_BlockSignatureTypes(id block) {
     if (!block) return NULL;
     
     struct ZDBlockLiteral *blockRef = (__bridge struct ZDBlockLiteral *)block;
@@ -50,21 +54,19 @@ const char *ZD_BlockTypes(id block) {
     // unsigned long int size = blockRef->descriptor->size;
     ZDBlockDescriptionFlags flags = blockRef->flags;
     
-    if (flags & BLOCK_HAS_SIGNATURE) {
-        void *signatureLocation = blockRef->descriptor;
-        signatureLocation += sizeof(unsigned long int);
-        signatureLocation += sizeof(unsigned long int);
-        
-        if (flags & BLOCK_HAS_COPY_DISPOSE) {
-            signatureLocation += sizeof(void(*)(void *dst, void *src));
-            signatureLocation += sizeof(void(*)(void *src));
-        }
-        
-        const char *signature = (*(const char **)signatureLocation);
-        return signature;
+    if ( !(flags & BLOCK_HAS_SIGNATURE) ) return NULL;
+    
+    void *signatureLocation = blockRef->descriptor;
+    signatureLocation += sizeof(unsigned long int);
+    signatureLocation += sizeof(unsigned long int);
+    
+    if (flags & BLOCK_HAS_COPY_DISPOSE) {
+        signatureLocation += sizeof(void(*)(void *dst, void *src));
+        signatureLocation += sizeof(void(*)(void *src));
     }
     
-    return NULL;
+    const char *signature = (*(const char **)signatureLocation);
+    return signature;
 }
 
 void *ZD_BlockInvokeIMP(id block) {
@@ -76,7 +78,7 @@ void *ZD_BlockInvokeIMP(id block) {
 
 BOOL ZD_BlockIsCompatibleWithMethodType(id block, const char *methodType) {
     // 1. blockSignature
-    const char *blockType = ZD_BlockTypes(block);
+    const char *blockType = ZD_BlockSignatureTypes(block);
     
     NSMethodSignature *blockSignature;
     
