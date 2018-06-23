@@ -46,6 +46,11 @@ typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
     BLOCK_HAS_SIGNATURE =     (1 << 30), // compiler
 };
 
+/// 不能直接通过blockRef->descriptor->signature获取签名，因为不同场景下的block结构有差别:
+/// 比如当block内部引用了外面的局部变量，并且这个局部变量是OC对象，
+/// 或者是`__block`关键词包装的变量，block的结构里面有copy和dispose函数，因为这两种变量都是属于内存管理的范畴的；
+/// 其他场景下的block就未必有copy和dispose函数。
+/// 所以这里是通过flag判断是否有签名，以及是否有copy和dispose函数，然后通过地址偏移找到signature的。
 const char *ZD_BlockSignatureTypes(id block) {
     if (!block) return NULL;
     
