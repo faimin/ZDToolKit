@@ -23,24 +23,23 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     NSParameterAssert(block);
     
     NSMutableArray *deallocBlocks = objc_getAssociatedObject(self, _cmd);
-    
     // add array of dealloc blocks if not existing yet
     if (!deallocBlocks) {
         deallocBlocks = [[NSMutableArray alloc] init];
         objc_setAssociatedObject(self, _cmd, deallocBlocks, OBJC_ASSOCIATION_RETAIN);
     }
-    
     ZDObjectBlockExecutor *executor = [ZDObjectBlockExecutor blockExecutorWithDeallocBlock:block];
-    
     [deallocBlocks addObject:executor];
 }
 
 - (void)zd_deallocBlcok:(ZD_FreeBlock)deallocBlock
 {
     if (deallocBlock) {
-        ZDWeakSelf *blockExecutor = [[ZDWeakSelf alloc] initWithBlock:deallocBlock realTarget:self];
-        ///原理: 当self释放时,会先释放它本身的关联对象,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
-        objc_setAssociatedObject(self, (__bridge const void *)deallocBlock, blockExecutor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        @autoreleasepool {
+            ZDWeakSelf *blockExecutor = [[ZDWeakSelf alloc] initWithBlock:deallocBlock realTarget:self];
+            ///原理: 当self释放时,会先释放它本身的关联对象,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
+            objc_setAssociatedObject(self, (__bridge const void *)deallocBlock, blockExecutor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
     }
 }
 
@@ -212,9 +211,12 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 
 - (void)dealloc
 {
-    if (nil != self.deallocBlock) {
-        self.deallocBlock(self);
-        NSLog(@"成功移除对象");
+    @autoreleasepool {
+        if (nil != self.deallocBlock) {
+            self.deallocBlock(self);
+            _deallocBlock = nil;
+            NSLog(@"成功移除对象");
+        }
     }
 }
 
