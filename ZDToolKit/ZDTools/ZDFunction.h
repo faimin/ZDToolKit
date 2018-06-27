@@ -8,19 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <objc/runtime.h>
 
 NS_ASSUME_NONNULL_BEGIN
 //#pragma clang diagnostic ignored "-Wstrict-prototypes"
 
-typedef NS_ENUM(NSInteger, ZDThrottleType) {
-    ZDThrottleType_Invoke_First,
-    ZDThrottleType_Invoke_Last,
-};
+//===============================================================
+
+#pragma mark - CoreGraphics
+#pragma mark -
+
+UIKIT_EXTERN CGPathRef ZD_CGRoundedPathCreate(CGRect rect, UIRectCorner corners, CGSize cornerRadii);
 
 //===============================================================
 
-#pragma mark - Gif Image
+#pragma mark - GIF Image
 #pragma mark -
 /// Loads an animated GIF from file, compatible with UIImageView
 UIKIT_EXTERN UIImage *ZD_AnimatedGIFFromFile(NSString *path);
@@ -203,6 +204,11 @@ FOUNDATION_EXPORT void ZD_Dispatch_async_on_main_queue(dispatch_block_t block);
 FOUNDATION_EXPORT void ZD_Dispatch_sync_on_main_queue(dispatch_block_t block);
 /// 判断当前是不是主队列
 FOUNDATION_EXPORT BOOL ZD_IsMainQueue(void);
+
+typedef NS_ENUM(NSInteger, ZDThrottleType) {
+    ZDThrottleType_Invoke_First,
+    ZDThrottleType_Invoke_Last,
+};
 /// 让某一方法在固定的时间间隔内只执行一次
 FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_mainQueue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_block_t block);
 FOUNDATION_EXPORT void ZD_Dispatch_throttle_on_queue(ZDThrottleType throttleType, NSTimeInterval intervalInSeconds, dispatch_queue_t queue, dispatch_block_t block);

@@ -24,8 +24,58 @@
 #import <mach/mach.h>
 //-----------------------------
 
+#pragma mark - CoreGraphics
+#pragma mark -
 
-#pragma mark - Gif Image
+// https://github.com/TextureGroup/Texture/pull/996
+// https://stackoverflow.com/questions/78127/cgpathaddarc-vs-cgpathaddarctopoint
+CGPathRef ZD_CGRoundedPathCreate(CGRect rect, UIRectCorner corners, CGSize cornerRadii) {
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    const CGPoint topLeft = rect.origin;
+    const CGPoint topRight = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    const CGPoint bottomRight = CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+    const CGPoint bottomLeft = CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect));
+    
+    if (corners & UIRectCornerTopLeft) {
+        CGPathMoveToPoint(path, NULL, topLeft.x+cornerRadii.width, topLeft.y);
+    } else {
+        CGPathMoveToPoint(path, NULL, topLeft.x, topLeft.y);
+    }
+    
+    if (corners & UIRectCornerTopRight) {
+        CGPathAddLineToPoint(path, NULL, topRight.x-cornerRadii.width, topRight.y);
+        CGPathAddCurveToPoint(path, NULL, topRight.x, topRight.y, topRight.x, topRight.y+cornerRadii.height, topRight.x, topRight.y+cornerRadii.height);
+    } else {
+        CGPathAddLineToPoint(path, NULL, topRight.x, topRight.y);
+    }
+    
+    if (corners & UIRectCornerBottomRight) {
+        CGPathAddLineToPoint(path, NULL, bottomRight.x, bottomRight.y-cornerRadii.height);
+        CGPathAddCurveToPoint(path, NULL, bottomRight.x, bottomRight.y, bottomRight.x-cornerRadii.width, bottomRight.y, bottomRight.x-cornerRadii.width, bottomRight.y);
+    } else {
+        CGPathAddLineToPoint(path, NULL, bottomRight.x, bottomRight.y);
+    }
+    
+    if (corners & UIRectCornerBottomLeft) {
+        CGPathAddLineToPoint(path, NULL, bottomLeft.x+cornerRadii.width, bottomLeft.y);
+        CGPathAddCurveToPoint(path, NULL, bottomLeft.x, bottomLeft.y, bottomLeft.x, bottomLeft.y-cornerRadii.height, bottomLeft.x, bottomLeft.y-cornerRadii.height);
+    } else {
+        CGPathAddLineToPoint(path, NULL, bottomLeft.x, bottomLeft.y);
+    }
+    
+    if (corners & UIRectCornerTopLeft) {
+        CGPathAddLineToPoint(path, NULL, topLeft.x, topLeft.y+cornerRadii.height);
+        CGPathAddCurveToPoint(path, NULL, topLeft.x, topLeft.y, topLeft.x+cornerRadii.width, topLeft.y, topLeft.x+cornerRadii.width, topLeft.y);
+    } else {
+        CGPathAddLineToPoint(path, NULL, topLeft.x, topLeft.y);
+    }
+    
+    CGPathCloseSubpath(path);
+    return path;
+}
+
+#pragma mark - GIF Image
 #pragma mark -
 // returns the frame duration for a given image in 1/100th seconds
 // source: http://stackoverflow.com/questions/16964366/delaytime-or-unclampeddelaytime-for-gifs
@@ -164,16 +214,16 @@ UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize) {
      CFNumberRef thumbnailSize;
     
      // Create an image source from NSData; no options.
-     myImageSource = CGImageSourceCreateWithURL((CFURLRef)url, NULL);
+     myImageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
      // Make sure the image source exists before continuing.
-     if (myImageSource == NULL){
+     if (myImageSource == NULL) {
          fprintf(stderr, "Image source is NULL.");
          return NULL;
-    }
+     }
     
      // Package the integer as a CFNumber object. Using CFTypes allows you
      // to more easily create the options dictionary later.
-    imageSize *= [UIScreen mainScreen].scale;
+     imageSize *= [UIScreen mainScreen].scale;
      thumbnailSize = CFNumberCreate(NULL, kCFNumberIntType, &imageSize);
     
      // Set up the thumbnail options.
@@ -184,15 +234,16 @@ UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize) {
      myKeys[2] = kCGImageSourceThumbnailMaxPixelSize;
      myValues[2] = (CFTypeRef)thumbnailSize;
     
-     myOptions = CFDictionaryCreate(NULL, (const void **) myKeys,
-                                        (const void **) myValues, 3,
-                                        &kCFTypeDictionaryKeyCallBacks,
-                                        &kCFTypeDictionaryValueCallBacks);
+     myOptions = CFDictionaryCreate(
+        NULL,
+        (const void **)myKeys,
+        (const void **)myValues, 3,
+        &kCFTypeDictionaryKeyCallBacks,
+        &kCFTypeDictionaryValueCallBacks
+    );
     
      // Create the thumbnail image using the specified options.
-     myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource,
-                                                                0,
-                                                                myOptions);
+     myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource, 0, myOptions);
      // Release the options dictionary and the image source
      // when you no longer need them.
      CFRelease(thumbnailSize);
