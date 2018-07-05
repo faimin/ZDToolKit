@@ -62,7 +62,7 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
                                         kCFRunLoopAllActivities,
                                         true,
                                         0,
-                                        &RunLoopObserverCallBack,
+                                        RunLoopObserverCallBack,
                                         &context);
     CFRunLoopAddObserver(CFRunLoopGetMain(), _observer, kCFRunLoopCommonModes);
 }
