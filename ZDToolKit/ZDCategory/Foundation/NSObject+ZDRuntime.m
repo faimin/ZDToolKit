@@ -141,8 +141,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     }, OBJC_ASSOCIATION_COPY);
 #else
     NSHashTable *table = [NSHashTable weakObjectsHashTable];
-    __weak id weakValue = value;
-    [table addObject:weakValue];
+    [table addObject:value];
     objc_setAssociatedObject(self, key, table, OBJC_ASSOCIATION_RETAIN);
 #endif
 }
