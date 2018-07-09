@@ -435,7 +435,7 @@ UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineS
     return dashedLine;
 }
 
-void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fillColor) {
+void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, CGFloat cornerRadius, UIColor *fillColor) {
     if (!view) return;
     
     if (CGSizeEqualToSize(size, CGSizeZero)) {
@@ -447,7 +447,7 @@ void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fil
     hollowLayer.position = (CGPoint){size.width/2.0, size.height/2.0};
     
     UIBezierPath *squarePath = [UIBezierPath bezierPathWithRect:hollowLayer.bounds];
-    UIBezierPath *hollowPath = [UIBezierPath bezierPathWithOvalInRect:hollowLayer.bounds];
+    UIBezierPath *hollowPath = [UIBezierPath bezierPathWithRoundedRect:hollowLayer.bounds cornerRadius:cornerRadius];
     [squarePath appendPath:hollowPath];
     hollowLayer.path = squarePath.CGPath;
     

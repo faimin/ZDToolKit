@@ -69,8 +69,9 @@ UIKIT_EXTERN UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLeng
 /// @brief 给视图添加一个镂空的遮罩(圆角效果)
 /// @param view       需要添加镂空layer的视图
 /// @param size       镂空layer的尺寸,默认为view的尺寸
+/// @param cornerRadius 圆角大小
 /// @param fillColor  镂空layer的填充颜色(边缘色),默认为白色
-UIKIT_EXTERN void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fillColor);
+UIKIT_EXTERN void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, CGFloat cornerRadius, UIColor *fillColor);
 
 /// 打印view的坐标系信息
 UIKIT_EXTERN void ZD_PrintViewCoordinateInfo(__kindof UIView *view);
