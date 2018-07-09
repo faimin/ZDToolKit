@@ -55,8 +55,8 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     CFRunLoopObserverContext context;//{0, (__bridge void*)self, NULL, NULL, NULL};
     context.version         = 0;
     context.info            = (__bridge void *)self;
-    context.retain          = NULL;
-    context.release         = NULL;
+    context.retain          = &CFRetain;
+    context.release         = &CFRelease;
     context.copyDescription = NULL;
     _observer = CFRunLoopObserverCreate(CFAllocatorGetDefault(),
                                         kCFRunLoopAllActivities,
