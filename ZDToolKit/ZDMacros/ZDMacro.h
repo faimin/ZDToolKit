@@ -341,7 +341,7 @@ do {                                                 							\
 /// 加了个`unused`的attribute用来消除`unused variable`的warning
 #ifndef zd_defer
 #define zd_defer    \
-zd_keywordify       \
+@zd_keywordify      \
 __strong void(^executeCleanupBlock)(void) __attribute__((cleanup(ZD_CleanupBlock), unused)) = ^
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
@@ -354,9 +354,9 @@ static void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)(void)) {
 //MARK:- 弱引用
 #ifndef zd_keywordify
     #if DEBUG
-        #define zd_keywordify @autoreleasepool {}
+        #define zd_keywordify autoreleasepool {}
     #else
-        #define zd_keywordify @try {} @catch (...) {}
+        #define zd_keywordify try {} @catch (...) {}
     #endif
 #endif
 
