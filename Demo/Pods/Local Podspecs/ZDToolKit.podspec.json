@@ -15,7 +15,6 @@
     "ios": "8.0"
   },
   "requires_arc": true,
-  "static_framework": true,
   "public_header_files": "ZDToolKit/ZDToolKit.h",
   "module_name": "ZDToolKit",
   "source": {

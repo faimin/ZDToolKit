@@ -84,5 +84,7 @@
 #import "ZDPromise.h"
 #import "ZDDispatchSourceMerge.h"
 #import "ZDIntegrationManager.h"
+#import "ZDAlertControllerHelper.h"
+#import "ZDDispatchQueuePool.h"
 
 #endif /* ZDToolKit_h */

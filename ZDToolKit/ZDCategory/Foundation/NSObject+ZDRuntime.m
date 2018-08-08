@@ -136,7 +136,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 {
 #if 1
     __weak id weakValue = value;
-    objc_setAssociatedObject(self, key, ^{
+    objc_setAssociatedObject(self, key, ^id{
         return weakValue;
     }, OBJC_ASSOCIATION_COPY);
 #else

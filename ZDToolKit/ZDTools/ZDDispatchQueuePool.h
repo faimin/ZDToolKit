@@ -8,12 +8,12 @@
 //  This source code is licensed under the MIT-style license found in the
 //  LICENSE file in the root directory of this source tree.
 //
-//  https://github.com/ibireme/YYKit/blob/master/YYKit/Utility/YYDispatchQueuePool.h
+//  copy from https://github.com/ibireme/YYKit/blob/master/YYKit/Utility/YYDispatchQueuePool.h
 
 #import <Foundation/Foundation.h>
 
-#ifndef YYDispatchQueuePool_h
-#define YYDispatchQueuePool_h
+#ifndef ZDDispatchQueuePool_h
+#define ZDDispatchQueuePool_h
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
  A dispatch queue pool holds multiple serial queues.
  Use this class to control queue's thread count (instead of concurrent queue).
  */
-@interface YYDispatchQueuePool : NSObject
+@interface ZDDispatchQueuePool : NSObject
+
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;
 
