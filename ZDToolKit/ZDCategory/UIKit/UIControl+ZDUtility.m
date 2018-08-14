@@ -12,6 +12,9 @@
 
 #import "UIControl+ZDUtility.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIControl_ZDUtility)
 
 static void SwizzleInstanceMethod(Class c, SEL orig, SEL new) {
     Method origMethod = class_getInstanceMethod(c, orig);

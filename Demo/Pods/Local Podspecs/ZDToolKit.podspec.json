@@ -15,7 +15,6 @@
     "ios": "8.0"
   },
   "requires_arc": true,
-  "static_framework": true,
   "public_header_files": "ZDToolKit/ZDToolKit.h",
   "module_name": "ZDToolKit",
   "source": {
@@ -25,11 +24,20 @@
   "source_files": "ZDToolKit/ZDToolKit.h",
   "subspecs": [
     {
+      "name": "ZDMacros",
+      "source_files": "ZDToolKit/ZDMacros/*.{h,m}"
+    },
+    {
       "name": "ZDAutoLayout",
       "source_files": "ZDToolKit/ZDAutoLayout/*.{h,m}"
     },
     {
       "name": "ZDCategory",
+      "dependencies": {
+        "ZDToolKit/ZDMacros": [
+
+        ]
+      },
       "subspecs": [
         {
           "name": "Foundation",
@@ -68,10 +76,6 @@
 
         ]
       }
-    },
-    {
-      "name": "ZDMacros",
-      "source_files": "ZDToolKit/ZDMacros/*.{h,m}"
     },
     {
       "name": "ZDRuntime",

@@ -17,58 +17,73 @@
 #if !defined(NS_BLOCK_ASSERTIONS)
 
 // See http://clang.llvm.org/docs/Block-ABI-Apple.html#high-level
-struct Block_literal_1 {
+struct ZDBlockLiteral {
     void *isa; // initialized to &_NSConcreteStackBlock or &_NSConcreteGlobalBlock
     int flags;
     int reserved;
     void (*invoke)(void *, ...);
     struct Block_descriptor_1 {
-        unsigned long int reserved;         // NULL
-        unsigned long int size;         // sizeof(struct Block_literal_1)
+        unsigned long int reserved;                    // NULL
+        unsigned long int size;                        // sizeof(struct Block_literal_1)
         // optional helper functions
         void (*copy_helper)(void *dst, void *src);     // IFF (1<<25)
-        void (*dispose_helper)(void *src);             // IFF (1<<25)
+        void (*dispose_helper)(const void *src);       // IFF (1<<25)
         // required ABI.2010.3.16
         const char *signature;                         // IFF (1<<30)
     } *descriptor;
     // imported variables
 };
 
-enum {
-    BLOCK_HAS_COPY_DISPOSE =  (1 << 25),
+typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
+    BLOCK_DEALLOCATING =      (0x0001),  // runtime
+    BLOCK_REFCOUNT_MASK =     (0xfffe),  // runtime
+    BLOCK_NEEDS_FREE =        (1 << 24), // runtime
+    BLOCK_HAS_COPY_DISPOSE =  (1 << 25), // compiler
     BLOCK_HAS_CTOR =          (1 << 26), // helpers have C++ code
-    BLOCK_IS_GLOBAL =         (1 << 28),
-    BLOCK_HAS_STRET =         (1 << 29), // IFF BLOCK_HAS_SIGNATURE
-    BLOCK_HAS_SIGNATURE =     (1 << 30),
+    BLOCK_IS_GC =             (1 << 27), // runtime
+    BLOCK_IS_GLOBAL =         (1 << 28), // compiler
+    BLOCK_HAS_STRET =         (1 << 29), // compiler: IFF BLOCK_HAS_SIGNATURE
+    BLOCK_HAS_SIGNATURE =     (1 << 30), // compiler
 };
 
-typedef int BlockFlags;
-
-const char *ZD_BlockGetType(id block) {
-    struct Block_literal_1 *blockRef = (__bridge struct Block_literal_1 *)block;
-    BlockFlags flags = blockRef->flags;
-    OS_UNUSED unsigned long int size = blockRef->descriptor->size;
+/// 不能直接通过blockRef->descriptor->signature获取签名，因为不同场景下的block结构有差别:
+/// 比如当block内部引用了外面的局部变量，并且这个局部变量是OC对象，
+/// 或者是`__block`关键词包装的变量，block的结构里面有copy和dispose函数，因为这两种变量都是属于内存管理的范畴的；
+/// 其他场景下的block就未必有copy和dispose函数。
+/// 所以这里是通过flag判断是否有签名，以及是否有copy和dispose函数，然后通过地址偏移找到signature的。
+const char *ZD_BlockSignatureTypes(id block) {
+    if (!block) return NULL;
     
-    if (flags & BLOCK_HAS_SIGNATURE) {
-        void *signatureLocation = blockRef->descriptor;
-        signatureLocation += sizeof(unsigned long int);
-        signatureLocation += sizeof(unsigned long int);
-        
-        if (flags & BLOCK_HAS_COPY_DISPOSE) {
-            signatureLocation += sizeof(void(*)(void *dst, void *src));
-            signatureLocation += sizeof(void(*)(void *src));
-        }
-        
-        const char *signature = (*(const char **)signatureLocation);
-        return signature;
+    struct ZDBlockLiteral *blockRef = (__bridge struct ZDBlockLiteral *)block;
+    
+    // unsigned long int size = blockRef->descriptor->size;
+    ZDBlockDescriptionFlags flags = blockRef->flags;
+    
+    if ( !(flags & BLOCK_HAS_SIGNATURE) ) return NULL;
+    
+    void *signatureLocation = blockRef->descriptor;
+    signatureLocation += sizeof(unsigned long int);
+    signatureLocation += sizeof(unsigned long int);
+    
+    if (flags & BLOCK_HAS_COPY_DISPOSE) {
+        signatureLocation += sizeof(void(*)(void *dst, void *src));
+        signatureLocation += sizeof(void(*)(void *src));
     }
     
-    return NULL;
+    const char *signature = (*(const char **)signatureLocation);
+    return signature;
+}
+
+void *ZD_BlockInvokeIMP(id block) {
+    if (!block) return NULL;
+    
+    struct ZDBlockLiteral *blockRef = (__bridge struct ZDBlockLiteral *)block;
+    return blockRef->invoke;
 }
 
 BOOL ZD_BlockIsCompatibleWithMethodType(id block, const char *methodType) {
     // 1. blockSignature
-    const char *blockType = ZD_BlockGetType(block);
+    const char *blockType = ZD_BlockSignatureTypes(block);
     
     NSMethodSignature *blockSignature;
     

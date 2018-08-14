@@ -8,8 +8,13 @@
 
 #import "TwoViewController.h"
 #import <ZDToolKit/ZDToolKit.h>
+#import "ZDProtocols.h"
 
-@interface TwoViewController ()
+extern char *const ZDInjectableSectionName;
+
+char *ZDInjectionTwoViewController ZDInjectable = "TwoViewController";
+
+@interface TwoViewController () <ZDInjectionProtocol>
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet ZDEdgeLabel *zdLabel;
@@ -43,6 +48,10 @@
 }
 
 #pragma mark -
+
++ (void)foo {
+    NSLog(@"injection success 😄 foo");
+}
 
 - (void)setupTest {
     [self autoreleaseTest];

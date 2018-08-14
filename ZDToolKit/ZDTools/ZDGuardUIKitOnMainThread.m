@@ -4,6 +4,7 @@
 //
 //  Created by Zero.D.Saber on 2017/11/2.
 //
+//  https://gist.github.com/steipete/5664345
 
 #import "ZDGuardUIKitOnMainThread.h"
 #import <objc/runtime.h>

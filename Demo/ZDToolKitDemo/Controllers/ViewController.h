@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZDBaseViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : ZDBaseViewController
 
 @property (nonatomic, strong) NSArray *testArr;
 @property (nonatomic, assign) NSInteger testInt;

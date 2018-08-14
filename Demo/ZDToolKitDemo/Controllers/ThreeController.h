@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZDBaseViewController.h"
 
-@interface ThreeController : UIViewController
+@interface ThreeController : ZDBaseViewController
 
 @end

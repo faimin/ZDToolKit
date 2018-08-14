@@ -23,6 +23,9 @@
 		BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5A8031E96136F00271230 /* ZDQueuePool.m */; };
 		BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */; };
 		DA6CBBDA1F886BC900A36EF4 /* ThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CBBD91F886BC900A36EF4 /* ThreeController.m */; };
+		FA15D42820D3928800F4AFBC /* ZDRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15D42720D3928800F4AFBC /* ZDRootViewController.m */; };
+		FA15D42C20D398C000F4AFBC /* ZDHookBlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15D42B20D398C000F4AFBC /* ZDHookBlockController.m */; };
+		FA15D42F20D3995200F4AFBC /* ZDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15D42E20D3995200F4AFBC /* ZDBaseViewController.m */; };
 		FA6244D7200CBFAE007A9EDC /* ZDImagePreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D2200CBFAE007A9EDC /* ZDImagePreviewCell.m */; };
 		FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D3200CBFAE007A9EDC /* YYPhotoGroupView.m */; };
 		FA6244D9200CBFAE007A9EDC /* ZDImageGroupPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */; };
@@ -103,6 +106,13 @@
 		E0E76D488BCA2B39CC971B7B /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0807BCA73EA1D8C20D7A355 /* Pods-ZDToolKitDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZDToolKitDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZDToolKitDemoUITests/Pods-ZDToolKitDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9EEE867971D34CD8CCDDCA1 /* libPods-ZDToolKitDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA15D42620D3928800F4AFBC /* ZDRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDRootViewController.h; sourceTree = "<group>"; };
+		FA15D42720D3928800F4AFBC /* ZDRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDRootViewController.m; sourceTree = "<group>"; };
+		FA15D42A20D398C000F4AFBC /* ZDHookBlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDHookBlockController.h; sourceTree = "<group>"; };
+		FA15D42B20D398C000F4AFBC /* ZDHookBlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDHookBlockController.m; sourceTree = "<group>"; };
+		FA15D42D20D3995200F4AFBC /* ZDBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDBaseViewController.h; sourceTree = "<group>"; };
+		FA15D42E20D3995200F4AFBC /* ZDBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDBaseViewController.m; sourceTree = "<group>"; };
+		FA5EB81320BD03A200DD081C /* ZDProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDProtocols.h; sourceTree = "<group>"; };
 		FA6244CF200CBFAE007A9EDC /* YYPhotoGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYPhotoGroupView.h; sourceTree = "<group>"; };
 		FA6244D0200CBFAE007A9EDC /* ZDImageGroupPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImageGroupPreviewController.h; sourceTree = "<group>"; };
 		FA6244D1200CBFAE007A9EDC /* ZDImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImageModel.h; sourceTree = "<group>"; };
@@ -175,19 +185,12 @@
 		05EC9C681C53CDC300BACFE9 /* ZDToolKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				FA6244CE200CBFAE007A9EDC /* ZDImageGroupPreview */,
+				FA5EB81320BD03A200DD081C /* ZDProtocols.h */,
 				05EC9C6C1C53CDC300BACFE9 /* AppDelegate.h */,
 				05EC9C6D1C53CDC300BACFE9 /* AppDelegate.m */,
-				05EC9C6F1C53CDC300BACFE9 /* ViewController.h */,
-				05EC9C701C53CDC300BACFE9 /* ViewController.m */,
-				05B5D1B11CEE1153000CC089 /* TwoViewController.h */,
-				05B5D1B21CEE1153000CC089 /* TwoViewController.m */,
-				DA6CBBD81F886BC900A36EF4 /* ThreeController.h */,
-				DA6CBBD91F886BC900A36EF4 /* ThreeController.m */,
-				BCCC57CD1E77E29A006F7276 /* NSObject+ZDParams.h */,
-				BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */,
-				BCB5A8021E96136F00271230 /* ZDQueuePool.h */,
-				BCB5A8031E96136F00271230 /* ZDQueuePool.m */,
+				FA15D42520D3924000F4AFBC /* Controllers */,
+				FA15D42920D3967C00F4AFBC /* Tools */,
+				FA6244CE200CBFAE007A9EDC /* ZDImageGroupPreview */,
 				05EC9C721C53CDC300BACFE9 /* Main.storyboard */,
 				05EC9C751C53CDC300BACFE9 /* Assets.xcassets */,
 				05EC9C771C53CDC300BACFE9 /* LaunchScreen.storyboard */,
@@ -253,6 +256,36 @@
 				BC7DE26D1E35DADD00F508E2 /* Info.plist */,
 			);
 			path = ZDToolKitFrameworkTests;
+			sourceTree = "<group>";
+		};
+		FA15D42520D3924000F4AFBC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA15D42D20D3995200F4AFBC /* ZDBaseViewController.h */,
+				FA15D42E20D3995200F4AFBC /* ZDBaseViewController.m */,
+				FA15D42620D3928800F4AFBC /* ZDRootViewController.h */,
+				FA15D42720D3928800F4AFBC /* ZDRootViewController.m */,
+				05EC9C6F1C53CDC300BACFE9 /* ViewController.h */,
+				05EC9C701C53CDC300BACFE9 /* ViewController.m */,
+				05B5D1B11CEE1153000CC089 /* TwoViewController.h */,
+				05B5D1B21CEE1153000CC089 /* TwoViewController.m */,
+				DA6CBBD81F886BC900A36EF4 /* ThreeController.h */,
+				DA6CBBD91F886BC900A36EF4 /* ThreeController.m */,
+				FA15D42A20D398C000F4AFBC /* ZDHookBlockController.h */,
+				FA15D42B20D398C000F4AFBC /* ZDHookBlockController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FA15D42920D3967C00F4AFBC /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				BCCC57CD1E77E29A006F7276 /* NSObject+ZDParams.h */,
+				BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */,
+				BCB5A8021E96136F00271230 /* ZDQueuePool.h */,
+				BCB5A8031E96136F00271230 /* ZDQueuePool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		FA6244CE200CBFAE007A9EDC /* ZDImageGroupPreview */ = {
@@ -496,11 +529,14 @@
 			files = (
 				FA6244DA200CBFAE007A9EDC /* ZDImageModel.m in Sources */,
 				DA6CBBDA1F886BC900A36EF4 /* ThreeController.m in Sources */,
+				FA15D42820D3928800F4AFBC /* ZDRootViewController.m in Sources */,
 				BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */,
 				FA6244D7200CBFAE007A9EDC /* ZDImagePreviewCell.m in Sources */,
 				BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */,
 				FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */,
+				FA15D42C20D398C000F4AFBC /* ZDHookBlockController.m in Sources */,
 				05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */,
+				FA15D42F20D3995200F4AFBC /* ZDBaseViewController.m in Sources */,
 				FA6244D9200CBFAE007A9EDC /* ZDImageGroupPreviewController.m in Sources */,
 				05EC9C711C53CDC300BACFE9 /* ViewController.m in Sources */,
 				05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */,

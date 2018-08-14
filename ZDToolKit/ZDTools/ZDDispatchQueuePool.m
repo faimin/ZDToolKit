@@ -1,5 +1,5 @@
 //
-//  YYDispatchQueueManager.m
+//  ZDDispatchQueueManager.m
 //  YYKit <https://github.com/ibireme/YYKit>
 //
 //  Created by ibireme on 15/7/18.
@@ -9,7 +9,7 @@
 //  LICENSE file in the root directory of this source tree.
 //
 
-#import "YYDispatchQueuePool.h"
+#import "ZDDispatchQueuePool.h"
 #import <UIKit/UIKit.h>
 #import <libkern/OSAtomic.h>
 
@@ -42,19 +42,19 @@ typedef struct {
     void **queues;
     uint32_t queueCount;
     int32_t counter;
-} YYDispatchContext;
+} ZDDispatchContext;
 
-static YYDispatchContext *YYDispatchContextCreate(const char *name,
+static ZDDispatchContext *ZDDispatchContextCreate(const char *name,
                                                  uint32_t queueCount,
                                                  NSQualityOfService qos) {
-    YYDispatchContext *context = calloc(1, sizeof(YYDispatchContext));
+    ZDDispatchContext *context = calloc(1, sizeof(ZDDispatchContext));
     if (!context) return NULL;
     context->queues =  calloc(queueCount, sizeof(void *));
     if (!context->queues) {
         free(context);
         return NULL;
     }
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+    if (@available(iOS 8.0, *)) {
         dispatch_qos_class_t qosClass = NSQualityOfServiceToQOSClass(qos);
         for (NSUInteger i = 0; i < queueCount; i++) {
             dispatch_queue_attr_t attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, qosClass, 0);
@@ -76,7 +76,7 @@ static YYDispatchContext *YYDispatchContextCreate(const char *name,
     return context;
 }
 
-static void YYDispatchContextRelease(YYDispatchContext *context) {
+static void ZDDispatchContextRelease(ZDDispatchContext *context) {
     if (!context) return;
     if (context->queues) {
         for (NSUInteger i = 0; i < context->queueCount; i++) {
@@ -92,22 +92,22 @@ static void YYDispatchContextRelease(YYDispatchContext *context) {
     if (context->name) free((void *)context->name);
 }
 
-static dispatch_queue_t YYDispatchContextGetQueue(YYDispatchContext *context) {
+static dispatch_queue_t ZDDispatchContextGetQueue(ZDDispatchContext *context) {
     uint32_t counter = (uint32_t)OSAtomicIncrement32(&context->counter);
     void *queue = context->queues[counter % context->queueCount];
     return (__bridge dispatch_queue_t)(queue);
 }
 
 
-static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
-    static YYDispatchContext *context[5] = {0};
+static ZDDispatchContext *ZDDispatchContextGetForQOS(NSQualityOfService qos) {
+    static ZDDispatchContext *context[5] = {0};
     switch (qos) {
         case NSQualityOfServiceUserInteractive: {
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
                 int count = (int)[NSProcessInfo processInfo].activeProcessorCount;
                 count = count < 1 ? 1 : count > MAX_QUEUE_COUNT ? MAX_QUEUE_COUNT : count;
-                context[0] = YYDispatchContextCreate("com.ibireme.yykit.user-interactive", count, qos);
+                context[0] = ZDDispatchContextCreate("com.ibireme.yykit.user-interactive", count, qos);
             });
             return context[0];
         } break;
@@ -116,7 +116,7 @@ static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
             dispatch_once(&onceToken, ^{
                 int count = (int)[NSProcessInfo processInfo].activeProcessorCount;
                 count = count < 1 ? 1 : count > MAX_QUEUE_COUNT ? MAX_QUEUE_COUNT : count;
-                context[1] = YYDispatchContextCreate("com.ibireme.yykit.user-initiated", count, qos);
+                context[1] = ZDDispatchContextCreate("com.ibireme.yykit.user-initiated", count, qos);
             });
             return context[1];
         } break;
@@ -125,7 +125,7 @@ static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
             dispatch_once(&onceToken, ^{
                 int count = (int)[NSProcessInfo processInfo].activeProcessorCount;
                 count = count < 1 ? 1 : count > MAX_QUEUE_COUNT ? MAX_QUEUE_COUNT : count;
-                context[2] = YYDispatchContextCreate("com.ibireme.yykit.utility", count, qos);
+                context[2] = ZDDispatchContextCreate("com.ibireme.yykit.utility", count, qos);
             });
             return context[2];
         } break;
@@ -134,7 +134,7 @@ static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
             dispatch_once(&onceToken, ^{
                 int count = (int)[NSProcessInfo processInfo].activeProcessorCount;
                 count = count < 1 ? 1 : count > MAX_QUEUE_COUNT ? MAX_QUEUE_COUNT : count;
-                context[3] = YYDispatchContextCreate("com.ibireme.yykit.background", count, qos);
+                context[3] = ZDDispatchContextCreate("com.ibireme.yykit.background", count, qos);
             });
             return context[3];
         } break;
@@ -144,7 +144,7 @@ static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
             dispatch_once(&onceToken, ^{
                 int count = (int)[NSProcessInfo processInfo].activeProcessorCount;
                 count = count < 1 ? 1 : count > MAX_QUEUE_COUNT ? MAX_QUEUE_COUNT : count;
-                context[4] = YYDispatchContextCreate("com.ibireme.yykit.default", count, qos);
+                context[4] = ZDDispatchContextCreate("com.ibireme.yykit.default", count, qos);
             });
             return context[4];
         } break;
@@ -152,19 +152,19 @@ static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
 }
 
 
-@implementation YYDispatchQueuePool {
+@implementation ZDDispatchQueuePool {
     @public
-    YYDispatchContext *_context;
+    ZDDispatchContext *_context;
 }
 
 - (void)dealloc {
     if (_context) {
-        YYDispatchContextRelease(_context);
+        ZDDispatchContextRelease(_context);
         _context = NULL;
     }
 }
 
-- (instancetype)initWithContext:(YYDispatchContext *)context {
+- (instancetype)initWithContext:(ZDDispatchContext *)context {
     self = [super init];
     if (!context) return nil;
     self->_context = context;
@@ -175,56 +175,56 @@ static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
 - (instancetype)initWithName:(NSString *)name queueCount:(NSUInteger)queueCount qos:(NSQualityOfService)qos {
     if (queueCount == 0 || queueCount > MAX_QUEUE_COUNT) return nil;
     self = [super init];
-    _context = YYDispatchContextCreate(name.UTF8String, (uint32_t)queueCount, qos);
+    _context = ZDDispatchContextCreate(name.UTF8String, (uint32_t)queueCount, qos);
     if (!_context) return nil;
     _name = name;
     return self;
 }
 
 - (dispatch_queue_t)queue {
-    return YYDispatchContextGetQueue(_context);
+    return ZDDispatchContextGetQueue(_context);
 }
 
 + (instancetype)defaultPoolForQOS:(NSQualityOfService)qos {
     switch (qos) {
         case NSQualityOfServiceUserInteractive: {
-            static YYDispatchQueuePool *pool;
+            static ZDDispatchQueuePool *pool;
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                pool = [[YYDispatchQueuePool alloc] initWithContext:YYDispatchContextGetForQOS(qos)];
+                pool = [[ZDDispatchQueuePool alloc] initWithContext:ZDDispatchContextGetForQOS(qos)];
             });
             return pool;
         } break;
         case NSQualityOfServiceUserInitiated: {
-            static YYDispatchQueuePool *pool;
+            static ZDDispatchQueuePool *pool;
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                pool = [[YYDispatchQueuePool alloc] initWithContext:YYDispatchContextGetForQOS(qos)];
+                pool = [[ZDDispatchQueuePool alloc] initWithContext:ZDDispatchContextGetForQOS(qos)];
             });
             return pool;
         } break;
         case NSQualityOfServiceUtility: {
-            static YYDispatchQueuePool *pool;
+            static ZDDispatchQueuePool *pool;
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                pool = [[YYDispatchQueuePool alloc] initWithContext:YYDispatchContextGetForQOS(qos)];
+                pool = [[ZDDispatchQueuePool alloc] initWithContext:ZDDispatchContextGetForQOS(qos)];
             });
             return pool;
         } break;
         case NSQualityOfServiceBackground: {
-            static YYDispatchQueuePool *pool;
+            static ZDDispatchQueuePool *pool;
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                pool = [[YYDispatchQueuePool alloc] initWithContext:YYDispatchContextGetForQOS(qos)];
+                pool = [[ZDDispatchQueuePool alloc] initWithContext:ZDDispatchContextGetForQOS(qos)];
             });
             return pool;
         } break;
         case NSQualityOfServiceDefault:
         default: {
-            static YYDispatchQueuePool *pool;
+            static ZDDispatchQueuePool *pool;
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                pool = [[YYDispatchQueuePool alloc] initWithContext:YYDispatchContextGetForQOS(NSQualityOfServiceDefault)];
+                pool = [[ZDDispatchQueuePool alloc] initWithContext:ZDDispatchContextGetForQOS(NSQualityOfServiceDefault)];
             });
             return pool;
         } break;
@@ -233,6 +233,6 @@ static YYDispatchContext *YYDispatchContextGetForQOS(NSQualityOfService qos) {
 
 @end
 
-dispatch_queue_t YYDispatchQueueGetForQOS(NSQualityOfService qos) {
-    return YYDispatchContextGetQueue(YYDispatchContextGetForQOS(qos));
+dispatch_queue_t ZDDispatchQueueGetForQOS(NSQualityOfService qos) {
+    return ZDDispatchContextGetQueue(ZDDispatchContextGetForQOS(qos));
 }

@@ -7,6 +7,9 @@
 //
 
 #import "UIButton+ZDUtility.h"
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIButton_ZDUtility)
 
 @implementation UIButton (ZDUtility)
 

@@ -8,6 +8,9 @@
 
 #import "UIView+ZDUtility.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIView_ZDUtility)
 
 static const void *TouchExtendInsetKey = &TouchExtendInsetKey;
 static const void *CornerRadiusKey = &CornerRadiusKey;
@@ -113,14 +116,16 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 }
 
 - (UIImage *)zd_snapshotImageAfterScreenUpdates:(BOOL)afterUpdates {
-    if (![self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        return [self zd_snapshotImage];
+    UIImage *screenshotImage = nil;
+    if (@available(iOS 7.0, *)) {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
+        [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:afterUpdates];
+        screenshotImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    } else {
+        screenshotImage = [self zd_snapshotImage];
     }
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
-    [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:afterUpdates];
-    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return snap;
+    return screenshotImage;
 }
 
 - (NSData *)zd_snapshotPDF {

@@ -320,7 +320,7 @@ do {                                                 							\
 #define ZD_URL(urlString_) [NSURL URLWithString:urlString_]
 
 //MARK:- TODO
-//(http://blog.sunnyxx.com/2015/03/01/todo-macro/)
+//(https://blog.sunnyxx.com/2015/03/01/todo-macro/)
 #define STRINGIFY(S) #S                             // 转成字符串
 #define DEFER_STRINGIFY(S) STRINGIFY(S)             // 需要解两次才解开的宏
 #define PRAGMA_MESSAGE(MSG) _Pragma(STRINGIFY(message(MSG)))
@@ -330,11 +330,6 @@ do {                                                 							\
 
 //MARK:- 超出作用域后执行
 //defer(swift延迟调用关键字)宏 (http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/ )
-/// 注意`ZD_CleanupBlock`函数的入参是`cleanup`所修饰变量的地址,类型要一样
-NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)(void)) {
-    (*executeCleanupBlock)();
-}
-
 /// 出了作用域时执行block,类似于swift中的defer和EXTScope中的onExit
 ///
 /// Example:
@@ -344,19 +339,24 @@ NS_INLINE void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)(void)) {
 /// };
 ///
 /// 加了个`unused`的attribute用来消除`unused variable`的warning
-/// 注意`ZD_CleanupBlock`函数的入参是所修饰变量的地址,类型要一样
 #ifndef zd_defer
-	#define zd_defer  \
-        zd_keywordify \
-        __strong void(^executeCleanupBlock)(void) __attribute__((cleanup(ZD_CleanupBlock), unused)) = ^
+#define zd_defer    \
+@zd_keywordify      \
+__strong void(^executeCleanupBlock)(void) __attribute__((cleanup(ZD_CleanupBlock), unused)) = ^
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
+static void ZD_CleanupBlock(__strong void(^*executeCleanupBlock)(void)) {
+    (*executeCleanupBlock)();
+}
+#pragma clang diagnostic pop
 #endif
 
 //MARK:- 弱引用
 #ifndef zd_keywordify
     #if DEBUG
-        #define zd_keywordify @autoreleasepool {}
+        #define zd_keywordify autoreleasepool {}
     #else
-        #define zd_keywordify @try {} @catch (...) {}
+        #define zd_keywordify try {} @catch (...) {}
     #endif
 #endif
 

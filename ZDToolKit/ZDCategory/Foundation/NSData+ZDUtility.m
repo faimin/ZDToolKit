@@ -8,6 +8,9 @@
 
 #import "NSData+ZDUtility.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSData_ZDUtility)
 
 @implementation NSData (ZDUtility)
 

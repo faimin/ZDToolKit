@@ -99,10 +99,8 @@
 #pragma mark -
 
 @interface ZDMutiDelegatesProxy ()
-
-//@property (nonatomic, strong) NSPointerArray *weakTargets;
+//@property (nonatomic, strong) NSHashTable *weakTargets;
 @property (nonatomic, strong) NSMutableArray *weakTargets;
-
 @end
 
 @implementation ZDMutiDelegatesProxy
@@ -110,32 +108,20 @@
 //MARK: Public Mehtod
 - (instancetype)initWithDelegates:(NSArray *)aDelegates {
     NSParameterAssert(aDelegates);
-    self.delegateTargets = aDelegates;
+    self.delegateTargets = aDelegates.copy;
     return self;
 }
 
 - (void)addDelegate:(id)aDelegate {
     NSParameterAssert(aDelegate);
-    /*
-    [self.weakTargets addPointer:(void *)aDelegate];
-    _delegateTargets = self.weakTargets.allObjects;
-    */
+    if (!aDelegate) return;
     [_weakTargets addObject:aDelegate];
     _delegateTargets = _weakTargets.copy;
 }
 
 - (void)removeDelegate:(id)aDelegate {
     NSParameterAssert(aDelegate);
-    /*
-    NSUInteger index = 0;
-    for (id target in self.weakTargets) {
-        if (target == aDelegate) {
-            [self.weakTargets removePointerAtIndex:index];
-        }
-        index++;
-    }
-    _delegateTargets = self.weakTargets.allObjects;
-    */
+    if (!aDelegate) return;
     [_weakTargets removeObject:aDelegate];
     _delegateTargets = _weakTargets.copy;
 }
@@ -176,9 +162,9 @@
 //MARK: Property
 - (void)setDelegateTargets:(NSArray *)delegateTargets {
     /*
-    self.weakTargets = [NSPointerArray weakObjectsPointerArray];
+    self.weakTargets = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory | NSPointerFunctionsObjectPointerPersonality];
     for (id target in delegateTargets) {
-        [self.weakTargets addPointer:(__bridge void *)(target)];
+        [self.weakTargets addObject:target];
     }
     */
     _weakTargets = [self.class weakReferenceArray];

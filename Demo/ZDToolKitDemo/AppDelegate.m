@@ -10,6 +10,8 @@
 #import <ZDToolKit/ZDWatchdog.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import <ZDToolKit/ZDIntegrationManager.h>
+#import "ZDProtocols.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,19 @@
 
 @implementation AppDelegate
 
+//-------------------------------------------
+
+__attribute__((constructor)) static void beforeMain() {
+    Class<ZDInjectionProtocol> targetCls = [ZDIntegrationManager zd_classForProtocol:@protocol(ZDInjectionProtocol)];
+    [targetCls foo];
+    NSLog(@"before main");
+}
+
+__attribute__((destructor)) static void afterMain() {
+    NSLog(@"after main");
+}
+
+//-------------------------------------------
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

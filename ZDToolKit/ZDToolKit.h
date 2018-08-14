@@ -31,6 +31,7 @@
 #import "NSTimer+ZDUtility.h"
 #import "NSData+ZDUtility.h"
 #import "NSDate+ZDUtility.h"
+#import "NSObject+ZDSimulateKVO.h"
 // UIKit
 #import "UIButton+ZDUtility.h"
 #import "UIColor+ZDUtility.h"
@@ -82,5 +83,8 @@
 #import "ZDConsoleUnicode.h"
 #import "ZDPromise.h"
 #import "ZDDispatchSourceMerge.h"
+#import "ZDIntegrationManager.h"
+#import "ZDAlertControllerHelper.h"
+#import "ZDDispatchQueuePool.h"
 
 #endif /* ZDToolKit_h */

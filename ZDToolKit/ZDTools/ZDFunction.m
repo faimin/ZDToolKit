@@ -8,6 +8,7 @@
 
 #import "ZDFunction.h"
 #import <ImageIO/ImageIO.h>
+#import <CoreText/CoreText.h>
 #import <objc/runtime.h>
 #import <pthread/pthread.h>
 #import <Accelerate/Accelerate.h>
@@ -23,8 +24,58 @@
 #import <mach/mach.h>
 //-----------------------------
 
+#pragma mark - CoreGraphics
+#pragma mark -
 
-#pragma mark - Gif Image
+// https://github.com/TextureGroup/Texture/pull/996
+// https://stackoverflow.com/questions/78127/cgpathaddarc-vs-cgpathaddarctopoint
+CGPathRef ZD_CGRoundedPathCreate(CGRect rect, UIRectCorner corners, CGSize cornerRadii) {
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    const CGPoint topLeft = rect.origin;
+    const CGPoint topRight = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    const CGPoint bottomRight = CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+    const CGPoint bottomLeft = CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect));
+    
+    if (corners & UIRectCornerTopLeft) {
+        CGPathMoveToPoint(path, NULL, topLeft.x+cornerRadii.width, topLeft.y);
+    } else {
+        CGPathMoveToPoint(path, NULL, topLeft.x, topLeft.y);
+    }
+    
+    if (corners & UIRectCornerTopRight) {
+        CGPathAddLineToPoint(path, NULL, topRight.x-cornerRadii.width, topRight.y);
+        CGPathAddCurveToPoint(path, NULL, topRight.x, topRight.y, topRight.x, topRight.y+cornerRadii.height, topRight.x, topRight.y+cornerRadii.height);
+    } else {
+        CGPathAddLineToPoint(path, NULL, topRight.x, topRight.y);
+    }
+    
+    if (corners & UIRectCornerBottomRight) {
+        CGPathAddLineToPoint(path, NULL, bottomRight.x, bottomRight.y-cornerRadii.height);
+        CGPathAddCurveToPoint(path, NULL, bottomRight.x, bottomRight.y, bottomRight.x-cornerRadii.width, bottomRight.y, bottomRight.x-cornerRadii.width, bottomRight.y);
+    } else {
+        CGPathAddLineToPoint(path, NULL, bottomRight.x, bottomRight.y);
+    }
+    
+    if (corners & UIRectCornerBottomLeft) {
+        CGPathAddLineToPoint(path, NULL, bottomLeft.x+cornerRadii.width, bottomLeft.y);
+        CGPathAddCurveToPoint(path, NULL, bottomLeft.x, bottomLeft.y, bottomLeft.x, bottomLeft.y-cornerRadii.height, bottomLeft.x, bottomLeft.y-cornerRadii.height);
+    } else {
+        CGPathAddLineToPoint(path, NULL, bottomLeft.x, bottomLeft.y);
+    }
+    
+    if (corners & UIRectCornerTopLeft) {
+        CGPathAddLineToPoint(path, NULL, topLeft.x, topLeft.y+cornerRadii.height);
+        CGPathAddCurveToPoint(path, NULL, topLeft.x, topLeft.y, topLeft.x+cornerRadii.width, topLeft.y, topLeft.x+cornerRadii.width, topLeft.y);
+    } else {
+        CGPathAddLineToPoint(path, NULL, topLeft.x, topLeft.y);
+    }
+    
+    CGPathCloseSubpath(path);
+    return path;
+}
+
+#pragma mark - GIF Image
 #pragma mark -
 // returns the frame duration for a given image in 1/100th seconds
 // source: http://stackoverflow.com/questions/16964366/delaytime-or-unclampeddelaytime-for-gifs
@@ -163,16 +214,16 @@ UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize) {
      CFNumberRef thumbnailSize;
     
      // Create an image source from NSData; no options.
-     myImageSource = CGImageSourceCreateWithURL((CFURLRef)url, NULL);
+     myImageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
      // Make sure the image source exists before continuing.
-     if (myImageSource == NULL){
+     if (myImageSource == NULL) {
          fprintf(stderr, "Image source is NULL.");
          return NULL;
-    }
+     }
     
      // Package the integer as a CFNumber object. Using CFTypes allows you
      // to more easily create the options dictionary later.
-    imageSize *= [UIScreen mainScreen].scale;
+     imageSize *= [UIScreen mainScreen].scale;
      thumbnailSize = CFNumberCreate(NULL, kCFNumberIntType, &imageSize);
     
      // Set up the thumbnail options.
@@ -183,15 +234,16 @@ UIImage *ZD_ThumbnailImageFromURl(NSURL *url, int imageSize) {
      myKeys[2] = kCGImageSourceThumbnailMaxPixelSize;
      myValues[2] = (CFTypeRef)thumbnailSize;
     
-     myOptions = CFDictionaryCreate(NULL, (const void **) myKeys,
-                                        (const void **) myValues, 3,
-                                        &kCFTypeDictionaryKeyCallBacks,
-                                        &kCFTypeDictionaryValueCallBacks);
+     myOptions = CFDictionaryCreate(
+        NULL,
+        (const void **)myKeys,
+        (const void **)myValues, 3,
+        &kCFTypeDictionaryKeyCallBacks,
+        &kCFTypeDictionaryValueCallBacks
+    );
     
      // Create the thumbnail image using the specified options.
-     myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource,
-                                                                0,
-                                                                myOptions);
+     myThumbnailImage = CGImageSourceCreateThumbnailAtIndex(myImageSource, 0, myOptions);
      // Release the options dictionary and the image source
      // when you no longer need them.
      CFRelease(thumbnailSize);
@@ -383,7 +435,7 @@ UIView *ZD_CreateDashedLineWithFrame(CGRect lineFrame, int lineLength, int lineS
     return dashedLine;
 }
 
-void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fillColor) {
+void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, CGFloat cornerRadius, UIColor *fillColor) {
     if (!view) return;
     
     if (CGSizeEqualToSize(size, CGSizeZero)) {
@@ -395,7 +447,7 @@ void ZD_AddHollowoutLayerToView(__kindof UIView *view, CGSize size, UIColor *fil
     hollowLayer.position = (CGPoint){size.width/2.0, size.height/2.0};
     
     UIBezierPath *squarePath = [UIBezierPath bezierPathWithRect:hollowLayer.bounds];
-    UIBezierPath *hollowPath = [UIBezierPath bezierPathWithOvalInRect:hollowLayer.bounds];
+    UIBezierPath *hollowPath = [UIBezierPath bezierPathWithRoundedRect:hollowLayer.bounds cornerRadius:cornerRadius];
     [squarePath appendPath:hollowPath];
     hollowLayer.path = squarePath.CGPath;
     
@@ -413,6 +465,59 @@ void ZD_PrintViewCoordinateInfo(__kindof UIView *view) {
           NSStringFromCGRect(view.bounds),
           NSStringFromCGPoint(view.center)
           );
+}
+
+NSArray<UICollectionViewLayoutAttributes *> *ZD_LayoutAttributesForElementsInRect(CGRect rect, NSArray<UICollectionViewLayoutAttributes *> *cachedLayouts) {
+    if (cachedLayouts.count == 0) return @[];
+    
+    CGFloat rect_top = CGRectGetMinY(rect);
+    CGFloat rect_bottom = CGRectGetMaxY(rect);
+    
+    NSUInteger beginIndex = 0;
+    NSUInteger endIndex = cachedLayouts.count;
+    NSUInteger middleIndex = (beginIndex + endIndex) / 2;
+    
+    UICollectionViewLayoutAttributes *middleAttributes = cachedLayouts[middleIndex];
+    
+    while (CGRectEqualToRect(CGRectIntersection(middleAttributes.frame, rect), CGRectZero)) {
+        CGFloat middle_top = CGRectGetMinY(middleAttributes.frame);
+        CGFloat middle_bottom = CGRectGetMaxY(middleAttributes.frame);
+        
+        // 在前半部分查找
+        if (rect_bottom < middle_top) {
+            endIndex = middleIndex;
+        }
+        // 在后半部分查找
+        else if (rect_top > middle_bottom) {
+            beginIndex = middleIndex;
+        }
+        middleIndex = (beginIndex + endIndex) / 2;
+        
+        middleAttributes = cachedLayouts[middleIndex];
+    }
+    
+    NSMutableArray<UICollectionViewLayoutAttributes *> *targetAttributes = [NSMutableArray array];
+    for (NSInteger i = middleIndex; i >= 0; i--) {
+        UICollectionViewLayoutAttributes *attributes = cachedLayouts[i];
+        if (CGRectGetMaxY(attributes.frame) >= rect_top) {
+            [targetAttributes insertObject:attributes atIndex:0];
+        }
+        else {
+            break;
+        }
+    }
+    
+    for (NSInteger i = middleIndex+1; i < cachedLayouts.count; i++) {
+        UICollectionViewLayoutAttributes *attributes = cachedLayouts[i];
+        if (CGRectGetMinY(attributes.frame) <= rect_bottom) {
+            [targetAttributes addObject:attributes];
+        }
+        else {
+            break;
+        }
+    }
+    
+    return targetAttributes;
 }
 
 #pragma mark - String
@@ -471,6 +576,41 @@ OS_OVERLOADABLE NSMutableAttributedString *ZD_GenerateAttributeString(NSString *
     if (extendFilterSetBlock) extendFilterSetBlock(attributes);
     [mutAttributeStr addAttributes:attributes range:range];
     return mutAttributeStr;
+}
+
+NSArray<NSString *> *ZD_SplitTextWithWidth(NSString *string, UIFont *font, CGFloat width) {
+    if (string.length == 0) return @[];
+    
+    CTFontRef fontRef = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
+    
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:string];
+    [attStr addAttribute:(__bridge NSString *)kCTFontAttributeName value:(__bridge id)fontRef range:NSMakeRange(0, string.length)];
+    CFRelease(fontRef);
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, (CGRect){CGPointZero, width, CGFLOAT_MAX});
+    
+    CTFramesetterRef framesetterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attStr);
+    CTFrameRef frameRef = CTFramesetterCreateFrame(framesetterRef, CFRangeMake(0, 0), path, NULL);
+    
+    NSMutableArray<NSString *> *linesArray = @[].mutableCopy;
+    NSArray *lines = (__bridge NSArray *)CTFrameGetLines(frameRef);
+    for (id line in lines) {
+        CTLineRef lineRef = (__bridge CTLineRef)line;
+        CFRange lineRange = CTLineGetStringRange(lineRef);
+        NSRange range = NSMakeRange(lineRange.location, lineRange.length);
+        NSString *lineString = [string substringWithRange:range];
+        CFAttributedStringSetAttribute( (__bridge CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)@(0.0) );
+        CFAttributedStringSetAttribute( (__bridge CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)@(0) );
+        
+        [linesArray addObject:lineString];
+    }
+    
+    CFRelease(path);
+    CFRelease(frameRef);
+    CFRelease(framesetterRef);
+    
+    return linesArray;
 }
 
 NSMutableAttributedString *ZD_AddImageToAttributeString(UIImage *image) {

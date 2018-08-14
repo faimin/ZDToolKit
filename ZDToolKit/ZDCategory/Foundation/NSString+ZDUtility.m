@@ -9,6 +9,9 @@
 #import "NSString+ZDUtility.h"
 #import <CoreText/CoreText.h>
 #import <CommonCrypto/CommonDigest.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSString_ZDUtility)
 
 @implementation NSString (ZDUtility)
 

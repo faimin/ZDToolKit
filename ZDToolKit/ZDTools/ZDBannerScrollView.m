@@ -9,7 +9,11 @@
 #import "ZDBannerScrollView.h"
 #if __has_include(<SDWebImage/UIImageView+WebCache.h>)
 #import <SDWebImage/UIImageView+WebCache.h>
+#elif __has_include("UIImageView+WebCache.h")
+#import "UIImageView+WebCache.h"
 #endif
+
+static const NSTimeInterval ZD_DefaultInterval = 2.5;
 
 struct ZDBannerDelegateResponseTo {
     uint scrollViewDidSelectItemAtIndex : 1;
@@ -58,7 +62,7 @@ struct ZDBannerDelegateResponseTo {
         _collectionView.dataSource = nil;
     }
     
-    NSLog(@"%@-->%@, %s", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __PRETTY_FUNCTION__);
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 #pragma mark - Public Method
@@ -77,7 +81,7 @@ struct ZDBannerDelegateResponseTo {
 
 - (void)resumeTimer {
     if (!_timer) return;
-    self.timer.fireDate = [NSDate date];
+    self.timer.fireDate = [NSDate dateWithTimeIntervalSinceNow:(self.interval > 0 ? self.interval : ZD_DefaultInterval)];
 }
 
 + (instancetype)scrollViewWithFrame:(CGRect)frame
@@ -118,7 +122,7 @@ struct ZDBannerDelegateResponseTo {
 - (void)setupTimer {
     [self invalidateTimer];
     __weak typeof(self)weakSelf = self;
-    self.timer = [NSTimer zd_banner_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : 3.5) repeats:YES block:^(NSTimer * _Nonnull timer) {
+    self.timer = [NSTimer zd_banner_scheduledTimerWithTimeInterval:(self.interval > 0 ? self.interval : ZD_DefaultInterval) repeats:YES block:^(NSTimer * _Nonnull timer) {
         __strong typeof(weakSelf)self = weakSelf;
         [self autoScroll];
     }];

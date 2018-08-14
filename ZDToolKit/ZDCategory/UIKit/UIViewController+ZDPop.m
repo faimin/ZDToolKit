@@ -8,6 +8,9 @@
 
 #import "UIViewController+ZDPop.h"
 #import <objc/runtime.h>
+#import "ZDMacro.h"
+
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIViewController_ZDPop)
 
 #pragma mark - key && Function
 static void *originDelegateKey = &originDelegateKey;
