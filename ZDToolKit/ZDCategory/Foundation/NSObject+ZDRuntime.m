@@ -17,29 +17,21 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 
 #pragma mark - Dealloc Blocks
 
-- (void)addDeallocBlock:(dispatch_block_t)block
-{
-    // don't accept NULL block
-    NSParameterAssert(block);
-    
-    NSMutableArray *deallocBlocks = objc_getAssociatedObject(self, _cmd);
-    // add array of dealloc blocks if not existing yet
-    if (!deallocBlocks) {
-        deallocBlocks = [[NSMutableArray alloc] init];
-        objc_setAssociatedObject(self, _cmd, deallocBlocks, OBJC_ASSOCIATION_RETAIN);
-    }
-    ZDObjectBlockExecutor *executor = [ZDObjectBlockExecutor blockExecutorWithDeallocBlock:block];
-    [deallocBlocks addObject:executor];
-}
-
 - (void)zd_deallocBlcok:(ZD_FreeBlock)deallocBlock
 {
-    if (deallocBlock) {
-        @autoreleasepool {
-            ZDWeakSelf *blockExecutor = [[ZDWeakSelf alloc] initWithBlock:deallocBlock realTarget:self];
-            ///原理: 当self释放时,会先释放它本身的关联对象,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
-            objc_setAssociatedObject(self, (__bridge const void *)deallocBlock, blockExecutor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (!deallocBlock) return;
+    
+    @autoreleasepool {
+        NSMutableArray *deallocBlocks = objc_getAssociatedObject(self, _cmd);
+        // add array of dealloc blocks if not existing yet
+        if (!deallocBlocks) {
+            deallocBlocks = [[NSMutableArray alloc] init];
+            objc_setAssociatedObject(self, _cmd, deallocBlocks, OBJC_ASSOCIATION_RETAIN);
         }
+        
+        ZDObjectBlockExecutor *blockExecutor = [[ZDObjectBlockExecutor alloc] initWithBlock:deallocBlock realTarget:self];
+        ///原理: 当self释放时,会先释放它本身的关联对象,所以在这个属性对象的dealloc里执行回调,操作remove观察者等操作
+        [deallocBlocks addObject:blockExecutor];
     }
 }
 
@@ -169,38 +161,15 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 @end
 
 
-///======================================================
+//========================================================
+#pragma mark - ZDObjectBlockExecutor
+//========================================================
 
 @implementation ZDObjectBlockExecutor
 
-+ (instancetype)blockExecutorWithDeallocBlock:(dispatch_block_t)block
-{
-    ZDObjectBlockExecutor *executor = [[ZDObjectBlockExecutor alloc] init];
-    executor.deallocBlock = block; // copy
-    return executor;
-}
-
-- (void)dealloc
-{
-    if (self.deallocBlock) {
-        self.deallocBlock();
-        _deallocBlock = nil;
-    }
-}
-
-@end
-
-
-//========================================================
-#pragma mark - ZDWeakSelf
-//========================================================
-
-@implementation ZDWeakSelf
-
 - (instancetype)initWithBlock:(ZD_FreeBlock)deallocBlock realTarget:(id)realTarget
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         //属性设为readonly,并用指针指向方式,是参照RACDynamicSignal中的写法
         self->_deallocBlock = [deallocBlock copy];
         self->_realTarget = realTarget;
@@ -214,7 +183,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
         if (nil != self.deallocBlock) {
             self.deallocBlock(self);
             _deallocBlock = nil;
-            NSLog(@"成功移除对象");
+            NSLog(@"%s, 成功移除对象", __PRETTY_FUNCTION__);
         }
     }
 }
