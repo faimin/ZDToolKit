@@ -19,11 +19,8 @@ typedef void(^ZD_FreeBlock)(id realTarget);
 #pragma mark - Dealloc Block
 /**
  Adds a block to be executed as soon as the receiver's memory is deallocated
- @param block The block to execute when the receiver is being deallocated
+ @param deallocBlock The block to execute when the receiver is being deallocated
  */
-- (void)addDeallocBlock:(dispatch_block_t)block;
-
-/// deallocBlock executed after the object dealloc
 - (void)zd_deallocBlcok:(ZD_FreeBlock)deallocBlock;
 
 #pragma mark - Swizzeling
@@ -71,35 +68,24 @@ typedef void(^ZD_FreeBlock)(id realTarget);
 
 @end
 
-//==========================================================
-
+//========================================================
+#pragma mark ZDObjectBlockExecutor
+//========================================================
 /**
  This class is used by [NSObject addDeallocBlock:] to execute blocks on dealloc
  */
-
 @interface ZDObjectBlockExecutor : NSObject
-
-/**
- Convenience method to create a block executor with a deallocation block
- @param block The block to execute when the created receiver is being deallocated
- */
-+ (instancetype)blockExecutorWithDeallocBlock:(dispatch_block_t)block;
-
 /**
  Block to execute when dealloc of the receiver is called
  */
-@property (nonatomic, copy) dispatch_block_t deallocBlock;
-
-@end
-
-//========================================================
-#pragma mark ZDWeakSelf
-//========================================================
-@interface ZDWeakSelf : NSObject
-
 @property (nonatomic, copy, readonly) ZD_FreeBlock deallocBlock;
 @property (nonatomic, unsafe_unretained, readonly) id realTarget;
 
+/**
+ Convenience method to create a block executor with a deallocation block
+ @param deallocBlock The block to execute when the created receiver is being deallocated
+ @param realTarget The real target object
+ */
 - (instancetype)initWithBlock:(ZD_FreeBlock)deallocBlock realTarget:(id)realTarget;
 
 @end
