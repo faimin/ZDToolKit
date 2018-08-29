@@ -688,7 +688,7 @@ NSString *ZD_ReverseString(NSString *sourceString) {
 BOOL ZD_IsEmptyString(NSString *str) {
     if (!str || str == (id)[NSNull null]) return YES;
     if ([str isKindOfClass:[NSString class]]) {
-        return str.length == 0;
+        return [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0;
     }
     else {
         return YES;
