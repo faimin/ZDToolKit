@@ -8,12 +8,10 @@
 
 #ifndef ZDUtility_ZDMacro_h
 #define ZDUtility_ZDMacro_h
-#endif
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <pthread.h>
-
 
 //MARK:- 屏幕物理尺寸
 //获取屏幕宽度、高度
@@ -473,9 +471,24 @@ do {                                                                    \
     _Pragma("clang diagnostic pop")                                     \
 } while (0);
 
+/// 消除参数类型不匹配的警告(比如枚举类型参数传的NSInterger类型)
+#define ZD_SuppressMismatchedParameterTypesWarning(...)                 \
+do {                                                                    \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Wmismatched-parameter-types\"")    \
+__VA_ARGS__;                                                            \
+_Pragma("clang diagnostic pop")                                         \
+} while (0);
+
+/// 消除 Cannot find protocol definition for 'xxx'的警告
+#define ZD_SuppressNotFindProtocolWarning(...)                          \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Weverything\"")                    \
+__VA_ARGS__                                                             \
+_Pragma("clang diagnostic pop")
 
 
-
+#endif /* ZDMacro_h */
 
 
 
