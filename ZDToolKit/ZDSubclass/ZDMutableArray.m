@@ -15,7 +15,7 @@
 if (!self) return nil; \
 __VA_ARGS__; \
 if (!_zdInnerMutArray) return nil; \
-_zdInnerQueue = dispatch_queue_create("com.queue.concurrent.array", DISPATCH_QUEUE_CONCURRENT); \
+_zdInnerQueue = dispatch_queue_create("com.queue.concurrent.array", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_UTILITY, 0)); \
 _lock = dispatch_semaphore_create(1); \
 return self;
 
