@@ -17,8 +17,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 
 #pragma mark - Dealloc Blocks
 
-- (void)zd_deallocBlcok:(ZD_FreeBlock)deallocBlock
-{
+- (void)zd_deallocBlcok:(ZD_FreeBlock)deallocBlock {
     if (!deallocBlock) return;
     
     @autoreleasepool {
@@ -35,8 +34,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     }
 }
 
-+ (BOOL)zd_addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block
-{
++ (BOOL)zd_addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block {
     // don't accept nil name
     NSParameterAssert(selectorName);
     
@@ -59,8 +57,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 
 #pragma mark - Method Swizzling
 
-+ (void)zd_swizzleInstanceMethod:(SEL)selector withMethod:(SEL)otherSelector
-{
++ (void)zd_swizzleInstanceMethod:(SEL)selector withMethod:(SEL)otherSelector {
     // my own class is being targetted
     Class myClass = [self class];
     
@@ -78,8 +75,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     }
 }
 
-+ (void)zd_swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector
-{
++ (void)zd_swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector {
     /// http://nshipster.com/method-swizzling/
     /// 文中指出swizzle一个类方法用 Class class = object_getClass((id)self);
     /// 原因: class方法默认是调用的object_getClass(self),但是KVO方法中重写了原来对象的class方法,如果还调class方法,还是会返回class类,而不是KVO新创建的那个子类(这个类才是此时真实的类),所以为了防止这种情况出现,直接调用底层的object_getClass()方法来返回真正的类.
@@ -92,40 +88,33 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 
 #pragma mark - Associate
 
-- (void)zd_setStrongAssociateValue:(id)value forKey:(const void *)key
-{
+- (void)zd_setStrongAssociateValue:(id)value forKey:(const void *)key {
     objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN);
 }
 
-- (id)zd_getStrongAssociatedValueForKey:(const void *)key
-{
+- (id)zd_getStrongAssociatedValueForKey:(const void *)key {
     return objc_getAssociatedObject(self, key);
 }
 
-- (void)zd_setCopyAssociateValue:(id)value forKey:(const void *)key
-{
+- (void)zd_setCopyAssociateValue:(id)value forKey:(const void *)key {
     objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY);
 }
 
-- (id)zd_getCopyAssociatedValueForKey:(const void *)key
-{
+- (id)zd_getCopyAssociatedValueForKey:(const void *)key {
     return objc_getAssociatedObject(self, key);
 }
 
-- (void)zd_setUnsafeUnretainedAssociateValue:(id)value forKey:(const void *)key
-{
+- (void)zd_setUnsafeUnretainedAssociateValue:(id)value forKey:(const void *)key {
     objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id)zd_getUnsafeUnretainedAssociatedValueForKey:(const void *)key
-{
+- (id)zd_getUnsafeUnretainedAssociatedValueForKey:(const void *)key {
     return objc_getAssociatedObject(self, key);
 }
 
 // 此处是利用block捕获外部变量的原理实现的.
 // 其实把value作为一个对象的weak属性,然后绑定这个对象也可以实现,当get时拿到这个对象,并获取它那个weak属性即可.
-- (void)zd_setWeakAssociateValue:(id)value forKey:(const void *)key
-{
+- (void)zd_setWeakAssociateValue:(id)value forKey:(const void *)key {
 #if 1
     __weak id weakValue = value;
     objc_setAssociatedObject(self, key, ^id{
@@ -138,8 +127,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 #endif
 }
 
-- (id)zd_getWeakAssociateValueForKey:(const void *)key
-{
+- (id)zd_getWeakAssociateValueForKey:(const void *)key {
 #if 1
     id(^tempBlock)(void) = objc_getAssociatedObject(self, key);
     if (tempBlock) {
@@ -153,8 +141,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 #endif
 }
 
-- (void)zd_removeAssociatedValues
-{
+- (void)zd_removeAssociatedValues {
 	objc_removeAssociatedObjects(self);
 }
 
@@ -167,18 +154,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 
 @implementation ZDObjectBlockExecutor
 
-- (instancetype)initWithBlock:(ZD_FreeBlock)deallocBlock realTarget:(id)realTarget
-{
-    if (self = [super init]) {
-        //属性设为readonly,并用指针指向方式,是参照RACDynamicSignal中的写法
-        self->_deallocBlock = [deallocBlock copy];
-        self->_realTarget = realTarget;
-    }
-    return self;
-}
-
-- (void)dealloc
-{
+- (void)dealloc {
     @autoreleasepool {
         if (nil != self.deallocBlock) {
             self.deallocBlock(self);
@@ -186,6 +162,15 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
             NSLog(@"%s, 成功移除对象", __PRETTY_FUNCTION__);
         }
     }
+}
+
+- (instancetype)initWithBlock:(ZD_FreeBlock)deallocBlock realTarget:(id)realTarget {
+    if (self = [super init]) {
+        //属性设为readonly,并用指针指向方式,是参照RACDynamicSignal中的写法
+        self->_deallocBlock = [deallocBlock copy];
+        self->_realTarget = realTarget;
+    }
+    return self;
 }
 
 @end
