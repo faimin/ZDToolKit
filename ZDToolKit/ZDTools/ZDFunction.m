@@ -780,6 +780,45 @@ BOOL ZD_VideoIsPlayable(NSString *urlString) {
     return asset.isPlayable;
 }
 
+#pragma mark - Json
+#pragma mark -
+
+id ZD_DictOrArrFromJsonString(NSString *jsonString) {
+    if (!jsonString) return nil;
+    
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    id jsonValue = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+    if (error) NSLog(@"%s, %@", __PRETTY_FUNCTION__, error);
+    return jsonValue;
+}
+
+NSString *ZD_JsonStringFromDictionary(NSDictionary *dict) {
+    NSError *parserError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&parserError];
+    if (parserError) {
+        NSLog(@"%s, %@", __PRETTY_FUNCTION__, parserError);;
+        return nil;
+    }
+    else {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return jsonString;
+    }
+}
+
+id ZD_JsonFromSourceFile(NSString *fileName, NSString *fileType) {
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:fileName ofType:fileType];
+    if (jsonPath.length == 0) {
+        NSLog(@"%@", @"❌文件没找到，请检查文件名称是否正确");
+        return nil;
+    }
+    NSData *jsonData = [NSData dataWithContentsOfFile:jsonPath];
+    NSError *error = nil;
+    id json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+    NSLog(@"%s, %@", __PRETTY_FUNCTION__, error);
+    return json;
+}
+
 #pragma mark - InterfaceOrientation
 
 UIInterfaceOrientation ZD_CurrentInterfaceOrientation(void) {
@@ -800,10 +839,11 @@ BOOL ZD_isLandscape(void) {
 
 ///refer: http://stackoverflow.com/questions/6887464/how-can-i-get-list-of-classes-already-loaded-into-memory-in-specific-bundle-or
 NSArray<NSString *> *ZD_GetClassNames(void) {
-    NSMutableArray *classNames = [NSMutableArray array];
     unsigned int count = 0;
     const char** classes = objc_copyClassNamesForImage([[[NSBundle mainBundle] executablePath] UTF8String], &count);
-    for (u_int i = 0; i<count; i++) {
+    
+    NSMutableArray<NSString *> *classNames = [[NSMutableArray alloc] initWithCapacity:count];
+    for (u_int i = 0; i < count; i++) {
         NSString *className = [NSString stringWithUTF8String:classes[i]];
         [classNames addObject:className];
     }
@@ -904,7 +944,7 @@ BOOL ZD_isSetProxy(void) {
     NSDictionary *proxySettings = (__bridge NSDictionary *)(CFNetworkCopySystemProxySettings());
     NSArray *proxies = (__bridge NSArray *)(CFNetworkCopyProxiesForURL((__bridge CFURLRef _Nonnull)([NSURL URLWithString:@"http://www.baidu.com"]), (__bridge CFDictionaryRef _Nonnull)(proxySettings)));
     
-    NSDictionary *settings = proxies[0];
+    NSDictionary *settings = proxies.firstObject;
     return ![[settings objectForKey:(NSString *)kCFProxyTypeKey] isEqualToString:(NSString *)kCFProxyTypeNone];
 }
 
@@ -1018,7 +1058,7 @@ NSString *ZD_LaunchImageName(void) {
     // 竖屏
     NSString *viewOrientation = @"Portrait";
     NSString *launchImageName = nil;
-    NSArray *imagesDict = [[NSBundle mainBundle].infoDictionary valueForKey:@"UILaunchImages"];
+    NSArray<NSDictionary *> *imagesDict = [[NSBundle mainBundle].infoDictionary valueForKey:@"UILaunchImages"];
     for (NSDictionary *dict in imagesDict) {
         CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
         if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]) {
@@ -1031,7 +1071,7 @@ NSString *ZD_LaunchImageName(void) {
 NSArray *ZD_IPAddresses(void) {
     int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0) return nil;
-    NSMutableArray *ips = [NSMutableArray array];
+    NSMutableArray<NSString *> *ips = [[NSMutableArray alloc] init];
     
     int BUFFERSIZE = 4096;
     struct ifconf ifc;
@@ -1039,7 +1079,7 @@ NSArray *ZD_IPAddresses(void) {
     struct ifreq *ifr, ifrcopy;
     ifc.ifc_len = BUFFERSIZE;
     ifc.ifc_buf = buffer;
-    if (ioctl(sockfd, SIOCGIFCONF, &ifc) >= 0){
+    if (ioctl(sockfd, SIOCGIFCONF, &ifc) >= 0) {
         for (ptr = buffer; ptr < buffer + ifc.ifc_len; ){
             ifr = (struct ifreq *)ptr;
             int len = sizeof(struct sockaddr);
@@ -1119,8 +1159,7 @@ double ZD_MemoryUsage(void) {
 
 #pragma mark - Function
 #pragma mark -
-double ZD_Round(CGFloat num, NSInteger num_digits)
-{
+double ZD_Round(CGFloat num, NSInteger num_digits) {
     double zd_pow = pow(10, num_digits); // 指数函数，相当于10的digits次方
     double i = round(num * zd_pow) / zd_pow;
     return i;
@@ -1324,8 +1363,7 @@ IMP ZD_SwizzleMethodIMP(Class aClass, SEL originalSel, IMP replacementIMP) {
     
     IMP origIMP = method_getImplementation(origMethod);
     
-    if (!class_addMethod(aClass, originalSel, replacementIMP,
-                        method_getTypeEncoding(origMethod))) {
+    if (!class_addMethod(aClass, originalSel, replacementIMP, method_getTypeEncoding(origMethod))) {
         method_setImplementation(origMethod, replacementIMP);
     }
     
@@ -1368,13 +1406,4 @@ struct objc_method_description ZD_MethodDescriptionForSELInProtocol(Protocol *pr
 BOOL ZD_ProtocolContainSEL(Protocol *protocol, SEL sel) {
     return ZD_MethodDescriptionForSELInProtocol(protocol, sel).types ? YES : NO;
 }
-
-
-
-
-
-
-
-
-
 
