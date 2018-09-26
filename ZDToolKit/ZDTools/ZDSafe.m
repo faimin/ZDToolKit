@@ -284,6 +284,11 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 }
 
 - (void)zd_forwardInvocation:(NSInvocation *)anInvocation {
+    if ([anInvocation.target isKindOfClass:objc_lookUpClass("NSBlock")]) {
+        [self zd_forwardInvocation:anInvocation];
+        return;
+    }
+    
     NSString *selectorString = NSStringFromSelector(anInvocation.selector);
     NSUInteger parameterCount = [selectorString componentsSeparatedByString:@":"].count - 1;
     

@@ -23,8 +23,8 @@
 }
 
 - (void)setupData {
+    [self hookBlock];
     [self hookBlockIMP];
-//    [self hookBlock];
 }
 
 //----------------------------------------------------
@@ -109,6 +109,20 @@ static NSMethodSignature *ZD_SignatureForBlock(id block) {
     return signature;
 }
 
+// https://github.com/bang590/JSPatch/blob/master/JSPatch/JPEngine.m
+static IMP ZD_MsgForward(const char *methodTypes) {
+    IMP msgForwardIMP = _objc_msgForward;
+#if !defined(__arm64__)
+    if (methodTypes[0] == '{') {
+        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:methodTypes];
+        if ([methodSignature.debugDescription rangeOfString:@"is special struct return? YES"].location != NSNotFound) {
+            msgForwardIMP = (IMP)_objc_msgForward_stret;
+        }
+    }
+#endif
+    return msgForwardIMP;
+}
+
 NSMethodSignature *ZD_NewSignature(NSMethodSignature *original) {
     if (original.numberOfArguments < 1) {
         return nil;
@@ -158,7 +172,8 @@ NSString *printHookMsg(id self, SEL _cmd) {
     NSString *(*originFunc)(id blockSelf, NSString *name, NSUInteger age) = (void *)originIMP;
     
     // replace origin IMP by new IMP
-    layout->invoke = (void *)printHookMsg;
+//    layout->invoke = (void *)printHookMsg;
+    layout->invoke = (void *)ZD_MsgForward(layout->descriptor->signature);
     
     NSString *result = block(@"Zero.D.Saber", 28);
     NSLog(@"原始block执行结果：---> %@", result);
@@ -171,8 +186,9 @@ NSString *printHookMsg(id self, SEL _cmd) {
     NSMutableArray<NSString *> *argsArray = @[].mutableCopy;
     const char *codingType = ZD_BlockSignatureTypes(block);
     NSLog(@"********* : %s", codingType);
-    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:codingType];
     
+    /*
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:codingType];
     //NSMethodSignature *newSignature = ZD_NewSignature(signature);
     
     NSString *returnType = [[[NSString stringWithUTF8String:signature.methodReturnType] stringByReplacingOccurrencesOfString:@"\"" withString:@""] stringByReplacingOccurrencesOfString:@"\\" withString:@""];
@@ -186,6 +202,11 @@ NSString *printHookMsg(id self, SEL _cmd) {
         [argsArray addObject:argString];
     }
     NSLog(@"返回值类型和参数类型：%@", argsArray);
+     */
+    
+    NSString *returnType = nil;
+    ZD_GenarateTypes([NSString stringWithUTF8String:codingType], &argsArray, &returnType);
+    NSLog(@"参数类型：%@, 返回类型：%@", argsArray, returnType);
 }
 
 //----------------------------------------------------------------------------
@@ -206,8 +227,17 @@ static NSMethodSignature *newSignatureForSelector(id self, SEL _cmd, SEL aSelect
 }
 
 void newForwardInvocation(id self, SEL _cmd, NSInvocation *anInvocation) {
-    struct Block_layout *layout = (__bridge void *)anInvocation.target;
+    __unused struct Block_layout *layout = (__bridge void *)anInvocation.target;
+    __unused SEL selector = anInvocation.selector;
     //xxx
+    id arg1;
+    NSInteger arg2;
+    __autoreleasing id returnValue;
+    [anInvocation getArgument:&arg1 atIndex:1];
+    [anInvocation getArgument:&arg2 atIndex:2];
+    [anInvocation getReturnValue:&returnValue];
+    //[anInvocation invoke];
+    NSLog(@"===== 参数： %@, %ld, 返回值： %@", arg1, arg2, returnValue);
 }
 //---------------------------------------------------------------------------------
 
@@ -221,7 +251,7 @@ static void hookNSBlock() {
 }
 
 - (void)hookBlock {
-    
+    hookNSBlock();
 }
 
 #pragma mark -
