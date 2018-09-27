@@ -6,13 +6,15 @@
 //
 
 #import "ZDBlockDescription.h"
+#import <objc/message.h>
 
 
 @implementation ZDBlockDescription
 
 @end
 
-#pragma mark - Block Helpers
+#pragma mark - Block Define
+#pragma mark -
 
 // https://github.com/rabovik/RSSwizzle
 #if !defined(NS_BLOCK_ASSERTIONS)
@@ -33,6 +35,7 @@ struct ZDBlockLiteral {
         const char *signature;                         // IFF (1<<30)
     } *descriptor;
     // imported variables
+    void *originBlock; // custom added
 };
 
 typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
@@ -47,7 +50,10 @@ typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
     BLOCK_HAS_SIGNATURE =     (1 << 30), // compiler
 };
 
+typedef struct ZDBlockLiteral ZDBlock;
+
 #pragma mark - Function
+#pragma mark -
 
 /// 不能直接通过blockRef->descriptor->signature获取签名，因为不同场景下的block结构有差别:
 /// 比如当block内部引用了外面的局部变量，并且这个局部变量是OC对象，
@@ -57,7 +63,7 @@ typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
 const char *ZD_BlockSignatureTypes(id block) {
     if (!block) return NULL;
     
-    struct ZDBlockLiteral *blockRef = (__bridge struct ZDBlockLiteral *)block;
+    ZDBlock *blockRef = (__bridge ZDBlock *)block;
     
     // unsigned long int size = blockRef->descriptor->size;
     ZDBlockDescriptionFlags flags = blockRef->flags;
@@ -80,14 +86,33 @@ const char *ZD_BlockSignatureTypes(id block) {
 ZDBlockIMP ZD_BlockInvokeIMP(id block) {
     if (!block) return NULL;
     
-    struct ZDBlockLiteral *blockRef = (__bridge struct ZDBlockLiteral *)block;
+    ZDBlock *blockRef = (__bridge ZDBlock *)block;
     return blockRef->invoke;
 }
 
+// https://github.com/bang590/JSPatch/blob/master/JSPatch/JPEngine.m
+IMP ZD_MsgForwardIMP(const char *methodTypes) {
+    IMP msgForwardIMP = _objc_msgForward;
+#if !defined(__arm64__)
+    if (methodTypes[0] == '{') {
+        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:methodTypes];
+        if ([methodSignature.debugDescription rangeOfString:@"is special struct return? YES"].location != NSNotFound) {
+            msgForwardIMP = (IMP)_objc_msgForward_stret;
+        }
+    }
+#endif
+    return msgForwardIMP;
+}
 
-#pragma mark - Print Params
+BOOL ZD_IsMsgForward(IMP imp) {
+    return (imp == _objc_msgForward
+#if !defined(__arm64__)
+            || imp == _objc_msgForward_stret
+#endif
+            );
+}
 
-void ZD_GenarateTypes(NSString *types, NSArray<NSString *> **argTypesResult, NSString **returnTypeResult) {
+void ZD_ReduceBlockSignatureTypes(NSString *types, NSArray<NSString *> **argTypesResult, NSString **returnTypeResult) {
     NSMutableArray<NSString *> *argumentTypes = [[NSMutableArray<NSString *> alloc] init];
     NSString *returnType = nil;
     
@@ -143,8 +168,173 @@ void ZD_GenarateTypes(NSString *types, NSArray<NSString *> **argTypesResult, NSS
         if (skipNext) i++;
     }
     
-    *argTypesResult = argumentTypes;
-    *returnTypeResult = returnType;
+    if (argTypesResult) *argTypesResult = argumentTypes;
+    if (returnTypeResult) *returnTypeResult = returnType;
+}
+
+#pragma mark -
+
+static id ZD_ArgumentOfInvocationAtIndex(NSInvocation *invocation, NSUInteger index) {
+#define WRAP_AND_RETURN(type) \
+do { \
+type val = 0; \
+[invocation getArgument:&val atIndex:(NSInteger)index]; \
+return @(val); \
+} while (0)
+    
+    const char *argType = [invocation.methodSignature getArgumentTypeAtIndex:index];
+    
+    NSString *argTypeString = [NSString stringWithUTF8String:argType];
+    NSError *error;
+    NSString *regexString = @"\\\"[A-Za-z]+\\\""; // real regex is----  \\"[A-Za-z]+\\"
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
+    
+    __block NSString *newString;
+    [regex enumerateMatchesInString:argTypeString options:NSMatchingReportProgress range:NSMakeRange(0, argTypeString.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.range.location != NSNotFound) {
+            newString = [argTypeString stringByReplacingCharactersInRange:result.range withString:@""];
+        }
+    }];
+    //NSArray<NSTextCheckingResult *> *array = [regex matchesInString:argTypeString options:NSMatchingReportProgress range:NSMakeRange(0, argTypeString.length)];
+    if (newString) {
+        argType = newString.UTF8String;
+    }
+    
+    // Skip const type qualifier.
+    if (argType[0] == 'r') {
+        argType++;
+    }
+    
+    if (strcmp(argType, @encode(id)) == 0 || strcmp(argType, @encode(Class)) == 0) {
+        __autoreleasing id returnObj;
+        [invocation getArgument:&returnObj atIndex:(NSInteger)index];
+        return returnObj;
+    } else if (strcmp(argType, @encode(char)) == 0) {
+        WRAP_AND_RETURN(char);
+    } else if (strcmp(argType, @encode(int)) == 0) {
+        WRAP_AND_RETURN(int);
+    } else if (strcmp(argType, @encode(short)) == 0) {
+        WRAP_AND_RETURN(short);
+    } else if (strcmp(argType, @encode(long)) == 0) {
+        WRAP_AND_RETURN(long);
+    } else if (strcmp(argType, @encode(long long)) == 0) {
+        WRAP_AND_RETURN(long long);
+    } else if (strcmp(argType, @encode(unsigned char)) == 0) {
+        WRAP_AND_RETURN(unsigned char);
+    } else if (strcmp(argType, @encode(unsigned int)) == 0) {
+        WRAP_AND_RETURN(unsigned int);
+    } else if (strcmp(argType, @encode(unsigned short)) == 0) {
+        WRAP_AND_RETURN(unsigned short);
+    } else if (strcmp(argType, @encode(unsigned long)) == 0) {
+        WRAP_AND_RETURN(unsigned long);
+    } else if (strcmp(argType, @encode(unsigned long long)) == 0) {
+        WRAP_AND_RETURN(unsigned long long);
+    } else if (strcmp(argType, @encode(float)) == 0) {
+        WRAP_AND_RETURN(float);
+    } else if (strcmp(argType, @encode(double)) == 0) {
+        WRAP_AND_RETURN(double);
+    } else if (strcmp(argType, @encode(BOOL)) == 0) {
+        WRAP_AND_RETURN(BOOL);
+    } else if (strcmp(argType, @encode(char *)) == 0) {
+        WRAP_AND_RETURN(const char *);
+    } else if (strcmp(argType, @encode(void (^)(void))) == 0) {
+        __unsafe_unretained id block = nil;
+        [invocation getArgument:&block atIndex:(NSInteger)index];
+        return [block copy];
+    } else {
+        NSUInteger valueSize = 0;
+        NSGetSizeAndAlignment(argType, &valueSize, NULL);
+        
+        unsigned char valueBytes[valueSize];
+        [invocation getArgument:valueBytes atIndex:(NSInteger)index];
+        
+        return [NSValue valueWithBytes:valueBytes objCType:argType];
+    }
+    
+    return nil;
+#undef WRAP_AND_RETURN
+}
+
+#pragma mark -
+
+@interface NSInvocation (PrivateAPI)
+- (void)invokeUsingIMP:(IMP)imp;
+@end
+
+#pragma mark - Hook Block
+
+//---------------------------------------------------------------------------------
+static NSMethodSignature *ZD_NewSignatureForSelector(id self, SEL _cmd, SEL aSelector) {
+    const char *blockSignature = ZD_BlockSignatureTypes(self);
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:blockSignature];
+    return signature;
+}
+
+static void ZD_NewForwardInvocation(id self, SEL _cmd, NSInvocation *anInvocation) {
+    __unused ZDBlock *layout = (__bridge void *)anInvocation.target;
+    __unused SEL selector = anInvocation.selector;
+    
+    for (NSInteger i = 1; i < anInvocation.methodSignature.numberOfArguments; ++i) {
+        id argValue = ZD_ArgumentOfInvocationAtIndex(anInvocation, i);
+        NSLog(@"参数: %@", argValue);
+    }
+    
+    ZDBlock *block = (__bridge ZDBlock *)self;
+    [anInvocation setTarget:((__bridge id)block->originBlock)];
+    [anInvocation invokeUsingIMP:(IMP)((ZDBlock *)block->originBlock)->invoke];
+}
+//---------------------------------------------------------------------------------
+static NSString *const ZD_Prefix = @"ZD_";
+
+id ZD_HookBlock(id block) {
+    if (![block isKindOfClass:objc_lookUpClass("NSBlock")]) return NULL;
+    
+    const char *blockClassName = object_getClassName(block);
+    Class newBlockClass = object_getClass(block);
+    if (![[NSString stringWithUTF8String:blockClassName] hasPrefix:ZD_Prefix]) {
+        const char *prefix = "ZD_";
+        char *newBlockClassName = calloc(1, strlen(prefix) + strlen(blockClassName) + 1);//+1 for the zero-terminator
+        strcpy(newBlockClassName, prefix);
+        strcat(newBlockClassName, blockClassName);
+        
+        newBlockClass = objc_lookUpClass(newBlockClassName);
+        if (!newBlockClass) {
+            Class aClass = object_getClass(block);
+            newBlockClass = objc_allocateClassPair(aClass, newBlockClassName, 0);
+            {
+                SEL selector = @selector(methodSignatureForSelector:);
+                Method method = class_getInstanceMethod(newBlockClass, selector);
+                __unused IMP originIMP = class_replaceMethod(newBlockClass, selector, (IMP)ZD_NewSignatureForSelector, method_getTypeEncoding(method));
+            }
+            
+            {
+                SEL selector = @selector(forwardInvocation:);
+                Method method = class_getInstanceMethod(newBlockClass, selector);
+                __unused IMP originIMP = class_replaceMethod(newBlockClass, selector, (IMP)ZD_NewForwardInvocation, method_getTypeEncoding(method));
+            }
+            objc_registerClassPair(newBlockClass);
+        }
+
+        free(newBlockClassName);
+    }
+    
+    ZDBlock *blockRef = (__bridge ZDBlock *)block;
+    if (!blockRef) return NULL;
+    
+    // create a new block
+    ZDBlock *fakeBlock = calloc(1, sizeof(ZDBlock));
+    fakeBlock->isa = (__bridge void *)newBlockClass;
+    fakeBlock->originBlock = (void *)(blockRef);
+    fakeBlock->reserved = blockRef->reserved;
+    fakeBlock->flags = blockRef->flags;
+    fakeBlock->descriptor = blockRef->descriptor;
+    if (blockRef->flags & BLOCK_HAS_STRET) {
+        fakeBlock->invoke = (void *)(IMP)_objc_msgForward_stret;
+    }
+    else {
+        fakeBlock->invoke = (void *)(IMP)_objc_msgForward;
+    }
+    return (__bridge_transfer id)fakeBlock;
 }
 
 /*

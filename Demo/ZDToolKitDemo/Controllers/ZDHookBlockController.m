@@ -17,14 +17,27 @@
 
 @implementation ZDHookBlockController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)setupData {
+    //[self hookBlock];
+    //[self hookBlockIMP];
+    [self testHookBlock];
 }
 
-- (void)setupData {
-    [self hookBlock];
-    [self hookBlockIMP];
+- (void)testHookBlock {
+    __auto_type block = ^NSString *(NSString *name, NSUInteger age, NSNumber *value) {
+        NSString *blockResult = [NSString stringWithFormat:@"%@ + %ld + %@", name, age, value];
+        NSLog(@"block执行了，结果： %@", blockResult);
+        return blockResult;
+    };
+    
+    block = ZD_HookBlock(block);
+    
+    NSString *result1 = block(@"Zero.D.Saber", 28, @100);
+    NSLog(@"执行结果1 = %@", result1);
+    
+    //NSString *(*originFunc)(id blockSelf, NSString *name, NSUInteger age, NSNumber *) = (__typeof__(originFunc))originIMP;
+    //NSString *result2 = originFunc(block, @"Zero.D.Saber", 28, @100);
+    //NSLog(@"执行结果2 = %@", result2);
 }
 
 //----------------------------------------------------
@@ -109,20 +122,6 @@ static NSMethodSignature *ZD_SignatureForBlock(id block) {
     return signature;
 }
 
-// https://github.com/bang590/JSPatch/blob/master/JSPatch/JPEngine.m
-static IMP ZD_MsgForward(const char *methodTypes) {
-    IMP msgForwardIMP = _objc_msgForward;
-#if !defined(__arm64__)
-    if (methodTypes[0] == '{') {
-        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:methodTypes];
-        if ([methodSignature.debugDescription rangeOfString:@"is special struct return? YES"].location != NSNotFound) {
-            msgForwardIMP = (IMP)_objc_msgForward_stret;
-        }
-    }
-#endif
-    return msgForwardIMP;
-}
-
 NSMethodSignature *ZD_NewSignature(NSMethodSignature *original) {
     if (original.numberOfArguments < 1) {
         return nil;
@@ -173,7 +172,7 @@ NSString *printHookMsg(id self, SEL _cmd) {
     
     // replace origin IMP by new IMP
 //    layout->invoke = (void *)printHookMsg;
-    layout->invoke = (void *)ZD_MsgForward(layout->descriptor->signature);
+    layout->invoke = (void *)ZD_MsgForwardIMP(ZD_BlockSignatureTypes(block));
     
     NSString *result = block(@"Zero.D.Saber", 28);
     NSLog(@"原始block执行结果：---> %@", result);
@@ -205,7 +204,7 @@ NSString *printHookMsg(id self, SEL _cmd) {
      */
     
     NSString *returnType = nil;
-    ZD_GenarateTypes([NSString stringWithUTF8String:codingType], &argsArray, &returnType);
+    ZD_ReduceBlockSignatureTypes([NSString stringWithUTF8String:codingType], &argsArray, &returnType);
     NSLog(@"参数类型：%@, 返回类型：%@", argsArray, returnType);
 }
 
