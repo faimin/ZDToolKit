@@ -1,6 +1,7 @@
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/ZDToolKit
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/ZDToolKit" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/ZDToolKit"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/ZDToolKit" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/ZDToolKit" "${PODS_ROOT}/Headers/Public/libffi-core"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/libffi-core/libffi-core"
 OTHER_LDFLAGS = -framework "CoreGraphics" -framework "CoreImage" -framework "CoreText" -framework "Foundation" -framework "ImageIO" -framework "QuartzCore" -framework "UIKit" -framework "WebKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

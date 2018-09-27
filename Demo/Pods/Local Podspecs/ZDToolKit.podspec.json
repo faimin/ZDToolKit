@@ -79,7 +79,12 @@
     },
     {
       "name": "ZDRuntime",
-      "source_files": "ZDToolKit/ZDRuntime/*.{h,m}"
+      "source_files": "ZDToolKit/ZDRuntime/*.{h,m}",
+      "dependencies": {
+        "libffi-core": [
+
+        ]
+      }
     },
     {
       "name": "ZDTools",

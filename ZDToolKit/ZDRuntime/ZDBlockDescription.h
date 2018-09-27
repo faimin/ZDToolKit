@@ -6,8 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#if __has_include(<ffi/ffi.h>)
-#import <ffi/ffi.h>
+#if __has_include(<ffi.h>)
+#import <ffi.h>
 #endif
 
 @interface ZDBlockDescription : NSObject
