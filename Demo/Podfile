@@ -31,6 +31,7 @@ post_install do |installer|
                 config.build_settings['CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF'] = 'NO'
                 #关闭`This block declaration is not a prototype,Insert ‘void'`警告
                 config.build_settings['CLANG_WARN_STRICT_PROTOTYPES'] = 'NO'
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '8.0'
             end
         end
     end
