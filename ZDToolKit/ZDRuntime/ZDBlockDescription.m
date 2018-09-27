@@ -7,7 +7,7 @@
 
 #import "ZDBlockDescription.h"
 #import <objc/message.h>
-
+#import <objc/runtime.h>
 
 @implementation ZDBlockDescription
 
@@ -19,13 +19,14 @@
 // https://github.com/rabovik/RSSwizzle
 #if !defined(NS_BLOCK_ASSERTIONS)
 
-// See http://clang.llvm.org/docs/Block-ABI-Apple.html#high-level
+// http://clang.llvm.org/docs/Block-ABI-Apple.html#high-level
+// https://opensource.apple.com/source/libclosure/libclosure-67/Block_private.h.auto.html
 struct ZDBlockLiteral {
     void *isa; // initialized to &_NSConcreteStackBlock or &_NSConcreteGlobalBlock
-    int flags;
+    volatile int flags;
     int reserved;
     void (*invoke)(void *, ...);
-    struct Block_descriptor_1 {
+    struct ZDBlock_descriptor_1 {
         unsigned long int reserved;                    // NULL
         unsigned long int size;                        // sizeof(struct Block_literal_1)
         // optional helper functions
@@ -35,7 +36,6 @@ struct ZDBlockLiteral {
         const char *signature;                         // IFF (1<<30)
     } *descriptor;
     // imported variables
-    void *originBlock; // custom added
 };
 
 typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
@@ -263,6 +263,8 @@ return @(val); \
 
 #pragma mark - Hook Block
 
+static const void *ZD_Origin_Block_Key = &ZD_Origin_Block_Key;
+
 //---------------------------------------------------------------------------------
 static NSMethodSignature *ZD_NewSignatureForSelector(id self, SEL _cmd, SEL aSelector) {
     const char *blockSignature = ZD_BlockSignatureTypes(self);
@@ -276,12 +278,13 @@ static void ZD_NewForwardInvocation(id self, SEL _cmd, NSInvocation *anInvocatio
     
     for (NSInteger i = 1; i < anInvocation.methodSignature.numberOfArguments; ++i) {
         id argValue = ZD_ArgumentOfInvocationAtIndex(anInvocation, i);
-        NSLog(@"参数: %@", argValue);
+        NSLog(@"block arg %ld : %@", i, argValue);
     }
     
-    ZDBlock *block = (__bridge ZDBlock *)self;
-    [anInvocation setTarget:((__bridge id)block->originBlock)];
-    [anInvocation invokeUsingIMP:(IMP)((ZDBlock *)block->originBlock)->invoke];
+    id originBlock = objc_getAssociatedObject(self, ZD_Origin_Block_Key);
+    [anInvocation setTarget:originBlock];
+    //[anInvocation invokeUsingIMP:(IMP)((__bridge ZDBlock *)originBlock)->invoke];
+    [anInvocation invoke];
 }
 //---------------------------------------------------------------------------------
 static NSString *const ZD_Prefix = @"ZD_";
@@ -324,7 +327,6 @@ id ZD_HookBlock(id block) {
     // create a new block
     ZDBlock *fakeBlock = calloc(1, sizeof(ZDBlock));
     fakeBlock->isa = (__bridge void *)newBlockClass;
-    fakeBlock->originBlock = (void *)(blockRef);
     fakeBlock->reserved = blockRef->reserved;
     fakeBlock->flags = blockRef->flags;
     fakeBlock->descriptor = blockRef->descriptor;
@@ -334,6 +336,8 @@ id ZD_HookBlock(id block) {
     else {
         fakeBlock->invoke = (void *)(IMP)_objc_msgForward;
     }
+    objc_setAssociatedObject((__bridge id _Nonnull)(fakeBlock), ZD_Origin_Block_Key, (__bridge id _Nullable)(blockRef), OBJC_ASSOCIATION_COPY_NONATOMIC);
+    
     return (__bridge_transfer id)fakeBlock;
 }
 
