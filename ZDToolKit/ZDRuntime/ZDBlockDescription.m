@@ -112,7 +112,10 @@ BOOL ZD_IsMsgForward(IMP imp) {
             );
 }
 
-void ZD_ReduceBlockSignatureTypes(NSString *types, NSArray<NSString *> **argTypesResult, NSString **returnTypeResult) {
+void ZD_ReduceBlockSignatureTypes(NSString *signatureCodingType, NSArray<NSString *> **argTypesResult, NSString **returnTypeResult) {
+    if (signatureCodingType.length == 0) return;
+    
+    NSString *types = signatureCodingType.copy;
     NSMutableArray<NSString *> *argumentTypes = [[NSMutableArray<NSString *> alloc] init];
     NSString *returnType = nil;
     
@@ -172,7 +175,11 @@ void ZD_ReduceBlockSignatureTypes(NSString *types, NSArray<NSString *> **argType
     if (returnTypeResult) *returnTypeResult = returnType;
 }
 
-NSString *ZD_ReduceBlockSignatureCodingType(NSString *codingType) {
+NSString *ZD_ReduceBlockSignatureCodingType(NSString *signatureCodingType) {
+    if (signatureCodingType.length == 0) return nil;
+    
+    NSString *codingType = signatureCodingType.copy;
+    
     NSError *error = nil;
     NSString *regexString = @"\\\"[A-Za-z]+\\\"|[0-9]+";// <==> \\"[A-Za-z]+\\"|\d+  <==>  \\"\w+\\"|\d+
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
