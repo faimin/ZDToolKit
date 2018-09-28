@@ -29,6 +29,7 @@ FOUNDATION_EXPORT BOOL ZD_IsMsgForward(IMP imp);
 /// 判断block是否与给定的typeCoding相同
 //FOUNDATION_EXPORT BOOL ZD_BlockIsCompatibleWithMethodType(id block, const char *methodType);
 /// 简化block方法签名
+FOUNDATION_EXPORT NSString *ZD_ReduceBlockSignatureCodingType(NSString *signatureCodingType);
 FOUNDATION_EXPORT void ZD_ReduceBlockSignatureTypes(NSString *signature, NSArray<NSString *> **argTypesResult, NSString **returnTypeResult);
 /// 打印block 参数
 /// @return 返回一个新的block

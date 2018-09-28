@@ -172,6 +172,22 @@ void ZD_ReduceBlockSignatureTypes(NSString *types, NSArray<NSString *> **argType
     if (returnTypeResult) *returnTypeResult = returnType;
 }
 
+NSString *ZD_ReduceBlockSignatureCodingType(NSString *codingType) {
+    NSError *error = nil;
+    NSString *regexString = @"\\\"[A-Za-z]+\\\"|[0-9]+";// <==> \\"[A-Za-z]+\\"|\d+  <==>  \\"\w+\\"|\d+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
+    
+    NSTextCheckingResult *mathResult = nil;
+    do {
+        mathResult = [regex firstMatchInString:codingType options:NSMatchingReportProgress range:NSMakeRange(0, codingType.length)];
+        if (mathResult.range.location != NSNotFound && mathResult.range.length != 0) {
+            codingType = [codingType stringByReplacingCharactersInRange:mathResult.range withString:@""];
+        }
+    } while (mathResult.range.length != 0);
+    
+    return codingType;
+}
+
 #pragma mark -
 
 static id ZD_ArgumentOfInvocationAtIndex(NSInvocation *invocation, NSUInteger index) {
@@ -341,9 +357,9 @@ id ZD_HookBlock(id block) {
     return (__bridge_transfer id)fakeBlock;
 }
 
-/*
+
 ffi_type *ffiTypeWithType(NSString *type) {
-    if ([type isEqualToString:@"@?"]) {
+    if ([type isEqualToString:@"@?"]) { // block
         return &ffi_type_pointer;
     }
     const char *c = [type UTF8String];
@@ -396,6 +412,7 @@ ffi_type *ffiTypeWithType(NSString *type) {
     return NULL;
 }
 
+/*
 ZDBlockIMP ZD_BlockIMP(NSArray<NSString *> *argumentTypes, NSString *returnType) {
     ffi_type *returnType = ffiTypeWithType(returnType);
     NSAssert(returnType, @"can't find a ffi_type of %@", returnType);
