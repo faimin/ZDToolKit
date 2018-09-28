@@ -205,23 +205,11 @@ type val = 0; \
 return @(val); \
 } while (0)
     
-    const char *argType = [invocation.methodSignature getArgumentTypeAtIndex:index];
+    const char *originArgType = [invocation.methodSignature getArgumentTypeAtIndex:index];
     
-    NSString *argTypeString = [NSString stringWithUTF8String:argType];
-    NSError *error;
-    NSString *regexString = @"\\\"[A-Za-z]+\\\""; // real regex is----  \\"[A-Za-z]+\\"
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
-    
-    __block NSString *newString;
-    [regex enumerateMatchesInString:argTypeString options:NSMatchingReportProgress range:NSMakeRange(0, argTypeString.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-        if (result.range.location != NSNotFound) {
-            newString = [argTypeString stringByReplacingCharactersInRange:result.range withString:@""];
-        }
-    }];
-    //NSArray<NSTextCheckingResult *> *array = [regex matchesInString:argTypeString options:NSMatchingReportProgress range:NSMakeRange(0, argTypeString.length)];
-    if (newString) {
-        argType = newString.UTF8String;
-    }
+    NSString *argTypeString = [NSString stringWithUTF8String:originArgType];
+    argTypeString = ZD_ReduceBlockSignatureCodingType(argTypeString);
+    const char *argType = argTypeString.UTF8String;
     
     // Skip const type qualifier.
     if (argType[0] == 'r') {
