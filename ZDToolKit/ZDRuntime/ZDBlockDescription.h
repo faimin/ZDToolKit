@@ -6,11 +6,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#if __has_include(<ffi.h>)
-#import <ffi.h>
-#endif
+
 
 @interface ZDBlockDescription : NSObject
+
+@end
+
+/// 利用libffi实现
+@interface ZDFfiBlockHook : NSObject
+
+@property (nonatomic, strong) NSMethodSignature *signature;
+@property (nonatomic, copy) NSString *typeEncoding;
+@property (nonatomic, copy) id block;
+
++ (instancetype)hookBlock:(id)block;
 
 @end
 
@@ -33,10 +42,10 @@ FOUNDATION_EXPORT BOOL ZD_IsMsgForward(IMP imp);
 /// 判断block是否与给定的typeCoding相同
 //FOUNDATION_EXPORT BOOL ZD_BlockIsCompatibleWithMethodType(id block, const char *methodType);
 /// 简化block方法签名
-FOUNDATION_EXPORT NSString *ZD_ReduceBlockSignatureCodingType(NSString *signatureCodingType);
+FOUNDATION_EXPORT NSString *ZD_ReduceBlockSignatureCodingType(const char *signatureCodingType);
 FOUNDATION_EXPORT void ZD_ReduceBlockSignatureTypes(NSString *signatureCodingType, NSArray<NSString *> **argTypesResult, NSString **returnTypeResult);
 
-/// 打印block 参数
+/// 打印block参数(消息转发实现)
 /// @return 返回一个新的block
 /// @note IMP的第一个参数是block自己，剩余的参数是参数列表中的参数，不存在selector
 FOUNDATION_EXPORT id ZD_HookBlock(id block);

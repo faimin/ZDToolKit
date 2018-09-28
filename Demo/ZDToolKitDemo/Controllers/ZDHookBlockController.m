@@ -32,9 +32,11 @@
     
     block = ZD_HookBlock(block);
     
+    //ZDFfiBlockHook *hook = [ZDFfiBlockHook hookBlock:block];
+    
     NSString *result1 = block(@"Zero.D.Saber", 28, @100);
     NSLog(@"执行结果1 = %@", result1);
-    
+     
     //NSString *(*originFunc)(id blockSelf, NSString *name, NSUInteger age, NSNumber *) = (__typeof__(originFunc))originIMP;
     //NSString *result2 = originFunc(block, @"Zero.D.Saber", 28, @100);
     //NSLog(@"执行结果2 = %@", result2);
@@ -103,24 +105,6 @@ struct Block_layout {
 };
  */
 #pragma mark -
-
-static NSMethodSignature *ZD_SignatureForBlock(id block) {
-    struct Block_layout *layout = (__bridge void *)block;
-    if ( !(layout->flags & BLOCK_HAS_SIGNATURE) ) return nil;
-    
-    void *desc = layout->descriptor;
-    desc += sizeof(unsigned long int);
-    desc += sizeof(unsigned long int);
-    
-    if (layout->flags & BLOCK_HAS_COPY_DISPOSE) {
-        desc += 2 * sizeof(void *);
-    }
-    
-    const char *signatureTypes = *(const char **)desc;
-    
-    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:signatureTypes];
-    return signature;
-}
 
 NSMethodSignature *ZD_NewSignature(NSMethodSignature *original) {
     if (original.numberOfArguments < 1) {
@@ -221,7 +205,7 @@ static void addOrReplaceMethod(Class aClass, SEL selector, IMP func) {
 
 //---------------------------------------------------------------------------------
 static NSMethodSignature *newSignatureForSelector(id self, SEL _cmd, SEL aSelector) {
-    NSMethodSignature *signature = ZD_SignatureForBlock(self);
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:ZD_BlockSignatureTypes(self)];
     return signature;
 }
 

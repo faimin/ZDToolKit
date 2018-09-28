@@ -8,6 +8,13 @@
 #import "ZDBlockDescription.h"
 #import <objc/message.h>
 #import <objc/runtime.h>
+#if __has_include(<ffi.h>)
+#import <ffi.h>
+#endif
+
+@interface ZDBlockDescription ()
+
+@end
 
 @implementation ZDBlockDescription
 
@@ -175,10 +182,11 @@ void ZD_ReduceBlockSignatureTypes(NSString *signatureCodingType, NSArray<NSStrin
     if (returnTypeResult) *returnTypeResult = returnType;
 }
 
-NSString *ZD_ReduceBlockSignatureCodingType(NSString *signatureCodingType) {
-    if (signatureCodingType.length == 0) return nil;
+NSString *ZD_ReduceBlockSignatureCodingType(const char *signatureCodingType) {
+    NSString *charType = [NSString stringWithUTF8String:signatureCodingType];
+    if (charType.length == 0) return nil;
     
-    NSString *codingType = signatureCodingType.copy;
+    NSString *codingType = charType.copy;
     
     NSError *error = nil;
     NSString *regexString = @"\\\"[A-Za-z]+\\\"|[0-9]+";// <==> \\"[A-Za-z]+\\"|\d+  <==>  \\"\w+\\"|\d+
@@ -207,8 +215,7 @@ return @(val); \
     
     const char *originArgType = [invocation.methodSignature getArgumentTypeAtIndex:index];
     
-    NSString *argTypeString = [NSString stringWithUTF8String:originArgType];
-    argTypeString = ZD_ReduceBlockSignatureCodingType(argTypeString);
+    NSString *argTypeString = ZD_ReduceBlockSignatureCodingType(originArgType);
     const char *argType = argTypeString.UTF8String;
     
     // Skip const type qualifier.
@@ -352,12 +359,14 @@ id ZD_HookBlock(id block) {
     return (__bridge_transfer id)fakeBlock;
 }
 
+#pragma mark - ------------------------------- Libffi ----------------------------------
+#pragma mark -
 
-ffi_type *ffiTypeWithType(NSString *type) {
-    if ([type isEqualToString:@"@?"]) { // block
+ffi_type *ZD_ffiTypeWithTypeEncoding(const char *type) {
+    if (strcmp(type, "@?") == 0) { // block
         return &ffi_type_pointer;
     }
-    const char *c = [type UTF8String];
+    const char *c = type;
     switch (c[0]) {
         case 'v':
             return &ffi_type_void;
@@ -403,106 +412,162 @@ ffi_type *ffiTypeWithType(NSString *type) {
             return &ffi_type_schar;
     }
     
-    NSCAssert(NO, @"can't match a ffi_type of %@", type);
+    NSCAssert(NO, @"can't match a ffi_type of %s", type);
     return NULL;
 }
 
-/*
-ZDBlockIMP ZD_BlockIMP(NSArray<NSString *> *argumentTypes, NSString *returnType) {
-    ffi_type *returnType = ffiTypeWithType(returnType);
-    NSAssert(returnType, @"can't find a ffi_type of %@", returnType);
+//*****************************************
+//static const void *ZD_SignatureBind_Key = &ZD_SignatureBind_Key;
+@interface ZDFfiBlockHook () {
+    @package
+    ffi_cif _cif;
+    //ffi_cif _blockCif;
+    ffi_type **_args;
+    //ffi_type **_blockArgs;
+    ffi_closure *_closure;
     
-    NSUInteger argumentCount = argumentTypes.count;
-    ZDBlockIMP blockIMP = NULL;
-    ffi_type **_args = malloc(sizeof(ffi_type *) * argumentCount) ;
-    
-    for (int i = 0; i < argumentCount; i++) {
-        ffi_type* current_ffi_type = ffiTypeWithType(argumentTypes[i]);
-        NSAssert(current_ffi_type, @"can't find a ffi_type of %@", self.signature.argumentTypes[i]);
-        _args[i] = current_ffi_type;
-    }
-    
-    ffi_closure *_closure = ffi_closure_alloc(sizeof(ffi_closure), (void **)&blockIMP);
-    
-    if (ffi_prep_cif(&_cif, FFI_DEFAULT_ABI, (unsigned int)argumentCount, returnType, _args) == FFI_OK) {
-        if (ffi_prep_closure_loc(_closure, &_cif, ffi_function, (__bridge void *)(self), stingerIMP) != FFI_OK) {
-            NSAssert(NO, @"genarate IMP failed");
-        }
-    }
-    else {
-        NSAssert(NO, @"FUCK");
-    }
-    
-    ZD_GenarateBlockCif(argumentTypes, returnType);
-    return stingerIMP;
+    void *_originalIMP;
+    void *_newIMP;
+}
+@end
+
+@interface NSMethodSignature (WeakBinding)
+@property (nonatomic, weak) id weakBindValue;
+@end
+
+@implementation NSMethodSignature (WeakBinding)
+
+- (void)setWeakBindValue:(id)weakBindValue {
+    __weak id weakValue = weakBindValue;
+    objc_setAssociatedObject(self, @selector(weakBindValue), ^id{
+        return weakValue;
+    }, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-void ZD_GenarateBlockCif(NSArray<NSString *> *argumentTypes, NSString *returnType) {
-    ffi_type *returnType = ffiTypeWithType(self.signature.returnType);
+- (id)weakBindValue {
+    id (^block)(void) = objc_getAssociatedObject(self, _cmd);
+    return block ? block() : nil;
+}
+
+@end
+//****************************************
+
+static void ZD_ffi_clousure_func(ffi_cif *cif, void *ret, void **args, void *userdata) {
+    ZDFfiBlockHook *self = (__bridge ZDFfiBlockHook *)userdata;
+    //NSUInteger argCount = self.signature.numberOfArguments;
+
+#if DEBUG
+    int i = *((int *)args[2]);
+    NSString *str = (__bridge NSString *)(*((void **)args[1]));
+    NSLog(@"%d, %@", i, str);
+#endif
     
-    NSUInteger argumentCount = argumentTypes.count;
-    ffi_type **_blockArgs = malloc(sizeof(ffi_type *) * argumentCount);
+    //根据cif函数原型，函数指针，返回值内存指针，函数参数数据调用这个函数
+    ffi_call(&(self->_cif), self->_originalIMP, ret, args);
+}
+
+static void ZD_ffi_prep_cif(NSMethodSignature *signature) {
+    ffi_type *returnType = ZD_ffiTypeWithTypeEncoding(signature.methodReturnType);
+    NSCAssert(returnType, @"can't find a ffi_type of %s", signature.methodReturnType);
     
-    ffi_type *current_ffi_type_0 = ffiTypeWithType(@"@?");
-    _blockArgs[0] = current_ffi_type_0;
-    ffi_type *current_ffi_type_1 = ffiTypeWithType(@"@");
-    _blockArgs[1] = current_ffi_type_1;
+    NSUInteger argCount = signature.numberOfArguments; // 第一个参数是block自己，第二个参数才是我们看到的参数
+    ffi_type **args = malloc(sizeof(ffi_type *) * argCount); // 堆上开辟内存
     
-    for (int i = 2; i < argumentCount; i++) {
-        ffi_type* current_ffi_type = ffiTypeWithType(self.signature.argumentTypes[i]);
-        _blockArgs[i] = current_ffi_type;
+    int tempInt = 0;
+    for (int i = tempInt; i < argCount; ++i) {
+        const char *argType = [signature getArgumentTypeAtIndex:i];
+        ffi_type *arg_ffi_type = ZD_ffiTypeWithTypeEncoding(argType);
+        NSCAssert(arg_ffi_type, @"can't find a ffi_type of %s", argType);
+        args[i-tempInt] = arg_ffi_type;
     }
     
-    if (ffi_prep_cif(&_blockCif, FFI_DEFAULT_ABI, (unsigned int)argumentCount, returnType, _blockArgs) != FFI_OK) {
-        NSAssert(NO, @"FUCK");
+    ZDFfiBlockHook *self = (ZDFfiBlockHook *)(signature.weakBindValue);
+    self->_args = args;
+    ffi_cif cif = self->_cif;
+    //生成 ffi_cfi 对象，保存函数参数个数、类型等信息，相当于一个函数原型
+    ffi_status status = ffi_prep_cif(&cif, FFI_DEFAULT_ABI, (unsigned int)argCount, returnType, args);
+    if (status != FFI_OK) {
+        NSCAssert1(NO, @"Got result %u from ffi_prep_cif", status);
     }
 }
 
-static void ffi_function(ffi_cif *cif, void *ret, void **args, void *userdata) {
-    StingerInfoPool *self = (__bridge StingerInfoPool *)userdata;
-    NSUInteger count = self.signature.argumentTypes.count;
-    void **innerArgs = malloc(count * sizeof(*innerArgs));
+static void ZD_ffi_prep_closure(NSMethodSignature *signature) {
+    //ffi_type *returnType = ZD_ffiTypeWithTypeEncoding(signature.methodReturnType);
     
-    StingerParams *params = [[StingerParams alloc] init];
-    void **slf = args[0];
-    params.slf = (__bridge id)(*slf);
-    params.sel = self.sel;
-    [params addOriginalIMP:self.originalIMP];
-    NSInvocation *originalInvocation = [NSInvocation invocationWithMethodSignature:self.ns_signature];
-    for (int i = 0; i < count; i ++) {
-        [originalInvocation setArgument:args[i] atIndex:i];
+    ZDFfiBlockHook *self = (ZDFfiBlockHook *)(signature.weakBindValue);
+    
+    // https://blog.cnbang.net/tech/3332/
+    ffi_closure *closure = ffi_closure_alloc(sizeof(ffi_closure), (void **)&(self->_newIMP));
+    self->_closure = closure;
+    
+    ffi_status status = ffi_prep_closure_loc(closure, &(self->_cif), ZD_ffi_clousure_func, (__bridge void *)self, self->_newIMP);
+    if (status != FFI_OK) {
+        NSCAssert(NO, @"genarate IMP failed");
     }
-    [params addOriginalInvocation:originalInvocation];
     
-    innerArgs[1] = &params;
-    memcpy(innerArgs + 2, args + 2, (count - 2) * sizeof(*args));
+    self->_originalIMP = ((__bridge ZDBlock *)self.block)->invoke;
+    ((__bridge ZDBlock *)self.block)->invoke = self->_newIMP;
     
-#define ffi_call_infos(infos) \
-for (id<StingerInfo> info in infos) { \
-id block = info.block; \
-innerArgs[0] = &block; \
-ffi_call(&(self->_blockCif), impForBlock(block), NULL, innerArgs); \
-}  \
-
-    // before hooks
-    ffi_call_infos(self.beforeInfos);
-    // instead hooks
-    if (self.insteadInfos.count) {
-        id <StingerInfo> info = self.insteadInfos[0];
-        id block = info.block;
-        innerArgs[0] = &block;
-        ffi_call(&(self->_blockCif), impForBlock(block), ret, innerArgs);
+    /*
+    NSUInteger argCount = signature.numberOfArguments;
+    ffi_type **blockArgs = alloca(sizeof(ffi_type *) * argCount); // 开辟栈内存
+    
+    ffi_type *current_ffi_type_0 = ZD_ffiTypeWithTypeEncoding("@?");
+    blockArgs[0] = current_ffi_type_0;
+    ffi_type *current_ffi_type_1 = ZD_ffiTypeWithTypeEncoding("@");
+    blockArgs[1] = current_ffi_type_1;
+    
+    for (int i = 2; i < argCount; i++) {
+        ffi_type *arg_ffi_type = ZD_ffiTypeWithTypeEncoding([signature getArgumentTypeAtIndex:i]);
+        blockArgs[i] = arg_ffi_type;
     }
-    else {
-        // original IMP
-        ffi_call(cif, (void (*)(void))self.originalIMP, ret, args);
-    }
-    // after hooks
-    ffi_call_infos(self.afterInfos);
     
-    free(innerArgs);
+    ffi_cif blockCif;
+    if (ffi_prep_cif(&blockCif, FFI_DEFAULT_ABI, (unsigned int)argCount, returnType, blockArgs) != FFI_OK) {
+        NSCAssert1(NO, @"Got result %u from ffi_prep_cif", status);
+    }
+    */
 }
-*/
+
+static void ZD_BlockIMP(NSMethodSignature *signature) {
+    ZD_ffi_prep_cif(signature);
+    ZD_ffi_prep_closure(signature);
+}
+
+static void ZD_HookBlockWithLibffi(id block) {
+    const char *blockTypeEncoding = ZD_BlockSignatureTypes(block);
+    NSString *blockTypeEncodingString = ZD_ReduceBlockSignatureCodingType(blockTypeEncoding);
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:blockTypeEncodingString.UTF8String];
+    
+    ZD_BlockIMP(signature);
+}
+
+#pragma mark -
+
+@implementation ZDFfiBlockHook
+
+- (void)dealloc {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    ffi_closure_free(_closure);
+    free(_args);
+}
+
++ (instancetype)hookBlock:(id)block {
+    ZDFfiBlockHook *blockHook = [[ZDFfiBlockHook alloc] init];
+    blockHook.block = block;
+    const char *typeEncoding = ZD_ReduceBlockSignatureCodingType(ZD_BlockSignatureTypes(block)).UTF8String;
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:typeEncoding];
+    signature.weakBindValue = self;
+    blockHook.signature = signature;
+    blockHook.typeEncoding = [NSString stringWithUTF8String:typeEncoding];
+    
+    ZD_HookBlockWithLibffi(block);
+
+    return blockHook;
+}
+
+@end
+
 
 /*
 BOOL ZD_BlockIsCompatibleWithMethodType(id block, const char *methodType) {
