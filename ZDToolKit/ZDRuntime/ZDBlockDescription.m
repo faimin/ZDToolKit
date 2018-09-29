@@ -431,20 +431,20 @@ ffi_type *ZD_ffiTypeWithTypeEncoding(const char *type) {
 }
 @end
 
-@interface NSMethodSignature (WeakBinding)
-@property (nonatomic, weak) id weakBindValue;
+@interface NSMethodSignature (ZDBKWeakBinding)
+@property (nonatomic, weak) id zdbk_weakBindValue;
 @end
 
-@implementation NSMethodSignature (WeakBinding)
+@implementation NSMethodSignature (ZDBKWeakBinding)
 
-- (void)setWeakBindValue:(id)weakBindValue {
-    __weak id weakValue = weakBindValue;
-    objc_setAssociatedObject(self, @selector(weakBindValue), ^id{
+- (void)setZdbk_weakBindValue:(id)zdbk_weakBindValue {
+    __weak id weakValue = zdbk_weakBindValue;
+    objc_setAssociatedObject(self, @selector(zdbk_weakBindValue), ^id{
         return weakValue;
     }, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (id)weakBindValue {
+- (id)zdbk_weakBindValue {
     id (^block)(void) = objc_getAssociatedObject(self, _cmd);
     return block ? block() : nil;
 }
@@ -467,11 +467,14 @@ static void ZD_ffi_clousure_func(ffi_cif *cif, void *ret, void **args, void *use
 }
 
 static void ZD_ffi_prep_cif(NSMethodSignature *signature) {
+    ZDFfiBlockHook *self = (ZDFfiBlockHook *)(signature.zdbk_weakBindValue);
+    
     ffi_type *returnType = ZD_ffiTypeWithTypeEncoding(signature.methodReturnType);
     NSCAssert(returnType, @"can't find a ffi_type of %s", signature.methodReturnType);
     
     NSUInteger argCount = signature.numberOfArguments; // 第一个参数是block自己，第二个参数才是我们看到的参数
-    ffi_type **args = malloc(sizeof(ffi_type *) * argCount); // 堆上开辟内存
+    ffi_type **args = alloca(sizeof(ffi_type *) * argCount); // 栈上开辟内存
+    self->_args = args;
     
     int tempInt = 0;
     for (int i = tempInt; i < argCount; ++i) {
@@ -481,20 +484,15 @@ static void ZD_ffi_prep_cif(NSMethodSignature *signature) {
         args[i-tempInt] = arg_ffi_type;
     }
     
-    ZDFfiBlockHook *self = (ZDFfiBlockHook *)(signature.weakBindValue);
-    self->_args = args;
-    ffi_cif cif = self->_cif;
     //生成 ffi_cfi 对象，保存函数参数个数、类型等信息，相当于一个函数原型
-    ffi_status status = ffi_prep_cif(&cif, FFI_DEFAULT_ABI, (unsigned int)argCount, returnType, args);
+    ffi_status status = ffi_prep_cif(&(self->_cif), FFI_DEFAULT_ABI, (unsigned int)argCount, returnType, args);
     if (status != FFI_OK) {
         NSCAssert1(NO, @"Got result %u from ffi_prep_cif", status);
     }
 }
 
 static void ZD_ffi_prep_closure(NSMethodSignature *signature) {
-    //ffi_type *returnType = ZD_ffiTypeWithTypeEncoding(signature.methodReturnType);
-    
-    ZDFfiBlockHook *self = (ZDFfiBlockHook *)(signature.weakBindValue);
+    ZDFfiBlockHook *self = (ZDFfiBlockHook *)(signature.zdbk_weakBindValue);
     
     // https://blog.cnbang.net/tech/3332/
     ffi_closure *closure = ffi_closure_alloc(sizeof(ffi_closure), (void **)&(self->_newIMP));
@@ -502,7 +500,7 @@ static void ZD_ffi_prep_closure(NSMethodSignature *signature) {
     
     ffi_status status = ffi_prep_closure_loc(closure, &(self->_cif), ZD_ffi_clousure_func, (__bridge void *)self, self->_newIMP);
     if (status != FFI_OK) {
-        NSCAssert(NO, @"genarate IMP failed");
+        NSCAssert(NO, @"genarate closure failed");
     }
     
     self->_originalIMP = ((__bridge ZDBlock *)self.block)->invoke;
@@ -529,7 +527,7 @@ static void ZD_ffi_prep_closure(NSMethodSignature *signature) {
     */
 }
 
-static void ZD_BlockIMP(NSMethodSignature *signature) {
+static void ZD_HookBlockWithSignature(NSMethodSignature *signature) {
     ZD_ffi_prep_cif(signature);
     ZD_ffi_prep_closure(signature);
 }
@@ -539,7 +537,7 @@ static void ZD_HookBlockWithLibffi(id block) {
     NSString *blockTypeEncodingString = ZD_ReduceBlockSignatureCodingType(blockTypeEncoding);
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:blockTypeEncodingString.UTF8String];
     
-    ZD_BlockIMP(signature);
+    ZD_HookBlockWithSignature(signature);
 }
 
 #pragma mark -
@@ -549,7 +547,7 @@ static void ZD_HookBlockWithLibffi(id block) {
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     ffi_closure_free(_closure);
-    free(_args);
+    //free(_args);
 }
 
 + (instancetype)hookBlock:(id)block {
@@ -557,7 +555,7 @@ static void ZD_HookBlockWithLibffi(id block) {
     blockHook.block = block;
     const char *typeEncoding = ZD_ReduceBlockSignatureCodingType(ZD_BlockSignatureTypes(block)).UTF8String;
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:typeEncoding];
-    signature.weakBindValue = self;
+    signature.zdbk_weakBindValue = self;
     blockHook.signature = signature;
     blockHook.typeEncoding = [NSString stringWithUTF8String:typeEncoding];
     

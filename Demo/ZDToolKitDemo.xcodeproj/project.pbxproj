@@ -30,6 +30,10 @@
 		FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D3200CBFAE007A9EDC /* YYPhotoGroupView.m */; };
 		FA6244D9200CBFAE007A9EDC /* ZDImageGroupPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */; };
 		FA6244DA200CBFAE007A9EDC /* ZDImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */; };
+		FAAF2956215F18DE00F2BEBF /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */; };
+		FAAF2957215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2954215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m */; };
+		FAAF2958215F18DE00F2BEBF /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2955215F18DE00F2BEBF /* NSObject+DLIntrospection.m */; };
+		FAAF295B215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +125,14 @@
 		FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageGroupPreviewController.m; sourceTree = "<group>"; };
 		FA6244D5200CBFAE007A9EDC /* ZDImagePreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImagePreviewCell.h; sourceTree = "<group>"; };
 		FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageModel.m; sourceTree = "<group>"; };
+		FAAF2950215F18DD00F2BEBF /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
+		FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
+		FAAF2952215F18DD00F2BEBF /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
+		FAAF2953215F18DD00F2BEBF /* NSObject+ZDAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDAutoCoding.h"; sourceTree = "<group>"; };
+		FAAF2954215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDAutoCoding.m"; sourceTree = "<group>"; };
+		FAAF2955215F18DE00F2BEBF /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
+		FAAF2959215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RZAutoLayoutHelpers.h"; sourceTree = "<group>"; };
+		FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RZAutoLayoutHelpers.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +296,14 @@
 				BCCC57CE1E77E29A006F7276 /* NSObject+ZDParams.m */,
 				BCB5A8021E96136F00271230 /* ZDQueuePool.h */,
 				BCB5A8031E96136F00271230 /* ZDQueuePool.m */,
+				FAAF2959215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.h */,
+				FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */,
+				FAAF2952215F18DD00F2BEBF /* MAKVONotificationCenter.h */,
+				FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */,
+				FAAF2950215F18DD00F2BEBF /* NSObject+DLIntrospection.h */,
+				FAAF2955215F18DE00F2BEBF /* NSObject+DLIntrospection.m */,
+				FAAF2953215F18DD00F2BEBF /* NSObject+ZDAutoCoding.h */,
+				FAAF2954215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -526,10 +546,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAAF2957215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m in Sources */,
 				FA6244DA200CBFAE007A9EDC /* ZDImageModel.m in Sources */,
 				DA6CBBDA1F886BC900A36EF4 /* ThreeController.m in Sources */,
 				FA15D42820D3928800F4AFBC /* ZDRootViewController.m in Sources */,
 				BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */,
+				FAAF295B215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m in Sources */,
 				FA6244D7200CBFAE007A9EDC /* ZDImagePreviewCell.m in Sources */,
 				BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */,
 				FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */,
@@ -537,8 +559,10 @@
 				05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */,
 				FA15D42F20D3995200F4AFBC /* ZDBaseViewController.m in Sources */,
 				FA6244D9200CBFAE007A9EDC /* ZDImageGroupPreviewController.m in Sources */,
+				FAAF2956215F18DE00F2BEBF /* MAKVONotificationCenter.m in Sources */,
 				05EC9C711C53CDC300BACFE9 /* ViewController.m in Sources */,
 				05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */,
+				FAAF2958215F18DE00F2BEBF /* NSObject+DLIntrospection.m in Sources */,
 				05EC9C6B1C53CDC300BACFE9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

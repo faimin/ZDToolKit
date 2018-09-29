@@ -106,11 +106,10 @@ char *ZDInjectionTwoViewController ZDInjectable = "TwoViewController";
     id b = [objc zd_getWeakAssociateValueForKey:key];
     NSLog(@"%@", b);
     
-    // 初步结论:NSPointerArray这种方式实现不了weak绑定
     NSPointerArray *arr = [NSPointerArray weakObjectsPointerArray];
     {
-        NSString *str = @"weak 绑定测试";
-        [arr addPointer:(__bridge void *)str];
+        NSObject *obj = [NSObject new];
+        [arr addPointer:(__bridge void *)obj];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         id s = [arr pointerAtIndex:0];

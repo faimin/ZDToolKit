@@ -240,8 +240,8 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
         label;
     });
     
-    NSArray *propertys = [self.class properties];
-    NSLog(@"所有的属性: \n%@", propertys);
+    //NSArray *propertys = [self.class properties];
+    //NSLog(@"所有的属性: \n%@", propertys);
     
     //id obj = [self zd_deepCopy];
     //NSLog(@"\n\n%@", obj);
