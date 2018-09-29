@@ -10,6 +10,8 @@
 #import <objc/runtime.h>
 #if __has_include(<ffi.h>)
 #import <ffi.h>
+#elif __has_include("ffi.h")
+#import "ffi.h"
 #endif
 
 @interface ZDBlockDescription ()
@@ -324,7 +326,9 @@ id ZD_HookBlock(id block) {
             newBlockClass = objc_allocateClassPair(aClass, newBlockClassName, 0);
             {
                 SEL selector = @selector(methodSignatureForSelector:);
+                // 当前类自身没有实现这个method，所以下面获取到的其实是父类的方法
                 Method method = class_getInstanceMethod(newBlockClass, selector);
+                // 因为当前类自己没有实现这个method，所以执行class_replaceMethod就等价于class_addMethod，so在这里使用此方法没毛病
                 __unused IMP originIMP = class_replaceMethod(newBlockClass, selector, (IMP)ZD_NewSignatureForSelector, method_getTypeEncoding(method));
             }
             
@@ -362,6 +366,7 @@ id ZD_HookBlock(id block) {
 #pragma mark - ------------------------------- Libffi ----------------------------------
 #pragma mark -
 
+#if USE_LIBFFI
 ffi_type *ZD_ffiTypeWithTypeEncoding(const char *type) {
     if (strcmp(type, "@?") == 0) { // block
         return &ffi_type_pointer;
@@ -565,7 +570,7 @@ static void ZD_HookBlockWithLibffi(id block) {
 }
 
 @end
-
+#endif
 
 /*
 BOOL ZD_BlockIsCompatibleWithMethodType(id block, const char *methodType) {

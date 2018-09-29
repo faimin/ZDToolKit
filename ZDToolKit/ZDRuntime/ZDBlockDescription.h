@@ -5,13 +5,15 @@
 //  Created by Zero.D.Saber on 2017/11/14.
 //
 
-#import <Foundation/Foundation.h>
+#define USE_LIBFFI (__has_include(<ffi.h>) || __has_include("ffi.h"))
 
+#import <Foundation/Foundation.h>
 
 @interface ZDBlockDescription : NSObject
 
 @end
 
+#if USE_LIBFFI
 /// 利用libffi实现
 @interface ZDFfiBlockHook : NSObject
 
@@ -22,6 +24,7 @@
 + (instancetype)hookBlock:(id)block;
 
 @end
+#endif
 
 //---------------------------------------
 
