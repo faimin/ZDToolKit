@@ -34,6 +34,8 @@
 		FAAF2957215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2954215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m */; };
 		FAAF2958215F18DE00F2BEBF /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2955215F18DE00F2BEBF /* NSObject+DLIntrospection.m */; };
 		FAAF295B215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */; };
+		FAAF29982160D4C100F2BEBF /* ZDBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF29972160D4C100F2BEBF /* ZDBaseModel.m */; };
+		FAAF299B2160D4D600F2BEBF /* ZDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF299A2160D4D600F2BEBF /* ZDModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,10 @@
 		FAAF2955215F18DE00F2BEBF /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
 		FAAF2959215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RZAutoLayoutHelpers.h"; sourceTree = "<group>"; };
 		FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RZAutoLayoutHelpers.m"; sourceTree = "<group>"; };
+		FAAF29962160D4C100F2BEBF /* ZDBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDBaseModel.h; sourceTree = "<group>"; };
+		FAAF29972160D4C100F2BEBF /* ZDBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDBaseModel.m; sourceTree = "<group>"; };
+		FAAF29992160D4D600F2BEBF /* ZDModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDModel.h; sourceTree = "<group>"; };
+		FAAF299A2160D4D600F2BEBF /* ZDModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,7 @@
 				FA5EB81320BD03A200DD081C /* ZDProtocols.h */,
 				05EC9C6C1C53CDC300BACFE9 /* AppDelegate.h */,
 				05EC9C6D1C53CDC300BACFE9 /* AppDelegate.m */,
+				FAAF29952160D4A700F2BEBF /* Models */,
 				FA15D42520D3924000F4AFBC /* Controllers */,
 				FA15D42920D3967C00F4AFBC /* Tools */,
 				FA6244CE200CBFAE007A9EDC /* ZDImageGroupPreview */,
@@ -321,6 +328,17 @@
 				FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */,
 			);
 			path = ZDImageGroupPreview;
+			sourceTree = "<group>";
+		};
+		FAAF29952160D4A700F2BEBF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FAAF29962160D4C100F2BEBF /* ZDBaseModel.h */,
+				FAAF29972160D4C100F2BEBF /* ZDBaseModel.m */,
+				FAAF29992160D4D600F2BEBF /* ZDModel.h */,
+				FAAF299A2160D4D600F2BEBF /* ZDModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,9 +571,11 @@
 				BCCC57CF1E77E29A006F7276 /* NSObject+ZDParams.m in Sources */,
 				FAAF295B215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m in Sources */,
 				FA6244D7200CBFAE007A9EDC /* ZDImagePreviewCell.m in Sources */,
+				FAAF29982160D4C100F2BEBF /* ZDBaseModel.m in Sources */,
 				BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */,
 				FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */,
 				FA15D42C20D398C000F4AFBC /* ZDHookBlockController.m in Sources */,
+				FAAF299B2160D4D600F2BEBF /* ZDModel.m in Sources */,
 				05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */,
 				FA15D42F20D3995200F4AFBC /* ZDBaseViewController.m in Sources */,
 				FA6244D9200CBFAE007A9EDC /* ZDImageGroupPreviewController.m in Sources */,

@@ -86,6 +86,43 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     method_exchangeImplementations(originalMethod, otherMethod);
 }
 
+#pragma mark - Copy Property
+
+- (instancetype)zd_mutableCopy {
+    if ([self conformsToProtocol:@protocol(NSMutableCopying)]) {
+        id newObj = [self mutableCopy];
+        return newObj;
+    }
+    
+    id newSelf = [self.class new];
+    
+    NSMutableArray<NSString *> *keys = @[].mutableCopy;
+    Class aClass = [self class];
+    while (aClass && aClass != [NSObject class]) {
+        unsigned int count = 0;
+        objc_property_t *properties = class_copyPropertyList(aClass, &count);
+        for (int i = 0; i < count; ++i) {
+            objc_property_t property = properties[i];
+            if (property) {
+                const char *readOnly = property_copyAttributeValue(property, "R");
+                if (readOnly) continue;
+                const char *propertyName = property_getName(property);
+                if (propertyName == NULL) continue;
+                NSString *keyName = [NSString stringWithUTF8String:propertyName];
+                if (keyName) {
+                    [keys addObject:keyName];
+                }
+            }
+        }
+        
+        aClass = class_getSuperclass(aClass);
+    }
+    
+    [newSelf setValuesForKeysWithDictionary:[self dictionaryWithValuesForKeys:keys]];
+    
+    return newSelf;
+}
+
 #pragma mark - Associate
 
 - (void)zd_setStrongAssociateValue:(id)value forKey:(const void *)key {

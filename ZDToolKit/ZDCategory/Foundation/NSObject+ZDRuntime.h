@@ -49,6 +49,9 @@ typedef void(^ZD_DisposeBlock)(id realTarget);
  */
 + (void)zd_swizzleClassMethod:(SEL)selector withMethod:(SEL)otherSelector;
 
+#pragma mark - Copy Property
+
+- (instancetype)zd_mutableCopy;
 
 #pragma mark - Associate
 
