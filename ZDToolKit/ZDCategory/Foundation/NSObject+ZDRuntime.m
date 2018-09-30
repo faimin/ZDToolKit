@@ -17,7 +17,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 
 #pragma mark - Dealloc Blocks
 
-- (void)zd_deallocBlcok:(ZD_FreeBlock)deallocBlock {
+- (void)zd_deallocBlock:(ZD_DisposeBlock)deallocBlock {
     if (!deallocBlock) return;
     
     @autoreleasepool {
@@ -164,7 +164,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     }
 }
 
-- (instancetype)initWithBlock:(ZD_FreeBlock)deallocBlock realTarget:(id)realTarget {
+- (instancetype)initWithBlock:(ZD_DisposeBlock)deallocBlock realTarget:(id)realTarget {
     if (self = [super init]) {
         //属性设为readonly,并用指针指向方式,是参照RACDynamicSignal中的写法
         self->_deallocBlock = [deallocBlock copy];

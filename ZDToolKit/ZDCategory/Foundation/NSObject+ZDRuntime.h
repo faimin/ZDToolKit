@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^ZD_FreeBlock)(id realTarget);
+typedef void(^ZD_DisposeBlock)(id realTarget);
 
 @interface NSObject (ZDRuntime)
 
@@ -21,7 +21,7 @@ typedef void(^ZD_FreeBlock)(id realTarget);
  Adds a block to be executed as soon as the receiver's memory is deallocated
  @param deallocBlock The block to execute when the receiver is being deallocated
  */
-- (void)zd_deallocBlcok:(ZD_FreeBlock)deallocBlock;
+- (void)zd_deallocBlock:(ZD_DisposeBlock)deallocBlock;
 
 #pragma mark - Swizzeling
 
@@ -78,7 +78,7 @@ typedef void(^ZD_FreeBlock)(id realTarget);
 /**
  Block to execute when dealloc of the receiver is called
  */
-@property (nonatomic, copy, readonly) ZD_FreeBlock deallocBlock;
+@property (nonatomic, copy, readonly) ZD_DisposeBlock deallocBlock;
 @property (nonatomic, unsafe_unretained, readonly) id realTarget;
 
 /**
@@ -86,7 +86,7 @@ typedef void(^ZD_FreeBlock)(id realTarget);
  @param deallocBlock The block to execute when the created receiver is being deallocated
  @param realTarget The real target object
  */
-- (instancetype)initWithBlock:(ZD_FreeBlock)deallocBlock realTarget:(id)realTarget;
+- (instancetype)initWithBlock:(ZD_DisposeBlock)deallocBlock realTarget:(id)realTarget;
 
 @end
 
