@@ -19,4 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface ZDBaseModel (Extend)
+@property (nonatomic, strong) NSURL *url;
+@end
+
 NS_ASSUME_NONNULL_END

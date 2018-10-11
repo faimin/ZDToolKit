@@ -59,12 +59,13 @@
         model.myName = @"快聊";
         model.myAge = 28;
         model.myValue = [UIView new];
+        model.url = [NSURL URLWithString:@"www.google.com"];
         model;
     });
     
     ZDModel *newModel = [model zd_mutableCopy];
     
-    NSLog(@"%@, %@", newModel.value, newModel.name);
+    NSLog(@"%@, %@, %@", newModel.value, newModel.name, newModel.url);
 }
 
 #pragma mark -
