@@ -32,7 +32,6 @@
 		FA6244DA200CBFAE007A9EDC /* ZDImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */; };
 		FAAF2956215F18DE00F2BEBF /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */; };
 		FAAF2957215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2954215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m */; };
-		FAAF2958215F18DE00F2BEBF /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2955215F18DE00F2BEBF /* NSObject+DLIntrospection.m */; };
 		FAAF295B215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */; };
 		FAAF29982160D4C100F2BEBF /* ZDBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF29972160D4C100F2BEBF /* ZDBaseModel.m */; };
 		FAAF299B2160D4D600F2BEBF /* ZDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF299A2160D4D600F2BEBF /* ZDModel.m */; };
@@ -127,12 +126,10 @@
 		FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageGroupPreviewController.m; sourceTree = "<group>"; };
 		FA6244D5200CBFAE007A9EDC /* ZDImagePreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImagePreviewCell.h; sourceTree = "<group>"; };
 		FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageModel.m; sourceTree = "<group>"; };
-		FAAF2950215F18DD00F2BEBF /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
 		FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		FAAF2952215F18DD00F2BEBF /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
 		FAAF2953215F18DD00F2BEBF /* NSObject+ZDAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDAutoCoding.h"; sourceTree = "<group>"; };
 		FAAF2954215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZDAutoCoding.m"; sourceTree = "<group>"; };
-		FAAF2955215F18DE00F2BEBF /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
 		FAAF2959215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RZAutoLayoutHelpers.h"; sourceTree = "<group>"; };
 		FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RZAutoLayoutHelpers.m"; sourceTree = "<group>"; };
 		FAAF29962160D4C100F2BEBF /* ZDBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDBaseModel.h; sourceTree = "<group>"; };
@@ -307,8 +304,6 @@
 				FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */,
 				FAAF2952215F18DD00F2BEBF /* MAKVONotificationCenter.h */,
 				FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */,
-				FAAF2950215F18DD00F2BEBF /* NSObject+DLIntrospection.h */,
-				FAAF2955215F18DE00F2BEBF /* NSObject+DLIntrospection.m */,
 				FAAF2953215F18DD00F2BEBF /* NSObject+ZDAutoCoding.h */,
 				FAAF2954215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m */,
 			);
@@ -582,7 +577,6 @@
 				FAAF2956215F18DE00F2BEBF /* MAKVONotificationCenter.m in Sources */,
 				05EC9C711C53CDC300BACFE9 /* ViewController.m in Sources */,
 				05EC9C6E1C53CDC300BACFE9 /* AppDelegate.m in Sources */,
-				FAAF2958215F18DE00F2BEBF /* NSObject+DLIntrospection.m in Sources */,
 				05EC9C6B1C53CDC300BACFE9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -69,13 +69,26 @@ typedef void(^ZD_DisposeBlock)(id realTarget);
 
 - (void)zd_removeAssociatedValues;
 
+#pragma mark - Print Property
+
++ (NSArray<NSString *> *)zd_classes;
++ (NSArray<NSString *> *)zd_subClasses;
++ (NSArray<NSString *> *)zd_properties;
++ (NSArray<NSString *> *)zd_instanceVariables;
++ (NSArray<NSString *> *)zd_classMethods;
++ (NSArray<NSString *> *)zd_instanceMethods;
++ (NSArray<NSString *> *)zd_protocols;
++ (NSDictionary<NSString *, NSArray<NSString *> *> *)zd_descriptionForProtocol:(Protocol *)protocol;
++ (NSString *)zd_parentClassHierarchy;
+
 @end
 
 //========================================================
-#pragma mark ZDObjectBlockExecutor
+#pragma mark - ZDObjectBlockExecutor
+#pragma mark - 
 //========================================================
 /**
- This class is used by [NSObject addDeallocBlock:] to execute blocks on dealloc
+ This class is used by [NSObject zd_deallocBlock:] to execute blocks on dealloc
  */
 @interface ZDObjectBlockExecutor : NSObject
 /**

@@ -181,6 +181,254 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 	objc_removeAssociatedObjects(self);
 }
 
+#pragma mark - Print Property
+//https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
+static NSString *ZD_DecodeType(const char *cString) {
+    if (strcmp(cString, @encode(id)) == 0) return @"id";
+    if (strcmp(cString, @encode(void)) == 0) return @"void";
+    if (strcmp(cString, @encode(void *)) == 0) return @"void *";
+    if (strcmp(cString, @encode(float)) == 0) return @"float";
+    if (strcmp(cString, @encode(int)) == 0) return @"int";
+    if (strcmp(cString, @encode(unsigned int)) == 0) return @"unsigned int";
+    if (strcmp(cString, @encode(BOOL)) == 0) return @"BOOL";
+    if (strcmp(cString, @encode(char *)) == 0) return @"char *";
+    if (strcmp(cString, @encode(double)) == 0) return @"double";
+    if (strcmp(cString, @encode(long double)) == 0) return @"long double";
+    if (strcmp(cString, @encode(long long)) == 0) return @"long long";
+    if (strcmp(cString, @encode(unsigned long long)) == 0) return @"unsigned long long";
+    if (strcmp(cString, @encode(Class)) == 0) return @"class";
+    if (strcmp(cString, @encode(SEL)) == 0) return @"SEL";
+    
+    NSString *result = [NSString stringWithCString:cString encoding:NSUTF8StringEncoding];
+    if ([[result substringToIndex:1] isEqualToString:@"@"] && [result rangeOfString:@"?"].location == NSNotFound) {
+        result = [[result substringWithRange:NSMakeRange(2, result.length - 3)] stringByAppendingString:@"*"];
+    }
+    else if ([[result substringToIndex:1] isEqualToString:@"^"]) {
+        result = [NSString stringWithFormat:@"%@ *", ZD_DecodeType([[result substringFromIndex:1] cStringUsingEncoding:NSUTF8StringEncoding])];
+    }
+    return result;
+}
+
++ (NSArray<NSString *> *)zd_classes {
+    unsigned int classesCount;
+    Class *classes = objc_copyClassList(&classesCount);
+    NSMutableArray<NSString *> *result = @[].mutableCopy;
+    for (unsigned int i = 0 ; i < classesCount; i++) {
+        [result addObject:NSStringFromClass(classes[i])];
+    }
+    free(classes);
+    
+    return [result sortedArrayUsingSelector:@selector(compare:)];
+}
+
++ (NSArray<NSString *> *)zd_subClasses {
+    Class myClass = [self class];
+    NSMutableArray *mySubclasses = @[].mutableCopy;
+    unsigned int classesCount;
+    Class *classes = objc_copyClassList(&classesCount);
+    for (unsigned int i = 0; i < classesCount; i++) {
+        Class superClass = classes[i];
+        do {
+            superClass = class_getSuperclass(superClass);
+        } while (superClass && superClass != myClass);
+        
+        if (superClass) {
+            [mySubclasses addObject:NSStringFromClass(classes[i])];
+        }
+    }
+    free(classes);
+    
+    return mySubclasses;
+}
+
++ (NSArray *)zd_classMethods {
+    return [self zd_methodsForClass:object_getClass([self class]) typeFormat:@"+"];
+}
+
++ (NSArray *)zd_instanceMethods {
+    return [self zd_methodsForClass:[self class] typeFormat:@"-"];
+}
+
++ (NSArray<NSString *> *)zd_properties {
+    unsigned int outCount;
+    objc_property_t *properties = class_copyPropertyList([self class], &outCount);
+    NSMutableArray<NSString *> *result = @[].mutableCopy;
+    for (unsigned int i = 0; i < outCount; i++) {
+        [result addObject:[self zd_formattedPropery:properties[i]]];
+    }
+    free(properties);
+    
+    return result.count ? [result copy] : nil;
+}
+
++ (NSArray<NSString *> *)zd_instanceVariables {
+    unsigned int outCount;
+    Ivar *ivars = class_copyIvarList([self class], &outCount);
+    NSMutableArray<NSString *> *result = @[].mutableCopy;
+    for (unsigned int i = 0; i < outCount; i++) {
+        NSString *type = ZD_DecodeType(ivar_getTypeEncoding(ivars[i]));
+        NSString *name = [NSString stringWithCString:ivar_getName(ivars[i]) encoding:NSUTF8StringEncoding];
+        NSString *ivarDescription = [NSString stringWithFormat:@"%@ %@", type, name];
+        [result addObject:ivarDescription];
+    }
+    free(ivars);
+    
+    return result.count ? [result copy] : nil;
+}
+
++ (NSArray<NSString *> *)zd_protocols {
+    unsigned int outCount;
+    Protocol * __unsafe_unretained *protocols = class_copyProtocolList([self class], &outCount);
+    
+    NSMutableArray<NSString *> *result = @[].mutableCopy;
+    for (unsigned int i = 0; i < outCount; i++) {
+        unsigned int adoptedCount;
+        Protocol * __unsafe_unretained *adotedProtocols = protocol_copyProtocolList(protocols[i], &adoptedCount);
+        NSString *protocolName = [NSString stringWithCString:protocol_getName(protocols[i]) encoding:NSUTF8StringEncoding];
+        
+        NSMutableArray<NSString *> *adoptedProtocolNames = @[].mutableCopy;
+        for (unsigned int idx = 0; idx < adoptedCount; idx++) {
+            [adoptedProtocolNames addObject:[NSString stringWithCString:protocol_getName(adotedProtocols[idx]) encoding:NSUTF8StringEncoding]];
+        }
+        free(adotedProtocols);
+        
+        NSString *protocolDescription = protocolName;
+        if (adoptedProtocolNames.count) {
+            protocolDescription = [NSString stringWithFormat:@"%@ <%@>", protocolName, [adoptedProtocolNames componentsJoinedByString:@", "]];
+        }
+        
+        [result addObject:protocolDescription];
+    }
+    free(protocols);
+    
+    return result.count ? [result copy] : nil;
+}
+
++ (NSDictionary<NSString *, NSArray<NSString *> *> *)zd_descriptionForProtocol:(Protocol *)proto {
+    NSArray<NSString *> *requiredMethods = [[self zd_formattedMethodsForProtocol:proto required:YES instance:NO] arrayByAddingObjectsFromArray:[self zd_formattedMethodsForProtocol:proto required:YES instance:YES]];
+    
+    NSArray<NSString *> *optionalMethods = [[self zd_formattedMethodsForProtocol:proto required:NO instance:NO] arrayByAddingObjectsFromArray:[self zd_formattedMethodsForProtocol:proto required:NO instance:YES]];
+    
+    unsigned int propertiesCount;
+    NSMutableArray<NSString *> *propertyDescriptions = @[].mutableCopy;
+    objc_property_t *properties = protocol_copyPropertyList(proto, &propertiesCount);
+    for (unsigned int i = 0; i < propertiesCount; i++) {
+        [propertyDescriptions addObject:[self zd_formattedPropery:properties[i]]];
+    }
+    free(properties);
+    
+    NSMutableDictionary *methodsAndProperties = @{}.mutableCopy;
+    if (requiredMethods.count) {
+        [methodsAndProperties setObject:requiredMethods forKey:@"@required"];
+    }
+    if (optionalMethods.count) {
+        [methodsAndProperties setObject:optionalMethods forKey:@"@optional"];
+    }
+    if (propertyDescriptions.count) {
+        [methodsAndProperties setObject:propertyDescriptions.copy forKey:@"@properties"];
+    }
+    
+    return methodsAndProperties.count ? methodsAndProperties.copy : nil;
+}
+
++ (NSString *)zd_parentClassHierarchy {
+    NSMutableString *result = [NSMutableString string];
+    
+    Class superClass = [self class];
+    while (superClass) {
+        [result appendFormat:@" -> %@", NSStringFromClass(superClass)];
+        superClass = class_getSuperclass(superClass);
+    }
+    
+    return result.copy;
+}
+
+#pragma mark - Private
+
++ (NSArray<NSString *> *)zd_methodsForClass:(Class)class typeFormat:(NSString *)type {
+    unsigned int outCount;
+    Method *methods = class_copyMethodList(class, &outCount);
+    NSMutableArray<NSString *> *result = @[].mutableCopy;
+    for (unsigned int i = 0; i < outCount; i++) {
+        NSString *methodDescription = [NSString stringWithFormat:@"%@ (%@)%@",
+                                       type,
+                                       ZD_DecodeType(method_copyReturnType(methods[i])),
+                                       NSStringFromSelector(method_getName(methods[i]))];
+        
+        NSInteger args = method_getNumberOfArguments(methods[i]);
+        NSMutableArray<NSString *> *selParts = [[methodDescription componentsSeparatedByString:@":"] mutableCopy];
+        
+        int offset = 2; //1-st arg is object (@), 2-nd is SEL (:)
+        for (int idx = offset; idx < args; idx++) {
+            NSString *returnType = ZD_DecodeType(method_copyArgumentType(methods[i], idx));
+            selParts[idx - offset] = [NSString stringWithFormat:@"%@:(%@)arg%d",
+                                      selParts[idx - offset],
+                                      returnType,
+                                      idx - offset];
+        }
+        [result addObject:[selParts componentsJoinedByString:@" "]];
+    }
+    free(methods);
+    
+    return result.count ? [result copy] : nil;
+}
+
++ (NSArray<NSString *> *)zd_formattedMethodsForProtocol:(Protocol *)proto required:(BOOL)required instance:(BOOL)instance {
+    unsigned int methodCount;
+    struct objc_method_description *methods = protocol_copyMethodDescriptionList(proto, required, instance, &methodCount);
+    NSMutableArray *methodsDescription = @[].mutableCopy;
+    for (unsigned int i = 0; i < methodCount; i++) {
+        [methodsDescription addObject:
+         [NSString stringWithFormat:@"%@ (%@)%@",
+          instance ? @"-" : @"+",
+          @"void",
+          NSStringFromSelector(methods[i].name)]];
+    }
+    free(methods);
+    
+    return [methodsDescription copy];
+}
+
++ (NSString *)zd_formattedPropery:(objc_property_t)prop {
+    unsigned int attrCount;
+    objc_property_attribute_t *attrs = property_copyAttributeList(prop, &attrCount);
+    NSMutableDictionary<NSString *, NSString *> *attributes = @{}.mutableCopy;
+    for (unsigned int idx = 0; idx < attrCount; idx++) {
+        NSString *name = [NSString stringWithCString:attrs[idx].name encoding:NSUTF8StringEncoding];
+        NSString *value = [NSString stringWithCString:attrs[idx].value encoding:NSUTF8StringEncoding];
+        name ? (attributes[name] = value) : nil;
+    }
+    free(attrs);
+    
+    // Property Attribute Description : https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html#//apple_ref/doc/uid/TP40008048-CH101-SW5
+    NSMutableArray<NSString *> *attrsArray = @[].mutableCopy;
+    [attrsArray addObject:attributes[@"N"] ? @"nonatomic" : @"atomic"];
+    
+    if (attributes[@"&"]) {
+        [attrsArray addObject:@"strong"];
+    } else if (attributes[@"C"]) {
+        [attrsArray addObject:@"copy"];
+    } else if (attributes[@"W"]) {
+        [attrsArray addObject:@"weak"];
+    } else {
+        [attrsArray addObject:@"assign"];
+    }
+    
+    if (attributes[@"R"]) {
+        [attrsArray addObject:@"readonly"];
+    }
+    if (attributes[@"G"]) {
+        [attrsArray addObject:[NSString stringWithFormat:@"getter=%@", attributes[@"G"]]];
+    }
+    if (attributes[@"S"]) {
+        [attrsArray addObject:[NSString stringWithFormat:@"setter=%@", attributes[@"G"]]];
+    }
+    
+    NSMutableString *property = [NSMutableString stringWithFormat:@"@property "];
+    [property appendFormat:@"(%@) %@ %@", [attrsArray componentsJoinedByString:@", "], ZD_DecodeType([[attributes objectForKey:@"T"] cStringUsingEncoding:NSUTF8StringEncoding]), [NSString stringWithCString:property_getName(prop) encoding:NSUTF8StringEncoding]];
+    return [property copy];
+}
+
 @end
 
 
