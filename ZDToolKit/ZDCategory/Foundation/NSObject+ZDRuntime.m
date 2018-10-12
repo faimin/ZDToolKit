@@ -34,9 +34,9 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     }
 }
 
-+ (BOOL)zd_addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block {
-    // don't accept nil name
-    NSParameterAssert(selectorName);
++ (BOOL)zd_addInstanceMethodWithSelector:(SEL)selector block:(void(^)(id))block {
+    // don't accept NULL SEL
+    NSParameterAssert(selector);
     
     // don't accept NULL block
     NSParameterAssert(block);
@@ -51,7 +51,6 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     
     IMP myIMP = imp_implementationWithBlock(impBlockForIMP);
     
-    SEL selector = NSSelectorFromString(selectorName);
     return class_addMethod(self, selector, myIMP, "v@:");
 }
 

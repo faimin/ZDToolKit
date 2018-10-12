@@ -29,11 +29,11 @@ typedef void(^ZD_DisposeBlock)(id realTarget);
  Adds a new instance method to a class. All instances of this class will have this method.
  
  The block captures `self` in the calling context. To allow access to the instance from within the block it is passed as parameter to the block.
- @param selectorName The name of the method.
+ @param selector The SEL of the method.
  @param block The block to execute for the instance method, a pointer to the instance is passed as the only parameter.
  @returns `YES` if the operation was successful
  */
-+ (BOOL)zd_addInstanceMethodWithSelectorName:(NSString *)selectorName block:(void(^)(id))block;
++ (BOOL)zd_addInstanceMethodWithSelector:(SEL)selector block:(void(^)(id))block;
 
 /**
  Exchanges two method implementations. After the call methods to the first selector will now go to the second one and vice versa.
