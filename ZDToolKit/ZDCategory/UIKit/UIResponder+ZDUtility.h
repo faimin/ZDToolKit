@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIResponder (ZDUtility)
 
-- (void)zd_deliverEventWithName:(NSString *)eventName parameters:(nullable NSDictionary *)paramsDict;
+- (void)zd_deliverEventWithName:(NSString *)eventName parameters:(NSDictionary *_Nullable)paramsDict;
 
 @end
 
