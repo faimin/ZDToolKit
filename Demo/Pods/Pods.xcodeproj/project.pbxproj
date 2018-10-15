@@ -260,6 +260,8 @@
 		F7DD2FE453582EBA6BE528CA8144FD94 /* ZDDispatchQueuePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 10D7207FC53E9BB0D78650BEE93649FB /* ZDDispatchQueuePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F94A282ECACDDF3E633A5CF1BECDA042 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB82F6442D51A54CC07FA78C78BC5C32 /* QuartzCore.framework */; };
 		FA0E9964BE5163D3298356997D756295 /* YYImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 11648E1A4286008F75385CB8F7A90B89 /* YYImageCache.m */; };
+		FAAA32A12174705B00D1766F /* UIResponder+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAA329F2174705B00D1766F /* UIResponder+ZDUtility.h */; };
+		FAAA32A22174705B00D1766F /* UIResponder+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAA32A02174705B00D1766F /* UIResponder+ZDUtility.m */; };
 		FAAE7749217044D5003068CD /* NSNotificationCenter+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAE7747217044D5003068CD /* NSNotificationCenter+ZDUtility.h */; };
 		FAAE774A217044D5003068CD /* NSNotificationCenter+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAE7748217044D5003068CD /* NSNotificationCenter+ZDUtility.m */; };
 		FB0B67B3F23B22278C764201BD53C1C3 /* YYImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = BA8F367708A50A97CCD147847D5F5228 /* YYImageCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -621,6 +623,8 @@
 		F9196BD9A64ECEB1EF47012E688C72E6 /* ffi_arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ffi_arm64.h; path = "libffi-core/ffi_arm64.h"; sourceTree = "<group>"; };
 		FA1082D585EA8073AD985E9A2B74F6FB /* Pods-ZDToolKitDemoUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZDToolKitDemoUITests-dummy.m"; sourceTree = "<group>"; };
 		FA10AAE9B5E0EBDE3F8FA89B41E95B03 /* YYImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYImage-dummy.m"; sourceTree = "<group>"; };
+		FAAA329F2174705B00D1766F /* UIResponder+ZDUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIResponder+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIResponder+ZDUtility.h"; sourceTree = "<group>"; };
+		FAAA32A02174705B00D1766F /* UIResponder+ZDUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIResponder+ZDUtility.m"; sourceTree = "<group>"; };
 		FAAE7747217044D5003068CD /* NSNotificationCenter+ZDUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSNotificationCenter+ZDUtility.h"; sourceTree = "<group>"; };
 		FAAE7748217044D5003068CD /* NSNotificationCenter+ZDUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSNotificationCenter+ZDUtility.m"; sourceTree = "<group>"; };
 		FC044C4513950F0EA3967FFDE42C262B /* CALayer+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/CALayer+ZDUtility.m"; sourceTree = "<group>"; };
@@ -880,6 +884,8 @@
 				AE9D073EE7B19095BFA39B4AE8196AF9 /* UIColor+ZDUtility.m */,
 				92F8942C2E9880CEC1752362909A4BD3 /* UIControl+ZDUtility.h */,
 				2D923EB19D87D2D1CC6D0EC9E3C55BF7 /* UIControl+ZDUtility.m */,
+				FAAA329F2174705B00D1766F /* UIResponder+ZDUtility.h */,
+				FAAA32A02174705B00D1766F /* UIResponder+ZDUtility.m */,
 				976A858FA6F32FA7ED0ACEAF5E0FFD47 /* UIImage+ZDUtility.h */,
 				0BC189BE376BB826AC18DB41D7001ED6 /* UIImage+ZDUtility.m */,
 				7FE28A21DB7393B1359640DFFD18C9F2 /* UIImageView+FaceAwareFill.h */,
@@ -1473,6 +1479,7 @@
 				CF5DDD1BBBE8C4B977E293AA15C2BB59 /* ZDMetamacros.h in Headers */,
 				525C84AB7540D4F6A30D37F066ACF3CA /* ZDMutableArray.h in Headers */,
 				B34BD00D4503A9700FE3D85BB63EBFD0 /* ZDMutableDictionary.h in Headers */,
+				FAAA32A12174705B00D1766F /* UIResponder+ZDUtility.h in Headers */,
 				1319336D283D1B144E3D8C8AAF953EAA /* ZDPermissionHandler.h in Headers */,
 				6EB88D9F1FD2547610D3CAD4BBB1988B /* ZDPromise.h in Headers */,
 				0CA4900606505F45BD93C95553AA010B /* ZDProxy.h in Headers */,
@@ -1691,6 +1698,7 @@
 				B246FC1FF4F639F3D1BB0B150AC1D24A /* NSMutableArray+ZDUtility.m in Sources */,
 				E7555CCC5C185922081A7986EF110860 /* NSObject+ZDBlockKVO.m in Sources */,
 				C1BF9D8BD642A149E898B34A2348D6DB /* NSObject+ZDRuntime.m in Sources */,
+				FAAA32A22174705B00D1766F /* UIResponder+ZDUtility.m in Sources */,
 				A09873B5D1D1C3BE2A48AA694F244CB3 /* NSObject+ZDSimulateKVO.m in Sources */,
 				192208910EBA1AF60C87E46F609185EB /* NSObject+ZDUtility.m in Sources */,
 				A31301D50C4102CAD0064B42A604854E /* NSString+ZDUtility.m in Sources */,
