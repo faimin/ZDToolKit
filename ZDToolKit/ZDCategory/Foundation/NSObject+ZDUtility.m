@@ -34,7 +34,13 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 - (instancetype)zd_deepCopy {
     id obj = nil;
     @try {
-        obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+        if (@available(iOS 11, *)) {
+            NSError *error1, *error2;
+            obj = [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:[NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:&error1] error:&error2];
+        }
+        else {
+            obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"deepCopy error: %@", exception);
