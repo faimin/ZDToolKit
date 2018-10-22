@@ -146,6 +146,15 @@ FOUNDATION_EXPORT BOOL ZD_VideoIsPlayable(NSString *urlString);
 
 //===============================================================
 
+#pragma mark - Json
+#pragma mark -
+
+FOUNDATION_EXPORT id ZD_DictOrArrFromJsonString(NSString *jsonString);
+FOUNDATION_EXPORT NSString *ZD_JsonStringFromDictionary(NSDictionary *dict);
+FOUNDATION_EXPORT id ZD_JsonFromSourceFile(NSString *fileName, NSString *fileType);
+
+//===============================================================
+
 #pragma mark - InterfaceOrientation
 #pragma mark -
 /// 屏幕是横屏还是竖屏
@@ -233,5 +242,4 @@ FOUNDATION_EXPORT BOOL ZD_ProtocolContainSEL(Protocol *protocol, SEL sel);
 
 
 NS_ASSUME_NONNULL_END
-
 

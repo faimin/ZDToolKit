@@ -22,8 +22,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 
 @implementation NSObject (ZDUtility)
 
-+ (instancetype)zd_cast:(id)objc
-{
++ (instancetype)zd_cast:(id)objc {
     if (!objc) return nil;
     
     if ([objc isKindOfClass:[self class]]) {
@@ -32,11 +31,16 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     return nil;
 }
 
-- (instancetype)zd_deepCopy
-{
+- (instancetype)zd_deepCopy {
     id obj = nil;
     @try {
-        obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+        if (@available(iOS 11, *)) {
+            NSError *error1, *error2;
+            obj = [NSKeyedUnarchiver unarchivedObjectOfClass:[self class] fromData:[NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:&error1] error:&error2];
+        }
+        else {
+            obj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self]];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"deepCopy error: %@", exception);
@@ -46,8 +50,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 
 /// http://nathanli.cn/2015/12/14/objective-c-%E5%85%83%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-%E5%88%86%E7%B1%BB%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7/
 /// AutoCoding: https://github.com/nicklockwood/AutoCoding/blob/master/AutoCoding/AutoCoding.m
-- (id)zd_deepCopy_inComplete
-{
+- (id)zd_deepCopy_inComplete {
     Class selfClass = [self class];
     
     unsigned int propertyListCount = 0;
@@ -90,8 +93,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     return newInstance;
 }
 
-+ (BOOL)isObjectClass:(Class)clazz
-{
++ (BOOL)isObjectClass:(Class)clazz {
     BOOL flag = class_conformsToProtocol(clazz, @protocol(NSObject));
     if (flag) {
         return flag;
@@ -107,8 +109,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     }
 }
 
-- (PropertyType)propertyType:(objc_property_t)property
-{
+- (PropertyType)propertyType:(objc_property_t)property {
     unsigned int attributeCount;
     objc_property_attribute_t *attrs = property_copyAttributeList(property, &attributeCount);
     
@@ -134,8 +135,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 }
 
 /// 不支持block、struct、union类型
-- (NSString *)decodeType:(const char *)cString
-{
+- (NSString *)decodeType:(const char *)cString {
     if (!strcmp(cString, @encode(id))) return @"id";
     if (!strcmp(cString, @encode(void))) return @"void";
     if (!strcmp(cString, @encode(void *))) return @"void *";

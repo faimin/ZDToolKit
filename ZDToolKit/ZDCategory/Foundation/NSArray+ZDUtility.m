@@ -112,7 +112,7 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSArray_ZDUtility)
     return filteredMutArr;
 }
 
-- (id)zd_reduce:(id(^)(id lastResult, id currentValue, NSUInteger idx))block {
+- (id)zd_reduce:(id(^)(id previousResult, id currentObject, NSUInteger idx))block {
     if (!block) return self;
     
     __block id result = nil;

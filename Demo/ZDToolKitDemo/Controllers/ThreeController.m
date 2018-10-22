@@ -11,6 +11,8 @@
 #import <ZDToolKit/UIView+ZDUtility.h>
 #import <ZDToolKit/ZDFunction.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <ZDToolKit/NSObject+ZDRuntime.h>
+#import "ZDModel.h"
 
 @interface ThreeController () <ZDBannerScrollViewDelegate>
 @property (nonatomic, strong) NSArray<NSString *> *dataSource;
@@ -18,10 +20,14 @@
 
 @implementation ThreeController
 
+- (void)dealloc {
+    NSLog(@"");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self setupUI];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +43,29 @@
     ZDBannerScrollView *banner = [ZDBannerScrollView scrollViewWithFrame:(CGRect){CGPointZero, self.view.width, self.view.width/4.0*3.0} delegate:self placeholderImage:nil];
     banner.imageURLStrings = self.dataSource;
     [self.view addSubview:banner];
+}
+
+- (void)setupData {
+    [self mutcopyTest];
+}
+
+- (void)mutcopyTest {
+    ZDModel *model = ({
+        ZDModel *model = [ZDModel new];
+        model.value = self;
+        model.name = @"晓明";
+        model.age = 10;
+        model.sex = @"男";
+        model.myName = @"快聊";
+        model.myAge = 28;
+        model.myValue = [UIView new];
+        model.url = [NSURL URLWithString:@"www.google.com"];
+        model;
+    });
+    
+    ZDModel *newModel = [model zd_mutableCopy];
+    
+    NSLog(@"%@, %@, %@", newModel.value, newModel.name, newModel.url);
 }
 
 #pragma mark -

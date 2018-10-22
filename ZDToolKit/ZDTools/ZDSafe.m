@@ -20,9 +20,8 @@
   #define ZDLOG(...)
 #endif
 
-void ZDLog(NSString *fmt, ...) NS_FORMAT_FUNCTION(1, 2);
-void ZDLog(NSString *fmt, ...)
-{
+static void ZDLog(NSString *fmt, ...) NS_FORMAT_FUNCTION(1, 2);
+static void ZDLog(NSString *fmt, ...) {
 	va_list ap;
 
 	va_start(ap, fmt);
@@ -35,8 +34,7 @@ void ZDLog(NSString *fmt, ...)
 
 #pragma mark - Swizzle Function
 
-static BOOL zd_swizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel)
-{
+static BOOL zd_swizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacementSel) {
 	Method origMethod = class_getInstanceMethod(aClass, originalSel);
 	Method replMethod = class_getInstanceMethod(aClass, replacementSel);
 
@@ -55,8 +53,7 @@ static BOOL zd_swizzleInstanceMethod(Class aClass, SEL originalSel, SEL replacem
 	return YES;
 }
 
-static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel)
-{
+static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacementSel) {
     Class aClass = object_getClass(zdClass);
     Method origMethod = class_getClassMethod(aClass, originalSel);
     Method replMethod = class_getClassMethod(aClass, replacementSel);
@@ -76,8 +73,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 
 @implementation NSArray (ZDSafe)
 
-- (id)zd_objectAtIndex:(NSUInteger)index
-{
+- (id)zd_objectAtIndex:(NSUInteger)index {
 	if (index >= self.count) {
 		ZDLog(@"[%@ %@] index {%lu} beyond bounds [0...%lu]",
 			NSStringFromClass([self class]),
@@ -90,8 +86,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 	return [self zd_objectAtIndex:index];
 }
 
-+ (id)zd_arrayWithObjects:(const id _Nonnull __unsafe_unretained *)objects count:(NSUInteger)cnt
-{
++ (id)zd_arrayWithObjects:(const id _Nonnull __unsafe_unretained *)objects count:(NSUInteger)cnt {
 	id validObjects[cnt];
 
     NSUInteger count = 0;
@@ -122,8 +117,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 
 @implementation NSMutableArray (ZDSafe)
 
-- (id)zd_objectAtIndex:(NSUInteger)index
-{
+- (id)zd_objectAtIndex:(NSUInteger)index {
 	if (index >= self.count) {
 		ZDLog(@"[%@ %@] index {%lu} beyond bounds [0...%lu]",
 			NSStringFromClass([self class]),
@@ -136,8 +130,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 	return [self zd_objectAtIndex:index];
 }
 
-- (void)zd_addObject:(id)anObject
-{
+- (void)zd_addObject:(id)anObject {
 	if (!anObject) {
 		ZDLOG(@"[%@ %@], NIL object.", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 		return;
@@ -145,8 +138,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 	[self zd_addObject:anObject];
 }
 
-- (void)zd_replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject
-{
+- (void)zd_replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
 	if (index >= self.count) {
 		ZDLOG(@"[%@ %@] index {%lu} beyond bounds [0...%lu].",
 			NSStringFromClass([self class]),
@@ -164,8 +156,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 	[self zd_replaceObjectAtIndex:index withObject:anObject];
 }
 
-- (void)zd_insertObject:(id)anObject atIndex:(NSUInteger)index
-{
+- (void)zd_insertObject:(id)anObject atIndex:(NSUInteger)index {
 	if (index > self.count) {
 		ZDLOG(@"[%@ %@] index {%lu} beyond bounds [0...%lu].",
 			NSStringFromClass([self class]),
@@ -194,8 +185,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 
 @implementation NSDictionary (ZDSafe)
 
-+ (instancetype)zd_dictionaryWithObjects:(const id[])objects forKeys:(const id <NSCopying>[])keys count:(NSUInteger)cnt
-{
++ (instancetype)zd_dictionaryWithObjects:(const id[])objects forKeys:(const id <NSCopying>[])keys count:(NSUInteger)cnt {
 	id validObjects[cnt];
 	id <NSCopying> validKeys[cnt];
 
@@ -217,8 +207,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 	return [self zd_dictionaryWithObjects:validObjects forKeys:validKeys count:count];
 }
 
-- (instancetype)zd_initWithObjects:(const id[])objects forKeys:(const id <NSCopying> [])keys count:(NSUInteger)cnt
-{
+- (instancetype)zd_initWithObjects:(const id[])objects forKeys:(const id <NSCopying> [])keys count:(NSUInteger)cnt {
     id validObjects[cnt];
     id <NSCopying> validKeys[cnt];
     
@@ -251,8 +240,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 
 @implementation NSMutableDictionary (ZDSafe)
 
-- (void)zd_setObject:(id)anObject forKey:(id <NSCopying>)aKey
-{
+- (void)zd_setObject:(id)anObject forKey:(id <NSCopying>)aKey {
 	if (!aKey) {
 		ZDLOG(@"[%@ %@] NIL key.", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 		return;
@@ -278,8 +266,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 
 @implementation NSObject (Forward)
 
-- (NSMethodSignature *)zd_methodSignatureForSelector:(SEL)aSelector
-{
+- (NSMethodSignature *)zd_methodSignatureForSelector:(SEL)aSelector {
     NSMethodSignature *signature = [self zd_methodSignatureForSelector:aSelector];
     if (!signature) {
         NSString *selectorString = NSStringFromSelector(aSelector);
@@ -296,8 +283,12 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
     return signature;
 }
 
-- (void)zd_forwardInvocation:(NSInvocation *)anInvocation
-{
+- (void)zd_forwardInvocation:(NSInvocation *)anInvocation {
+    if ([anInvocation.target isKindOfClass:objc_lookUpClass("NSBlock")]) {
+        [self zd_forwardInvocation:anInvocation];
+        return;
+    }
+    
     NSString *selectorString = NSStringFromSelector(anInvocation.selector);
     NSUInteger parameterCount = [selectorString componentsSeparatedByString:@":"].count - 1;
     
@@ -331,8 +322,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 
 @implementation ZDSafe
 
-+ (void)load
-{
++ (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // NSArray

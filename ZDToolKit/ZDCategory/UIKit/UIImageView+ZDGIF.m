@@ -22,9 +22,7 @@ const void *ExecuteIntervalKey = &ExecuteIntervalKey;
 const void *FrameIntervalKey = &FrameIntervalKey;
 
 @interface UIImageView ()
-
 @property (nonatomic, strong) CADisplayLink *displayLink;
-
 @end
 
 @implementation UIImageView (ZDGIF)
@@ -46,14 +44,14 @@ const void *FrameIntervalKey = &FrameIntervalKey;
 #pragma mark -
 
 - (void)displayExecute:(CADisplayLink *)displayLink {
-    m++;
+    ++m;
     NSUInteger imageCount = self.imageNames.count ?: self.imagePaths.count;
     NSUInteger i = m % imageCount;
     // 每秒执行次数 * 时间间隔
     NSUInteger duration = (60 / displayLink.frameInterval) * (self.executeInterval ?: 1);
     
     if (m < imageCount) {
-        UIImage *image;
+        UIImage *image = nil;
         if (self.imageNames && self.imageNames.count > i) {
             image = [UIImage imageNamed:self.imageNames[i]];
         }
@@ -84,6 +82,7 @@ const void *FrameIntervalKey = &FrameIntervalKey;
         displayLink.frameInterval = self.frameInterval ?: 1;
         [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
         displayLink.paused = YES;
+        self.displayLink = displayLink;
     }
     return displayLink;
 }

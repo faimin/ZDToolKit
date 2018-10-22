@@ -46,13 +46,11 @@ static NSString *const AutocodingException = @"AutocodingException";
 
 @implementation NSObject (AutoCoding)
 
-+ (BOOL)supportsSecureCoding
-{
++ (BOOL)supportsSecureCoding {
     return YES;
 }
 
-+ (instancetype)objectWithContentsOfFile:(NSString *)filePath
-{
++ (instancetype)objectWithContentsOfFile:(NSString *)filePath {
     //load the file
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     
@@ -83,8 +81,7 @@ static NSString *const AutocodingException = @"AutocodingException";
     return object;
 }
 
-- (BOOL)writeToFile:(NSString *)filePath atomically:(BOOL)useAuxiliaryFile
-{
+- (BOOL)writeToFile:(NSString *)filePath atomically:(BOOL)useAuxiliaryFile {
     //note: NSData, NSDictionary and NSArray already implement this method
     //and do not save using NSCoding, however the objectWithContentsOfFile
     //method will correctly recover these objects anyway
@@ -94,8 +91,7 @@ static NSString *const AutocodingException = @"AutocodingException";
     return [data writeToFile:filePath atomically:useAuxiliaryFile];
 }
 
-+ (NSDictionary<NSString *, Class> *)codableProperties
-{
++ (NSDictionary<NSString *, Class> *)codableProperties {
     //deprecated
     SEL deprecatedSelector = NSSelectorFromString(@"uncodableProperties");
     NSArray *uncodableProperties = nil;
@@ -108,21 +104,18 @@ static NSString *const AutocodingException = @"AutocodingException";
     unsigned int propertyCount;
     __autoreleasing NSMutableDictionary *codableProperties = [NSMutableDictionary dictionary];
     objc_property_t *properties = class_copyPropertyList(self, &propertyCount);
-    for (unsigned int i = 0; i < propertyCount; i++)
-    {
+    for (unsigned int i = 0; i < propertyCount; i++) {
         //get property name
         objc_property_t property = properties[i];
         const char *propertyName = property_getName(property);
         __autoreleasing NSString *key = @(propertyName);
         
         //check if codable
-        if (![uncodableProperties containsObject:key])
-        {
+        if (![uncodableProperties containsObject:key]) {
             //get property type
             Class propertyClass = nil;
             char *typeEncoding = property_copyAttributeValue(property, "T");
-            switch (typeEncoding[0])
-            {
+            switch (typeEncoding[0]) {
                 case '@':
                 {
                     if (strlen(typeEncoding) >= 3)
@@ -164,12 +157,10 @@ static NSString *const AutocodingException = @"AutocodingException";
             }
             free(typeEncoding);
             
-            if (propertyClass)
-            {
+            if (propertyClass) {
                 //check if there is a backing ivar
                 char *ivar = property_copyAttributeValue(property, "V");
-                if (ivar)
-                {
+                if (ivar) {
                     //check if ivar has KVC-compliant name
                     __autoreleasing NSString *ivarName = @(ivar);
                     if ([ivarName isEqualToString:key] || [ivarName isEqualToString:[@"_" stringByAppendingString:key]])
@@ -179,13 +170,11 @@ static NSString *const AutocodingException = @"AutocodingException";
                     }
                     free(ivar);
                 }
-                else
-                {
+                else {
                     //check if property is dynamic and readwrite
                     char *dynamic = property_copyAttributeValue(property, "D");
                     char *readonly = property_copyAttributeValue(property, "R");
-                    if (dynamic && !readonly)
-                    {
+                    if (dynamic && !readonly) {
                         //no ivar, but setValue:forKey: will still work
                         codableProperties[key] = propertyClass;
                     }
@@ -200,8 +189,7 @@ static NSString *const AutocodingException = @"AutocodingException";
     return codableProperties;
 }
 
-- (NSDictionary<NSString *, Class> *)codableProperties
-{
+- (NSDictionary<NSString *, Class> *)codableProperties {
     __autoreleasing NSDictionary *codableProperties = objc_getAssociatedObject([self class], _cmd);
     if (!codableProperties)
     {
@@ -220,24 +208,20 @@ static NSString *const AutocodingException = @"AutocodingException";
     return codableProperties;
 }
 
-- (NSDictionary<NSString *, id> *)dictionaryRepresentation
-{
+- (NSDictionary<NSString *, id> *)dictionaryRepresentation {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    for (__unsafe_unretained NSString *key in self.codableProperties)
-    {
+    for (__unsafe_unretained NSString *key in self.codableProperties) {
         id value = [self valueForKey:key];
         if (value) dict[key] = value;
     }
     return dict;
 }
 
-- (void)setWithCoder:(NSCoder *)aDecoder
-{
+- (void)setWithCoder:(NSCoder *)aDecoder {
     BOOL secureAvailable = [aDecoder respondsToSelector:@selector(decodeObjectOfClass:forKey:)];
     BOOL secureSupported = [[self class] supportsSecureCoding];
     NSDictionary *properties = self.codableProperties;
-    for (NSString *key in properties)
-    {
+    for (NSString *key in properties) {
         id object = nil;
         Class propertyClass = properties[key];
         if (secureAvailable)

@@ -17,28 +17,23 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSString_ZDUtility)
 
 #pragma mark - Size
 
-- (CGFloat)zd_widthWithFont:(UIFont *)font
-{
+- (CGFloat)zd_widthWithFont:(UIFont *)font {
     return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)].width;
 }
 
-- (CGFloat)zd_heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
-{
+- (CGFloat)zd_heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width {
     return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)].height;
 }
 
-- (CGFloat)zd_widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height
-{
+- (CGFloat)zd_widthWithFont:(UIFont *)font constrainedToHeight:(CGFloat)height {
     return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(CGFLOAT_MAX, height)].width;
 }
 
-- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width
-{
+- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width {
     return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)];
 }
 
-- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)needSize
-{
+- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)needSize {
     UIFont *textFont = font ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
     
     CGSize textSize = CGSizeZero;
@@ -67,13 +62,11 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSString_ZDUtility)
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width lineSpace:(CGFloat)lineSpace
-{
+- (CGSize)zd_sizeWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width lineSpace:(CGFloat)lineSpace {
     return [self zd_sizeWithFont:font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) lineSpace:lineSpace];
 }
 
-- (CGSize)zd_sizeWithFont:(UIFont *)customFont constrainedToSize:(CGSize)size lineSpace:(CGFloat)lineSpace
-{
+- (CGSize)zd_sizeWithFont:(UIFont *)customFont constrainedToSize:(CGSize)size lineSpace:(CGFloat)lineSpace {
     customFont = customFont ? : [UIFont systemFontOfSize:[UIFont systemFontSize]];
     
     CGFloat minimumLineHeight = customFont.pointSize, maximumLineHeight = minimumLineHeight, linespace = lineSpace;
@@ -113,7 +106,8 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     if (numberOfLines == 1) {
         // If there is one line, the size that fits is the full width of the line
         constraints = CGSizeMake(MAXFLOAT, MAXFLOAT);
-    } else if (numberOfLines > 0) {
+    }
+    else if (numberOfLines > 0) {
         // If the line count of the label more than 1, limit the range to size to the number of lines that have been set
         CGMutablePathRef path = CGPathCreateMutable();
         CGPathAddRect(path, NULL, CGRectMake(0.0f, 0.0f, constraints.width, MAXFLOAT));
@@ -137,8 +131,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return CGSizeMake(ceilf(suggestedSize.width), ceilf(suggestedSize.height));
 }
 
-- (CGSize)zd_sizeWithFont:(UIFont *)customFont constrainedToSize:(CGSize)size lineSpace:(CGFloat)lineSpace limiteToNumberOfLines:(NSUInteger)numberOfLines
-{
+- (CGSize)zd_sizeWithFont:(UIFont *)customFont constrainedToSize:(CGSize)size lineSpace:(CGFloat)lineSpace limiteToNumberOfLines:(NSUInteger)numberOfLines {
     customFont = customFont ?: [UIFont systemFontOfSize:[UIFont systemFontSize]];
     
     CGFloat minimumLineHeight = customFont.pointSize, maximumLineHeight = minimumLineHeight, linespace = lineSpace;
@@ -174,8 +167,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 
 #pragma mark - Emoji
 
-- (BOOL)zd_isContainsEmoji
-{
+- (BOOL)zd_isContainsEmoji {
     float systemVersion = [UIDevice currentDevice].systemName.floatValue;
     // If detected, it MUST contains emoji; otherwise it MAY not contains emoji.
     static NSMutableCharacterSet *minSet8_3, *minSetOld;
@@ -216,8 +208,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return regexRange.location != NSNotFound;
 }
 
-- (NSString *)zd_filterEmoji
-{
+- (NSString *)zd_filterEmoji {
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^\\u0020-\\u007E\\u00A0-\\u00BE\\u2E80-\\uA4CF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF\\u0080-\\u009F\\u2000-\\u201f\r\n]"
                                                                            options:NSRegularExpressionCaseInsensitive
                                                                              error:nil];
@@ -228,8 +219,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 	return modifiedString;
 }
 
-- (NSString *)zd_removeHalfEmoji
-{
+- (NSString *)zd_removeHalfEmoji {
     if (self.length > 0) {
         NSString *tmpStr = self;
         NSUInteger lenth = tmpStr.length;
@@ -242,8 +232,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return self;
 }
 
-- (NSString *)zd_subEmojiStringToIndex:(NSUInteger)index
-{
+- (NSString *)zd_subEmojiStringToIndex:(NSUInteger)index {
     if (self.length > index) {
         NSRange rangeIndex = [self rangeOfComposedCharacterSequenceAtIndex:index];
         NSString *result = [self substringToIndex:rangeIndex.location];
@@ -276,8 +265,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 
 #pragma mark - Function
 
-- (NSString *)zd_reservedNumberOnly
-{
+- (NSString *)zd_reservedNumberOnly {
     NSCharacterSet *numberSet = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
     // or
     // NSCharacterSet *numberSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
@@ -301,8 +289,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return result;
 }
 
-- (NSString *)zd_reverse
-{
+- (NSString *)zd_reverse {
     NSMutableString *reverseString = [[NSMutableString alloc] init];
     NSUInteger charIndex = [self length];
     while (charIndex > 0) {
@@ -313,8 +300,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return reverseString;
 }
 
-- (BOOL)zd_isContainString:(NSString *)string
-{
+- (BOOL)zd_isContainString:(NSString *)string {
     if (!string || (string.length == 0) || ![string isKindOfClass:[NSString class]]) return NO;
     
     if ([self respondsToSelector:@selector(containsString:)]) {
@@ -325,8 +311,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     }
 }
 
-- (BOOL)zd_isContainChinese
-{
+- (BOOL)zd_isContainChinese {
     for (NSUInteger i = 0; i < self.length; i++) {
 #if 0
         NSRange range = NSMakeRange(i, 1);
@@ -345,15 +330,13 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return NO;
 }
 
-- (BOOL)zd_isAllChinse
-{
+- (BOOL)zd_isAllChinse {
     NSString *match = @"(^[\u4e00-\u9fa5]+$)";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
     return [predicate evaluateWithObject:self];
 }
 
-- (BOOL)zd_isAllNumber
-{
+- (BOOL)zd_isAllNumber {
     if (self.length == 0) {
         return NO;
     }
@@ -382,8 +365,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 
 }
 
-- (BOOL)zd_isEmptyOrNil
-{
+- (BOOL)zd_isEmptyOrNil {
     if (self == nil || self == NULL) {
         return YES;
     }
@@ -399,22 +381,19 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return NO;
 }
 
-- (BOOL)zd_isEmpty
-{
+- (BOOL)zd_isEmpty {
     if ([[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0) {
         return YES;
     }
     return NO;
 }
 
-- (NSUInteger)zd_countForTargetString:(NSString *)targetString
-{
+- (NSUInteger)zd_countForTargetString:(NSString *)targetString {
     if (!targetString || targetString.length == 0) return 0;
     return MAX([self componentsSeparatedByString:targetString].count - 1, 0);
 }
 
-- (NSUInteger)zd_wordCount
-{
+- (NSUInteger)zd_wordCount {
     // This word counting algorithm is from : http://stackoverflow.com/a/13367063
     __block NSUInteger wordCount = 0;
     [self enumerateSubstringsInRange:NSMakeRange(0, [self length])
@@ -425,8 +404,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return wordCount;
 }
 
-- (NSString *)zd_hexString
-{
+- (NSString *)zd_hexString {
     const char *utf8 = [self UTF8String];
     NSMutableString *hex = [NSMutableString string];
     while (*utf8) {
@@ -435,8 +413,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return [NSString stringWithFormat:@"%@", hex];
 }
 
-- (NSString *)zd_md5String
-{
+- (NSString *)zd_md5String {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5(data.bytes, (CC_LONG) data.length, result);
@@ -452,8 +429,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 
 #pragma mark - Validate(验证)
 
-- (BOOL)zd_isValidWithRegex:(ZDRegex)regex
-{
+- (BOOL)zd_isValidWithRegex:(ZDRegex)regex {
     NSString *regexString = ZDRegexStr[regex];
     if ([self zd_isEmptyOrNil] || !regexString) {
         return NO;
@@ -462,8 +438,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return [predicate evaluateWithObject:self];
 }
 
-- (BOOL)zd_isValidEmail
-{
+- (BOOL)zd_isValidEmail {
     NSString *emailPattern =
     @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
     @"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
@@ -479,8 +454,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 }
 
 /// 身份证号
-- (BOOL)zd_isValidIdCard
-{
+- (BOOL)zd_isValidIdCard {
     // 身份证号码不为空  通用15和18位均可：@"^(\\d{14}|\\d{17})(\\d|[xX])$";
     if (self.length <= 0) {
         return NO;
@@ -499,8 +473,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 }
 
 /// 银行卡号判断
-- (BOOL)zd_isValidCardNo
-{
+- (BOOL)zd_isValidCardNo {
     int oddsum = 0;     //奇数求和
     int evensum = 0;    //偶数求和
     int allsum = 0;
@@ -540,8 +513,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 
 #pragma mark - JSON
 
-- (NSDictionary *)zd_dictionaryValue
-{
+- (NSDictionary *)zd_dictionaryValue {
     NSError *__autoreleasing *errorJson = NULL;
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:[self dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:errorJson];
     if (errorJson != nil) {
@@ -550,8 +522,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return jsonDict;
 }
 
-+ (NSString *)zd_stringValueFromJson:(id)arrayOrDic
-{
++ (NSString *)zd_stringValueFromJson:(id)arrayOrDic {
     NSData *jsonData =[NSJSONSerialization dataWithJSONObject:arrayOrDic
                                                       options:NSJSONWritingPrettyPrinted
                                                         error:nil];
@@ -562,11 +533,11 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 
 #pragma mark - HTML
 
-- (NSString *)zd_decodeHTMLCharacterEntities
-{
+- (NSString *)zd_decodeHTMLCharacterEntities {
     if ([self rangeOfString:@"&"].location == NSNotFound) {
         return self;
-    } else {
+    }
+    else {
         NSMutableString *escaped = [NSMutableString stringWithString:self];
         NSArray *codes = [NSArray arrayWithObjects:
                           @"&nbsp;", @"&iexcl;", @"&cent;", @"&pound;", @"&curren;", @"&yen;", @"&brvbar;",
@@ -681,8 +652,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     }
 }
 
-- (NSString *)zd_encodeHTMLCharacterEntities
-{
+- (NSString *)zd_encodeHTMLCharacterEntities {
     NSMutableString *encoded = [NSMutableString stringWithString:self];
     
     // @"&amp;"
@@ -736,8 +706,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
 #pragma mark - Encoding / Deconding
 //http://useyourloaf.com/blog/how-to-percent-encode-a-url-string.html
 
-- (NSString *)zd_stringByAddingPercentEncodingForRFC3986
-{
+- (NSString *)zd_stringByAddingPercentEncodingForRFC3986 {
     NSString *unreserved = @"-._~/?";
     NSMutableCharacterSet *allowed = [NSMutableCharacterSet
                                       alphanumericCharacterSet];
@@ -746,8 +715,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
             allowed];
 }
 
-- (NSString *)zd_stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace
-{
+- (NSString *)zd_stringByAddingPercentEncodingForFormData:(BOOL)plusForSpace {
     NSString *unreserved = @"*-._";
     NSMutableCharacterSet *allowed = [NSMutableCharacterSet
                                       alphanumericCharacterSet];
@@ -764,8 +732,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return encoded;
 }
 
-- (NSString *)zd_stringByURLEncode
-{
+- (NSString *)zd_stringByURLEncode {
     if ([self respondsToSelector:@selector(stringByAddingPercentEncodingWithAllowedCharacters:)]) {
         /**
          AFNetworking/AFURLRequestSerialization.m
@@ -818,8 +785,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     }
 }
 
-- (NSString *)zd_stringByURLDecode
-{
+- (NSString *)zd_stringByURLDecode {
     if ([self respondsToSelector:@selector(stringByRemovingPercentEncoding)]) {
         return [self stringByRemovingPercentEncoding];
     } else {
@@ -850,8 +816,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return base64DecodeString;
 }
 
-- (NSDictionary<NSString *, NSString *> *)zd_parameters
-{
+- (NSDictionary<NSString *, NSString *> *)zd_parameters {
     if (![self hasPrefix:@"http"]) {
         return nil;
     }
