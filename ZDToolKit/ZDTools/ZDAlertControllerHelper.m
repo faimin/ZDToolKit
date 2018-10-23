@@ -50,7 +50,7 @@ static const void *ZD_UIAlertAction_Key = &ZD_UIAlertAction_Key;
                       message:(NSString *)message
                preferredStyle:(UIAlertControllerStyle)preferredStyle
                clickedHandler:(void(^)(UIAlertAction *action, NSInteger tag))handler
-                  extraConfig:(void(^)(UIAlertController *alertController))configBlock
+                  extraConfig:(void(NS_NOESCAPE ^)(UIAlertController *alertController))configBlock
               completePresent:(void(^)(void))completion
                       actions:(ZDActionModel *)actionModel, ... NS_REQUIRES_NIL_TERMINATION {
     if (!controller) return;
