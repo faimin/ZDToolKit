@@ -1308,6 +1308,8 @@ dispatch_queue_t ZD_TaskQueue(void) {
 #pragma mark - Runtime
 #pragma mark -
 void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id value) {
+    if (!object || !key) return;
+    
     __weak typeof(value) weakTarget = value;
     __auto_type block = ^id{
         return weakTarget;
@@ -1316,6 +1318,8 @@ void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id value) {
 }
 
 id ZD_Objc_getWeakAssociatedObject(id object, const void *key) {
+    if (!object || !key) return nil;
+    
     id(^block)(void) = objc_getAssociatedObject(object, key);
     id value = block ? block() : nil;
     return value;

@@ -151,6 +151,8 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 // 此处是利用block捕获外部变量的原理实现的.
 // 其实把value作为一个对象的weak属性,然后绑定这个对象也可以实现,当get时拿到这个对象,并获取它那个weak属性即可.
 - (void)zd_setWeakAssociateValue:(id)value forKey:(const void *)key {
+    if (!key) return;
+    
 #if 1
     __weak id weakValue = value;
     objc_setAssociatedObject(self, key, ^id{
@@ -164,6 +166,8 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 }
 
 - (id)zd_getWeakAssociateValueForKey:(const void *)key {
+    if (!key) return nil;
+    
 #if 1
     id(^tempBlock)(void) = objc_getAssociatedObject(self, key);
     if (tempBlock) {
