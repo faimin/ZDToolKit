@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ZDMutiDelegatesProxy
 
-@interface ZDMutiDelegatesProxy<__covariant TargetType : id> : NSObject
+@interface ZDMutiDelegatesProxy<__covariant TargetType : id> : NSProxy
 
 @property (nonatomic, strong) IBOutletCollection(TargetType) NSArray<TargetType> *delegateTargets;
 
