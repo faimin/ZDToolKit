@@ -530,7 +530,7 @@ static void __Swizzle__(Class c, SEL orig, SEL new) {
 }
 
 - (CGFloat)zd_cornerRadius {
-    return [objc_getAssociatedObject(self, CornerRadiusKey) integerValue];
+    return [objc_getAssociatedObject(self, CornerRadiusKey) floatValue];
 }
 
 #pragma mark - TouchExtendInset
