@@ -88,36 +88,66 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
 #pragma mark - Copy Property
 
 - (instancetype)zd_mutableCopy {
-    if ([self conformsToProtocol:@protocol(NSMutableCopying)]) {
-        id newObj = [self mutableCopy];
-        return newObj;
-    }
-    
-    id newSelf = [self.class new];
-    
-    NSMutableArray<NSString *> *keys = @[].mutableCopy;
     Class aClass = [self class];
-    while (aClass && aClass != [NSObject class]) {
-        unsigned int count = 0;
-        objc_property_t *properties = class_copyPropertyList(aClass, &count);
-        for (int i = 0; i < count; ++i) {
-            objc_property_t property = properties[i];
-            if (property) {
-                const char *readOnly = property_copyAttributeValue(property, "R");
-                if (readOnly) continue;
-                const char *propertyName = property_getName(property);
-                if (propertyName == NULL) continue;
-                NSString *keyName = [NSString stringWithUTF8String:propertyName];
-                if (keyName) {
-                    [keys addObject:keyName];
+    id newSelf = [aClass new];
+    
+    // 容器类
+    if ([self conformsToProtocol:@protocol(NSFastEnumeration)]) {
+        if ([self respondsToSelector:@selector(enumerateKeysAndObjectsUsingBlock:)]) {
+            NSMutableDictionary *newTable = [newSelf respondsToSelector:@selector(mutableCopy)] ? [newSelf mutableCopy] : newSelf;
+            BOOL responseSetObjForKey = [newTable respondsToSelector:@selector(setObject:forKey:)];
+            [(NSDictionary *)self enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                id newObj = [obj zd_mutableCopy];
+                if (responseSetObjForKey && newObj) {
+                    [newTable setObject:newObj forKey:key];
                 }
+            }];
+            newSelf = newTable;
+        }
+        else if ([self respondsToSelector:@selector(enumerateObjectsUsingBlock:)]) {
+            NSMutableArray *newMap = [newSelf respondsToSelector:@selector(mutableCopy)] ? [newSelf mutableCopy] : newSelf;
+            BOOL responseAddObj = [newMap respondsToSelector:@selector(addObject:)];
+            [(NSArray *)self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                id newObj = [obj zd_mutableCopy];
+                if (responseAddObj && newObj) {
+                    [newMap addObject:newObj];
+                }
+            }];
+            newSelf = newMap;
+        }
+        else {
+            NSCAssert1(NO, @"sorry, not surrport the class type: %s", object_getClassName(self));
+        }
+    }
+    // 普通类
+    else {
+        NSMutableArray<NSString *> *keys = @[].mutableCopy;
+        while (aClass && aClass != [NSObject class]) {
+            @autoreleasepool {
+                unsigned int count = 0;
+                objc_property_t *properties = class_copyPropertyList(aClass, &count);
+                for (int i = 0; i < count; ++i) {
+                    @autoreleasepool {
+                        objc_property_t property = properties[i];
+                        if (property) {
+                            const char *readOnly = property_copyAttributeValue(property, "R");
+                            if (readOnly) continue;
+                            const char *propertyName = property_getName(property);
+                            if (propertyName == NULL) continue;
+                            NSString *keyName = [NSString stringWithUTF8String:propertyName];
+                            if (keyName) {
+                                [keys addObject:keyName];
+                            }
+                        }
+                    }
+                }
+                free(properties);
+                aClass = class_getSuperclass(aClass);
             }
         }
         
-        aClass = class_getSuperclass(aClass);
+        [newSelf setValuesForKeysWithDictionary:[self dictionaryWithValuesForKeys:keys]];
     }
-    
-    [newSelf setValuesForKeysWithDictionary:[self dictionaryWithValuesForKeys:keys]];
     
     return newSelf;
 }
