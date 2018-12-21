@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDate (ZDUtility)
 
-+ (NSDate *)zd_dateWithISO8601String:(NSString *)iso8601String;
++ (instancetype)zd_pekingDate;
+
++ (instancetype)zd_dateWithISO8601String:(NSString *)iso8601String;
 
 @end
 
