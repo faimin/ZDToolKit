@@ -18,7 +18,17 @@ static const void *ZD_UIAlertAction_Key = &ZD_UIAlertAction_Key;
                preferredStyle:(UIAlertControllerStyle)preferredStyle
                clickedHandler:(void(^)(UIAlertAction *action, NSInteger tag))handler
                       actions:(ZDActionModel *)actionModel, ... NS_REQUIRES_NIL_TERMINATION {
-    if (!controller) return;
+    if (!controller) {
+        controller = [[UIViewController alloc] init];
+        UIWindow *alertWindow = ({
+            UIWindow *view = [[UIWindow alloc] init];
+            view.backgroundColor = UIColor.clearColor;
+            view.windowLevel = UIWindowLevelAlert;
+            view.hidden = NO;
+            view;
+        });
+        alertWindow.rootViewController = controller;
+    }
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:preferredStyle];
     
@@ -49,11 +59,22 @@ static const void *ZD_UIAlertAction_Key = &ZD_UIAlertAction_Key;
                         title:(NSString *)title
                       message:(NSString *)message
                preferredStyle:(UIAlertControllerStyle)preferredStyle
-               clickedHandler:(void(^)(UIAlertAction *action, NSInteger tag))handler
                   extraConfig:(void(NS_NOESCAPE ^)(UIAlertController *alertController))configBlock
               completePresent:(void(^)(void))completion
+               clickedHandler:(void(^)(UIAlertAction *action, NSInteger tag))handler
                       actions:(ZDActionModel *)actionModel, ... NS_REQUIRES_NIL_TERMINATION {
-    if (!controller) return;
+    if (!controller) {
+        // https://www.appcoda.com.tw/uialertcontroller
+        controller = [[UIViewController alloc] init];
+        UIWindow *alertWindow = ({
+            UIWindow *view = [[UIWindow alloc] init];
+            view.backgroundColor = UIColor.clearColor;
+            view.windowLevel = UIWindowLevelAlert;
+            view.hidden = NO;
+            view;
+        });
+        alertWindow.rootViewController = controller;
+    }
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:preferredStyle];
     

@@ -22,20 +22,20 @@ NS_ASSUME_NONNULL_BEGIN
 @class ZDActionModel;
 NS_CLASS_AVAILABLE_IOS(8_0) NS_ROOT_CLASS @interface ZDAlertControllerHelper
 
-+ (void)showAlertControllerIn:(__kindof UIViewController *)controller
++ (void)showAlertControllerIn:(nullable __kindof UIViewController *)controller
                         title:(nullable NSString *)title
                       message:(nullable NSString *)message
                preferredStyle:(UIAlertControllerStyle)preferredStyle
                clickedHandler:(void(^ _Nullable)(UIAlertAction *action, NSInteger tag))handler
                       actions:(ZDActionModel *)actionModel, ... NS_REQUIRES_NIL_TERMINATION;
 
-+ (void)showAlertControllerIn:(__kindof UIViewController *)controller
++ (void)showAlertControllerIn:(nullable __kindof UIViewController *)controller
                         title:(nullable NSString *)title
                       message:(nullable NSString *)message
                preferredStyle:(UIAlertControllerStyle)preferredStyle
-               clickedHandler:(void(^ _Nullable)(UIAlertAction *action, NSInteger tag))handler
                   extraConfig:(void(NS_NOESCAPE ^ _Nullable)(UIAlertController *alertController))configBlock
               completePresent:(void(^ _Nullable)(void))completion
+               clickedHandler:(void(^ _Nullable)(UIAlertAction *action, NSInteger tag))handler
                       actions:(ZDActionModel *)actionModel, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end
