@@ -214,8 +214,7 @@ NS_ASSUME_NONNULL_END
     }
 }
 
-- (NSInteger)indexOfTouchLocation:(CGPoint)location
-{
+- (NSInteger)indexOfTouchLocation:(CGPoint)location {
     if (NULL == _ctFrameRef) {
         NSAttributedString *content = self.attributedText;
         CTFramesetterRef framesetter =  CTFramesetterCreateWithAttributedString((__bridge_retained CFAttributedStringRef)content);
@@ -234,7 +233,7 @@ NS_ASSUME_NONNULL_END
     CGPoint lineOrigin = CGPointZero;
     CGPathRef path = CTFrameGetPath(_ctFrameRef);
     CGRect rect = CGPathGetBoundingBox(path);
-    for (int i = 0; i < CFArrayGetCount(lines); i++) {
+    for (CFIndex i = 0; i < CFArrayGetCount(lines); i++) {
         CGPoint origin = origins[i];
         CGFloat y = rect.origin.y + rect.size.height - origin.y;
         if ((location.y >= y - _iLineSpacing/2.0f)

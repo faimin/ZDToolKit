@@ -594,9 +594,9 @@ NSArray<NSString *> *ZD_SplitTextWithWidth(NSString *string, UIFont *font, CGFlo
     CTFrameRef frameRef = CTFramesetterCreateFrame(framesetterRef, CFRangeMake(0, 0), path, NULL);
     
     NSMutableArray<NSString *> *linesArray = @[].mutableCopy;
-    NSArray *lines = (__bridge NSArray *)CTFrameGetLines(frameRef);
-    for (id line in lines) {
-        CTLineRef lineRef = (__bridge CTLineRef)line;
+    CFArrayRef lines = CTFrameGetLines(frameRef);
+    for (CFIndex i = 0; i < CFArrayGetCount(lines); ++i) {
+        CTLineRef lineRef = CFArrayGetValueAtIndex(lines, i);
         CFRange lineRange = CTLineGetStringRange(lineRef);
         NSRange range = NSMakeRange(lineRange.location, lineRange.length);
         NSString *lineString = [string substringWithRange:range];
