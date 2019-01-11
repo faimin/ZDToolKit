@@ -97,6 +97,7 @@ struct ZDBannerDelegateResponseTo {
 #pragma mark -
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    NSCAssert(!CGRectIsEmpty(frame), @"don't support autoLayout");
     if (self = [super initWithFrame:frame]) {
         [self setup];
     }
