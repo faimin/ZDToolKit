@@ -1,8 +1,8 @@
 PODS:
   - libffi-core (1.2.0)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
   - YYCache (1.0.4)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
@@ -43,8 +43,9 @@ PODS:
   - ZDToolKit/ZDTools/ZDProxy (0.0.4)
 
 DEPENDENCIES:
+  - libffi-core
   - SDWebImage
-  - YYWebImage (~> 1.0)
+  - YYWebImage
   - ZDToolKit (from `../`)
 
 SPEC REPOS:
@@ -61,12 +62,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   libffi-core: c4049ed88381fee5c0a31d26c860fc427d3c301c
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
   ZDToolKit: 933b48b20ee889a874b3110fff2c723cbb18af45
 
-PODFILE CHECKSUM: 1d105ef1b41efc913af4d3ebaedd25fe2a2bd42d
+PODFILE CHECKSUM: 56c53da6393879f8feb1294b0002470585f4ad69
 
 COCOAPODS: 1.5.3

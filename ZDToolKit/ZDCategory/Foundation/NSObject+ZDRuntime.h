@@ -5,8 +5,6 @@
 //  Created by Zero on 15/9/13.
 //  Copyright (c) 2015年 Zero.D.Saber. All rights reserved.
 //
-//  PS: most of methods from DTFoundation: https://github.com/Cocoanetics/DTFoundation
-
 
 #import <Foundation/Foundation.h>
 

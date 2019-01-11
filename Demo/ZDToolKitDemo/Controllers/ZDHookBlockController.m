@@ -59,6 +59,12 @@ struct Block_layout {
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import <ZDToolKit/ZDBlockDescription.h>
+#import <NSObject+ZDRuntime.h>
+
+typedef NS_ENUM(NSInteger, ZDHookWay) {
+    ZDHookWay_ForwardInvocation = 0,
+    ZDHookWay_Libffi = 1,
+};
 
 @interface ZDHookBlockController ()
 
@@ -66,8 +72,11 @@ struct Block_layout {
 
 @implementation ZDHookBlockController
 
+- (void)dealloc {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
 - (void)setupData {
-    //[self hookBlock];
     //[self hookBlockIMP];
     [self testHookBlock];
 }
@@ -79,20 +88,30 @@ struct Block_layout {
         return blockResult;
     };
     
-    block = ZD_HookBlock(block);
-    
-    //__unused ZDFfiBlockHook *hook = [ZDFfiBlockHook hookBlock:block]; // not tyet implement
+    NSInteger way = 1;
+    switch (way) {
+        case ZDHookWay_ForwardInvocation: {
+            block = ZD_HookBlock(block);
+        } break;
+        case ZDHookWay_Libffi: {
+            [ZDFfiBlockHook hookBlock:block];
+        } break;
+        default:
+            break;
+    }
     
     NSString *result1 = block(@"Zero.D.Saber", 28, @100);
     NSLog(@"执行结果1 = %@", result1);
-     
-    //NSString *(*originFunc)(id blockSelf, NSString *name, NSUInteger age, NSNumber *) = (__typeof__(originFunc))originIMP;
-    //NSString *result2 = originFunc(block, @"Zero.D.Saber", 28, @100);
-    //NSLog(@"执行结果2 = %@", result2);
+    
+    /*
+    NSString *(*originFunc)(id blockSelf, NSString *name, NSUInteger age, NSNumber *) = (__typeof__(originFunc))originIMP;
+    NSString *result2 = originFunc(block, @"Zero.D.Saber", 28, @100);
+    NSLog(@"执行结果2 = %@", result2);
+     */
 }
 
 #pragma mark -
-
+/*
 NSMethodSignature *ZD_NewSignature(NSMethodSignature *original) {
     if (original.numberOfArguments < 1) {
         return nil;
@@ -117,6 +136,7 @@ NSMethodSignature *ZD_NewSignature(NSMethodSignature *original) {
     
     return [NSMethodSignature signatureWithObjCTypes:signature.UTF8String];
 }
+*/
 
 //------------------------------------------------------------------
 #pragma mark -
@@ -160,27 +180,8 @@ NSString *printHookMsg(id self, SEL _cmd) {
     NSLog(@"********* : %s", codingType);
     
     NSString *returnType = nil;
-    ZD_ReduceBlockSignatureTypes([NSString stringWithUTF8String:codingType], &argsArray, &returnType);
+//    ZD_ReduceBlockSignatureTypes([NSString stringWithUTF8String:codingType], &argsArray, &returnType);
     NSLog(@"参数类型：%@, 返回类型：%@", argsArray, returnType);
 }
-
-//----------------------------------------------------------------------------
-
-#pragma mark -
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
