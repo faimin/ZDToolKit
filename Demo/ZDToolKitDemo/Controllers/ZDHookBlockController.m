@@ -73,7 +73,7 @@ struct Block_layout {
 }
 
 - (void)testHookBlock {
-    __auto_type block = ^NSString *(NSString *name, NSUInteger age, NSNumber *value) {
+    __auto_type block = ^NSString *(NSString *name, NSUInteger age, id<NSObject> value) {
         NSString *blockResult = [NSString stringWithFormat:@"%@ + %ld + %@", name, age, value];
         NSLog(@"block执行了，结果： %@", blockResult);
         return blockResult;

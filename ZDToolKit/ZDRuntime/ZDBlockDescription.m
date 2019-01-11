@@ -191,7 +191,7 @@ NSString *ZD_ReduceBlockSignatureCodingType(const char *signatureCodingType) {
     NSString *codingType = charType.copy;
     
     NSError *error = nil;
-    NSString *regexString = @"\\\"[A-Za-z]+\\\"|[0-9]+";// <==> \\"[A-Za-z]+\\"|\d+  <==>  \\"\w+\\"|\d+
+    NSString *regexString = @"\\\"[A-Za-z]+\\\"|\\\"<[A-Za-z]+>\\\"|[0-9]+";// <==> \\"[A-Za-z]+\\"|\d+  <==>  \\"\w+\\"|\\\"<w+>\\\"|\d+
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
     
     NSTextCheckingResult *mathResult = nil;
