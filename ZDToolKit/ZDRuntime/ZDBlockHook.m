@@ -296,7 +296,7 @@ id ZD_HookBlock(id block) {
 #pragma mark -
 
 #if USE_LIBFFI
-ffi_type *ZD_ffiTypeWithTypeEncoding(const char *type) {
+static ffi_type *ZD_ffiTypeWithTypeEncoding(const char *type) {
     if (strcmp(type, "@?") == 0) { // block
         return &ffi_type_pointer;
     }
@@ -351,7 +351,6 @@ ffi_type *ZD_ffiTypeWithTypeEncoding(const char *type) {
 }
 
 //*****************************************
-#import "NSObject+ZDRuntime.h"
 
 @interface NSObject (ZDBKWeakBinding)
 @property (nonatomic, weak) id zdbk_weakBindValue;
@@ -489,7 +488,7 @@ static void ZD_ffi_prep_cif(NSMethodSignature *signature) {
 static void ZD_ffi_closure_func(ffi_cif *cif, void *ret, void **args, void *userdata) {
     ZDFfiBlockHook *self = (__bridge ZDFfiBlockHook *)userdata;
     
-#if DEBUG
+#if (DEBUG && 0)
     int i = *((int *)args[2]);
     NSString *str = (__bridge NSString *)(*((void **)args[1]));
     NSLog(@"%d, %@", i, str);
@@ -505,7 +504,8 @@ static void ZD_ffi_closure_func(ffi_cif *cif, void *ret, void **args, void *user
     // 根据cif (函数原型，函数指针，返回值内存指针，函数参数) 调用这个函数
     ffi_call(&(self->_blockCif), self->_originalIMP, ret, args);
     
-    self.zdbk_weakBindValue = nil;
+    // 执行完毕之后恢复为原来的IMP
+    ((__bridge ZDBlock *)self.block)->invoke = self->_originalIMP;
 }
 
 static void ZD_ffi_prep_closure(NSMethodSignature *signature) {
@@ -548,13 +548,9 @@ static void ZD_HookBlockWithLibffi(id block) {
     free(_blockArgs);
 }
 
-+ (void)hookBlock:(id)block {
-    __block ZDFfiBlockHook *blockHook = [[ZDFfiBlockHook alloc] init];
++ (instancetype)hookBlock:(id)block {
+    ZDFfiBlockHook *blockHook = [[ZDFfiBlockHook alloc] init];
     blockHook.block = block;
-    //FIXME: 内存泄露
-    [blockHook zd_deallocBlock:^(id  _Nonnull realTarget) {
-        blockHook = nil;
-    }];
     const char *typeEncoding = ZD_ReduceBlockSignatureCodingType(ZD_BlockSignatureTypes(block)).UTF8String;
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:typeEncoding];
     signature.zdbk_weakBindValue = blockHook;
@@ -563,6 +559,8 @@ static void ZD_HookBlockWithLibffi(id block) {
     blockHook->_originalIMP = ZD_BlockInvokeIMP(block);
     
     ZD_HookBlockWithLibffi(block);
+    
+    return blockHook;
 }
 
 @end
@@ -570,3 +568,26 @@ static void ZD_HookBlockWithLibffi(id block) {
 
 #endif // NS_BLOCK_ASSERTIONS
 
+#pragma mark - +++++++++++++++++++++++整合+++++++++++++++++++++++++++++
+#pragma mark -
+
+#import "NSObject+ZDRuntime.h"
+@implementation NSObject (ZDHookBlock)
+
+- (void)zd_hookBlock:(id *)block hookWay:(ZDHookWay)hookWay {
+    if (!block || !*block) return;
+    
+    switch (hookWay) {
+        case ZDHookWay_Libffi: {
+            __block ZDFfiBlockHook *ffiHook = [ZDFfiBlockHook hookBlock:*block];
+            [self zd_deallocBlock:^(id  _Nonnull realTarget) {
+                ffiHook = nil;
+            }];
+        } break;
+        default: {
+            *block = ZD_HookBlock(*block);
+        } break;
+    }
+}
+
+@end

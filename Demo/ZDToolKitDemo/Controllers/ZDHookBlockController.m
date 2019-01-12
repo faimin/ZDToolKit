@@ -61,11 +61,6 @@ struct Block_layout {
 #import <ZDToolKit/ZDBlockHook.h>
 #import <NSObject+ZDRuntime.h>
 
-typedef NS_ENUM(NSInteger, ZDHookWay) {
-    ZDHookWay_ForwardInvocation = 0,
-    ZDHookWay_Libffi = 1,
-};
-
 @interface ZDHookBlockController ()
 
 @end
@@ -88,17 +83,7 @@ typedef NS_ENUM(NSInteger, ZDHookWay) {
         return blockResult;
     };
     
-    NSInteger way = 1;
-    switch (way) {
-        case ZDHookWay_ForwardInvocation: {
-            block = ZD_HookBlock(block);
-        } break;
-        case ZDHookWay_Libffi: {
-            [ZDFfiBlockHook hookBlock:block];
-        } break;
-        default:
-            break;
-    }
+    [self zd_hookBlock:&block hookWay:ZDHookWay_Libffi];
     
     NSString *result1 = block(@"Zero.D.Saber", 28, @100);
     NSLog(@"执行结果1 = %@", result1);

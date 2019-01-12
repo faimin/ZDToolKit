@@ -44,7 +44,25 @@ FOUNDATION_EXPORT id ZD_HookBlock(id block);
 /// 利用libffi实现
 @interface ZDFfiBlockHook : NSObject
 
-+ (void)hookBlock:(id)block;
++ (instancetype)hookBlock:(id)block;
 
 @end
 #endif
+
+
+//*************************************************************
+#pragma mark - ---------------------- 整合 -----------------------
+#pragma mark -
+
+typedef NS_ENUM(NSInteger, ZDHookWay) {
+    ZDHookWay_ForwardMsg = 0,
+    ZDHookWay_Libffi     = 1,
+};
+
+@interface NSObject (ZDHookBlock)
+
+- (void)zd_hookBlock:(id *)block hookWay:(ZDHookWay)hookWay;
+
+@end
+
+//*************************************************************
