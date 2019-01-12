@@ -244,7 +244,7 @@ id ZD_HookBlock(id block) {
     const char *blockClassName = object_getClassName(block);
     Class newBlockClass = object_getClass(block);
     if (![[NSString stringWithUTF8String:blockClassName] hasPrefix:ZD_Prefix]) {
-        const char *prefix = "ZD_";
+        const char *prefix = ZD_Prefix.UTF8String;
         char *newBlockClassName = calloc(1, strlen(prefix) + strlen(blockClassName) + 1);//+1 for the zero-terminator
         strcpy(newBlockClassName, prefix);
         strcat(newBlockClassName, blockClassName);
