@@ -145,7 +145,6 @@ return @(val); \
 } while (0)
     
     const char *originArgType = [invocation.methodSignature getArgumentTypeAtIndex:index];
-    
     NSString *argTypeString = ZD_ReduceBlockSignatureCodingType(originArgType);
     const char *argType = argTypeString.UTF8String;
     
@@ -240,7 +239,7 @@ static void ZD_NewForwardInvocation(id self, SEL _cmd, NSInvocation *anInvocatio
 static NSString *const ZD_Prefix = @"ZD_";
 
 id ZD_HookBlock(id block) {
-    if (![block isKindOfClass:objc_lookUpClass("NSBlock")]) return NULL;
+    if (![block isKindOfClass:objc_lookUpClass("NSBlock")]) return block;
     
     const char *blockClassName = object_getClassName(block);
     Class newBlockClass = object_getClass(block);
