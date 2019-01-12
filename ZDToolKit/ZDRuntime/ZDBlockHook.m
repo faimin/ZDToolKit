@@ -484,7 +484,7 @@ static void ZD_ffi_prep_cif(NSMethodSignature *signature) {
     }
 }
 
-// block执行的地方
+// block回调时会执行的函数
 static void ZD_ffi_closure_func(ffi_cif *cif, void *ret, void **args, void *userdata) {
     ZDFfiBlockHook *self = (__bridge ZDFfiBlockHook *)userdata;
     
@@ -581,6 +581,7 @@ static void ZD_HookBlockWithLibffi(id block) {
         case ZDHookWay_Libffi: {
             __block ZDFfiBlockHook *ffiHook = [ZDFfiBlockHook hookBlock:*block];
             [self zd_deallocBlock:^(id  _Nonnull realTarget) {
+                // 释放ffiHook
                 ffiHook = nil;
             }];
         } break;
