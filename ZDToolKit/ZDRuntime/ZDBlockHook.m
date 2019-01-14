@@ -272,14 +272,19 @@ id ZD_HookBlock(id block) {
                 SEL selector = @selector(methodSignatureForSelector:);
                 // 当前类自身没有实现这个method，所以下面获取到的其实是父类的方法
                 Method method = class_getInstanceMethod(newBlockClass, selector);
-                // 因为当前类自己没有实现这个method，所以执行class_replaceMethod就等价于class_addMethod，so在这里使用此方法没毛病
-                __unused IMP originIMP = class_replaceMethod(newBlockClass, selector, (IMP)ZD_NewSignatureForSelector, method_getTypeEncoding(method));
+                // 因为当前类自己没有实现这个method，所以执行class_replaceMethod就等价于class_addMethod，所以在这里直接使用class_replaceMethod方法也没毛病
+                if (class_addMethod(newBlockClass, selector, (IMP)ZD_NewSignatureForSelector, method_getTypeEncoding(method))) {
+                    // return originIMP
+                    class_replaceMethod(newBlockClass, selector, (IMP)ZD_NewSignatureForSelector, method_getTypeEncoding(method));
+                }
             }
             
             {
                 SEL selector = @selector(forwardInvocation:);
                 Method method = class_getInstanceMethod(newBlockClass, selector);
-                __unused IMP originIMP = class_replaceMethod(newBlockClass, selector, (IMP)ZD_NewForwardInvocation, method_getTypeEncoding(method));
+                if (class_addMethod(newBlockClass, selector, (IMP)ZD_NewForwardInvocation, method_getTypeEncoding(method))) {
+                    class_replaceMethod(newBlockClass, selector, (IMP)ZD_NewForwardInvocation, method_getTypeEncoding(method));
+                }
             }
             objc_registerClassPair(newBlockClass);
         }
