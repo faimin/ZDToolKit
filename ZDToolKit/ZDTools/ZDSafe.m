@@ -256,13 +256,11 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 
 @end
 
+/*
 ///========================================================
 #pragma mark - NSObject
 /// 处理不识别的selector
 ///========================================================
-@interface NSObject (Forward)
-
-@end
 
 @implementation NSObject (Forward)
 
@@ -314,6 +312,7 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
 }
 
 @end
+*/
 
 ///========================================================
 #pragma mark - ZDSafe
@@ -342,9 +341,11 @@ static BOOL zd_swizzleClassMethod(Class zdClass, SEL originalSel, SEL replacemen
         // NSMutableDictionary
         zd_swizzleInstanceMethod(NSClassFromString(@"__NSDictionaryM"), @selector(setObject:forKey:), @selector(zd_setObject:forKey:));
         
+        /*
         // Handle unrecognize selector
         zd_swizzleInstanceMethod([NSObject class], @selector(methodSignatureForSelector:), @selector(zd_methodSignatureForSelector:));
         zd_swizzleInstanceMethod([NSObject class], @selector(forwardInvocation:), @selector(zd_forwardInvocation:));
+         */
     });
 }
 
