@@ -47,11 +47,11 @@
     };
     id oldBlock = [block copy];
     
-    ZDHookWay hookWay = ZDHookWay_ForwardMsg;
+    ZDHookWay hookWay = ZDHookWay_MsgForward;
     [self zd_hookBlock:&block hookWay:hookWay];
     id newBlock = [block copy];
     
-    if (hookWay == ZDHookWay_ForwardMsg) {
+    if (hookWay == ZDHookWay_MsgForward) {
         XCTAssertNotEqual(oldBlock, newBlock);
     } else if (hookWay == ZDHookWay_Libffi) {
         XCTAssertEqual(oldBlock, newBlock);

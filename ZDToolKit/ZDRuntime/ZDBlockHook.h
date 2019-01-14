@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 //################################################################
-#pragma mark - ------------------------------- 方案1 ==> ForwardMessage ----------------------------------
+#pragma mark - ------------------------------- 方案1 ==> MessageForward ----------------------------------
 
 typedef void * ZDBlockIMP;
 
@@ -22,7 +22,7 @@ FOUNDATION_EXPORT ZDBlockIMP ZD_BlockInvokeIMP(id block);
 FOUNDATION_EXPORT IMP ZD_MsgForwardIMP(const char *methodTypes);
 
 /// 判断当前函数指针是否指向的msg_froward
-FOUNDATION_EXPORT BOOL ZD_IsMsgForward(IMP imp);
+FOUNDATION_EXPORT BOOL ZD_IsMsgForwardIMP(IMP imp);
 
 /// 简化block方法签名
 FOUNDATION_EXPORT NSString *ZD_ReduceBlockSignatureCodingType(const char *signatureCodingType);
@@ -55,7 +55,7 @@ FOUNDATION_EXPORT id ZD_HookBlock(id block);
 #pragma mark -
 
 typedef NS_ENUM(NSInteger, ZDHookWay) {
-    ZDHookWay_ForwardMsg = 0,
+    ZDHookWay_MsgForward = 0,
     ZDHookWay_Libffi     = 1,
 };
 

@@ -118,7 +118,7 @@ IMP ZD_MsgForwardIMP(const char *methodTypes) {
     return msgForwardIMP;
 }
 
-BOOL ZD_IsMsgForward(IMP imp) {
+BOOL ZD_IsMsgForwardIMP(IMP imp) {
     return (imp == _objc_msgForward
 #if !defined(__arm64__)
             || imp == _objc_msgForward_stret
@@ -222,6 +222,8 @@ return @(val); \
 - (void)invokeUsingIMP:(IMP)imp;
 @end
 */
+
+#pragma mark - -------------------- MessageForward ------------------------
 #pragma mark - Hook Block
 
 static const void *ZD_Origin_Block_Key = &ZD_Origin_Block_Key;
