@@ -13,7 +13,6 @@
 #import <ZDToolKit/ZDToolKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <ZDToolKit/ZDFastEnumeration.h>
-#import <ZDToolKit/NSArray+ZDUtility.h>
 #import <ZDToolKit/ZDPromise.h>
 #import <ZDToolKit/NSObject+ZDSimulateKVO.h>
 
@@ -40,9 +39,6 @@
     
     [self uiTest];
 	//[self functionTest];
-	//[self numberTest];
-    //[self mainqueueTest];
-    [self arrayTest];
     
     [self promise];
     
@@ -106,11 +102,6 @@
     } else {
         NSLog(@"控制器将要释放了");
     }
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
 
 #pragma mark -
@@ -213,12 +204,6 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
     }];
 }
 
-- (void)arrayTest {
-    NSArray *arr = @[@1, @[@2, @[@3, @4, @[@5, @6, @7, @[@8, @9, @10, @11] ] ] ] ];
-    NSMutableArray *mut = [arr zd_flatten];
-    NSLog(@"%@", mut);
-}
-
 - (void)uiTest {
     NSString *urlStr = @"http://pic14.nipic.com/20110522/7411759_164157418126_2.jpg";
     //[self.testView rz_addBordersWithCornerRadius:30 width:1 color:[UIColor blueColor]];
@@ -245,64 +230,6 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
     
     //id obj = [self zd_deepCopy];
     //NSLog(@"\n\n%@", obj);
-}
-
-- (void)functionTest {
-	UIView *view = ({
-		UIView *view = [UIView new];
-		zd_defer {
-		    /// 所谓作用域结束，包括大括号结束、return、goto、break、exception等各种情况
-			NSLog(@"当前作用域结束,马上要出作用域了");
-		};
-		view.backgroundColor = [UIColor redColor];
-		view.frame = CGRectMake(20, 100, 50, 50);
-		view;
-	});
-
-	[self.view addSubview:view];
-
-	NSLog(@"执行完毕");
-}
-
-- (void)numberTest {
-	NSString *str = @"2345";
-	BOOL isAllNum = [str zd_isAllNumber];
-
-	NSLog(@"%@", isAllNum ? @"YES" : @"NO");
-}
-
-- (void)mainqueueTest {
-	dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		if (ZD_IsMainQueue()) {
-			NSLog(@"主队列");
-		}
-		else {
-			NSLog(@"子队列");
-		}
-        
-        if ([NSThread isMainThread]) {
-            NSLog(@"主线程");
-        }
-        
-        int mm = pthread_main_np();
-        if (mm) {
-            NSLog(@"主线程");
-        }
-        
-	});
-
-	dispatch_async(dispatch_get_main_queue(), ^{
-		if (ZD_IsMainQueue()) {
-			NSLog(@"主队列");
-		}
-		else {
-			NSLog(@"子队列");
-		}
-	});
-    
-    //dispatch_queue_create("com.zd.saber", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_CONCURRENT, QOS_CLASS_DEFAULT, 0))
-    //ZD_CREATE_SERIAL_QUEUE(com.zd, QOS_CLASS_DEFAULT);
-    
 }
 
 - (void)getCurrentQueue {
@@ -402,6 +329,13 @@ __unused UIKIT_STATIC_INLINE UIImage *drawImageWithSize(CGSize size) {
 
 - (IBAction)removeObserver:(UIButton *)sender {
     [self zd_removeObserver:self forKey:@"text"];
+}
+
+#pragma mark - 
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end
