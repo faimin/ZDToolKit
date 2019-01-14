@@ -17,41 +17,54 @@
 #pragma mark - Block Define
 #pragma mark -
 
-// https://github.com/rabovik/RSSwizzle
-#if !defined(NS_BLOCK_ASSERTIONS)
-
 // http://clang.llvm.org/docs/Block-ABI-Apple.html#high-level
 // https://opensource.apple.com/source/libclosure/libclosure-67/Block_private.h.auto.html
-struct ZDBlockLiteral {
-    void *isa; // initialized to &_NSConcreteStackBlock or &_NSConcreteGlobalBlock
-    volatile int flags;
-    int reserved;
-    void (*invoke)(void *, ...);
-    struct ZDBlock_descriptor_1 {
-        unsigned long int reserved;                    // NULL
-        unsigned long int size;                        // sizeof(struct Block_literal_1)
-        // optional helper functions
-        void (*copy_helper)(void *dst, void *src);     // IFF (1<<25)
-        void (*dispose_helper)(const void *src);       // IFF (1<<25)
-        // required ABI.2010.3.16
-        const char *signature;                         // IFF (1<<30)
-    } *descriptor;
-    // imported variables
-};
-
+// Values for Block_layout->flags to describe block objects
 typedef NS_OPTIONS(NSUInteger, ZDBlockDescriptionFlags) {
     BLOCK_DEALLOCATING =      (0x0001),  // runtime
     BLOCK_REFCOUNT_MASK =     (0xfffe),  // runtime
     BLOCK_NEEDS_FREE =        (1 << 24), // runtime
     BLOCK_HAS_COPY_DISPOSE =  (1 << 25), // compiler
-    BLOCK_HAS_CTOR =          (1 << 26), // helpers have C++ code
+    BLOCK_HAS_CTOR =          (1 << 26), // compiler: helpers have C++ code
     BLOCK_IS_GC =             (1 << 27), // runtime
     BLOCK_IS_GLOBAL =         (1 << 28), // compiler
-    BLOCK_HAS_STRET =         (1 << 29), // compiler: IFF BLOCK_HAS_SIGNATURE
-    BLOCK_HAS_SIGNATURE =     (1 << 30), // compiler
+    BLOCK_USE_STRET =         (1 << 29), // compiler: undefined if !BLOCK_HAS_SIGNATURE
+    BLOCK_HAS_SIGNATURE  =    (1 << 30), // compiler
+    BLOCK_HAS_EXTENDED_LAYOUT=(1 << 31)  // compiler
 };
 
-typedef struct ZDBlockLiteral ZDBlock;
+// revised new layout
+
+#define BLOCK_DESCRIPTOR_1 1
+struct ZDBlock_descriptor_1 {
+    uintptr_t reserved;
+    uintptr_t size;
+};
+
+#define BLOCK_DESCRIPTOR_2 1
+struct ZDBlock_descriptor_2 {
+    // requires BLOCK_HAS_COPY_DISPOSE
+    void (*copy)(void *dst, const void *src);
+    void (*dispose)(const void *);
+};
+
+#define BLOCK_DESCRIPTOR_3 1
+struct ZDBlock_descriptor_3 {
+    // requires BLOCK_HAS_SIGNATURE
+    const char *signature;
+    const char *layout;     // contents depend on BLOCK_HAS_EXTENDED_LAYOUT
+};
+
+struct ZDBlock_layout {
+    void *isa;  // initialized to &_NSConcreteStackBlock or &_NSConcreteGlobalBlock
+    volatile int flags; // contains ref count
+    int reserved;
+    void (*invoke)(void *, ...);
+    struct Block_descriptor_1 *descriptor;
+    // imported variables
+};
+
+typedef struct ZDBlock_layout ZDBlock;
 
 #pragma mark - Function
 #pragma mark -
@@ -281,7 +294,7 @@ id ZD_HookBlock(id block) {
     fakeBlock->reserved = blockRef->reserved;
     fakeBlock->flags = blockRef->flags;
     fakeBlock->descriptor = blockRef->descriptor;
-    if (blockRef->flags & BLOCK_HAS_STRET) {
+    if (blockRef->flags & BLOCK_USE_STRET) {
         fakeBlock->invoke = (void *)(IMP)_objc_msgForward_stret;
     }
     else {
@@ -570,9 +583,8 @@ static void ZD_HookBlockWithLibffi(id block) {
 }
 
 @end
-#endif
+#endif // USE_LIBFFI
 
-#endif // NS_BLOCK_ASSERTIONS
 
 #pragma mark - +++++++++++++++++++++++整合+++++++++++++++++++++++++++++
 #pragma mark -
