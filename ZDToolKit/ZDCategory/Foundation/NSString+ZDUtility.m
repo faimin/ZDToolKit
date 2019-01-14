@@ -336,7 +336,7 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return [predicate evaluateWithObject:self];
 }
 
-- (BOOL)zd_isAllNumber {
+- (BOOL)zd_isAllDigit {
     if (self.length == 0) {
         return NO;
     }
@@ -348,14 +348,15 @@ static inline CGSize CTFramesetterSuggestFrameSizeForAttributedStringWithConstra
     return [scan scanInt:&val] && [scan isAtEnd];
     
     // 2.
-    unichar c;
+    BOOL includeStr = NO;
     for (NSUInteger i = 0; i < self.length; i++) {
-        c = [self characterAtIndex:i];
+        unichar c = [self characterAtIndex:i];
         if (!isdigit(c)) {
-            return NO;
+            includeStr = YES;
+            break;
         }
     }
-    return YES;
+    return !includeStr;
 #else
     // 3.
     NSString *regex = @"(^[0-9]*$)";

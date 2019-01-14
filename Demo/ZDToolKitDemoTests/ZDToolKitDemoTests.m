@@ -92,9 +92,9 @@
 }
 
 - (void)testNumber {
-    XCTAssertTrue([@"2345" zd_isAllNumber]);
-    XCTAssertFalse([@"123你好" zd_isAllNumber]);
-    XCTAssertFalse([@"爱好爱好1234" zd_isAllNumber]);
+    XCTAssertTrue([@"2345" zd_isAllDigit]);
+    XCTAssertFalse([@"123你好" zd_isAllDigit]);
+    XCTAssertFalse([@"爱好爱好1234" zd_isAllDigit]);
 }
 
 - (void)testFlattenArray {
