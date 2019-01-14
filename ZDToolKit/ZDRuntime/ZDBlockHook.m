@@ -344,6 +344,12 @@ static ffi_type *ZD_ffiTypeWithTypeEncoding(const char *type) {
             return &ffi_type_pointer;
         case ':':
             return &ffi_type_schar;
+        case '*':
+            return &ffi_type_pointer;
+        case '{':
+        default: {
+            printf("not support the type: %s", c);
+        } break;
     }
     
     NSCAssert(NO, @"can't match a ffi_type of %s", type);
