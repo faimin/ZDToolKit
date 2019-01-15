@@ -1310,11 +1310,16 @@ dispatch_queue_t ZD_TaskQueue(void) {
 void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id value) {
     if (!object || !key) return;
     
-    __weak typeof(value) weakTarget = value;
-    __auto_type block = ^id{
-        return weakTarget;
-    };
-    objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_COPY);
+    if (value) {
+        __weak typeof(value) weakTarget = value;
+        __auto_type block = ^id{
+            return weakTarget;
+        };
+        objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_COPY);
+    }
+    else {
+        objc_setAssociatedObject(object, key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
 }
 
 id ZD_Objc_getWeakAssociatedObject(id object, const void *key) {
