@@ -96,9 +96,9 @@ return @(val); \
     }
     
     if (strcmp(argType, @encode(id)) == 0 || strcmp(argType, @encode(Class)) == 0) {
-        __autoreleasing id returnObj;
-        [self getArgument:&returnObj atIndex:(NSInteger)index];
-        return returnObj;
+        __autoreleasing id argValue;
+        [self getArgument:&argValue atIndex:(NSInteger)index];
+        return argValue;
     } else if (strcmp(argType, @encode(char)) == 0) {
         WRAP_AND_RETURN(char);
     } else if (strcmp(argType, @encode(int)) == 0) {

@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)zd_isContainString:(NSString *)string;
 - (BOOL)zd_isContainChinese;
 - (BOOL)zd_isAllChinse;
-- (BOOL)zd_isAllNumber;
+- (BOOL)zd_isAllDigit;
 - (BOOL)zd_isEmptyOrNil;
 - (BOOL)zd_isEmpty;
 - (NSUInteger)zd_countForTargetString:(NSString *)targetString; ///< 包含的指定字符串的个数

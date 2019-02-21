@@ -46,9 +46,9 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIButton_ZDUtility)
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     NSMutableDictionary *attributes = @{
-                                 NSFontAttributeName : self.titleLabel.font,
-                                 NSParagraphStyleAttributeName : paragraph
-                                 }.mutableCopy;
+        NSFontAttributeName: self.titleLabel.font,
+        NSParagraphStyleAttributeName: paragraph
+    }.mutableCopy;
     if (extraAttributesBlock) extraAttributesBlock(attributes);
     
     CGSize labelSize = [self.titleLabel.text boundingRectWithSize:(CGSize){CGFLOAT_MAX, CGFLOAT_MAX}

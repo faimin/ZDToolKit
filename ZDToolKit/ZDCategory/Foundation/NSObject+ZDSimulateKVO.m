@@ -101,8 +101,10 @@ static Class ZD_SimulateKVO_ClassGetter(id self, SEL _cmd) {
     // add method
     Method kvoClassMethod = class_getInstanceMethod(originalClass, @selector(class));
     const char *type = method_getTypeEncoding(kvoClassMethod);
-    //IMP imp = class_getMethodImplementation(originalClass, @selector(class));
-    IMP kvoClassIMP = (void *)ZD_SimulateKVO_ClassGetter;
+    //IMP kvoClassIMP = (void *)ZD_SimulateKVO_ClassGetter;
+    IMP kvoClassIMP = imp_implementationWithBlock(^(__unsafe_unretained id self){
+        return class_getSuperclass(object_getClass(self));
+    });
     class_addMethod(kvoClass, @selector(class), kvoClassIMP, type);
     
     // register class
@@ -114,15 +116,16 @@ static Class ZD_SimulateKVO_ClassGetter(id self, SEL _cmd) {
 - (BOOL)zd_hasSelector:(SEL)selector {
     unsigned int methodCount = 0;
     Method *methodList = class_copyMethodList(object_getClass(self), &methodCount);
+    BOOL findTargetSEL = NO;
     for (unsigned int i = 0; i < methodCount; i++) {
         SEL tempSelector = method_getName(methodList[i]);
         if (tempSelector == selector) {
-            free(methodList);
-            return YES;
+            findTargetSEL = YES;
+            break;
         }
     }
     free(methodList);
-    return NO;
+    return findTargetSEL;
 }
 
 - (void)zd_removeObserver:(id)observer forKey:(NSString *)key {

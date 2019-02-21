@@ -9,6 +9,7 @@
 //  https://github.com/steipete/PSTDelegateProxy/blob/master/PSTDelegateProxy.m
 
 #import "ZDProxy.h"
+#import <pthread/pthread.h>
 
 @implementation ZDWeakProxy
 
@@ -98,43 +99,70 @@
 #pragma mark - ************* ZDMutiDelegatesProxy *****************
 #pragma mark -
 
-@interface ZDMutiDelegatesProxy ()
+@interface ZDMutiDelegatesProxy () {
+    pthread_mutex_t _lock;
+}
 //@property (nonatomic, strong) NSHashTable *weakTargets;
 @property (nonatomic, strong) NSMutableArray *weakTargets;
 @end
 
 @implementation ZDMutiDelegatesProxy
 
+- (void)dealloc {
+    pthread_mutex_destroy(&_lock);
+}
+
 //MARK: Public Mehtod
 - (instancetype)initWithDelegates:(NSArray *)aDelegates {
-    NSParameterAssert(aDelegates);
+    NSCParameterAssert(aDelegates);
+    
+    pthread_mutexattr_t attr;
+    pthread_mutexattr_init(&attr);
+    pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_DEFAULT);
+    pthread_mutex_init(&_lock, &attr);
+    pthread_mutexattr_destroy(&attr);
+    
+    _weakTargets = [self.class weakReferenceArray];
+    
     self.delegateTargets = aDelegates.copy;
     return self;
 }
 
 - (void)addDelegate:(id)aDelegate {
-    NSParameterAssert(aDelegate);
+    NSCParameterAssert(aDelegate);
     if (!aDelegate) return;
+    
+    pthread_mutex_lock(&_lock);
     [_weakTargets addObject:aDelegate];
+    pthread_mutex_unlock(&_lock);
+    
     _delegateTargets = _weakTargets.copy;
 }
 
 - (void)removeDelegate:(id)aDelegate {
-    NSParameterAssert(aDelegate);
+    NSCParameterAssert(aDelegate);
     if (!aDelegate) return;
+    
+    pthread_mutex_lock(&_lock);
     [_weakTargets removeObject:aDelegate];
+    pthread_mutex_unlock(&_lock);
+    
     _delegateTargets = _weakTargets.copy;
 }
 
 //MARK: Forward Message
 - (BOOL)respondsToSelector:(SEL)aSelector {
-    if ([super respondsToSelector:aSelector]) return YES;
-    
-    for (id target in self.weakTargets) {
-        return [target respondsToSelector:aSelector];
+    if ([super respondsToSelector:aSelector]) {
+        return YES;
     }
-    
-    return NO;
+    else {
+        for (id target in self.weakTargets) {
+            if ([target respondsToSelector:aSelector]) {
+                return YES;
+            }
+        }
+        return NO;
+    }
 }
 
 /// 方法签名
@@ -161,14 +189,18 @@
 
 //MARK: Property
 - (void)setDelegateTargets:(NSArray *)delegateTargets {
+    if (!delegateTargets) return;
+    
     /*
     self.weakTargets = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory | NSPointerFunctionsObjectPointerPersonality];
     for (id target in delegateTargets) {
         [self.weakTargets addObject:target];
     }
     */
-    _weakTargets = [self.class weakReferenceArray];
+    
+    pthread_mutex_lock(&_lock);
     [_weakTargets addObjectsFromArray:delegateTargets];
+    pthread_mutex_unlock(&_lock);
 }
 
 //MARK: Private Method

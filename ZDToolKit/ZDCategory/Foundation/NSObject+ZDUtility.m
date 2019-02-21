@@ -13,11 +13,11 @@
 ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDUtility)
 
 typedef NS_ENUM(NSUInteger, PropertyType) {
+    PropertyType_UnKnown,
     PropertyType_Strong,
     PropertyType_Copy,
     PropertyType_Weak,
     PropertyType_Assign,
-    PropertyType_UnKnown
 };
 
 @implementation NSObject (ZDUtility)
@@ -48,51 +48,6 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     return obj;
 }
 
-/// http://nathanli.cn/2015/12/14/objective-c-%E5%85%83%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5-%E5%88%86%E7%B1%BB%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7/
-/// AutoCoding: https://github.com/nicklockwood/AutoCoding/blob/master/AutoCoding/AutoCoding.m
-- (id)zd_deepCopy_inComplete {
-    Class selfClass = [self class];
-    
-    unsigned int propertyListCount = 0;
-    objc_property_t *propertyList = class_copyPropertyList(selfClass, &propertyListCount);
-    
-    id newInstance = [[self class] new];
-    
-    for (int i = 0; i < propertyListCount; i++) {
-        objc_property_t property = propertyList[i];
-        
-        const char *property_Name = property_getName(property);
-        NSString *propertyName = [NSString stringWithCString:property_Name encoding:NSUTF8StringEncoding];
-        
-        // 检查此属性是否是可读写和动态的
-        char *dynamic = property_copyAttributeValue(property, "D");
-        char *readonly = property_copyAttributeValue(property, "R");
-        if (propertyName && !readonly) {
-            id propertyValue = [self valueForKey:propertyName];
-            // 检查属性是否是对象
-            BOOL flag = [[self class] isObjectClass:[propertyValue class]];
-            if (flag) {
-                if ([propertyValue conformsToProtocol:@protocol(NSCopying)]) {
-                    id copyValue = [propertyValue copy];
-                    [newInstance setValue:copyValue forKey:propertyName];
-                }
-                else {
-                    id copyValue = [[[propertyValue class] alloc] init];
-                    [copyValue zd_deepCopy];
-                    [newInstance setValue:copyValue forKey:propertyName];
-                }
-            }
-            else {
-                [newInstance setValue:propertyValue forKey:propertyName];
-            }
-        }
-        free(dynamic);
-        free(readonly);
-    }
-    free(propertyList);
-    return newInstance;
-}
-
 + (BOOL)isObjectClass:(Class)clazz {
     BOOL flag = class_conformsToProtocol(clazz, @protocol(NSObject));
     if (flag) {
@@ -112,12 +67,13 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
 - (PropertyType)propertyType:(objc_property_t)property {
     unsigned int attributeCount;
     objc_property_attribute_t *attrs = property_copyAttributeList(property, &attributeCount);
-    
-    NSMutableDictionary *attributes = @{}.mutableCopy;
-    for (int i = 0; i < attributeCount; i++) {
+    NSMutableDictionary<NSString *, NSString *> *attributes = @{}.mutableCopy;
+    for (int i = 0; i < attributeCount; ++i) {
         NSString *name = [NSString stringWithCString:attrs[i].name encoding:NSUTF8StringEncoding];
         NSString *value = [NSString stringWithCString:attrs[i].value encoding:NSUTF8StringEncoding];
-        [attributes setObject:value forKey:name];
+        if (name) {
+            attributes[name] = value;
+        }
     }
     free(attrs);
     
@@ -238,7 +194,7 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
                 double arg = va_arg(args, double);
                 float argf = arg;
                 [inv setArgument:&argf atIndex:index];
-            }
+            } break;
                 
             case 'd': // 8: double / CGFloat(64bit)
             {

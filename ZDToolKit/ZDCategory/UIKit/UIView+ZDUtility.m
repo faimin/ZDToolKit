@@ -19,7 +19,7 @@ static const void *TapGestureBlockKey = &TapGestureBlockKey;
 static const void *LongPressGestureKey = &LongPressGestureKey;
 static const void *LongPressGestureBlockKey = &LongPressGestureBlockKey;
 
-static void Swizzle(Class c, SEL orig, SEL new) {
+static void __Swizzle__(Class c, SEL orig, SEL new) {
     Method origMethod = class_getInstanceMethod(c, orig);
     Method newMethod = class_getInstanceMethod(c, new);
     if (class_addMethod(c, orig, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))){
@@ -261,7 +261,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Swizzle(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
+        __Swizzle__(self, @selector(pointInside:withEvent:), @selector(zdPointInside:withEvent:));
     });
 }
 
@@ -530,7 +530,7 @@ static void Swizzle(Class c, SEL orig, SEL new) {
 }
 
 - (CGFloat)zd_cornerRadius {
-    return [objc_getAssociatedObject(self, CornerRadiusKey) integerValue];
+    return [objc_getAssociatedObject(self, CornerRadiusKey) floatValue];
 }
 
 #pragma mark - TouchExtendInset

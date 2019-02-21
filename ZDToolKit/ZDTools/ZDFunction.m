@@ -594,9 +594,9 @@ NSArray<NSString *> *ZD_SplitTextWithWidth(NSString *string, UIFont *font, CGFlo
     CTFrameRef frameRef = CTFramesetterCreateFrame(framesetterRef, CFRangeMake(0, 0), path, NULL);
     
     NSMutableArray<NSString *> *linesArray = @[].mutableCopy;
-    NSArray *lines = (__bridge NSArray *)CTFrameGetLines(frameRef);
-    for (id line in lines) {
-        CTLineRef lineRef = (__bridge CTLineRef)line;
+    CFArrayRef lines = CTFrameGetLines(frameRef);
+    for (CFIndex i = 0; i < CFArrayGetCount(lines); ++i) {
+        CTLineRef lineRef = CFArrayGetValueAtIndex(lines, i);
         CFRange lineRange = CTLineGetStringRange(lineRef);
         NSRange range = NSMakeRange(lineRange.location, lineRange.length);
         NSString *lineString = [string substringWithRange:range];
@@ -1308,14 +1308,23 @@ dispatch_queue_t ZD_TaskQueue(void) {
 #pragma mark - Runtime
 #pragma mark -
 void ZD_Objc_setWeakAssociatedObject(id object, const void *key, id value) {
-    __weak typeof(value) weakTarget = value;
-    __auto_type block = ^id{
-        return weakTarget;
-    };
-    objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_COPY);
+    if (!object || !key) return;
+    
+    if (value) {
+        __weak typeof(value) weakTarget = value;
+        __auto_type block = ^id{
+            return weakTarget;
+        };
+        objc_setAssociatedObject(object, key, block, OBJC_ASSOCIATION_COPY);
+    }
+    else {
+        objc_setAssociatedObject(object, key, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
 }
 
 id ZD_Objc_getWeakAssociatedObject(id object, const void *key) {
+    if (!object || !key) return nil;
+    
     id(^block)(void) = objc_getAssociatedObject(object, key);
     id value = block ? block() : nil;
     return value;

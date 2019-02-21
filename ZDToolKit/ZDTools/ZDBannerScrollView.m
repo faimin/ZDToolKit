@@ -97,6 +97,7 @@ struct ZDBannerDelegateResponseTo {
 #pragma mark -
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    NSCAssert(!CGRectIsEmpty(frame), @"don't support autoLayout");
     if (self = [super initWithFrame:frame]) {
         [self setup];
     }
@@ -159,7 +160,7 @@ struct ZDBannerDelegateResponseTo {
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZDImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ZDImageCollectionViewCell class]) forIndexPath:indexPath];
     // 用自己外面的下载库下载
-    if (self.delegateResponseTo.customDownloadWithImageViewUrlPlaceHolderImage) {
+    if (self.delegateResponseTo.customDownloadWithImageViewUrlPlaceHolderImage && !cell.zdDownloadBlock) {
         __weak typeof(self) weakTarget = self;
         cell.zdDownloadBlock = ^(UIImageView *imageView, NSString *urlString, UIImage *placeHolderImage) {
             __strong typeof(weakTarget) self = weakTarget;

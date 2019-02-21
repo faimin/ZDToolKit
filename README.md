@@ -11,7 +11,7 @@
 
 ### Brief Introduction:
 
-some awesome development tools, e.g. `category`、`functions`、`subclass`、`macro`, and so on!
+some awesome development tools, e.g. `category`、`functions`、`subclass`、`macro`、`hook`、`forward msg`, and so on!
 
 ### Installation with CocoaPods
 

@@ -45,10 +45,10 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UILabel_ZDUtility)
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddRect(path, NULL, CGRectMake(0, 0, rect.size.width, 100000));
     CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
-    NSArray *lines = (NSArray *)CTFrameGetLines(frame);
-    NSMutableArray *linesArray = [[NSMutableArray alloc] init];
-    for (id line in lines) {
-        CTLineRef lineRef = (__bridge CTLineRef)line;
+    CFArrayRef lines = CTFrameGetLines(frame);
+    NSMutableArray<NSString *> *linesArray = [[NSMutableArray alloc] init];
+    for (CFIndex i = 0; i < CFArrayGetCount(lines); ++i) {
+        CTLineRef lineRef = CFArrayGetValueAtIndex(lines, i);
         CFRange lineRange = CTLineGetStringRange(lineRef);
         NSRange range = NSMakeRange(lineRange.location, lineRange.length);
         NSString *lineString = [text substringWithRange:range];
