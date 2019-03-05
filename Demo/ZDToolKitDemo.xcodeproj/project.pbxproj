@@ -29,6 +29,7 @@
 		FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D3200CBFAE007A9EDC /* YYPhotoGroupView.m */; };
 		FA6244D9200CBFAE007A9EDC /* ZDImageGroupPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */; };
 		FA6244DA200CBFAE007A9EDC /* ZDImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */; };
+		FAAB784F222E1566000350E6 /* ZDToolKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FAAB784E222E1566000350E6 /* ZDToolKit.podspec */; };
 		FAAF2956215F18DE00F2BEBF /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */; };
 		FAAF2957215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF2954215F18DE00F2BEBF /* NSObject+ZDAutoCoding.m */; };
 		FAAF295B215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */; };
@@ -123,6 +124,7 @@
 		FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageGroupPreviewController.m; sourceTree = "<group>"; };
 		FA6244D5200CBFAE007A9EDC /* ZDImagePreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImagePreviewCell.h; sourceTree = "<group>"; };
 		FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageModel.m; sourceTree = "<group>"; };
+		FAAB784E222E1566000350E6 /* ZDToolKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZDToolKit.podspec; path = ../../ZDToolKit.podspec; sourceTree = "<group>"; };
 		FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		FAAF2952215F18DD00F2BEBF /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
 		FAAF2953215F18DD00F2BEBF /* NSObject+ZDAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDAutoCoding.h"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		05EC9C5D1C53CDC300BACFE9 = {
 			isa = PBXGroup;
 			children = (
+				FAAB784D222E1544000350E6 /* Metadata */,
 				05EC9C681C53CDC300BACFE9 /* ZDToolKitDemo */,
 				05EC9C821C53CDC300BACFE9 /* ZDToolKitDemoTests */,
 				05EC9C8D1C53CDC300BACFE9 /* ZDToolKitDemoUITests */,
@@ -320,6 +323,14 @@
 			path = ZDImageGroupPreview;
 			sourceTree = "<group>";
 		};
+		FAAB784D222E1544000350E6 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				FAAB784E222E1566000350E6 /* ZDToolKit.podspec */,
+			);
+			path = Metadata;
+			sourceTree = "<group>";
+		};
 		FAAF29952160D4A700F2BEBF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05EC9C791C53CDC300BACFE9 /* LaunchScreen.storyboard in Resources */,
+				FAAB784F222E1566000350E6 /* ZDToolKit.podspec in Resources */,
 				05EC9C761C53CDC300BACFE9 /* Assets.xcassets in Resources */,
 				05EC9C741C53CDC300BACFE9 /* Main.storyboard in Resources */,
 			);
