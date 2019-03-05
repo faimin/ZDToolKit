@@ -37,3 +37,27 @@ post_install do |installer|
         end
     end
 end
+
+
+# https://www.jianshu.com/p/a1d2d148fdd3
+def generate_modulemap(name, path)
+  f = File.new(File.join("#{path}/module.modulemap"), "w+")
+  module_name = "#{name}"
+  while(module_name["+"])
+      module_name["+"] = "_"
+  end           
+  f.puts("module XB#{module_name} {")
+  f.puts("    umbrella header \"#{name}_umbrella.h\"")
+  f.puts("    export *")
+  f.puts("}")
+end
+
+def generate_umbrella(name, path) 
+  f = File.new(File.join("#{path}/#{name}_umbrella.h"), "w+")
+  f.puts("#import <Foundation/Foundation.h>")
+  Dir.foreach(path) do |filename|
+      if filename != "." and filename != ".."
+          f.puts("#import \"#{filename}\"")
+      end
+  end
+end

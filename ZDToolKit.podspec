@@ -18,7 +18,10 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   # s.static_framework = true
   s.public_header_files = 'ZDToolKit/ZDToolKit.h'
-  s.module_name = 'ZDToolKit'
+  s.module_name  = 'ZDToolKit'
+  s.pod_target_xcconfig = {
+    # 'DEFINES_MODULE' => 'YES'
+  }
   s.source       = {
     :git => 'https://github.com/faimin/ZDToolKit.git', 
     :tag => s.version.to_s
@@ -58,11 +61,11 @@ Pod::Spec.new do |s|
     ss.dependency 'libffi-core'
   end
 
-  no_arc_source_files = 'ZDToolKit/ZDTools/ZDSafe.{h,m}'
+  # no_arc_source_files = 'ZDToolKit/ZDTools/ZDSafe.{h,m}'
 
   s.subspec 'ZDTools' do |ss|
     ss.source_files = 'ZDToolKit/ZDTools/*.{h,m}'
-    ss.exclude_files = no_arc_source_files
+    # ss.exclude_files = no_arc_source_files
 
     ss.subspec 'ZDProxy' do |sss|
       sss.source_files = 'ZDToolKit/ZDTools/ZDProxy/*.{h,m}'
@@ -77,9 +80,13 @@ Pod::Spec.new do |s|
     end
   end
 
-  s.subspec 'no-arc' do |ss|
+  s.subspec 'ZDDebug' do |ss|
+    ss.source_files = 'ZDToolKit/ZDDebug/*.{h,m}'
+  end
+
+  s.subspec 'ZDMRC' do |ss|
     ss.requires_arc = false
-    ss.source_files = no_arc_source_files
+    ss.source_files = 'ZDToolKit/ZDMRC/ZDSafe.{h,m}'
   end
 
 end
