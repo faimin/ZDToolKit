@@ -27,7 +27,7 @@
     [self addGestureRecognizer:tap];
 }
 
-#pragma mark - UIGestureRecognizerDelegate
+#pragma mark - Action
 
 - (void)_tapAction:(UITapGestureRecognizer *)sender {
     CGPoint location = [sender locationInView:self];
