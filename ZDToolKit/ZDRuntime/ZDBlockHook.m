@@ -302,7 +302,9 @@ id ZD_HookBlock(id block) {
     fakeBlock->flags = blockRef->flags;
     fakeBlock->descriptor = blockRef->descriptor;
     if (blockRef->flags & BLOCK_USE_STRET) {
+#if !defined(__arm64__)
         fakeBlock->invoke = (void *)(IMP)_objc_msgForward_stret;
+#endif
     }
     else {
         fakeBlock->invoke = (void *)(IMP)_objc_msgForward;
