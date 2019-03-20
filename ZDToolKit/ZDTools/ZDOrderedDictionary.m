@@ -137,9 +137,7 @@
 // https://developer.apple.com/library/archive/samplecode/FastEnumerationSample/Listings/EnumerableClass_mm.html#//apple_ref/doc/uid/DTS40009411-EnumerableClass_mm-DontLinkElementID_4
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len {
     
-    NSUInteger count = 0;
     unsigned long countOfItemAlreadyEnumerated = state->state;
-    
     if (countOfItemAlreadyEnumerated == 0) {
         // 这是一个无符号长整形的指针，它指向的数据表示了遍历过程中集合是否发生了变化，如果数据变化了，那么集合也发生了变化。
         // 通常来讲，我们是不允许在遍历过程中修改集合的，所以如果你不允许这个操作可以将 mutationsPtr 指向一个不会改变的变量。苹果要求这个指针是非 NULL 的，所以一定要设置一个有效的值。
@@ -147,11 +145,11 @@
     }
     
     NSUInteger keyCount = self.innerKeys.count;
+    NSUInteger count = 0;
     if (countOfItemAlreadyEnumerated < keyCount) {
         while (countOfItemAlreadyEnumerated < keyCount && count < len) {
-            buffer[count] = self.innerKeys[countOfItemAlreadyEnumerated]; // buffer C数组中最多可以放len个对象
+            buffer[count++] = self.innerKeys[countOfItemAlreadyEnumerated]; // buffer C数组中最多可以放len个对象
             ++countOfItemAlreadyEnumerated;
-            ++count;
         }
         state->itemsPtr = buffer;
     }
