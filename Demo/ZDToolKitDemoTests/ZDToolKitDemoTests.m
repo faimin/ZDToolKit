@@ -211,9 +211,13 @@
     for (NSUInteger i = 0; i < 20; ++i) {
         orderedDict[@(i)] = @(i).stringValue;
     }
+    
+    orderedDict[@1] = nil;
+    orderedDict[@11] = nil;
+    NSLog(@"value of index => %@", orderedDict[10]);
 
     for (NSNumber *key in orderedDict) {
-        if ([key isEqualToNumber:@0]) {
+        if ([key isEqualToNumber:@10]) {
             continue;
         }
         NSLog(@"遍历key = %@", key);

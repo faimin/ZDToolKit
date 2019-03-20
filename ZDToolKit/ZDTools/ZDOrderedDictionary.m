@@ -31,12 +31,7 @@
 }
 
 - (void)setObject:(id)anObject forKey:(id<NSCopying>)aKey {
-    if (!aKey || !anObject) return;
-    
-    pthread_mutex_lock(&_lock);
-    [self.innerKeys addObject:aKey];
-    self.innerDict[aKey] = anObject;
-    pthread_mutex_unlock(&_lock);
+    [self setObject:anObject forKeyedSubscript:aKey];
 }
 
 - (void)insertObject:(id)anObject forKey:(id<NSCopying>)aKey atIndex:(NSInteger)index {
@@ -54,36 +49,17 @@
 }
 
 - (void)removeObjectForKey:(id<NSCopying>)aKey {
-    if (!aKey) return;
-    
-    pthread_mutex_lock(&_lock);
-    [self.innerKeys removeObject:aKey];
-    self.innerDict[aKey] = nil;
-    pthread_mutex_unlock(&_lock);
+    [self setObject:nil forKeyedSubscript:aKey];
 }
 
 - (id)objectAtIndex:(NSInteger)index {
-    if (index < 0 || index >= self.innerKeys.count) return nil;
+    if (index < 0) return nil;
     
-    pthread_mutex_lock(&_lock);
-    id key = [self.innerKeys objectAtIndex:index];
-    if (!key) {
-        pthread_mutex_unlock(&_lock);
-        return nil;
-    }
-    
-    id value = self.innerDict[key];
-    pthread_mutex_unlock(&_lock);
-    return value;
+    return [self objectAtIndexedSubscript:index];
 }
 
 - (id)objectForKey:(id<NSCopying>)aKey {
-    if (!aKey) return nil;
-    
-    pthread_mutex_lock(&_lock);
-    id value = self.innerDict[aKey];
-    pthread_mutex_unlock(&_lock);
-    return value;
+    return [self objectForKeyedSubscript:aKey];
 }
 
 - (void)removeAllObjects {
@@ -91,10 +67,6 @@
     [self.innerDict removeAllObjects];
     [self.innerKeys removeAllObjects];
     pthread_mutex_unlock(&_lock);
-}
-
-- (NSOrderedSet *)keys {
-    return self.innerKeys.copy;
 }
 
 - (NSArray *)allKeys {
@@ -121,10 +93,14 @@
     if (idx >= self.innerKeys.count) return nil;
     
     pthread_mutex_lock(&_lock);
-    id key = self.innerKeys[idx];
-    id value = self.innerDict[key ?: @""];
-    pthread_mutex_unlock(&_lock);
+    id key = [self.innerKeys objectAtIndex:idx];
+    if (!key) {
+        pthread_mutex_unlock(&_lock);
+        return nil;
+    }
     
+    id value = self.innerDict[key];
+    pthread_mutex_unlock(&_lock);
     return value;
 }
 
@@ -146,8 +122,13 @@
     if (!key) return;
     
     pthread_mutex_lock(&_lock);
+    if (obj) {
+        [self.innerKeys addObject:key];
+    }
+    else if (!obj && self.innerDict[key]) {
+        [self.innerKeys removeObject:key];
+    }
     self.innerDict[key] = obj;
-    [self.innerKeys addObject:key];
     pthread_mutex_unlock(&_lock);
 }
 
