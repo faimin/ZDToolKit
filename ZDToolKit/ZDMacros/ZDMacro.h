@@ -67,7 +67,7 @@ do {                                                 							\
     [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
     __LINE__, __PRETTY_FUNCTION__);                                             \
     (NSLog)((format), ##__VA_ARGS__);                                           \
-    fprintf(stderr, "\n\n");                                                    \
+    fprintf(stderr, "\n");                                                      \
 } while (0)
 #endif
 

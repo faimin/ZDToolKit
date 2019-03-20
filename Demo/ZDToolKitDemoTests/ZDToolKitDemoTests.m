@@ -206,4 +206,20 @@
     });
 }
 
+- (void)testOrderedDictionary {
+    ZDOrderedDictionary *orderedDict = [[ZDOrderedDictionary alloc] init];
+    for (NSUInteger i = 0; i < 20; ++i) {
+        orderedDict[@(i)] = @(i).stringValue;
+    }
+
+    for (NSNumber *key in orderedDict) {
+        if ([key isEqualToNumber:@0]) {
+            continue;
+        }
+        NSLog(@"遍历key = %@", key);
+    }
+    
+    XCTAssertEqualObjects(orderedDict[@(0)], @"0");
+}
+
 @end
