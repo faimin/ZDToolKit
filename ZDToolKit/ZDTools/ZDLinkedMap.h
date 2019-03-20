@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZDLinkedMap<__covariant KeyType, __covariant ObjectType> : NSObject
+@interface ZDLinkedMap<__covariant KeyType, __covariant ObjectType> : NSObject <NSFastEnumeration>
 
 //- (void)insertNodeAtHead:(ZDLinkedMapNode *)node;
 //- (void)addNodeToTail:(ZDLinkedMapNode *)node;

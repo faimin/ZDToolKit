@@ -269,6 +269,33 @@
     return value;
 }
 
+#pragma mark - NSFastEnumeration
+
+//https://www.mikeash.com/pyblog/friday-qa-2010-04-16-implementing-fast-enumeration.html
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nullable __unsafe_unretained [])stackbuf count:(NSUInteger)len {
+    if (state->state == 0) {
+        state->mutationsPtr = state->mutationsPtr;
+        state->extra[0] = (unsigned long)_head; // 1
+        state->state = 1;
+    }
+    
+    ZDLinkedMapNode *currentNode = (__bridge ZDLinkedMapNode *)(void *)(state->extra[0]);
+    
+    state->itemsPtr = stackbuf; // 2
+    
+    NSUInteger count = 0;
+    while (currentNode && count < len) { // 3
+        stackbuf[count++] = currentNode->_value;
+        currentNode = currentNode->_next;
+    }
+    
+    if (currentNode) {
+        state->extra[0] = (unsigned long)currentNode->_next; // 4
+    }
+    
+    return count;
+}
+
 @end
 
 //--------------------------------------------------------------------------------------
