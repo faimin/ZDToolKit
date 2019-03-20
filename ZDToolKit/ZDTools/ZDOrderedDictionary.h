@@ -14,18 +14,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSArray<KeyType> *allKeys;
 @property (nonatomic, copy, readonly) NSArray<ObjectType> *allValues;
 
-- (void)setObject:(ObjectType)anObject forKey:(KeyType<NSCopying>)aKey;
+- (void)setObject:(ObjectType _Nullable)anObject forKey:(KeyType<NSCopying>)aKey;
 - (void)removeObjectForKey:(KeyType<NSCopying>)aKey;
 - (void)insertObject:(ObjectType)anObject forKey:(KeyType<NSCopying>)aKey atIndex:(NSInteger)index;
-- (id)objectAtIndex:(NSInteger)index;
-- (id)objectForKey:(KeyType<NSCopying>)aKey;
+- (ObjectType _Nullable)objectAtIndex:(NSInteger)index;
+- (ObjectType _Nullable)objectForKey:(KeyType<NSCopying>)aKey;
 - (void)removeAllObjects;
 
 /// 实现下标语法糖
-- (ObjectType)objectAtIndexedSubscript:(NSUInteger)idx;
-- (void)setObject:(ObjectType)obj atIndexedSubscript:(NSUInteger)idx NS_UNAVAILABLE;
-- (ObjectType)objectForKeyedSubscript:(KeyType)key;
-- (void)setObject:(ObjectType)obj forKeyedSubscript:(KeyType)key;
+- (ObjectType _Nullable)objectAtIndexedSubscript:(NSUInteger)idx;
+- (void)setObject:(ObjectType _Nullable)obj atIndexedSubscript:(NSUInteger)idx NS_UNAVAILABLE;
+- (ObjectType _Nullable)objectForKeyedSubscript:(KeyType)key;
+- (void)setObject:(ObjectType _Nullable)obj forKeyedSubscript:(KeyType)key;
 
 @end
 
