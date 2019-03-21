@@ -198,6 +198,8 @@ FOUNDATION_EXPORT NSString *ZD_MacAddress(void);
 FOUNDATION_EXPORT NSArray *ZD_IPAddresses(void);
 /// 获取当前的内存使用情况
 FOUNDATION_EXPORT double ZD_MemoryUsage(void);
+/// 判断当前设备是否处于静音状态
+BOOL ZD_IsMutedOfDevice(NSString *resourceName, NSString *resourceType);
 
 #pragma mark - Function
 #pragma mark -

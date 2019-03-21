@@ -14,6 +14,7 @@
 #import <Accelerate/Accelerate.h>
 #import <AVFoundation/AVAsset.h>
 #import <libkern/OSAtomic.h>
+#import <AudioToolbox/AudioToolbox.h>
 // -------- IP & Address --------
 #import <sys/sockio.h>
 #import <sys/ioctl.h>
@@ -1155,6 +1156,38 @@ double ZD_MemoryUsage(void) {
     double memoryUsageInMB = kerr == KERN_SUCCESS ? (info.resident_size / 1024.0 / 1024.0) : 0.0;
     
     return memoryUsageInMB;
+}
+
+static CFTimeInterval startPlayTime;
+NS_INLINE void _ZD_PlaySoundCompletionCallback(SystemSoundID ssID, void *clientData) {
+    void(^callback)(BOOL) = (__bridge void (^)(BOOL))(clientData);
+    
+    AudioServicesRemoveSystemSoundCompletion(ssID);
+    // 播放结束时记录时间差，如果小于0.1s则认为是静音
+    CFTimeInterval playDuring = CACurrentMediaTime() - startPlayTime;
+    BOOL isMuted = playDuring < 0.1;
+    NSLog(@"%@", isMuted ? @"静音状态" : @"非静音状态");
+    if (callback) {
+        callback(isMuted);
+    }
+}
+BOOL ZD_IsMutedOfDevice(NSString *resourceName, NSString *resourceType) {
+    // 记录开始播放时间
+    startPlayTime = CACurrentMediaTime();
+    // 假设本地存放一个长度为0.2s的空白音频，detection.aiff
+    //CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("detection"), CFSTR("aiff"), NULL);
+    CFURLRef soundFileURLRef = CFBundleCopyResourceURL(CFBundleGetMainBundle(), (__bridge CFStringRef)resourceName, (__bridge CFStringRef)resourceType, NULL);
+    SystemSoundID soundFileID;
+    AudioServicesCreateSystemSoundID(soundFileURLRef, &soundFileID);
+    
+    __block BOOL isMuted = NO;
+    __auto_type callback = ^(BOOL muted){
+        isMuted = muted;
+    };
+    AudioServicesAddSystemSoundCompletion(soundFileID, NULL, NULL, _ZD_PlaySoundCompletionCallback, (__bridge void *)callback);
+    AudioServicesPlaySystemSound(soundFileID);
+    
+    return isMuted;
 }
 
 #pragma mark - Function
