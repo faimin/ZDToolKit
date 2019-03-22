@@ -30,6 +30,7 @@
 #import "NSDate+ZDUtility.h"
 #import "NSObject+ZDSimulateKVO.h"
 #import "NSNotificationCenter+ZDUtility.h"
+#import "NSNull+ZDUtility.h"
 // UIKit
 #import "UIResponder+ZDUtility.h"
 #import "UIApplication+ZDUtility.h"

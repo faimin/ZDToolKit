@@ -226,4 +226,31 @@
     XCTAssertEqualObjects(orderedDict[@(0)], @"0");
 }
 
+- (void)testSendMsgToNull {
+    {
+        NSString *jsonString = @"{\"key\":null}";
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *errorInstance = dict[@"key"];
+        id value1 = errorInstance[@"xxx"];
+        XCTAssertEqual(value1, nil);
+        
+        NSMutableArray *mutArr = dict[@"key"];
+        [mutArr addObject:@1];
+    }
+    
+    id nullValue = [NSNull null];
+    {
+        NSString *result = [nullValue stringValue];
+        XCTAssertNil(result);
+    }
+    {
+        const void *result = [nullValue bytes];
+        XCTAssertNil((__bridge id)result);
+    }
+    {
+        NSString *result = NSStringFromClass([nullValue class]);
+        XCTAssertEqualObjects(result, @"NSNull");
+    }
+}
+
 @end
