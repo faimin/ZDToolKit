@@ -84,6 +84,9 @@ UIKIT_EXTERN NSArray<UICollectionViewLayoutAttributes *> *ZD_LayoutAttributesFor
 
 #pragma mark - String
 #pragma mark -
+/// 计算文本尺寸
+FOUNDATION_EXPORT CGSize ZD_CalculateStringSize(NSString *text, UIFont *textFont, CGSize constrainSize, void(^_Nullable extendAttributesBlock)(NSMutableDictionary *attributes));
+
 ///  设置文字行间距
 ///  @param string    原始字符串
 ///  @param lineSpace 行间距

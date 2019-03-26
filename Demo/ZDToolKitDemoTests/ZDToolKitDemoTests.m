@@ -253,4 +253,13 @@
     }
 }
 
+- (void)testCalculateTextSize {
+    NSString *text = @"1999年，还在上中专艺校的文章就出来拍戏了，但都是饰演一些小角色。2004年，还在中央戏剧学院表演系读书的文章，在《与青春有关的日子》中成功饰演了卓越。虽然只是一个配角，但是他让文章逐渐为观众所熟悉。之后，他又在《奋斗》、《暗流》、《蜗居》、《雪豹》、《海洋天堂》等影视剧作中有突出表现，曾在2003年韩国釜山艺术节上，获“最佳男演员奖”。2009年，第十二届上海国际电影节“电影频道传媒大奖” 最佳新人奖；2010年，凭借《海洋天堂》获第十三届上海国际电影节“电影频道传媒大奖” 最佳男主角";
+    
+    UIFont *font = [UIFont systemFontOfSize:16];
+    //CGSize coreTextSize = ZD_CalculateStringSize(text, font, (CGSize){414, CGFLOAT_MAX}, 4, 0);
+    CGSize foundationSize = ZD_CalculateStringSize(text, font, (CGSize){414, CGFLOAT_MAX}, nil);
+    NSLog(@"####### %@", NSStringFromCGSize(foundationSize));
+}
+
 @end
