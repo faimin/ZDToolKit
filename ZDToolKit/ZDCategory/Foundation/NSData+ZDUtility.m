@@ -89,4 +89,19 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSData_ZDUtility)
     return [[NSData alloc] initWithBase64EncodedData:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
 }
 
++ (instancetype)zd_dataWithValue:(NSValue *)value {
+    if (![value isKindOfClass:NSValue.class]) return nil;
+    
+    NSUInteger size = 0, align = 0;
+    const char *typePtr = value.objCType;
+    NSGetSizeAndAlignment(typePtr, &size, &align);
+    
+    void *ptr = calloc(1, size);
+    [value getValue:ptr];
+    NSData *data = [NSData dataWithBytes:ptr length:size];
+    free(ptr);
+    
+    return data;
+}
+
 @end
