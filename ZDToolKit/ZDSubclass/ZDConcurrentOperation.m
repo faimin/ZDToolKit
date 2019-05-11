@@ -1,54 +1,54 @@
 //
-//  ZDSerialOperation.m
+//  ZDConcurrentOperation.h
 //  ZDToolKit
 //
 //  Created by Zero.D.Saber on 2019/5/11.
 //
 
-#import "ZDSerialOperation.h"
+#import "ZDConcurrentOperation.h"
 
 typedef NS_ENUM(NSInteger, ZDOperationState) {
-    ZDOperationState_Ready,
-    ZDOperationState_Executing,
-    ZDOperationState_Finished,
+    ZDOperationState_Ready      = 0,
+    ZDOperationState_Executing  = 1,
+    ZDOperationState_Finished   = 2,
 };
 
-@interface ZDSerialOperation ()
+@interface ZDConcurrentOperation ()
 @property (nonatomic, assign) ZDOperationState state;
-
-@property (nonatomic, copy) ZDOperationBlock block;
+@property (nonatomic, copy) ZDOperationTaskBlock taskBlock;
 @end
 
-@implementation ZDSerialOperation
+@implementation ZDConcurrentOperation
 
 - (void)dealloc {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
-+ (instancetype)operationWithBlock:(ZDOperationBlock)block {
-    ZDSerialOperation *op = [[ZDSerialOperation alloc] init];
-    op->_block = [block copy];
++ (instancetype)operationWithBlock:(ZDOperationTaskBlock)taskBlock {
+    ZDConcurrentOperation *op = [[ZDConcurrentOperation alloc] init];
+    op->_taskBlock = [taskBlock copy];
+    op->_state = ZDOperationState_Ready;
     return op;
 }
 
 #pragma mark - Override OP Method
 
 - (void)main {
-    self.state = ZDOperationState_Ready;
-}
-
-- (void)start {
-    if (self.isCancelled) return;
-    if (!self.block) return;
-    
     __weak typeof(self) weakSelf = self;
-    ZDOnComplteBlock onCompleteBlock = ^(BOOL isTaskFinished){
+    ZDTaskOnComplteBlock onCompleteBlock = ^(BOOL isTaskFinished){
         __strong typeof(weakSelf) self = weakSelf;
         if (!isTaskFinished) return;
         self.state = ZDOperationState_Finished;
     };
-    self.block(onCompleteBlock);
+    self.taskBlock(onCompleteBlock);
     self.state = ZDOperationState_Executing;
+}
+
+- (void)start {
+    if (self.isCancelled) return;
+    if (!self.taskBlock) return;
+    
+    [self main];
 }
 
 - (void)cancel {
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, ZDOperationState) {
     }
     
     [super cancel];
-    self.block = nil;
+    self.taskBlock = nil;
     self.state = ZDOperationState_Finished;
 }
 
@@ -76,11 +76,11 @@ typedef NS_ENUM(NSInteger, ZDOperationState) {
 }
 
 - (BOOL)isAsynchronous {
-    return NO;
+    return YES;
 }
 
 - (BOOL)isConcurrent {
-    return NO;
+    return YES;
 }
 
 #pragma mark - Private
