@@ -262,4 +262,34 @@
     NSLog(@"####### %@", NSStringFromCGSize(foundationSize));
 }
 
+- (void)testSerialOperation {
+    NSMutableArray *allDatas = @[].mutableCopy;
+    
+    NSOperationQueue *myOperationQueue = [[NSOperationQueue alloc] init];
+    myOperationQueue.maxConcurrentOperationCount = 1;
+    
+    ZDSerialOperation *op1 = [ZDSerialOperation operationWithBlock:^(ZDOnComplteBlock  _Nonnull taskFinishCallback) {
+        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"http://api.douban.com/v2/movie/top250"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            [allDatas addObject:data];
+            NSLog(@"第一个任务结束");
+            taskFinishCallback(YES);
+        }];
+        [task resume];
+    }];
+    
+    ZDSerialOperation *op2 = [ZDSerialOperation operationWithBlock:^(ZDOnComplteBlock  _Nonnull taskFinishCallback) {
+        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:@"http://www.weather.com.cn/data/cityinfo/101010100.html"] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            [allDatas addObject:data];
+            NSLog(@"第二个任务结束");
+            taskFinishCallback(YES);
+        }];
+        [task resume];
+    }];
+    
+    [myOperationQueue addOperations:@[op1, op2] waitUntilFinished:YES];
+    NSLog(@"都下载完毕");
+
+    XCTAssertTrue(allDatas.count == 2);
+}
+
 @end
