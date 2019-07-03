@@ -240,6 +240,10 @@
     
     id nullValue = [NSNull null];
     {
+        id value = ((NSArray *)nullValue)[1];
+        XCTAssertNil(value);
+    }
+    {
         NSString *result = [nullValue stringValue];
         XCTAssertNil(result);
     }
@@ -290,6 +294,35 @@
     NSLog(@"都下载完毕");
 
     XCTAssertTrue(allDatas.count == 2);
+}
+
+- (void)testMetaClass {
+    Class metaClass = objc_getMetaClass(class_getName(NSObject.class));
+    Class metaClass2 = objc_getMetaClass(class_getName(NSObject.class));
+    Class metaClass3 = objc_getMetaClass(class_getName(metaClass2));
+    NSLog(@"NSObjec class的元类 = %p, %p, %p", metaClass, metaClass2, metaClass3);
+    
+    NSString *metaClassSuperClassName = NSStringFromClass(class_getSuperclass(metaClass));
+    NSLog(@"NSObject元类的父类 = %@", metaClassSuperClassName);
+    
+    Class aClass = object_getClass([NSObject class]);
+    if (metaClass == aClass) {
+        NSLog(@"类和元类相等");
+    }
+    if (NSObject.class == aClass) {
+        NSLog(@"类和类相等");
+    }
+    NSLog(@"!!!!!!! 元类：%@, 类：%@", [metaClass description], [aClass description]);
+    
+    NSObject *objInstance = [NSObject new];
+    Class bClass1 = [objInstance class];
+    Class bClass2 = object_getClass(objInstance);
+    if (bClass1 == bClass2) {
+        NSLog(@"class和object_getClass方法获取的类相等");
+    }
+    
+    NSString *objectSuperClassName = NSStringFromClass(class_getSuperclass(aClass));
+    NSLog(@"NSObject的父类 = %@", objectSuperClassName);
 }
 
 @end
