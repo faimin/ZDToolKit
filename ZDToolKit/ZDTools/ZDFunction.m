@@ -1418,6 +1418,21 @@ void ZD_Dispatch_throttle_on_queue(ZDThrottleType throttleType, NSTimeInterval i
     ZD_ExecuteFunctionThrottle(throttleType, intervalInSeconds, queue, [NSThread callStackSymbols][1], block);
 }
 
+void ZD_Delay(NSTimeInterval delay, dispatch_queue_t targetQueue, dispatch_block_t block) {
+    if (!targetQueue) {
+        targetQueue = dispatch_get_main_queue();
+    }
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, targetQueue);
+    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), DISPATCH_TIME_FOREVER, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        if (block) {
+            block();
+        }
+        dispatch_source_cancel(timer);
+    });
+    dispatch_resume(timer);
+}
+
 static const NSUInteger MaxQueueCount = 8;
 dispatch_queue_t ZD_TaskQueue(void) {
     static NSUInteger queueCount;
