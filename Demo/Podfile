@@ -24,8 +24,18 @@ target 'ZDToolKitDemo' do
 
 end
 
+#############################################################
+
+install! 'cocoapods',
+         :generate_multiple_pod_projects => true,
+         :incremental_installation => true
+
+############################################################
+
+#https://github.com/CocoaPods/CocoaPods/issues/8604
 post_install do |installer|
-    installer.pods_project.targets.each do |target|
+  installer.generated_pod_targets.each do |target|
+        puts "targetname = ", target
         target.build_configurations.each do |config|
             if target.name != 'ZDToolKit'
                 #block内直接引用全局变量的警告
