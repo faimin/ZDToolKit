@@ -487,6 +487,12 @@ _Pragma("clang diagnostic ignored \"-Weverything\"")                    \
 __VA_ARGS__                                                             \
 _Pragma("clang diagnostic pop")
 
+/// 消除 `Category is implementing a method which will also be implemented by its primary class` 的警告
+#define ZD_SuppressCategoryImpPrimaryMethodWarning(...)                 \
+_Pragma("clang diagnostic push")                                        \
+_Pragma("clang diagnostic ignored \"-Wobjc-protocol-method-implementation\"") \
+__VA_ARGS__                                                             \
+_Pragma("clang diagnostic pop")
 
 #endif /* ZDMacro_h */
 
