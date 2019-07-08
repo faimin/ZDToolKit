@@ -350,9 +350,9 @@ return @(ret); \
 } while (0)
     
     switch (*type) {
-        case 'v': return nil; // void
-        case 'B': return_with_number(bool);
-        case 'c': return_with_number(char);
+        case 'v': return nil; // void                       // _C_VOID
+        case 'B': return_with_number(bool);                 // _C_BOOL
+        case 'c': return_with_number(char);                 // _C_CHR
         case 'C': return_with_number(unsigned char);
         case 's': return_with_number(short);
         case 'S': return_with_number(unsigned short);
@@ -396,6 +396,3 @@ return @(ret); \
 }
 
 @end
-
-
-

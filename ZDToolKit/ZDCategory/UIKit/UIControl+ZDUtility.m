@@ -100,6 +100,3 @@ static BOOL _isIgnoreEvent = NO;
 }
 
 @end
-
-
-

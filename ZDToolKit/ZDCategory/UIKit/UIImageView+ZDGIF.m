@@ -120,11 +120,3 @@ const void *FrameIntervalKey = &FrameIntervalKey;
 }
 
 @end
-
-
-
-
-
-
-
-

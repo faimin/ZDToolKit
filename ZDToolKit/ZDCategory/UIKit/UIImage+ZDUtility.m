@@ -677,7 +677,3 @@ UIKIT_STATIC_INLINE CGContextRef ZD_CreateARGBBitmapContext(const size_t width, 
 }
 
 @end
-
-
-
-

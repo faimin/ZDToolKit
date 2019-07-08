@@ -393,6 +393,3 @@ struct ZDBannerDelegateResponseTo {
 }
 
 @end
-
-
-

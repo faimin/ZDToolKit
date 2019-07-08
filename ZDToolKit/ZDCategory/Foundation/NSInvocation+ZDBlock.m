@@ -114,4 +114,5 @@ do {                                                \
     va_end(args);
     return invocation;
 }
+
 @end
