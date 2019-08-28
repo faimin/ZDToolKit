@@ -26,11 +26,11 @@ static NSArray<Class> *ZD_ReadConfigurationClasses() {
 #ifndef __LP64__
         const struct mach_header *mhp = (struct mach_header*)info.dli_fbase;
         unsigned long size = 0;
-        uint32_t *memory = (uint32_t*)getsectiondata(mhp, "__DATA", ZDInjectableSectionName, &size);
+        uint32_t *memory = (uint32_t*)getsectiondata(mhp, SEG_DATA, ZDInjectableSectionName, &size);
 #else /* defined(__LP64__) */
         const struct mach_header_64 *mhp = (struct mach_header_64*)info.dli_fbase;
         unsigned long size = 0;
-        uint64_t *memory = (uint64_t*)getsectiondata(mhp, "__DATA", ZDInjectableSectionName, &size);
+        uint64_t *memory = (uint64_t*)getsectiondata(mhp, SEG_DATA, ZDInjectableSectionName, &size);
 #endif /* defined(__LP64__) */
         
         classes = [NSMutableArray new];
