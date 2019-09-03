@@ -124,7 +124,7 @@
 		FA6244D4200CBFAE007A9EDC /* ZDImageGroupPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageGroupPreviewController.m; sourceTree = "<group>"; };
 		FA6244D5200CBFAE007A9EDC /* ZDImagePreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDImagePreviewCell.h; sourceTree = "<group>"; };
 		FA6244D6200CBFAE007A9EDC /* ZDImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDImageModel.m; sourceTree = "<group>"; };
-		FAAB784E222E1566000350E6 /* ZDToolKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZDToolKit.podspec; path = ../../ZDToolKit.podspec; sourceTree = "<group>"; };
+		FAAB784E222E1566000350E6 /* ZDToolKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ZDToolKit.podspec; path = ../../ZDToolKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FAAF2951215F18DD00F2BEBF /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		FAAF2952215F18DD00F2BEBF /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
 		FAAF2953215F18DD00F2BEBF /* NSObject+ZDAutoCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZDAutoCoding.h"; sourceTree = "<group>"; };
@@ -453,6 +453,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
