@@ -85,6 +85,7 @@
 #import "ZDAlertControllerHelper.h"
 #import "ZDDispatchQueuePool.h"
 #import "ZDOrderedDictionary.h"
+#import "ZDWrapInvocation.h"
 
 // MRC
 #import "ZDSafe.h"

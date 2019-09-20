@@ -98,7 +98,7 @@
 #endif
 
 /*** implementation details follow ***/
-typedef void (^zd_cleanupBlock_t)();
+typedef void (^zd_cleanupBlock_t)(void);
 
 static inline void zd_executeCleanupBlock (__strong zd_cleanupBlock_t *block) {
     (*block)();

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *sex;
 @property (nonatomic, assign) NSUInteger age;
 
+@property (nonatomic, copy) id(^block)(id);
+
 @end
 
 

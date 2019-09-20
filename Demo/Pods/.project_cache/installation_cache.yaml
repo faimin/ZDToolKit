@@ -23,10 +23,10 @@ CACHE_KEYS:
   SDWebImage:
     BUILD_SETTINGS_CHECKSUM:
       SDWebImage: 95424e9ff6a07051a5b7f92e42fe5e2f
-    CHECKSUM: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+    CHECKSUM: 96d7f03415ccb28d299d765f93557ff8a617abd8
     SPECS:
-      - SDWebImage (5.0.6)
-      - SDWebImage/Core (5.0.6)
+      - SDWebImage (5.1.1)
+      - SDWebImage/Core (5.1.1)
   YYCache:
     BUILD_SETTINGS_CHECKSUM:
       YYCache: 42be50bf420f1ad83dbc84480425fa6e
@@ -197,6 +197,8 @@ CACHE_KEYS:
       - "/Users/momo/Documents/Github/ZDToolKit/ZDToolKit/ZDTools/ZDRunloopQueue.m"
       - "/Users/momo/Documents/Github/ZDToolKit/ZDToolKit/ZDTools/ZDWatchdog.h"
       - "/Users/momo/Documents/Github/ZDToolKit/ZDToolKit/ZDTools/ZDWatchdog.m"
+      - "/Users/momo/Documents/Github/ZDToolKit/ZDToolKit/ZDTools/ZDWrapInvocation.h"
+      - "/Users/momo/Documents/Github/ZDToolKit/ZDToolKit/ZDTools/ZDWrapInvocation.m"
     SPECS:
       - ZDToolKit (0.0.4)
       - ZDToolKit/ZDAutoLayout (0.0.4)

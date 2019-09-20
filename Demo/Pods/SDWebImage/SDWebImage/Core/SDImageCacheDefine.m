@@ -11,10 +11,11 @@
 #import "SDImageCoderHelper.h"
 #import "SDAnimatedImage.h"
 #import "UIImage+Metadata.h"
+#import "SDInternalMacros.h"
 
 UIImage * _Nullable SDImageCacheDecodeImageData(NSData * _Nonnull imageData, NSString * _Nonnull cacheKey, SDWebImageOptions options, SDWebImageContext * _Nullable context) {
     UIImage *image;
-    BOOL decodeFirstFrame = options & SDWebImageDecodeFirstFrameOnly;
+    BOOL decodeFirstFrame = SD_OPTIONS_CONTAINS(options, SDWebImageDecodeFirstFrameOnly);
     NSNumber *scaleValue = context[SDWebImageContextImageScaleFactor];
     CGFloat scale = scaleValue.doubleValue >= 1 ? scaleValue.doubleValue : SDImageScaleFactorForKey(cacheKey);
     SDImageCoderOptions *coderOptions = @{SDImageCoderDecodeFirstFrameOnly : @(decodeFirstFrame), SDImageCoderDecodeScaleFactor : @(scale)};
@@ -29,8 +30,16 @@ UIImage * _Nullable SDImageCacheDecodeImageData(NSData * _Nonnull imageData, NSS
         // check whether we should use `SDAnimatedImage`
         if ([animatedImageClass isSubclassOfClass:[UIImage class]] && [animatedImageClass conformsToProtocol:@protocol(SDAnimatedImage)]) {
             image = [[animatedImageClass alloc] initWithData:imageData scale:scale options:coderOptions];
-            if (options & SDWebImagePreloadAllFrames && [image respondsToSelector:@selector(preloadAllFrames)]) {
-                [((id<SDAnimatedImage>)image) preloadAllFrames];
+            if (image) {
+                // Preload frames if supported
+                if (options & SDWebImagePreloadAllFrames && [image respondsToSelector:@selector(preloadAllFrames)]) {
+                    [((id<SDAnimatedImage>)image) preloadAllFrames];
+                }
+            } else {
+                // Check image class matching
+                if (options & SDWebImageMatchAnimatedImageClass) {
+                    return nil;
+                }
             }
         }
     }
@@ -38,8 +47,8 @@ UIImage * _Nullable SDImageCacheDecodeImageData(NSData * _Nonnull imageData, NSS
         image = [[SDImageCodersManager sharedManager] decodedImageWithData:imageData options:coderOptions];
     }
     if (image) {
-        BOOL shouldDecode = (options & SDWebImageAvoidDecodeImage) == 0;
-        if ([image conformsToProtocol:@protocol(SDAnimatedImage)]) {
+        BOOL shouldDecode = !SD_OPTIONS_CONTAINS(options, SDWebImageAvoidDecodeImage);
+        if ([image.class conformsToProtocol:@protocol(SDAnimatedImage)]) {
             // `SDAnimatedImage` do not decode
             shouldDecode = NO;
         } else if (image.sd_isAnimated) {
@@ -47,7 +56,7 @@ UIImage * _Nullable SDImageCacheDecodeImageData(NSData * _Nonnull imageData, NSS
             shouldDecode = NO;
         }
         if (shouldDecode) {
-            BOOL shouldScaleDown = options & SDWebImageScaleDownLargeImages;
+            BOOL shouldScaleDown = SD_OPTIONS_CONTAINS(options, SDWebImageScaleDownLargeImages);
             if (shouldScaleDown) {
                 image = [SDImageCoderHelper decodedAndScaledDownImageWithImage:image limitBytes:0];
             } else {

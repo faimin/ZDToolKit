@@ -325,4 +325,24 @@
     NSLog(@"NSObject的父类 = %@", objectSuperClassName);
 }
 
+- (void)testInvocation {
+    __auto_type block = ^id(id v) {
+        return [NSString stringWithFormat:@"blockArg = %@", v];
+    };
+    
+     __auto_type value = [ZDWrapInvocation<ZDBaseModel *> zd_target:ZDBaseModel.class invokeSelectorWithArgs:@selector(new)];
+    XCTAssertNotNil(value);
+    
+    id result = [ZDWrapInvocation zd_target:value invokeSelectorWithArgs:@selector(setUrl:), [NSURL URLWithString:@"www.google.com"]];
+    XCTAssertNil(result);
+    
+    [ZDWrapInvocation zd_target:value invokeSelectorWithArgs:@selector(setBlock:), block];
+    id(^b)(id) = [ZDWrapInvocation zd_target:value invokeSelectorWithArgs:@selector(block)];
+    if (b) {
+        id x = b(@123);
+        NSLog(@" ==== %@", x);
+    }
+    NSLog(@"#### %@, %@", value.url, result);
+}
+
 @end
