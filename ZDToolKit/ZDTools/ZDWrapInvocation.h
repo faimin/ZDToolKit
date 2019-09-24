@@ -9,11 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZDWrapInvocation<__covariant R> : NSObject
+@interface ZDWrapInvocation<__covariant R : id> : NSObject
 
 + (R)zd_target:(id)target invokeSelectorWithArgs:(SEL)selector, ...;
 
-+ (id)zd_target:(id)target invokeSelector:(SEL)selector args:(va_list)args;
++ (R)zd_target:(id)target invokeSelector:(SEL)selector args:(va_list)args;
 
 @end
 

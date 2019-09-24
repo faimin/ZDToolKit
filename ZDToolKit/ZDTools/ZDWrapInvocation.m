@@ -11,24 +11,11 @@
 @implementation ZDWrapInvocation
 
 + (id)zd_target:(id)target invokeSelectorWithArgs:(SEL)selector, ... {
-    if (![target respondsToSelector:selector]) {
-        NSAssert2(NO, @"%@ doesNotRecognizeSelector: %@", target, NSStringFromSelector(selector));
-        return nil;
-    }
-
-    NSMethodSignature *signature = [target methodSignatureForSelector:selector];
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-    invocation.target = target;
-    invocation.selector = selector;
-
     va_list args;
     va_start(args, selector);
-    [self buildInvocation:invocation singature:signature args:args];
+    id result = [self zd_target:target invokeSelector:selector args:args];
     va_end(args);
-
-    [invocation invoke];
-
-    id result = [self returnValueWithInvocation:invocation singature:signature];
+    
     return result;
 }
 
