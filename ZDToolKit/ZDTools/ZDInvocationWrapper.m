@@ -1,14 +1,14 @@
 //
-//  ZDWrapInvocation.m
+//  ZDInvocationWrapper.m
 //  ZDToolKit
 //
 //  Created by Zero.D.Saber on 2019/9/20.
 //
 
-#import "ZDWrapInvocation.h"
+#import "ZDInvocationWrapper.h"
 #import <objc/runtime.h>
 
-@implementation ZDWrapInvocation
+@implementation ZDInvocationWrapper
 
 + (id)zd_target:(id)target invokeSelectorWithArgs:(SEL)selector, ... {
     va_list args;

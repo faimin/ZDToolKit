@@ -330,14 +330,14 @@
         return [NSString stringWithFormat:@"blockArg = %@", v];
     };
     
-     __auto_type value = [ZDWrapInvocation<ZDBaseModel *> zd_target:ZDBaseModel.class invokeSelectorWithArgs:@selector(new)];
+     __auto_type value = [ZDInvocationWrapper<ZDBaseModel *> zd_target:ZDBaseModel.class invokeSelectorWithArgs:@selector(new)];
     XCTAssertNotNil(value);
     
-    id result = [ZDWrapInvocation zd_target:value invokeSelectorWithArgs:@selector(setUrl:), [NSURL URLWithString:@"www.google.com"]];
+    id result = [ZDInvocationWrapper zd_target:value invokeSelectorWithArgs:@selector(setUrl:), [NSURL URLWithString:@"www.google.com"]];
     XCTAssertNil(result);
     
-    [ZDWrapInvocation zd_target:value invokeSelectorWithArgs:@selector(setBlock:), block];
-    id(^b)(id) = [ZDWrapInvocation zd_target:value invokeSelectorWithArgs:@selector(block)];
+    [ZDInvocationWrapper zd_target:value invokeSelectorWithArgs:@selector(setBlock:), block];
+    id(^b)(id) = [ZDInvocationWrapper zd_target:value invokeSelectorWithArgs:@selector(block)];
     if (b) {
         id x = b(@123);
         NSLog(@" ==== %@", x);

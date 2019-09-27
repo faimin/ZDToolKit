@@ -1,5 +1,5 @@
 //
-//  ZDWrapInvocation.h
+//  ZDInvocationWrapper.h
 //  ZDToolKit
 //
 //  Created by Zero.D.Saber on 2019/9/20.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZDWrapInvocation<__covariant R : id> : NSObject
+@interface ZDInvocationWrapper<__covariant R : id> : NSObject
 
 + (R)zd_target:(id)target invokeSelectorWithArgs:(SEL)selector, ...;
 
