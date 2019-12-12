@@ -35,6 +35,7 @@
 		FAAF295B215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF295A215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m */; };
 		FAAF29982160D4C100F2BEBF /* ZDBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF29972160D4C100F2BEBF /* ZDBaseModel.m */; };
 		FAAF299B2160D4D600F2BEBF /* ZDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAAF299A2160D4D600F2BEBF /* ZDModel.m */; };
+		FADFAE8623A104DA006CDF89 /* ZDLibffiController.m in Sources */ = {isa = PBXBuildFile; fileRef = FADFAE8523A104DA006CDF89 /* ZDLibffiController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		FAAF29972160D4C100F2BEBF /* ZDBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDBaseModel.m; sourceTree = "<group>"; };
 		FAAF29992160D4D600F2BEBF /* ZDModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDModel.h; sourceTree = "<group>"; };
 		FAAF299A2160D4D600F2BEBF /* ZDModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDModel.m; sourceTree = "<group>"; };
+		FADFAE8423A104DA006CDF89 /* ZDLibffiController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDLibffiController.h; sourceTree = "<group>"; };
+		FADFAE8523A104DA006CDF89 /* ZDLibffiController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDLibffiController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +292,8 @@
 				DA6CBBD91F886BC900A36EF4 /* ThreeController.m */,
 				FA15D42A20D398C000F4AFBC /* ZDHookBlockController.h */,
 				FA15D42B20D398C000F4AFBC /* ZDHookBlockController.m */,
+				FADFAE8423A104DA006CDF89 /* ZDLibffiController.h */,
+				FADFAE8523A104DA006CDF89 /* ZDLibffiController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				TargetAttributes = {
 					05EC9C651C53CDC300BACFE9 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 36NX5886GJ;
 					};
 					05EC9C7E1C53CDC300BACFE9 = {
 						CreatedOnToolsVersion = 7.2;
@@ -574,6 +580,7 @@
 				FAAF295B215F18F300F2BEBF /* UIView+RZAutoLayoutHelpers.m in Sources */,
 				FA6244D7200CBFAE007A9EDC /* ZDImagePreviewCell.m in Sources */,
 				FAAF29982160D4C100F2BEBF /* ZDBaseModel.m in Sources */,
+				FADFAE8623A104DA006CDF89 /* ZDLibffiController.m in Sources */,
 				BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */,
 				FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */,
 				FA15D42C20D398C000F4AFBC /* ZDHookBlockController.m in Sources */,
@@ -760,7 +767,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 36NX5886GJ;
 				INFOPLIST_FILE = ZDToolKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -775,7 +782,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 36NX5886GJ;
 				INFOPLIST_FILE = ZDToolKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
