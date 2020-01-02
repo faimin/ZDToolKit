@@ -23,12 +23,12 @@ CACHE_KEYS:
       Release: f7cf7bf5f66ca70fdf2a859941edd5f2
   SDWebImage:
     BUILD_SETTINGS_CHECKSUM:
-      SDWebImage: 85f57159d6ec608352c5184cacfc5f53
-    CHECKSUM: 96d7f03415ccb28d299d765f93557ff8a617abd8
+      SDWebImage: 77937f139d5c03d5c73744a96408a279
+    CHECKSUM: 29c340dbdcef342bb13125553f4e19ce056b07a7
     PROJECT_NAME: SDWebImage
     SPECS:
-      - SDWebImage (5.1.1)
-      - SDWebImage/Core (5.1.1)
+      - SDWebImage (5.4.1)
+      - SDWebImage/Core (5.4.1)
   YYCache:
     BUILD_SETTINGS_CHECKSUM:
       YYCache: 4b861269a573c67dab7ff62fb8c3d744
