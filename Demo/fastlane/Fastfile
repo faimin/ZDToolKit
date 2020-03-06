@@ -1,0 +1,88 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+SCHEME_NAME = 'ZDToolKitDemo'
+TARGET_NAME = SCHEME_NAME
+
+platform :ios do
+  desc "Description of what the lane does"
+
+  before_all do
+    # ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"] = "生成的特殊密码"
+    # ENV["FASTLANE_SESSION"] = '生成的session cookie'
+  end
+  
+  # 切到 fastlane 分支
+  # sh 'git checkout fastlane'
+
+  # build 号加1
+  increment_build_number(
+    build_number: latest_testflight_build_number + 1,
+    xcodeproj: "#{SCHEME_NAME}.xcodeproj"
+  )
+  # 下面是拿到新的版本号，提交代码
+  build_number = get_build_number(xcodeproj: "../ZDToolKitDemo.xcodeproj")
+  desc "build版本号为：#{build_number}"
+  git_commit(path:"../", message:"Bump build to #{build_number}")
+  push_to_git_remote
+  
+  # pod install
+  cocoapods(
+    repo_update: false
+  )
+
+  private_lane :archive_ipa do |options|
+    say "开始打包"
+    date = Time.new.strftime("%Y%m%d-%H%M")
+    gym(
+      workspace: "./#{SCHEME_NAME}.xcworkspace",
+      scheme: "#{SCHEME_NAME}",
+      clean: true,
+      output_directory: "../../ipa/#{SCHEME_NAME}/#{date}/",
+      output_name: "#{SCHEME_NAME}-#{date}.ipa",
+      configuration: 'Release',
+      # codesigning_identity: "#{codesigningIdentity}",
+      include_symbols: true,
+      include_bitcode: false,
+      #provisioning_profile_path: "./fastlane/provision/#{typePrefix}.mobileprovision",
+      archive_path: "../../ipa/#{SCHEME_NAME}/#{date}/",
+      export_method: 'development',
+      export_options: {
+        provisioningProfiles: {
+          "com.wemomo.momoappdemo1" => "MomoChatDevelopmentProfile"
+        }
+      }
+    )
+    sh "open ../../ipa/#{SCHEME_NAME}/#{date}/"
+  end
+
+  
+  lane :beta do |options|
+    desc "测试打包"
+    # 这里是打的 Debug 版本
+    archive_ipa()
+  end
+
+  # You can define as many lanes as you want
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+  end
+
+  error do |lane, exception|
+     
+  end
+end
