@@ -53,6 +53,8 @@ if (@available(iOS 10.0, *)) {  \
             os_log([ZDOSLogger shareInstance].osLog, "%s, [Line: %d],\n" format, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);    \
             break;  \
     };  \
+} else {  \
+    NSLog((@"%s [Line %d] " format), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); \
 }
 #endif
 #else
