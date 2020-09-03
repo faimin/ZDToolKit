@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_END
 
 /**
  i.e.
- ZDOSLog(OS_LOG_TYPE_DEBUG, "message： %@", dic);
+ ZDOSLog(OS_LOG_TYPE_DEBUG, "message： %{public}@", dic);
  */
 #if defined(DEBUG) || defined(INHOUSE)
 #ifndef ZDOSLog
