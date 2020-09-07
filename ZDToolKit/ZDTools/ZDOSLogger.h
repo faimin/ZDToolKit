@@ -54,7 +54,9 @@ if (@available(iOS 10.0, *)) {  \
             break;  \
     };  \
 } else {  \
-    NSLog((@"%s [Line %d] " format), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); \
+    NSLog((@"%s [Line %d] "), __PRETTY_FUNCTION__, __LINE__); \
+    NSString *txt = [@format stringByReplacingOccurrencesOfString:@"{public}" withString:@""]; \
+    NSLog((txt), ##__VA_ARGS__); \
 };
 #endif
 #else
