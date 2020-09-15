@@ -7,7 +7,7 @@
 //
 
 #import "ZDWatchdog.h"
-#import <execinfo.h>
+#include <execinfo.h>
 
 static const NSTimeInterval kDefaultInterval = 50.0; // 单位：毫秒
 
@@ -120,11 +120,15 @@ static void RunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActi
     __weak __typeof__(self) weakTarget = self;
     dispatch_source_set_event_handler(self.timer, ^{
         __strong __typeof__(weakTarget) self = weakTarget;
+        if (!self) {
+            return;
+        }
+        
         if (self->_activity == kCFRunLoopBeforeWaiting ||
             self->_activity == kCFRunLoopBeforeSources) {
             static BOOL isNotTimeOut = YES;
             if (isNotTimeOut == NO) {
-                chokeCount ++;
+                ++chokeCount;
                 if (chokeCount > 40) {
                     NSLog(@"貌似卡死了❌❌❌");
                     dispatch_suspend(self.timer);
