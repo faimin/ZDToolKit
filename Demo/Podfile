@@ -35,23 +35,23 @@ install! 'cocoapods',
 
 #https://github.com/CocoaPods/CocoaPods/issues/8604
 #https://mp.weixin.qq.com/s/R4KQWpdMgsnx918AhgXxCg
-post_install do |installer|
-  #binding.pry #debug
-  #installer.generated_pod_targets.each do |target|
-  #installer.generated_projects.each do |target|
-  installer.pod_target_subprojects.flat_map { |p| p.targets }.each do |target|
-      puts "targetname =", target.name
-      target.build_configurations.each do |config|
-          if target.name != 'ZDToolKit'
-              #block内直接引用全局变量的警告
-              config.build_settings['CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF'] = 'NO'
-              #关闭`This block declaration is not a prototype,Insert ‘void'`警告
-              config.build_settings['CLANG_WARN_STRICT_PROTOTYPES'] = 'NO'
-              config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '8.0'
-          end
-      end
-  end
-end
+#post_install do |installer|
+#  #binding.pry #debug
+#  #installer.generated_pod_targets.each do |target|
+#  #installer.generated_projects.each do |target|
+#  installer.pod_target_subprojects.flat_map { |p| p.targets }.each do |target|
+#      puts "targetname =", target.name
+#      target.build_configurations.each do |config|
+#          if target.name != 'ZDToolKit'
+#              #block内直接引用全局变量的警告
+#              config.build_settings['CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF'] = 'NO'
+#              #关闭`This block declaration is not a prototype,Insert ‘void'`警告
+#              config.build_settings['CLANG_WARN_STRICT_PROTOTYPES'] = 'NO'
+#              config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '8.0'
+#          end
+#      end
+#  end
+#end
 
 
 # https://www.jianshu.com/p/a1d2d148fdd3

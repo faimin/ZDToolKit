@@ -1,6 +1,6 @@
 {
   "name": "ZDToolKit",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "summary": "awesome iOS development tools（Objective-C）",
   "description": "collect some iOS development tools, e.g: category、block、runtime、subclass、macro, and so on...",
   "homepage": "https://github.com/faimin",
@@ -12,16 +12,17 @@
     "Zero.D.Saber": "fuxianchao@gmail.com"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "requires_arc": true,
   "public_header_files": "ZDToolKit/ZDToolKit.h",
   "module_name": "ZDToolKit",
   "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES"
   },
   "source": {
     "git": "https://github.com/faimin/ZDToolKit.git",
-    "tag": "0.0.4"
+    "tag": "0.0.5"
   },
   "source_files": "ZDToolKit/ZDToolKit.h",
   "subspecs": [

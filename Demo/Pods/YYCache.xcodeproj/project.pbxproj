@@ -7,30 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D833CA445EE800856F83865F0C68401 /* YYKVStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88D21E55B08E7455A4818B60F2F203 /* YYKVStorage.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0F0AA9620568EA93172A352CCD11257C /* YYMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = DF350BF029DF3DF32CF0EB9925850B92 /* YYMemoryCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		11F9EA12D43FA3E9B8A11C305E481863 /* YYCache.h in Headers */ = {isa = PBXBuildFile; fileRef = CC030D6E4B05AAFDA9A66E0AB30ED883 /* YYCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		12181AD86E41433C18BBBB7BB3290AEB /* YYCache-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1510F5A38E3A790397B7E2B7AEBDDA0 /* YYCache-dummy.m */; };
-		1F6417E55292C389419538C431376CE8 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B6156013DEE433C3164F7D01193F7481 /* YYCache.m */; };
-		2F8CA30C996B35DA633AFBB91A43A79D /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F46BEA098E53FFEDFB0945DBDF240B /* YYKVStorage.m */; };
-		35FDB8B9B170718AD5549149030258D8 /* YYDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4016BFA6ABCF779B533F204469DC6D98 /* YYDiskCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		771BDE27337F84147B4127C7664A2A4B /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C5A870558691BAFB18677E9C454B3D /* YYDiskCache.m */; };
-		B860D880B37418F09CC4292559A4B056 /* YYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B85CF93A3C0FB465B08CF0A0B72B0A /* YYMemoryCache.m */; };
+		0D833CA445EE800856F83865F0C68401 /* YYKVStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BABE56C29D4BA3FCFCEE35869E2C0F8 /* YYKVStorage.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0F0AA9620568EA93172A352CCD11257C /* YYMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = A575E22A4311C2F21B49654CEF6A8B94 /* YYMemoryCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		11F9EA12D43FA3E9B8A11C305E481863 /* YYCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B821AE5118AB0FC8BE5EA969D40CE11D /* YYCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		12181AD86E41433C18BBBB7BB3290AEB /* YYCache-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DAA97218059B18B6D95FA6A53E6C60 /* YYCache-dummy.m */; };
+		1F6417E55292C389419538C431376CE8 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9452DCC24AC36B8F81E5BF8917350B /* YYCache.m */; };
+		2F8CA30C996B35DA633AFBB91A43A79D /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E7135ECB41BFE90D132CBCAC170455 /* YYKVStorage.m */; };
+		35FDB8B9B170718AD5549149030258D8 /* YYDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = F55F31B41DA21FF8B9BBCF94B952459F /* YYDiskCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		771BDE27337F84147B4127C7664A2A4B /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B60F63F07BA86DD16222548E07C086D0 /* YYDiskCache.m */; };
+		B860D880B37418F09CC4292559A4B056 /* YYMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 575A34E145506635CF24E8DA99C84C7F /* YYMemoryCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		15F46BEA098E53FFEDFB0945DBDF240B /* YYKVStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYKVStorage.m; path = YYCache/YYKVStorage.m; sourceTree = "<group>"; };
-		4016BFA6ABCF779B533F204469DC6D98 /* YYDiskCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYDiskCache.h; path = YYCache/YYDiskCache.h; sourceTree = "<group>"; };
-		47C5A870558691BAFB18677E9C454B3D /* YYDiskCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYDiskCache.m; path = YYCache/YYDiskCache.m; sourceTree = "<group>"; };
-		652157F16EEBE849E51D55F42DD8BEBD /* YYCache.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YYCache.xcconfig; sourceTree = "<group>"; };
-		A1510F5A38E3A790397B7E2B7AEBDDA0 /* YYCache-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYCache-dummy.m"; sourceTree = "<group>"; };
-		B6156013DEE433C3164F7D01193F7481 /* YYCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYCache.m; path = YYCache/YYCache.m; sourceTree = "<group>"; };
+		0E9452DCC24AC36B8F81E5BF8917350B /* YYCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYCache.m; path = YYCache/YYCache.m; sourceTree = "<group>"; };
+		23DAA97218059B18B6D95FA6A53E6C60 /* YYCache-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YYCache-dummy.m"; sourceTree = "<group>"; };
+		32409DA8F03D567C1C291D8CF1C185BB /* YYCache-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YYCache-prefix.pch"; sourceTree = "<group>"; };
+		35E7135ECB41BFE90D132CBCAC170455 /* YYKVStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYKVStorage.m; path = YYCache/YYKVStorage.m; sourceTree = "<group>"; };
+		45706D4B14D4C78D8A89A51AA144D69C /* YYCache.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YYCache.debug.xcconfig; sourceTree = "<group>"; };
+		575A34E145506635CF24E8DA99C84C7F /* YYMemoryCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYMemoryCache.m; path = YYCache/YYMemoryCache.m; sourceTree = "<group>"; };
+		6BABE56C29D4BA3FCFCEE35869E2C0F8 /* YYKVStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYKVStorage.h; path = YYCache/YYKVStorage.h; sourceTree = "<group>"; };
+		A575E22A4311C2F21B49654CEF6A8B94 /* YYMemoryCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYMemoryCache.h; path = YYCache/YYMemoryCache.h; sourceTree = "<group>"; };
+		B60F63F07BA86DD16222548E07C086D0 /* YYDiskCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYDiskCache.m; path = YYCache/YYDiskCache.m; sourceTree = "<group>"; };
+		B821AE5118AB0FC8BE5EA969D40CE11D /* YYCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYCache.h; path = YYCache/YYCache.h; sourceTree = "<group>"; };
 		C8F6249F0AC6BC1D62016B6260170828 /* libYYCache.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libYYCache.a; path = libYYCache.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC030D6E4B05AAFDA9A66E0AB30ED883 /* YYCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYCache.h; path = YYCache/YYCache.h; sourceTree = "<group>"; };
-		D8B85CF93A3C0FB465B08CF0A0B72B0A /* YYMemoryCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYMemoryCache.m; path = YYCache/YYMemoryCache.m; sourceTree = "<group>"; };
-		DF350BF029DF3DF32CF0EB9925850B92 /* YYMemoryCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYMemoryCache.h; path = YYCache/YYMemoryCache.h; sourceTree = "<group>"; };
-		ED88D21E55B08E7455A4818B60F2F203 /* YYKVStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYKVStorage.h; path = YYCache/YYKVStorage.h; sourceTree = "<group>"; };
-		F2C8FE822DBED37050B99F8D8E3351F4 /* YYCache-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YYCache-prefix.pch"; sourceTree = "<group>"; };
+		C9A3AAC59BCA3126D206C632C9725352 /* YYCache.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YYCache.release.xcconfig; sourceTree = "<group>"; };
+		F55F31B41DA21FF8B9BBCF94B952459F /* YYDiskCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYDiskCache.h; path = YYCache/YYDiskCache.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,29 +45,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		082CA27984C598C3FE03946B315DBA28 /* Support Files */ = {
+		2CD3A88466DB796A8F4B415103FE2A16 /* YYCache */ = {
 			isa = PBXGroup;
 			children = (
-				652157F16EEBE849E51D55F42DD8BEBD /* YYCache.xcconfig */,
-				A1510F5A38E3A790397B7E2B7AEBDDA0 /* YYCache-dummy.m */,
-				F2C8FE822DBED37050B99F8D8E3351F4 /* YYCache-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/YYCache";
-			sourceTree = "<group>";
-		};
-		52026DB46109737259A7099047C6E075 /* YYCache */ = {
-			isa = PBXGroup;
-			children = (
-				CC030D6E4B05AAFDA9A66E0AB30ED883 /* YYCache.h */,
-				B6156013DEE433C3164F7D01193F7481 /* YYCache.m */,
-				4016BFA6ABCF779B533F204469DC6D98 /* YYDiskCache.h */,
-				47C5A870558691BAFB18677E9C454B3D /* YYDiskCache.m */,
-				ED88D21E55B08E7455A4818B60F2F203 /* YYKVStorage.h */,
-				15F46BEA098E53FFEDFB0945DBDF240B /* YYKVStorage.m */,
-				DF350BF029DF3DF32CF0EB9925850B92 /* YYMemoryCache.h */,
-				D8B85CF93A3C0FB465B08CF0A0B72B0A /* YYMemoryCache.m */,
-				082CA27984C598C3FE03946B315DBA28 /* Support Files */,
+				B821AE5118AB0FC8BE5EA969D40CE11D /* YYCache.h */,
+				0E9452DCC24AC36B8F81E5BF8917350B /* YYCache.m */,
+				F55F31B41DA21FF8B9BBCF94B952459F /* YYDiskCache.h */,
+				B60F63F07BA86DD16222548E07C086D0 /* YYDiskCache.m */,
+				6BABE56C29D4BA3FCFCEE35869E2C0F8 /* YYKVStorage.h */,
+				35E7135ECB41BFE90D132CBCAC170455 /* YYKVStorage.m */,
+				A575E22A4311C2F21B49654CEF6A8B94 /* YYMemoryCache.h */,
+				575A34E145506635CF24E8DA99C84C7F /* YYMemoryCache.m */,
+				B9DCDE4D50D220CCFF499367081E1A2C /* Support Files */,
 			);
 			name = YYCache;
 			path = YYCache;
@@ -77,6 +67,18 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9DCDE4D50D220CCFF499367081E1A2C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				23DAA97218059B18B6D95FA6A53E6C60 /* YYCache-dummy.m */,
+				32409DA8F03D567C1C291D8CF1C185BB /* YYCache-prefix.pch */,
+				45706D4B14D4C78D8A89A51AA144D69C /* YYCache.debug.xcconfig */,
+				C9A3AAC59BCA3126D206C632C9725352 /* YYCache.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/YYCache";
 			sourceTree = "<group>";
 		};
 		E3898EDB29239D0F11A234213DE82E17 /* Products */ = {
@@ -92,7 +94,7 @@
 			children = (
 				815971085421D36C68A76EC59B8FF7C0 /* Frameworks */,
 				E3898EDB29239D0F11A234213DE82E17 /* Products */,
-				52026DB46109737259A7099047C6E075 /* YYCache */,
+				2CD3A88466DB796A8F4B415103FE2A16 /* YYCache */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,10 +175,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		20596D1B5E7C5BAABFB8F67657BFD862 /* Debug */ = {
+		0DA9943531410C157C26133C3F38DB2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -199,6 +202,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -237,10 +241,56 @@
 			};
 			name = Debug;
 		};
-		4BCC075EB9EBF1EB55A2750180BA98D5 /* Release */ = {
+		17DDBD61B027D05429AAB2055D4D472A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45706D4B14D4C78D8A89A51AA144D69C /* YYCache.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/YYCache/YYCache-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = YYCache;
+				PRODUCT_NAME = YYCache;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20892BBFB19AD09117AC64A214550751 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9A3AAC59BCA3126D206C632C9725352 /* YYCache.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/YYCache/YYCache-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = YYCache;
+				PRODUCT_NAME = YYCache;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E84740D10E10968068F41E9A4587FC97 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -263,6 +313,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -297,65 +348,14 @@
 			};
 			name = Release;
 		};
-		4F43F5C6E6DE4B901DBD8AA58A3224E3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 652157F16EEBE849E51D55F42DD8BEBD /* YYCache.xcconfig */;
-			buildSettings = {
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
-				CLANG_WARN_STRICT_PROTOTYPES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/YYCache/YYCache-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = YYCache;
-				PRODUCT_NAME = YYCache;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E40203310B5D05BE0062CFFCC6654662 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 652157F16EEBE849E51D55F42DD8BEBD /* YYCache.xcconfig */;
-			buildSettings = {
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
-				CLANG_WARN_STRICT_PROTOTYPES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/YYCache/YYCache-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = YYCache;
-				PRODUCT_NAME = YYCache;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		84E04DFA81EE05740BD5F0C9C6B16ADE /* Build configuration list for PBXNativeTarget "YYCache" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4F43F5C6E6DE4B901DBD8AA58A3224E3 /* Debug */,
-				E40203310B5D05BE0062CFFCC6654662 /* Release */,
+				17DDBD61B027D05429AAB2055D4D472A /* Debug */,
+				20892BBFB19AD09117AC64A214550751 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -363,8 +363,8 @@
 		9CEE14E5DC9CD2677F1EA0874E66DC3F /* Build configuration list for PBXProject "YYCache" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				20596D1B5E7C5BAABFB8F67657BFD862 /* Debug */,
-				4BCC075EB9EBF1EB55A2750180BA98D5 /* Release */,
+				0DA9943531410C157C26133C3F38DB2C /* Debug */,
+				E84740D10E10968068F41E9A4587FC97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

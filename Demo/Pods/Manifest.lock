@@ -1,8 +1,8 @@
 PODS:
   - libffi-core (1.2.0)
-  - SDWebImage (5.4.1):
-    - SDWebImage/Core (= 5.4.1)
-  - SDWebImage/Core (5.4.1)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
   - YYCache (1.0.4)
   - YYImage (1.0.4):
     - YYImage/Core (= 1.0.4)
@@ -10,39 +10,39 @@ PODS:
   - YYWebImage (1.0.5):
     - YYCache
     - YYImage
-  - ZDToolKit (0.0.4):
-    - ZDToolKit/ZDAutoLayout (= 0.0.4)
-    - ZDToolKit/ZDCategory (= 0.0.4)
-    - ZDToolKit/ZDDebug (= 0.0.4)
-    - ZDToolKit/ZDMacros (= 0.0.4)
-    - ZDToolKit/ZDMRC (= 0.0.4)
-    - ZDToolKit/ZDRuntime (= 0.0.4)
-    - ZDToolKit/ZDSubclass (= 0.0.4)
-    - ZDToolKit/ZDTools (= 0.0.4)
-  - ZDToolKit/ZDAutoLayout (0.0.4)
-  - ZDToolKit/ZDCategory (0.0.4):
-    - ZDToolKit/ZDCategory/Foundation (= 0.0.4)
-    - ZDToolKit/ZDCategory/UIKit (= 0.0.4)
+  - ZDToolKit (0.0.5):
+    - ZDToolKit/ZDAutoLayout (= 0.0.5)
+    - ZDToolKit/ZDCategory (= 0.0.5)
+    - ZDToolKit/ZDDebug (= 0.0.5)
+    - ZDToolKit/ZDMacros (= 0.0.5)
+    - ZDToolKit/ZDMRC (= 0.0.5)
+    - ZDToolKit/ZDRuntime (= 0.0.5)
+    - ZDToolKit/ZDSubclass (= 0.0.5)
+    - ZDToolKit/ZDTools (= 0.0.5)
+  - ZDToolKit/ZDAutoLayout (0.0.5)
+  - ZDToolKit/ZDCategory (0.0.5):
+    - ZDToolKit/ZDCategory/Foundation (= 0.0.5)
+    - ZDToolKit/ZDCategory/UIKit (= 0.0.5)
     - ZDToolKit/ZDMacros
-  - ZDToolKit/ZDCategory/Foundation (0.0.4):
+  - ZDToolKit/ZDCategory/Foundation (0.0.5):
     - ZDToolKit/ZDMacros
-  - ZDToolKit/ZDCategory/UIKit (0.0.4):
+  - ZDToolKit/ZDCategory/UIKit (0.0.5):
     - ZDToolKit/ZDMacros
     - ZDToolKit/ZDTools/ZDProxy
-  - ZDToolKit/ZDDebug (0.0.4)
-  - ZDToolKit/ZDMacros (0.0.4)
-  - ZDToolKit/ZDMRC (0.0.4)
-  - ZDToolKit/ZDRuntime (0.0.4):
+  - ZDToolKit/ZDDebug (0.0.5)
+  - ZDToolKit/ZDMacros (0.0.5)
+  - ZDToolKit/ZDMRC (0.0.5)
+  - ZDToolKit/ZDRuntime (0.0.5):
     - libffi-core
-  - ZDToolKit/ZDSubclass (0.0.4):
+  - ZDToolKit/ZDSubclass (0.0.5):
     - ZDToolKit/ZDTools/ZDProxy
-  - ZDToolKit/ZDTools (0.0.4):
-    - ZDToolKit/ZDTools/ProtocolKit (= 0.0.4)
-    - ZDToolKit/ZDTools/ZDPromise (= 0.0.4)
-    - ZDToolKit/ZDTools/ZDProxy (= 0.0.4)
-  - ZDToolKit/ZDTools/ProtocolKit (0.0.4)
-  - ZDToolKit/ZDTools/ZDPromise (0.0.4)
-  - ZDToolKit/ZDTools/ZDProxy (0.0.4)
+  - ZDToolKit/ZDTools (0.0.5):
+    - ZDToolKit/ZDTools/ProtocolKit (= 0.0.5)
+    - ZDToolKit/ZDTools/ZDPromise (= 0.0.5)
+    - ZDToolKit/ZDTools/ZDProxy (= 0.0.5)
+  - ZDToolKit/ZDTools/ProtocolKit (0.0.5)
+  - ZDToolKit/ZDTools/ZDPromise (0.0.5)
+  - ZDToolKit/ZDTools/ZDProxy (0.0.5)
 
 DEPENDENCIES:
   - libffi-core
@@ -64,12 +64,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   libffi-core: c4049ed88381fee5c0a31d26c860fc427d3c301c
-  SDWebImage: 29c340dbdcef342bb13125553f4e19ce056b07a7
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
-  ZDToolKit: 2dc08339509ad9b9fe36472d4bc6f46e12c5ce30
+  ZDToolKit: f1ec5648ab8b2c127d540dff70d93d3c5856213e
 
-PODFILE CHECKSUM: 51ba85604b86184071ee8f0fa2d39ebc05961f24
+PODFILE CHECKSUM: 6c648e4d7d5b02f8512c5d9c679a8e6199e1e0f8
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1
