@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'ZDToolKit'
-  s.version      = '0.0.4'
+  s.version      = '0.0.5'
   s.summary      = 'awesome iOS development tools（Objective-C）'
   s.description  = <<-DESC
                    collect some iOS development tools, e.g: category、block、runtime、subclass、macro, and so on...
@@ -14,13 +14,13 @@ Pod::Spec.new do |s|
     :file => 'LICENSE' 
   }
   s.author       = { 'Zero.D.Saber' => 'fuxianchao@gmail.com' }
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
   # s.static_framework = true
   s.public_header_files = 'ZDToolKit/ZDToolKit.h'
   s.module_name  = 'ZDToolKit'
   s.pod_target_xcconfig = {
-    # 'DEFINES_MODULE' => 'YES'
+     'DEFINES_MODULE' => 'YES'
   }
   s.source       = {
     :git => 'https://github.com/faimin/ZDToolKit.git', 
