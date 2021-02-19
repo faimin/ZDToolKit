@@ -6,9 +6,10 @@
 //  Copyright © 2016年 郑宇琦. All rights reserved.
 //
 
-#import "EMCI.h"
+#import "ZDRuntimeTool.h"
+#import <objc/runtime.h>
 
-@implementation EMCI
+@implementation ZDRuntimeTool
 
 + (void)pAllClass
 {

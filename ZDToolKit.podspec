@@ -58,7 +58,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'ZDRuntime' do |ss|
     ss.source_files = 'ZDToolKit/ZDRuntime/*.{h,m}'
-    ss.dependency 'libffi-core'
+    ss.exclude_files = 'ZDToolKit/ZDRuntime/ZDBlockHook.{h,m}'
+    #ss.dependency 'libffi-core'
   end
 
   # no_arc_source_files = 'ZDToolKit/ZDTools/ZDSafe.{h,m}'

@@ -31,22 +31,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, RZViewBorderMask)
+typedef NS_ENUM(NSUInteger, ZDViewBorderMask)
 {
-    RZViewBorderNone    = 0,
-    RZViewBorderLeft    = (1 << 0),
-    RZViewBorderBottom  = (1 << 1),
-    RZViewBorderRight   = (1 << 2),
-    RZViewBorderTop     = (1 << 3),
-    RZViewBorderAll     = RZViewBorderLeft | RZViewBorderBottom | RZViewBorderRight | RZViewBorderTop
+    ZDViewBorderNone    = 0,
+    ZDViewBorderLeft    = (1 << 0),
+    ZDViewBorderBottom  = (1 << 1),
+    ZDViewBorderRight   = (1 << 2),
+    ZDViewBorderTop     = (1 << 3),
+    ZDViewBorderAll     = ZDViewBorderLeft | ZDViewBorderBottom | ZDViewBorderRight | ZDViewBorderTop
 };
 
 // Adds a generated border image view as the highest z-ordered subview of the target view (above all other views).
-@interface UIView (RZBorders)
+@interface UIView (ZDBorders)
 
-- (void)rz_addBordersWithCornerRadius:(CGFloat)radius width:(CGFloat)borderWidth color:(UIColor*)color;
-- (void)rz_addBordersWithMask:(RZViewBorderMask)mask width:(CGFloat)borderWidth color:(UIColor*)color;
-- (void)rz_removeBorders;
+- (void)zd_addBordersWithCornerRadius:(CGFloat)radius width:(CGFloat)borderWidth color:(UIColor*)color;
+- (void)zd_addBordersWithMask:(ZDViewBorderMask)mask width:(CGFloat)borderWidth color:(UIColor*)color;
+- (void)zd_removeBorders;
 
 @end
 

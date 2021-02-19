@@ -83,11 +83,7 @@
     {
       "name": "ZDRuntime",
       "source_files": "ZDToolKit/ZDRuntime/*.{h,m}",
-      "dependencies": {
-        "libffi-core": [
-
-        ]
-      }
+      "exclude_files": "ZDToolKit/ZDRuntime/ZDBlockHook.{h,m}"
     },
     {
       "name": "ZDTools",

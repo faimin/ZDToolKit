@@ -7,9 +7,8 @@
 //  https://github.com/enums/EMClassIntrospection
 
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
 
-@interface EMCI : NSObject
+@interface ZDRuntimeTool : NSObject
 
 /**
  Print all class.

@@ -32,8 +32,7 @@ PODS:
   - ZDToolKit/ZDDebug (0.0.5)
   - ZDToolKit/ZDMacros (0.0.5)
   - ZDToolKit/ZDMRC (0.0.5)
-  - ZDToolKit/ZDRuntime (0.0.5):
-    - libffi-core
+  - ZDToolKit/ZDRuntime (0.0.5)
   - ZDToolKit/ZDSubclass (0.0.5):
     - ZDToolKit/ZDTools/ZDProxy
   - ZDToolKit/ZDTools (0.0.5):
@@ -68,7 +67,7 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
-  ZDToolKit: f1ec5648ab8b2c127d540dff70d93d3c5856213e
+  ZDToolKit: 36fc97e7b74bf549188b6c07f6cc4774ec4467df
 
 PODFILE CHECKSUM: 6c648e4d7d5b02f8512c5d9c679a8e6199e1e0f8
 

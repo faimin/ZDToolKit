@@ -27,12 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "UIView+RZBorders.h"
+#import "UIView+ZDBorders.h"
 #import <objc/runtime.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ZDMacro.h"
 
-ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIView_RZBorders)
+ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(UIView_ZDBorders)
 
 static char kRZBorderViewKey;
 
@@ -41,22 +41,22 @@ static char kRZBorderViewKey;
 // In the future we should go about adding borders as just 1 px UIViews with constraints
 static const CGFloat kRZBorderMaxScale = 2.0f;
 
-@interface RZBorderedImageView : UIImageView
+@interface ZDBorderedImageView : UIImageView
 
 + (NSMutableDictionary *)maskingImageCache;
 + (NSMutableDictionary *)coloredBorderImageCache;
 
-- (void)setBorderMask:(RZViewBorderMask)mask width:(CGFloat)width color:(UIColor *)color;
+- (void)setBorderMask:(ZDViewBorderMask)mask width:(CGFloat)width color:(UIColor *)color;
 - (void)setBorderCornerRadius:(CGFloat)radius width:(CGFloat)width color:(UIColor *)color;
 
 // Returns a new or cached masking image that can be used to fill a rect area to produce a bordered effect.
-- (UIImage *)maskingImageForMask:(RZViewBorderMask)mask width:(CGFloat)width;
+- (UIImage *)maskingImageForMask:(ZDViewBorderMask)mask width:(CGFloat)width;
 
 // Returns a new or cached masking image that can be used to fill a rect area to produce a pill effect.
 - (UIImage *)maskingImageForCornerRadius:(CGFloat)radius width:(CGFloat)width;
 
 // Returns a clear, stretchable image with the specified borders, width, and color
-- (UIImage *)coloredBorderImageWithMask:(RZViewBorderMask)mask width:(CGFloat)width color:(UIColor *)color;
+- (UIImage *)coloredBorderImageWithMask:(ZDViewBorderMask)mask width:(CGFloat)width color:(UIColor *)color;
 
 // Returns a clear, stretchable image with the specified corner radius, width, and color
 - (UIImage *)coloredBorderImageWithCornerRadius:(CGFloat)radius width:(CGFloat)width color:(UIColor *)color;
@@ -67,18 +67,18 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
 
 @implementation UIView (RZBorders)
 
-- (RZBorderedImageView *)rz_borderImgView
+- (ZDBorderedImageView *)zd_borderImgView
 {
     return objc_getAssociatedObject(self, &kRZBorderViewKey);
 }
 
-- (void)rz_addBordersWithMask:(RZViewBorderMask)mask width:(CGFloat)borderWidth color:(UIColor *)color
+- (void)zd_addBordersWithMask:(ZDViewBorderMask)mask width:(CGFloat)borderWidth color:(UIColor *)color
 {
-    RZBorderedImageView *imgView = objc_getAssociatedObject(self, &kRZBorderViewKey);
+    ZDBorderedImageView *imgView = objc_getAssociatedObject(self, &kRZBorderViewKey);
     if (imgView == nil)
     {
         CGRect frame = {.origin = CGPointZero, .size = self.bounds.size};
-        imgView = [[RZBorderedImageView alloc] initWithFrame:frame];
+        imgView = [[ZDBorderedImageView alloc] initWithFrame:frame];
         imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [imgView setBorderMask:mask width:borderWidth color:color];
         [self addSubview:imgView];
@@ -89,12 +89,12 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
     imgView.opaque = NO;
 }
 
-- (void)rz_addBordersWithCornerRadius:(CGFloat)radius width:(CGFloat)borderWidth color:(UIColor *)color
+- (void)zd_addBordersWithCornerRadius:(CGFloat)radius width:(CGFloat)borderWidth color:(UIColor *)color
 {
-    RZBorderedImageView *imgView = objc_getAssociatedObject(self, &kRZBorderViewKey);
+    ZDBorderedImageView *imgView = objc_getAssociatedObject(self, &kRZBorderViewKey);
     if (imgView == nil)
     {
-        imgView = [[RZBorderedImageView alloc] initWithFrame:self.bounds];
+        imgView = [[ZDBorderedImageView alloc] initWithFrame:self.bounds];
         imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [imgView setBorderCornerRadius:radius width:borderWidth color:color];
         [self addSubview:imgView];
@@ -105,9 +105,9 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
     imgView.opaque = NO;
 }
 
-- (void)rz_removeBorders
+- (void)zd_removeBorders
 {
-    RZBorderedImageView *imgView = objc_getAssociatedObject(self, &kRZBorderViewKey);
+    ZDBorderedImageView *imgView = objc_getAssociatedObject(self, &kRZBorderViewKey);
     if (imgView)
     {
         [imgView removeFromSuperview];
@@ -119,7 +119,7 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
 
 // ---------------------------------------
 
-@implementation RZBorderedImageView
+@implementation ZDBorderedImageView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -143,7 +143,7 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
 
 #pragma mark - Public
 
-- (void)setBorderMask:(RZViewBorderMask)mask width:(CGFloat)width color:(UIColor *)color
+- (void)setBorderMask:(ZDViewBorderMask)mask width:(CGFloat)width color:(UIColor *)color
 {
     self.image = [self coloredBorderImageWithMask:mask width:width color:color];
 }
@@ -176,8 +176,8 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
         // Automatically clear the cache in low-memory situations. Should be a rare occurrence.
         // This notification observation will be valid for the application lifetime - no need to ever remove the observer.
         [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidReceiveMemoryWarningNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-            [[[RZBorderedImageView class] maskingImageCache] removeAllObjects];
-            [[[RZBorderedImageView class] coloredBorderImageCache] removeAllObjects];
+            [[[ZDBorderedImageView class] maskingImageCache] removeAllObjects];
+            [[[ZDBorderedImageView class] coloredBorderImageCache] removeAllObjects];
         }];
 
     });
@@ -186,7 +186,7 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
 
 #pragma mark - Bitmap generation
 
-- (UIImage *)maskingImageForMask:(RZViewBorderMask)mask width:(CGFloat)width
+- (UIImage *)maskingImageForMask:(ZDViewBorderMask)mask width:(CGFloat)width
 {
     // must round the width to nearest pixel for current screen scale
     CGFloat scale = fminf(kRZBorderMaxScale, [[UIScreen mainScreen] scale]);
@@ -216,7 +216,7 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
 
         CGFloat midWidth = width * 0.5;
 
-        if (mask & RZViewBorderLeft)
+        if (mask & ZDViewBorderLeft)
         {
             CGPoint start = CGPointMake(midWidth, 0);
             CGPoint end   = CGPointMake(midWidth, imgDim);
@@ -224,7 +224,7 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
             segArray[segCount++] = end;
         }
 
-        if (mask & RZViewBorderTop)
+        if (mask & ZDViewBorderTop)
         {
             CGPoint start = CGPointMake(0, imgDim - midWidth);
             CGPoint end   = CGPointMake(imgDim, imgDim - midWidth);
@@ -232,7 +232,7 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
             segArray[segCount++] = end;
         }
 
-        if (mask & RZViewBorderRight)
+        if (mask & ZDViewBorderRight)
         {
             CGPoint start = CGPointMake(imgDim - midWidth, imgDim);
             CGPoint end   = CGPointMake(imgDim - midWidth, 0);
@@ -240,7 +240,7 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
             segArray[segCount++] = end;
         }
 
-        if (mask & RZViewBorderBottom)
+        if (mask & ZDViewBorderBottom)
         {
             CGPoint start = CGPointMake(imgDim, midWidth);
             CGPoint end   = CGPointMake(0, midWidth);
@@ -308,7 +308,7 @@ static const CGFloat kRZBorderMaxScale = 2.0f;
 }
 
 
-- (UIImage *)coloredBorderImageWithMask:(RZViewBorderMask)mask width:(CGFloat)width color:(UIColor *)color
+- (UIImage *)coloredBorderImageWithMask:(ZDViewBorderMask)mask width:(CGFloat)width color:(UIColor *)color
 {
     CGFloat r, g, b, a;
     [color getRed:&r green:&g blue:&b alpha:&a];
