@@ -604,6 +604,7 @@ static void ZD_HookBlockWithLibffi(id block) {
     if (!block || !*block) return;
     
     switch (hookWay) {
+#if USE_LIBFFI
         case ZDHookWay_Libffi: {
             __block ZDFfiBlockHook *ffiHook = [ZDFfiBlockHook hookBlock:*block];
             [self zd_deallocBlock:^(id  _Nonnull realTarget) {
@@ -611,6 +612,7 @@ static void ZD_HookBlockWithLibffi(id block) {
                 ffiHook = nil;
             }];
         } break;
+#endif
         default: {
             *block = ZD_HookBlock(*block);
         } break;
