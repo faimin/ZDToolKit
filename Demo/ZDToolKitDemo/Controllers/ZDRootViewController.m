@@ -8,6 +8,7 @@
 
 #import "ZDRootViewController.h"
 #import <objc/runtime.h>
+#import <ZDToolKit/ZDToolKit.h>
 
 @interface ZDRootViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -36,7 +37,6 @@
         @"ViewController",
         @"TwoViewController",
         @"ThreeController",
-        @"ZDHookBlockController",
         @"ZDLibffiController",
     ];
     [self.tableView reloadData];
