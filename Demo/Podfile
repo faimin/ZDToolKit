@@ -1,6 +1,8 @@
 # Uncomment the next line to define a global platform for your project
-require 'pry'
+#require 'pry'
 platform :ios, '10.0'
+
+#plugin 'cocoapods-mapfile'
 
 target 'ZDToolKitDemo' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -8,8 +10,6 @@ target 'ZDToolKitDemo' do
 
   # Pods for ZDToolKitDemo
   pod 'SDWebImage'
-  pod 'YYWebImage'
-  pod 'libffi-core'
   pod 'ZDToolKit', :path => '../'
   
 
