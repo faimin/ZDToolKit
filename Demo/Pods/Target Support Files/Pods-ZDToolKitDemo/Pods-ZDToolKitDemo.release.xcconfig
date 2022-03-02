@@ -1,13 +1,24 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/YYCache" "${PODS_ROOT}/Headers/Public/YYImage" "${PODS_ROOT}/Headers/Public/YYWebImage" "${PODS_ROOT}/Headers/Public/ZDToolKit" "${PODS_ROOT}/Headers/Public/libffi-core"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" "${PODS_CONFIGURATION_BUILD_DIR}/YYCache" "${PODS_CONFIGURATION_BUILD_DIR}/YYImage" "${PODS_CONFIGURATION_BUILD_DIR}/YYWebImage" "${PODS_CONFIGURATION_BUILD_DIR}/ZDToolKit" "${PODS_ROOT}/libffi-core/libffi-core"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_ROOT}/Headers/Public/ZDToolKit/ZDToolKit.modulemap"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"SDWebImage" -l"YYCache" -l"YYImage" -l"YYWebImage" -l"ZDToolKit" -l"ffi" -l"sqlite3" -l"z" -framework "Accelerate" -framework "AssetsLibrary" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreImage" -framework "CoreText" -framework "Foundation" -framework "ImageIO" -framework "MobileCoreServices" -framework "QuartzCore" -framework "UIKit" -framework "WebKit"
+HEADER_SEARCH_PATHS = ${HMAP_HEADER_SEARCH_PATHS}
+HMAP_GEN_DIR = ${BUILD_DIR}/../../HMap/${PROJECT}.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/${TARGET_NAME}.build
+HMAP_HEADER_SEARCH_PATHS = "${HMAP_GEN_DIR}/${PRODUCT_NAME}-own-target-headers.hmap" "${HMAP_GEN_DIR}/${PRODUCT_NAME}-all-non-framework-target-headers.hmap" ${SAVE_HEADER_SEARCH_PATHS}
+HMAP_OTHER_CFLAGS = -I"${HMAP_GEN_DIR}/${PRODUCT_NAME}-all-target-headers.hmap" -ivfsoverlay "${HMAP_GEN_DIR}/all-product-headers.yaml" ${SAVE_OTHER_CFLAGS}
+HMAP_OTHER_CPLUSPLUSFLAGS = -I"${HMAP_GEN_DIR}/${PRODUCT_NAME}-all-target-headers.hmap" -ivfsoverlay "${HMAP_GEN_DIR}/all-product-headers.yaml"
+HMAP_USER_HEADER_SEARCH_PATHS = "${HMAP_GEN_DIR}/${PRODUCT_NAME}-project-headers.hmap" "${HMAP_GEN_DIR}/${PRODUCT_NAME}-all-target-headers.hmap"
+HMAP_USE_HEADERMAP = NO
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" "${PODS_CONFIGURATION_BUILD_DIR}/ZDToolKit"
+OTHER_CFLAGS = ${HMAP_OTHER_CFLAGS}
+OTHER_CPLUSPLUSFLAGS = ${HMAP_OTHER_CPLUSPLUSFLAGS}
+OTHER_LDFLAGS = $(inherited) -ObjC -l"SDWebImage" -l"ZDToolKit" -framework "CoreGraphics" -framework "CoreImage" -framework "CoreText" -framework "Foundation" -framework "ImageIO" -framework "QuartzCore" -framework "UIKit" -framework "WebKit"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Public/ZDToolKit/ZDToolKit.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
 PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
+SAVE_HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/SDWebImage" "${PODS_ROOT}/Headers/Public/ZDToolKit"
+SAVE_OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_ROOT}/Headers/Public/ZDToolKit/ZDToolKit.modulemap"
+USER_HEADER_SEARCH_PATHS = ${HMAP_USER_HEADER_SEARCH_PATHS}
+USE_HEADERMAP = ${HMAP_USE_HEADERMAP}
 USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

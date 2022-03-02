@@ -81,8 +81,17 @@ ZD_AVOID_ALL_LOAD_FLAG_FOR_CATEGORY(NSObject_ZDRuntime)
     Class myClass = object_getClass(self);
     Method originalMethod = class_getClassMethod(myClass, selector);
     Method otherMethod = class_getClassMethod(myClass, otherSelector);
-    
-    method_exchangeImplementations(originalMethod, otherMethod);
+
+    if (class_addMethod(myClass, selector,
+                        method_getImplementation(otherMethod),
+                        method_getTypeEncoding(otherMethod))) {
+        class_replaceMethod(myClass, otherSelector,
+                          method_getImplementation(originalMethod),
+                          method_getTypeEncoding(originalMethod));
+    } 
+    else {
+        method_exchangeImplementations(originalMethod, otherMethod);
+    }
 }
 
 #pragma mark - Copy Property
