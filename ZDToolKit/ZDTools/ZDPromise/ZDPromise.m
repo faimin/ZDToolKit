@@ -8,6 +8,7 @@
 
 #import "ZDPromise.h"
 
+/*
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
 static void zd_promise_defer_cleanup_block(__strong void(^*block)(void)) {
@@ -17,6 +18,7 @@ static void zd_promise_defer_cleanup_block(__strong void(^*block)(void)) {
 
 #define zd_promise_defer_block_name(suffix)  zd_defer_ ## suffix
 #define zd_promise_defer __strong void(^zd_promise_defer_block_name(__LINE__))(void) __attribute__((cleanup(zd_promise_defer_cleanup_block), unused)) = ^
+*/
 
 @interface ZDPromise ()
 @property (class, nonatomic, readonly) dispatch_semaphore_t zd_dispatchSemaphore;
@@ -64,10 +66,9 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
 
 + (dispatch_queue_t)defaultDispatchQueue {
     dispatch_semaphore_wait(ZDPromise.zd_dispatchSemaphore, DISPATCH_TIME_FOREVER);
-    zd_promise_defer {
-        dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
-    };
-    return zdPromiseDefaultDispatchQueue;
+    dispatch_queue_t queue = zdPromiseDefaultDispatchQueue;
+    dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
+    return queue;
 }
 
 + (void)setDefaultDispatchQueue:(dispatch_queue_t)queue {
@@ -339,42 +340,37 @@ static dispatch_queue_t zdPromiseDefaultDispatchQueue;
 
 - (BOOL)isPending {
     dispatch_semaphore_wait(ZDPromise.zd_dispatchSemaphore, DISPATCH_TIME_FOREVER);
-    zd_promise_defer {
-        dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
-    };
-    return _state == ZDPromiseState_Pending;
+    BOOL isPending = _state == ZDPromiseState_Pending;
+    dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
+    return isPending;
 }
 
 - (BOOL)isFulfilled {
     dispatch_semaphore_wait(ZDPromise.zd_dispatchSemaphore, DISPATCH_TIME_FOREVER);
-    zd_promise_defer {
-        dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
-    };
-    return _state == ZDPromiseState_Fulfilled;
+    BOOL isFulfilled = _state == ZDPromiseState_Fulfilled;
+    dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
+    return isFulfilled;
 }
 
 - (BOOL)isRejected {
     dispatch_semaphore_wait(ZDPromise.zd_dispatchSemaphore, DISPATCH_TIME_FOREVER);
-    zd_promise_defer {
-        dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
-    };
-    return _state == ZDPromiseState_Rejected;
+    BOOL isRejected = _state == ZDPromiseState_Rejected;
+    dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
+    return isRejected;
 }
 
 - (nullable id)value {
     dispatch_semaphore_wait(ZDPromise.zd_dispatchSemaphore, DISPATCH_TIME_FOREVER);
-    zd_promise_defer {
-        dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
-    };
-    return _value;
+    id v = _value;
+    dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
+    return v;
 }
 
 - (nullable NSError *)error {
     dispatch_semaphore_wait(ZDPromise.zd_dispatchSemaphore, DISPATCH_TIME_FOREVER);
-    zd_promise_defer {
-        dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
-    };
-    return _error;
+    NSError *err = _error;
+    dispatch_semaphore_signal(ZDPromise.zd_dispatchSemaphore);
+    return err;
 }
 
 @end
