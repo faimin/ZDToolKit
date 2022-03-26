@@ -36,7 +36,6 @@
         @"ViewController",
         @"TwoViewController",
         @"ThreeController",
-        @"ZDHookBlockController",
         @"ZDLibffiController",
     ];
     [self.tableView reloadData];

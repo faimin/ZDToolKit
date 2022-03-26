@@ -23,7 +23,6 @@
 		BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB5A8031E96136F00271230 /* ZDQueuePool.m */; };
 		DA6CBBDA1F886BC900A36EF4 /* ThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6CBBD91F886BC900A36EF4 /* ThreeController.m */; };
 		FA15D42820D3928800F4AFBC /* ZDRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15D42720D3928800F4AFBC /* ZDRootViewController.m */; };
-		FA15D42C20D398C000F4AFBC /* ZDHookBlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15D42B20D398C000F4AFBC /* ZDHookBlockController.m */; };
 		FA15D42F20D3995200F4AFBC /* ZDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15D42E20D3995200F4AFBC /* ZDBaseViewController.m */; };
 		FA6244D7200CBFAE007A9EDC /* ZDImagePreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D2200CBFAE007A9EDC /* ZDImagePreviewCell.m */; };
 		FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6244D3200CBFAE007A9EDC /* YYPhotoGroupView.m */; };
@@ -112,8 +111,6 @@
 		F9EEE867971D34CD8CCDDCA1 /* libPods-ZDToolKitDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA15D42620D3928800F4AFBC /* ZDRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDRootViewController.h; sourceTree = "<group>"; };
 		FA15D42720D3928800F4AFBC /* ZDRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDRootViewController.m; sourceTree = "<group>"; };
-		FA15D42A20D398C000F4AFBC /* ZDHookBlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDHookBlockController.h; sourceTree = "<group>"; };
-		FA15D42B20D398C000F4AFBC /* ZDHookBlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDHookBlockController.m; sourceTree = "<group>"; };
 		FA15D42D20D3995200F4AFBC /* ZDBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDBaseViewController.h; sourceTree = "<group>"; };
 		FA15D42E20D3995200F4AFBC /* ZDBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDBaseViewController.m; sourceTree = "<group>"; };
 		FA5EB81320BD03A200DD081C /* ZDProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDProtocols.h; sourceTree = "<group>"; };
@@ -290,8 +287,6 @@
 				05B5D1B21CEE1153000CC089 /* TwoViewController.m */,
 				DA6CBBD81F886BC900A36EF4 /* ThreeController.h */,
 				DA6CBBD91F886BC900A36EF4 /* ThreeController.m */,
-				FA15D42A20D398C000F4AFBC /* ZDHookBlockController.h */,
-				FA15D42B20D398C000F4AFBC /* ZDHookBlockController.m */,
 				FADFAE8423A104DA006CDF89 /* ZDLibffiController.h */,
 				FADFAE8523A104DA006CDF89 /* ZDLibffiController.m */,
 			);
@@ -583,7 +578,6 @@
 				FADFAE8623A104DA006CDF89 /* ZDLibffiController.m in Sources */,
 				BCB5A8041E96136F00271230 /* ZDQueuePool.m in Sources */,
 				FA6244D8200CBFAE007A9EDC /* YYPhotoGroupView.m in Sources */,
-				FA15D42C20D398C000F4AFBC /* ZDHookBlockController.m in Sources */,
 				FAAF299B2160D4D600F2BEBF /* ZDModel.m in Sources */,
 				05B5D1B31CEE1153000CC089 /* TwoViewController.m in Sources */,
 				FA15D42F20D3995200F4AFBC /* ZDBaseViewController.m in Sources */,
