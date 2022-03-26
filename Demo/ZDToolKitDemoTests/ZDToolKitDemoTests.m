@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+@import ObjectiveC;
 #import <ZDToolKit/ZDToolKit.h>
 #import "ZDModel.h"
 
@@ -40,26 +41,26 @@
     }];
 }
 
-- (void)testBlockHook {
-    __auto_type block = ^NSString *(NSInteger count, NSString *str, NSObject *obj) {
-        NSString *result = [NSString stringWithFormat:@"%ld, %@, %@", count*2, str, obj];
-        return result;
-    };
-    id oldBlock = [block copy];
-    
-    ZDHookWay hookWay = ZDHookWay_MsgForward;
-    [self zd_hookBlock:&block hookWay:hookWay];
-    id newBlock = [block copy];
-    
-    if (hookWay == ZDHookWay_MsgForward) {
-        XCTAssertNotEqual(oldBlock, newBlock);
-    } else if (hookWay == ZDHookWay_Libffi) {
-        XCTAssertEqual(oldBlock, newBlock);
-    }
-    
-    NSString *blockResult = block(123, @"2019年01月14日12:04:26", @999);
-    XCTAssertEqualObjects(blockResult, @"246, 2019年01月14日12:04:26, 999");
-}
+//- (void)testBlockHook {
+//    __auto_type block = ^NSString *(NSInteger count, NSString *str, NSObject *obj) {
+//        NSString *result = [NSString stringWithFormat:@"%ld, %@, %@", count*2, str, obj];
+//        return result;
+//    };
+//    id oldBlock = [block copy];
+//
+//    ZDHookWay hookWay = ZDHookWay_MsgForward;
+//    [self zd_hookBlock:&block hookWay:hookWay];
+//    id newBlock = [block copy];
+//
+//    if (hookWay == ZDHookWay_MsgForward) {
+//        XCTAssertNotEqual(oldBlock, newBlock);
+//    } else if (hookWay == ZDHookWay_Libffi) {
+//        XCTAssertEqual(oldBlock, newBlock);
+//    }
+//
+//    NSString *blockResult = block(123, @"2019年01月14日12:04:26", @999);
+//    XCTAssertEqualObjects(blockResult, @"246, 2019年01月14日12:04:26, 999");
+//}
 
 - (void)testMutcopy {
     ZDModel *model = ({
@@ -106,16 +107,18 @@
 
 - (void)testDefer {
     __block NSInteger i = 1;
-    __auto_type block = ^{
+    __auto_type block = ^int{
         zd_defer {
             /// 所谓作用域结束，包括大括号结束、return、goto、break、exception等各种情况
             NSLog(@"当前作用域结束,马上要出作用域了");
             i = 3;
         };
         i = 2;
+        
+        return 100;
     };
     
-    block();
+    NSLog(@"block result = %d", block());
     
     XCTAssertEqual(i, 3);
 }
