@@ -518,8 +518,7 @@ static void __Swizzle__(Class c, SEL orig, SEL new) {
 - (void)setZd_cornerRadius:(CGFloat)zd_cornerRadius {
     objc_setAssociatedObject(self, CornerRadiusKey, @(zd_cornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     //下面的方法只有获取到真实的bounds才有效
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                        cornerRadius:zd_cornerRadius];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:zd_cornerRadius];
     [maskPath addClip];
     
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
