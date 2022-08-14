@@ -211,5 +211,4 @@ INSTALLATION_OPTIONS:
   warn_for_unused_master_specs_repo: true
 OBJECT_VERSION: 46
 PLUGINS:
-  cocoapods-mapfile:
-    {}
+  {}

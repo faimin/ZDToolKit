@@ -13,47 +13,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		42F9C2621EF7B1C56BDCC1FC37019AF8 /* PBXContainerItemProxy */ = {
+		29E6233153C191667ACC79A0DD0A58B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 101FA2E1541FAD8DF6B189C7160EFED9;
 			remoteInfo = "Pods-ZDToolKitDemo";
 		};
-		6D2C59DE26AEF7256C1B6B009F3A6906 /* PBXContainerItemProxy */ = {
+		8745AB99BF1D5F075CDE4EC529D456C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FFE531D987B13B4D5F3A30C0BD88DD85 /* ZDToolKit */;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 101FA2E1541FAD8DF6B189C7160EFED9;
+			remoteInfo = "Pods-ZDToolKitDemo";
+		};
+		8CAED6D6A51CE90A82AEB498C35AC713 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFE531D987B13B4D5F3A30C0BD88DD85 /* ZDToolKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = F01D98A255D10FCA305E22F1C7AF6818;
 			remoteInfo = ZDToolKit;
 		};
-		78156D774CE4BA46D1414D2E31160D5E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 101FA2E1541FAD8DF6B189C7160EFED9;
-			remoteInfo = "Pods-ZDToolKitDemo";
-		};
 		EE467856B4290B01D381F8F695016027 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2E3194CB830F0003FDD8129C62976FFA /* SDWebImage */;
+			containerPortal = 2E3194CB830F0003FDD8129C62976FFA /* SDWebImage.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 4ECF4E662EEBE4FA58102FF984D920CC;
 			remoteInfo = SDWebImage;
-		};
-		FADAEDE42771747E00EC8202 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E3194CB830F0003FDD8129C62976FFA /* SDWebImage */;
-			proxyType = 2;
-			remoteGlobalIDString = 98A373AB42BB83999C42F0562B3EFA47;
-			remoteInfo = SDWebImage;
-		};
-		FADAEDE62771747E00EC8202 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FFE531D987B13B4D5F3A30C0BD88DD85 /* ZDToolKit */;
-			proxyType = 2;
-			remoteGlobalIDString = 32EACD31F24CC7A15E0B6DA736A4ED8D;
-			remoteInfo = ZDToolKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -61,7 +47,7 @@
 		05FD4FBFB26A08AAD28831834027BD2C /* Pods-ZDToolKitDemoUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZDToolKitDemoUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		10109088E14C386411A83D8B497B009A /* Pods-ZDToolKitDemoUITests */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-ZDToolKitDemoUITests"; path = "libPods-ZDToolKitDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		184524504DB7FCE7DCD9B5EB39F56581 /* Pods-ZDToolKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZDToolKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		2893412A6F0DA6AF49E13CA8F4E69812 /* libPods-ZDToolKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2893412A6F0DA6AF49E13CA8F4E69812 /* Pods-ZDToolKitDemo */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-ZDToolKitDemo"; path = "libPods-ZDToolKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E3194CB830F0003FDD8129C62976FFA /* SDWebImage */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage; path = SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		2FC9A8C53817BFAA75F6077650247BB6 /* Pods-ZDToolKitDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZDToolKitDemo-acknowledgements.plist"; sourceTree = "<group>"; };
 		35A4F8C3CD9A02782C3A10497C7B47AF /* Pods-ZDToolKitDemoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZDToolKitDemoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -69,7 +55,7 @@
 		51CF68DD7A654096AFA0D6415A934F50 /* Pods-ZDToolKitDemoTests */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-ZDToolKitDemoTests"; path = "libPods-ZDToolKitDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57F118E95A7C826D6890AF0ED218B89F /* Pods-ZDToolKitDemoUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZDToolKitDemoUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		988399ADB1C9362F4AE510F5E9C99BB3 /* Pods-ZDToolKitDemoUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZDToolKitDemoUITests-dummy.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0777B88C4635FDD774155E9FDDFA16C /* Pods-ZDToolKitDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZDToolKitDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A0F2EC1BFC458B063299B5DCFD57019E /* Pods-ZDToolKitDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZDToolKitDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A5114489B5723204565AD45C6C989BE5 /* Pods-ZDToolKitDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZDToolKitDemoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,7 +118,7 @@
 		5C9C6A9B923DC479B1CC45C27A09DA09 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2893412A6F0DA6AF49E13CA8F4E69812 /* libPods-ZDToolKitDemo.a */,
+				2893412A6F0DA6AF49E13CA8F4E69812 /* Pods-ZDToolKitDemo */,
 				51CF68DD7A654096AFA0D6415A934F50 /* Pods-ZDToolKitDemoTests */,
 				10109088E14C386411A83D8B497B009A /* Pods-ZDToolKitDemoUITests */,
 			);
@@ -200,22 +186,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FADAEDE02771747A00EC8202 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FADAEDE52771747E00EC8202 /* libSDWebImage.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FADAEDE22771747A00EC8202 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FADAEDE72771747E00EC8202 /* libZDToolKit.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -255,11 +225,11 @@
 			);
 			dependencies = (
 				F1EF7533F6297F56453FD6BB5A03ECF1 /* PBXTargetDependency */,
-				A79EAD234D0B73969862EB511311DBEE /* PBXTargetDependency */,
+				4723B4B94A050306955E48A6EE8A8DBC /* PBXTargetDependency */,
 			);
 			name = "Pods-ZDToolKitDemo";
 			productName = "Pods-ZDToolKitDemo";
-			productReference = 2893412A6F0DA6AF49E13CA8F4E69812 /* libPods-ZDToolKitDemo.a */;
+			productReference = 2893412A6F0DA6AF49E13CA8F4E69812 /* Pods-ZDToolKitDemo */;
 			productType = "com.apple.product-type.library.static";
 		};
 		794CCCAF13697826F73A5CC98E2EF620 /* Pods-ZDToolKitDemoTests */ = {
@@ -273,7 +243,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9159F13D00A1F43023A9DF5A85EED63F /* PBXTargetDependency */,
+				9368B940020E36E1453DAC9769FAB5A5 /* PBXTargetDependency */,
 			);
 			name = "Pods-ZDToolKitDemoTests";
 			productName = "Pods-ZDToolKitDemoTests";
@@ -291,7 +261,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				13C6A9438B3DCF87C9BF0FDF8581EA27 /* PBXTargetDependency */,
+				1040621AF6B2C2093425461198D98404 /* PBXTargetDependency */,
 			);
 			name = "Pods-ZDToolKitDemoUITests";
 			productName = "Pods-ZDToolKitDemoUITests";
@@ -320,11 +290,9 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FADAEDE02771747A00EC8202 /* Products */;
 					ProjectRef = 2E3194CB830F0003FDD8129C62976FFA /* SDWebImage */;
 				},
 				{
-					ProductGroup = FADAEDE22771747A00EC8202 /* Products */;
 					ProjectRef = FFE531D987B13B4D5F3A30C0BD88DD85 /* ZDToolKit */;
 				},
 			);
@@ -336,23 +304,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		FADAEDE52771747E00EC8202 /* libSDWebImage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSDWebImage.a;
-			remoteRef = FADAEDE42771747E00EC8202 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FADAEDE72771747E00EC8202 /* libZDToolKit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libZDToolKit.a;
-			remoteRef = FADAEDE62771747E00EC8202 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		055668DD1A294D17F3FCB65295465DD6 /* Sources */ = {
@@ -382,22 +333,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		13C6A9438B3DCF87C9BF0FDF8581EA27 /* PBXTargetDependency */ = {
+		1040621AF6B2C2093425461198D98404 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-ZDToolKitDemo";
 			target = 101FA2E1541FAD8DF6B189C7160EFED9 /* Pods-ZDToolKitDemo */;
-			targetProxy = 42F9C2621EF7B1C56BDCC1FC37019AF8 /* PBXContainerItemProxy */;
+			targetProxy = 8745AB99BF1D5F075CDE4EC529D456C9 /* PBXContainerItemProxy */;
 		};
-		9159F13D00A1F43023A9DF5A85EED63F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-ZDToolKitDemo";
-			target = 101FA2E1541FAD8DF6B189C7160EFED9 /* Pods-ZDToolKitDemo */;
-			targetProxy = 78156D774CE4BA46D1414D2E31160D5E /* PBXContainerItemProxy */;
-		};
-		A79EAD234D0B73969862EB511311DBEE /* PBXTargetDependency */ = {
+		4723B4B94A050306955E48A6EE8A8DBC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZDToolKit;
-			targetProxy = 6D2C59DE26AEF7256C1B6B009F3A6906 /* PBXContainerItemProxy */;
+			targetProxy = 8CAED6D6A51CE90A82AEB498C35AC713 /* PBXContainerItemProxy */;
+		};
+		9368B940020E36E1453DAC9769FAB5A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-ZDToolKitDemo";
+			target = 101FA2E1541FAD8DF6B189C7160EFED9 /* Pods-ZDToolKitDemo */;
+			targetProxy = 29E6233153C191667ACC79A0DD0A58B8 /* PBXContainerItemProxy */;
 		};
 		F1EF7533F6297F56453FD6BB5A03ECF1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -570,7 +521,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
