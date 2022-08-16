@@ -538,15 +538,16 @@ static void __Swizzle__(Class c, SEL orig, SEL new) {
     if (UIEdgeInsetsEqualToEdgeInsets(self.zd_touchExtendInsets, UIEdgeInsetsZero) || self.hidden) {
         return [self zdPointInside:point withEvent:event];
     }
+    
     CGRect hitFrame = UIEdgeInsetsInsetRect(self.bounds, self.zd_touchExtendInsets);
     hitFrame.size.width = MAX(hitFrame.size.width, 0);
     hitFrame.size.height = MAX(hitFrame.size.height, 0);
-    return CGRectContainsPoint(hitFrame, point);
+    BOOL result = CGRectContainsPoint(hitFrame, point);
+    return result;
 }
 
-- (void)setZd_touchExtendInsets:(UIEdgeInsets)zd_touchExtendInsets {
-    UIEdgeInsets zdTouchExtendInsets = UIEdgeInsetsMake(-zd_touchExtendInsets.top, -zd_touchExtendInsets.left, -zd_touchExtendInsets.bottom, -zd_touchExtendInsets.right);
-    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:zdTouchExtendInsets], OBJC_ASSOCIATION_RETAIN);
+- (void)setZd_touchExtendInsets:(UIEdgeInsets)touchExtendInsets {
+    objc_setAssociatedObject(self, TouchExtendInsetKey, [NSValue valueWithUIEdgeInsets:touchExtendInsets], OBJC_ASSOCIATION_RETAIN);
 }
 
 - (UIEdgeInsets)zd_touchExtendInsets {

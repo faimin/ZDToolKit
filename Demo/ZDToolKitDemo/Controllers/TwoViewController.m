@@ -122,7 +122,7 @@ char *ZDInjectionTwoViewController ZDInjectable = "TwoViewController";
 }
 
 - (void)clickTextTest {
-    self.imageView.zd_touchExtendInsets = UIEdgeInsetsMake(50, 50, 50, 50);
+    self.imageView.zd_touchExtendInsets = UIEdgeInsetsMake(-50, -50, -50, -50);
     self.imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
     [self.imageView addGestureRecognizer:tap];
