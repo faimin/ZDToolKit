@@ -29,7 +29,7 @@ CACHE_KEYS:
       ZDToolKit:
         :debug: 851cf69da7f79f69336f5ce08c0329ee
         :release: 851cf69da7f79f69336f5ce08c0329ee
-    CHECKSUM: 36fc97e7b74bf549188b6c07f6cc4774ec4467df
+    CHECKSUM: b05a3511d2f346b194dc9ef5b86b9d8736fcd200
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -122,8 +122,6 @@ CACHE_KEYS:
       - "../../ZDToolKit/ZDMacros/ZDMetamacros.h"
       - "../../ZDToolKit/ZDMRC/ZDSafe.h"
       - "../../ZDToolKit/ZDMRC/ZDSafe.m"
-      - "../../ZDToolKit/ZDRuntime/ZDRuntimeTool.h"
-      - "../../ZDToolKit/ZDRuntime/ZDRuntimeTool.m"
       - "../../ZDToolKit/ZDSubclass/ZDActionLabel.h"
       - "../../ZDToolKit/ZDSubclass/ZDActionLabel.m"
       - "../../ZDToolKit/ZDSubclass/ZDBackgroundContainerView.h"

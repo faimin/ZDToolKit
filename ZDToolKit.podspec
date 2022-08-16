@@ -82,12 +82,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'ZDDebug' do |ss|
-    ss.source_files = 'ZDToolKit/ZDDebug/*.{h,m}'
+    ss.source_files = 'ZDToolKit/ZDDebug/**/*.{h,m}'
   end
 
   s.subspec 'ZDMRC' do |ss|
     ss.requires_arc = false
-    ss.source_files = 'ZDToolKit/ZDMRC/ZDSafe.{h,m}'
+    ss.source_files = 'ZDToolKit/ZDMRC/**/*.{h,m}'
   end
 
 end

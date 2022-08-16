@@ -105,12 +105,12 @@
     },
     {
       "name": "ZDDebug",
-      "source_files": "ZDToolKit/ZDDebug/*.{h,m}"
+      "source_files": "ZDToolKit/ZDDebug/**/*.{h,m}"
     },
     {
       "name": "ZDMRC",
       "requires_arc": false,
-      "source_files": "ZDToolKit/ZDMRC/ZDSafe.{h,m}"
+      "source_files": "ZDToolKit/ZDMRC/**/*.{h,m}"
     }
   ]
 }
