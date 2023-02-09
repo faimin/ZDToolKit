@@ -4,5 +4,9 @@ source "https://gems.ruby-china.com"
 
 # git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
+group :development do
+  gem "ruby-lsp", require: false
+end
+
 gem "pry"
-gem "cocoapods", '1.10.1'
+gem "cocoapods", '1.11.3'

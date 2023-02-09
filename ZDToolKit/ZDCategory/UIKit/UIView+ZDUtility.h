@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 // Layer
 @property (nonatomic, assign) CGFloat zd_cornerRadius;
 
-/// Extend clickable area, e.g: self.zd_touchExtendInsets = UIEdgeInsetsMake(10, 20, 40, 10);
+/// Extend clickable area, e.g: self.zd_touchExtendInsets = UIEdgeInsetsMake(-10, -20, -40, -10);
 @property (nonatomic, assign) UIEdgeInsets zd_touchExtendInsets;
 
 /// Chain Caller

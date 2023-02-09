@@ -7,317 +7,313 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00378A921A846556FDE99084CB3CB96E /* UIViewController+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D3D3753F7814CAACF3F04C3380440E /* UIViewController+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0092F9495A8826EA2446A77568ED7A5C /* NSTimer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C21F21973E3B772AA290985FB328D9 /* NSTimer+ZDUtility.m */; };
-		04F223F53E4AAA76E6BBD1FB2AC67E79 /* ZDLinkedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 262C09C1A54C04D315C6045DC5ED7F52 /* ZDLinkedMap.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		08FCF35F33C130A6D4B664A2E4802C51 /* ZDOSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = A5904E462D58580BE8E8E2DDC42A556C /* ZDOSLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0B499495603B19D1788D0CE90BD870A3 /* ZDMetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 059D0026C373384A609667F76877EF16 /* ZDMetamacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0BACA81C6ECA54A07FC85007196B4779 /* ZDGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DC64DBA78CDB45A4FD618FC1636922 /* ZDGifImageView.m */; };
-		0C4357B838ACACB15F85FC1D92B90F46 /* ZDWatchdog.m in Sources */ = {isa = PBXBuildFile; fileRef = F754D5BA9A7E886463F0C05CDE2110D9 /* ZDWatchdog.m */; };
-		1010E7F1C392E72265DA5014CB097EEB /* NSObject+ZDSimulateKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F42058F7690EA131D9EC1819A57CED /* NSObject+ZDSimulateKVO.m */; };
-		1162774705D90940EB314792B4F54484 /* ZDPermissionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E1CA1FD3DFC091091570DAFB1317CF5 /* ZDPermissionHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1196F9D9C5FB4FB546130A6DBC071F59 /* WKWebView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = BB6F16076F064483AF71FA2851AE3BBF /* WKWebView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1256727EEE158504A8E9A27BD59F7585 /* ZDGifImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 64801D2D07D80FF790B2B12A9948422E /* ZDGifImageView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		156AB92DC65051CF03E7EE7ED81E115D /* ZDConsoleUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18E8FC882065EE93B5FCD843907174 /* ZDConsoleUnicode.m */; };
-		1685B53A6FC99F5B23EAD18D16150CE1 /* ZDActionLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = FB98ECD1DB852D621DCFD154D80EFD96 /* ZDActionLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		16C2ADD80CFAA343E25D119AEB5B6AE5 /* NSObject+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 7836521C1B0AAB04E9F470D2629BAA5B /* NSObject+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		16FDB39C2CF75C30CD4E59F72147667A /* ZDPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF0B2444004703E0D83830D5DD83E33 /* ZDPromise.m */; };
-		1740E763897683FBB546DD92E07DC1DE /* NSDate+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C7937F541E8E22A037F4A5ADE7B6FAF /* NSDate+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		18D5DD5E6DD10DA611EBED0959A0F58E /* NSInvocation+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A51299A206B5D6AB03A58785464740F /* NSInvocation+ZDUtility.m */; };
-		1D38E075A97D4AFAF704743D29A6957F /* UIApplication+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECBCDE9A990D3440CB8EA0538E8DB68 /* UIApplication+ZDUtility.m */; };
-		1DC7A7C104DB108F9A9E8BC51A137481 /* UIResponder+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD7F29D64D83D29231D098CEF0601FD /* UIResponder+ZDUtility.m */; };
-		1E9B70D29CBF2CC0CCBF015A98BD0180 /* ZDDispatchSourceMerge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3077FD900AED2A232F67F4AB725FD4BB /* ZDDispatchSourceMerge.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		206927A4B6CBCA2E831FAFE48C83A4CA /* ZDGuardUIKitOnMainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F3E4221EC0537B19F0C2CEC0005E4B0 /* ZDGuardUIKitOnMainThread.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		20CCBEC3043E9B9D13A3E9FBC4F2C84C /* ZDMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A23185B453C1FA3873BCEE6906B4684 /* ZDMutableArray.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		231F098EF841B6896F38626D233B5D18 /* ZDReusePool.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB19DDA481E03FE949E941CBDF39B63 /* ZDReusePool.m */; };
-		238781246F03D2F65CFF63666DCF93C5 /* NSMutableArray+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F6EB353099974C0ADC81EA04E0600FE /* NSMutableArray+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2537F8F4792A8AC33D58DEB061B94BFE /* ZDBackgroundContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D31B4D153627EAEACE1DFF4CD88C314 /* ZDBackgroundContainerView.m */; };
-		2743815BBA9A03BD26D0E7D0632321AF /* NSURLSession+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = B19E29CDC1A6DF87C529BD9BB833DD48 /* NSURLSession+ZDUtility.m */; };
-		280B5A9A378826114CD7B556990B06B1 /* ZDMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 093483A3488E6B604DB3E024A7AE51FC /* ZDMutableDictionary.m */; };
-		2B090E6923166F734BBE5E03A3A082F3 /* ZDToolKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D83FBAFB1DAED603C6AFAADB2C212719 /* ZDToolKit-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2C1AFC082B458EE6FA7B647DE0FBF8E4 /* CALayer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = D9927B4721C73F5CA0008017393FF892 /* CALayer+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2D12A0FDAA1C160D1F6D90912A6CF8C9 /* NSDictionary+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8F407F9A6C547794059D5B928D25D9 /* NSDictionary+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2DC321AC8F75CB04E9AD5EAC1F6C3650 /* ZDIntegrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D6A863272EA90F77C411B46945E44B /* ZDIntegrationManager.m */; };
-		303B3C04CBFCAF0AF178EF01D0437C74 /* UIWebView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = A4FA5A4763AF9F59A5D564E7221DD55C /* UIWebView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		308725B9C056905477877952B2818F2B /* ZDDispatchQueuePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 97F0BFD6125D44F93EF1E7C51AC4F51B /* ZDDispatchQueuePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		32383E1EB312CB75A5AF36EE0659A551 /* NSObject+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D74BC7773B310F728BCA5CB902054A9F /* NSObject+ZDUtility.m */; };
-		331E9573F3274FC1635AD3B6F5FE3421 /* ZDOSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B4051A8C162AB375E265B058C251A9 /* ZDOSLogger.m */; };
-		34F088D4BAF9BED707C0EE5DFB3E2921 /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 747AB91B382D1EEE747873D58814BF35 /* NSObject+ZDRuntime.m */; };
-		386A4D3106F4859834DF5DFF8CA686F0 /* ZDActionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7A1E990E803D2C1706B980E47C1A46 /* ZDActionLabel.m */; };
-		38971C4E3D83F3F1FA2173128297AAA4 /* ZDEdgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A688CF2611BF01DB6F65BCE1801F14 /* ZDEdgeLabel.m */; };
-		397D4BC0B08B452DDE1E3C1B6BDA98C1 /* UIResponder+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 653835B1EF79D1D516A325C003EBEC49 /* UIResponder+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3D753D7396E32A4A37F7E469BC1A5FF8 /* UIView+ZDCollapsibleConstraints.h in Headers */ = {isa = PBXBuildFile; fileRef = F8DFEA0200D152F0B37BE9F70116D6F2 /* UIView+ZDCollapsibleConstraints.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3D8776C4B2D626099A552779E5F68B4F /* ZDOrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 24443DE144056BB9080FAD7B3B1B99BF /* ZDOrderedDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3EB02EFF5E760A42EFB09BF53858F400 /* ZDPermissionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDFF1AE5EDF2113589DE06E782FF15B /* ZDPermissionHandler.m */; };
-		3F317C9653FFB0373316A4E125B17AEE /* UIView+AutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A90EBB3B908AAF1BE6D8D74297F6560 /* UIView+AutoLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3F870B61347E34BD20BB579C728F3617 /* NSInvocation+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FC38AC5ED1916F717375305600130DCD /* NSInvocation+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		40861A16F30868AAB0C46D3EF1CE36D8 /* WKWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A53D8D7793FAEE225FF50459C5FB386 /* WKWebView+ZDUtility.m */; };
-		41B6BD953277E0B82018EE7048A85950 /* NSData+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 285CDA948EC85F9DB73F3BB4E28C5728 /* NSData+ZDUtility.m */; };
-		4392FA7F5EFF891532ABA6822BE35669 /* UITextView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F15555DC5CF72AB1296CF5A360941300 /* UITextView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		43F8577117E4D02482276E8EFF652E6B /* UIButton+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAC72D7A7858A6AA92C7CD6DDAAA65 /* UIButton+ZDUtility.m */; };
-		441AD1DF8E22F477A07AE00DB8352383 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 284D50A0DC597A3D455C1912BED0685B /* UIView+AutoLayout.m */; };
-		44D7C9B74E5C01704DE9DE4CD2AEAC6B /* ZDReusePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 02B42B9B5866A308175812540207158E /* ZDReusePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		48AFA6BDA34A1D256319326E7EF67C41 /* UIView+AutoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D8BEE4E0DE51785C4E083AA659022E2 /* UIView+AutoFlowLayout.m */; };
-		48B06A544A232F5876D29E496059A64A /* UILabel+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BA427C7E954BB7B490647F8C414BE957 /* UILabel+ZDUtility.m */; };
-		49F9BAD68A119E3A414F72E93A3FFF71 /* NSNull+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 48290334CEA613E19F6AB61D6DE74050 /* NSNull+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4AA404EC87B5D65600FA4F5908A1857F /* UIControl+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ABD50F7B1CBBC7F6756291ED79CD7C6 /* UIControl+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4BC8C1A3A2C94BAEC979714405B2F56F /* ZDFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9373A85A076FA5337545CC30BF45F948 /* ZDFileManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		55BF01CEBFB7B4220754E5613A2A8385 /* ZDMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD0EA6D421E9ACA1B39EB12420C8EED /* ZDMutableDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		581AC124289A0E9C8C86E9598238EB82 /* UIViewController+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFE1E338EC86AC09E417D229F7F3C7B /* UIViewController+ZDUtility.m */; };
-		5A2CF11E1BE2B442209F1EE4B5A5D944 /* UIImageView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AC2715810AA396F843D1E78F71DB2C /* UIImageView+ZDUtility.m */; };
-		5BF947E48E41070EF26A1CF8D77E51C4 /* ZDGuardUIKitOnMainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C4F746EA76FE297CE6715CCE3F6DD /* ZDGuardUIKitOnMainThread.m */; };
-		5C4C71442F97C2E38F722132B3126426 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D258A3D5DAC656D236BC95A2141655 /* ZDFunction.m */; };
-		5D1B31987D0F4A9F41AAB72475E9E703 /* ZDEdgeLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = AB4AFF963BE244B305C5F6826413E4C7 /* ZDEdgeLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5FCF16B4358C8A19F57D6DCC891588D6 /* ZDFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = DCCDDBC819400B6281BB5C28A0F5788F /* ZDFunction.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		605971E208826E6373A45171EE4998B8 /* ZDToolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B3BD60A84A833D939E5142117412ED /* ZDToolKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		631A625239255E4DDA2EA92B48E6F643 /* UIView+ZDDraggable.h in Headers */ = {isa = PBXBuildFile; fileRef = 328A1556A126434F511529777FFDCE44 /* UIView+ZDDraggable.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		63222361DA9D019AE4CFC0F1E12C8F88 /* ZDOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B4C2C3B73BB506C8EE46945253194E /* ZDOrderedDictionary.m */; };
-		6850D3C4A7E94BFA632E82C4841B756D /* UIView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 3294F3EB4DF527BEA01E85FA3A23CACF /* UIView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6A0710201C5A24D7DEC6CB47CEECE0E8 /* UIButton+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B4064B9E3BD7BEC98F107E7008A17DD /* UIButton+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6A1350C5DAAE032D4E98A9747C96D4C2 /* ZDBannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D28E2346398D0EAC51635A2AD917D7 /* ZDBannerScrollView.m */; };
-		6B6F3479EB403F62D6AC38EE05B559B7 /* NSNull+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3029E0B133ECAD53612E6024B129105A /* NSNull+ZDUtility.m */; };
-		6E2347B8E7A31FCD88E19D08AA7FAD14 /* ZDProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = C3C36B6A4166D9E7396858C0E2274CD8 /* ZDProxy.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		70724FC735D3853837D14CD050279C3A /* NSNotificationCenter+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C1DD0EC7D7B6B3CCFCD43C8EF3138BFF /* NSNotificationCenter+ZDUtility.m */; };
-		738C0E0BF4BDDB7EEF1C0268914EEF6C /* ZDWatchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 39F34FF59D239E66088810B9A663E122 /* ZDWatchdog.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7565A638E9B15B550F6E3BC1C24E10F9 /* UIImageView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 9406ED0F26A24A82389CFC519EB6111D /* UIImageView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		75CC010D960FCED2D897BC00A99A30C1 /* UIImage+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E043EB3E414CB816921EDC1D5A20E60 /* UIImage+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		764764824F690D2522A0A79C86AABCFC /* ZDRuntimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C6497828E476017F8CACFAE6DC3A71 /* ZDRuntimeTool.m */; };
-		7ADFF806173EEE5294AE2D062653F6E4 /* UIViewController+ZDBack.m in Sources */ = {isa = PBXBuildFile; fileRef = C843B34B169DFB9EBC54EA51C4D9E324 /* UIViewController+ZDBack.m */; };
-		7C1E2DA9653E55A26A51D31C88A44D98 /* ZDToolKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AC98E149FD2ECB69F81724DA25A842 /* ZDToolKit-dummy.m */; };
-		7CE262FD9F2CE51F167545E06C875638 /* ZDLinkedMap.m in Sources */ = {isa = PBXBuildFile; fileRef = CD751143FD1FF4E531889CFA0EB3F1B3 /* ZDLinkedMap.m */; };
-		7D9F75E43EE8A9B5E547CBC02A126229 /* NSArray+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F6632708B65DEAFF826BAE9F5A7338CD /* NSArray+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7E628B8285A3AE47BF8E6CE185C7F288 /* ZDDispatchQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B05E52D88783DC622FED1D9492187DE /* ZDDispatchQueuePool.m */; };
-		80152E085DC3CD76045FB07A467A4D68 /* ZDTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = F67B6BFE29FC57C2977FF51785753B1E /* ZDTextView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		824C65CB83F6AB9289554F8BF2AEB5D5 /* PKProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B72AFF1F8A9288625F50508FAFCBB7AB /* PKProtocolExtension.m */; };
-		83823627C910B30D97B5DB8099DB3973 /* UIControl+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C11F826435C1133F9F06A0BD372F5BBC /* UIControl+ZDUtility.m */; };
-		859BC61C3EE0CC027571DC8D0B4B1304 /* UIView+FDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 54641DCAA5C1BC2FA086CDBE696DC26F /* UIView+FDCollapsibleConstraints.m */; };
-		89267EB25D2E968366F9C3E656F98D8C /* UIColor+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 91396AE4BA9EA45F3FD956F0E73F17E1 /* UIColor+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8A269EB95340C52337AD640F48CD23A4 /* NSTimer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 8516AAEFD845A357C9D6C9DA5B333E36 /* NSTimer+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8D471E92876BF8C646C235959D583DEE /* NSObject+ZDRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 12277B7131C20E47BC6721AE0BC9C96A /* NSObject+ZDRuntime.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8FF5ADE8F28D99BE9389ACA3524D6BE1 /* UIViewController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F18C0896D12FF559141EAE2BCD5D7E /* UIViewController+ZDPop.m */; };
-		914751EA453845AC51D39F072F23DA67 /* NSDictionary+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B707C0D9D73347EE967DF4804DE11E1 /* NSDictionary+ZDUtility.m */; };
-		937059AEAFF2E9F8DA94C333A1BE100B /* ZDRunloopQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 317D9A0A8008AEF546BB180F63A88DC8 /* ZDRunloopQueue.m */; };
-		974599D50FAB466C6B5E3B3669E58DBB /* NSDate+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E72949E541D7F2831D2C9F53142DAB0D /* NSDate+ZDUtility.m */; };
-		992A5A723C039827D2D5057F265263BC /* NSInvocation+ZDBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A177AF6A7CF80A9EDB9C7A717C29511 /* NSInvocation+ZDBlock.m */; };
-		9DBB8B314916E732B83D3FE7874A8D2D /* NSNotificationCenter+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DC79A9984C957C7F94C393771E51053 /* NSNotificationCenter+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9DC0152B11931428BAAF926FAA8035B1 /* ZDConcurrentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0939F04A3627BA43C89099E420D73AF9 /* ZDConcurrentOperation.m */; };
-		A10FC8AFA21AA791FF38FA333AC59E32 /* ZDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F4CE177E68BD71D2BBA1177BB83221 /* ZDTextView.m */; };
-		A695155E6603CFDB58DA665A42FE80F3 /* ProtocolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8241B23FA5778817ABC07A637EC0FF76 /* ProtocolKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A6B79BBFC4767DA0801EE1D9A49E81ED /* UIImageView+FaceAwareFill.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6428C1F2D5F9655D5E43067EF3E568 /* UIImageView+FaceAwareFill.m */; };
-		A77A1394BFF49B1E9C7B26F64095A104 /* NSData+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C85F1545EADBB0ED1062A76EFB8F540 /* NSData+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A8EAEFB05208FB608D4EC98303537803 /* ZDDispatchSourceMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = 631555C4FBD913707A85BC18C320C776 /* ZDDispatchSourceMerge.m */; };
-		A988D1B949301DAC7E8DA9FC6672BBE5 /* ZDInvocationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EB96D2DB536C9CA291FDC2D3317E36 /* ZDInvocationWrapper.m */; };
-		ABCEC77FDF51BA9C9EEB0E9CF7F32931 /* NSObject+ZDSimulateKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = 085C9D0680C6152C968D17BB4FAFE091 /* NSObject+ZDSimulateKVO.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AC547A262EC48F13AEC82B9945D61DF1 /* UIView+ZDBorders.h in Headers */ = {isa = PBXBuildFile; fileRef = 67AFDDB21D5C8B1F4BC1A420D6A282B2 /* UIView+ZDBorders.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		ACD4EBB106710CAC5E68955330CDE5AC /* UIViewController+ZDBack.h in Headers */ = {isa = PBXBuildFile; fileRef = 3435F1F0B20FDEFB3143C2676B940D4A /* UIViewController+ZDBack.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AF1374FF95BC2FCF5EACCFE1DF65E3D9 /* NSMutableArray+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC55EF32783FB3DC66F1D4DCD60686E /* NSMutableArray+ZDUtility.m */; };
-		B164AF27544C9468875B380293922A3A /* UIView+ZDBorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AA0EDFC2DD800160F68F8CB7B99314 /* UIView+ZDBorders.m */; };
-		B2076D3B69A87E2A4CA89A8FA7229944 /* ZDPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 7703D6EC53D77D4D220D496CE3225E14 /* ZDPromise.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B2C44FE22A8BD83ED6A8956DF041DE5A /* ZDInvocationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B6B5F1B907A05E7466442366CBCD3F1 /* ZDInvocationWrapper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B38549163B55B268B50DD816D7E5E312 /* NSObject+ZDBlockKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = 3261DFDBB262B99C3374B0F4A44B5263 /* NSObject+ZDBlockKVO.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B5127345FB1148F53CA330FC2968D74B /* ZDConsoleUnicode.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BBD808BDBC05D89BABBCE6AD7706B3B /* ZDConsoleUnicode.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B5320B65A53646D0D3899428CE4A94D9 /* ZDBannerScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F22AE2D8B6510AA858BF3C3A234E348 /* ZDBannerScrollView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B615B664C0DB54756CAFE438AA26E3F0 /* CALayer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A72892F0A0319D7FC9AE9E8CF09BDF2 /* CALayer+ZDUtility.m */; };
-		B7D5F6EB395B42A30D62976EC95B01E3 /* PKProtocolExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 46C3DEAC375C39CE3B364B38546D999A /* PKProtocolExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BEF5BE7E913218BFE03D5332EF76AD49 /* ZDIntegrationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FD6867BA400D57857B36BEC6203AC8A7 /* ZDIntegrationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C7A9BDF83A4A40F891D55783AB853A52 /* ZDMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8630E92F85AC355844CE0CAD77A96AD4 /* ZDMutableArray.m */; };
-		CA8C58E1B2530DCA0CF8F0D71E2E850E /* UIView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EC2C4C9B8D2FD627687C9DD90F5A34 /* UIView+ZDUtility.m */; };
-		D095CAE312AC7A11B749EA108036CE15 /* ZDFastEnumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E8A77CE7C6F9AAF5DB78E72307BF381 /* ZDFastEnumeration.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D7588A869B098B52451510E8D3B58C3E /* UIImageView+FaceAwareFill.h in Headers */ = {isa = PBXBuildFile; fileRef = BCE709B581653EA86112B8D257BD8645 /* UIImageView+FaceAwareFill.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D7AE29E6BFBD03A0AE19D518CD1C98D6 /* ZDProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBF90A88B3AB0CD23A2CE2584299BF8 /* ZDProxy.m */; };
-		D85084879424F3D3997D07D6D374CC50 /* ZDMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D26A8B33526FAA426B72BE622AA71E /* ZDMacro.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D87E38DD1AE8EA38EB3F9DCF1CAC1280 /* UIColor+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8175EE9A5BE24B342BCCC96E30C86136 /* UIColor+ZDUtility.m */; };
-		D88683DCED2BADF38D1C2A5A0EF8A78E /* UIView+ZDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BBD3E89C627BD068CD95EA7CBC0A6 /* UIView+ZDCollapsibleConstraints.m */; };
-		D9314D3092E0D79C254E2370C520C07D /* UIView+ZDDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = A8413E2F767392390DDA3CCB687D13E0 /* UIView+ZDDraggable.m */; };
-		DACA835AAF8A6574232D95A30F7E2818 /* ZDRunloopQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C90695C6D1AF06B906857DA2626608 /* ZDRunloopQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DD8C14A66F05D3D8755C1B1199CE6509 /* UIImage+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E871DFE4F5BC38E2DA169F55CF6C84D1 /* UIImage+ZDUtility.m */; };
-		DDE3A089E5AE7092FF26E52F66D317EE /* NSInvocation+ZDBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = C5DB0B74E2E5519DDE1A7688EB4A1A42 /* NSInvocation+ZDBlock.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DF98F6DD854F1735DF750202892C2B94 /* NSString+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = A1819CC8DC9851FBE00670B22EBDE205 /* NSString+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E159D1CA65209DBB417C18DD75625ACF /* NSURLSession+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5FED755DDD4A070ED746ED9A0CCF91 /* NSURLSession+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E190D3B7342104FD00E23F37B06DB7D7 /* NSObject+ZDBlockKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CD758B87705F9F3F0713D8A718E55D /* NSObject+ZDBlockKVO.m */; };
-		E1EB10279095FC994A8A5E3FDBCA8133 /* UIWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1682C9EF66F4C8CC18888C7EF88FCF4F /* UIWebView+ZDUtility.m */; };
-		E498A60EC6A7D179A93024905F04D10D /* ZDConcurrentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 189244968BE96DFBE3E9B2F3B1AE0C3C /* ZDConcurrentOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E6A82311E29E187CA2012042471E67E8 /* ZDAlertControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4AD15396356ACE725EC387D09B93F /* ZDAlertControllerHelper.m */; };
-		E91B6E3A51498BF9220936E88782C846 /* UIImageView+ZDGIF.h in Headers */ = {isa = PBXBuildFile; fileRef = 0723081DC42A675D00C339E878E51A2C /* UIImageView+ZDGIF.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EA0B6FE78689B922D085941D36A3F508 /* UIApplication+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 03F7EC25378EE896CD5017D75BA9FE3B /* UIApplication+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EB5031BA0E4E87FB8701119E9254007D /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9386724A8EAA22D9151FBFC5E0EC54 /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EE1C2421339202DB87CECCDBFDEA1E73 /* UIView+AutoFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E313BB3BB9FD0305C27D32DC0D1B550 /* UIView+AutoFlowLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EF005A7CA63FEA45BEB157328FB8F2E0 /* UITextView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7410544CFAB79B628063911CA33D2DCD /* UITextView+ZDUtility.m */; };
-		F00C742589CB14EE05487E0CF8BBB14A /* UIView+FDCollapsibleConstraints.h in Headers */ = {isa = PBXBuildFile; fileRef = 615CF28D7BA92DCD56F13FA06BEC8653 /* UIView+FDCollapsibleConstraints.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F5A697DA086C426AB5FDA27044880E16 /* ZDEXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DFA47F6410A95114E6F25B52EBF084C /* ZDEXTScope.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F6688F8CFA0DDDBD0F157D16B9221E67 /* ZDRuntimeTool.h in Headers */ = {isa = PBXBuildFile; fileRef = AC479691845D39C574FFB32D76791C48 /* ZDRuntimeTool.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F69C259D4345823293B2D173137B56AC /* UIViewController+ZDPop.h in Headers */ = {isa = PBXBuildFile; fileRef = DFF93D259CCE3B19FD4EB8276FF9AFA0 /* UIViewController+ZDPop.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F7004E7B4391FCF805A8E062F2645720 /* UILabel+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E1D92A0EA025F7EC9381676E81C80C1 /* UILabel+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F71632E6438BC397664F31AEF66E844A /* ZDBackgroundContainerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DCF59BEE4D447FCE0FCC6A1E4999289 /* ZDBackgroundContainerView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F7A41CCC6958E89BF3341C2C8A56B1DA /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D30C93EC0ACA832F612A38930333D3 /* ZDFileManager.m */; };
-		F97582738FA302A50F8A358932191728 /* ZDSafe.h in Headers */ = {isa = PBXBuildFile; fileRef = 3619A7626C59D3DE1D09C01132CE7657 /* ZDSafe.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F9C6CC04E16967F749F3E43237E3AD0C /* ZDAlertControllerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 03BEC75D918124AF88BD3DEB3DB3BDE2 /* ZDAlertControllerHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FB7503460A940184EE58A868CF199C49 /* NSArray+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 493D39DF803069431A16AD19B4958CA9 /* NSArray+ZDUtility.m */; };
-		FBFCE7CFB289231D226514EBF864F0D2 /* NSString+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1698D6B2FC4509433E9FFF7C6243F96C /* NSString+ZDUtility.m */; };
-		FC9131504A0871A081B559591B52355E /* UIImageView+ZDGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1B70996C0B346C3496049412C999C3 /* UIImageView+ZDGIF.m */; };
+		007B2117FA1FD9359CD8DB3CD9A574C0 /* ZDFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A23F65D70AEC2D0498EC22A0F4F6780 /* ZDFileManager.m */; };
+		02E6F0FF2EE98DBF7E1E073DC4ECD55D /* ZDInvocationWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 51836056D35F131B79014AF9331E33E4 /* ZDInvocationWrapper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		02EA057B6BE9FD9D6528B12B9D86934D /* UIColor+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BF3FCE338C8BD98127833B791F39B17 /* UIColor+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		03F6A0D2276238DDD2540C1597BCB463 /* NSNull+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D63C08278B165CA3777A4C24D639FF /* NSNull+ZDUtility.m */; };
+		04EE1A0D5BA894A773A61D5848D00AC5 /* NSTimer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 43803DA82387466A650F9BAD1BD136F7 /* NSTimer+ZDUtility.m */; };
+		0599010F8FB6B0DBC34B92900146E4B9 /* ZDConcurrentOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4EAFD7440A6FBB26612BAA4A3F4C4 /* ZDConcurrentOperation.m */; };
+		06B03DFA0B4520F92FF948C2A39079EA /* UIResponder+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = C3F367D4CE9DE5BB0D0C43070CD59549 /* UIResponder+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		06EDD9C758B295A093FD70E02C193C0E /* ZDOSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C23B9E542D161B2399791026BB0245A /* ZDOSLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		07884997F90CBC806FDC9B437C39FA64 /* NSInvocation+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = A5589B7B169D62633004029EA6185D01 /* NSInvocation+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		09871451E066B95D7CA20C56E4B4B5E5 /* NSDate+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CF51642D7014FCAB600145E360BEE450 /* NSDate+ZDUtility.m */; };
+		0A7E3DA111EF0E34D63FDA8A829B391D /* NSNotificationCenter+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 9902351001DCE13B82B2D630F59F6F5C /* NSNotificationCenter+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0C1A92B7AF51B7C51DF059995C06F0E6 /* UITextView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23654AA300347162DEDC606D4C954A /* UITextView+ZDUtility.m */; };
+		0D3035BBBF5C64F149602AA03440821E /* ZDFastEnumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = BA944C573C735DDD1952565CB61526CA /* ZDFastEnumeration.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0DDE10FEE2DDCA01F5165649AF70C704 /* UILabel+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5F3C394AFA62C377B46D5ADA65F51 /* UILabel+ZDUtility.m */; };
+		0EE49922331D9533C3D26D926A9CDCAA /* ZDMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 748C65E9441BB79436AF57A984B52CCB /* ZDMacro.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1474C449604B6CB2418818809262C7BA /* NSString+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E5B9252EA6443F7EA06FC0DD35FBA8 /* NSString+ZDUtility.m */; };
+		1677A4D759264B27561AFEB8EC59D36A /* UIView+ZDBorders.m in Sources */ = {isa = PBXBuildFile; fileRef = 063132C4574BCC29F75393F2BD53E6DE /* UIView+ZDBorders.m */; };
+		18099CC8C67B350801D1C538CC6C1356 /* UIView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C02FB17686538B7A870F69D6B19FD58 /* UIView+ZDUtility.m */; };
+		181CEF7F549E4664EAF2C41E7A610E90 /* NSString+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = B4292A523E38804FD8B4E33A1290E1BD /* NSString+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		188256849D06CFAAF458EC507CE52428 /* NSMutableArray+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DF1591E7C0659C38AF8F86EDB50ACFC /* NSMutableArray+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1B0D9468B7C08EA7F1F9CB121D2E640A /* ZDReusePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 47E3E7581082255D9E61A2CF1C2A9B94 /* ZDReusePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1D55524032D3B1622247E7358ABC6C9E /* ZDIntegrationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 61D39D276E8D44EB8068161A78013EF0 /* ZDIntegrationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		20D7BB3CB991F1254B48B50835F88A4D /* ZDMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = F2C08BD29BA6C4C677475F3B206AD169 /* ZDMutableDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		216F9523DD3B79AA54887C21C7AA2FE2 /* NSData+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C38AD7D7AE7917911E883979F40ADC4 /* NSData+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		21FD235E309B2E94C5A65283E2394135 /* ZDTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 71EE66864079BEFDD420FCFD80AE1B08 /* ZDTextView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		222D659FD8C9D7EA53554ACABBE5B620 /* NSDictionary+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 25D421857D3138A4ECABA014A396FF82 /* NSDictionary+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		225373F742EEC58976CFEBF9D2717CFB /* ZDMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C6EC08FC89CF94A43B8872062C5CC /* ZDMutableDictionary.m */; };
+		22B9A12CC65E8120E47FD87F63DB5C0B /* UIViewController+ZDBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 839DB28666A94C125B708AB9B2DF9F72 /* UIViewController+ZDBack.m */; };
+		22D7D0CB6C6771B3AD25814A1F5A842F /* ZDWatchdog.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFDEF07A2FE004505246C7CE6065544 /* ZDWatchdog.m */; };
+		233698959B188C49C99BE9243EC77A44 /* ZDBackgroundContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DF1FB08CC1A238D48C27A81C5032F3 /* ZDBackgroundContainerView.m */; };
+		24ACD98EDDF1E804173B04EAAC2E5123 /* NSObject+ZDBlockKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = 065664A655ADA72F94AC98219F7B66D3 /* NSObject+ZDBlockKVO.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		24FCD2423FE739D2ACF594D0F2082012 /* UIImageView+FaceAwareFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 336BA6F872DD0B620853913033E04040 /* UIImageView+FaceAwareFill.m */; };
+		256BF52EBC4BA1EA0787E11D8313B0FF /* NSURLSession+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B19506B9CADDE723FE6E5E1F6FFFB20 /* NSURLSession+ZDUtility.m */; };
+		285DB486E40AF8C23EEF007BC19C3FE4 /* ZDActionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FB82040B80440ED96CCAB1CBCB43831 /* ZDActionLabel.m */; };
+		29981ECF77FBCF4210AE195D7A0CEEEF /* ZDLinkedMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C44BB260B2784D5CE8D574C4A195E4 /* ZDLinkedMap.m */; };
+		2B5F822263B957651AF4F19378B7FFB6 /* ZDToolKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E3CB18EEABE30E146E8331922C85E55 /* ZDToolKit-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2BA0EEE76CF0508F9EC795936E03EBEA /* ProtocolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = E170C5C8CAA4D5DD0F128B9A1CE7D42E /* ProtocolKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2BAA95BEF8C3F7D9E120BF5757C678E9 /* UIView+FDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 882F13C97A84C9F89AE38325B524C90F /* UIView+FDCollapsibleConstraints.m */; };
+		2E956D3A5B4C0718754A01AE50AD6E62 /* UIImage+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E23713245F6FA4D85DE4E64B5E4426C /* UIImage+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		304C8B356234D9A8261D04E6EC59A00A /* NSObject+ZDBlockKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C71050923629BA7E84EDEA7C8948AB6 /* NSObject+ZDBlockKVO.m */; };
+		309F69EAD6C62F5DCE868D48DE847346 /* ZDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 650AD54D9706795673A1F754E43F411C /* ZDTextView.m */; };
+		34466FEF30CD9298F22ABDF93F1BCFB9 /* ZDEdgeLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = A54A041F077B25CF8B5384E0BE3EA77A /* ZDEdgeLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		34CA9D0A2D94D54DBAB82D4DF084C3EE /* ZDProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 22C321166562119B45E434D95CD13A07 /* ZDProxy.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3C85B2DCB0290C440F09DDF1FD5F4140 /* ZDBannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B58E4BFE911B3DDF17FDE8AD360A76C /* ZDBannerScrollView.m */; };
+		3DC15825AA7D59B9D547D74A7D5CB110 /* ZDReusePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B926A0760E5FD026D7B47EEB527E5DDD /* ZDReusePool.m */; };
+		43A5D2757CAB65FA89DCF5D96ADB1B25 /* PKProtocolExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = AE85BA2C8ABB3A4264E58D485EC488F5 /* PKProtocolExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		478D00D56F4E9085639D668BDE1F45E2 /* UIView+AutoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A284C92121CEE1DCBD683116DC620E0 /* UIView+AutoFlowLayout.m */; };
+		4E58DE881E22CC41DC750D4164D8C029 /* NSObject+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEA3D619F4CB8E33934D20D7C889221 /* NSObject+ZDUtility.m */; };
+		503F102ADE2B1CA7921059A52354423B /* NSURLSession+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = A2771086986FF502EDFF0B05E7283848 /* NSURLSession+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		58818794921F738D392B1F5EEFDD1536 /* ZDEdgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9988608598DD7293068FC699F96CC9ED /* ZDEdgeLabel.m */; };
+		5CB48C9CF0610A6F7FCE5B207030CD92 /* ZDPermissionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9CA2CC4FFCBCBECE75D62F234118FC /* ZDPermissionHandler.m */; };
+		5CBD01DA751D07BFE02FCE0CACD1CEBA /* NSObject+ZDRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = B59596B365675B8F98B9E9A4F5687A6E /* NSObject+ZDRuntime.m */; };
+		5D670C9A7A4416652CE6F2A4CA1777B1 /* UIViewController+ZDPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B31804CC865D37FE2C9D8ED3FC6BB74 /* UIViewController+ZDPop.m */; };
+		63ADD71C4E13817984C5C99C8E41C111 /* NSObject+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = E368F13339E1947FC87D06E92034CEB7 /* NSObject+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		64023A2A86B223B761F0E2B0F8931998 /* ZDMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 10D2604C5B8A02B3553CA7C7AED4CBB2 /* ZDMutableArray.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		64BDDBCD4C14A808D6359C9A26683B98 /* PKProtocolExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F133E5DBE560BA5233B3C84E604305 /* PKProtocolExtension.m */; };
+		6527843D5DB16B802B9ED3A404A7ED74 /* ZDSafe.h in Headers */ = {isa = PBXBuildFile; fileRef = 431EB93390B600639A0A5CD469137CA3 /* ZDSafe.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		68AA31D7029CC84ED3153E3C28044C9F /* ZDToolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B9F28DBDDBBC5289015935BFDFF6E9DA /* ZDToolKit.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		690E0228BA806C44BF2AC3936B070B3D /* ZDRunloopQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E95D62CA165978F15312A79C4737288 /* ZDRunloopQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		698060EAFACFB65A1EE7B900D8207E7B /* ZDBannerScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 877FFCD9799A3F9B974EF8A5CBCEEEFA /* ZDBannerScrollView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6CCB75F72F4372195E68F57460130E69 /* ZDInvocationWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 67858CC1E35F0AB9BB862B6CFB4431A2 /* ZDInvocationWrapper.m */; };
+		6F1CDA8F685AC02EE957470DC0FC5B54 /* UIView+ZDDraggable.h in Headers */ = {isa = PBXBuildFile; fileRef = CB9364E07EE542EC4E1703EF2A975B5F /* UIView+ZDDraggable.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		71ABB15D4EEB4B52FE22CDCEF104FF3B /* UIView+AutoFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = CD5A5D99A531BD41E91A57690F7E0585 /* UIView+AutoFlowLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		71CFF110861A1F713C55BA34E7DA0549 /* ZDFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = F0D07A9CB387342D1A523D4E2DB406D7 /* ZDFunction.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		72E19196E417D71D2C8DB51BEE2299B5 /* NSDate+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EB63527B923DF8EB0BA96CA22DADE111 /* NSDate+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		75BB4D043B2D36211C11BF438F8979BC /* NSObject+ZDSimulateKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = 89FDC0852463227CC88C9AC9B49F2997 /* NSObject+ZDSimulateKVO.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		75F169840D4910B6769F694A5DA471FF /* ZDConsoleUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C60EC709BB0F3016FB6E21AAF1F3A78 /* ZDConsoleUnicode.m */; };
+		763ED0836DEE3FC9A2358E00053A09B8 /* ZDFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F1B38DA6A19BB88C80D20625E8E2C10 /* ZDFileManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		78509C947EC414046A9C5589BC7FE213 /* ZDGuardUIKitOnMainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = AB80747747B3AE68E83E1BE99DEC540B /* ZDGuardUIKitOnMainThread.m */; };
+		796727D2146307798551F04D5D23A4A5 /* UIButton+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EEA22B9BA3D571FBB6E8E7B91841EA1E /* UIButton+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7B1FD109D545F282C22637DC6E6F975F /* UIImageView+FaceAwareFill.h in Headers */ = {isa = PBXBuildFile; fileRef = CC179988177FD4A2D197A9FC5F512131 /* UIImageView+FaceAwareFill.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		80EEA560CA762648F0D7F2596F59DCB2 /* UIViewController+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F4AF8B54A74CE0D52A2E44B423EDA1 /* UIViewController+ZDUtility.m */; };
+		83083A9F5852256B9AA62ACC526ADD07 /* ZDBackgroundContainerView.h in Headers */ = {isa = PBXBuildFile; fileRef = D87BC5972EFEFE977C8E7D3D97134533 /* ZDBackgroundContainerView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		839C3D6E676F3BD71FB5DCDC0B2CE38F /* ZDDispatchSourceMerge.h in Headers */ = {isa = PBXBuildFile; fileRef = 592684513CB638AC57C857436558DE81 /* ZDDispatchSourceMerge.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		842E09461B235CFE43D7E1188A62453B /* NSData+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 930D64AF46EC4016F3B94D75BEF515F9 /* NSData+ZDUtility.m */; };
+		8C5C416D658A40DA16620A78D89B90BC /* ZDOSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E974F9E562D0AB1303407608F1E9E3 /* ZDOSLogger.m */; };
+		8E2F7D543E631318F3F7A7DFF06F733D /* UIControl+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 212FAEF6FBBE892D5293324452B4C2B6 /* UIControl+ZDUtility.m */; };
+		8E4FCD28D5747D3EA2437BE8D61C5A3C /* UIImageView+ZDGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F96ED88B69DEF74E4623B07A091CAD /* UIImageView+ZDGIF.m */; };
+		8EB3F5F25E93F33894920D8E69BC106F /* UIControl+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = AD6D8B08A026B1A2BE75E54EAC16C965 /* UIControl+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8F2499DEEE56F5FFCAA72C61D0E07086 /* NSNull+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = AC403B39621614D8459D6F75B87B7B0B /* NSNull+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8FE910588B0E4FCC6ACA91BFA22D6CFB /* WKWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 127270624BC2F8E5882002FFC58E33FE /* WKWebView+ZDUtility.m */; };
+		901B6502B6AF6F60C5F176ECDC260AA6 /* UIApplication+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 65E88859A324C66D8CB0A08A3AB02B84 /* UIApplication+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		91313F1BF4511AC9717F38EF189351DA /* ZDOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD59A5EF7A248C22ABCCB945B459131 /* ZDOrderedDictionary.m */; };
+		94BE325B019C0422FCB1E6783561A475 /* ZDAlertControllerHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = C1682F1666F4BA8A17499089CEB0BA10 /* ZDAlertControllerHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9513ACCE6616849D7C751C8E1CFA45AB /* ZDIntegrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 425E5BF8EF414D898EE0952CCD236FA1 /* ZDIntegrationManager.m */; };
+		977F6A3FB12E358DB61D4E5096F53D7E /* UITextView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 52CBB3C8A2B63B90E5452A69A7E34B37 /* UITextView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		978186B474787AD38D6E26884C022B22 /* ZDFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 388F27571D332014BDFAE4B8224D916A /* ZDFunction.m */; };
+		996541ACFA1400CA7D4381BBCE686D7F /* ZDConcurrentOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 073F55551D0394A5E436275533DBF8E1 /* ZDConcurrentOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A0DE695B4882C6A9EBC6DF6F741C7D38 /* UIView+ZDDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0753AC2ACA31C7944A7F0C68086140 /* UIView+ZDDraggable.m */; };
+		A2DD7E1CAA91105192B94338CFB9CE1F /* UIViewController+ZDPop.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A31C2E8B46A2A709983E9DCD3FC6950 /* UIViewController+ZDPop.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A3D7A81A770039C4568BBE0BEC5B3899 /* UIViewController+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = F71D73CA7B78D693EFF6982160408BF7 /* UIViewController+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A609C0AE4C8267869B68BBB68FEF9976 /* ZDPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 81726AAD2B6F3750CC2F329DB131B713 /* ZDPromise.m */; };
+		A65C8149C8BEE449A4A4C83B8D763ADF /* ZDMetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 0501633BAE8F0A152123BE8066BA0B75 /* ZDMetamacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A6B220B35E122D018D5C7F0754C4C286 /* UIImageView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = E73CEDAD0BD9D88CCBE6C2B7D37694AE /* UIImageView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A70BE73DFEF8C1C8C52CF61DEC740A06 /* UIView+ZDBorders.h in Headers */ = {isa = PBXBuildFile; fileRef = 21DEB8F366560E1B3AD425035165BB81 /* UIView+ZDBorders.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A8C600B0F3D8626991DF22ECCA88599C /* ZDConsoleUnicode.h in Headers */ = {isa = PBXBuildFile; fileRef = C5A062D749019B64F765E113FB8A14FD /* ZDConsoleUnicode.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A9D5D8A8110B090A5465060C390F1F87 /* UIView+AutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 960DC7A5CD7A605576E738D25B50A246 /* UIView+AutoLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AAE7E21D03FF452DA3F57489150BAFB1 /* ZDOrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = E8A95FE42424E9FE62D92DFB5E0E05D6 /* ZDOrderedDictionary.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AB96AF4FC6B93D7D34958056849F6181 /* NSInvocation+ZDBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A63710B9AB2DDF0E77212562EE1FCB4B /* NSInvocation+ZDBlock.m */; };
+		AE96EBC4DE9762F84AD27F82A348A0C5 /* NSMutableArray+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 410437957646A8C2CB85E7FAE6967922 /* NSMutableArray+ZDUtility.m */; };
+		AEBC5B6FDA980BDD9C198688A59B7C6F /* ZDPermissionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 263617B196065C60CFBBD7771598A179 /* ZDPermissionHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B7448616615F7ABFD7B6DA188D96BF3A /* ZDEXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = F4A7498ADF97EE2C9D4CD258DDF33D00 /* ZDEXTScope.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B7A2EEE7FBD5BC9CB8F599BB85E09B7C /* UIImageView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270227605B04C2B0EEADD61176F3DF07 /* UIImageView+ZDUtility.m */; };
+		BB0AE2BED49648D29D383EBA785EB097 /* UIButton+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3A565790AEE9135373FAEFA664EC7F /* UIButton+ZDUtility.m */; };
+		BCDD484048BF69A3B45A3FB43D2345FD /* NSObject+ZDSimulateKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 165F3F81B9BDE1398E8D25CB2E11C7FF /* NSObject+ZDSimulateKVO.m */; };
+		BE0C0B3B407C72410E5A52A2CEF918FA /* ZDSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD89BEB276DA0F3CFF14271BA75A43 /* ZDSafe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BFB6AA9D83B4BC61DD6DA4C816AB25D5 /* UIImage+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D65D79C4EDF2F04BC92F637C5CFE50E1 /* UIImage+ZDUtility.m */; };
+		C19463E5C19269A4342775E47608C024 /* ZDRunloopQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AE251A0EDE081A786F94694D96B6229F /* ZDRunloopQueue.m */; };
+		C260FCB0EC2651CEC6790770D258E98C /* UIView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D63E7C723CCBCE991914CCC2B5B0197 /* UIView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C50ED0B81ACE713A459C243470468F2E /* ZDLinkedMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 371C5B9C01636CE561C58357B70E1C21 /* ZDLinkedMap.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C6E806BA30C702B25041CB70B0878E3B /* UIImageView+ZDGIF.h in Headers */ = {isa = PBXBuildFile; fileRef = 39F283A1A5C6CD7D1FFE03E56BF4E6BA /* UIImageView+ZDGIF.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C7B8B6D7924360D6359CB374D84C4C75 /* NSNotificationCenter+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 275799F8109B9E07ABB24411615D49C7 /* NSNotificationCenter+ZDUtility.m */; };
+		C8E9F0622E9283D7442CCC0007FE9F95 /* CALayer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FF3FA51F24BFA7AFD3BEDB9DCFD1FC2C /* CALayer+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C9AA52B8624895C949143E2DA069B3E0 /* ZDWatchdog.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E8F6A3E9BCD92E7D0B281C2EF440CAF /* ZDWatchdog.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CA77F226AEDC06AF0EC2BD71BA710F13 /* ZDDispatchQueuePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 461CFAC28067ACBDADD91B3651254F6A /* ZDDispatchQueuePool.m */; };
+		CB9C0C171266C53DD4A30995F6E88297 /* ZDGifImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = FC5B97AFAED001DD126C239A42CEF202 /* ZDGifImageView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CDC2C75FB999E454CB69108E1C1DD08C /* WKWebView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 456A3CA07B6D46907039613DDD985324 /* WKWebView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CFEFCD09B0F63EFDBD89753E38C1678E /* NSTimer+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 290281FC2E8450F706BF7E41A9C41514 /* NSTimer+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D39CBA73900C80321257AC481A153EF3 /* NSDictionary+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FC63D7FF4889BB9970739C27DB26E566 /* NSDictionary+ZDUtility.m */; };
+		D47A3AFF12032DBE460D39EEF32BFB8E /* UIApplication+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = EA47C54E1E159399CC0CF174B47B3185 /* UIApplication+ZDUtility.m */; };
+		D861090A7A68D4D1E77A3DF7B1D63F9A /* UIView+ZDCollapsibleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 82242B374B51B487FCCED82458512F0F /* UIView+ZDCollapsibleConstraints.m */; };
+		D8D1DAB98062E07391A91234CE295457 /* ZDProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = D32687E119373A66BD7CC6146E7E3B80 /* ZDProxy.m */; };
+		D95A21AA460E86E90A06A092F3CEF5B2 /* ZDDispatchQueuePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 2941CDDAA8D4A9E7C9BAC0B6FA5A5429 /* ZDDispatchQueuePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D9D7FB393D5B1BDDEE1A15D55ED21CF5 /* NSInvocation+ZDBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 618D7649FD731BC2FEF258A97F4C0E02 /* NSInvocation+ZDBlock.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DA8057846CCAAC8B1F8E9237AB3DCF0F /* UIWebView+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = A69BC55C2916AC261647D8DF681CFE47 /* UIWebView+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DB0B99A635A7669FDF7C6057C9B2C713 /* UIWebView+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D4604005D4FDCF21257C949881A94B /* UIWebView+ZDUtility.m */; };
+		DC1CA25A8CE754DE73DD4723B7B07172 /* ZDGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA93C7B90EA61B36925EEE785A08651 /* ZDGifImageView.m */; };
+		DC411A232C7B664A49640B46CCD69401 /* NSArray+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = FE46DD618647A580DCE5A4DC63CAAD0E /* NSArray+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DC5CCC43B3F38E4432C6B40868041FCF /* UIResponder+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B33792F63D8784661BFE99A0BA02F7A /* UIResponder+ZDUtility.m */; };
+		DFA2829FA7586A2349CA0C74F5B95C90 /* UIView+ZDCollapsibleConstraints.h in Headers */ = {isa = PBXBuildFile; fileRef = 34D7F1A070819FAB409DB6F34A43B7B9 /* UIView+ZDCollapsibleConstraints.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DFED1E214213C524D6A9B65E64268811 /* UIViewController+ZDBack.h in Headers */ = {isa = PBXBuildFile; fileRef = DFB629753F962986D94F18AA306448B7 /* UIViewController+ZDBack.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E0C4C153F697EAD81552597D66A28328 /* ZDGuardUIKitOnMainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C205A05C11173B839C06E8B16C89339 /* ZDGuardUIKitOnMainThread.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E229A7139DBB0BF7F1A0F7A7925EB67E /* UIView+FDCollapsibleConstraints.h in Headers */ = {isa = PBXBuildFile; fileRef = 65493E6DF52B3F2768EE7D901F354F89 /* UIView+FDCollapsibleConstraints.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E235CD3E98A6FA26B925307373A444A6 /* ZDAlertControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 698804784BF90BC6726F35D3B78F1799 /* ZDAlertControllerHelper.m */; };
+		E5DEAE6C0F76DB8BA43593990F3C265D /* NSObject+ZDRuntime.h in Headers */ = {isa = PBXBuildFile; fileRef = 30C50E18EBB2866F985748F71325FF2B /* NSObject+ZDRuntime.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EB72EE6FD1AFAEE9507464896D32A828 /* ZDDispatchSourceMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED7C846B6E1921C434A8DDE9238FF5 /* ZDDispatchSourceMerge.m */; };
+		ED34BB56586CD1D233005F687F77622C /* CALayer+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2652507E600BF889C853F66918EEEC /* CALayer+ZDUtility.m */; };
+		EEA1B32BE31555538BEF42162E01C8D2 /* ZDToolKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC70BF08AD0B45563020D1A62827F01 /* ZDToolKit-dummy.m */; };
+		F23D0028AA174DEF908FB874B414F47F /* UIColor+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B7179FB821411C78A3FC46D6BE25CC /* UIColor+ZDUtility.m */; };
+		F498F970A395E7BF05079405ECC6B63F /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1AC85303EBBCB3346CBAC68624C5ED /* UIView+AutoLayout.m */; };
+		F5B3DDFF3F94D6F9B65F0170188B02CC /* ZDMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = F42F9705A81283048429611197E9F360 /* ZDMutableArray.m */; };
+		F639D0D16D82A1857DF72978C5A1E421 /* ZDPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = DE99F82245084EDE5FDA42A783839C3B /* ZDPromise.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FC0841092B6B84F0F28BD685F7441B28 /* NSArray+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 470DE7EC587BAEAF6A5FB80697A635AE /* NSArray+ZDUtility.m */; };
+		FE15E6D59C00BEB82EAC863183CDE99F /* NSInvocation+ZDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6A1879CB63654B5BF55DBD386DA11F /* NSInvocation+ZDUtility.m */; };
+		FE9E096A4CA43234D58DFB8632269C2A /* ZDActionLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = C4EAAA0A6C91C193AB984DA2FC812067 /* ZDActionLabel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FF347F49E3FADD2F7516575561248E3B /* UILabel+ZDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EC3C65E5A3AB0C74B9A6B612E6A99C24 /* UILabel+ZDUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		00EA736A0FBE918E8CD14BE0F550BD30 /* ZDToolKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZDToolKit.modulemap; sourceTree = "<group>"; };
-		01C6497828E476017F8CACFAE6DC3A71 /* ZDRuntimeTool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDRuntimeTool.m; path = ZDToolKit/ZDRuntime/ZDRuntimeTool.m; sourceTree = "<group>"; };
-		02B42B9B5866A308175812540207158E /* ZDReusePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDReusePool.h; path = ZDToolKit/ZDTools/ZDReusePool.h; sourceTree = "<group>"; };
-		03BEC75D918124AF88BD3DEB3DB3BDE2 /* ZDAlertControllerHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDAlertControllerHelper.h; path = ZDToolKit/ZDTools/ZDAlertControllerHelper.h; sourceTree = "<group>"; };
-		03F7EC25378EE896CD5017D75BA9FE3B /* UIApplication+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIApplication+ZDUtility.h"; sourceTree = "<group>"; };
-		059D0026C373384A609667F76877EF16 /* ZDMetamacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDMetamacros.h; path = ZDToolKit/ZDMacros/ZDMetamacros.h; sourceTree = "<group>"; };
-		06D26A8B33526FAA426B72BE622AA71E /* ZDMacro.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDMacro.h; path = ZDToolKit/ZDMacros/ZDMacro.h; sourceTree = "<group>"; };
-		0723081DC42A675D00C339E878E51A2C /* UIImageView+ZDGIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+ZDGIF.h"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+ZDGIF.h"; sourceTree = "<group>"; };
-		085C9D0680C6152C968D17BB4FAFE091 /* NSObject+ZDSimulateKVO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+ZDSimulateKVO.h"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDSimulateKVO.h"; sourceTree = "<group>"; };
-		093483A3488E6B604DB3E024A7AE51FC /* ZDMutableDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDMutableDictionary.m; path = ZDToolKit/ZDSubclass/ZDMutableDictionary.m; sourceTree = "<group>"; };
-		0939F04A3627BA43C89099E420D73AF9 /* ZDConcurrentOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDConcurrentOperation.m; path = ZDToolKit/ZDSubclass/ZDConcurrentOperation.m; sourceTree = "<group>"; };
-		09A688CF2611BF01DB6F65BCE1801F14 /* ZDEdgeLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDEdgeLabel.m; path = ZDToolKit/ZDSubclass/ZDEdgeLabel.m; sourceTree = "<group>"; };
-		0A23185B453C1FA3873BCEE6906B4684 /* ZDMutableArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDMutableArray.h; path = ZDToolKit/ZDSubclass/ZDMutableArray.h; sourceTree = "<group>"; };
-		0AFE1E338EC86AC09E417D229F7F3C7B /* UIViewController+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDUtility.m"; sourceTree = "<group>"; };
-		0DC79A9984C957C7F94C393771E51053 /* NSNotificationCenter+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSNotificationCenter+ZDUtility.h"; sourceTree = "<group>"; };
-		0DD7F29D64D83D29231D098CEF0601FD /* UIResponder+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIResponder+ZDUtility.m"; sourceTree = "<group>"; };
-		0F22AE2D8B6510AA858BF3C3A234E348 /* ZDBannerScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDBannerScrollView.h; path = ZDToolKit/ZDTools/ZDBannerScrollView.h; sourceTree = "<group>"; };
-		12277B7131C20E47BC6721AE0BC9C96A /* NSObject+ZDRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+ZDRuntime.h"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDRuntime.h"; sourceTree = "<group>"; };
-		1682C9EF66F4C8CC18888C7EF88FCF4F /* UIWebView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIWebView+ZDUtility.m"; sourceTree = "<group>"; };
-		1698D6B2FC4509433E9FFF7C6243F96C /* NSString+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSString+ZDUtility.m"; sourceTree = "<group>"; };
-		189244968BE96DFBE3E9B2F3B1AE0C3C /* ZDConcurrentOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDConcurrentOperation.h; path = ZDToolKit/ZDSubclass/ZDConcurrentOperation.h; sourceTree = "<group>"; };
-		1A53D8D7793FAEE225FF50459C5FB386 /* WKWebView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "WKWebView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/WKWebView+ZDUtility.m"; sourceTree = "<group>"; };
-		1ABD50F7B1CBBC7F6756291ED79CD7C6 /* UIControl+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIControl+ZDUtility.h"; sourceTree = "<group>"; };
-		1BD0EA6D421E9ACA1B39EB12420C8EED /* ZDMutableDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDMutableDictionary.h; path = ZDToolKit/ZDSubclass/ZDMutableDictionary.h; sourceTree = "<group>"; };
-		1C7937F541E8E22A037F4A5ADE7B6FAF /* NSDate+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSDate+ZDUtility.h"; sourceTree = "<group>"; };
-		1DB4AD15396356ACE725EC387D09B93F /* ZDAlertControllerHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDAlertControllerHelper.m; path = ZDToolKit/ZDTools/ZDAlertControllerHelper.m; sourceTree = "<group>"; };
-		1E1D92A0EA025F7EC9381676E81C80C1 /* UILabel+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UILabel+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UILabel+ZDUtility.h"; sourceTree = "<group>"; };
-		1F6EB353099974C0ADC81EA04E0600FE /* NSMutableArray+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSMutableArray+ZDUtility.h"; sourceTree = "<group>"; };
-		1FFAC72D7A7858A6AA92C7CD6DDAAA65 /* UIButton+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIButton+ZDUtility.m"; sourceTree = "<group>"; };
-		20EC2C4C9B8D2FD627687C9DD90F5A34 /* UIView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDUtility.m"; sourceTree = "<group>"; };
-		23CD758B87705F9F3F0713D8A718E55D /* NSObject+ZDBlockKVO.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ZDBlockKVO.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDBlockKVO.m"; sourceTree = "<group>"; };
-		24443DE144056BB9080FAD7B3B1B99BF /* ZDOrderedDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDOrderedDictionary.h; path = ZDToolKit/ZDTools/ZDOrderedDictionary.h; sourceTree = "<group>"; };
-		262C09C1A54C04D315C6045DC5ED7F52 /* ZDLinkedMap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDLinkedMap.h; path = ZDToolKit/ZDTools/ZDLinkedMap.h; sourceTree = "<group>"; };
-		284D50A0DC597A3D455C1912BED0685B /* UIView+AutoLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+AutoLayout.m"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoLayout.m"; sourceTree = "<group>"; };
-		285CDA948EC85F9DB73F3BB4E28C5728 /* NSData+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSData+ZDUtility.m"; sourceTree = "<group>"; };
-		2CDFF1AE5EDF2113589DE06E782FF15B /* ZDPermissionHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDPermissionHandler.m; path = ZDToolKit/ZDTools/ZDPermissionHandler.m; sourceTree = "<group>"; };
-		2F5C4F746EA76FE297CE6715CCE3F6DD /* ZDGuardUIKitOnMainThread.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDGuardUIKitOnMainThread.m; path = ZDToolKit/ZDDebug/ZDGuardUIKitOnMainThread.m; sourceTree = "<group>"; };
-		3029E0B133ECAD53612E6024B129105A /* NSNull+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNull+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSNull+ZDUtility.m"; sourceTree = "<group>"; };
-		3077FD900AED2A232F67F4AB725FD4BB /* ZDDispatchSourceMerge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDDispatchSourceMerge.h; path = ZDToolKit/ZDTools/ZDDispatchSourceMerge.h; sourceTree = "<group>"; };
-		317D9A0A8008AEF546BB180F63A88DC8 /* ZDRunloopQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDRunloopQueue.m; path = ZDToolKit/ZDTools/ZDRunloopQueue.m; sourceTree = "<group>"; };
-		3261DFDBB262B99C3374B0F4A44B5263 /* NSObject+ZDBlockKVO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+ZDBlockKVO.h"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDBlockKVO.h"; sourceTree = "<group>"; };
-		328A1556A126434F511529777FFDCE44 /* UIView+ZDDraggable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDDraggable.h"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDDraggable.h"; sourceTree = "<group>"; };
-		3294F3EB4DF527BEA01E85FA3A23CACF /* UIView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDUtility.h"; sourceTree = "<group>"; };
-		32EACD31F24CC7A15E0B6DA736A4ED8D /* libZDToolKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libZDToolKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3435F1F0B20FDEFB3143C2676B940D4A /* UIViewController+ZDBack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+ZDBack.h"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDBack.h"; sourceTree = "<group>"; };
-		34D28E2346398D0EAC51635A2AD917D7 /* ZDBannerScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDBannerScrollView.m; path = ZDToolKit/ZDTools/ZDBannerScrollView.m; sourceTree = "<group>"; };
-		3619A7626C59D3DE1D09C01132CE7657 /* ZDSafe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDSafe.h; path = ZDToolKit/ZDMRC/ZDSafe.h; sourceTree = "<group>"; };
-		39F34FF59D239E66088810B9A663E122 /* ZDWatchdog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDWatchdog.h; path = ZDToolKit/ZDTools/ZDWatchdog.h; sourceTree = "<group>"; };
-		3AC55EF32783FB3DC66F1D4DCD60686E /* NSMutableArray+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSMutableArray+ZDUtility.m"; sourceTree = "<group>"; };
-		45B4C2C3B73BB506C8EE46945253194E /* ZDOrderedDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDOrderedDictionary.m; path = ZDToolKit/ZDTools/ZDOrderedDictionary.m; sourceTree = "<group>"; };
-		46C3DEAC375C39CE3B364B38546D999A /* PKProtocolExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKProtocolExtension.h; path = ZDToolKit/ZDTools/ProtocolKit/PKProtocolExtension.h; sourceTree = "<group>"; };
-		47F42058F7690EA131D9EC1819A57CED /* NSObject+ZDSimulateKVO.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ZDSimulateKVO.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDSimulateKVO.m"; sourceTree = "<group>"; };
-		48290334CEA613E19F6AB61D6DE74050 /* NSNull+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNull+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSNull+ZDUtility.h"; sourceTree = "<group>"; };
-		493D39DF803069431A16AD19B4958CA9 /* NSArray+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSArray+ZDUtility.m"; sourceTree = "<group>"; };
-		4A72892F0A0319D7FC9AE9E8CF09BDF2 /* CALayer+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/CALayer+ZDUtility.m"; sourceTree = "<group>"; };
-		4BBD808BDBC05D89BABBCE6AD7706B3B /* ZDConsoleUnicode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDConsoleUnicode.h; path = ZDToolKit/ZDDebug/ZDConsoleUnicode.h; sourceTree = "<group>"; };
-		4D31B4D153627EAEACE1DFF4CD88C314 /* ZDBackgroundContainerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDBackgroundContainerView.m; path = ZDToolKit/ZDSubclass/ZDBackgroundContainerView.m; sourceTree = "<group>"; };
-		51D30C93EC0ACA832F612A38930333D3 /* ZDFileManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFileManager.m; path = ZDToolKit/ZDTools/ZDFileManager.m; sourceTree = "<group>"; };
-		53B3BD60A84A833D939E5142117412ED /* ZDToolKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDToolKit.h; path = ZDToolKit/ZDToolKit.h; sourceTree = "<group>"; };
-		54641DCAA5C1BC2FA086CDBE696DC26F /* UIView+FDCollapsibleConstraints.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+FDCollapsibleConstraints.m"; path = "ZDToolKit/ZDAutoLayout/UIView+FDCollapsibleConstraints.m"; sourceTree = "<group>"; };
-		5B707C0D9D73347EE967DF4804DE11E1 /* NSDictionary+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSDictionary+ZDUtility.m"; sourceTree = "<group>"; };
-		5C85F1545EADBB0ED1062A76EFB8F540 /* NSData+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSData+ZDUtility.h"; sourceTree = "<group>"; };
-		5D7A1E990E803D2C1706B980E47C1A46 /* ZDActionLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDActionLabel.m; path = ZDToolKit/ZDSubclass/ZDActionLabel.m; sourceTree = "<group>"; };
-		5E313BB3BB9FD0305C27D32DC0D1B550 /* UIView+AutoFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+AutoFlowLayout.h"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoFlowLayout.h"; sourceTree = "<group>"; };
-		5E8A77CE7C6F9AAF5DB78E72307BF381 /* ZDFastEnumeration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFastEnumeration.h; path = ZDToolKit/ZDTools/ZDFastEnumeration.h; sourceTree = "<group>"; };
-		615CF28D7BA92DCD56F13FA06BEC8653 /* UIView+FDCollapsibleConstraints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+FDCollapsibleConstraints.h"; path = "ZDToolKit/ZDAutoLayout/UIView+FDCollapsibleConstraints.h"; sourceTree = "<group>"; };
-		62F18C0896D12FF559141EAE2BCD5D7E /* UIViewController+ZDPop.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+ZDPop.m"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDPop.m"; sourceTree = "<group>"; };
-		631555C4FBD913707A85BC18C320C776 /* ZDDispatchSourceMerge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDDispatchSourceMerge.m; path = ZDToolKit/ZDTools/ZDDispatchSourceMerge.m; sourceTree = "<group>"; };
-		64801D2D07D80FF790B2B12A9948422E /* ZDGifImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDGifImageView.h; path = ZDToolKit/ZDSubclass/ZDGifImageView.h; sourceTree = "<group>"; };
-		653835B1EF79D1D516A325C003EBEC49 /* UIResponder+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIResponder+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIResponder+ZDUtility.h"; sourceTree = "<group>"; };
-		66D6A863272EA90F77C411B46945E44B /* ZDIntegrationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDIntegrationManager.m; path = ZDToolKit/ZDTools/ZDIntegrationManager.m; sourceTree = "<group>"; };
-		67AFDDB21D5C8B1F4BC1A420D6A282B2 /* UIView+ZDBorders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDBorders.h"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDBorders.h"; sourceTree = "<group>"; };
-		6B05E52D88783DC622FED1D9492187DE /* ZDDispatchQueuePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDDispatchQueuePool.m; path = ZDToolKit/ZDTools/ZDDispatchQueuePool.m; sourceTree = "<group>"; };
-		6DCF59BEE4D447FCE0FCC6A1E4999289 /* ZDBackgroundContainerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDBackgroundContainerView.h; path = ZDToolKit/ZDSubclass/ZDBackgroundContainerView.h; sourceTree = "<group>"; };
-		6E18E8FC882065EE93B5FCD843907174 /* ZDConsoleUnicode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDConsoleUnicode.m; path = ZDToolKit/ZDDebug/ZDConsoleUnicode.m; sourceTree = "<group>"; };
-		6ECBCDE9A990D3440CB8EA0538E8DB68 /* UIApplication+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIApplication+ZDUtility.m"; sourceTree = "<group>"; };
-		6F5B63B17C652477237DFE799F41B853 /* ZDToolKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZDToolKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		6F7327704975FB9A9A44829FE98FE425 /* ZDToolKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDToolKit.debug.xcconfig; sourceTree = "<group>"; };
-		7410544CFAB79B628063911CA33D2DCD /* UITextView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UITextView+ZDUtility.m"; sourceTree = "<group>"; };
-		747AB91B382D1EEE747873D58814BF35 /* NSObject+ZDRuntime.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ZDRuntime.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDRuntime.m"; sourceTree = "<group>"; };
-		7703D6EC53D77D4D220D496CE3225E14 /* ZDPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDPromise.h; path = ZDToolKit/ZDTools/ZDPromise/ZDPromise.h; sourceTree = "<group>"; };
-		77EB96D2DB536C9CA291FDC2D3317E36 /* ZDInvocationWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDInvocationWrapper.m; path = ZDToolKit/ZDTools/ZDInvocationWrapper.m; sourceTree = "<group>"; };
-		7836521C1B0AAB04E9F470D2629BAA5B /* NSObject+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDUtility.h"; sourceTree = "<group>"; };
-		78D3D3753F7814CAACF3F04C3380440E /* UIViewController+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDUtility.h"; sourceTree = "<group>"; };
-		7A51299A206B5D6AB03A58785464740F /* NSInvocation+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSInvocation+ZDUtility.m"; sourceTree = "<group>"; };
-		7B4064B9E3BD7BEC98F107E7008A17DD /* UIButton+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIButton+ZDUtility.h"; sourceTree = "<group>"; };
-		7B6B5F1B907A05E7466442366CBCD3F1 /* ZDInvocationWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDInvocationWrapper.h; path = ZDToolKit/ZDTools/ZDInvocationWrapper.h; sourceTree = "<group>"; };
-		7DFA47F6410A95114E6F25B52EBF084C /* ZDEXTScope.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDEXTScope.h; path = ZDToolKit/ZDMacros/ZDEXTScope.h; sourceTree = "<group>"; };
-		7E1CA1FD3DFC091091570DAFB1317CF5 /* ZDPermissionHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDPermissionHandler.h; path = ZDToolKit/ZDTools/ZDPermissionHandler.h; sourceTree = "<group>"; };
-		8175EE9A5BE24B342BCCC96E30C86136 /* UIColor+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIColor+ZDUtility.m"; sourceTree = "<group>"; };
-		8241B23FA5778817ABC07A637EC0FF76 /* ProtocolKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ProtocolKit.h; path = ZDToolKit/ZDTools/ProtocolKit/ProtocolKit.h; sourceTree = "<group>"; };
-		8516AAEFD845A357C9D6C9DA5B333E36 /* NSTimer+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSTimer+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSTimer+ZDUtility.h"; sourceTree = "<group>"; };
-		8630E92F85AC355844CE0CAD77A96AD4 /* ZDMutableArray.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDMutableArray.m; path = ZDToolKit/ZDSubclass/ZDMutableArray.m; sourceTree = "<group>"; };
-		8D8BEE4E0DE51785C4E083AA659022E2 /* UIView+AutoFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+AutoFlowLayout.m"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoFlowLayout.m"; sourceTree = "<group>"; };
-		8D9386724A8EAA22D9151FBFC5E0EC54 /* ZDSafe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDSafe.m; path = ZDToolKit/ZDMRC/ZDSafe.m; sourceTree = "<group>"; };
-		8E043EB3E414CB816921EDC1D5A20E60 /* UIImage+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIImage+ZDUtility.h"; sourceTree = "<group>"; };
-		8F3E4221EC0537B19F0C2CEC0005E4B0 /* ZDGuardUIKitOnMainThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDGuardUIKitOnMainThread.h; path = ZDToolKit/ZDDebug/ZDGuardUIKitOnMainThread.h; sourceTree = "<group>"; };
-		91396AE4BA9EA45F3FD956F0E73F17E1 /* UIColor+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIColor+ZDUtility.h"; sourceTree = "<group>"; };
-		9373A85A076FA5337545CC30BF45F948 /* ZDFileManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFileManager.h; path = ZDToolKit/ZDTools/ZDFileManager.h; sourceTree = "<group>"; };
-		9406ED0F26A24A82389CFC519EB6111D /* UIImageView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+ZDUtility.h"; sourceTree = "<group>"; };
-		97F0BFD6125D44F93EF1E7C51AC4F51B /* ZDDispatchQueuePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDDispatchQueuePool.h; path = ZDToolKit/ZDTools/ZDDispatchQueuePool.h; sourceTree = "<group>"; };
-		99C21F21973E3B772AA290985FB328D9 /* NSTimer+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSTimer+ZDUtility.m"; sourceTree = "<group>"; };
-		9A177AF6A7CF80A9EDB9C7A717C29511 /* NSInvocation+ZDBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+ZDBlock.m"; path = "ZDToolKit/ZDCategory/Foundation/NSInvocation+ZDBlock.m"; sourceTree = "<group>"; };
-		9A5FED755DDD4A070ED746ED9A0CCF91 /* NSURLSession+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLSession+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSURLSession+ZDUtility.h"; sourceTree = "<group>"; };
-		9A90EBB3B908AAF1BE6D8D74297F6560 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+AutoLayout.h"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoLayout.h"; sourceTree = "<group>"; };
-		A0627FF780948501EBE778138618EC34 /* ZDToolKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDToolKit-prefix.pch"; sourceTree = "<group>"; };
-		A1819CC8DC9851FBE00670B22EBDE205 /* NSString+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSString+ZDUtility.h"; sourceTree = "<group>"; };
-		A375AE9243B4CFC674247420EC012572 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		A4FA5A4763AF9F59A5D564E7221DD55C /* UIWebView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWebView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIWebView+ZDUtility.h"; sourceTree = "<group>"; };
-		A5904E462D58580BE8E8E2DDC42A556C /* ZDOSLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDOSLogger.h; path = ZDToolKit/ZDTools/ZDOSLogger.h; sourceTree = "<group>"; };
-		A81F4E716F543F2D3D84F902B485C24A /* ZDToolKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDToolKit.release.xcconfig; sourceTree = "<group>"; };
-		A8413E2F767392390DDA3CCB687D13E0 /* UIView+ZDDraggable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDDraggable.m"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDDraggable.m"; sourceTree = "<group>"; };
-		AB4AFF963BE244B305C5F6826413E4C7 /* ZDEdgeLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDEdgeLabel.h; path = ZDToolKit/ZDSubclass/ZDEdgeLabel.h; sourceTree = "<group>"; };
-		AC479691845D39C574FFB32D76791C48 /* ZDRuntimeTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDRuntimeTool.h; path = ZDToolKit/ZDRuntime/ZDRuntimeTool.h; sourceTree = "<group>"; };
-		AF6428C1F2D5F9655D5E43067EF3E568 /* UIImageView+FaceAwareFill.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+FaceAwareFill.m"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+FaceAwareFill.m"; sourceTree = "<group>"; };
-		B19E29CDC1A6DF87C529BD9BB833DD48 /* NSURLSession+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLSession+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSURLSession+ZDUtility.m"; sourceTree = "<group>"; };
-		B4DC64DBA78CDB45A4FD618FC1636922 /* ZDGifImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDGifImageView.m; path = ZDToolKit/ZDSubclass/ZDGifImageView.m; sourceTree = "<group>"; };
-		B72AFF1F8A9288625F50508FAFCBB7AB /* PKProtocolExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PKProtocolExtension.m; path = ZDToolKit/ZDTools/ProtocolKit/PKProtocolExtension.m; sourceTree = "<group>"; };
-		B9D258A3D5DAC656D236BC95A2141655 /* ZDFunction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFunction.m; path = ZDToolKit/ZDTools/ZDFunction.m; sourceTree = "<group>"; };
-		BA427C7E954BB7B490647F8C414BE957 /* UILabel+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UILabel+ZDUtility.m"; sourceTree = "<group>"; };
-		BB6F16076F064483AF71FA2851AE3BBF /* WKWebView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "WKWebView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/WKWebView+ZDUtility.h"; sourceTree = "<group>"; };
-		BCE709B581653EA86112B8D257BD8645 /* UIImageView+FaceAwareFill.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+FaceAwareFill.h"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+FaceAwareFill.h"; sourceTree = "<group>"; };
-		BD1B70996C0B346C3496049412C999C3 /* UIImageView+ZDGIF.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+ZDGIF.m"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+ZDGIF.m"; sourceTree = "<group>"; };
-		BFF0B2444004703E0D83830D5DD83E33 /* ZDPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDPromise.m; path = ZDToolKit/ZDTools/ZDPromise/ZDPromise.m; sourceTree = "<group>"; };
-		C11F826435C1133F9F06A0BD372F5BBC /* UIControl+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIControl+ZDUtility.m"; sourceTree = "<group>"; };
-		C1DD0EC7D7B6B3CCFCD43C8EF3138BFF /* NSNotificationCenter+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSNotificationCenter+ZDUtility.m"; sourceTree = "<group>"; };
-		C3C36B6A4166D9E7396858C0E2274CD8 /* ZDProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDProxy.h; path = ZDToolKit/ZDTools/ZDProxy/ZDProxy.h; sourceTree = "<group>"; };
-		C5DB0B74E2E5519DDE1A7688EB4A1A42 /* NSInvocation+ZDBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+ZDBlock.h"; path = "ZDToolKit/ZDCategory/Foundation/NSInvocation+ZDBlock.h"; sourceTree = "<group>"; };
-		C7F4CE177E68BD71D2BBA1177BB83221 /* ZDTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDTextView.m; path = ZDToolKit/ZDSubclass/ZDTextView.m; sourceTree = "<group>"; };
-		C843B34B169DFB9EBC54EA51C4D9E324 /* UIViewController+ZDBack.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+ZDBack.m"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDBack.m"; sourceTree = "<group>"; };
-		CD751143FD1FF4E531889CFA0EB3F1B3 /* ZDLinkedMap.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDLinkedMap.m; path = ZDToolKit/ZDTools/ZDLinkedMap.m; sourceTree = "<group>"; };
-		D2A8C3AC8E37263C07E86A47B60F2386 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D6AA0EDFC2DD800160F68F8CB7B99314 /* UIView+ZDBorders.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDBorders.m"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDBorders.m"; sourceTree = "<group>"; };
-		D74BC7773B310F728BCA5CB902054A9F /* NSObject+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDUtility.m"; sourceTree = "<group>"; };
-		D83FBAFB1DAED603C6AFAADB2C212719 /* ZDToolKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDToolKit-umbrella.h"; sourceTree = "<group>"; };
-		D9927B4721C73F5CA0008017393FF892 /* CALayer+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CALayer+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/CALayer+ZDUtility.h"; sourceTree = "<group>"; };
-		DCBF90A88B3AB0CD23A2CE2584299BF8 /* ZDProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDProxy.m; path = ZDToolKit/ZDTools/ZDProxy/ZDProxy.m; sourceTree = "<group>"; };
-		DCCDDBC819400B6281BB5C28A0F5788F /* ZDFunction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFunction.h; path = ZDToolKit/ZDTools/ZDFunction.h; sourceTree = "<group>"; };
-		DFF93D259CCE3B19FD4EB8276FF9AFA0 /* UIViewController+ZDPop.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+ZDPop.h"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDPop.h"; sourceTree = "<group>"; };
-		E2AC2715810AA396F843D1E78F71DB2C /* UIImageView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+ZDUtility.m"; sourceTree = "<group>"; };
-		E2B4051A8C162AB375E265B058C251A9 /* ZDOSLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDOSLogger.m; path = ZDToolKit/ZDTools/ZDOSLogger.m; sourceTree = "<group>"; };
-		E30BBD3E89C627BD068CD95EA7CBC0A6 /* UIView+ZDCollapsibleConstraints.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDCollapsibleConstraints.m"; path = "ZDToolKit/ZDAutoLayout/UIView+ZDCollapsibleConstraints.m"; sourceTree = "<group>"; };
-		E3C90695C6D1AF06B906857DA2626608 /* ZDRunloopQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDRunloopQueue.h; path = ZDToolKit/ZDTools/ZDRunloopQueue.h; sourceTree = "<group>"; };
-		E4AC98E149FD2ECB69F81724DA25A842 /* ZDToolKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZDToolKit-dummy.m"; sourceTree = "<group>"; };
-		E72949E541D7F2831D2C9F53142DAB0D /* NSDate+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSDate+ZDUtility.m"; sourceTree = "<group>"; };
-		E871DFE4F5BC38E2DA169F55CF6C84D1 /* UIImage+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIImage+ZDUtility.m"; sourceTree = "<group>"; };
-		EA8F407F9A6C547794059D5B928D25D9 /* NSDictionary+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSDictionary+ZDUtility.h"; sourceTree = "<group>"; };
-		F15555DC5CF72AB1296CF5A360941300 /* UITextView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UITextView+ZDUtility.h"; sourceTree = "<group>"; };
-		F6632708B65DEAFF826BAE9F5A7338CD /* NSArray+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSArray+ZDUtility.h"; sourceTree = "<group>"; };
-		F67B6BFE29FC57C2977FF51785753B1E /* ZDTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDTextView.h; path = ZDToolKit/ZDSubclass/ZDTextView.h; sourceTree = "<group>"; };
-		F754D5BA9A7E886463F0C05CDE2110D9 /* ZDWatchdog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDWatchdog.m; path = ZDToolKit/ZDTools/ZDWatchdog.m; sourceTree = "<group>"; };
-		F8DFEA0200D152F0B37BE9F70116D6F2 /* UIView+ZDCollapsibleConstraints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDCollapsibleConstraints.h"; path = "ZDToolKit/ZDAutoLayout/UIView+ZDCollapsibleConstraints.h"; sourceTree = "<group>"; };
-		FAB19DDA481E03FE949E941CBDF39B63 /* ZDReusePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDReusePool.m; path = ZDToolKit/ZDTools/ZDReusePool.m; sourceTree = "<group>"; };
-		FB98ECD1DB852D621DCFD154D80EFD96 /* ZDActionLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDActionLabel.h; path = ZDToolKit/ZDSubclass/ZDActionLabel.h; sourceTree = "<group>"; };
-		FC38AC5ED1916F717375305600130DCD /* NSInvocation+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSInvocation+ZDUtility.h"; sourceTree = "<group>"; };
-		FD6867BA400D57857B36BEC6203AC8A7 /* ZDIntegrationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDIntegrationManager.h; path = ZDToolKit/ZDTools/ZDIntegrationManager.h; sourceTree = "<group>"; };
+		019ABE45C2C516885A8F1E8053F7524E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		0501633BAE8F0A152123BE8066BA0B75 /* ZDMetamacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDMetamacros.h; path = ZDToolKit/ZDMacros/ZDMetamacros.h; sourceTree = "<group>"; };
+		063132C4574BCC29F75393F2BD53E6DE /* UIView+ZDBorders.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDBorders.m"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDBorders.m"; sourceTree = "<group>"; };
+		065664A655ADA72F94AC98219F7B66D3 /* NSObject+ZDBlockKVO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+ZDBlockKVO.h"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDBlockKVO.h"; sourceTree = "<group>"; };
+		073F55551D0394A5E436275533DBF8E1 /* ZDConcurrentOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDConcurrentOperation.h; path = ZDToolKit/ZDSubclass/ZDConcurrentOperation.h; sourceTree = "<group>"; };
+		0A31C2E8B46A2A709983E9DCD3FC6950 /* UIViewController+ZDPop.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+ZDPop.h"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDPop.h"; sourceTree = "<group>"; };
+		0C23B9E542D161B2399791026BB0245A /* ZDOSLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDOSLogger.h; path = ZDToolKit/ZDTools/ZDOSLogger.h; sourceTree = "<group>"; };
+		0FA76381AC97632BB8B3F20FB83DE701 /* ZDToolKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDToolKit.debug.xcconfig; sourceTree = "<group>"; };
+		10D2604C5B8A02B3553CA7C7AED4CBB2 /* ZDMutableArray.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDMutableArray.h; path = ZDToolKit/ZDSubclass/ZDMutableArray.h; sourceTree = "<group>"; };
+		127270624BC2F8E5882002FFC58E33FE /* WKWebView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "WKWebView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/WKWebView+ZDUtility.m"; sourceTree = "<group>"; };
+		1538E21C6DEF2CE5740DBABD0BA636EC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		165F3F81B9BDE1398E8D25CB2E11C7FF /* NSObject+ZDSimulateKVO.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ZDSimulateKVO.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDSimulateKVO.m"; sourceTree = "<group>"; };
+		18A4EAFD7440A6FBB26612BAA4A3F4C4 /* ZDConcurrentOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDConcurrentOperation.m; path = ZDToolKit/ZDSubclass/ZDConcurrentOperation.m; sourceTree = "<group>"; };
+		1C60EC709BB0F3016FB6E21AAF1F3A78 /* ZDConsoleUnicode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDConsoleUnicode.m; path = ZDToolKit/ZDDebug/ZDConsoleUnicode.m; sourceTree = "<group>"; };
+		1DF1591E7C0659C38AF8F86EDB50ACFC /* NSMutableArray+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSMutableArray+ZDUtility.h"; sourceTree = "<group>"; };
+		212FAEF6FBBE892D5293324452B4C2B6 /* UIControl+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIControl+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIControl+ZDUtility.m"; sourceTree = "<group>"; };
+		21DEB8F366560E1B3AD425035165BB81 /* UIView+ZDBorders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDBorders.h"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDBorders.h"; sourceTree = "<group>"; };
+		22C321166562119B45E434D95CD13A07 /* ZDProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDProxy.h; path = ZDToolKit/ZDTools/ZDProxy/ZDProxy.h; sourceTree = "<group>"; };
+		23C44BB260B2784D5CE8D574C4A195E4 /* ZDLinkedMap.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDLinkedMap.m; path = ZDToolKit/ZDTools/ZDLinkedMap.m; sourceTree = "<group>"; };
+		25D421857D3138A4ECABA014A396FF82 /* NSDictionary+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSDictionary+ZDUtility.h"; sourceTree = "<group>"; };
+		263617B196065C60CFBBD7771598A179 /* ZDPermissionHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDPermissionHandler.h; path = ZDToolKit/ZDTools/ZDPermissionHandler.h; sourceTree = "<group>"; };
+		270227605B04C2B0EEADD61176F3DF07 /* UIImageView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+ZDUtility.m"; sourceTree = "<group>"; };
+		275799F8109B9E07ABB24411615D49C7 /* NSNotificationCenter+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSNotificationCenter+ZDUtility.m"; sourceTree = "<group>"; };
+		290281FC2E8450F706BF7E41A9C41514 /* NSTimer+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSTimer+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSTimer+ZDUtility.h"; sourceTree = "<group>"; };
+		2941CDDAA8D4A9E7C9BAC0B6FA5A5429 /* ZDDispatchQueuePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDDispatchQueuePool.h; path = ZDToolKit/ZDTools/ZDDispatchQueuePool.h; sourceTree = "<group>"; };
+		2AC70BF08AD0B45563020D1A62827F01 /* ZDToolKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZDToolKit-dummy.m"; sourceTree = "<group>"; };
+		2B33792F63D8784661BFE99A0BA02F7A /* UIResponder+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIResponder+ZDUtility.m"; sourceTree = "<group>"; };
+		2D63E7C723CCBCE991914CCC2B5B0197 /* UIView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDUtility.h"; sourceTree = "<group>"; };
+		30C50E18EBB2866F985748F71325FF2B /* NSObject+ZDRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+ZDRuntime.h"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDRuntime.h"; sourceTree = "<group>"; };
+		32EACD31F24CC7A15E0B6DA736A4ED8D /* ZDToolKit */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = ZDToolKit; path = libZDToolKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		336BA6F872DD0B620853913033E04040 /* UIImageView+FaceAwareFill.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+FaceAwareFill.m"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+FaceAwareFill.m"; sourceTree = "<group>"; };
+		34D7F1A070819FAB409DB6F34A43B7B9 /* UIView+ZDCollapsibleConstraints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDCollapsibleConstraints.h"; path = "ZDToolKit/ZDAutoLayout/UIView+ZDCollapsibleConstraints.h"; sourceTree = "<group>"; };
+		371C5B9C01636CE561C58357B70E1C21 /* ZDLinkedMap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDLinkedMap.h; path = ZDToolKit/ZDTools/ZDLinkedMap.h; sourceTree = "<group>"; };
+		388F27571D332014BDFAE4B8224D916A /* ZDFunction.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFunction.m; path = ZDToolKit/ZDTools/ZDFunction.m; sourceTree = "<group>"; };
+		39F283A1A5C6CD7D1FFE03E56BF4E6BA /* UIImageView+ZDGIF.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+ZDGIF.h"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+ZDGIF.h"; sourceTree = "<group>"; };
+		3D9C6EC08FC89CF94A43B8872062C5CC /* ZDMutableDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDMutableDictionary.m; path = ZDToolKit/ZDSubclass/ZDMutableDictionary.m; sourceTree = "<group>"; };
+		3E23713245F6FA4D85DE4E64B5E4426C /* UIImage+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIImage+ZDUtility.h"; sourceTree = "<group>"; };
+		3F2652507E600BF889C853F66918EEEC /* CALayer+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CALayer+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/CALayer+ZDUtility.m"; sourceTree = "<group>"; };
+		3FBBD09CBEEEEDA93E0F2D7657136EEB /* ZDToolKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZDToolKit.release.xcconfig; sourceTree = "<group>"; };
+		410437957646A8C2CB85E7FAE6967922 /* NSMutableArray+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSMutableArray+ZDUtility.m"; sourceTree = "<group>"; };
+		425E5BF8EF414D898EE0952CCD236FA1 /* ZDIntegrationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDIntegrationManager.m; path = ZDToolKit/ZDTools/ZDIntegrationManager.m; sourceTree = "<group>"; };
+		42C602CA94E7CA24A2A03813043985F0 /* ZDToolKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZDToolKit.modulemap; sourceTree = "<group>"; };
+		431EB93390B600639A0A5CD469137CA3 /* ZDSafe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDSafe.h; path = ZDToolKit/ZDMRC/ZDSafe.h; sourceTree = "<group>"; };
+		43803DA82387466A650F9BAD1BD136F7 /* NSTimer+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSTimer+ZDUtility.m"; sourceTree = "<group>"; };
+		43D4604005D4FDCF21257C949881A94B /* UIWebView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIWebView+ZDUtility.m"; sourceTree = "<group>"; };
+		456A3CA07B6D46907039613DDD985324 /* WKWebView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "WKWebView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/WKWebView+ZDUtility.h"; sourceTree = "<group>"; };
+		461CFAC28067ACBDADD91B3651254F6A /* ZDDispatchQueuePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDDispatchQueuePool.m; path = ZDToolKit/ZDTools/ZDDispatchQueuePool.m; sourceTree = "<group>"; };
+		470DE7EC587BAEAF6A5FB80697A635AE /* NSArray+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSArray+ZDUtility.m"; sourceTree = "<group>"; };
+		47E3E7581082255D9E61A2CF1C2A9B94 /* ZDReusePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDReusePool.h; path = ZDToolKit/ZDTools/ZDReusePool.h; sourceTree = "<group>"; };
+		4B23654AA300347162DEDC606D4C954A /* UITextView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UITextView+ZDUtility.m"; sourceTree = "<group>"; };
+		4B31804CC865D37FE2C9D8ED3FC6BB74 /* UIViewController+ZDPop.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+ZDPop.m"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDPop.m"; sourceTree = "<group>"; };
+		4C38AD7D7AE7917911E883979F40ADC4 /* NSData+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSData+ZDUtility.h"; sourceTree = "<group>"; };
+		4C71050923629BA7E84EDEA7C8948AB6 /* NSObject+ZDBlockKVO.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ZDBlockKVO.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDBlockKVO.m"; sourceTree = "<group>"; };
+		4E0753AC2ACA31C7944A7F0C68086140 /* UIView+ZDDraggable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDDraggable.m"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDDraggable.m"; sourceTree = "<group>"; };
+		51836056D35F131B79014AF9331E33E4 /* ZDInvocationWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDInvocationWrapper.h; path = ZDToolKit/ZDTools/ZDInvocationWrapper.h; sourceTree = "<group>"; };
+		52CBB3C8A2B63B90E5452A69A7E34B37 /* UITextView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UITextView+ZDUtility.h"; sourceTree = "<group>"; };
+		592684513CB638AC57C857436558DE81 /* ZDDispatchSourceMerge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDDispatchSourceMerge.h; path = ZDToolKit/ZDTools/ZDDispatchSourceMerge.h; sourceTree = "<group>"; };
+		5A284C92121CEE1DCBD683116DC620E0 /* UIView+AutoFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+AutoFlowLayout.m"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoFlowLayout.m"; sourceTree = "<group>"; };
+		5C205A05C11173B839C06E8B16C89339 /* ZDGuardUIKitOnMainThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDGuardUIKitOnMainThread.h; path = ZDToolKit/ZDDebug/ZDGuardUIKitOnMainThread.h; sourceTree = "<group>"; };
+		5E3CB18EEABE30E146E8331922C85E55 /* ZDToolKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDToolKit-umbrella.h"; sourceTree = "<group>"; };
+		60E974F9E562D0AB1303407608F1E9E3 /* ZDOSLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDOSLogger.m; path = ZDToolKit/ZDTools/ZDOSLogger.m; sourceTree = "<group>"; };
+		618D7649FD731BC2FEF258A97F4C0E02 /* NSInvocation+ZDBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+ZDBlock.h"; path = "ZDToolKit/ZDCategory/Foundation/NSInvocation+ZDBlock.h"; sourceTree = "<group>"; };
+		61D39D276E8D44EB8068161A78013EF0 /* ZDIntegrationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDIntegrationManager.h; path = ZDToolKit/ZDTools/ZDIntegrationManager.h; sourceTree = "<group>"; };
+		650AD54D9706795673A1F754E43F411C /* ZDTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDTextView.m; path = ZDToolKit/ZDSubclass/ZDTextView.m; sourceTree = "<group>"; };
+		65493E6DF52B3F2768EE7D901F354F89 /* UIView+FDCollapsibleConstraints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+FDCollapsibleConstraints.h"; path = "ZDToolKit/ZDAutoLayout/UIView+FDCollapsibleConstraints.h"; sourceTree = "<group>"; };
+		65E88859A324C66D8CB0A08A3AB02B84 /* UIApplication+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIApplication+ZDUtility.h"; sourceTree = "<group>"; };
+		67858CC1E35F0AB9BB862B6CFB4431A2 /* ZDInvocationWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDInvocationWrapper.m; path = ZDToolKit/ZDTools/ZDInvocationWrapper.m; sourceTree = "<group>"; };
+		698804784BF90BC6726F35D3B78F1799 /* ZDAlertControllerHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDAlertControllerHelper.m; path = ZDToolKit/ZDTools/ZDAlertControllerHelper.m; sourceTree = "<group>"; };
+		6A9F2BBDF611DB3158CC0FD0E200E80B /* ZDToolKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZDToolKit-prefix.pch"; sourceTree = "<group>"; };
+		6B19506B9CADDE723FE6E5E1F6FFFB20 /* NSURLSession+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLSession+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSURLSession+ZDUtility.m"; sourceTree = "<group>"; };
+		6B58E4BFE911B3DDF17FDE8AD360A76C /* ZDBannerScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDBannerScrollView.m; path = ZDToolKit/ZDTools/ZDBannerScrollView.m; sourceTree = "<group>"; };
+		6C02FB17686538B7A870F69D6B19FD58 /* UIView+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDUtility.m"; sourceTree = "<group>"; };
+		6DE5F3C394AFA62C377B46D5ADA65F51 /* UILabel+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UILabel+ZDUtility.m"; sourceTree = "<group>"; };
+		6DEA3D619F4CB8E33934D20D7C889221 /* NSObject+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDUtility.m"; sourceTree = "<group>"; };
+		6E1AC85303EBBCB3346CBAC68624C5ED /* UIView+AutoLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+AutoLayout.m"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoLayout.m"; sourceTree = "<group>"; };
+		71EE66864079BEFDD420FCFD80AE1B08 /* ZDTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDTextView.h; path = ZDToolKit/ZDSubclass/ZDTextView.h; sourceTree = "<group>"; };
+		748C65E9441BB79436AF57A984B52CCB /* ZDMacro.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDMacro.h; path = ZDToolKit/ZDMacros/ZDMacro.h; sourceTree = "<group>"; };
+		77DF1FB08CC1A238D48C27A81C5032F3 /* ZDBackgroundContainerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDBackgroundContainerView.m; path = ZDToolKit/ZDSubclass/ZDBackgroundContainerView.m; sourceTree = "<group>"; };
+		78F4AF8B54A74CE0D52A2E44B423EDA1 /* UIViewController+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDUtility.m"; sourceTree = "<group>"; };
+		7E3A565790AEE9135373FAEFA664EC7F /* UIButton+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIButton+ZDUtility.m"; sourceTree = "<group>"; };
+		7F1B38DA6A19BB88C80D20625E8E2C10 /* ZDFileManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFileManager.h; path = ZDToolKit/ZDTools/ZDFileManager.h; sourceTree = "<group>"; };
+		81726AAD2B6F3750CC2F329DB131B713 /* ZDPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDPromise.m; path = ZDToolKit/ZDTools/ZDPromise/ZDPromise.m; sourceTree = "<group>"; };
+		82242B374B51B487FCCED82458512F0F /* UIView+ZDCollapsibleConstraints.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ZDCollapsibleConstraints.m"; path = "ZDToolKit/ZDAutoLayout/UIView+ZDCollapsibleConstraints.m"; sourceTree = "<group>"; };
+		839DB28666A94C125B708AB9B2DF9F72 /* UIViewController+ZDBack.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+ZDBack.m"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDBack.m"; sourceTree = "<group>"; };
+		85B7179FB821411C78A3FC46D6BE25CC /* UIColor+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIColor+ZDUtility.m"; sourceTree = "<group>"; };
+		877FFCD9799A3F9B974EF8A5CBCEEEFA /* ZDBannerScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDBannerScrollView.h; path = ZDToolKit/ZDTools/ZDBannerScrollView.h; sourceTree = "<group>"; };
+		882F13C97A84C9F89AE38325B524C90F /* UIView+FDCollapsibleConstraints.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+FDCollapsibleConstraints.m"; path = "ZDToolKit/ZDAutoLayout/UIView+FDCollapsibleConstraints.m"; sourceTree = "<group>"; };
+		89FDC0852463227CC88C9AC9B49F2997 /* NSObject+ZDSimulateKVO.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+ZDSimulateKVO.h"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDSimulateKVO.h"; sourceTree = "<group>"; };
+		8E8F6A3E9BCD92E7D0B281C2EF440CAF /* ZDWatchdog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDWatchdog.h; path = ZDToolKit/ZDTools/ZDWatchdog.h; sourceTree = "<group>"; };
+		8FB82040B80440ED96CCAB1CBCB43831 /* ZDActionLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDActionLabel.m; path = ZDToolKit/ZDSubclass/ZDActionLabel.m; sourceTree = "<group>"; };
+		92AD89BEB276DA0F3CFF14271BA75A43 /* ZDSafe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDSafe.m; path = ZDToolKit/ZDMRC/ZDSafe.m; sourceTree = "<group>"; };
+		930D64AF46EC4016F3B94D75BEF515F9 /* NSData+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSData+ZDUtility.m"; sourceTree = "<group>"; };
+		94D63C08278B165CA3777A4C24D639FF /* NSNull+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNull+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSNull+ZDUtility.m"; sourceTree = "<group>"; };
+		960DC7A5CD7A605576E738D25B50A246 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+AutoLayout.h"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoLayout.h"; sourceTree = "<group>"; };
+		9902351001DCE13B82B2D630F59F6F5C /* NSNotificationCenter+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSNotificationCenter+ZDUtility.h"; sourceTree = "<group>"; };
+		9988608598DD7293068FC699F96CC9ED /* ZDEdgeLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDEdgeLabel.m; path = ZDToolKit/ZDSubclass/ZDEdgeLabel.m; sourceTree = "<group>"; };
+		9A23F65D70AEC2D0498EC22A0F4F6780 /* ZDFileManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDFileManager.m; path = ZDToolKit/ZDTools/ZDFileManager.m; sourceTree = "<group>"; };
+		9A9CA2CC4FFCBCBECE75D62F234118FC /* ZDPermissionHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDPermissionHandler.m; path = ZDToolKit/ZDTools/ZDPermissionHandler.m; sourceTree = "<group>"; };
+		9BF3FCE338C8BD98127833B791F39B17 /* UIColor+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIColor+ZDUtility.h"; sourceTree = "<group>"; };
+		9C10CD95D80235C69D4F99EB007376C8 /* ZDToolKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ZDToolKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E95D62CA165978F15312A79C4737288 /* ZDRunloopQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDRunloopQueue.h; path = ZDToolKit/ZDTools/ZDRunloopQueue.h; sourceTree = "<group>"; };
+		A0E5B9252EA6443F7EA06FC0DD35FBA8 /* NSString+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSString+ZDUtility.m"; sourceTree = "<group>"; };
+		A2771086986FF502EDFF0B05E7283848 /* NSURLSession+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLSession+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSURLSession+ZDUtility.h"; sourceTree = "<group>"; };
+		A54A041F077B25CF8B5384E0BE3EA77A /* ZDEdgeLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDEdgeLabel.h; path = ZDToolKit/ZDSubclass/ZDEdgeLabel.h; sourceTree = "<group>"; };
+		A5589B7B169D62633004029EA6185D01 /* NSInvocation+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSInvocation+ZDUtility.h"; sourceTree = "<group>"; };
+		A5F96ED88B69DEF74E4623B07A091CAD /* UIImageView+ZDGIF.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+ZDGIF.m"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+ZDGIF.m"; sourceTree = "<group>"; };
+		A63710B9AB2DDF0E77212562EE1FCB4B /* NSInvocation+ZDBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+ZDBlock.m"; path = "ZDToolKit/ZDCategory/Foundation/NSInvocation+ZDBlock.m"; sourceTree = "<group>"; };
+		A69BC55C2916AC261647D8DF681CFE47 /* UIWebView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWebView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIWebView+ZDUtility.h"; sourceTree = "<group>"; };
+		AB80747747B3AE68E83E1BE99DEC540B /* ZDGuardUIKitOnMainThread.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDGuardUIKitOnMainThread.m; path = ZDToolKit/ZDDebug/ZDGuardUIKitOnMainThread.m; sourceTree = "<group>"; };
+		AC403B39621614D8459D6F75B87B7B0B /* NSNull+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNull+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSNull+ZDUtility.h"; sourceTree = "<group>"; };
+		AD6D8B08A026B1A2BE75E54EAC16C965 /* UIControl+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIControl+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIControl+ZDUtility.h"; sourceTree = "<group>"; };
+		ADA93C7B90EA61B36925EEE785A08651 /* ZDGifImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDGifImageView.m; path = ZDToolKit/ZDSubclass/ZDGifImageView.m; sourceTree = "<group>"; };
+		AE251A0EDE081A786F94694D96B6229F /* ZDRunloopQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDRunloopQueue.m; path = ZDToolKit/ZDTools/ZDRunloopQueue.m; sourceTree = "<group>"; };
+		AE85BA2C8ABB3A4264E58D485EC488F5 /* PKProtocolExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PKProtocolExtension.h; path = ZDToolKit/ZDTools/ProtocolKit/PKProtocolExtension.h; sourceTree = "<group>"; };
+		AEED7C846B6E1921C434A8DDE9238FF5 /* ZDDispatchSourceMerge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDDispatchSourceMerge.m; path = ZDToolKit/ZDTools/ZDDispatchSourceMerge.m; sourceTree = "<group>"; };
+		B4292A523E38804FD8B4E33A1290E1BD /* NSString+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSString+ZDUtility.h"; sourceTree = "<group>"; };
+		B59596B365675B8F98B9E9A4F5687A6E /* NSObject+ZDRuntime.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+ZDRuntime.m"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDRuntime.m"; sourceTree = "<group>"; };
+		B926A0760E5FD026D7B47EEB527E5DDD /* ZDReusePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDReusePool.m; path = ZDToolKit/ZDTools/ZDReusePool.m; sourceTree = "<group>"; };
+		B9F28DBDDBBC5289015935BFDFF6E9DA /* ZDToolKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDToolKit.h; path = ZDToolKit/ZDToolKit.h; sourceTree = "<group>"; };
+		BA944C573C735DDD1952565CB61526CA /* ZDFastEnumeration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFastEnumeration.h; path = ZDToolKit/ZDTools/ZDFastEnumeration.h; sourceTree = "<group>"; };
+		C1682F1666F4BA8A17499089CEB0BA10 /* ZDAlertControllerHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDAlertControllerHelper.h; path = ZDToolKit/ZDTools/ZDAlertControllerHelper.h; sourceTree = "<group>"; };
+		C3F367D4CE9DE5BB0D0C43070CD59549 /* UIResponder+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIResponder+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIResponder+ZDUtility.h"; sourceTree = "<group>"; };
+		C4EAAA0A6C91C193AB984DA2FC812067 /* ZDActionLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDActionLabel.h; path = ZDToolKit/ZDSubclass/ZDActionLabel.h; sourceTree = "<group>"; };
+		C5A062D749019B64F765E113FB8A14FD /* ZDConsoleUnicode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDConsoleUnicode.h; path = ZDToolKit/ZDDebug/ZDConsoleUnicode.h; sourceTree = "<group>"; };
+		CB6A1879CB63654B5BF55DBD386DA11F /* NSInvocation+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSInvocation+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSInvocation+ZDUtility.m"; sourceTree = "<group>"; };
+		CB9364E07EE542EC4E1703EF2A975B5F /* UIView+ZDDraggable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ZDDraggable.h"; path = "ZDToolKit/ZDCategory/UIKit/UIView+ZDDraggable.h"; sourceTree = "<group>"; };
+		CC179988177FD4A2D197A9FC5F512131 /* UIImageView+FaceAwareFill.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+FaceAwareFill.h"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+FaceAwareFill.h"; sourceTree = "<group>"; };
+		CD5A5D99A531BD41E91A57690F7E0585 /* UIView+AutoFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+AutoFlowLayout.h"; path = "ZDToolKit/ZDAutoLayout/UIView+AutoFlowLayout.h"; sourceTree = "<group>"; };
+		CF51642D7014FCAB600145E360BEE450 /* NSDate+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSDate+ZDUtility.m"; sourceTree = "<group>"; };
+		D32687E119373A66BD7CC6146E7E3B80 /* ZDProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDProxy.m; path = ZDToolKit/ZDTools/ZDProxy/ZDProxy.m; sourceTree = "<group>"; };
+		D65D79C4EDF2F04BC92F637C5CFE50E1 /* UIImage+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIImage+ZDUtility.m"; sourceTree = "<group>"; };
+		D87BC5972EFEFE977C8E7D3D97134533 /* ZDBackgroundContainerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDBackgroundContainerView.h; path = ZDToolKit/ZDSubclass/ZDBackgroundContainerView.h; sourceTree = "<group>"; };
+		DE99F82245084EDE5FDA42A783839C3B /* ZDPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDPromise.h; path = ZDToolKit/ZDTools/ZDPromise/ZDPromise.h; sourceTree = "<group>"; };
+		DFB629753F962986D94F18AA306448B7 /* UIViewController+ZDBack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+ZDBack.h"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDBack.h"; sourceTree = "<group>"; };
+		E170C5C8CAA4D5DD0F128B9A1CE7D42E /* ProtocolKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ProtocolKit.h; path = ZDToolKit/ZDTools/ProtocolKit/ProtocolKit.h; sourceTree = "<group>"; };
+		E368F13339E1947FC87D06E92034CEB7 /* NSObject+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSObject+ZDUtility.h"; sourceTree = "<group>"; };
+		E73CEDAD0BD9D88CCBE6C2B7D37694AE /* UIImageView+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIImageView+ZDUtility.h"; sourceTree = "<group>"; };
+		E8A95FE42424E9FE62D92DFB5E0E05D6 /* ZDOrderedDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDOrderedDictionary.h; path = ZDToolKit/ZDTools/ZDOrderedDictionary.h; sourceTree = "<group>"; };
+		EA47C54E1E159399CC0CF174B47B3185 /* UIApplication+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+ZDUtility.m"; path = "ZDToolKit/ZDCategory/UIKit/UIApplication+ZDUtility.m"; sourceTree = "<group>"; };
+		EB63527B923DF8EB0BA96CA22DADE111 /* NSDate+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSDate+ZDUtility.h"; sourceTree = "<group>"; };
+		EC3C65E5A3AB0C74B9A6B612E6A99C24 /* UILabel+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UILabel+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UILabel+ZDUtility.h"; sourceTree = "<group>"; };
+		ECFDEF07A2FE004505246C7CE6065544 /* ZDWatchdog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDWatchdog.m; path = ZDToolKit/ZDTools/ZDWatchdog.m; sourceTree = "<group>"; };
+		EEA22B9BA3D571FBB6E8E7B91841EA1E /* UIButton+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIButton+ZDUtility.h"; sourceTree = "<group>"; };
+		F0D07A9CB387342D1A523D4E2DB406D7 /* ZDFunction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDFunction.h; path = ZDToolKit/ZDTools/ZDFunction.h; sourceTree = "<group>"; };
+		F2C08BD29BA6C4C677475F3B206AD169 /* ZDMutableDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDMutableDictionary.h; path = ZDToolKit/ZDSubclass/ZDMutableDictionary.h; sourceTree = "<group>"; };
+		F42F9705A81283048429611197E9F360 /* ZDMutableArray.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDMutableArray.m; path = ZDToolKit/ZDSubclass/ZDMutableArray.m; sourceTree = "<group>"; };
+		F4A7498ADF97EE2C9D4CD258DDF33D00 /* ZDEXTScope.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDEXTScope.h; path = ZDToolKit/ZDMacros/ZDEXTScope.h; sourceTree = "<group>"; };
+		F4F133E5DBE560BA5233B3C84E604305 /* PKProtocolExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PKProtocolExtension.m; path = ZDToolKit/ZDTools/ProtocolKit/PKProtocolExtension.m; sourceTree = "<group>"; };
+		F71D73CA7B78D693EFF6982160408BF7 /* UIViewController+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/UIViewController+ZDUtility.h"; sourceTree = "<group>"; };
+		FAD59A5EF7A248C22ABCCB945B459131 /* ZDOrderedDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ZDOrderedDictionary.m; path = ZDToolKit/ZDTools/ZDOrderedDictionary.m; sourceTree = "<group>"; };
+		FC5B97AFAED001DD126C239A42CEF202 /* ZDGifImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ZDGifImageView.h; path = ZDToolKit/ZDSubclass/ZDGifImageView.h; sourceTree = "<group>"; };
+		FC63D7FF4889BB9970739C27DB26E566 /* NSDictionary+ZDUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+ZDUtility.m"; path = "ZDToolKit/ZDCategory/Foundation/NSDictionary+ZDUtility.m"; sourceTree = "<group>"; };
+		FE46DD618647A580DCE5A4DC63CAAD0E /* NSArray+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+ZDUtility.h"; path = "ZDToolKit/ZDCategory/Foundation/NSArray+ZDUtility.h"; sourceTree = "<group>"; };
+		FF3FA51F24BFA7AFD3BEDB9DCFD1FC2C /* CALayer+ZDUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CALayer+ZDUtility.h"; path = "ZDToolKit/ZDCategory/UIKit/CALayer+ZDUtility.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		54807BE5CA4EA818C8C4738A8A300E74 /* Frameworks */ = {
+		DE7022F924930F99A6A2791505E7A8AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -332,243 +328,247 @@
 			children = (
 				C2AB0E8DB8E120DC3914E6BE60E07AFB /* Frameworks */,
 				3A0F3E04D00761301EB4354DA19ED1CD /* Products */,
-				2BA917C3F07D21C38AA0C9D3ACD09347 /* ZDToolKit */,
+				C94043C8AAFE154C53CC1577AE4F7803 /* ZDToolKit */,
 			);
 			sourceTree = "<group>";
 		};
-		210FEA311564B57DFFE2BD4ED0E3EFA2 /* ZDPromise */ = {
+		0A156BA0CECFEADB0DBBCCA045D9218A /* ZDCategory */ = {
 			isa = PBXGroup;
 			children = (
-				7703D6EC53D77D4D220D496CE3225E14 /* ZDPromise.h */,
-				BFF0B2444004703E0D83830D5DD83E33 /* ZDPromise.m */,
+				2180F253FC5941DC61771A3F33AE5092 /* Foundation */,
+				A4F7C475FC531C1C2DDE80FBB5E6B069 /* UIKit */,
 			);
-			name = ZDPromise;
+			name = ZDCategory;
 			sourceTree = "<group>";
 		};
-		2BA917C3F07D21C38AA0C9D3ACD09347 /* ZDToolKit */ = {
+		2180F253FC5941DC61771A3F33AE5092 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				53B3BD60A84A833D939E5142117412ED /* ZDToolKit.h */,
-				530910E9E32B531430EB22CB61E095A1 /* Pod */,
-				F9A5533C1862D1C4434C7C481C77BBB7 /* Support Files */,
-				E74D1A05F0BB9F3354523660C3F8CCF2 /* ZDAutoLayout */,
-				65EF60066456AF6AD541686ED8970830 /* ZDCategory */,
-				B7A48750FCC46842456EEED54631E3DC /* ZDDebug */,
-				F40164EEECF0CDF2450DD6EE409DACA0 /* ZDMacros */,
-				A92A326D755AC069D581786AD02142D0 /* ZDMRC */,
-				CF06D448694D9150CE648656CCF1F891 /* ZDRuntime */,
-				6FBE8CBB4310F0A3F8C2EE5991030EC0 /* ZDSubclass */,
-				48CBC84F66E35AB6435B328E49CB42EF /* ZDTools */,
+				FE46DD618647A580DCE5A4DC63CAAD0E /* NSArray+ZDUtility.h */,
+				470DE7EC587BAEAF6A5FB80697A635AE /* NSArray+ZDUtility.m */,
+				4C38AD7D7AE7917911E883979F40ADC4 /* NSData+ZDUtility.h */,
+				930D64AF46EC4016F3B94D75BEF515F9 /* NSData+ZDUtility.m */,
+				EB63527B923DF8EB0BA96CA22DADE111 /* NSDate+ZDUtility.h */,
+				CF51642D7014FCAB600145E360BEE450 /* NSDate+ZDUtility.m */,
+				25D421857D3138A4ECABA014A396FF82 /* NSDictionary+ZDUtility.h */,
+				FC63D7FF4889BB9970739C27DB26E566 /* NSDictionary+ZDUtility.m */,
+				618D7649FD731BC2FEF258A97F4C0E02 /* NSInvocation+ZDBlock.h */,
+				A63710B9AB2DDF0E77212562EE1FCB4B /* NSInvocation+ZDBlock.m */,
+				A5589B7B169D62633004029EA6185D01 /* NSInvocation+ZDUtility.h */,
+				CB6A1879CB63654B5BF55DBD386DA11F /* NSInvocation+ZDUtility.m */,
+				1DF1591E7C0659C38AF8F86EDB50ACFC /* NSMutableArray+ZDUtility.h */,
+				410437957646A8C2CB85E7FAE6967922 /* NSMutableArray+ZDUtility.m */,
+				9902351001DCE13B82B2D630F59F6F5C /* NSNotificationCenter+ZDUtility.h */,
+				275799F8109B9E07ABB24411615D49C7 /* NSNotificationCenter+ZDUtility.m */,
+				AC403B39621614D8459D6F75B87B7B0B /* NSNull+ZDUtility.h */,
+				94D63C08278B165CA3777A4C24D639FF /* NSNull+ZDUtility.m */,
+				065664A655ADA72F94AC98219F7B66D3 /* NSObject+ZDBlockKVO.h */,
+				4C71050923629BA7E84EDEA7C8948AB6 /* NSObject+ZDBlockKVO.m */,
+				30C50E18EBB2866F985748F71325FF2B /* NSObject+ZDRuntime.h */,
+				B59596B365675B8F98B9E9A4F5687A6E /* NSObject+ZDRuntime.m */,
+				89FDC0852463227CC88C9AC9B49F2997 /* NSObject+ZDSimulateKVO.h */,
+				165F3F81B9BDE1398E8D25CB2E11C7FF /* NSObject+ZDSimulateKVO.m */,
+				E368F13339E1947FC87D06E92034CEB7 /* NSObject+ZDUtility.h */,
+				6DEA3D619F4CB8E33934D20D7C889221 /* NSObject+ZDUtility.m */,
+				B4292A523E38804FD8B4E33A1290E1BD /* NSString+ZDUtility.h */,
+				A0E5B9252EA6443F7EA06FC0DD35FBA8 /* NSString+ZDUtility.m */,
+				290281FC2E8450F706BF7E41A9C41514 /* NSTimer+ZDUtility.h */,
+				43803DA82387466A650F9BAD1BD136F7 /* NSTimer+ZDUtility.m */,
+				A2771086986FF502EDFF0B05E7283848 /* NSURLSession+ZDUtility.h */,
+				6B19506B9CADDE723FE6E5E1F6FFFB20 /* NSURLSession+ZDUtility.m */,
 			);
-			name = ZDToolKit;
-			path = ../..;
+			name = Foundation;
 			sourceTree = "<group>";
 		};
 		3A0F3E04D00761301EB4354DA19ED1CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32EACD31F24CC7A15E0B6DA736A4ED8D /* libZDToolKit.a */,
+				32EACD31F24CC7A15E0B6DA736A4ED8D /* ZDToolKit */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		410486FF791719D05737B90DF5018F97 /* Foundation */ = {
+		49134A195310806C0100DD63F4C7197A /* ZDMacros */ = {
 			isa = PBXGroup;
 			children = (
-				F6632708B65DEAFF826BAE9F5A7338CD /* NSArray+ZDUtility.h */,
-				493D39DF803069431A16AD19B4958CA9 /* NSArray+ZDUtility.m */,
-				5C85F1545EADBB0ED1062A76EFB8F540 /* NSData+ZDUtility.h */,
-				285CDA948EC85F9DB73F3BB4E28C5728 /* NSData+ZDUtility.m */,
-				1C7937F541E8E22A037F4A5ADE7B6FAF /* NSDate+ZDUtility.h */,
-				E72949E541D7F2831D2C9F53142DAB0D /* NSDate+ZDUtility.m */,
-				EA8F407F9A6C547794059D5B928D25D9 /* NSDictionary+ZDUtility.h */,
-				5B707C0D9D73347EE967DF4804DE11E1 /* NSDictionary+ZDUtility.m */,
-				C5DB0B74E2E5519DDE1A7688EB4A1A42 /* NSInvocation+ZDBlock.h */,
-				9A177AF6A7CF80A9EDB9C7A717C29511 /* NSInvocation+ZDBlock.m */,
-				FC38AC5ED1916F717375305600130DCD /* NSInvocation+ZDUtility.h */,
-				7A51299A206B5D6AB03A58785464740F /* NSInvocation+ZDUtility.m */,
-				1F6EB353099974C0ADC81EA04E0600FE /* NSMutableArray+ZDUtility.h */,
-				3AC55EF32783FB3DC66F1D4DCD60686E /* NSMutableArray+ZDUtility.m */,
-				0DC79A9984C957C7F94C393771E51053 /* NSNotificationCenter+ZDUtility.h */,
-				C1DD0EC7D7B6B3CCFCD43C8EF3138BFF /* NSNotificationCenter+ZDUtility.m */,
-				48290334CEA613E19F6AB61D6DE74050 /* NSNull+ZDUtility.h */,
-				3029E0B133ECAD53612E6024B129105A /* NSNull+ZDUtility.m */,
-				3261DFDBB262B99C3374B0F4A44B5263 /* NSObject+ZDBlockKVO.h */,
-				23CD758B87705F9F3F0713D8A718E55D /* NSObject+ZDBlockKVO.m */,
-				12277B7131C20E47BC6721AE0BC9C96A /* NSObject+ZDRuntime.h */,
-				747AB91B382D1EEE747873D58814BF35 /* NSObject+ZDRuntime.m */,
-				085C9D0680C6152C968D17BB4FAFE091 /* NSObject+ZDSimulateKVO.h */,
-				47F42058F7690EA131D9EC1819A57CED /* NSObject+ZDSimulateKVO.m */,
-				7836521C1B0AAB04E9F470D2629BAA5B /* NSObject+ZDUtility.h */,
-				D74BC7773B310F728BCA5CB902054A9F /* NSObject+ZDUtility.m */,
-				A1819CC8DC9851FBE00670B22EBDE205 /* NSString+ZDUtility.h */,
-				1698D6B2FC4509433E9FFF7C6243F96C /* NSString+ZDUtility.m */,
-				8516AAEFD845A357C9D6C9DA5B333E36 /* NSTimer+ZDUtility.h */,
-				99C21F21973E3B772AA290985FB328D9 /* NSTimer+ZDUtility.m */,
-				9A5FED755DDD4A070ED746ED9A0CCF91 /* NSURLSession+ZDUtility.h */,
-				B19E29CDC1A6DF87C529BD9BB833DD48 /* NSURLSession+ZDUtility.m */,
+				F4A7498ADF97EE2C9D4CD258DDF33D00 /* ZDEXTScope.h */,
+				748C65E9441BB79436AF57A984B52CCB /* ZDMacro.h */,
+				0501633BAE8F0A152123BE8066BA0B75 /* ZDMetamacros.h */,
 			);
-			name = Foundation;
+			name = ZDMacros;
 			sourceTree = "<group>";
 		};
-		48CBC84F66E35AB6435B328E49CB42EF /* ZDTools */ = {
+		49565373B4AA8D3766E04BE0C26BA029 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				03BEC75D918124AF88BD3DEB3DB3BDE2 /* ZDAlertControllerHelper.h */,
-				1DB4AD15396356ACE725EC387D09B93F /* ZDAlertControllerHelper.m */,
-				0F22AE2D8B6510AA858BF3C3A234E348 /* ZDBannerScrollView.h */,
-				34D28E2346398D0EAC51635A2AD917D7 /* ZDBannerScrollView.m */,
-				97F0BFD6125D44F93EF1E7C51AC4F51B /* ZDDispatchQueuePool.h */,
-				6B05E52D88783DC622FED1D9492187DE /* ZDDispatchQueuePool.m */,
-				3077FD900AED2A232F67F4AB725FD4BB /* ZDDispatchSourceMerge.h */,
-				631555C4FBD913707A85BC18C320C776 /* ZDDispatchSourceMerge.m */,
-				5E8A77CE7C6F9AAF5DB78E72307BF381 /* ZDFastEnumeration.h */,
-				9373A85A076FA5337545CC30BF45F948 /* ZDFileManager.h */,
-				51D30C93EC0ACA832F612A38930333D3 /* ZDFileManager.m */,
-				DCCDDBC819400B6281BB5C28A0F5788F /* ZDFunction.h */,
-				B9D258A3D5DAC656D236BC95A2141655 /* ZDFunction.m */,
-				FD6867BA400D57857B36BEC6203AC8A7 /* ZDIntegrationManager.h */,
-				66D6A863272EA90F77C411B46945E44B /* ZDIntegrationManager.m */,
-				7B6B5F1B907A05E7466442366CBCD3F1 /* ZDInvocationWrapper.h */,
-				77EB96D2DB536C9CA291FDC2D3317E36 /* ZDInvocationWrapper.m */,
-				262C09C1A54C04D315C6045DC5ED7F52 /* ZDLinkedMap.h */,
-				CD751143FD1FF4E531889CFA0EB3F1B3 /* ZDLinkedMap.m */,
-				24443DE144056BB9080FAD7B3B1B99BF /* ZDOrderedDictionary.h */,
-				45B4C2C3B73BB506C8EE46945253194E /* ZDOrderedDictionary.m */,
-				A5904E462D58580BE8E8E2DDC42A556C /* ZDOSLogger.h */,
-				E2B4051A8C162AB375E265B058C251A9 /* ZDOSLogger.m */,
-				7E1CA1FD3DFC091091570DAFB1317CF5 /* ZDPermissionHandler.h */,
-				2CDFF1AE5EDF2113589DE06E782FF15B /* ZDPermissionHandler.m */,
-				02B42B9B5866A308175812540207158E /* ZDReusePool.h */,
-				FAB19DDA481E03FE949E941CBDF39B63 /* ZDReusePool.m */,
-				E3C90695C6D1AF06B906857DA2626608 /* ZDRunloopQueue.h */,
-				317D9A0A8008AEF546BB180F63A88DC8 /* ZDRunloopQueue.m */,
-				39F34FF59D239E66088810B9A663E122 /* ZDWatchdog.h */,
-				F754D5BA9A7E886463F0C05CDE2110D9 /* ZDWatchdog.m */,
-				75FAB3706EEF5A9C146FB1546E752BE9 /* ProtocolKit */,
-				210FEA311564B57DFFE2BD4ED0E3EFA2 /* ZDPromise */,
-				E3A70A5643817DBEF89F0C16A755272F /* ZDProxy */,
-			);
-			name = ZDTools;
-			sourceTree = "<group>";
-		};
-		530910E9E32B531430EB22CB61E095A1 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				A375AE9243B4CFC674247420EC012572 /* LICENSE */,
-				D2A8C3AC8E37263C07E86A47B60F2386 /* README.md */,
-				6F5B63B17C652477237DFE799F41B853 /* ZDToolKit.podspec */,
+				1538E21C6DEF2CE5740DBABD0BA636EC /* LICENSE */,
+				019ABE45C2C516885A8F1E8053F7524E /* README.md */,
+				9C10CD95D80235C69D4F99EB007376C8 /* ZDToolKit.podspec */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		65EF60066456AF6AD541686ED8970830 /* ZDCategory */ = {
+		8729ABA8F547701A86C096D85FA0D243 /* ZDTools */ = {
 			isa = PBXGroup;
 			children = (
-				410486FF791719D05737B90DF5018F97 /* Foundation */,
-				7FC8ABC59B459D34EDD6A1F76583B6E4 /* UIKit */,
+				C1682F1666F4BA8A17499089CEB0BA10 /* ZDAlertControllerHelper.h */,
+				698804784BF90BC6726F35D3B78F1799 /* ZDAlertControllerHelper.m */,
+				877FFCD9799A3F9B974EF8A5CBCEEEFA /* ZDBannerScrollView.h */,
+				6B58E4BFE911B3DDF17FDE8AD360A76C /* ZDBannerScrollView.m */,
+				2941CDDAA8D4A9E7C9BAC0B6FA5A5429 /* ZDDispatchQueuePool.h */,
+				461CFAC28067ACBDADD91B3651254F6A /* ZDDispatchQueuePool.m */,
+				592684513CB638AC57C857436558DE81 /* ZDDispatchSourceMerge.h */,
+				AEED7C846B6E1921C434A8DDE9238FF5 /* ZDDispatchSourceMerge.m */,
+				BA944C573C735DDD1952565CB61526CA /* ZDFastEnumeration.h */,
+				7F1B38DA6A19BB88C80D20625E8E2C10 /* ZDFileManager.h */,
+				9A23F65D70AEC2D0498EC22A0F4F6780 /* ZDFileManager.m */,
+				F0D07A9CB387342D1A523D4E2DB406D7 /* ZDFunction.h */,
+				388F27571D332014BDFAE4B8224D916A /* ZDFunction.m */,
+				61D39D276E8D44EB8068161A78013EF0 /* ZDIntegrationManager.h */,
+				425E5BF8EF414D898EE0952CCD236FA1 /* ZDIntegrationManager.m */,
+				51836056D35F131B79014AF9331E33E4 /* ZDInvocationWrapper.h */,
+				67858CC1E35F0AB9BB862B6CFB4431A2 /* ZDInvocationWrapper.m */,
+				371C5B9C01636CE561C58357B70E1C21 /* ZDLinkedMap.h */,
+				23C44BB260B2784D5CE8D574C4A195E4 /* ZDLinkedMap.m */,
+				E8A95FE42424E9FE62D92DFB5E0E05D6 /* ZDOrderedDictionary.h */,
+				FAD59A5EF7A248C22ABCCB945B459131 /* ZDOrderedDictionary.m */,
+				0C23B9E542D161B2399791026BB0245A /* ZDOSLogger.h */,
+				60E974F9E562D0AB1303407608F1E9E3 /* ZDOSLogger.m */,
+				263617B196065C60CFBBD7771598A179 /* ZDPermissionHandler.h */,
+				9A9CA2CC4FFCBCBECE75D62F234118FC /* ZDPermissionHandler.m */,
+				47E3E7581082255D9E61A2CF1C2A9B94 /* ZDReusePool.h */,
+				B926A0760E5FD026D7B47EEB527E5DDD /* ZDReusePool.m */,
+				9E95D62CA165978F15312A79C4737288 /* ZDRunloopQueue.h */,
+				AE251A0EDE081A786F94694D96B6229F /* ZDRunloopQueue.m */,
+				8E8F6A3E9BCD92E7D0B281C2EF440CAF /* ZDWatchdog.h */,
+				ECFDEF07A2FE004505246C7CE6065544 /* ZDWatchdog.m */,
+				FB2509E1FA33382AE6592CC039DECF5E /* ProtocolKit */,
+				A5E3E24F05A6CCD9422FFA7559A75911 /* ZDPromise */,
+				B64791E258C68A339955B79D0B8E6B21 /* ZDProxy */,
 			);
-			name = ZDCategory;
+			name = ZDTools;
 			sourceTree = "<group>";
 		};
-		6FBE8CBB4310F0A3F8C2EE5991030EC0 /* ZDSubclass */ = {
+		9D21B76BEFEC0D75F996F4D4DD2ADE34 /* ZDSubclass */ = {
 			isa = PBXGroup;
 			children = (
-				FB98ECD1DB852D621DCFD154D80EFD96 /* ZDActionLabel.h */,
-				5D7A1E990E803D2C1706B980E47C1A46 /* ZDActionLabel.m */,
-				6DCF59BEE4D447FCE0FCC6A1E4999289 /* ZDBackgroundContainerView.h */,
-				4D31B4D153627EAEACE1DFF4CD88C314 /* ZDBackgroundContainerView.m */,
-				189244968BE96DFBE3E9B2F3B1AE0C3C /* ZDConcurrentOperation.h */,
-				0939F04A3627BA43C89099E420D73AF9 /* ZDConcurrentOperation.m */,
-				AB4AFF963BE244B305C5F6826413E4C7 /* ZDEdgeLabel.h */,
-				09A688CF2611BF01DB6F65BCE1801F14 /* ZDEdgeLabel.m */,
-				64801D2D07D80FF790B2B12A9948422E /* ZDGifImageView.h */,
-				B4DC64DBA78CDB45A4FD618FC1636922 /* ZDGifImageView.m */,
-				0A23185B453C1FA3873BCEE6906B4684 /* ZDMutableArray.h */,
-				8630E92F85AC355844CE0CAD77A96AD4 /* ZDMutableArray.m */,
-				1BD0EA6D421E9ACA1B39EB12420C8EED /* ZDMutableDictionary.h */,
-				093483A3488E6B604DB3E024A7AE51FC /* ZDMutableDictionary.m */,
-				F67B6BFE29FC57C2977FF51785753B1E /* ZDTextView.h */,
-				C7F4CE177E68BD71D2BBA1177BB83221 /* ZDTextView.m */,
+				C4EAAA0A6C91C193AB984DA2FC812067 /* ZDActionLabel.h */,
+				8FB82040B80440ED96CCAB1CBCB43831 /* ZDActionLabel.m */,
+				D87BC5972EFEFE977C8E7D3D97134533 /* ZDBackgroundContainerView.h */,
+				77DF1FB08CC1A238D48C27A81C5032F3 /* ZDBackgroundContainerView.m */,
+				073F55551D0394A5E436275533DBF8E1 /* ZDConcurrentOperation.h */,
+				18A4EAFD7440A6FBB26612BAA4A3F4C4 /* ZDConcurrentOperation.m */,
+				A54A041F077B25CF8B5384E0BE3EA77A /* ZDEdgeLabel.h */,
+				9988608598DD7293068FC699F96CC9ED /* ZDEdgeLabel.m */,
+				FC5B97AFAED001DD126C239A42CEF202 /* ZDGifImageView.h */,
+				ADA93C7B90EA61B36925EEE785A08651 /* ZDGifImageView.m */,
+				10D2604C5B8A02B3553CA7C7AED4CBB2 /* ZDMutableArray.h */,
+				F42F9705A81283048429611197E9F360 /* ZDMutableArray.m */,
+				F2C08BD29BA6C4C677475F3B206AD169 /* ZDMutableDictionary.h */,
+				3D9C6EC08FC89CF94A43B8872062C5CC /* ZDMutableDictionary.m */,
+				71EE66864079BEFDD420FCFD80AE1B08 /* ZDTextView.h */,
+				650AD54D9706795673A1F754E43F411C /* ZDTextView.m */,
 			);
 			name = ZDSubclass;
 			sourceTree = "<group>";
 		};
-		75FAB3706EEF5A9C146FB1546E752BE9 /* ProtocolKit */ = {
+		A0EE2ED846497DED2E9113F1C228FFE8 /* ZDDebug */ = {
 			isa = PBXGroup;
 			children = (
-				46C3DEAC375C39CE3B364B38546D999A /* PKProtocolExtension.h */,
-				B72AFF1F8A9288625F50508FAFCBB7AB /* PKProtocolExtension.m */,
-				8241B23FA5778817ABC07A637EC0FF76 /* ProtocolKit.h */,
+				C5A062D749019B64F765E113FB8A14FD /* ZDConsoleUnicode.h */,
+				1C60EC709BB0F3016FB6E21AAF1F3A78 /* ZDConsoleUnicode.m */,
+				5C205A05C11173B839C06E8B16C89339 /* ZDGuardUIKitOnMainThread.h */,
+				AB80747747B3AE68E83E1BE99DEC540B /* ZDGuardUIKitOnMainThread.m */,
 			);
-			name = ProtocolKit;
+			name = ZDDebug;
 			sourceTree = "<group>";
 		};
-		7FC8ABC59B459D34EDD6A1F76583B6E4 /* UIKit */ = {
+		A4F7C475FC531C1C2DDE80FBB5E6B069 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				D9927B4721C73F5CA0008017393FF892 /* CALayer+ZDUtility.h */,
-				4A72892F0A0319D7FC9AE9E8CF09BDF2 /* CALayer+ZDUtility.m */,
-				03F7EC25378EE896CD5017D75BA9FE3B /* UIApplication+ZDUtility.h */,
-				6ECBCDE9A990D3440CB8EA0538E8DB68 /* UIApplication+ZDUtility.m */,
-				7B4064B9E3BD7BEC98F107E7008A17DD /* UIButton+ZDUtility.h */,
-				1FFAC72D7A7858A6AA92C7CD6DDAAA65 /* UIButton+ZDUtility.m */,
-				91396AE4BA9EA45F3FD956F0E73F17E1 /* UIColor+ZDUtility.h */,
-				8175EE9A5BE24B342BCCC96E30C86136 /* UIColor+ZDUtility.m */,
-				1ABD50F7B1CBBC7F6756291ED79CD7C6 /* UIControl+ZDUtility.h */,
-				C11F826435C1133F9F06A0BD372F5BBC /* UIControl+ZDUtility.m */,
-				8E043EB3E414CB816921EDC1D5A20E60 /* UIImage+ZDUtility.h */,
-				E871DFE4F5BC38E2DA169F55CF6C84D1 /* UIImage+ZDUtility.m */,
-				BCE709B581653EA86112B8D257BD8645 /* UIImageView+FaceAwareFill.h */,
-				AF6428C1F2D5F9655D5E43067EF3E568 /* UIImageView+FaceAwareFill.m */,
-				0723081DC42A675D00C339E878E51A2C /* UIImageView+ZDGIF.h */,
-				BD1B70996C0B346C3496049412C999C3 /* UIImageView+ZDGIF.m */,
-				9406ED0F26A24A82389CFC519EB6111D /* UIImageView+ZDUtility.h */,
-				E2AC2715810AA396F843D1E78F71DB2C /* UIImageView+ZDUtility.m */,
-				1E1D92A0EA025F7EC9381676E81C80C1 /* UILabel+ZDUtility.h */,
-				BA427C7E954BB7B490647F8C414BE957 /* UILabel+ZDUtility.m */,
-				653835B1EF79D1D516A325C003EBEC49 /* UIResponder+ZDUtility.h */,
-				0DD7F29D64D83D29231D098CEF0601FD /* UIResponder+ZDUtility.m */,
-				F15555DC5CF72AB1296CF5A360941300 /* UITextView+ZDUtility.h */,
-				7410544CFAB79B628063911CA33D2DCD /* UITextView+ZDUtility.m */,
-				67AFDDB21D5C8B1F4BC1A420D6A282B2 /* UIView+ZDBorders.h */,
-				D6AA0EDFC2DD800160F68F8CB7B99314 /* UIView+ZDBorders.m */,
-				328A1556A126434F511529777FFDCE44 /* UIView+ZDDraggable.h */,
-				A8413E2F767392390DDA3CCB687D13E0 /* UIView+ZDDraggable.m */,
-				3294F3EB4DF527BEA01E85FA3A23CACF /* UIView+ZDUtility.h */,
-				20EC2C4C9B8D2FD627687C9DD90F5A34 /* UIView+ZDUtility.m */,
-				3435F1F0B20FDEFB3143C2676B940D4A /* UIViewController+ZDBack.h */,
-				C843B34B169DFB9EBC54EA51C4D9E324 /* UIViewController+ZDBack.m */,
-				DFF93D259CCE3B19FD4EB8276FF9AFA0 /* UIViewController+ZDPop.h */,
-				62F18C0896D12FF559141EAE2BCD5D7E /* UIViewController+ZDPop.m */,
-				78D3D3753F7814CAACF3F04C3380440E /* UIViewController+ZDUtility.h */,
-				0AFE1E338EC86AC09E417D229F7F3C7B /* UIViewController+ZDUtility.m */,
-				A4FA5A4763AF9F59A5D564E7221DD55C /* UIWebView+ZDUtility.h */,
-				1682C9EF66F4C8CC18888C7EF88FCF4F /* UIWebView+ZDUtility.m */,
-				BB6F16076F064483AF71FA2851AE3BBF /* WKWebView+ZDUtility.h */,
-				1A53D8D7793FAEE225FF50459C5FB386 /* WKWebView+ZDUtility.m */,
+				FF3FA51F24BFA7AFD3BEDB9DCFD1FC2C /* CALayer+ZDUtility.h */,
+				3F2652507E600BF889C853F66918EEEC /* CALayer+ZDUtility.m */,
+				65E88859A324C66D8CB0A08A3AB02B84 /* UIApplication+ZDUtility.h */,
+				EA47C54E1E159399CC0CF174B47B3185 /* UIApplication+ZDUtility.m */,
+				EEA22B9BA3D571FBB6E8E7B91841EA1E /* UIButton+ZDUtility.h */,
+				7E3A565790AEE9135373FAEFA664EC7F /* UIButton+ZDUtility.m */,
+				9BF3FCE338C8BD98127833B791F39B17 /* UIColor+ZDUtility.h */,
+				85B7179FB821411C78A3FC46D6BE25CC /* UIColor+ZDUtility.m */,
+				AD6D8B08A026B1A2BE75E54EAC16C965 /* UIControl+ZDUtility.h */,
+				212FAEF6FBBE892D5293324452B4C2B6 /* UIControl+ZDUtility.m */,
+				3E23713245F6FA4D85DE4E64B5E4426C /* UIImage+ZDUtility.h */,
+				D65D79C4EDF2F04BC92F637C5CFE50E1 /* UIImage+ZDUtility.m */,
+				CC179988177FD4A2D197A9FC5F512131 /* UIImageView+FaceAwareFill.h */,
+				336BA6F872DD0B620853913033E04040 /* UIImageView+FaceAwareFill.m */,
+				39F283A1A5C6CD7D1FFE03E56BF4E6BA /* UIImageView+ZDGIF.h */,
+				A5F96ED88B69DEF74E4623B07A091CAD /* UIImageView+ZDGIF.m */,
+				E73CEDAD0BD9D88CCBE6C2B7D37694AE /* UIImageView+ZDUtility.h */,
+				270227605B04C2B0EEADD61176F3DF07 /* UIImageView+ZDUtility.m */,
+				EC3C65E5A3AB0C74B9A6B612E6A99C24 /* UILabel+ZDUtility.h */,
+				6DE5F3C394AFA62C377B46D5ADA65F51 /* UILabel+ZDUtility.m */,
+				C3F367D4CE9DE5BB0D0C43070CD59549 /* UIResponder+ZDUtility.h */,
+				2B33792F63D8784661BFE99A0BA02F7A /* UIResponder+ZDUtility.m */,
+				52CBB3C8A2B63B90E5452A69A7E34B37 /* UITextView+ZDUtility.h */,
+				4B23654AA300347162DEDC606D4C954A /* UITextView+ZDUtility.m */,
+				21DEB8F366560E1B3AD425035165BB81 /* UIView+ZDBorders.h */,
+				063132C4574BCC29F75393F2BD53E6DE /* UIView+ZDBorders.m */,
+				CB9364E07EE542EC4E1703EF2A975B5F /* UIView+ZDDraggable.h */,
+				4E0753AC2ACA31C7944A7F0C68086140 /* UIView+ZDDraggable.m */,
+				2D63E7C723CCBCE991914CCC2B5B0197 /* UIView+ZDUtility.h */,
+				6C02FB17686538B7A870F69D6B19FD58 /* UIView+ZDUtility.m */,
+				DFB629753F962986D94F18AA306448B7 /* UIViewController+ZDBack.h */,
+				839DB28666A94C125B708AB9B2DF9F72 /* UIViewController+ZDBack.m */,
+				0A31C2E8B46A2A709983E9DCD3FC6950 /* UIViewController+ZDPop.h */,
+				4B31804CC865D37FE2C9D8ED3FC6BB74 /* UIViewController+ZDPop.m */,
+				F71D73CA7B78D693EFF6982160408BF7 /* UIViewController+ZDUtility.h */,
+				78F4AF8B54A74CE0D52A2E44B423EDA1 /* UIViewController+ZDUtility.m */,
+				A69BC55C2916AC261647D8DF681CFE47 /* UIWebView+ZDUtility.h */,
+				43D4604005D4FDCF21257C949881A94B /* UIWebView+ZDUtility.m */,
+				456A3CA07B6D46907039613DDD985324 /* WKWebView+ZDUtility.h */,
+				127270624BC2F8E5882002FFC58E33FE /* WKWebView+ZDUtility.m */,
 			);
 			name = UIKit;
 			sourceTree = "<group>";
 		};
-		A92A326D755AC069D581786AD02142D0 /* ZDMRC */ = {
+		A5E3E24F05A6CCD9422FFA7559A75911 /* ZDPromise */ = {
 			isa = PBXGroup;
 			children = (
-				3619A7626C59D3DE1D09C01132CE7657 /* ZDSafe.h */,
-				8D9386724A8EAA22D9151FBFC5E0EC54 /* ZDSafe.m */,
+				DE99F82245084EDE5FDA42A783839C3B /* ZDPromise.h */,
+				81726AAD2B6F3750CC2F329DB131B713 /* ZDPromise.m */,
 			);
-			name = ZDMRC;
+			name = ZDPromise;
 			sourceTree = "<group>";
 		};
-		B7A48750FCC46842456EEED54631E3DC /* ZDDebug */ = {
+		AD98A72BCCFBFCAAB9619BAC47E73E82 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4BBD808BDBC05D89BABBCE6AD7706B3B /* ZDConsoleUnicode.h */,
-				6E18E8FC882065EE93B5FCD843907174 /* ZDConsoleUnicode.m */,
-				8F3E4221EC0537B19F0C2CEC0005E4B0 /* ZDGuardUIKitOnMainThread.h */,
-				2F5C4F746EA76FE297CE6715CCE3F6DD /* ZDGuardUIKitOnMainThread.m */,
+				42C602CA94E7CA24A2A03813043985F0 /* ZDToolKit.modulemap */,
+				2AC70BF08AD0B45563020D1A62827F01 /* ZDToolKit-dummy.m */,
+				6A9F2BBDF611DB3158CC0FD0E200E80B /* ZDToolKit-prefix.pch */,
+				5E3CB18EEABE30E146E8331922C85E55 /* ZDToolKit-umbrella.h */,
+				0FA76381AC97632BB8B3F20FB83DE701 /* ZDToolKit.debug.xcconfig */,
+				3FBBD09CBEEEEDA93E0F2D7657136EEB /* ZDToolKit.release.xcconfig */,
 			);
-			name = ZDDebug;
+			name = "Support Files";
+			path = "Demo/Pods/Target Support Files/ZDToolKit";
+			sourceTree = "<group>";
+		};
+		B64791E258C68A339955B79D0B8E6B21 /* ZDProxy */ = {
+			isa = PBXGroup;
+			children = (
+				22C321166562119B45E434D95CD13A07 /* ZDProxy.h */,
+				D32687E119373A66BD7CC6146E7E3B80 /* ZDProxy.m */,
+			);
+			name = ZDProxy;
+			sourceTree = "<group>";
+		};
+		B941AB1182113832377A594B99B469B0 /* ZDMRC */ = {
+			isa = PBXGroup;
+			children = (
+				431EB93390B600639A0A5CD469137CA3 /* ZDSafe.h */,
+				92AD89BEB276DA0F3CFF14271BA75A43 /* ZDSafe.m */,
+			);
+			name = ZDMRC;
 			sourceTree = "<group>";
 		};
 		C2AB0E8DB8E120DC3914E6BE60E07AFB /* Frameworks */ = {
@@ -578,147 +578,132 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CF06D448694D9150CE648656CCF1F891 /* ZDRuntime */ = {
+		C94043C8AAFE154C53CC1577AE4F7803 /* ZDToolKit */ = {
 			isa = PBXGroup;
 			children = (
-				AC479691845D39C574FFB32D76791C48 /* ZDRuntimeTool.h */,
-				01C6497828E476017F8CACFAE6DC3A71 /* ZDRuntimeTool.m */,
+				B9F28DBDDBBC5289015935BFDFF6E9DA /* ZDToolKit.h */,
+				49565373B4AA8D3766E04BE0C26BA029 /* Pod */,
+				AD98A72BCCFBFCAAB9619BAC47E73E82 /* Support Files */,
+				FBC17E7C2092FF601F2D1059AF140BDA /* ZDAutoLayout */,
+				0A156BA0CECFEADB0DBBCCA045D9218A /* ZDCategory */,
+				A0EE2ED846497DED2E9113F1C228FFE8 /* ZDDebug */,
+				49134A195310806C0100DD63F4C7197A /* ZDMacros */,
+				B941AB1182113832377A594B99B469B0 /* ZDMRC */,
+				9D21B76BEFEC0D75F996F4D4DD2ADE34 /* ZDSubclass */,
+				8729ABA8F547701A86C096D85FA0D243 /* ZDTools */,
 			);
-			name = ZDRuntime;
+			name = ZDToolKit;
+			path = ../..;
 			sourceTree = "<group>";
 		};
-		E3A70A5643817DBEF89F0C16A755272F /* ZDProxy */ = {
+		FB2509E1FA33382AE6592CC039DECF5E /* ProtocolKit */ = {
 			isa = PBXGroup;
 			children = (
-				C3C36B6A4166D9E7396858C0E2274CD8 /* ZDProxy.h */,
-				DCBF90A88B3AB0CD23A2CE2584299BF8 /* ZDProxy.m */,
+				AE85BA2C8ABB3A4264E58D485EC488F5 /* PKProtocolExtension.h */,
+				F4F133E5DBE560BA5233B3C84E604305 /* PKProtocolExtension.m */,
+				E170C5C8CAA4D5DD0F128B9A1CE7D42E /* ProtocolKit.h */,
 			);
-			name = ZDProxy;
+			name = ProtocolKit;
 			sourceTree = "<group>";
 		};
-		E74D1A05F0BB9F3354523660C3F8CCF2 /* ZDAutoLayout */ = {
+		FBC17E7C2092FF601F2D1059AF140BDA /* ZDAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
-				5E313BB3BB9FD0305C27D32DC0D1B550 /* UIView+AutoFlowLayout.h */,
-				8D8BEE4E0DE51785C4E083AA659022E2 /* UIView+AutoFlowLayout.m */,
-				9A90EBB3B908AAF1BE6D8D74297F6560 /* UIView+AutoLayout.h */,
-				284D50A0DC597A3D455C1912BED0685B /* UIView+AutoLayout.m */,
-				615CF28D7BA92DCD56F13FA06BEC8653 /* UIView+FDCollapsibleConstraints.h */,
-				54641DCAA5C1BC2FA086CDBE696DC26F /* UIView+FDCollapsibleConstraints.m */,
-				F8DFEA0200D152F0B37BE9F70116D6F2 /* UIView+ZDCollapsibleConstraints.h */,
-				E30BBD3E89C627BD068CD95EA7CBC0A6 /* UIView+ZDCollapsibleConstraints.m */,
+				CD5A5D99A531BD41E91A57690F7E0585 /* UIView+AutoFlowLayout.h */,
+				5A284C92121CEE1DCBD683116DC620E0 /* UIView+AutoFlowLayout.m */,
+				960DC7A5CD7A605576E738D25B50A246 /* UIView+AutoLayout.h */,
+				6E1AC85303EBBCB3346CBAC68624C5ED /* UIView+AutoLayout.m */,
+				65493E6DF52B3F2768EE7D901F354F89 /* UIView+FDCollapsibleConstraints.h */,
+				882F13C97A84C9F89AE38325B524C90F /* UIView+FDCollapsibleConstraints.m */,
+				34D7F1A070819FAB409DB6F34A43B7B9 /* UIView+ZDCollapsibleConstraints.h */,
+				82242B374B51B487FCCED82458512F0F /* UIView+ZDCollapsibleConstraints.m */,
 			);
 			name = ZDAutoLayout;
-			sourceTree = "<group>";
-		};
-		F40164EEECF0CDF2450DD6EE409DACA0 /* ZDMacros */ = {
-			isa = PBXGroup;
-			children = (
-				7DFA47F6410A95114E6F25B52EBF084C /* ZDEXTScope.h */,
-				06D26A8B33526FAA426B72BE622AA71E /* ZDMacro.h */,
-				059D0026C373384A609667F76877EF16 /* ZDMetamacros.h */,
-			);
-			name = ZDMacros;
-			sourceTree = "<group>";
-		};
-		F9A5533C1862D1C4434C7C481C77BBB7 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				00EA736A0FBE918E8CD14BE0F550BD30 /* ZDToolKit.modulemap */,
-				E4AC98E149FD2ECB69F81724DA25A842 /* ZDToolKit-dummy.m */,
-				A0627FF780948501EBE778138618EC34 /* ZDToolKit-prefix.pch */,
-				D83FBAFB1DAED603C6AFAADB2C212719 /* ZDToolKit-umbrella.h */,
-				6F7327704975FB9A9A44829FE98FE425 /* ZDToolKit.debug.xcconfig */,
-				A81F4E716F543F2D3D84F902B485C24A /* ZDToolKit.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Demo/Pods/Target Support Files/ZDToolKit";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		A99294819BA32CCA73FD7F50DFC42EE3 /* Headers */ = {
+		FF6839887F77AAFFD9E60F81296489FB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C1AFC082B458EE6FA7B647DE0FBF8E4 /* CALayer+ZDUtility.h in Headers */,
-				7D9F75E43EE8A9B5E547CBC02A126229 /* NSArray+ZDUtility.h in Headers */,
-				A77A1394BFF49B1E9C7B26F64095A104 /* NSData+ZDUtility.h in Headers */,
-				1740E763897683FBB546DD92E07DC1DE /* NSDate+ZDUtility.h in Headers */,
-				2D12A0FDAA1C160D1F6D90912A6CF8C9 /* NSDictionary+ZDUtility.h in Headers */,
-				DDE3A089E5AE7092FF26E52F66D317EE /* NSInvocation+ZDBlock.h in Headers */,
-				3F870B61347E34BD20BB579C728F3617 /* NSInvocation+ZDUtility.h in Headers */,
-				238781246F03D2F65CFF63666DCF93C5 /* NSMutableArray+ZDUtility.h in Headers */,
-				9DBB8B314916E732B83D3FE7874A8D2D /* NSNotificationCenter+ZDUtility.h in Headers */,
-				49F9BAD68A119E3A414F72E93A3FFF71 /* NSNull+ZDUtility.h in Headers */,
-				B38549163B55B268B50DD816D7E5E312 /* NSObject+ZDBlockKVO.h in Headers */,
-				8D471E92876BF8C646C235959D583DEE /* NSObject+ZDRuntime.h in Headers */,
-				ABCEC77FDF51BA9C9EEB0E9CF7F32931 /* NSObject+ZDSimulateKVO.h in Headers */,
-				16C2ADD80CFAA343E25D119AEB5B6AE5 /* NSObject+ZDUtility.h in Headers */,
-				DF98F6DD854F1735DF750202892C2B94 /* NSString+ZDUtility.h in Headers */,
-				8A269EB95340C52337AD640F48CD23A4 /* NSTimer+ZDUtility.h in Headers */,
-				E159D1CA65209DBB417C18DD75625ACF /* NSURLSession+ZDUtility.h in Headers */,
-				B7D5F6EB395B42A30D62976EC95B01E3 /* PKProtocolExtension.h in Headers */,
-				A695155E6603CFDB58DA665A42FE80F3 /* ProtocolKit.h in Headers */,
-				EA0B6FE78689B922D085941D36A3F508 /* UIApplication+ZDUtility.h in Headers */,
-				6A0710201C5A24D7DEC6CB47CEECE0E8 /* UIButton+ZDUtility.h in Headers */,
-				89267EB25D2E968366F9C3E656F98D8C /* UIColor+ZDUtility.h in Headers */,
-				4AA404EC87B5D65600FA4F5908A1857F /* UIControl+ZDUtility.h in Headers */,
-				75CC010D960FCED2D897BC00A99A30C1 /* UIImage+ZDUtility.h in Headers */,
-				D7588A869B098B52451510E8D3B58C3E /* UIImageView+FaceAwareFill.h in Headers */,
-				E91B6E3A51498BF9220936E88782C846 /* UIImageView+ZDGIF.h in Headers */,
-				7565A638E9B15B550F6E3BC1C24E10F9 /* UIImageView+ZDUtility.h in Headers */,
-				F7004E7B4391FCF805A8E062F2645720 /* UILabel+ZDUtility.h in Headers */,
-				397D4BC0B08B452DDE1E3C1B6BDA98C1 /* UIResponder+ZDUtility.h in Headers */,
-				4392FA7F5EFF891532ABA6822BE35669 /* UITextView+ZDUtility.h in Headers */,
-				EE1C2421339202DB87CECCDBFDEA1E73 /* UIView+AutoFlowLayout.h in Headers */,
-				3F317C9653FFB0373316A4E125B17AEE /* UIView+AutoLayout.h in Headers */,
-				F00C742589CB14EE05487E0CF8BBB14A /* UIView+FDCollapsibleConstraints.h in Headers */,
-				AC547A262EC48F13AEC82B9945D61DF1 /* UIView+ZDBorders.h in Headers */,
-				3D753D7396E32A4A37F7E469BC1A5FF8 /* UIView+ZDCollapsibleConstraints.h in Headers */,
-				631A625239255E4DDA2EA92B48E6F643 /* UIView+ZDDraggable.h in Headers */,
-				6850D3C4A7E94BFA632E82C4841B756D /* UIView+ZDUtility.h in Headers */,
-				ACD4EBB106710CAC5E68955330CDE5AC /* UIViewController+ZDBack.h in Headers */,
-				F69C259D4345823293B2D173137B56AC /* UIViewController+ZDPop.h in Headers */,
-				00378A921A846556FDE99084CB3CB96E /* UIViewController+ZDUtility.h in Headers */,
-				303B3C04CBFCAF0AF178EF01D0437C74 /* UIWebView+ZDUtility.h in Headers */,
-				1196F9D9C5FB4FB546130A6DBC071F59 /* WKWebView+ZDUtility.h in Headers */,
-				1685B53A6FC99F5B23EAD18D16150CE1 /* ZDActionLabel.h in Headers */,
-				F9C6CC04E16967F749F3E43237E3AD0C /* ZDAlertControllerHelper.h in Headers */,
-				F71632E6438BC397664F31AEF66E844A /* ZDBackgroundContainerView.h in Headers */,
-				B5320B65A53646D0D3899428CE4A94D9 /* ZDBannerScrollView.h in Headers */,
-				E498A60EC6A7D179A93024905F04D10D /* ZDConcurrentOperation.h in Headers */,
-				B5127345FB1148F53CA330FC2968D74B /* ZDConsoleUnicode.h in Headers */,
-				308725B9C056905477877952B2818F2B /* ZDDispatchQueuePool.h in Headers */,
-				1E9B70D29CBF2CC0CCBF015A98BD0180 /* ZDDispatchSourceMerge.h in Headers */,
-				5D1B31987D0F4A9F41AAB72475E9E703 /* ZDEdgeLabel.h in Headers */,
-				F5A697DA086C426AB5FDA27044880E16 /* ZDEXTScope.h in Headers */,
-				D095CAE312AC7A11B749EA108036CE15 /* ZDFastEnumeration.h in Headers */,
-				4BC8C1A3A2C94BAEC979714405B2F56F /* ZDFileManager.h in Headers */,
-				5FCF16B4358C8A19F57D6DCC891588D6 /* ZDFunction.h in Headers */,
-				1256727EEE158504A8E9A27BD59F7585 /* ZDGifImageView.h in Headers */,
-				206927A4B6CBCA2E831FAFE48C83A4CA /* ZDGuardUIKitOnMainThread.h in Headers */,
-				BEF5BE7E913218BFE03D5332EF76AD49 /* ZDIntegrationManager.h in Headers */,
-				B2C44FE22A8BD83ED6A8956DF041DE5A /* ZDInvocationWrapper.h in Headers */,
-				04F223F53E4AAA76E6BBD1FB2AC67E79 /* ZDLinkedMap.h in Headers */,
-				D85084879424F3D3997D07D6D374CC50 /* ZDMacro.h in Headers */,
-				0B499495603B19D1788D0CE90BD870A3 /* ZDMetamacros.h in Headers */,
-				20CCBEC3043E9B9D13A3E9FBC4F2C84C /* ZDMutableArray.h in Headers */,
-				55BF01CEBFB7B4220754E5613A2A8385 /* ZDMutableDictionary.h in Headers */,
-				3D8776C4B2D626099A552779E5F68B4F /* ZDOrderedDictionary.h in Headers */,
-				08FCF35F33C130A6D4B664A2E4802C51 /* ZDOSLogger.h in Headers */,
-				1162774705D90940EB314792B4F54484 /* ZDPermissionHandler.h in Headers */,
-				B2076D3B69A87E2A4CA89A8FA7229944 /* ZDPromise.h in Headers */,
-				6E2347B8E7A31FCD88E19D08AA7FAD14 /* ZDProxy.h in Headers */,
-				44D7C9B74E5C01704DE9DE4CD2AEAC6B /* ZDReusePool.h in Headers */,
-				DACA835AAF8A6574232D95A30F7E2818 /* ZDRunloopQueue.h in Headers */,
-				F6688F8CFA0DDDBD0F157D16B9221E67 /* ZDRuntimeTool.h in Headers */,
-				F97582738FA302A50F8A358932191728 /* ZDSafe.h in Headers */,
-				80152E085DC3CD76045FB07A467A4D68 /* ZDTextView.h in Headers */,
-				605971E208826E6373A45171EE4998B8 /* ZDToolKit.h in Headers */,
-				2B090E6923166F734BBE5E03A3A082F3 /* ZDToolKit-umbrella.h in Headers */,
-				738C0E0BF4BDDB7EEF1C0268914EEF6C /* ZDWatchdog.h in Headers */,
+				C8E9F0622E9283D7442CCC0007FE9F95 /* CALayer+ZDUtility.h in Headers */,
+				DC411A232C7B664A49640B46CCD69401 /* NSArray+ZDUtility.h in Headers */,
+				216F9523DD3B79AA54887C21C7AA2FE2 /* NSData+ZDUtility.h in Headers */,
+				72E19196E417D71D2C8DB51BEE2299B5 /* NSDate+ZDUtility.h in Headers */,
+				222D659FD8C9D7EA53554ACABBE5B620 /* NSDictionary+ZDUtility.h in Headers */,
+				D9D7FB393D5B1BDDEE1A15D55ED21CF5 /* NSInvocation+ZDBlock.h in Headers */,
+				07884997F90CBC806FDC9B437C39FA64 /* NSInvocation+ZDUtility.h in Headers */,
+				188256849D06CFAAF458EC507CE52428 /* NSMutableArray+ZDUtility.h in Headers */,
+				0A7E3DA111EF0E34D63FDA8A829B391D /* NSNotificationCenter+ZDUtility.h in Headers */,
+				8F2499DEEE56F5FFCAA72C61D0E07086 /* NSNull+ZDUtility.h in Headers */,
+				24ACD98EDDF1E804173B04EAAC2E5123 /* NSObject+ZDBlockKVO.h in Headers */,
+				E5DEAE6C0F76DB8BA43593990F3C265D /* NSObject+ZDRuntime.h in Headers */,
+				75BB4D043B2D36211C11BF438F8979BC /* NSObject+ZDSimulateKVO.h in Headers */,
+				63ADD71C4E13817984C5C99C8E41C111 /* NSObject+ZDUtility.h in Headers */,
+				181CEF7F549E4664EAF2C41E7A610E90 /* NSString+ZDUtility.h in Headers */,
+				CFEFCD09B0F63EFDBD89753E38C1678E /* NSTimer+ZDUtility.h in Headers */,
+				503F102ADE2B1CA7921059A52354423B /* NSURLSession+ZDUtility.h in Headers */,
+				43A5D2757CAB65FA89DCF5D96ADB1B25 /* PKProtocolExtension.h in Headers */,
+				2BA0EEE76CF0508F9EC795936E03EBEA /* ProtocolKit.h in Headers */,
+				901B6502B6AF6F60C5F176ECDC260AA6 /* UIApplication+ZDUtility.h in Headers */,
+				796727D2146307798551F04D5D23A4A5 /* UIButton+ZDUtility.h in Headers */,
+				02EA057B6BE9FD9D6528B12B9D86934D /* UIColor+ZDUtility.h in Headers */,
+				8EB3F5F25E93F33894920D8E69BC106F /* UIControl+ZDUtility.h in Headers */,
+				2E956D3A5B4C0718754A01AE50AD6E62 /* UIImage+ZDUtility.h in Headers */,
+				7B1FD109D545F282C22637DC6E6F975F /* UIImageView+FaceAwareFill.h in Headers */,
+				C6E806BA30C702B25041CB70B0878E3B /* UIImageView+ZDGIF.h in Headers */,
+				A6B220B35E122D018D5C7F0754C4C286 /* UIImageView+ZDUtility.h in Headers */,
+				FF347F49E3FADD2F7516575561248E3B /* UILabel+ZDUtility.h in Headers */,
+				06B03DFA0B4520F92FF948C2A39079EA /* UIResponder+ZDUtility.h in Headers */,
+				977F6A3FB12E358DB61D4E5096F53D7E /* UITextView+ZDUtility.h in Headers */,
+				71ABB15D4EEB4B52FE22CDCEF104FF3B /* UIView+AutoFlowLayout.h in Headers */,
+				A9D5D8A8110B090A5465060C390F1F87 /* UIView+AutoLayout.h in Headers */,
+				E229A7139DBB0BF7F1A0F7A7925EB67E /* UIView+FDCollapsibleConstraints.h in Headers */,
+				A70BE73DFEF8C1C8C52CF61DEC740A06 /* UIView+ZDBorders.h in Headers */,
+				DFA2829FA7586A2349CA0C74F5B95C90 /* UIView+ZDCollapsibleConstraints.h in Headers */,
+				6F1CDA8F685AC02EE957470DC0FC5B54 /* UIView+ZDDraggable.h in Headers */,
+				C260FCB0EC2651CEC6790770D258E98C /* UIView+ZDUtility.h in Headers */,
+				DFED1E214213C524D6A9B65E64268811 /* UIViewController+ZDBack.h in Headers */,
+				A2DD7E1CAA91105192B94338CFB9CE1F /* UIViewController+ZDPop.h in Headers */,
+				A3D7A81A770039C4568BBE0BEC5B3899 /* UIViewController+ZDUtility.h in Headers */,
+				DA8057846CCAAC8B1F8E9237AB3DCF0F /* UIWebView+ZDUtility.h in Headers */,
+				CDC2C75FB999E454CB69108E1C1DD08C /* WKWebView+ZDUtility.h in Headers */,
+				FE9E096A4CA43234D58DFB8632269C2A /* ZDActionLabel.h in Headers */,
+				94BE325B019C0422FCB1E6783561A475 /* ZDAlertControllerHelper.h in Headers */,
+				83083A9F5852256B9AA62ACC526ADD07 /* ZDBackgroundContainerView.h in Headers */,
+				698060EAFACFB65A1EE7B900D8207E7B /* ZDBannerScrollView.h in Headers */,
+				996541ACFA1400CA7D4381BBCE686D7F /* ZDConcurrentOperation.h in Headers */,
+				A8C600B0F3D8626991DF22ECCA88599C /* ZDConsoleUnicode.h in Headers */,
+				D95A21AA460E86E90A06A092F3CEF5B2 /* ZDDispatchQueuePool.h in Headers */,
+				839C3D6E676F3BD71FB5DCDC0B2CE38F /* ZDDispatchSourceMerge.h in Headers */,
+				34466FEF30CD9298F22ABDF93F1BCFB9 /* ZDEdgeLabel.h in Headers */,
+				B7448616615F7ABFD7B6DA188D96BF3A /* ZDEXTScope.h in Headers */,
+				0D3035BBBF5C64F149602AA03440821E /* ZDFastEnumeration.h in Headers */,
+				763ED0836DEE3FC9A2358E00053A09B8 /* ZDFileManager.h in Headers */,
+				71CFF110861A1F713C55BA34E7DA0549 /* ZDFunction.h in Headers */,
+				CB9C0C171266C53DD4A30995F6E88297 /* ZDGifImageView.h in Headers */,
+				E0C4C153F697EAD81552597D66A28328 /* ZDGuardUIKitOnMainThread.h in Headers */,
+				1D55524032D3B1622247E7358ABC6C9E /* ZDIntegrationManager.h in Headers */,
+				02E6F0FF2EE98DBF7E1E073DC4ECD55D /* ZDInvocationWrapper.h in Headers */,
+				C50ED0B81ACE713A459C243470468F2E /* ZDLinkedMap.h in Headers */,
+				0EE49922331D9533C3D26D926A9CDCAA /* ZDMacro.h in Headers */,
+				A65C8149C8BEE449A4A4C83B8D763ADF /* ZDMetamacros.h in Headers */,
+				64023A2A86B223B761F0E2B0F8931998 /* ZDMutableArray.h in Headers */,
+				20D7BB3CB991F1254B48B50835F88A4D /* ZDMutableDictionary.h in Headers */,
+				AAE7E21D03FF452DA3F57489150BAFB1 /* ZDOrderedDictionary.h in Headers */,
+				06EDD9C758B295A093FD70E02C193C0E /* ZDOSLogger.h in Headers */,
+				AEBC5B6FDA980BDD9C198688A59B7C6F /* ZDPermissionHandler.h in Headers */,
+				F639D0D16D82A1857DF72978C5A1E421 /* ZDPromise.h in Headers */,
+				34CA9D0A2D94D54DBAB82D4DF084C3EE /* ZDProxy.h in Headers */,
+				1B0D9468B7C08EA7F1F9CB121D2E640A /* ZDReusePool.h in Headers */,
+				690E0228BA806C44BF2AC3936B070B3D /* ZDRunloopQueue.h in Headers */,
+				6527843D5DB16B802B9ED3A404A7ED74 /* ZDSafe.h in Headers */,
+				21FD235E309B2E94C5A65283E2394135 /* ZDTextView.h in Headers */,
+				68AA31D7029CC84ED3153E3C28044C9F /* ZDToolKit.h in Headers */,
+				2B5F822263B957651AF4F19378B7FFB6 /* ZDToolKit-umbrella.h in Headers */,
+				C9AA52B8624895C949143E2DA069B3E0 /* ZDWatchdog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,11 +712,11 @@
 /* Begin PBXNativeTarget section */
 		F01D98A255D10FCA305E22F1C7AF6818 /* ZDToolKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 598887277A5EABC1230626CCF08BB2D3 /* Build configuration list for PBXNativeTarget "ZDToolKit" */;
+			buildConfigurationList = 3632DFB0CA28A2312AC57935E1807F4F /* Build configuration list for PBXNativeTarget "ZDToolKit" */;
 			buildPhases = (
-				A99294819BA32CCA73FD7F50DFC42EE3 /* Headers */,
-				AF9A76873252CADB88371102952AC175 /* Sources */,
-				54807BE5CA4EA818C8C4738A8A300E74 /* Frameworks */,
+				FF6839887F77AAFFD9E60F81296489FB /* Headers */,
+				12E4E24C5A423EA1E71998085E86F252 /* Sources */,
+				DE7022F924930F99A6A2791505E7A8AD /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -739,7 +724,7 @@
 			);
 			name = ZDToolKit;
 			productName = ZDToolKit;
-			productReference = 32EACD31F24CC7A15E0B6DA736A4ED8D /* libZDToolKit.a */;
+			productReference = 32EACD31F24CC7A15E0B6DA736A4ED8D /* ZDToolKit */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -770,90 +755,89 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AF9A76873252CADB88371102952AC175 /* Sources */ = {
+		12E4E24C5A423EA1E71998085E86F252 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B615B664C0DB54756CAFE438AA26E3F0 /* CALayer+ZDUtility.m in Sources */,
-				FB7503460A940184EE58A868CF199C49 /* NSArray+ZDUtility.m in Sources */,
-				41B6BD953277E0B82018EE7048A85950 /* NSData+ZDUtility.m in Sources */,
-				974599D50FAB466C6B5E3B3669E58DBB /* NSDate+ZDUtility.m in Sources */,
-				914751EA453845AC51D39F072F23DA67 /* NSDictionary+ZDUtility.m in Sources */,
-				992A5A723C039827D2D5057F265263BC /* NSInvocation+ZDBlock.m in Sources */,
-				18D5DD5E6DD10DA611EBED0959A0F58E /* NSInvocation+ZDUtility.m in Sources */,
-				AF1374FF95BC2FCF5EACCFE1DF65E3D9 /* NSMutableArray+ZDUtility.m in Sources */,
-				70724FC735D3853837D14CD050279C3A /* NSNotificationCenter+ZDUtility.m in Sources */,
-				6B6F3479EB403F62D6AC38EE05B559B7 /* NSNull+ZDUtility.m in Sources */,
-				E190D3B7342104FD00E23F37B06DB7D7 /* NSObject+ZDBlockKVO.m in Sources */,
-				34F088D4BAF9BED707C0EE5DFB3E2921 /* NSObject+ZDRuntime.m in Sources */,
-				1010E7F1C392E72265DA5014CB097EEB /* NSObject+ZDSimulateKVO.m in Sources */,
-				32383E1EB312CB75A5AF36EE0659A551 /* NSObject+ZDUtility.m in Sources */,
-				FBFCE7CFB289231D226514EBF864F0D2 /* NSString+ZDUtility.m in Sources */,
-				0092F9495A8826EA2446A77568ED7A5C /* NSTimer+ZDUtility.m in Sources */,
-				2743815BBA9A03BD26D0E7D0632321AF /* NSURLSession+ZDUtility.m in Sources */,
-				824C65CB83F6AB9289554F8BF2AEB5D5 /* PKProtocolExtension.m in Sources */,
-				1D38E075A97D4AFAF704743D29A6957F /* UIApplication+ZDUtility.m in Sources */,
-				43F8577117E4D02482276E8EFF652E6B /* UIButton+ZDUtility.m in Sources */,
-				D87E38DD1AE8EA38EB3F9DCF1CAC1280 /* UIColor+ZDUtility.m in Sources */,
-				83823627C910B30D97B5DB8099DB3973 /* UIControl+ZDUtility.m in Sources */,
-				DD8C14A66F05D3D8755C1B1199CE6509 /* UIImage+ZDUtility.m in Sources */,
-				A6B79BBFC4767DA0801EE1D9A49E81ED /* UIImageView+FaceAwareFill.m in Sources */,
-				FC9131504A0871A081B559591B52355E /* UIImageView+ZDGIF.m in Sources */,
-				5A2CF11E1BE2B442209F1EE4B5A5D944 /* UIImageView+ZDUtility.m in Sources */,
-				48B06A544A232F5876D29E496059A64A /* UILabel+ZDUtility.m in Sources */,
-				1DC7A7C104DB108F9A9E8BC51A137481 /* UIResponder+ZDUtility.m in Sources */,
-				EF005A7CA63FEA45BEB157328FB8F2E0 /* UITextView+ZDUtility.m in Sources */,
-				48AFA6BDA34A1D256319326E7EF67C41 /* UIView+AutoFlowLayout.m in Sources */,
-				441AD1DF8E22F477A07AE00DB8352383 /* UIView+AutoLayout.m in Sources */,
-				859BC61C3EE0CC027571DC8D0B4B1304 /* UIView+FDCollapsibleConstraints.m in Sources */,
-				B164AF27544C9468875B380293922A3A /* UIView+ZDBorders.m in Sources */,
-				D88683DCED2BADF38D1C2A5A0EF8A78E /* UIView+ZDCollapsibleConstraints.m in Sources */,
-				D9314D3092E0D79C254E2370C520C07D /* UIView+ZDDraggable.m in Sources */,
-				CA8C58E1B2530DCA0CF8F0D71E2E850E /* UIView+ZDUtility.m in Sources */,
-				7ADFF806173EEE5294AE2D062653F6E4 /* UIViewController+ZDBack.m in Sources */,
-				8FF5ADE8F28D99BE9389ACA3524D6BE1 /* UIViewController+ZDPop.m in Sources */,
-				581AC124289A0E9C8C86E9598238EB82 /* UIViewController+ZDUtility.m in Sources */,
-				E1EB10279095FC994A8A5E3FDBCA8133 /* UIWebView+ZDUtility.m in Sources */,
-				40861A16F30868AAB0C46D3EF1CE36D8 /* WKWebView+ZDUtility.m in Sources */,
-				386A4D3106F4859834DF5DFF8CA686F0 /* ZDActionLabel.m in Sources */,
-				E6A82311E29E187CA2012042471E67E8 /* ZDAlertControllerHelper.m in Sources */,
-				2537F8F4792A8AC33D58DEB061B94BFE /* ZDBackgroundContainerView.m in Sources */,
-				6A1350C5DAAE032D4E98A9747C96D4C2 /* ZDBannerScrollView.m in Sources */,
-				9DC0152B11931428BAAF926FAA8035B1 /* ZDConcurrentOperation.m in Sources */,
-				156AB92DC65051CF03E7EE7ED81E115D /* ZDConsoleUnicode.m in Sources */,
-				7E628B8285A3AE47BF8E6CE185C7F288 /* ZDDispatchQueuePool.m in Sources */,
-				A8EAEFB05208FB608D4EC98303537803 /* ZDDispatchSourceMerge.m in Sources */,
-				38971C4E3D83F3F1FA2173128297AAA4 /* ZDEdgeLabel.m in Sources */,
-				F7A41CCC6958E89BF3341C2C8A56B1DA /* ZDFileManager.m in Sources */,
-				5C4C71442F97C2E38F722132B3126426 /* ZDFunction.m in Sources */,
-				0BACA81C6ECA54A07FC85007196B4779 /* ZDGifImageView.m in Sources */,
-				5BF947E48E41070EF26A1CF8D77E51C4 /* ZDGuardUIKitOnMainThread.m in Sources */,
-				2DC321AC8F75CB04E9AD5EAC1F6C3650 /* ZDIntegrationManager.m in Sources */,
-				A988D1B949301DAC7E8DA9FC6672BBE5 /* ZDInvocationWrapper.m in Sources */,
-				7CE262FD9F2CE51F167545E06C875638 /* ZDLinkedMap.m in Sources */,
-				C7A9BDF83A4A40F891D55783AB853A52 /* ZDMutableArray.m in Sources */,
-				280B5A9A378826114CD7B556990B06B1 /* ZDMutableDictionary.m in Sources */,
-				63222361DA9D019AE4CFC0F1E12C8F88 /* ZDOrderedDictionary.m in Sources */,
-				331E9573F3274FC1635AD3B6F5FE3421 /* ZDOSLogger.m in Sources */,
-				3EB02EFF5E760A42EFB09BF53858F400 /* ZDPermissionHandler.m in Sources */,
-				16FDB39C2CF75C30CD4E59F72147667A /* ZDPromise.m in Sources */,
-				D7AE29E6BFBD03A0AE19D518CD1C98D6 /* ZDProxy.m in Sources */,
-				231F098EF841B6896F38626D233B5D18 /* ZDReusePool.m in Sources */,
-				937059AEAFF2E9F8DA94C333A1BE100B /* ZDRunloopQueue.m in Sources */,
-				764764824F690D2522A0A79C86AABCFC /* ZDRuntimeTool.m in Sources */,
-				EB5031BA0E4E87FB8701119E9254007D /* ZDSafe.m in Sources */,
-				A10FC8AFA21AA791FF38FA333AC59E32 /* ZDTextView.m in Sources */,
-				7C1E2DA9653E55A26A51D31C88A44D98 /* ZDToolKit-dummy.m in Sources */,
-				0C4357B838ACACB15F85FC1D92B90F46 /* ZDWatchdog.m in Sources */,
+				ED34BB56586CD1D233005F687F77622C /* CALayer+ZDUtility.m in Sources */,
+				FC0841092B6B84F0F28BD685F7441B28 /* NSArray+ZDUtility.m in Sources */,
+				842E09461B235CFE43D7E1188A62453B /* NSData+ZDUtility.m in Sources */,
+				09871451E066B95D7CA20C56E4B4B5E5 /* NSDate+ZDUtility.m in Sources */,
+				D39CBA73900C80321257AC481A153EF3 /* NSDictionary+ZDUtility.m in Sources */,
+				AB96AF4FC6B93D7D34958056849F6181 /* NSInvocation+ZDBlock.m in Sources */,
+				FE15E6D59C00BEB82EAC863183CDE99F /* NSInvocation+ZDUtility.m in Sources */,
+				AE96EBC4DE9762F84AD27F82A348A0C5 /* NSMutableArray+ZDUtility.m in Sources */,
+				C7B8B6D7924360D6359CB374D84C4C75 /* NSNotificationCenter+ZDUtility.m in Sources */,
+				03F6A0D2276238DDD2540C1597BCB463 /* NSNull+ZDUtility.m in Sources */,
+				304C8B356234D9A8261D04E6EC59A00A /* NSObject+ZDBlockKVO.m in Sources */,
+				5CBD01DA751D07BFE02FCE0CACD1CEBA /* NSObject+ZDRuntime.m in Sources */,
+				BCDD484048BF69A3B45A3FB43D2345FD /* NSObject+ZDSimulateKVO.m in Sources */,
+				4E58DE881E22CC41DC750D4164D8C029 /* NSObject+ZDUtility.m in Sources */,
+				1474C449604B6CB2418818809262C7BA /* NSString+ZDUtility.m in Sources */,
+				04EE1A0D5BA894A773A61D5848D00AC5 /* NSTimer+ZDUtility.m in Sources */,
+				256BF52EBC4BA1EA0787E11D8313B0FF /* NSURLSession+ZDUtility.m in Sources */,
+				64BDDBCD4C14A808D6359C9A26683B98 /* PKProtocolExtension.m in Sources */,
+				D47A3AFF12032DBE460D39EEF32BFB8E /* UIApplication+ZDUtility.m in Sources */,
+				BB0AE2BED49648D29D383EBA785EB097 /* UIButton+ZDUtility.m in Sources */,
+				F23D0028AA174DEF908FB874B414F47F /* UIColor+ZDUtility.m in Sources */,
+				8E2F7D543E631318F3F7A7DFF06F733D /* UIControl+ZDUtility.m in Sources */,
+				BFB6AA9D83B4BC61DD6DA4C816AB25D5 /* UIImage+ZDUtility.m in Sources */,
+				24FCD2423FE739D2ACF594D0F2082012 /* UIImageView+FaceAwareFill.m in Sources */,
+				8E4FCD28D5747D3EA2437BE8D61C5A3C /* UIImageView+ZDGIF.m in Sources */,
+				B7A2EEE7FBD5BC9CB8F599BB85E09B7C /* UIImageView+ZDUtility.m in Sources */,
+				0DDE10FEE2DDCA01F5165649AF70C704 /* UILabel+ZDUtility.m in Sources */,
+				DC5CCC43B3F38E4432C6B40868041FCF /* UIResponder+ZDUtility.m in Sources */,
+				0C1A92B7AF51B7C51DF059995C06F0E6 /* UITextView+ZDUtility.m in Sources */,
+				478D00D56F4E9085639D668BDE1F45E2 /* UIView+AutoFlowLayout.m in Sources */,
+				F498F970A395E7BF05079405ECC6B63F /* UIView+AutoLayout.m in Sources */,
+				2BAA95BEF8C3F7D9E120BF5757C678E9 /* UIView+FDCollapsibleConstraints.m in Sources */,
+				1677A4D759264B27561AFEB8EC59D36A /* UIView+ZDBorders.m in Sources */,
+				D861090A7A68D4D1E77A3DF7B1D63F9A /* UIView+ZDCollapsibleConstraints.m in Sources */,
+				A0DE695B4882C6A9EBC6DF6F741C7D38 /* UIView+ZDDraggable.m in Sources */,
+				18099CC8C67B350801D1C538CC6C1356 /* UIView+ZDUtility.m in Sources */,
+				22B9A12CC65E8120E47FD87F63DB5C0B /* UIViewController+ZDBack.m in Sources */,
+				5D670C9A7A4416652CE6F2A4CA1777B1 /* UIViewController+ZDPop.m in Sources */,
+				80EEA560CA762648F0D7F2596F59DCB2 /* UIViewController+ZDUtility.m in Sources */,
+				DB0B99A635A7669FDF7C6057C9B2C713 /* UIWebView+ZDUtility.m in Sources */,
+				8FE910588B0E4FCC6ACA91BFA22D6CFB /* WKWebView+ZDUtility.m in Sources */,
+				285DB486E40AF8C23EEF007BC19C3FE4 /* ZDActionLabel.m in Sources */,
+				E235CD3E98A6FA26B925307373A444A6 /* ZDAlertControllerHelper.m in Sources */,
+				233698959B188C49C99BE9243EC77A44 /* ZDBackgroundContainerView.m in Sources */,
+				3C85B2DCB0290C440F09DDF1FD5F4140 /* ZDBannerScrollView.m in Sources */,
+				0599010F8FB6B0DBC34B92900146E4B9 /* ZDConcurrentOperation.m in Sources */,
+				75F169840D4910B6769F694A5DA471FF /* ZDConsoleUnicode.m in Sources */,
+				CA77F226AEDC06AF0EC2BD71BA710F13 /* ZDDispatchQueuePool.m in Sources */,
+				EB72EE6FD1AFAEE9507464896D32A828 /* ZDDispatchSourceMerge.m in Sources */,
+				58818794921F738D392B1F5EEFDD1536 /* ZDEdgeLabel.m in Sources */,
+				007B2117FA1FD9359CD8DB3CD9A574C0 /* ZDFileManager.m in Sources */,
+				978186B474787AD38D6E26884C022B22 /* ZDFunction.m in Sources */,
+				DC1CA25A8CE754DE73DD4723B7B07172 /* ZDGifImageView.m in Sources */,
+				78509C947EC414046A9C5589BC7FE213 /* ZDGuardUIKitOnMainThread.m in Sources */,
+				9513ACCE6616849D7C751C8E1CFA45AB /* ZDIntegrationManager.m in Sources */,
+				6CCB75F72F4372195E68F57460130E69 /* ZDInvocationWrapper.m in Sources */,
+				29981ECF77FBCF4210AE195D7A0CEEEF /* ZDLinkedMap.m in Sources */,
+				F5B3DDFF3F94D6F9B65F0170188B02CC /* ZDMutableArray.m in Sources */,
+				225373F742EEC58976CFEBF9D2717CFB /* ZDMutableDictionary.m in Sources */,
+				91313F1BF4511AC9717F38EF189351DA /* ZDOrderedDictionary.m in Sources */,
+				8C5C416D658A40DA16620A78D89B90BC /* ZDOSLogger.m in Sources */,
+				5CB48C9CF0610A6F7FCE5B207030CD92 /* ZDPermissionHandler.m in Sources */,
+				A609C0AE4C8267869B68BBB68FEF9976 /* ZDPromise.m in Sources */,
+				D8D1DAB98062E07391A91234CE295457 /* ZDProxy.m in Sources */,
+				3DC15825AA7D59B9D547D74A7D5CB110 /* ZDReusePool.m in Sources */,
+				C19463E5C19269A4342775E47608C024 /* ZDRunloopQueue.m in Sources */,
+				BE0C0B3B407C72410E5A52A2CEF918FA /* ZDSafe.m in Sources */,
+				309F69EAD6C62F5DCE868D48DE847346 /* ZDTextView.m in Sources */,
+				EEA1B32BE31555538BEF42162E01C8D2 /* ZDToolKit-dummy.m in Sources */,
+				22D7D0CB6C6771B3AD25814A1F5A842F /* ZDWatchdog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		0B4926EC4014560571E4B5BFB9AF8618 /* Release */ = {
+		0201B4F2CEAA3A9C077519E7630D7022 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A81F4E716F543F2D3D84F902B485C24A /* ZDToolKit.release.xcconfig */;
+			baseConfigurationReference = 3FBBD09CBEEEEDA93E0F2D7657136EEB /* ZDToolKit.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -996,15 +980,16 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		C617383CB0DBDA755CE2B6DA23FD7586 /* Debug */ = {
+		E3628441DA4E8471C7735A4C4DDEB441 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F7327704975FB9A9A44829FE98FE425 /* ZDToolKit.debug.xcconfig */;
+			baseConfigurationReference = 0FA76381AC97632BB8B3F20FB83DE701 /* ZDToolKit.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1028,11 +1013,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		598887277A5EABC1230626CCF08BB2D3 /* Build configuration list for PBXNativeTarget "ZDToolKit" */ = {
+		3632DFB0CA28A2312AC57935E1807F4F /* Build configuration list for PBXNativeTarget "ZDToolKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C617383CB0DBDA755CE2B6DA23FD7586 /* Debug */,
-				0B4926EC4014560571E4B5BFB9AF8618 /* Release */,
+				E3628441DA4E8471C7735A4C4DDEB441 /* Debug */,
+				0201B4F2CEAA3A9C077519E7630D7022 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,7 +1,7 @@
 PODS:
-  - SDWebImage (5.12.1):
-    - SDWebImage/Core (= 5.12.1)
-  - SDWebImage/Core (5.12.1)
+  - SDWebImage (5.15.2):
+    - SDWebImage/Core (= 5.15.2)
+  - SDWebImage/Core (5.15.2)
   - ZDToolKit (0.0.5):
     - ZDToolKit/ZDAutoLayout (= 0.0.5)
     - ZDToolKit/ZDCategory (= 0.0.5)
@@ -48,9 +48,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
-  ZDToolKit: 36fc97e7b74bf549188b6c07f6cc4774ec4467df
+  SDWebImage: 8ab87d4b3e5cc4927bd47f78db6ceb0b94442577
+  ZDToolKit: b05a3511d2f346b194dc9ef5b86b9d8736fcd200
 
-PODFILE CHECKSUM: 6f13f0bee0e81640bc58dafefe88919a1307ddfb
+PODFILE CHECKSUM: fc3aab1542e606c57370859a1acef4df4e2a9c28
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

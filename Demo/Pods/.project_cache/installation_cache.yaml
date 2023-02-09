@@ -19,17 +19,17 @@ CACHE_KEYS:
       SDWebImage:
         :debug: 1e90e26ff5c55c782bb1feb0482e135e
         :release: 1e90e26ff5c55c782bb1feb0482e135e
-    CHECKSUM: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+    CHECKSUM: 8ab87d4b3e5cc4927bd47f78db6ceb0b94442577
     PROJECT_NAME: SDWebImage
     SPECS:
-      - SDWebImage (5.12.1)
-      - SDWebImage/Core (5.12.1)
+      - SDWebImage (5.15.2)
+      - SDWebImage/Core (5.15.2)
   ZDToolKit:
     BUILD_SETTINGS_CHECKSUM:
       ZDToolKit:
         :debug: 851cf69da7f79f69336f5ce08c0329ee
         :release: 851cf69da7f79f69336f5ce08c0329ee
-    CHECKSUM: 36fc97e7b74bf549188b6c07f6cc4774ec4467df
+    CHECKSUM: b05a3511d2f346b194dc9ef5b86b9d8736fcd200
     FILES:
       - "../../LICENSE"
       - "../../README.md"
@@ -122,8 +122,6 @@ CACHE_KEYS:
       - "../../ZDToolKit/ZDMacros/ZDMetamacros.h"
       - "../../ZDToolKit/ZDMRC/ZDSafe.h"
       - "../../ZDToolKit/ZDMRC/ZDSafe.m"
-      - "../../ZDToolKit/ZDRuntime/ZDRuntimeTool.h"
-      - "../../ZDToolKit/ZDRuntime/ZDRuntimeTool.m"
       - "../../ZDToolKit/ZDSubclass/ZDActionLabel.h"
       - "../../ZDToolKit/ZDSubclass/ZDActionLabel.m"
       - "../../ZDToolKit/ZDSubclass/ZDBackgroundContainerView.h"
@@ -211,5 +209,4 @@ INSTALLATION_OPTIONS:
   warn_for_unused_master_specs_repo: true
 OBJECT_VERSION: 46
 PLUGINS:
-  cocoapods-mapfile:
-    {}
+  {}
