@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (__kindof UIResponder *_Nullable)zd_firstResponder;
 
+/// 获取window
+- (__kindof UIWindow *_Nullable)zd_window;
+
 @end
 
 NS_ASSUME_NONNULL_END
