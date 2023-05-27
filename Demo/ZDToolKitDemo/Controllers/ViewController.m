@@ -54,6 +54,8 @@
     foreach(a, arr) {
         NSLog(@"%@", a.zd_isEmpty ? @"空字符串" : @"非空");
     }
+    
+    self.NSString;
 
     /*
      id target = [aClass new];

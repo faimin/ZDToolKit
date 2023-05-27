@@ -20,7 +20,24 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     PropertyType_Assign,
 };
 
+#define ZDCAST(CLS)                         \
+- (instancetype)CLS {                       \
+    if ([self isKindOfClass:CLS.self]) {    \
+        return self;                        \
+    }                                       \
+    return nil;                             \
+}
+
 @implementation NSObject (ZDUtility)
+
+#pragma mark - Cast
+
+ZDCAST(NSString)
+ZDCAST(NSNumber)
+ZDCAST(NSArray)
+ZDCAST(NSMutableArray)
+ZDCAST(NSDictionary)
+ZDCAST(NSMutableDictionary)
 
 + (instancetype)zd_cast:(id)objc {
     if (!objc) return nil;
@@ -30,6 +47,50 @@ typedef NS_ENUM(NSUInteger, PropertyType) {
     }
     return nil;
 }
+
+- (NSInteger)llm_integerValue {
+    if ([self respondsToSelector:@selector(integerValue)]) {
+        return [(NSString *)self integerValue];
+    }
+    return 0;
+}
+
+- (long long)llm_longLongValue {
+    if ([self respondsToSelector:@selector(integerValue)]) {
+        return [(NSString *)self integerValue];
+    }
+    return 0;
+}
+
+- (int)llm_intValue {
+    if ([self respondsToSelector:@selector(intValue)]) {
+        return [(NSString *)self intValue];
+    }
+    return 0;
+}
+
+- (double)llm_doubleValue {
+    if ([self respondsToSelector:@selector(doubleValue)]) {
+        return [(NSString *)self doubleValue];
+    }
+    return 0.0;
+}
+
+- (float)llm_floatValue {
+    if ([self respondsToSelector:@selector(floatValue)]) {
+        return [(NSString *)self floatValue];
+    }
+    return 0.f;
+}
+
+- (BOOL)llm_boolValue {
+    if ([self respondsToSelector:@selector(boolValue)]) {
+        return [(NSString *)self boolValue];
+    }
+    return NO;
+}
+
+#pragma mark -
 
 - (instancetype)zd_deepCopy {
     id obj = nil;

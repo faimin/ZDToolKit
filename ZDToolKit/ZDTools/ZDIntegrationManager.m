@@ -15,7 +15,7 @@
 
 char *const ZDInjectableSectionName = "ZDInjectable";
 
-static NSArray<Class> *ZD_ReadConfigurationClasses() {
+static NSArray<Class> *ZD_ReadConfigurationClasses(void) {
     static NSMutableArray<Class> *classes;
     
     static dispatch_once_t onceToken;
